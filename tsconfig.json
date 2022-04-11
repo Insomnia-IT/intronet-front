@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "target": "ES2019",
+    "composite": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "experimentalDecorators": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "skipDefaultLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true ,
+    "lib": [
+      "ESNext",
+      "dom"
+    ]
+  }
+}

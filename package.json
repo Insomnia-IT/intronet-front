@@ -1,0 +1,48 @@
+{
+  "name": "@insomnia/intro-front",
+  "version": "1.0.0",
+  "description": "Intronet web site for insomnia fest",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@storybook/addon-actions": "6.x.x",
+    "@storybook/addon-essentials": "6.x.x",
+    "@storybook/addon-links": "6.x.x",
+    "@storybook/builder-webpack5": "6.x.x",
+    "@storybook/manager-webpack5": "6.x.x",
+    "@storybook/react": "6.x.x",
+    "@types/node": "17.x.x",
+    "@types/react": "17.x.x",
+    "@types/react-dom": "17.x.x",
+    "bulma": "0.9.3",
+    "cellx": "1.x.x",
+    "cellx-decorators": "1.x.x",
+    "cellx-react": "1.x.x",
+    "dayjs": "1.x.x",
+    "react": "18.x.x",
+    "react-bulma-components": "4.1.0",
+    "react-dom": "18.x.x",
+    "react-scripts": "5.x.x",
+    "sass": "1.50.0",
+    "typescript": "4.x.x",
+    "wouter": "2.x.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
