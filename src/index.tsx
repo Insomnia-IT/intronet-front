@@ -2,7 +2,6 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import './index.sass';
 import {App} from "./app/app";
-import "./helpers/dayjs";
 
 const root = createRoot(document.getElementById('root'))
 root.render(
