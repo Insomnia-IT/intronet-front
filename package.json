@@ -4,11 +4,12 @@
   "description": "Intronet web site for insomnia fest",
   "scripts": {
     "start": "react-scripts start",
+    "story": "start-storybook -p 6006",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "dependencies": {
+  "devDependencies": {
     "@storybook/addon-actions": "6.x.x",
     "@storybook/addon-essentials": "6.x.x",
     "@storybook/addon-links": "6.x.x",
@@ -20,9 +21,10 @@
     "@types/react-dom": "17.x.x",
     "bulma": "0.9.3",
     "cellx": "1.x.x",
+    "cellx-collections": "1.x.x",
     "cellx-decorators": "1.x.x",
     "cellx-react": "1.x.x",
-    "dayjs": "1.x.x",
+    "luxon": "2.x.x",
     "react": "18.x.x",
     "react-bulma-components": "4.1.0",
     "react-dom": "18.x.x",
@@ -44,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@types/luxon": "^2.3.1"
   }
 }

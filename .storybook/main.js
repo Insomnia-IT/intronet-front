@@ -1,11 +1,16 @@
 const path = require('path');
+const ts = require('typescript');
+const tsConfig = getTSConfig();
+const aliases = Object.fromEntries(Object.entries(tsConfig.paths).map(([key, value]) =>
+  [key.replace('/*',''), path.resolve(value[0].replace('/*',''))]));
 
 module.exports = {
-  core : {
-    builder : "webpack5" ,
-  } ,
+  core: {
+    builder: "webpack5",
+  },
   webpackFinal: async (config, {configType}) => {
-    config.module.rules[7].use[1].options.modules={localIdentName:"[folder]_[local]-[hash:base64:5]"};
+    Object.assign(config.resolve.alias, aliases)
+    config.module.rules[7].use[1].options.modules = {localIdentName: "[folder]_[local]-[hash:base64:5]"};
     return config;
   },
   "stories": [
@@ -19,3 +24,19 @@ module.exports = {
   "framework": "@storybook/react",
   staticDirs: ['../public'],
 };
+
+
+function getTSConfig() {
+  const configPath = ts.findConfigFile(process.cwd(), ts.sys.fileExists, 'tsconfig.json');
+  const readConfigFileResult = ts.readConfigFile(configPath, ts.sys.readFile);
+  if (readConfigFileResult.error) {
+    throw new Error(ts.formatDiagnostic(readConfigFileResult.error, formatHost));
+  }
+  const jsonConfig = readConfigFileResult.config;
+  const convertResult = ts.convertCompilerOptionsFromJson(jsonConfig.compilerOptions, './');
+  if (convertResult.errors && convertResult.errors.length > 0) {
+    throw new Error(ts.formatDiagnostics(convertResult.errors, formatHost));
+  }
+  const compilerOptions = convertResult.options;
+  return compilerOptions;
+}
