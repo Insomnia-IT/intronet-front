@@ -28,7 +28,7 @@ export default function MobileMenu({ menuList, children }: IMobileMenuProps) {
         <BulmaMenu>
           <BulmaMenu.List>
             {menuList.map((item: IMenuObject): React.ReactNode => {
-              return <BulmaMenu.List.Item to={item.link} renderAs={Link} onClick={toggleMenu}>{item.text}</BulmaMenu.List.Item>
+              return <BulmaMenu.List.Item key={item.link} to={item.link} renderAs={Link} onClick={toggleMenu}>{item.text}</BulmaMenu.List.Item>
             })}
           </BulmaMenu.List>
         </BulmaMenu>
