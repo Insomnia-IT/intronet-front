@@ -1,5 +1,5 @@
   self.isDebug = true;
-  importScripts('./module.sw.js');
+  importScripts('./sw/module.sw.js');
 
   const env = new SwEnv('/', {
     database: {
@@ -15,7 +15,7 @@
         {
           title: 'root',
           version: {
-            fetchPath: '/.version' // !!!ВНИМАНИЕ!!! По этому path делается wake up. При изменении не забудь актуализировать path в sw[main] части кода.
+            fetchPath: '/root.version' // !!!ВНИМАНИЕ!!! По этому path делается wake up. При изменении не забудь актуализировать path в sw[main] части кода.
           },
           match: {
             order: 100, // все подконтрольные файлы, что не попадают в свои кеши(фильтр по pathStart), попадают в кеш 'root'
@@ -25,26 +25,18 @@
           precachePaths: [
             '/sw/index.js',
             '/index.html',
+            '/icons/favicon-96x96.png',
             '/manifest.json',
+            // '/fonts/PT_Root_UI/light/PT_Root_UI_Light.woff2',
+            // '/fonts/PT_Root_UI/medium/PT_Root_UI_Medium.woff2',
+            // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.css',
+            // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.eot',
+            // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.woff2',
+            // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.woff',
+            // '/fonts/PT_Root_UI/bold/PT_Root_UI_Bold.woff2',
+            '/'
           ],
         },
-        {
-          title: 'static',
-          version: {
-            fetchPath: '/cdn/static/.version'
-          },
-          match: {
-            order: 10,
-            pathStart: '/cdn/static',
-            useInCacheControl: true
-          },
-          precachePaths: [
-            './fonts/PT_Root_UI/light/PT_Root_UI_Light.woff2',
-            './fonts/PT_Root_UI/medium/PT_Root_UI_Medium.woff2',
-            './fonts/PT_Root_UI/regular/PT_Root_UI_Regular.woff2',
-            './fonts/PT_Root_UI/bold/PT_Root_UI_Bold.woff2'
-          ]
-        }
       ],
     }
   });

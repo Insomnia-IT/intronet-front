@@ -7,7 +7,8 @@
     "story": "start-storybook -p 6006",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.x.x",

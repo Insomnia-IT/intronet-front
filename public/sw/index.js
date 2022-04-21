@@ -1,5 +1,4 @@
 'use strict';
-
 if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
   const isFirstInstall = !(navigator.serviceWorker.controller instanceof ServiceWorker); // при первой установке на клиенте еще нет sw
 
@@ -102,7 +101,7 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
   async function wakeUpSw() {
     try {
       logSw(`wake up by request of root version. ${new Date()}`)
-      await fetch('/.version').then(res => res.text());
+      await fetch('/root.version').then(res => res.text());
       return true;
     } catch (err) {
       errSw(`fail while wake up`, err.message);
