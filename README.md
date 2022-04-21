@@ -3,3 +3,9 @@
 Web framework for building fast web application with business logic dedicated in a worker, simple CustomElements with uhtml, DI and data flow via cellx.
 
 [WIP]
+
+build: 
+  `npm run ci`
+   собирает docker image `insomnia/intronet-front` 
+
+запуск: docker-compose
