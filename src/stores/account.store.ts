@@ -1,7 +1,7 @@
 import {ObservableList, ObservableMap} from "cellx-collections";
 import {Observable} from "cellx-decorators";
 import {Dexie, Table} from "dexie";
-import { api } from "src/api";
+import { qrApi } from "src/api";
 import {Fn} from "@cmmn/core";
 
 class AccountStore {
@@ -36,7 +36,7 @@ class AccountStore {
       qr, name: 'default', token: null,
       isValid: false
     };
-    api.checkUserQR(qr)
+    qrApi.checkUserQR(qr)
       .then(valid => {
         acc.isValid = valid;
         this.Accounts.set(acc.id, acc);

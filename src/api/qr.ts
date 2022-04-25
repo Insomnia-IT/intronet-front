@@ -1,9 +1,6 @@
-class Api {
+import {BaseApi} from "./base";
 
-  private fetch(url: string, options?: RequestInit) {
-    return fetch(url, options)
-      .then(resp => resp.json());
-  }
+export class QRApi extends BaseApi {
 
   async checkUserQR(qr: string) {
     try {
@@ -14,5 +11,3 @@ class Api {
     }
   }
 }
-
-export const api = new Api();

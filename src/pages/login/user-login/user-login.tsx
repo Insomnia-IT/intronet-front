@@ -26,13 +26,17 @@ export class UserLogin extends React.Component {
   @Observable
   isAdding = false;
 
+  get shouldShowReader(): boolean{
+    return this.isAdding || account.Accounts.size == 0;
+  }
+
   render() {
     return (
       <Bulma.Container>
-        {(account.Accounts.size == 0 || this.isAdding) &&
+        {(this.shouldShowReader) &&
           <QRReader onSuccess={this.onQRScanned} onError={console.log}/>}
         {Array.from(account.Accounts.values()).map(AccountInfo)}
-        {!this.isAdding &&
+        {!this.shouldShowReader &&
           <Bulma.Button onClick={() => this.isAdding = true}>
             Добавить аккаунт
           </Bulma.Button>

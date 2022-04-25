@@ -2,6 +2,7 @@ import QrScanner from 'qr-scanner';
 import React, {ChangeEvent} from 'react';
 import style from "./qr.module.css";
 import * as Bulma from "react-bulma-components";
+import {pdf2png} from "./pdf2png";
 
 export class QRReader extends React.Component<{
   fps?: number;
@@ -31,12 +32,18 @@ export class QRReader extends React.Component<{
   render() {
     return <div className={style.qrReader}>
       <Bulma.Button renderAs={'label'}
-                    onClick={() => this.state.camera && this.ToggleCamera()}
+                    onClick={this.StopCamera}
                     className={style.fileButton}>
         <span>Choose file</span>
         <input type="file"
                onChange={this.ScanFile}/>
       </Bulma.Button>
+      <Bulma.Form.Control>
+        <span>Ticket number</span>
+        <Bulma.Form.Input placeholder={'17 цифр'}
+                          onChange={this.OnInput}
+                          onClick={this.StopCamera}/>
+      </Bulma.Form.Control>
       <Bulma.Button onClick={this.ToggleCamera}>{this.state.camera ? 'Stop' : 'Camera'}</Bulma.Button>
       <video ref={this.videoRef}
              style={{display: this.state.camera ? 'initial' : 'none'}}
@@ -46,18 +53,24 @@ export class QRReader extends React.Component<{
 
   ScanFile = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
-      const res = await QrScanner.scanImage(e.target.files[0], {
+      const file = e.target.files[0];
+      console.log(file.name);
+      const img = file.name.endsWith('.pdf')
+        ? await pdf2png(file)
+        : file;
+      const res = await QrScanner.scanImage(img, {
         alsoTryWithoutScanRegion: true,
       });
       this.onSuccess(res);
-    }catch (e){
+    } catch (e) {
       this.onError(e);
     }
+    e.target.value = null;
     // const res = await this.reader.scanFile(e.target.files[0]);
     // const res = await this.reader.start(camera, this.config, this.onSuccess, console.log);
   };
 
-
+  StopCamera = () => this.state.camera && this.ToggleCamera();
   ToggleCamera = async () => {
     this.setState(state => ({
       camera: !state.camera
@@ -88,15 +101,14 @@ export class QRReader extends React.Component<{
     this.props.onSuccess(data);
   }
 
+  OnInput = e => {
+    const value = e.target.value;
+    if (/^\d{13}$/.test(value)){
+      this.props.onSuccess(value);
+    }
+  }
+
   onError = async error => {
-
-  }
-
-
-  componentWillUnmount() {
-
-  }
-
-  componentDidMount() {
+    this.props.onError(error);
   }
 }
