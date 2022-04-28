@@ -1,0 +1,13 @@
+.qrReader{
+  display: flex;
+  flex-direction: column;
+}
+
+.camera {
+  height: 600px;
+  background: #AAA;
+}
+
+.fileButton input {
+  display: none;
+}

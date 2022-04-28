@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="./layout.css" type="text/css" rel="stylesheet">
+  <link href="./colors.css" type="text/css" rel="stylesheet">
+  <link href="./distances.css" type="text/css" rel="stylesheet">
+  <link href="./adaptive.css" type="text/css" rel="stylesheet">
+  <link href="./custom.css" type="text/css" rel="stylesheet">
+  <script src="index.js"></script>
+  <title>Login page</title>
+</head>
+<body>
+<form action="/api/login"
+      method="post">
+  <label>
+    <span>Username</span>
+    <input autofocus
+           autocomplete
+           required
+           tabindex="1"
+           type="text"
+           id="login"
+           name="login">
+  </label>
+
+  <label>
+    <span>Password</span>
+    <input tabindex="2"
+           required
+           autocomplete="current-password"
+           type="password"
+           id="password"
+           name="password"
+           aria-describedby="password-constraints">
+    <div class="password-info">
+      <span id="password-constraints">
+        min 8 symbols
+      </span>
+      <input type="checkbox"
+             tabindex="4"
+             class="toggle-password"
+             onchange="togglePasswordType(event)">
+    </div>
+  </label>
+
+  <input tabindex="3" type="submit" value="Login">
+</form>
+</body>
+</html>

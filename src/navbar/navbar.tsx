@@ -54,7 +54,7 @@ export default function Navbar() {
       <BulmaNavbar.Menu>
         <BulmaNavbar.Container>
           {menuList.map((item: IMenuObject): React.ReactNode => {
-            return <BulmaNavbar.Item to={item.link} renderAs={Link}>{item.text}</BulmaNavbar.Item>
+            return <BulmaNavbar.Item key={item.link} to={item.link} renderAs={Link}>{item.text}</BulmaNavbar.Item>
           })}
         </BulmaNavbar.Container>
       </BulmaNavbar.Menu>

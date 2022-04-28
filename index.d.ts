@@ -1,5 +1,5 @@
 declare module "*.less" {
-  const style: string;
+  const style: { [key: string]: string };
   export default style;
 }
 

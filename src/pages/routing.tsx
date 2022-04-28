@@ -13,7 +13,7 @@ export function Routing() {
       <Route path="/map"> <MapPage /></Route>
       <Route path="/voting"> <VotingPage /></Route>
       <Route path="/timetable"> <TimetablePage /></Route>
-      <Route path="/login"> <LoginPage /></Route>
+      <Route path="/user-login"> <LoginPage /></Route>
     </>
   )
     ;

@@ -7,9 +7,11 @@
     "story": "start-storybook -p 6006",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front"
   },
   "devDependencies": {
+    "@mdi/font": "^6.6.96",
     "@storybook/addon-actions": "6.x.x",
     "@storybook/addon-essentials": "6.x.x",
     "@storybook/addon-links": "6.x.x",
@@ -19,12 +21,16 @@
     "@types/node": "17.x.x",
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
+    "@cmmn/core": "1.x.x",
     "bulma": "0.9.3",
     "cellx": "1.x.x",
     "cellx-collections": "1.x.x",
     "cellx-decorators": "1.x.x",
     "cellx-react": "1.x.x",
+    "dexie": "3.x.x",
+    "html5-qrcode": "^2.2.1",
     "luxon": "2.x.x",
+    "pdfjs": "2.x.x",
     "react": "18.x.x",
     "react-bulma-components": "4.1.0",
     "react-dom": "18.x.x",
@@ -48,6 +54,7 @@
     ]
   },
   "dependencies": {
-    "@types/luxon": "^2.3.1"
+    "@types/luxon": "^2.3.1",
+    "qr-scanner": "^1.4.1"
   }
 }
