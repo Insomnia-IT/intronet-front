@@ -1,4 +1,17 @@
-import { Cell } from "cellx";
+import {Cell} from "cellx";
+import {useEffect, useState} from "react";
+
+export function useCellState<T>(getter: () => T): [T, (value: T) => void] {
+  const [value, setter] = useState(getter());
+  const cell = new Cell(getter);
+  useEffect(() => {
+    cell.onChange(e => setter(cell.get()));
+    return () => {
+      cell.dispose()
+    };
+  }, []);
+  return [value, setter];
+}
 
 export function cellState<TState>(component: React.Component, state: StateOfGetters<TState>): TState {
   const result: Partial<TState> = {};
@@ -14,7 +27,7 @@ export function cellState<TState>(component: React.Component, state: StateOfGett
   }
   const origMount = component.componentDidMount;
   const origUnmount = component.componentWillUnmount;
-  component.componentDidMount = function (){
+  component.componentDidMount = function () {
     for (let [key, cell] of cells) {
       cell.onChange(ev => {
         component.setState({
@@ -24,9 +37,9 @@ export function cellState<TState>(component: React.Component, state: StateOfGett
     }
     origMount && origMount.call(component);
   }
-  component.componentWillUnmount = function (){
+  component.componentWillUnmount = function () {
     for (let [key, cell] of cells) {
-      cell.off();
+      cell.dispose();
     }
     origUnmount && origUnmount.call(component);
   }
