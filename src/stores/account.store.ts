@@ -1,4 +1,4 @@
-import {ObservableList, ObservableMap} from "cellx-collections";
+import {ObservableMap} from "cellx-collections";
 import {Observable} from "cellx-decorators";
 import {Dexie, Table} from "dexie";
 import { qrApi } from "src/api";
@@ -44,6 +44,11 @@ class AccountStore {
       })
     this.Accounts.set(acc.id, acc);
     this.db.put(acc);
+  }
+
+  Remove(acc: Account) {
+    this.Accounts.delete(acc.id);
+    this.db.delete(acc.id);
   }
 }
 
