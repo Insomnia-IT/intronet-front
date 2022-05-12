@@ -10,7 +10,6 @@ module.exports = {
   },
   webpackFinal: async (config, {configType}) => {
     Object.assign(config.resolve.alias, aliases)
-    config.module.rules[7].use[1].options.modules = {localIdentName: "[folder]_[local]-[hash:base64:5]"};
     return config;
   },
   "stories": [
@@ -20,6 +19,7 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    '@storybook/preset-create-react-app'
   ],
   "framework": "@storybook/react",
   staticDirs: ['../public'],
