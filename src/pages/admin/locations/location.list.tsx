@@ -1,19 +1,25 @@
 import React from "react";
-import {Location} from "../../../api/locations";
-import {Card, Content, Heading, Media, Image} from "react-bulma-components";
+import {Card, Heading, Image, Media} from "react-bulma-components";
+import {LocationFull} from "../../../stores/locations.store";
 
 export function LocationList(props: LocationListProps) {
   return <>
-    {props.locations.map(x => <LocationItem key={x.id} location={x}/>)}
+    {props.locations.map(x => <LocationItem key={x.id}
+                                            onChange={props.onChange}
+                                            location={x}/>)}
   </>;
 }
 
 type LocationListProps = {
-  locations: Location[]
+  locations: LocationFull[]
+  onChange(update: LocationFull): void;
 }
 
-export function LocationItem(props: { location: Location }) {
-  return  <Card>
+export function LocationItem(props: {
+  location: LocationFull,
+  onChange(update: LocationFull): void;
+}) {
+  return <Card>
     <Card.Content>
       <Media>
         <Media.Item renderAs="figure" align="left">
@@ -24,9 +30,12 @@ export function LocationItem(props: { location: Location }) {
           />
         </Media.Item>
         <Media.Item>
-          <Heading size={4}>{props.location.name}</Heading>
+          <Heading contentEditable onInput={e => props.onChange({
+            ...props.location,
+            name: e.target.textContent
+          })}>{props.location.name}</Heading>
           <Heading subtitle size={6}>
-            {props.location.tags}
+            {props.location.tags.map(x => x.name).join(',')}
           </Heading>
         </Media.Item>
       </Media>

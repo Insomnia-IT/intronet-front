@@ -3,7 +3,7 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
   const isFirstInstall = !(navigator.serviceWorker.controller instanceof ServiceWorker); // при первой установке на клиенте еще нет sw
 
   navigator.serviceWorker
-    .register('./sw.js', {scope: '/'})
+    .register('/sw.js', {scope: '/'})
     .then(reg => logSw(`registered scope: '${reg.scope}'`))
     .catch(err => errSw('registration error', err));
 

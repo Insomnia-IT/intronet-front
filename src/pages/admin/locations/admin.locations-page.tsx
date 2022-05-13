@@ -7,7 +7,7 @@ import {LocationList} from "./location.list";
 export class AdminLocationsPage extends React.PureComponent {
 
   state = cellState(this, {
-    locations: () => Array.from(locationsStore.Locations.values())
+    locations: () => locationsStore.FullLocations
   });
 
   render() {
@@ -16,7 +16,8 @@ export class AdminLocationsPage extends React.PureComponent {
       return <></>;
     }
     return <>
-      <LocationList locations={this.state.locations}/>
+      <LocationList locations={this.state.locations}
+                    onChange={x => locationsStore.updateLocation(x)}/>
     </>
   }
 }
