@@ -12,7 +12,8 @@ export default {
 
 
 export const Primary: ComponentStory<typeof LocationItem>
-  = (args) => <LocationItem location={args.location} onChange={console.log}/>;
+  = (args) => <LocationItem location={args.location}
+                                onChange={console.log} onDelete={console.log}/>;
 
 Primary.args = {
   location: {

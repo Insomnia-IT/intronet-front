@@ -42,8 +42,9 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
         }
       }
       for (let key of from.keys()) {
-        if (!this.items.has(key))
+        if (!this.items.has(key)) {
           this.remove(key, 'db');
+        }
       }
     } else {
       for (let [key, server] of from.entries()) {
@@ -57,20 +58,21 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
         }
       }
       for (let key of this.keys()) {
-        if (!from.has(key))
+        if (!from.has(key)) {
           this.remove(key, 'server');
+        }
       }
     }
 
   }
 
-  private remove(key: number, source : 'user' | 'server' | 'db' = 'user') {
+  remove(key: number, source : 'user' | 'server' | 'db' = 'user') {
     if (source != 'db') {
       this.table.delete(key);
       this.items.delete(key);
     }
     this.emit('change', {
-      type: 'remove', key, source
+      type: 'delete', key, source
     });
   }
 

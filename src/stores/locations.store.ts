@@ -78,6 +78,10 @@ class LocationsStore {
       tags: x.tags.map(t => t.id)
     });
   }
+
+  deleteLocation(location: LocationFull) {
+    this.Locations.remove(location.id);
+  }
 }
 
 export const locationsStore = new LocationsStore();
