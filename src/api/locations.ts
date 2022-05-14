@@ -71,5 +71,6 @@ export type Location = {
   name: string;
   x: number;
   y: number;
-  tags: number[]
+  tags: number[];
+  image: string;
 }
