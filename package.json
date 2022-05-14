@@ -33,6 +33,7 @@
     "html5-qrcode": "^2.2.1",
     "luxon": "2.x.x",
     "pdfjs": "2.x.x",
+    "prettier": "^2.6.2",
     "react": "18.x.x",
     "react-bulma-components": "4.1.0",
     "react-dom": "18.x.x",
