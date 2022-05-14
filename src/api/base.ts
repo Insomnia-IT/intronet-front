@@ -4,9 +4,14 @@ export class BaseApi {
 
   public fetch<T>(url: string, options?: RequestInit): Promise<T> {
     return fetch(this.baseUrl + url, options)
-      .then(resp => resp.json())
-      .then(x => x.model)
-      .catch(e => e.json());
+      .then(resp => resp.ok ? resp.json() : resp.json().then(err => {
+        throw {
+          ...err,
+          url, options,
+          headers: resp.headers
+        };
+      }))
+      .then(x => x.model);
   }
 
 }
