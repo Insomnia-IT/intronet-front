@@ -11,4 +11,10 @@ export class AdminApi extends BaseApi {
     };
     return this.fetch(url, options);
   }
+
+  public isAdmin(){
+    return !!localStorage.getItem('admin');
+  }
 }
+
+export const adminApi = new AdminApi();

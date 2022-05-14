@@ -4,6 +4,7 @@ import { Navbar as BulmaNavbar } from "react-bulma-components";
 import Logo from "../images/logo-black-100.png"
 import styles from "./navbar.module.css"
 import MobileMenu from "./mobileMenu/mobileMenu";
+import {Routes} from "../pages/routing";
 
 export interface IMenuObject extends Object {
   text: string;
@@ -15,24 +16,7 @@ export interface IMenuList extends Array<object> {
 }
 
 export default function Navbar() {
-  const menuList: IMenuList = [
-    {
-      text: 'Карта',
-      link: '/map'
-    },
-    {
-      text: 'Расписание',
-      link: '/timetable'
-    },
-    {
-      text: 'Голосование',
-      link: '/voting'
-    },
-    {
-      text: 'Доска объявлений',
-      link: '/board'
-    }
-  ]
+  const menuList: IMenuList = Routes;
 
   return (
     <BulmaNavbar className={styles.navbar}>

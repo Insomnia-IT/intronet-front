@@ -1,3 +1,4 @@
+import { debounced } from "src/helpers/debounce";
 import {AdminApi} from "./admin";
 
 const adminRoute = `/api/Admin/locations`
@@ -12,9 +13,17 @@ export class LocationsApi extends AdminApi {
     });
   }
 
+  public async getLocations(): Promise<Location[]> {
+    const loc = await this.fetch<(Omit<Location, "tags"> & { tags: { id }[] })[]>('/api/Locations/all/full');
+    return loc.map(x => ({
+      ...x,
+      tags: x.tags.map(x => x.id)
+    })) as Location[];
+  }
 
+  @debounced(400)
   public updateLocation(location: Partial<Location> & Pick<Location, "id">) {
-    return this.adminFetch(`${adminRoute}/add`, {
+    return this.adminFetch(`${adminRoute}/edit`, {
       method: 'PUT',
       body: JSON.stringify(location)
     });
@@ -38,7 +47,7 @@ export class LocationsApi extends AdminApi {
   }
 
   public updateTag(tag: Tag) {
-    return this.adminFetch(`${adminTagRoute}/add`, {
+    return this.adminFetch(`${adminTagRoute}/edit`, {
       method: 'PUT',
       body: JSON.stringify(tag)
     })
@@ -71,5 +80,6 @@ export type Location = {
   name: string;
   x: number;
   y: number;
-  tags: number[]
+  tags: number[];
+  image: string;
 }
