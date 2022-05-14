@@ -23,10 +23,13 @@ const env = new SwEnv('/', {
           useInCacheControl: false
         },
         precachePaths: [
+          '/',
           '/sw/index.js',
-          '/index.html',
           '/icons/favicon-96x96.png',
           '/manifest.json',
+          '/pdf.min.js',
+          '/pdf.worker.js',
+          // '/static/js/bundle.js',
           // '/fonts/PT_Root_UI/light/PT_Root_UI_Light.woff2',
           // '/fonts/PT_Root_UI/medium/PT_Root_UI_Medium.woff2',
           // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.css',
@@ -34,7 +37,6 @@ const env = new SwEnv('/', {
           // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.woff2',
           // '/fonts/PT_Root_UI/regular/PT_Root_UI_Regular.woff',
           // '/fonts/PT_Root_UI/bold/PT_Root_UI_Bold.woff2',
-          '/'
         ],
       },
     ],
