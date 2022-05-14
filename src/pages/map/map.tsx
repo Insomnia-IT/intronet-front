@@ -18,27 +18,34 @@ export function MapComponent(props: MapProps) {
     <div
       ref={container}
       style={{
-        transform: transform?.ToString("css"),
-        transformOrigin: "left top",
-        userSelect: "none",
         width: "100%",
         height: "100%",
-        overflow: "hidden",
-        willChange: "transform",
       }}
     >
-      <img
-        src={props.url}
+      <div
         style={{
-          pointerEvents: "none",
-          position: "absolute",
-          maxWidth: "initial",
+          transform: transform?.ToString("css"),
+          transformOrigin: "left top",
           userSelect: "none",
-          width: props.width,
-          height: props.height,
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+          willChange: "transform",
         }}
-      />
-      <svg></svg>
+      >
+        <img
+          src={props.url}
+          style={{
+            pointerEvents: "none",
+            position: "absolute",
+            maxWidth: "initial",
+            userSelect: "none",
+            width: props.width,
+            height: props.height,
+          }}
+        />
+        <svg></svg>
+      </div>
     </div>
   );
 }

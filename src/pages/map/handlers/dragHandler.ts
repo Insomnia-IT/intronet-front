@@ -6,8 +6,9 @@ export class DragHandler {
     private root: HTMLDivElement,
     private transform: Cell<TransformMatrix, any>
   ) {
-    root.addEventListener("pointerdown", this.onDown);
-    root.addEventListener("pointerup", this.onUp);
+    this.root.style.touchAction = "none";
+    this.root.addEventListener("pointerdown", this.onDown);
+    this.root.addEventListener("pointerup", this.onUp);
   }
 
   onDown = (event: PointerEvent) => {
@@ -15,14 +16,15 @@ export class DragHandler {
     this.root.addEventListener("pointermove", this.onMove);
   };
   onUp = (event: PointerEvent) => {
-    console.log("up", event);
     this.root.removeEventListener("pointermove", this.onMove);
     this.root.releasePointerCapture(event.pointerId);
   };
   onMove = (event: PointerEvent) => {
-    console.log(event);
+    if (!event.isPrimary) return;
     this.transform.set(
-      this.transform.get().Translate({ X: event.movementX, Y: event.movementY })
+      new TransformMatrix()
+        .Translate({ X: event.movementX, Y: event.movementY })
+        .Apply(this.transform.get())
     );
   };
 
