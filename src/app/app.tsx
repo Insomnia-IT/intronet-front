@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./app.style.module.css";
 import { Routing } from "../pages/routing";
-import { Container } from "react-bulma-components";
+import { Block, Columns, Container } from "react-bulma-components";
 import Navbar from "../navbar/navbar";
 import { BulmaProvider, Modals } from "src/helpers/BulmaProvider";
 
@@ -10,9 +10,15 @@ export function App() {
     <BulmaProvider>
       <div className={style.main}>
         <Container>
-          <Navbar />
+          <Block>
+            <Navbar />
+          </Block>
+          <Block>
+            <Columns>
+              <Routing />
+            </Columns>
+          </Block>
         </Container>
-        <Routing />
       </div>
       <Modals />
     </BulmaProvider>
