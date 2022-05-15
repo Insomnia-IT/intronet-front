@@ -31,9 +31,22 @@ export function MapComponent(props: MapProps) {
     return () => h.dispose();
   }, []);
   const scale = transform.Matrix.GetScaleFactor();
+  const onClick = (event) => {
+    const rect = container.current.getBoundingClientRect();
+    const p = { X: event.pageX - rect.left, Y: event.pageY - rect.top };
+    const point = transform.Inverse().Invoke(p);
+    for (let item of props.items) {
+      const dist = item.radius / scale;
+      if (Math.abs(item.point.x - point.X) > dist) continue;
+      if (Math.abs(item.point.y - point.Y) > dist) continue;
+      props.onSelect(item);
+      break;
+    }
+  };
   return (
     <div
       ref={container}
+      onClick={onClick}
       style={{
         width: "100%",
         height: "100%",
@@ -84,7 +97,7 @@ export function MapElement(props: { item: MapItem; scale: number }) {
     <circle
       cx={props.item.point.x}
       cy={props.item.point.y}
-      r={10 / props.scale}
+      r={props.item.radius / props.scale}
       fill="red"
     ></circle>
   );
@@ -99,5 +112,6 @@ export type MapProps = {
 export type MapItem = {
   point: { x; y };
   icon;
+  radius;
   id;
 };

@@ -16,8 +16,10 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
 Schema.args = {
   items: [
     {
-      point: { x: 123, y: 96 },
+      point: { x: 330, y: 260 },
+      radius: 20,
       icon: "",
+      id: 1,
     },
   ] as MapItem[],
   image: {
