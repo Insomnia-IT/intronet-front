@@ -13,7 +13,7 @@ export class ZoomHandler {
   }
 
   onWheel = (event: WheelEvent) => {
-    this.zoom(1.01 ** event.deltaY, this.eventToPoint(event));
+    this.zoom(1.1 ** (event.deltaY / 100), this.eventToPoint(event));
   };
 
   onDown = (event: TouchEvent) => {

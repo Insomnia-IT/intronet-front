@@ -10,7 +10,6 @@
     "eject": "react-scripts eject",
     "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front"
   },
-  "type": "module",
   "devDependencies": {
     "@cmmn/core": "1.x.x",
     "@mdi/font": "^6.6.96",
