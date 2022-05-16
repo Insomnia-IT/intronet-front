@@ -1,5 +1,5 @@
-import { Observable } from "cellx-decorators"
-import { notesStore } from 'src/stores';
+import { Computed, Observable } from "cellx-decorators"
+import { categoriesStore, notesStore } from 'src/stores';
 
 export const COUNT_NOTES_OF_PAGE = 5
 
@@ -8,7 +8,7 @@ class PagesStore {
   Page = 1
 
   @Observable
-  CountPages: number = 2
+  CountPages: number = 3
 
   isLastPage = this.page == this.countPages
 
@@ -26,13 +26,19 @@ class PagesStore {
   }
 
   nextPage = async () => {
-    await notesStore.loadNewNotes(this.Page + 1)
     this.Page++
+    const from = this.Page
+    categoriesStore.loadNewNotes(from, from + COUNT_NOTES_OF_PAGE)
   }
 
   prevPage = () => {
     this.Page--
-    console.log(this.Page)
+  }
+
+  @Computed
+  get notes() {
+    const from = (this.Page - 1) * COUNT_NOTES_OF_PAGE
+    return categoriesStore.notes.slice(from, from + COUNT_NOTES_OF_PAGE)
   }
 }
 

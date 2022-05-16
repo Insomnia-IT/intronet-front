@@ -1,9 +1,7 @@
-import { Observable } from 'cellx-decorators';
+import { Computed, Observable } from 'cellx-decorators';
 import { Dexie, Table } from 'dexie';
 import NotesApi from '../../api/notes';
 import { ObservableList } from 'cellx-collections';
-import { COUNT_NOTES_OF_PAGE, pagesStore } from './pages.store';
-import { ALL_CATEGORY, categoriesStore } from './categories.store';
 
 export interface INotes {
   id: number
@@ -51,19 +49,17 @@ class NotesStore {
   }
 
   // Загрузка новых объявлений выбранной категории
-  public loadNewNotes = async (page: number = pagesStore.page) => {
+  public loadNewNotes = async (categoryId: number, from: number, to: number) => {
     this.IsLoading = true
-    const newNotes = await this.api.getNotes(page, COUNT_NOTES_OF_PAGE, [categoriesStore.activeCategory])
+    const newNotes = await this.api.getNotes(from, to - from, [categoryId])
     this.Notes.addRange(newNotes)
     this.IsLoading = false
   }
 
-  // Отдаёт COUNT_NOTES_OF_PAGE объявлений переданной категории
-  public getNotes = (categoryId: number): INotes[] => {
-    const from = (pagesStore.page - 1) * COUNT_NOTES_OF_PAGE
-    const res = (categoriesStore.activeCategory === ALL_CATEGORY ? this.Notes.toArray() : this.Notes.filter((item) => item.categoryId == categoriesStore.activeCategory)).slice(from, from + COUNT_NOTES_OF_PAGE)
-    console.log(`notes list id - ${Math.random()}, res - `, res)
-    return res
+  // Отдаёт стор с объявлениями
+  @Computed
+  get notes() {
+    return this.Notes
   }
 }
 
