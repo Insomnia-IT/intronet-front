@@ -1,7 +1,8 @@
 version: "3.6"
 services:
   web:
-    build: .
+    build:
+      context: .
     image: insomnia/intronet-front
     container_name: intronet-front
     ports:
