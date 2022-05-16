@@ -1,7 +1,7 @@
 import { Computed, Observable } from "cellx-decorators";
 import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
-import { notesStore } from 'src/stores';
+import { notesStore, pagesStore } from 'src/stores';
 import { INotes } from './notes.store';
 
 export interface ICategory {
@@ -39,6 +39,23 @@ class CategoriesStore {
 
   set activeCategory(categoryId: number) {
     this.ActiveCategory = categoryId
+    this.onChangeCategory()
+  }
+
+  get allNotesCount() {
+    return this.allCategory.reduce((prev, current) => prev + current.count, 0)
+  }
+
+  private onChangeCategory() {
+    // Обнуление страницы
+    pagesStore.resetPages()
+
+    if (this.activeCategory === ALL_CATEGORY_ID) {
+      pagesStore.setCountPages(this.allNotesCount)
+    } else {
+      const activeCategoryObj = this.allCategory.find((category) => category.id === this.activeCategory)
+      pagesStore.setCountPages(activeCategoryObj.count)
+    }
   }
 
   loadNewNotes(from, to): Promise<void> {
@@ -59,7 +76,7 @@ class CategoriesStore {
     this.AllCategory.addRange(categories)
     this.IsLoading = false
     // Установка количества страниц
-    // pagesStore.setCountPages(categories.reduce((prev, current) => prev + current.count, 0))
+    pagesStore.setCountPages(this.allNotesCount)
   }
 }
 
