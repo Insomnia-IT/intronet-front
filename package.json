@@ -10,7 +10,6 @@
     "eject": "react-scripts eject",
     "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front"
   },
-  "type": "module",
   "devDependencies": {
     "@cmmn/core": "1.x.x",
     "@mdi/font": "^6.6.96",
@@ -25,6 +24,7 @@
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
     "bulma": "0.9.3",
+    "canvas": "^2.9.1",
     "cellx": "1.x.x",
     "cellx-collections": "1.x.x",
     "cellx-decorators": "1.x.x",

@@ -1,19 +1,27 @@
-import {Cell} from "cellx";
-import {useEffect, useState} from "react";
+import { Cell } from "cellx";
+import { useEffect, useMemo, useState } from "react";
 
-export function useCellState<T>(getter: () => T): [T, (value: T) => void] {
-  const [value, setter] = useState(getter());
-  const cell = new Cell(getter);
+export function useCellState<T>(
+  getter: (() => T) | T
+): [T, (value: T) => void, Cell<T>] {
+  const cell = useMemo(() => new Cell(getter), []);
+  const [value, setter] = useState(getter);
   useEffect(() => {
-    cell.onChange(e => setter(cell.get()));
+    const listener = (e) => {
+      setter(cell.get());
+    };
+    cell.onChange(listener);
     return () => {
-      cell.dispose()
+      cell.offChange(listener);
     };
   }, []);
-  return [value, setter];
+  return [value, (v) => cell.set(v), cell];
 }
 
-export function cellState<TState>(component: React.Component, state: StateOfGetters<TState>): TState {
+export function cellState<TState>(
+  component: React.Component,
+  state: StateOfGetters<TState>
+): TState {
   const result: Partial<TState> = {};
   const cells = new Map<string, Cell<any>>();
   for (let key in state) {
@@ -29,25 +37,28 @@ export function cellState<TState>(component: React.Component, state: StateOfGett
   const origUnmount = component.componentWillUnmount;
   component.componentDidMount = function () {
     for (let [key, cell] of cells) {
-      cell.onChange(ev => {
+      cell.onChange((ev) => {
         component.setState({
-          [key]: cell.get()
+          [key]: cell.get(),
         });
+      });
+      component.setState({
+        [key]: cell.get(),
       });
     }
     origMount && origMount.call(component);
-  }
+  };
   component.componentWillUnmount = function () {
     for (let [key, cell] of cells) {
       cell.dispose();
     }
     origUnmount && origUnmount.call(component);
-  }
+  };
   return result as TState;
 }
 
 export type GetterOrValue<T> = T | (() => T);
 
 export type StateOfGetters<T> = {
-  [key in keyof T]: GetterOrValue<T[key]>
+  [key in keyof T]: GetterOrValue<T[key]>;
 };
