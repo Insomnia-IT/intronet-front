@@ -4,10 +4,10 @@ import { TileConverter } from "../helpers/tile.converter";
 class MapStore {
   constructor() {
     this.load("/images/schema.jpg", "jpg").then((x) => (this.Schema = x));
-    this.load("/images/map.png", "png").then((x) => (this.Map = x));
+    this.load("/images/map.webp", "webp").then((x) => (this.Map = x));
   }
 
-  load(url, type: "jpg" | "png"): Promise<ImageInfo> {
+  load(url, type: "jpg" | "png" | "webp"): Promise<ImageInfo> {
     return fetch(url)
       .then((x) => x.arrayBuffer())
       .then(async (x) => {
