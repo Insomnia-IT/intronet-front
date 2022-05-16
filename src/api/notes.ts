@@ -1,6 +1,6 @@
 import { INotes } from '../stores/notes/notes.store';
 import { AdminApi } from './admin';
-import { ALL_CATEGORY, ICategory } from './../stores/notes/categories.store';
+import { ALL_CATEGORY_ID, ICategory } from './../stores';
 import { COUNT_NOTES_OF_PAGE } from 'src/stores';
 
 const notesRout = '/api/notes'
@@ -20,7 +20,7 @@ export default class NotesApi extends AdminApi {
     // то нужно заменить массив с категориями на пустой массив,
     // что бы в запросе не было категории, и сервер вернул их все.
     let smartFilter = true
-    if (categoriesIds.includes(0)) {
+    if (categoriesIds.includes(ALL_CATEGORY_ID)) {
       categoriesIds = []
       smartFilter = false
     }
