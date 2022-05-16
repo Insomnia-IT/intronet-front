@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: build images
+        run: docker-compose build
+      - name: stop containers
+        run: docker-compose down
+      - name: up compose stack
+        run: docker-compose up -d
+      - name: cleanup docker containers
+        run: docker container prune --filter "until=24h" -f
+      - name: cleanup docker images
+        run: docker image prune -a --filter "until=24h"

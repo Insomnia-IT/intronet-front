@@ -10,38 +10,40 @@
     "eject": "react-scripts eject",
     "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front"
   },
-  "devDependencies": {
+  "dependencies": {
     "@cmmn/core": "1.x.x",
     "@mdi/font": "^6.6.96",
-    "@storybook/addon-actions": "6.x.x",
-    "@storybook/addon-essentials": "6.x.x",
-    "@storybook/addon-links": "6.x.x",
-    "@storybook/builder-webpack5": "6.x.x",
-    "@storybook/manager-webpack5": "6.x.x",
-    "@storybook/preset-create-react-app": "^4.1.0",
-    "@storybook/react": "6.x.x",
     "@types/node": "17.x.x",
+    "@types/luxon": "^2.3.1",
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
     "bulma": "0.9.3",
-    "canvas": "^2.9.1",
     "cellx": "1.x.x",
     "cellx-collections": "1.x.x",
     "cellx-decorators": "1.x.x",
     "cellx-react": "1.x.x",
     "dexie": "3.x.x",
-    "html5-qrcode": "^2.2.1",
     "luxon": "2.x.x",
     "pdfjs": "2.x.x",
-    "prettier": "^2.6.2",
-    "react": "18.x.x",
+    "react": "17.x.x",
     "react-bulma-components": "4.1.0",
-    "react-dom": "18.x.x",
+    "react-dom": "17.x.x",
     "react-scripts": "5.x.x",
     "sass": "1.50.0",
-    "ts-jest": "^28.0.2",
     "typescript": "4.x.x",
-    "wouter": "2.x.x"
+    "wouter": "2.x.x",
+    "qr-scanner": "^1.4.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "6.x.x",
+    "@storybook/addon-essentials": "6.x.x",
+    "@storybook/addon-links": "6.x.x",
+    "@storybook/builder-webpack5": "6.x.x",
+    "@storybook/manager-webpack5": "6.x.x",
+    "@storybook/preset-create-react-app": "4.x.x",
+    "@storybook/react": "6.x.x",
+    "ts-jest": "^28.0.2",
+    "prettier": "^2.6.2"
   },
   "author": "",
   "license": "ISC",
@@ -57,9 +59,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://intronet.insomniafest.ru",
-  "dependencies": {
-    "@types/luxon": "^2.3.1",
-    "qr-scanner": "^1.4.1"
-  }
+  "proxy": "https://intronet.insomniafest.ru"
 }
