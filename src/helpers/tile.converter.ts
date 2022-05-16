@@ -19,20 +19,21 @@ function yToLat(g: number) {
 export class TileConverter {
   constructor(
     private offset: { x; y } = { x: 0, y: 0 },
+    private zoom: number = 0,
     private scale: number = 1
   ) {}
 
   public toGeo(point: { x: number; y: number }) {
     return {
-      lng: x2lng((point.x + this.offset.x) / this.scale),
-      lat: yToLat((point.y + this.offset.y) / this.scale),
+      lng: x2lng((point.x / this.scale + this.offset.x) / 2 ** this.zoom),
+      lat: yToLat((point.y / this.scale + this.offset.y) / 2 ** this.zoom),
     };
   }
 
   public fromGeo(geo: { lat: number; lng: number }) {
     return {
-      x: lng2x(geo.lng) - this.offset.x * this.scale,
-      y: latToY(geo.lat) - this.offset.y * this.scale,
+      x: (lng2x(geo.lng) * 2 ** this.zoom - this.offset.x) * this.scale,
+      y: (latToY(geo.lat) * 2 ** this.zoom - this.offset.y) * this.scale,
     };
   }
 }

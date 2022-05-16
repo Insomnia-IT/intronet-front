@@ -2,6 +2,21 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent, MapItem } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
+import { MapPage } from "./map-page";
+import { LocationFull } from "../../stores/locations.store";
+
+const locations: LocationFull[] = [
+  {
+    lat: 54.682615,
+    lng: 35.074867,
+    x: 1270,
+    y: 380,
+    name: "родник",
+    tags: [],
+    image: "",
+    id: 3,
+  },
+];
 
 export default {
   title: "Map",
@@ -13,14 +28,13 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
 );
 
 Schema.args = {
-  items: [
-    {
-      point: { x: 330, y: 260 },
-      radius: 20,
-      icon: "",
-      id: 1,
-    },
-  ] as MapItem[],
+  items: locations.map((x) => ({
+    point: { x: x.x, y: x.y },
+    radius: 20,
+    icon: "",
+    title: x.name,
+    id: x.id,
+  })) as MapItem[],
   image: {
     url: "/images/schema.jpg",
     width: 1280,
@@ -39,47 +53,30 @@ export const Geo: ComponentStory<typeof MapComponent> = (args) => (
 
 const converter = new TileConverter(
   {
-    x: 39148 / 2 ** 16,
-    y: 20825 / 2 ** 16,
+    x: 39148,
+    y: 20825,
   },
-  2 ** 16 * 256
+  16,
+  256
 );
-const items = [
-  {
-    point: converter.fromGeo({
-      lat: 54.675909,
-      lng: 35.072132,
-    }),
-    radius: 20,
-    icon: "",
-    id: 1,
-  },
-  {
-    point: converter.fromGeo({
-      lat: 54.687588,
-      lng: 35.102046,
-    }),
-    radius: 20,
-    icon: "",
-    id: 2,
-  },
-  {
-    point: converter.fromGeo({
-      lat: 54.682615,
-      lng: 35.074867,
-    }),
-    radius: 10,
-    icon: "",
-    title: "родник",
-    id: 3,
-  },
-] as MapItem[];
-console.log(items);
 Geo.args = {
-  items: items,
+  items: locations.map((x) => ({
+    point: converter.fromGeo(x),
+    radius: 20,
+    icon: "",
+    title: x.name,
+    id: x.id,
+  })),
   image: {
     url: "/images/map.png",
     width: 3328,
     height: 2048,
   },
+};
+
+export const Page: ComponentStory<typeof MapPage> = (args) => (
+  <MapPage locations={args.locations} />
+);
+Page.args = {
+  locations,
 };

@@ -29,10 +29,11 @@ class MapStore {
 
   public MapGeoConverter = new TileConverter(
     {
-      x: 39148 * 256,
-      y: 20825 * 256,
+      x: 39148,
+      y: 20825,
     },
-    2 ** 16 * 256
+    16,
+    256
   );
 }
 
