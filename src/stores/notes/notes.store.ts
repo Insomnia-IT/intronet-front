@@ -57,7 +57,6 @@ class NotesStore {
   }
 
   // Отдаёт стор с объявлениями
-  @Computed
   get notes() {
     return this.Notes
   }
