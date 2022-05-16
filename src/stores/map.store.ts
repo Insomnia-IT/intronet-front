@@ -1,16 +1,17 @@
 import { Observable } from "cellx-decorators";
+import { TileConverter } from "../helpers/tile.converter";
 
 class MapStore {
   constructor() {
-    this.load("/images/schema.jpg").then((x) => (this.Schema = x));
-    this.load("/images/map.jpg").then((x) => (this.Map = x));
+    this.load("/images/schema.jpg", "jpg").then((x) => (this.Schema = x));
+    this.load("/images/map.png", "png").then((x) => (this.Map = x));
   }
 
-  load(url): Promise<ImageInfo> {
+  load(url, type: "jpg" | "png"): Promise<ImageInfo> {
     return fetch(url)
       .then((x) => x.arrayBuffer())
       .then(async (x) => {
-        const blob = new Blob([x], { type: "image/jpg" });
+        const blob = new Blob([x], { type: `image/${type}` });
         const ib = await createImageBitmap(blob);
         return {
           url: URL.createObjectURL(blob),
@@ -25,6 +26,14 @@ class MapStore {
 
   @Observable
   public Map: ImageInfo = null;
+
+  public MapGeoConverter = new TileConverter(
+    {
+      x: 39148 * 256,
+      y: 20825 * 256,
+    },
+    2 ** 16 * 256
+  );
 }
 
 export const mapStore = new MapStore();

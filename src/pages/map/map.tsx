@@ -1,111 +1,101 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { MapHandler } from "./handlers/map.handler";
-import { useCellState } from "../../helpers/cell-state";
-import { Cell } from "cellx";
+import { cellState } from "../../helpers/cell-state";
 import { ImageInfo } from "../../stores/map.store";
 import { TransformMatrix } from "./transform/transform.matrix";
+import { MapElement } from "./mapElement";
+import styles from "./map.module.css";
+import { Computed, Observable } from "cellx-decorators";
 
-export function MapComponent(props: MapProps) {
-  const handler = new Cell<MapHandler>(null);
-  const [transform] = useCellState(
-    () => handler.get()?.Transform.get() ?? new TransformMatrix()
-  );
+export class MapComponent extends React.PureComponent<MapProps> {
+  @Observable
+  handler: MapHandler;
 
-  const container = useRef<HTMLDivElement>();
-  useEffect(() => {
-    const h = new MapHandler(container.current);
-    const rect = container.current.getBoundingClientRect();
-    const aspectRatio = rect.width / rect.height;
-    const imageRatio = props.image.width / props.image.height;
-    const scale =
-      imageRatio < aspectRatio
-        ? rect.width / props.image.width
-        : rect.height / props.image.height;
-    h.Transform.set(
-      new TransformMatrix()
-        .Translate({ X: rect.width / 2, Y: rect.height / 2 })
-        .Scale(scale)
-        .Translate({ X: -props.image.width / 2, Y: -props.image.height / 2 })
-    );
-    handler.set(h);
-    return () => h.dispose();
-  }, []);
-  const scale = transform.Matrix.GetScaleFactor();
-  const onClick = (event) => {
-    const rect = container.current.getBoundingClientRect();
-    const p = { X: event.pageX - rect.left, Y: event.pageY - rect.top };
-    const point = transform.Inverse().Invoke(p);
-    for (let item of props.items) {
-      const dist = item.radius / scale;
-      if (Math.abs(item.point.x - point.X) > dist) continue;
-      if (Math.abs(item.point.y - point.Y) > dist) continue;
-      props.onSelect(item);
-      break;
-    }
-  };
-  return (
-    <div
-      ref={container}
-      onClick={onClick}
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
+  @Computed
+  get transform() {
+    return this.handler?.Transform.get() ?? new TransformMatrix();
+  }
+
+  @Computed
+  get scale() {
+    return this.transform.Matrix.GetScaleFactor();
+  }
+
+  state = cellState(this, {
+    transform: () => this.transform,
+    scale: () => this.scale,
+  });
+
+  render() {
+    return (
       <div
-        style={{
-          transform: transform.ToString("css"),
-          transformOrigin: "left top",
-          userSelect: "none",
-          width: "100%",
-          height: "100%",
-          overflow: "visible",
-          willChange: "transform",
-        }}
+        ref={this.setHandler}
+        onClick={this.onClick}
+        className={styles.container}
       >
         <img
-          src={props.image.url}
+          src={this.props.image.url}
+          className={styles.img}
           style={{
-            pointerEvents: "none",
-            position: "absolute",
-            maxWidth: "initial",
-            userSelect: "none",
-            width: props.image.width,
-            height: props.image.height,
+            transform: this.state.transform.ToString("css"),
+            width: this.props.image.width,
+            height: this.props.image.height,
           }}
         />
-        <svg
-          style={{
-            position: "absolute",
-            zIndex: 1,
-            width: "100%",
-            height: "100%",
-            overflow: "hidden",
-          }}
-        >
-          {props.items.map((x) => (
-            <MapElement item={x} key={x.id} scale={scale} />
+        <svg className={styles.svg}>
+          {this.props.items.map((x) => (
+            <MapElement
+              item={x}
+              key={x.id}
+              transform={new TransformMatrix()
+                .Apply(this.state.transform)
+                .Translate({ X: x.point.x, Y: x.point.y })
+                .Scale(1 / this.state.scale)
+                .ToString("svg")}
+            />
           ))}
         </svg>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
-export function MapElement(props: { item: MapItem; scale: number }) {
-  return (
-    <circle
-      cx={props.item.point.x}
-      cy={props.item.point.y}
-      r={props.item.radius / props.scale}
-      fill="red"
-    ></circle>
-  );
+  setHandler = (element) => {
+    if (element) {
+      this.handler = new MapHandler(element);
+      this.handler.init(this.props.image);
+    } else {
+      this.handler.dispose();
+    }
+  };
+
+  componentDidUpdate(
+    prevProps: Readonly<MapProps>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ) {
+    if (prevProps.image != this.props.image) {
+      this.handler?.init(this.props.image);
+    }
+  }
+
+  onClick = (event) => {
+    const rect = this.handler.root.getBoundingClientRect();
+    const p = { X: event.pageX - rect.left, Y: event.pageY - rect.top };
+    const point = this.transform.Inverse().Invoke(p);
+    for (let item of this.props.items) {
+      const dist = item.radius / this.scale;
+      if (Math.abs(item.point.x - point.X) > dist) continue;
+      if (Math.abs(item.point.y - point.Y) > dist) continue;
+      this.props.onSelect(item);
+      break;
+    }
+  };
 }
 
 export type MapProps = {
   items: MapItem[];
   image: ImageInfo;
+  location?: boolean;
   onSelect(item);
 };
 
@@ -114,4 +104,5 @@ export type MapItem = {
   icon;
   radius;
   id;
+  title?: string;
 };
