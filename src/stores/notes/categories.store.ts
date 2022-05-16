@@ -1,7 +1,7 @@
 import { Computed, Observable } from "cellx-decorators";
 import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
-import { pagesStore, notesStore } from 'src/stores';
+import { notesStore } from 'src/stores';
 import { INotes } from './notes.store';
 
 export interface ICategory {
@@ -22,7 +22,7 @@ class CategoriesStore {
   ActiveCategory: number = 0
 
   @Observable
-  AllCategory: ObservableList<ICategory>
+  AllCategory = new ObservableList<ICategory>()
 
   get isLoading() {
     return this.IsLoading
@@ -32,8 +32,9 @@ class CategoriesStore {
     return this.ActiveCategory
   }
 
+  @Computed
   get allCategory() {
-    return this.AllCategory
+    return this.AllCategory.toArray()
   }
 
   set activeCategory(categoryId: number) {
@@ -47,16 +48,18 @@ class CategoriesStore {
   @Computed
   get notes(): INotes[] {
     if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes.toArray()
-    return notesStore.notes.filter(note => note.id === this.ActiveCategory)
+    return notesStore.notes.filter(note => note.categoryId === this.ActiveCategory)
   }
 
   load = async () => {
+    console.log('loading');
     this.IsLoading = true
     const categories = await this.api.getAllCategories()
+    this.AllCategory.clear()
     this.AllCategory.addRange(categories)
     this.IsLoading = false
     // Установка количества страниц
-    pagesStore.setCountPages(categories.reduce((prev, current) => prev + current.count, 0))
+    // pagesStore.setCountPages(categories.reduce((prev, current) => prev + current.count, 0))
   }
 }
 

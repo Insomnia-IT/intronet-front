@@ -2,7 +2,7 @@ import { Observer } from 'cellx-react'
 import * as React from 'react'
 import styles from './categories.module.scss'
 import { Tabs } from 'react-bulma-components'
-import { categoriesStore, notesStore } from 'src/stores';
+import { ALL_CATEGORY_ID, categoriesStore, ICategory, notesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
 
 export interface ICategoriesProps {
@@ -15,26 +15,13 @@ export interface ITab {
   id: number
 }
 
-const tabList: ITab[] = [
-  {
-    id: 1,
-    text: 'Все'
-  },
-  {
-    id: 2,
-    text: 'Интересное'
-  },
-  {
-    id: 3,
-    text: 'Потеряшки'
-  }
-]
-
 @Observer
 export default class Categories extends React.Component<{}, {}> {
 
   componentDidMount() {
     categoriesStore.load()
+    console.log('categories is mounted!');
+
   }
 
   handleClick = (id: number) => {
@@ -44,12 +31,19 @@ export default class Categories extends React.Component<{}, {}> {
   }
 
   render() {
+    const categoriesList = categoriesStore.allCategory.slice()
+    categoriesList.unshift({
+      id: ALL_CATEGORY_ID,
+      name: 'Все',
+      count: 0
+    })
+
     return (
       <Tabs align='center'>
         <Loading isLoading={categoriesStore.isLoading} height={40} className={styles.loading}>
-          {tabList.map(tab => {
+          {categoriesList.map(tab => {
             return (<Tabs.Tab key={tab.id} active={tab.id == categoriesStore.activeCategory} onClick={this.handleClick(tab.id)}>
-              {tab.text}
+              {tab.name}
             </Tabs.Tab>)
           })}
         </Loading>

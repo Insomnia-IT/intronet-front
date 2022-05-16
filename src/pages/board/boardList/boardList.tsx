@@ -15,6 +15,7 @@ export default class BoardList extends React.Component<{}, {}> {
     return (
       <div className={styles.container}>
         <Loading isLoading={false}>
+          {pagesStore.notes.length === 0 && (<h2 style={{ textAlign: 'center' }}>Объявлений пока нет!</h2>)}
           <ul className={styles.list}>
             {pagesStore.notes.map(note => {
               return (
