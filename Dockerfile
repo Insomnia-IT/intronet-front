@@ -2,7 +2,7 @@ FROM node:latest as build
 
 WORKDIR /src
 COPY . .
-RUN npm install --omit=dev
+RUN npm install
 RUN npm run build
 
 
