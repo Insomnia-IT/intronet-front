@@ -42,6 +42,18 @@ const env = new SwEnv("/", {
           // '/fonts/PT_Root_UI/bold/PT_Root_UI_Bold.woff2',
         ],
       },
+      {
+        title: "login",
+        version: {
+          fetchPath: "/root.version", // !!!ВНИМАНИЕ!!! По этому path делается wake up. При изменении не забудь актуализировать path в sw[main] части кода.
+        },
+        match: {
+          order: 90, // все подконтрольные файлы, что не попадают в свои кеши(фильтр по pathStart), попадают в кеш 'root'
+          pathStart: "/login",
+          useInCacheControl: false,
+        },
+        precachePaths: ["/login/index.html"],
+      },
     ],
   },
 });

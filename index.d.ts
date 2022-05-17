@@ -23,6 +23,16 @@ declare module "*.module.css" {
   export default style;
 }
 
+declare module "*.module.scss" {
+  const style: any;
+  export default style;
+}
+
+declare module "*.module.sass" {
+  const style: any;
+  export default style;
+}
+
 declare module "*.html" {
   const style: string;
   export default style;
