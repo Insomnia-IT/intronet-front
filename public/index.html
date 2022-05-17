@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <script src="/sw/index.js"></script>
-  <script async src="/pdf.min.js"></script>
+  <script async src="/sw/index.js"></script>
+  <script async src="/pdf.min.js" onload="() => pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.js'"></script>
   <meta name="google" content="notranslate">
   <link rel="manifest" href="/manifest.json"/>
   <link rel="shortcut icon" type="image/x-icon" href="./icons/favicon-32.ico"/>
