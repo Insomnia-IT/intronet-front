@@ -1,14 +1,5 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  Columns,
-  Heading,
-  Icon,
-  Image,
-} from "react-bulma-components";
-import { LocationFull, locationsStore } from "../../../stores/locations.store";
-import { locationsApi } from "../../../api";
+import React from "react";
+import { Card, Columns, Heading, Icon, Image } from "react-bulma-components";
 
 export function LocationList(props: LocationListProps) {
   return (
@@ -26,14 +17,14 @@ export function LocationList(props: LocationListProps) {
 }
 
 type LocationListProps = {
-  locations: LocationFull[];
-  onChange(update: LocationFull): void;
-  onDelete(location: LocationFull): void;
+  locations: InsomniaLocationFull[];
+  onChange(update: InsomniaLocationFull): void;
+  onDelete(location: InsomniaLocationFull): void;
 };
 
 export function LocationItem(props: {
-  location: LocationFull;
-  onChange(update: LocationFull): void;
+  location: InsomniaLocationFull;
+  onChange(update: InsomniaLocationFull): void;
   onDelete(): void;
 }) {
   return (

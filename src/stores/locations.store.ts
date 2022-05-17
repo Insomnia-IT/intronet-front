@@ -1,5 +1,4 @@
 import { Computed, Observable } from "cellx-decorators";
-import { Location, Tag } from "../api/locations";
 import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 
@@ -51,33 +50,31 @@ class LocationsStore {
   }
 
   @Observable
-  Locations = new ObservableDB<Location>("locations");
+  Locations = new ObservableDB<InsomniaLocation>("locations");
 
   @Observable
   Tags = new ObservableDB<Tag>("tags");
 
   @Computed
-  public get FullLocations(): ReadonlyArray<LocationFull> {
+  public get FullLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.Locations.toArray().map((x) => ({
       ...x,
+      // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
     }));
   }
 
-  updateLocation(x: LocationFull) {
+  updateLocation(x: InsomniaLocationFull) {
     this.Locations.update({
       ...x,
+      // @ts-ignore
       tags: x.tags.map((t) => t.id),
     });
   }
 
-  deleteLocation(location: LocationFull | Location) {
+  deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
     this.Locations.remove(location.id);
   }
 }
 
 export const locationsStore = new LocationsStore();
-
-export type LocationFull = Omit<Location, "tags"> & {
-  tags: Tag[];
-};

@@ -3,9 +3,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
 import { MapPage } from "./map-page";
-import { LocationFull } from "../../stores/locations.store";
 
-const locations: LocationFull[] = [
+const locations: InsomniaLocationFull[] = [
   {
     lat: 54.682615,
     lng: 35.074867,

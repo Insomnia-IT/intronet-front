@@ -39,19 +39,29 @@ declare module "*.html" {
 }
 
 type InsomniaLocation = {
-  id: int; //id локации
-  name: string; //название локации
-  description: string; //описание локации
-  image: string; //Содержит внутри себя ссылку на изображение для данной локации
-  x: number; //x и y это местоположение объекта на нарисованной карте.
+  id: number;
+  name: string;
+  x: number;
   y: number;
-  lat: number; //lat и lon координаты для слоя на карте-спутнике.
-  lon: number;
+  lat: number;
+  lng: number;
+  tags: number[];
+  image: string;
 };
+
 type MapItem = {
   point: { x; y };
   icon;
   radius;
   id;
   title?: string;
+};
+
+type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
+  tags: Tag[];
+};
+
+type Tag = {
+  id: number;
+  name: string;
 };
