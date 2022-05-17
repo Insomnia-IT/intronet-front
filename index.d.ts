@@ -48,3 +48,10 @@ type InsomniaLocation = {
   lat: number; //lat и lon координаты для слоя на карте-спутнике.
   lon: number;
 };
+type MapItem = {
+  point: { x; y };
+  icon;
+  radius;
+  id;
+  title?: string;
+};

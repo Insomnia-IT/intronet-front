@@ -98,11 +98,3 @@ export type MapProps = {
   location?: boolean;
   onSelect(item);
 };
-
-export type MapItem = {
-  point: { x; y };
-  icon;
-  radius;
-  id;
-  title?: string;
-};

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { MapComponent, MapItem } from "./map";
+import { MapComponent } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
 import { MapPage } from "./map-page";
 import { LocationFull } from "../../stores/locations.store";

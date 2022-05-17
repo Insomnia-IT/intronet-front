@@ -1,5 +1,4 @@
 import React from "react";
-import { MapItem } from "./map";
 
 export function MapElement(props: { item: MapItem; transform: string }) {
   return (
