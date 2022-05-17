@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styles from './boardCard.module.scss'
 import { Link } from 'wouter';
-import { INotes } from '../../../../stores/notes/notes.store';
+import { INotes } from '../../../../../stores/notes/notes.store';
 import { Button } from 'react-bulma-components';
 
 export type INotesCard = Omit<INotes, 'categoryId'>
