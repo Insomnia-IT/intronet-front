@@ -31,7 +31,8 @@
     "sass": "1.50.0",
     "typescript": "4.x.x",
     "wouter": "2.x.x",
-    "qr-scanner": "^1.4.1"
+    "qr-scanner": "^1.4.1",
+    "react-loader-spinner": "^6.0.0-0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.x.x",

@@ -4,6 +4,15 @@ build
 */node_modules
 */dist
 .idea
+.vscode
+.work
+**/.swc
+node_modules
+dist
+build
+*/node_modules
+*/dist
+.idea
 .work
 **/.swc
 .env

@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  min-height: 100%;
+}
+
+.list {
+  @media screen and (max-width: 1023px) {
+    padding: 0 .75rem;
+  }
+}
+
+.card {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
