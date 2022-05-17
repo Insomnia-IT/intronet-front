@@ -20,9 +20,12 @@ import { cellState, useCellState } from "../../helpers/cell-state";
 import { mapStore } from "src/stores/map.store";
 import styles from "./map-page.module.css";
 import { Observable } from "cellx-decorators";
-import { MapToolbar } from "./map-toolbar";
 
-export function MapPage2() {
+export type MapToolbarProps = {
+  item?: MapItem;
+};
+
+export function MapToolbar({ item }: MapToolbarProps) {
   const [query, setQuery] = useState("");
 
   const [locations] = useCellState(() => locationsStore.FullLocations);
@@ -45,7 +48,7 @@ export function MapPage2() {
           <Dropdown
             label={
               <Form.Input
-                placeholder="Поиск локаций по списку"
+                placeholder="Поиск локаций"
                 type="text"
                 value={query}
                 onChange={(event) => setQuery(event.currentTarget.value)}
@@ -60,7 +63,7 @@ export function MapPage2() {
             <Form.Field kind="addons">
               <Form.Control fullwidth>
                 <Form.Input
-                  placeholder="Поиск локаций по списку"
+                  placeholder="Поиск локаций"
                   type="text"
                   value={query}
                   onChange={(event) => setQuery(event.currentTarget.value)}
@@ -157,7 +160,18 @@ export function MapPageFunctions() {
           </Icon>
         </Button>
       </div>
-      {selected && <MapToolbar item={selected} />}
+      <MapToolbar
+        item={{
+          icon: "mdi mdi-layers",
+          id: 1,
+          point: {
+            x: 1,
+            y: 1,
+          },
+          radius: 5,
+          title: "Jhtk asd",
+        }}
+      />
     </>
   );
 }
@@ -202,12 +216,11 @@ export class MapPage extends React.PureComponent<{
     console.log(this.state.items);
     return (
       <>
-        <MapComponent
+        {/* <MapComponent
           items={this.state.items}
           image={this.state.image}
           onSelect={(x) => (this.selected = x)}
-        />
-        ;
+        /> */}
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>
@@ -215,7 +228,7 @@ export class MapPage extends React.PureComponent<{
             </Icon>
           </Button>
         </div>
-        {this.state.selected && <MapToolbar item={this.state.selected} />}
+        <MapToolbar item={this.state.selected} />
       </>
     );
   }

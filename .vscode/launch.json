@@ -10,7 +10,6 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:3001",
             "webRoot": "${workspaceFolder}", 
-            "runtimeExecutable": "/Volumes/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome"
         }
     ]
 }
