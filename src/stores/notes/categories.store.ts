@@ -58,8 +58,8 @@ class CategoriesStore {
     }
   }
 
-  loadNewNotes(from, to): Promise<void> {
-    return notesStore.loadNewNotes(this.ActiveCategory, from, to)
+  loadNewNotes(page, count): Promise<void> {
+    return notesStore.loadNewNotes(this.ActiveCategory, page, count)
   }
 
   @Computed

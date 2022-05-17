@@ -49,9 +49,9 @@ class NotesStore {
   }
 
   // Загрузка новых объявлений выбранной категории
-  public loadNewNotes = async (categoryId: number, from: number, to: number) => {
+  public loadNewNotes = async (categoryId: number, page: number, count: number) => {
     this.IsLoading = true
-    const newNotes = await this.api.getNotes(from, to - from, [categoryId])
+    const newNotes = await this.api.getNotes(page, count, [categoryId])
     this.Notes.addRange(newNotes)
     this.IsLoading = false
   }

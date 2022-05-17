@@ -29,8 +29,11 @@ class PagesStore {
 
   nextPage = async () => {
     this.Page++
-    const from = this.Page
-    categoriesStore.loadNewNotes(from, from + COUNT_NOTES_OF_PAGE)
+
+    const from = this.calculateFrom()
+    if (categoriesStore.notes.length <= from) {
+      categoriesStore.loadNewNotes(this.page, COUNT_NOTES_OF_PAGE)
+    }
   }
 
   prevPage = () => {
@@ -43,9 +46,11 @@ class PagesStore {
 
   @Computed
   get notes() {
-    const from = (this.Page - 1) * COUNT_NOTES_OF_PAGE
+    const from = this.calculateFrom()
     return categoriesStore.notes.slice(from, from + COUNT_NOTES_OF_PAGE)
   }
+
+  private calculateFrom = (): number => (this.Page - 1) * COUNT_NOTES_OF_PAGE
 }
 
 export const pagesStore = new PagesStore()
