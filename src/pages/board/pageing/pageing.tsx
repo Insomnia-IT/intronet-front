@@ -6,7 +6,6 @@ import { Observer } from 'cellx-react';
 
 @Observer
 export default class Pageing extends React.Component<{}, {}> {
-
   render() {
     return (
       <div className={styles.container}>

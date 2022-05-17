@@ -69,7 +69,6 @@ class CategoriesStore {
   }
 
   load = async () => {
-    console.log('loading');
     this.IsLoading = true
     const categories = await this.api.getAllCategories()
     this.AllCategory.clear()

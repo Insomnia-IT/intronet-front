@@ -24,7 +24,6 @@ class PagesStore {
   // Вычисление кол-ва страниц из кол-ва объявлений (путём деления количества объявлений на количество объявлений на одной страницы, и округлением полученного в большую сторону)
   setCountPages = (countOfNotes: number) => {
     this.CountPages = Math.ceil(countOfNotes / COUNT_NOTES_OF_PAGE)
-    console.log(this.countPages)
   }
 
   nextPage = async () => {

@@ -2,7 +2,7 @@ import { Observer } from 'cellx-react'
 import * as React from 'react'
 import styles from './categories.module.scss'
 import { Tabs } from 'react-bulma-components'
-import { ALL_CATEGORY_ID, categoriesStore, ICategory, notesStore } from 'src/stores';
+import { ALL_CATEGORY_ID, categoriesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
 
 export interface ICategoriesProps {
@@ -20,8 +20,6 @@ export default class Categories extends React.Component<{}, {}> {
 
   componentDidMount() {
     categoriesStore.load()
-    console.log('categories is mounted!');
-
   }
 
   handleClick = (id: number) => {
