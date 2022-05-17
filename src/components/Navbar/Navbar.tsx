@@ -58,9 +58,20 @@ export const Navbar = () => {
             ))}
           </HStack>
         </HStack>
-        <Button variant={"solid"} colorScheme={"teal"} size={"sm"} mr={4}>
+        <Link
+          bg={useColorModeValue("green.200", "green900")}
+          as={WouterLink}
+          px={2}
+          py={1}
+          rounded={"md"}
+          href={"/user-login"}
+          _hover={{
+            textDecoration: "none",
+            bg: useColorModeValue("gray.200", "gray.700"),
+          }}
+        >
           Войти
-        </Button>
+        </Link>
       </Flex>
 
       <Drawer
