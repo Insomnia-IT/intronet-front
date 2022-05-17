@@ -1,5 +1,12 @@
-import React from "react";
-import { Modal, Media, Content, Button, Image } from "react-bulma-components";
+import React, { useEffect, useRef } from "react";
+import {
+  Modal,
+  Media,
+  Content,
+  Button,
+  Image,
+  Card,
+} from "react-bulma-components";
 import { ModalProps } from ".";
 
 export const EventModal = (props: ModalProps & InsomniaLocation) => {
@@ -12,11 +19,11 @@ export const EventModal = (props: ModalProps & InsomniaLocation) => {
       onClose={props.abort}
       showClose={false}
     >
-      <Modal.Card>
-        <Modal.Card.Header>
-          <Modal.Card.Title>{props.name}</Modal.Card.Title>
-        </Modal.Card.Header>
-        <Modal.Card.Body>
+      <Card>
+        <Card.Header>
+          <Card.Header.Title>{props.name}</Card.Header.Title>
+        </Card.Header>
+        <Card.Content>
           <Media>
             <Media.Item align="left" renderAs="figure">
               <Image alt="64x64" size={64} src={props.image} />
@@ -32,14 +39,14 @@ export const EventModal = (props: ModalProps & InsomniaLocation) => {
               </Content>
             </Media.Item>
           </Media>
-        </Modal.Card.Body>
-        <Modal.Card.Footer>
+        </Card.Content>
+        <Card.Footer>
           <Button color="success" onClick={props.success}>
             Сохранить
           </Button>
           <Button onClick={props.abort}>Отмена</Button>
-        </Modal.Card.Footer>
-      </Modal.Card>
+        </Card.Footer>
+      </Card>
     </Modal>
   );
 };

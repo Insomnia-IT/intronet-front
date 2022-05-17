@@ -17,10 +17,10 @@ export class AdminLocationsPage extends React.PureComponent {
   });
 
   render() {
-    if (!adminApi.isAdmin()) {
-      location.pathname = '/login';
-      return <></>;
-    }
+    // if (!adminApi.isAdmin()) {
+    //   location.pathname = '/login';
+    //   return <></>;
+    // }
     return <>
       <Form.Field>
         <Form.Control>
