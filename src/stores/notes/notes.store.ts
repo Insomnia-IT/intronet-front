@@ -60,6 +60,10 @@ class NotesStore {
   get notes() {
     return this.Notes
   }
+
+  getNote(id: number) {
+    return this.notes.find(note => note.id === id)
+  }
 }
 
 export const notesStore = new NotesStore()
