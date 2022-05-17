@@ -1,10 +1,12 @@
 @import "~bulma"
 @import "~@mdi/font"
 
-body, head
+body, html
   margin: 0
   border: 0
+  height: 100%
   overflow: hidden
+  overscroll-behavior: contain
 
 .button-clear
   margin: 0
@@ -12,3 +14,6 @@ body, head
   background: none
   border: none
   border-radius: 0
+
+#root
+  height: 100%

@@ -1,17 +1,18 @@
-'use strict';
-if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
-  const isFirstInstall = !(navigator.serviceWorker.controller instanceof ServiceWorker); // при первой установке на клиенте еще нет sw
+"use strict";
+if (navigator.serviceWorker && !location.host.startsWith("localhost")) {
+  const isFirstInstall = !(
+    navigator.serviceWorker.controller instanceof ServiceWorker
+  ); // при первой установке на клиенте еще нет sw
 
   navigator.serviceWorker
-    .register('./sw.js', {scope: '/'})
-    .then(reg => logSw(`registered scope: '${reg.scope}'`))
-    .catch(err => errSw('registration error', err));
+    .register("/sw.js", { scope: "/" })
+    .then((reg) => logSw(`registered scope: '${reg.scope}'`))
+    .catch((err) => errSw("registration error", err));
 
-  navigator.serviceWorker.addEventListener('message', ({data}) => {
+  navigator.serviceWorker.addEventListener("message", ({ data }) => {
     switch (data.type) {
-      case 'RELOAD_PAGE':
-        if (isFirstInstall)
-          return; // нет смысла рефрешить страницу при первой установке
+      case "RELOAD_PAGE":
+        if (isFirstInstall) return; // нет смысла рефрешить страницу при первой установке
         logSw(`start client reloading on ${new Date()}`);
         window.location.reload();
         break;
@@ -20,8 +21,7 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
     }
   });
 
-
-//region Update
+  //region Update
 
   /**
    * Initiator[1]. Запустить обновление после каждого открытия/рефреша страницы.
@@ -36,7 +36,8 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
    */
   setInterval(() => {
     const hour = new Date().getHours();
-    if (hour >= 6 && hour <= 10) // предпринять несколько попыток для надежности
+    if (hour >= 6 && hour <= 10)
+      // предпринять несколько попыток для надежности
       startAllSwUpdates(2);
   }, 60_000 * 3);
 
@@ -51,15 +52,14 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
    * Кейс: хром решил, что надо заморозить вкладку. Предполагается, что все другие инициаторы могут не сработать.
    * https://developers.google.com/web/updates/2018/07/page-lifecycle-api
    */
-  document.addEventListener('resume', event => startAllSwUpdates(4));
-
+  document.addEventListener("resume", (event) => startAllSwUpdates(4));
 
   async function startAllSwUpdates(initiator) {
-    if (isFirstInstall)
-      return;
+    if (isFirstInstall) return;
     logSw(`start all updates by Initiator[${initiator}] on ${new Date()}`);
     await updateSwCaches();
-    if (initiator !== 1) // при открытии/рефреше страницы браузер самостоятельно запускает апдейт по стандартной схеме
+    if (initiator !== 1)
+      // при открытии/рефреше страницы браузер самостоятельно запускает апдейт по стандартной схеме
       updateSwStandard();
   }
 
@@ -70,10 +70,14 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
    * Если хоть один из файлов изменился, тогда браузер запустит процесс установки новой версии sw.
    */
   function updateSwStandard() {
-    navigator.serviceWorker.getRegistrations().then(registrations => {
-      registrations.forEach(reg => {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((reg) => {
         reg.update();
-        logSw(`update standard. Check for updates, scope: '${reg.scope}'. ${new Date()}`);
+        logSw(
+          `update standard. Check for updates, scope: '${
+            reg.scope
+          }'. ${new Date()}`
+        );
       });
     });
   }
@@ -84,12 +88,10 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
    */
   async function updateSwCaches() {
     const isSwAwake = await wakeUpSw();
-    if (isSwAwake)
-      sendToServiceWorker('UPDATE_CACHES');
+    if (isSwAwake) sendToServiceWorker("UPDATE_CACHES");
   }
 
-//endregion
-
+  //endregion
 
   /**
    * Браузер всегда старается как можно скорее перевести sw из статуса RUNNING -> в STOPPED.
@@ -100,8 +102,8 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
    */
   async function wakeUpSw() {
     try {
-      logSw(`wake up by request of root version. ${new Date()}`)
-      await fetch('/root.version').then(res => res.text());
+      logSw(`wake up by request of root version. ${new Date()}`);
+      await fetch("/root.version").then((res) => res.text());
       return true;
     } catch (err) {
       errSw(`fail while wake up`, err.message);
@@ -112,7 +114,7 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
   function sendToServiceWorker(type, data) {
     if (navigator.serviceWorker.controller) {
       logSw(`send "${type}". ${new Date()}`);
-      navigator.serviceWorker.controller.postMessage({type, data});
+      navigator.serviceWorker.controller.postMessage({ type, data });
     }
   }
 
@@ -127,5 +129,4 @@ if (navigator.serviceWorker && !location.host.startsWith('localhost') ) {
   function warnSw(...args) {
     console.warn(`sw[main]`, ...args);
   }
-
 }
