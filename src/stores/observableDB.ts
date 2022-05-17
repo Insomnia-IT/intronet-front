@@ -1,12 +1,14 @@
-import {EventEmitter} from "cellx";
-import {Dexie, Table} from "dexie";
-import {compare} from "../helpers/compare";
+import { EventEmitter } from "cellx";
+import { Dexie, Table } from "dexie";
+import { compare } from "../helpers/compare";
 
 export class ObservableDB<T extends { id: number }> extends EventEmitter {
   private table: Table<T>;
   private items = new Map<number, T>();
 
-  public isLoaded = new Promise<void>(resolve => this.once('loaded', () => resolve()));
+  public isLoaded = new Promise<void>((resolve) =>
+    this.once("loaded", () => resolve())
+  );
 
   constructor(name: string) {
     super();
@@ -15,12 +17,12 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
       [name]: `id`,
     });
     this.table = db[name];
-    this.table.toArray().then(items => {
-      this.items = new Map<number, T>(items.map(x => [x.id, x]));
-      this.emit('change', {
-        value: items
+    this.table.toArray().then((items) => {
+      this.items = new Map<number, T>(items.map((x) => [x.id, x]));
+      this.emit("change", {
+        value: items,
       });
-      this.emit('loaded');
+      this.emit("loaded");
     });
   }
 
@@ -28,73 +30,78 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
    * Merges data from server-side
    * @param items
    */
-  merge(items: T[], sourthOfTruth: 'server' | 'local') {
-    const from = new Map(items.map(x => [x.id, x]));
-    if (sourthOfTruth == 'local') {
+  merge(items: T[], sourthOfTruth: "server" | "local") {
+    const from = new Map(items.map((x) => [x.id, x]));
+    if (sourthOfTruth == "local") {
       for (let [key, local] of this.entries()) {
-        if (!from.has(key))
-          this.add(local, 'db');
+        if (!from.has(key)) this.add(local, "db");
         else {
           const server = from.get(key);
           if (!compare(server, local)) {
-            this.update(local, 'db');
+            this.update(local, "db");
           }
         }
       }
       for (let key of from.keys()) {
         if (!this.items.has(key)) {
-          this.remove(key, 'db');
+          this.remove(key, "db");
         }
       }
     } else {
       for (let [key, server] of from.entries()) {
-        if (!this.items.has(key))
-          this.add(server, 'server');
+        if (!this.items.has(key)) this.add(server, "server");
         else {
           const local = this.get(key);
           if (!compare(server, local)) {
-            this.update(server, 'server');
+            this.update(server, "server");
           }
         }
       }
       for (let key of this.keys()) {
         if (!from.has(key)) {
-          this.remove(key, 'server');
+          this.remove(key, "server");
         }
       }
     }
-
   }
 
-  remove(key: number, source : 'user' | 'server' | 'db' = 'user') {
-    if (source != 'db') {
+  remove(key: number, source: "user" | "server" | "db" = "user") {
+    if (source != "db") {
       this.table.delete(key);
       this.items.delete(key);
     }
-    this.emit('change', {
-      type: 'delete', key, source
+    this.emit("change", {
+      type: "delete",
+      key,
+      source,
     });
   }
 
-  private add(value: T, source : 'user' | 'server' | 'db' = 'user') {
+  add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
-    if (source != 'db') {
+    if (source != "db") {
       this.table.add(value);
       this.items.set(key, value);
     }
-    this.emit('change', {
-      type: 'add', key, value, source
+    this.emit("change", {
+      type: "add",
+      key,
+      value,
+      source,
     });
   }
 
-  update(value: T, source : 'user' | 'server' | 'db' = 'user') {
+  update(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
-    if (source != 'db') {
+    if (source != "db") {
       this.table.update(key, value);
       this.items.set(key, value);
     }
-    this.emit('change', {
-      type: 'update', key, value, source
+    this.emit("change", {
+      type: "update",
+      key,
+      value,
+      source,
     });
   }
 
@@ -117,5 +124,4 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
   values() {
     return this.items.values();
   }
-
 }

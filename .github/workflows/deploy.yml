@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      IMAGE_NAME: intronet-front
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . --tag $IMAGE_NAME:$GITHUB_SHA
+      - name: stop container
+        run: docker rm -f $IMAGE_NAME
+      - name: run image
+        run: docker run -d -p 8092:80 --network=apps --restart=always --name $IMAGE_NAME $IMAGE_NAME:$GITHUB_SHA
+      - name: cleanup docker containers
+        run: docker container prune --filter "until=24h" -f
+      - name: cleanup docker images
+        run: docker image prune -a -f --filter "until=24h"

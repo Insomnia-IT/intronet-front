@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { debounced } from "src/helpers/debounce";
-import { LocationFull, locationsStore } from "src/stores/locations.store";
+import { locationsStore } from "src/stores/locations.store";
 import { AdminApi } from "./admin";
 
 const adminRoute = `/api/Admin/locations`;
@@ -99,6 +99,8 @@ export type Location = {
   name: string;
   x: number;
   y: number;
+  lat: number;
+  lng: number;
   tags: number[];
   image: string;
 };
