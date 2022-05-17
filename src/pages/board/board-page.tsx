@@ -31,7 +31,7 @@ interface IBoardPageState {
   categoryId: number
   isLoading: boolean
 }
-@Observer
+
 export class BoardPage extends React.Component<{}, IBoardPageState> {
   render() {
     return (
