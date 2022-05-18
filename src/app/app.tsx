@@ -1,14 +1,11 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
-import style from "./app.style.module.css";
+import { Navbar } from "src/components";
 import { Routing } from "../pages/routing";
-import { Container } from 'react-bulma-components'
-import Navbar from "../navbar/navbar"
 
-export function App() {
-  return (
-    <div className={style.main}>
-      <Container><Navbar /></Container>
-      <Routing />
-    </div>
-  );
-}
+export const App = () => (
+  <ChakraProvider>
+    <Navbar />
+    <Routing />
+  </ChakraProvider>
+);
