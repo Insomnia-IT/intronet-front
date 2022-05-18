@@ -68,7 +68,6 @@ export class MapPage extends React.PureComponent<{
 
   render() {
     if (!this.state.image) return <></>;
-    console.log(this.state.items);
     return (
       <>
         {/* <MapComponent
@@ -83,7 +82,11 @@ export class MapPage extends React.PureComponent<{
             </Icon>
           </Button>
         </div>
-        <MapToolbar item={this.state.selected} />
+        <MapToolbar
+          item={this.state.selected}
+          items={this.state.items}
+          onChange={(oldItem, newItem) => console.log(newItem)}
+        />
       </>
     );
   }
