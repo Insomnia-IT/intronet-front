@@ -6,6 +6,8 @@ import { TransformMatrix } from "./transform/transform.matrix";
 import { MapElement } from "./mapElement";
 import styles from "./map.module.css";
 import { Computed, Observable } from "cellx-decorators";
+import { IPoint } from "./transform/matrix";
+import { LocationFull } from "../../stores/locations.store";
 
 export class MapComponent extends React.PureComponent<MapProps> {
   @Observable
@@ -87,8 +89,9 @@ export class MapComponent extends React.PureComponent<MapProps> {
       if (Math.abs(item.point.x - point.X) > dist) continue;
       if (Math.abs(item.point.y - point.Y) > dist) continue;
       this.props.onSelect(item);
-      break;
+      return;
     }
+    this.props.onClick({ x: point.X, y: point.Y });
   };
 }
 
@@ -97,6 +100,7 @@ export type MapProps = {
   image: ImageInfo;
   location?: boolean;
   onSelect(item);
+  onClick(p: { x; y });
 };
 
 export type MapItem = {
@@ -105,4 +109,5 @@ export type MapItem = {
   radius;
   id;
   title?: string;
+  location?: LocationFull;
 };

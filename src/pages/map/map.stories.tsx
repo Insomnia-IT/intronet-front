@@ -2,19 +2,39 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent, MapItem } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
-import { MapPage } from "./map-page";
+import { MapPage, MapPageInternal } from "./map-page";
 import { LocationFull } from "../../stores/locations.store";
 
 const locations: LocationFull[] = [
   {
-    lat: 54.682615,
-    lng: 35.074867,
-    x: 1270,
-    y: 380,
+    lat: 54.68255965779291,
+    lng: 35.07497888587355,
+    x: 1078.8210261252755,
+    y: 406.92241107963486,
     name: "родник",
     tags: [],
     image: "",
     id: 3,
+  },
+  {
+    lat: 54.68128095334499,
+    lng: 35.08512875824405,
+    x: 752.1208687440983,
+    y: 323.7888888888889,
+    name: "Палаточный лагерь",
+    tags: [],
+    image: "camping",
+    id: 2,
+  },
+  {
+    lat: 54.67735017337062,
+    lng: 35.08774915484466,
+    x: 752.1208687440983,
+    y: 323.7888888888889,
+    name: "Экран «Орёл»",
+    tags: [],
+    image: "cinema",
+    id: 1,
   },
 ];
 
@@ -24,7 +44,12 @@ export default {
 } as ComponentMeta<typeof MapComponent>;
 
 export const Schema: ComponentStory<typeof MapComponent> = (args) => (
-  <MapComponent items={args.items} image={args.image} onSelect={console.log} />
+  <MapComponent
+    items={args.items}
+    image={args.image}
+    onSelect={console.log}
+    onClick={console.log}
+  />
 );
 
 Schema.args = {
@@ -48,6 +73,7 @@ export const Geo: ComponentStory<typeof MapComponent> = (args) => (
     location
     image={args.image}
     onSelect={console.log}
+    onClick={console.log}
   />
 );
 
@@ -63,7 +89,7 @@ Geo.args = {
   items: locations.map((x) => ({
     point: converter.fromGeo(x),
     radius: 20,
-    icon: "",
+    icon: "camping",
     title: x.name,
     id: x.id,
   })),
@@ -74,8 +100,16 @@ Geo.args = {
   },
 };
 
-export const Page: ComponentStory<typeof MapPage> = (args) => (
-  <MapPage locations={args.locations} />
+export const Page: ComponentStory<typeof MapPageInternal> = (args) => (
+  <MapPageInternal
+    locations={args.locations}
+    onChange={(x) =>
+      Object.assign(
+        locations.find((l) => l.id == x.id),
+        x
+      )
+    }
+  />
 );
 Page.args = {
   locations,

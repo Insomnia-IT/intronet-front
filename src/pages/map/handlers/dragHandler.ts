@@ -10,17 +10,19 @@ export class DragHandler {
     this.root.addEventListener("pointerdown", this.onDown);
     this.root.addEventListener("pointerup", this.onUp);
   }
-
   onDown = (event: PointerEvent) => {
+    event.preventDefault();
     this.root.setPointerCapture(event.pointerId);
     this.root.addEventListener("pointermove", this.onMove);
   };
   onUp = (event: PointerEvent) => {
+    event.preventDefault();
     this.root.removeEventListener("pointermove", this.onMove);
     this.root.releasePointerCapture(event.pointerId);
   };
   onMove = (event: PointerEvent) => {
     if (!event.isPrimary) return;
+    event.preventDefault();
     this.transform.set(
       new TransformMatrix()
         .Translate({ X: event.movementX, Y: event.movementY })
