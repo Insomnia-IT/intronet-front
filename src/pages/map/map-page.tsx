@@ -75,7 +75,6 @@ export class MapPage extends React.PureComponent<{
           image={this.state.image}
           onSelect={(x) => (this.selected = x)}
         />
-        ;
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>
