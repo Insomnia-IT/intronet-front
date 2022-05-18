@@ -1,14 +1,14 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
 import "./index.sass";
 import { App } from "./app/app";
+import { render } from "react-dom";
 
 const container = document.getElementById("root");
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(
+render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  container
 );
 
 // If you want to start measuring performance in your app, pass a function
