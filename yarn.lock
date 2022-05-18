@@ -5664,11 +5664,6 @@ cellx@1.x.x, cellx@^1.10.18, cellx@^1.10.2, cellx@^1.10.8:
   dependencies:
     "@riim/next-tick" "^1.2.6"
 
-chakra-ui-bottom-navigation@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/chakra-ui-bottom-navigation/-/chakra-ui-bottom-navigation-1.1.3.tgz#f6e8629d6804c37689f78dbbed4cfe514eff88bf"
-  integrity sha512-nzx457cykIe1gmYzxmfkkASbyMwd4MgnHfdqEJZ75Viu5Z7Hu5EcTsoUTyBBqv/0rP94Rxba0bLChUa9l5FdsA==
-
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
