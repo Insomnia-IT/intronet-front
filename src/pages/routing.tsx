@@ -5,48 +5,67 @@ import { MapPage } from "./map/map-page";
 import { VotingPage } from "./voting/voting-page";
 import { TimetablePage } from "./timetable/timetable-page";
 import { LoginPage } from "./login/login-page";
-import NotePage from './board/notePage/notePage';
+import NotePage from "./board/notePage/notePage";
 import { AdminLocationsPage } from "./admin/locations/admin.locations-page";
 
 export const Routes = [
   {
-    text: 'Карта',
-    link: '/map',
-    element: <MapPage />
+    text: "Карта",
+    link: "/map",
+    element: <MapPage />,
   },
   {
-    text: 'Расписание',
-    link: '/timetable',
-    element: <TimetablePage />
+    text: "Расписание",
+    link: "/timetable",
+    element: <TimetablePage />,
   },
   {
-    text: 'Голосование',
-    link: '/voting',
-    element: <VotingPage />
+    text: "Голосование",
+    link: "/voting",
+    element: <VotingPage />,
   },
   {
-    text: 'Доска объявлений',
-    link: '/board',
-    element: <BoardPage />
+    text: "Объявления",
+    link: "/board",
+    element: <BoardPage />,
   },
-  {
-    text: 'Вход по билетам',
-    link: '/user-login',
-    element: <LoginPage />
-  }
-]
+  // {
+  //   text: 'Вход по билетам',
+  //   link: '/user-login',
+  //   element: <LoginPage />
+  // }
+];
 
 export function Routing() {
   return (
     <>
-      <Route path="/board"> <BoardPage /></Route>
-      <Route path="/map"> <MapPage /></Route>
-      <Route path="/voting"> <VotingPage /></Route>
-      <Route path="/timetable"> <TimetablePage /></Route>
-      <Route path="/user-login"> <LoginPage /></Route>
-      <Route path="/board/note"><NotePage /></Route>
-      <Route path="/admin/locations"> <AdminLocationsPage /></Route>
+      <Route path="/board">
+        {" "}
+        <BoardPage />
+      </Route>
+      <Route path="/map">
+        {" "}
+        <MapPage />
+      </Route>
+      <Route path="/voting">
+        {" "}
+        <VotingPage />
+      </Route>
+      <Route path="/timetable">
+        {" "}
+        <TimetablePage />
+      </Route>
+      <Route path="/user-login">
+        {" "}
+        <LoginPage />
+      </Route>
+      <Route path="/board/note">
+        <NotePage />
+      </Route>
+      <Route path="/admin/locations">
+        {" "}
+        <AdminLocationsPage />
+      </Route>
     </>
-  )
-    ;
+  );
 }
