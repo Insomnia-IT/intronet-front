@@ -7,18 +7,50 @@ export class ZoomHandler {
     private transform: Cell<TransformMatrix, any>
   ) {
     this.root.style.touchAction = "none";
-    this.root.addEventListener("touchstart", this.onDown);
-    this.root.addEventListener("touchend", this.onUp);
-    this.root.addEventListener("wheel", this.onWheel);
+    this.root.addEventListener("touchstart", this.onDown, { passive: true });
+    this.root.addEventListener("touchend", this.onUp, { passive: true });
+    // this.root.addEventListener("gesturestart", this.onGestureStart, {
+    //   passive: true,
+    // });
+    // this.root.addEventListener("gestureend", this.onGestureEnd, {
+    //   passive: true,
+    // });
+    this.root.addEventListener("wheel", this.onWheel, { passive: true });
   }
 
   onWheel = (event: WheelEvent) => {
-    this.zoom(1.1 ** (event.deltaY / 100), this.eventToPoint(event));
+    this.zoom(1.1 ** (-event.deltaY / 100), this.eventToPoint(event));
   };
-
+  lastGesture = null;
+  onGestureStart = (event: TouchEvent) => {
+    this.lastGesture = event;
+    this.root.addEventListener("gesturechange", this.onGestureChange, {
+      passive: true,
+    });
+  };
+  onGestureEnd = (event: TouchEvent) => {
+    this.lastGesture = null;
+    this.root.removeEventListener("gesturechange", this.onGestureChange);
+  };
+  onGestureChange = (event) => {
+    const sign =
+      this.lastGesture.scale < event.scale // ЕСЛИ scale растет
+        ? 1 // ТОГДА (+)zoom
+        : -1; // ИНАЧЕ (-)zoom
+    const scale = 2 ** (sign * 0.02);
+    const point = this.eventToPoint(event);
+    this.transform.set(
+      new TransformMatrix()
+        .Translate(point)
+        .Scale(scale)
+        .Translate({ X: -point.X, Y: -point.Y })
+        .Apply(this.transform.get())
+    );
+    this.lastGesture = event;
+  };
   onDown = (event: TouchEvent) => {
     if (event.touches.length != 2) return;
-    this.root.addEventListener("touchmove", this.onMove);
+    this.root.addEventListener("touchmove", this.onMove, { passive: true });
   };
   onUp = (event: TouchEvent) => {
     this.lastTouches = null;
@@ -65,5 +97,8 @@ export class ZoomHandler {
   dispose() {
     this.root.removeEventListener("touchstart", this.onDown);
     this.root.removeEventListener("touchend", this.onUp);
+    // this.root.removeEventListener("gesturestart", this.onGestureStart);
+    // this.root.removeEventListener("gestureend", this.onGestureEnd);
+    this.root.removeEventListener("wheel", this.onWheel);
   }
 }
