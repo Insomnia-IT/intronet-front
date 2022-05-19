@@ -11,7 +11,7 @@ export interface ICategory {
   count: number //количество элементов которым присвоена данная категория
 }
 
-export const ALL_CATEGORY_ID = 0
+export const ALL_CATEGORY_ID = 1
 
 class CategoriesStore {
   private api = new NotesApi
@@ -20,7 +20,7 @@ class CategoriesStore {
   IsLoading: boolean = true
 
   @Observable
-  ActiveCategory: number = 0
+  ActiveCategory: number = ALL_CATEGORY_ID
 
   @Observable
   AllCategory = new ObservableDB<ICategory>('categories')
@@ -44,7 +44,7 @@ class CategoriesStore {
   }
 
   get allNotesCount() {
-    return this.allCategory.reduce((prev, current) => prev + current.count, 0)
+    return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID).count
   }
 
   private onChangeCategory() {
