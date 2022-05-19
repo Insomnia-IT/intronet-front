@@ -1,7 +1,15 @@
 self.isDebug = true;
 importScripts("./sw/module.sw.js");
-
-const env = new SwEnv("/", {
+fetch("/asset-manifest.json")
+  .then((x) => x.json())
+  .then((assets) => {
+    const reactFiles = Object.values(assets.files).filter(
+      (x) => !x.endsWith(".map")
+    );
+    self.env.options.cache.items[0].precachePaths.push(...reactFiles);
+    self.env.init();
+  });
+self.env = new SwEnv("/", {
   database: {
     name: "db_local",
     version: 1,
@@ -26,7 +34,7 @@ const env = new SwEnv("/", {
           "/",
           "/index.html",
           "/sw/index.js",
-          "/icons/favicon-96x96.png",
+          "/icons/96x96.png",
           "/manifest.json",
           "/pdf.min.js",
           "/pdf.worker.js",
@@ -52,27 +60,33 @@ const env = new SwEnv("/", {
           pathStart: "/login",
           useInCacheControl: false,
         },
-        precachePaths: ["/login/index.html"],
+        precachePaths: [
+          "/login/index.html",
+          "/login/index.js",
+          "/login/layout.css",
+          "/login/custom.css",
+          "/login/adaptive.css",
+          "/login/colors.css",
+          "/login/distance.css",
+        ],
       },
     ],
   },
 });
-self.env = env;
-env.init();
 
 self.addEventListener("install", (event) => {
   self.skipWaiting(); // выполнить принудительную активацию новой версии sw - без информирования пользователя и без ожидания его реакции на это событие
   event.waitUntil(
-    env
+    self.env
       .waitForReady() // ожидание инициализации ТЕКУЩЕЙ(ранее установленной) версии sw, либо первичной инициализации sw (перед первой установкой)
       .then(() =>
         self.log(`INSTALLING…  [${self?.serviceWorker?.state}], ${new Date()}`)
       ) // начинается установка НОВОЙ версии sw
-      .then(() => env.correctCacheVersions())
+      .then(() => self.env.correctCacheVersions())
       .then(() =>
-        env.cache.precache.run({
+        self.env.cache.precache.run({
           strategy: "fetch -> cache",
-          paths: [...env.cache.precache.getItemsPrecachePaths()],
+          paths: [...self.env.cache.precache.getItemsPrecachePaths()],
           timeout: 10_000,
           throwError: true,
         })
@@ -86,18 +100,18 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     self.clients
       .claim() // переключить всех потенциальных клиентов на новый sw
-      .then(() => env.cache.clean("delete-uncontrolled")) // клиенты уже смотрят на новый sw, значит можно почистить кеш
+      .then(() => self.env.cache.clean("delete-uncontrolled")) // клиенты уже смотрят на новый sw, значит можно почистить кеш
       .finally(() => {
-        env.exchange.send("RELOAD_PAGE"); // важно для кеширующего sw, т.к. рефреш страницы гарантирует, что новая версия приложения запустилась на клиентах
+        self.env.exchange.send("RELOAD_PAGE"); // важно для кеширующего sw, т.к. рефреш страницы гарантирует, что новая версия приложения запустилась на клиентах
         self.log("ACTIVATED");
       })
   );
 });
 
 self.addEventListener("fetch", async (event) => {
-  if (env.isReady) event.respondWith(env.get(event.request));
+  if (self.env.isReady) event.respondWith(self.env.get(event.request));
 });
 
 self.addEventListener("message", (event) => {
-  if (env.isReady) env.exchange.process(event);
+  if (self.env.isReady) self.env.exchange.process(event);
 });
