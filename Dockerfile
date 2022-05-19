@@ -2,7 +2,7 @@ FROM node:latest as build
 
 WORKDIR /src
 COPY . .
-RUN npm install
+RUN yarn
 RUN npm run build
 
 
