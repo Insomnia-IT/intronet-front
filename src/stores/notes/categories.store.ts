@@ -3,6 +3,7 @@ import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from 'src/stores';
 import { INotes } from './notes.store';
+import { ObservableDB } from '../observableDB';
 
 export interface ICategory {
   id: number // Id категории
@@ -22,7 +23,7 @@ class CategoriesStore {
   ActiveCategory: number = 0
 
   @Observable
-  AllCategory = new ObservableList<ICategory>()
+  AllCategory = new ObservableDB<ICategory>('categories')
 
   get isLoading() {
     return this.IsLoading
@@ -70,10 +71,14 @@ class CategoriesStore {
 
   load = async () => {
     this.IsLoading = true
-    const categories = await this.api.getAllCategories()
-    this.AllCategory.clear()
-    this.AllCategory.addRange(categories)
-    this.IsLoading = false
+    try {
+      const categories = await this.api.getAllCategories()
+      this.AllCategory.clear()
+      this.AllCategory.addRange(categories)
+      this.IsLoading = false
+    } catch {
+      this.IsLoading = false
+    }
     // Установка количества страниц
     pagesStore.setCountPages(this.allNotesCount)
   }
