@@ -64,7 +64,7 @@ class CategoriesStore {
 
   @Computed
   get notes(): INotes[] {
-    if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes.toArray()
+    if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes
     return notesStore.notes.filter(note => note.categoryId === this.ActiveCategory)
   }
 
