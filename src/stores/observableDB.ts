@@ -77,6 +77,11 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
     });
   }
 
+  clear() {
+    this.table.clear()
+    this.items.clear()
+  }
+
   add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
     if (source != "db") {
@@ -89,6 +94,10 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
       value,
       source,
     });
+  }
+
+  addRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
+    valueArr.forEach((value) => this.add(value, source))
   }
 
   update(value: T, source: "user" | "server" | "db" = "user") {

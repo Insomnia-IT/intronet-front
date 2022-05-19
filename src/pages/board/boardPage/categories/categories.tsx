@@ -29,17 +29,10 @@ export default class Categories extends React.Component<{}, {}> {
   }
 
   render() {
-    const categoriesList = categoriesStore.allCategory.slice()
-    categoriesList.unshift({
-      id: ALL_CATEGORY_ID,
-      name: 'Все',
-      count: 0
-    })
-
     return (
       <Tabs align='center'>
         <Loading isLoading={categoriesStore.isLoading} height={40} className={styles.loading}>
-          {categoriesList.map(tab => {
+          {categoriesStore.allCategory.map(tab => {
             return (<Tabs.Tab key={tab.id} active={tab.id == categoriesStore.activeCategory} onClick={this.handleClick(tab.id)}>
               {tab.name}
             </Tabs.Tab>)

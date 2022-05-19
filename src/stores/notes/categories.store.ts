@@ -3,6 +3,7 @@ import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from 'src/stores';
 import { INotes } from './notes.store';
+import { ObservableDB } from '../observableDB';
 
 export interface ICategory {
   id: number // Id категории
@@ -10,7 +11,7 @@ export interface ICategory {
   count: number //количество элементов которым присвоена данная категория
 }
 
-export const ALL_CATEGORY_ID = 0
+export const ALL_CATEGORY_ID = 1
 
 class CategoriesStore {
   private api = new NotesApi
@@ -19,10 +20,10 @@ class CategoriesStore {
   IsLoading: boolean = true
 
   @Observable
-  ActiveCategory: number = 0
+  ActiveCategory: number = ALL_CATEGORY_ID
 
   @Observable
-  AllCategory = new ObservableList<ICategory>()
+  AllCategory = new ObservableDB<ICategory>('categories')
 
   get isLoading() {
     return this.IsLoading
@@ -43,7 +44,7 @@ class CategoriesStore {
   }
 
   get allNotesCount() {
-    return this.allCategory.reduce((prev, current) => prev + current.count, 0)
+    return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID).count
   }
 
   private onChangeCategory() {
@@ -64,16 +65,20 @@ class CategoriesStore {
 
   @Computed
   get notes(): INotes[] {
-    if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes.toArray()
+    if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes
     return notesStore.notes.filter(note => note.categoryId === this.ActiveCategory)
   }
 
   load = async () => {
     this.IsLoading = true
-    const categories = await this.api.getAllCategories()
-    this.AllCategory.clear()
-    this.AllCategory.addRange(categories)
-    this.IsLoading = false
+    try {
+      const categories = await this.api.getAllCategories()
+      this.AllCategory.clear()
+      this.AllCategory.addRange(categories)
+      this.IsLoading = false
+    } catch {
+      this.IsLoading = false
+    }
     // Установка количества страниц
     pagesStore.setCountPages(this.allNotesCount)
   }
