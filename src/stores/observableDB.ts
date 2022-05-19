@@ -77,6 +77,11 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
     });
   }
 
+  clear() {
+    this.table.clear()
+    this.items.clear()
+  }
+
   add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
     if (source != "db") {
