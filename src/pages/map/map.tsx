@@ -45,17 +45,21 @@ export class MapComponent extends React.PureComponent<MapProps> {
           }}
         />
         <svg className={styles.svg}>
-          {this.props.items.map((x) => (
-            <MapElement
-              item={x}
-              key={x.id}
-              transform={new TransformMatrix()
-                .Apply(this.state.transform)
-                .Translate({ X: x.point.x, Y: x.point.y })
-                .Scale(1 / this.state.scale)
-                .ToString("svg")}
-            />
-          ))}
+          {this.props.items
+            .filter(
+              (x) => Number.isFinite(x.point.x) && Number.isFinite(x.point.y)
+            )
+            .map((x) => (
+              <MapElement
+                item={x}
+                key={x.id}
+                transform={new TransformMatrix()
+                  .Apply(this.state.transform)
+                  .Translate({ X: x.point.x, Y: x.point.y })
+                  .Scale(1 / this.state.scale)
+                  .ToString("svg")}
+              />
+            ))}
         </svg>
       </div>
     );
