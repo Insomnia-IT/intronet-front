@@ -8,10 +8,14 @@ import styles from "./map.module.css";
 import { Computed, Observable } from "cellx-decorators";
 import { IPoint } from "./transform/matrix";
 import { LocationFull } from "../../stores/locations.store";
+import { ObservableList } from "cellx-collections";
 
 export class MapComponent extends React.PureComponent<MapProps> {
   @Observable
   handler: MapHandler;
+
+  @Observable
+  Hovered = new ObservableList<MapItem>();
 
   @Computed
   get transform() {
@@ -53,6 +57,9 @@ export class MapComponent extends React.PureComponent<MapProps> {
               <MapElement
                 item={x}
                 key={x.id}
+                onHover={(item) =>
+                  item ? this.Hovered.add(x) : this.Hovered.remove(x)
+                }
                 transform={new TransformMatrix()
                   .Apply(this.state.transform)
                   .Translate({ X: x.point.x, Y: x.point.y })
@@ -84,17 +91,16 @@ export class MapComponent extends React.PureComponent<MapProps> {
     }
   }
 
-  onClick = (event) => {
-    const rect = this.handler.root.getBoundingClientRect();
-    const p = { X: event.pageX - rect.left, Y: event.pageY - rect.top };
-    const point = this.transform.Inverse().Invoke(p);
-    for (let item of this.props.items) {
-      const dist = item.radius / this.scale;
-      if (Math.abs(item.point.x - point.X) > dist) continue;
-      if (Math.abs(item.point.y - point.Y) > dist) continue;
-      this.props.onSelect(item);
-      return;
+  onClick = (event: React.SyntheticEvent<HTMLDivElement, MouseEvent>) => {
+    if (this.Hovered.length) {
+      this.props.onSelect(this.Hovered.get(0));
     }
+    const rect = this.handler.root.getBoundingClientRect();
+    const p = {
+      X: event.nativeEvent.pageX - rect.left,
+      Y: event.nativeEvent.pageY - rect.top,
+    };
+    const point = this.transform.Inverse().Invoke(p);
     this.props.onClick({ x: point.X, y: point.Y });
   };
 }

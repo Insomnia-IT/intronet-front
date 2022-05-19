@@ -50,9 +50,11 @@ export class ZoomHandler {
   };
   onDown = (event: TouchEvent) => {
     if (event.touches.length != 2) return;
+    this.lastTouches = this.getLastTouches(event);
     this.root.addEventListener("touchmove", this.onMove, { passive: true });
   };
   onUp = (event: TouchEvent) => {
+    if (!this.lastTouches) return;
     this.lastTouches = null;
     this.root.removeEventListener("touchmove", this.onMove);
   };
@@ -60,7 +62,15 @@ export class ZoomHandler {
   private lastTouches: { center: { X; Y }; distance: number } = null;
 
   onMove = (event: TouchEvent) => {
+    const { center, distance } = this.getLastTouches(event);
     if (event.touches.length != 2) return;
+    if (this.lastTouches) {
+      this.zoom(distance / this.lastTouches.distance, center);
+    }
+    this.lastTouches = { center, distance };
+  };
+
+  private getLastTouches(event: TouchEvent) {
     const t1 = event.touches.item(0);
     const t2 = event.touches.item(1);
     const p1 = this.eventToPoint(t1);
@@ -70,11 +80,8 @@ export class ZoomHandler {
       Y: (p1.Y + p2.Y) / 2,
     };
     const distance = Math.sqrt((p2.X - p1.X) ** 2 + (p2.Y - p1.Y) ** 2);
-    if (this.lastTouches) {
-      this.zoom(distance / this.lastTouches.distance, center);
-    }
-    this.lastTouches = { center, distance };
-  };
+    return { center, distance };
+  }
 
   zoom(scale, center) {
     this.transform.set(
