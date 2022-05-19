@@ -31,7 +31,7 @@ export default class Categories extends React.Component<{}, {}> {
   render() {
     return (
       <Tabs align='center'>
-        <Loading isLoading={categoriesStore.isLoading} height={40} className={styles.loading}>
+        <Loading isLoading={categoriesStore.isLoading} height={40} width={40} className={styles.loading}>
           {categoriesStore.allCategory.map(tab => {
             return (<Tabs.Tab key={tab.id} active={tab.id == categoriesStore.activeCategory} onClick={this.handleClick(tab.id)}>
               {tab.name}
