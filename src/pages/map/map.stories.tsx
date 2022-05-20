@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent, MapItem } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
-import { MapPage, MapPageInternal } from "./map-page";
+import { MapPage } from "./map-page";
 import { LocationFull } from "../../stores/locations.store";
 
 const locations: LocationFull[] = [
@@ -16,26 +16,26 @@ const locations: LocationFull[] = [
     image: "",
     id: 3,
   },
-  {
-    lat: 54.68128095334499,
-    lng: 35.08512875824405,
-    x: 752.1208687440983,
-    y: 323.7888888888889,
-    name: "Палаточный лагерь",
-    tags: [],
-    image: "camping",
-    id: 2,
-  },
-  {
-    lat: 54.67735017337062,
-    lng: 35.08774915484466,
-    x: 352.1208687440983,
-    y: 323.7888888888889,
-    name: "Экран «Орёл»",
-    tags: [],
-    image: "cinema",
-    id: 1,
-  },
+  // {
+  //   lat: 54.68128095334499,
+  //   lng: 35.08512875824405,
+  //   x: 752.1208687440983,
+  //   y: 323.7888888888889,
+  //   name: "Палаточный лагерь",
+  //   tags: [],
+  //   image: "camping",
+  //   id: 2,
+  // },
+  // {
+  //   lat: 54.67735017337062,
+  //   lng: 35.08774915484466,
+  //   x: 352.1208687440983,
+  //   y: 323.7888888888889,
+  //   name: "Экран «Орёл»",
+  //   tags: [],
+  //   image: "cinema",
+  //   id: 1,
+  // },
 ];
 
 export default {
@@ -47,14 +47,15 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
   <MapComponent
     items={args.items}
     image={args.image}
-    onSelect={console.log}
     onClick={console.log}
+    onSelect={console.log}
+    isMovingEnabled={true}
   />
 );
 
 Schema.args = {
   items: locations.map((x) => ({
-    point: { x: x.x, y: x.y },
+    point: { X: x.x, Y: x.y },
     radius: 20,
     icon: "",
     title: x.name,
@@ -71,9 +72,10 @@ export const Geo: ComponentStory<typeof MapComponent> = (args) => (
   <MapComponent
     items={args.items}
     location
+    isMovingEnabled={true}
     image={args.image}
-    onSelect={console.log}
     onClick={console.log}
+    onSelect={console.log}
   />
 );
 
@@ -89,7 +91,7 @@ Geo.args = {
   items: locations.map((x) => ({
     point: converter.fromGeo(x),
     radius: 20,
-    icon: "camping",
+    icon: "",
     title: x.name,
     id: x.id,
   })),
@@ -100,16 +102,8 @@ Geo.args = {
   },
 };
 
-export const Page: ComponentStory<typeof MapPageInternal> = (args) => (
-  <MapPageInternal
-    locations={args.locations}
-    onChange={(x) =>
-      Object.assign(
-        locations.find((l) => l.id == x.id),
-        x
-      )
-    }
-  />
+export const Page: ComponentStory<typeof MapPage> = (args) => (
+  <MapPage locations={args.locations} />
 );
 Page.args = {
   locations,

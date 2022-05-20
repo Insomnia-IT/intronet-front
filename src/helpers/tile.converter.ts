@@ -32,8 +32,8 @@ export class TileConverter {
 
   public fromGeo(geo: { lat: number; lng: number }) {
     return {
-      x: (lng2x(geo.lng) * 2 ** this.zoom - this.offset.x) * this.scale,
-      y: (latToY(geo.lat) * 2 ** this.zoom - this.offset.y) * this.scale,
+      X: (lng2x(geo.lng) * 2 ** this.zoom - this.offset.x) * this.scale,
+      Y: (latToY(geo.lat) * 2 ** this.zoom - this.offset.y) * this.scale,
     };
   }
 }

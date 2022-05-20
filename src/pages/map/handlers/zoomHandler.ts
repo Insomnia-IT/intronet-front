@@ -1,11 +1,9 @@
-import { Cell } from "cellx";
+import { EventEmitter } from "cellx";
 import { TransformMatrix } from "../transform/transform.matrix";
 
-export class ZoomHandler {
-  constructor(
-    private root: HTMLDivElement,
-    private transform: Cell<TransformMatrix, any>
-  ) {
+export class ZoomHandler extends EventEmitter {
+  constructor(private root: HTMLDivElement) {
+    super();
     this.root.style.touchAction = "none";
     this.root.addEventListener("touchstart", this.onDown, { passive: true });
     this.root.addEventListener("touchend", this.onUp, { passive: true });
@@ -39,12 +37,12 @@ export class ZoomHandler {
         : -1; // ИНАЧЕ (-)zoom
     const scale = 2 ** (sign * 0.02);
     const point = this.eventToPoint(event);
-    this.transform.set(
+    this.emit(
+      "transform",
       new TransformMatrix()
         .Translate(point)
         .Scale(scale)
         .Translate({ X: -point.X, Y: -point.Y })
-        .Apply(this.transform.get())
     );
     this.lastGesture = event;
   };
@@ -84,12 +82,12 @@ export class ZoomHandler {
   }
 
   zoom(scale, center) {
-    this.transform.set(
+    this.emit(
+      "transform",
       new TransformMatrix()
         .Translate(center)
         .Scale(scale)
         .Translate({ X: -center.X, Y: -center.Y })
-        .Apply(this.transform.get())
     );
   }
 
@@ -107,5 +105,6 @@ export class ZoomHandler {
     // this.root.removeEventListener("gesturestart", this.onGestureStart);
     // this.root.removeEventListener("gestureend", this.onGestureEnd);
     this.root.removeEventListener("wheel", this.onWheel);
+    this.off();
   }
 }

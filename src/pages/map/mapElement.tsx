@@ -6,31 +6,26 @@ import styles from "./map-element.module.css";
 export function MapElement(props: {
   item: MapItem;
   transform: string;
-  onHover(x: MapItem);
+  selected: boolean;
+  onSelect(x: MapItem);
 }) {
   const icon = props.item.icon ? (
     MapIcons[props.item.icon]
   ) : (
     <circle r={props.item.radius} fill="red"></circle>
   );
-  const onEnter = React.useCallback(
-    (e: React.SyntheticEvent<SVGGElement, PointerEvent>) => {
-      props.onHover(props.item);
-    },
-    []
-  );
-  const onLeave = React.useCallback(
-    (e: React.SyntheticEvent<SVGGElement, PointerEvent>) => {
-      props.onHover(null);
-    },
-    []
-  );
+  const classNames = [styles.element];
+  if (props.selected) {
+    classNames.push(styles.selected);
+  }
   return (
     <g transform={props.transform}>
       <g
-        className={styles.element}
-        onPointerEnter={onEnter}
-        onPointerOut={onLeave}
+        className={classNames.join(" ")}
+        onPointerDown={(e) => {
+          e.nativeEvent.preventDefault();
+          props.onSelect(props.item);
+        }}
       >
         {icon}
         <text textAnchor="middle" y={props.item.radius * 2.5}>
