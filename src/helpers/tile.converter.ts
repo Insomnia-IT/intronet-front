@@ -23,10 +23,10 @@ export class TileConverter {
     private scale: number = 1
   ) {}
 
-  public toGeo(point: { x: number; y: number }) {
+  public toGeo(point: { X: number; Y: number }) {
     return {
-      lng: x2lng((point.x / this.scale + this.offset.x) / 2 ** this.zoom),
-      lat: yToLat((point.y / this.scale + this.offset.y) / 2 ** this.zoom),
+      lng: x2lng((point.X / this.scale + this.offset.x) / 2 ** this.zoom),
+      lat: yToLat((point.Y / this.scale + this.offset.y) / 2 ** this.zoom),
     };
   }
 

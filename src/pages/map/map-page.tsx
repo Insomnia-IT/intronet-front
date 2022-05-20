@@ -9,9 +9,7 @@ import { LocationFull, locationsStore } from "../../stores/locations.store";
 import { MapToolbar } from "./map-toolbar";
 import { adminApi } from "../../api/admin";
 
-export class MapPage extends React.PureComponent<{
-  locations?: LocationFull[];
-}> {
+export class MapPage extends React.PureComponent {
   @Observable
   isMap = true;
   @Observable
@@ -25,22 +23,20 @@ export class MapPage extends React.PureComponent<{
             lng: x.lng,
           })
         : { X: x.x, Y: x.y },
-      icon: "",
+      icon: x.image,
       title: x.name,
       id: x.id,
       radius: 10,
     } as MapItem;
   }
 
-  get locations() {
-    return (this.props.locations ?? locationsStore.FullLocations).map((x) =>
-      this.locationToMapItem(x)
-    );
+  get mapItems() {
+    return locationsStore.FullLocations.map((x) => this.locationToMapItem(x));
   }
 
   state = cellState(this, {
     image: () => (this.isMap ? mapStore.Map : mapStore.Schema),
-    items: () => this.locations,
+    items: () => this.mapItems,
     selected: () => this.selected,
   });
 
@@ -51,9 +47,10 @@ export class MapPage extends React.PureComponent<{
       <>
         <MapComponent
           items={this.state.items}
-          isMovingEnabled={adminApi.isAdmin}
+          isMovingEnabled={true}
           image={this.state.image}
           onClick={console.log}
+          onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />
         <div className={styles.layers}>
@@ -67,4 +64,14 @@ export class MapPage extends React.PureComponent<{
       </>
     );
   }
+
+  updateLocation = (x: MapItem) => {
+    const location = locationsStore.Locations.get(x.id);
+    if (this.isMap) {
+      Object.assign(location, mapStore.MapGeoConverter.toGeo(x.point));
+    } else {
+      Object.assign(location, { x: x.point.X, y: x.point.Y });
+    }
+    locationsStore.Locations.update(location);
+  };
 }

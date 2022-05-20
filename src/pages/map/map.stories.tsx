@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent, MapItem } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
 import { MapPage } from "./map-page";
-import { LocationFull } from "../../stores/locations.store";
+import { LocationFull, locationsStore } from "../../stores/locations.store";
 
 const locations: LocationFull[] = [
   {
@@ -16,26 +16,26 @@ const locations: LocationFull[] = [
     image: "",
     id: 3,
   },
-  // {
-  //   lat: 54.68128095334499,
-  //   lng: 35.08512875824405,
-  //   x: 752.1208687440983,
-  //   y: 323.7888888888889,
-  //   name: "Палаточный лагерь",
-  //   tags: [],
-  //   image: "camping",
-  //   id: 2,
-  // },
-  // {
-  //   lat: 54.67735017337062,
-  //   lng: 35.08774915484466,
-  //   x: 352.1208687440983,
-  //   y: 323.7888888888889,
-  //   name: "Экран «Орёл»",
-  //   tags: [],
-  //   image: "cinema",
-  //   id: 1,
-  // },
+  {
+    lat: 54.68128095334499,
+    lng: 35.08512875824405,
+    x: 752.1208687440983,
+    y: 323.7888888888889,
+    name: "Палаточный лагерь",
+    tags: [],
+    image: "camping",
+    id: 2,
+  },
+  {
+    lat: 54.67735017337062,
+    lng: 35.08774915484466,
+    x: 352.1208687440983,
+    y: 323.7888888888889,
+    name: "Экран «Орёл»",
+    tags: [],
+    image: "cinema",
+    id: 1,
+  },
 ];
 
 export default {
@@ -49,6 +49,7 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
     image={args.image}
     onClick={console.log}
     onSelect={console.log}
+    onChange={console.log}
     isMovingEnabled={true}
   />
 );
@@ -56,8 +57,7 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
 Schema.args = {
   items: locations.map((x) => ({
     point: { X: x.x, Y: x.y },
-    radius: 20,
-    icon: "",
+    icon: x.image,
     title: x.name,
     id: x.id,
   })) as MapItem[],
@@ -74,6 +74,7 @@ export const Geo: ComponentStory<typeof MapComponent> = (args) => (
     location
     isMovingEnabled={true}
     image={args.image}
+    onChange={console.log}
     onClick={console.log}
     onSelect={console.log}
   />
@@ -90,8 +91,7 @@ const converter = new TileConverter(
 Geo.args = {
   items: locations.map((x) => ({
     point: converter.fromGeo(x),
-    radius: 20,
-    icon: "",
+    icon: x.image,
     title: x.name,
     id: x.id,
   })),
@@ -102,9 +102,7 @@ Geo.args = {
   },
 };
 
-export const Page: ComponentStory<typeof MapPage> = (args) => (
-  <MapPage locations={args.locations} />
-);
+export const Page: ComponentStory<typeof MapPage> = (args) => <MapPage />;
 Page.args = {
   locations,
 };

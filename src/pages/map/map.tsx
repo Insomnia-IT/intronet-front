@@ -6,14 +6,10 @@ import { MapElement } from "./mapElement";
 import styles from "./map.module.css";
 import { Computed, Observable } from "cellx-decorators";
 import { LocationFull } from "../../stores/locations.store";
-import { ObservableList } from "cellx-collections";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
 
 export class MapComponent extends React.PureComponent<MapProps> {
-  @Observable
-  Selected = new ObservableList<MapItem>();
-
   @Observable
   Transform = new TransformMatrix();
 
@@ -24,7 +20,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
 
   state = cellState(this, {
     transform: () => this.Transform,
-    selected: () => this.Selected.toArray(),
+    selected: null as MapItem,
     scale: () => this.scale,
   });
 
@@ -35,7 +31,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         onPointerUp={this.onClick}
         onPointerDown={(e) => {
           if (!e.nativeEvent.defaultPrevented) {
-            this.Selected.clear();
+            this.setState({ selected: null });
           }
         }}
         className={styles.container}
@@ -58,11 +54,9 @@ export class MapComponent extends React.PureComponent<MapProps> {
               <MapElement
                 item={x}
                 key={x.id}
-                selected={this.state.selected.includes(x)}
+                selected={this.state.selected?.id === x.id}
                 onSelect={(item) => {
-                  if (!this.Selected.contains(item)) {
-                    this.Selected.add(item);
-                  }
+                  this.setState({ selected: item });
                   this.props.onSelect(item);
                 }}
                 transform={new TransformMatrix()
@@ -91,15 +85,15 @@ export class MapComponent extends React.PureComponent<MapProps> {
         this.Transform = e.data.Apply(this.Transform);
       });
       dragHandler.on("transform", (e) => {
-        if (this.Selected.length) {
-          for (let mapItem of this.Selected) {
-            mapItem.point = new TransformMatrix()
-              .Apply(this.Transform.Inverse())
-              .Apply(e.data as TransformMatrix)
-              .Apply(this.Transform)
-              .Invoke(mapItem.point);
-          }
-          this.Selected.emit("change");
+        const { selected } = this.state;
+        if (selected) {
+          selected.point = new TransformMatrix()
+            .Apply(this.Transform.Inverse())
+            .Apply(e.data as TransformMatrix)
+            .Apply(this.Transform)
+            .Invoke(selected.point);
+          this.forceUpdate();
+          this.props.onChange(selected);
         } else {
           this.Transform = e.data.Apply(this.Transform);
         }
@@ -108,6 +102,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
       this.handlers.forEach((x) => x.dispose());
     }
   };
+
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     const aspectRatio = rect.width / rect.height;
@@ -124,6 +119,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         Y: -image.height / 2,
       });
   }
+
   //endregion
 
   componentDidUpdate(
@@ -153,13 +149,13 @@ export type MapProps = {
   location?: boolean;
   isMovingEnabled: boolean;
   onSelect(item);
+  onChange(item);
   onClick(p: { X; Y });
 };
 
 export type MapItem = {
   point: { X; Y };
   icon;
-  radius;
   id;
   title?: string;
   location?: LocationFull;

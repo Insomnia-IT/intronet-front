@@ -12,7 +12,7 @@ export function MapElement(props: {
   const icon = props.item.icon ? (
     MapIcons[props.item.icon]
   ) : (
-    <circle r={props.item.radius} fill="red"></circle>
+    <circle r={15} fill="red"></circle>
   );
   const classNames = [styles.element];
   if (props.selected) {
@@ -28,7 +28,7 @@ export function MapElement(props: {
         }}
       >
         {icon}
-        <text textAnchor="middle" y={props.item.radius * 2.5}>
+        <text textAnchor="middle" y={25}>
           {props.item.title}
         </text>
       </g>
