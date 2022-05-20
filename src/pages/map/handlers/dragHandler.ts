@@ -1,11 +1,9 @@
-import { Cell } from "cellx";
 import { TransformMatrix } from "../transform/transform.matrix";
+import { EventEmitter } from "cellx";
 
-export class DragHandler {
-  constructor(
-    private root: HTMLDivElement,
-    private transform: Cell<TransformMatrix, any>
-  ) {
+export class DragHandler extends EventEmitter {
+  constructor(private root: HTMLDivElement) {
+    super();
     this.root.style.touchAction = "none";
     this.root.addEventListener("pointerdown", this.onDown, { passive: true });
     this.root.addEventListener("touchstart", this.countTouches, {
@@ -16,6 +14,7 @@ export class DragHandler {
     });
     this.root.addEventListener("pointerup", this.onUp, { passive: true });
   }
+
   private touchCount = 0;
   countTouches = (e: TouchEvent) => {
     this.touchCount = e.touches.length;
@@ -35,13 +34,12 @@ export class DragHandler {
   private lastPoint: { x; y };
   onMove = (event: PointerEvent) => {
     if (this.touchCount > 1) return;
-    this.transform.set(
-      new TransformMatrix()
-        .Translate({
-          X: event.x - this.lastPoint.x,
-          Y: event.y - this.lastPoint.y,
-        })
-        .Apply(this.transform.get())
+    this.emit(
+      "transform",
+      TransformMatrix.Translate({
+        X: event.x - this.lastPoint.x,
+        Y: event.y - this.lastPoint.y,
+      })
     );
     this.lastPoint = event;
   };
@@ -51,5 +49,6 @@ export class DragHandler {
     this.root.removeEventListener("pointerup", this.onUp);
     this.root.removeEventListener("touchstart", this.countTouches);
     this.root.removeEventListener("touchend", this.countTouches);
+    this.off();
   }
 }

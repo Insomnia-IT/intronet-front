@@ -1,11 +1,9 @@
-import { Cell } from "cellx";
+import { EventEmitter } from "cellx";
 import { TransformMatrix } from "../transform/transform.matrix";
 
-export class ZoomHandler {
-  constructor(
-    private root: HTMLDivElement,
-    private transform: Cell<TransformMatrix, any>
-  ) {
+export class ZoomHandler extends EventEmitter {
+  constructor(private root: HTMLDivElement) {
+    super();
     this.root.style.touchAction = "none";
     this.root.addEventListener("touchstart", this.onDown, { passive: true });
     this.root.addEventListener("touchend", this.onUp, { passive: true });
@@ -39,20 +37,22 @@ export class ZoomHandler {
         : -1; // ИНАЧЕ (-)zoom
     const scale = 2 ** (sign * 0.02);
     const point = this.eventToPoint(event);
-    this.transform.set(
+    this.emit(
+      "transform",
       new TransformMatrix()
         .Translate(point)
         .Scale(scale)
         .Translate({ X: -point.X, Y: -point.Y })
-        .Apply(this.transform.get())
     );
     this.lastGesture = event;
   };
   onDown = (event: TouchEvent) => {
     if (event.touches.length != 2) return;
+    this.lastTouches = this.getLastTouches(event);
     this.root.addEventListener("touchmove", this.onMove, { passive: true });
   };
   onUp = (event: TouchEvent) => {
+    if (!this.lastTouches) return;
     this.lastTouches = null;
     this.root.removeEventListener("touchmove", this.onMove);
   };
@@ -60,7 +60,15 @@ export class ZoomHandler {
   private lastTouches: { center: { X; Y }; distance: number } = null;
 
   onMove = (event: TouchEvent) => {
+    const { center, distance } = this.getLastTouches(event);
     if (event.touches.length != 2) return;
+    if (this.lastTouches) {
+      this.zoom(distance / this.lastTouches.distance, center);
+    }
+    this.lastTouches = { center, distance };
+  };
+
+  private getLastTouches(event: TouchEvent) {
     const t1 = event.touches.item(0);
     const t2 = event.touches.item(1);
     const p1 = this.eventToPoint(t1);
@@ -70,19 +78,16 @@ export class ZoomHandler {
       Y: (p1.Y + p2.Y) / 2,
     };
     const distance = Math.sqrt((p2.X - p1.X) ** 2 + (p2.Y - p1.Y) ** 2);
-    if (this.lastTouches) {
-      this.zoom(distance / this.lastTouches.distance, center);
-    }
-    this.lastTouches = { center, distance };
-  };
+    return { center, distance };
+  }
 
   zoom(scale, center) {
-    this.transform.set(
+    this.emit(
+      "transform",
       new TransformMatrix()
         .Translate(center)
         .Scale(scale)
         .Translate({ X: -center.X, Y: -center.Y })
-        .Apply(this.transform.get())
     );
   }
 
@@ -100,5 +105,6 @@ export class ZoomHandler {
     // this.root.removeEventListener("gesturestart", this.onGestureStart);
     // this.root.removeEventListener("gestureend", this.onGestureEnd);
     this.root.removeEventListener("wheel", this.onWheel);
+    this.off();
   }
 }

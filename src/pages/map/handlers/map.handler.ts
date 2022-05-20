@@ -1,24 +1,24 @@
 import { TransformMatrix } from "../transform/transform.matrix";
-import { Cell } from "cellx";
 import { DragHandler } from "./dragHandler";
 import { ZoomHandler } from "./zoomHandler";
-import { Observable } from "cellx-decorators";
+import { EventEmitter } from "cellx";
 
-export class MapHandler {
-  constructor(public root: HTMLDivElement) {}
+export class MapHandler extends EventEmitter {
+  constructor(public root: HTMLDivElement) {
+    super();
+  }
 
-  public Transform = new Cell<TransformMatrix>(new TransformMatrix());
-
-  private Handlers = [
-    new DragHandler(this.root, this.Transform),
-    new ZoomHandler(this.root, this.Transform),
-  ];
+  private Handlers = [new DragHandler(this.root), new ZoomHandler(this.root)];
 
   dispose() {
     this.Handlers.forEach((x) => x.dispose());
+    this.off();
   }
 
   init(image: { width; height }) {
+    for (let handler of this.Handlers) {
+      handler.on("transform", (t) => this.emit("transform", t.data));
+    }
     const rect = this.root.getBoundingClientRect();
     const aspectRatio = rect.width / rect.height;
     const imageRatio = image.width / image.height;
@@ -26,15 +26,12 @@ export class MapHandler {
       imageRatio < aspectRatio
         ? rect.width / image.width
         : rect.height / image.height;
-    this.Transform.set(
-      new TransformMatrix()
-        .Translate({ X: rect.width / 2, Y: rect.height / 2 })
-        .Scale(scale)
-        .Translate({
-          X: -image.width / 2,
-          Y: -image.height / 2,
-        })
-    );
-    console.log(rect, image, this.Transform.get());
+    return new TransformMatrix()
+      .Translate({ X: rect.width / 2, Y: rect.height / 2 })
+      .Scale(scale)
+      .Translate({
+        X: -image.width / 2,
+        Y: -image.height / 2,
+      });
   }
 }
