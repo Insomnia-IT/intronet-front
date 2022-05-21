@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./loading.module.scss";
 import { Spinner } from "@chakra-ui/react";
 
-const padding: number = 5;
+const margin: number = 5;
 
 export default function Loading({
   isLoading,
@@ -20,11 +20,11 @@ export default function Loading({
   if (isLoading) {
     return (
       <Spinner
-        width={width - padding * 2}
-        height={height - padding * 2}
+        width={width - margin * 2}
+        height={height - margin * 2}
         className={styles.spinner + " " + className}
         color="currentColor"
-        style={{ padding: padding.toString() + "px" }}
+        style={{ margin: margin.toString() + "px" }}
       />
     );
   } else {

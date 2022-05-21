@@ -1,35 +1,54 @@
-import { Cell } from "cellx";
 import { TransformMatrix } from "../transform/transform.matrix";
+import { EventEmitter } from "cellx";
 
-export class DragHandler {
-  constructor(
-    private root: HTMLDivElement,
-    private transform: Cell<TransformMatrix, any>
-  ) {
+export class DragHandler extends EventEmitter {
+  constructor(private root: HTMLDivElement) {
+    super();
     this.root.style.touchAction = "none";
-    this.root.addEventListener("pointerdown", this.onDown);
-    this.root.addEventListener("pointerup", this.onUp);
+    this.root.addEventListener("pointerdown", this.onDown, { passive: true });
+    this.root.addEventListener("touchstart", this.countTouches, {
+      passive: true,
+    });
+    this.root.addEventListener("touchend", this.countTouches, {
+      passive: true,
+    });
+    this.root.addEventListener("pointerup", this.onUp, { passive: true });
   }
 
+  private touchCount = 0;
+  countTouches = (e: TouchEvent) => {
+    this.touchCount = e.touches.length;
+  };
+
   onDown = (event: PointerEvent) => {
+    if (!event.isPrimary) return;
     this.root.setPointerCapture(event.pointerId);
-    this.root.addEventListener("pointermove", this.onMove);
+    this.lastPoint = event;
+    this.root.addEventListener("pointermove", this.onMove, { passive: true });
   };
   onUp = (event: PointerEvent) => {
+    if (!event.isPrimary) return;
     this.root.removeEventListener("pointermove", this.onMove);
     this.root.releasePointerCapture(event.pointerId);
   };
+  private lastPoint: { x; y };
   onMove = (event: PointerEvent) => {
-    if (!event.isPrimary) return;
-    this.transform.set(
-      new TransformMatrix()
-        .Translate({ X: event.movementX, Y: event.movementY })
-        .Apply(this.transform.get())
+    if (this.touchCount > 1) return;
+    this.emit(
+      "transform",
+      TransformMatrix.Translate({
+        X: event.x - this.lastPoint.x,
+        Y: event.y - this.lastPoint.y,
+      })
     );
+    this.lastPoint = event;
   };
 
   dispose() {
     this.root.removeEventListener("pointerdown", this.onDown);
     this.root.removeEventListener("pointerup", this.onUp);
+    this.root.removeEventListener("touchstart", this.countTouches);
+    this.root.removeEventListener("touchend", this.countTouches);
+    this.off();
   }
 }

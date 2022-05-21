@@ -1,28 +1,25 @@
+import { Computed, Observable } from "cellx-decorators";
 import React from "react";
-import { MapHandler } from "./handlers/map.handler";
 import { cellState } from "../../helpers/cell-state";
 import { ImageInfo } from "../../stores/map.store";
-import { TransformMatrix } from "./transform/transform.matrix";
-import { MapElement } from "./mapElement";
+import { DragHandler } from "./handlers/dragHandler";
+import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
-import { Computed, Observable } from "cellx-decorators";
+import { MapElement } from "./mapElement";
+import { TransformMatrix } from "./transform/transform.matrix";
 
 export class MapComponent extends React.PureComponent<MapProps> {
   @Observable
-  handler: MapHandler;
-
-  @Computed
-  get transform() {
-    return this.handler?.Transform.get() ?? new TransformMatrix();
-  }
+  Transform = new TransformMatrix();
 
   @Computed
   get scale() {
-    return this.transform.Matrix.GetScaleFactor();
+    return this.Transform.Matrix.GetScaleFactor();
   }
 
   state = cellState(this, {
-    transform: () => this.transform,
+    transform: () => this.Transform,
+    selected: null as MapItem,
     scale: () => this.scale,
   });
 
@@ -30,7 +27,12 @@ export class MapComponent extends React.PureComponent<MapProps> {
     return (
       <div
         ref={this.setHandler}
-        onClick={this.onClick}
+        onPointerUp={this.onClick}
+        onPointerDown={(e) => {
+          if (!e.nativeEvent.defaultPrevented) {
+            this.setState({ selected: null });
+          }
+        }}
         className={styles.container}
       >
         <img
@@ -43,52 +45,102 @@ export class MapComponent extends React.PureComponent<MapProps> {
           }}
         />
         <svg className={styles.svg}>
-          {this.props.items.map((x) => (
-            <MapElement
-              item={x}
-              key={x.id}
-              transform={new TransformMatrix()
-                .Apply(this.state.transform)
-                .Translate({ X: x.point.x, Y: x.point.y })
-                .Scale(1 / this.state.scale)
-                .ToString("svg")}
-            />
-          ))}
+          {this.props.items
+            .filter(
+              // @ts-ignore
+              (x) => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y)
+            )
+            .map((x) => (
+              <MapElement
+                item={x}
+                key={x.id}
+                selected={this.state.selected?.id === x.id}
+                onSelect={(item) => {
+                  this.setState({ selected: item });
+                  this.props.onSelect(item);
+                }}
+                transform={new TransformMatrix()
+                  .Apply(this.state.transform)
+                  // @ts-ignore
+                  .Translate(x.point)
+                  .Scale(1 / this.state.scale)
+                  .ToString("svg")}
+              />
+            ))}
         </svg>
       </div>
     );
   }
 
+  //region Handlers
+  private root: HTMLDivElement;
+  private handlers: (DragHandler | ZoomHandler)[];
   setHandler = (element) => {
+    this.root = element;
     if (element) {
-      this.handler = new MapHandler(element);
-      this.handler.init(this.props.image);
+      this.initTransform(this.props.image, element);
+      const dragHandler = new DragHandler(element);
+      const zoomHandler = new ZoomHandler(element);
+      this.handlers = [dragHandler, zoomHandler];
+      zoomHandler.on("transform", (e) => {
+        this.Transform = e.data.Apply(this.Transform);
+      });
+      dragHandler.on("transform", (e) => {
+        const { selected } = this.state;
+        if (selected) {
+          selected.point = new TransformMatrix()
+            .Apply(this.Transform.Inverse())
+            .Apply(e.data as TransformMatrix)
+            .Apply(this.Transform)
+            .Invoke(selected.point);
+          this.forceUpdate();
+          this.props.onChange(selected);
+        } else {
+          this.Transform = e.data.Apply(this.Transform);
+        }
+      });
     } else {
-      this.handler.dispose();
+      this.handlers.forEach((x) => x.dispose());
     }
   };
+
+  initTransform(image: { width; height }, root: HTMLDivElement) {
+    const rect = root.getBoundingClientRect();
+    const aspectRatio = rect.width / rect.height;
+    const imageRatio = image.width / image.height;
+    const scale =
+      imageRatio < aspectRatio
+        ? rect.width / image.width
+        : rect.height / image.height;
+    this.Transform = new TransformMatrix()
+      .Translate({ X: rect.width / 2, Y: rect.height / 2 })
+      .Scale(scale)
+      .Translate({
+        X: -image.width / 2,
+        Y: -image.height / 2,
+      });
+  }
+
+  //endregion
 
   componentDidUpdate(
     prevProps: Readonly<MapProps>,
     prevState: Readonly<{}>,
     snapshot?: any
   ) {
-    if (prevProps.image != this.props.image) {
-      this.handler?.init(this.props.image);
+    if (prevProps.image != this.props.image && this.root) {
+      this.initTransform(this.props.image, this.root);
     }
   }
 
-  onClick = (event) => {
-    const rect = this.handler.root.getBoundingClientRect();
-    const p = { X: event.pageX - rect.left, Y: event.pageY - rect.top };
-    const point = this.transform.Inverse().Invoke(p);
-    for (let item of this.props.items) {
-      const dist = item.radius / this.scale;
-      if (Math.abs(item.point.x - point.X) > dist) continue;
-      if (Math.abs(item.point.y - point.Y) > dist) continue;
-      this.props.onSelect(item);
-      break;
-    }
+  onClick = (event: React.SyntheticEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = this.root.getBoundingClientRect();
+    const p = {
+      X: event.nativeEvent.pageX - rect.left,
+      Y: event.nativeEvent.pageY - rect.top,
+    };
+    const point = this.Transform.Inverse().Invoke(p);
+    this.props.onClick(point);
   };
 }
 
@@ -96,5 +148,8 @@ export type MapProps = {
   items: MapItem[];
   image: ImageInfo;
   location?: boolean;
+  isMovingEnabled: boolean;
   onSelect(item);
+  onChange(item);
+  onClick(p: { X; Y });
 };

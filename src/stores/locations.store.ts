@@ -36,14 +36,50 @@ class LocationsStore {
     });
     Promise.all([this.Tags.isLoaded, this.Locations.isLoaded]).then(() => {
       setTimeout(() => this.update(), 60_000);
+      if (this.Locations.toArray().length == 0) {
+        const locations: InsomniaLocation[] = [
+          {
+            lat: 54.68255965779291,
+            lng: 35.07497888587355,
+            x: 1078.8210261252755,
+            y: 406.92241107963486,
+            name: "родник",
+            tags: [],
+            image: "",
+            id: 3,
+          },
+          {
+            lat: 54.68128095334499,
+            lng: 35.08512875824405,
+            x: 752.1208687440983,
+            y: 323.7888888888889,
+            name: "Палаточный лагерь",
+            tags: [],
+            image: "camping",
+            id: 2,
+          },
+          {
+            lat: 54.67735017337062,
+            lng: 35.08774915484466,
+            x: 352.1208687440983,
+            y: 323.7888888888889,
+            name: "Экран «Орёл»",
+            tags: [],
+            image: "cinema",
+            id: 1,
+          },
+        ];
+        // @ts-ignore
+        this.Locations.addRange(locations);
+      }
       this.update();
     });
   }
 
   private async update() {
     const [tags, locations] = await Promise.all([
-      this.api.getTags(),
-      this.api.getLocations(),
+      this.api.getTags().catch(() => []),
+      this.api.getLocations().catch(() => []),
     ]);
     this.Tags.merge(tags, "local");
     this.Locations.merge(locations, "local");

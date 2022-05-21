@@ -1,7 +1,6 @@
-import { Computed, Observable } from 'cellx-decorators';
-import { Dexie, Table } from 'dexie';
+import { Observable } from 'cellx-decorators';
 import NotesApi from '../../api/notes';
-import { ObservableList } from 'cellx-collections';
+import { ObservableDB } from '../observableDB';
 
 export interface INotes {
   id: number
@@ -10,23 +9,11 @@ export interface INotes {
   categoryId: number
 }
 
-class NotesDBInit extends Dexie {
-  notes!: Table<INotes>
-
-  constructor() {
-    super('Notes')
-    this.version(1).stores({
-      notes: 'id, name, description, categoryId'
-    })
-  }
-}
-
 class NotesStore {
-  private db = new NotesDBInit
   private api = new NotesApi
 
   @Observable
-  Notes = new ObservableList<INotes>();
+  Notes = new ObservableDB<INotes>('notes');
 
   @Observable
   IsLoading: boolean = true
@@ -42,10 +29,15 @@ class NotesStore {
   // Загрузка первых 20 объявлений каждой категории
   public load = async () => {
     this.IsLoading = true
-    const notes = await this.api.getNotes()
-    this.Notes.clear()
-    this.Notes.addRange(notes)
-    this.IsLoading = false
+    let notes: INotes[]
+    try {
+      notes = await this.api.getNotes()
+      this.Notes.clear()
+      this.Notes.addRange(notes)
+      this.IsLoading = false
+    } catch {
+      this.IsLoading = false
+    }
   }
 
   // Загрузка новых объявлений выбранной категории
@@ -58,7 +50,7 @@ class NotesStore {
 
   // Отдаёт стор с объявлениями
   get notes() {
-    return this.Notes
+    return this.Notes.toArray()
   }
 
   getNote(id: number) {

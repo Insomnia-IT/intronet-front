@@ -1,4 +1,5 @@
-import {BaseApi} from "./base";
+import { BaseApi } from "./base";
+import { Observable } from "cellx-decorators";
 
 export class AdminApi extends BaseApi {
   constructor() {
@@ -7,14 +8,13 @@ export class AdminApi extends BaseApi {
 
   public adminFetch(url: string, options?: RequestInit): Promise<any> {
     options.headers = {
-      'Authorization': 'Fake'
+      Authorization: "Fake",
     };
     return this.fetch(url, options);
   }
 
-  public isAdmin(){
-    return !!localStorage.getItem('admin');
-  }
+  @Observable
+  public isAdmin = !!localStorage.getItem("admin");
 }
 
 export const adminApi = new AdminApi();
