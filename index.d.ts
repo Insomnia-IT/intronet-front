@@ -37,3 +37,31 @@ declare module "*.html" {
   const style: string;
   export default style;
 }
+
+type InsomniaLocation = {
+  id: number;
+  name: string;
+  x: number;
+  y: number;
+  lat: number;
+  lng: number;
+  tags: number[];
+  image: string;
+};
+
+type MapItem = {
+  point: { x; y };
+  icon;
+  radius;
+  id;
+  title?: string;
+};
+
+type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
+  tags: Tag[];
+};
+
+type Tag = {
+  id: number;
+  name: string;
+};

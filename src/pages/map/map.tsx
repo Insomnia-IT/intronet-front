@@ -1,13 +1,12 @@
+import { Computed, Observable } from "cellx-decorators";
 import React from "react";
 import { cellState } from "../../helpers/cell-state";
 import { ImageInfo } from "../../stores/map.store";
-import { TransformMatrix } from "./transform/transform.matrix";
-import { MapElement } from "./mapElement";
-import styles from "./map.module.css";
-import { Computed, Observable } from "cellx-decorators";
-import { LocationFull } from "../../stores/locations.store";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
+import styles from "./map.module.css";
+import { MapElement } from "./mapElement";
+import { TransformMatrix } from "./transform/transform.matrix";
 
 export class MapComponent extends React.PureComponent<MapProps> {
   @Observable
@@ -48,6 +47,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         <svg className={styles.svg}>
           {this.props.items
             .filter(
+              // @ts-ignore
               (x) => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y)
             )
             .map((x) => (
@@ -61,6 +61,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
                 }}
                 transform={new TransformMatrix()
                   .Apply(this.state.transform)
+                  // @ts-ignore
                   .Translate(x.point)
                   .Scale(1 / this.state.scale)
                   .ToString("svg")}
@@ -151,12 +152,4 @@ export type MapProps = {
   onSelect(item);
   onChange(item);
   onClick(p: { X; Y });
-};
-
-export type MapItem = {
-  point: { X; Y };
-  icon;
-  id;
-  title?: string;
-  location?: LocationFull;
 };

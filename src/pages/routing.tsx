@@ -8,26 +8,26 @@ import { LoginPage } from "./login/login-page";
 import NotePage from "./board/notePage/notePage";
 import { AdminLocationsPage } from "./admin/locations/admin.locations-page";
 
-export const Routes = [
+export const ROUTES = [
+  {
+    text: "Главная",
+    link: "/",
+    element: <TimetablePage />,
+  },
+  {
+    text: "Объявления",
+    link: "/board",
+    element: <BoardPage />,
+  },
   {
     text: "Карта",
     link: "/map",
     element: <MapPage />,
   },
   {
-    text: "Расписание",
-    link: "/timetable",
-    element: <TimetablePage />,
-  },
-  {
     text: "Голосование",
     link: "/voting",
     element: <VotingPage />,
-  },
-  {
-    text: "Объявления",
-    link: "/board",
-    element: <BoardPage />,
   },
   // {
   //   text: 'Вход по билетам',
@@ -40,30 +40,24 @@ export function Routing() {
   return (
     <>
       <Route path="/board">
-        {" "}
         <BoardPage />
       </Route>
       <Route path="/map">
-        {" "}
         <MapPage />
       </Route>
       <Route path="/voting">
-        {" "}
         <VotingPage />
       </Route>
-      <Route path="/timetable">
-        {" "}
+      <Route path="/">
         <TimetablePage />
       </Route>
       <Route path="/user-login">
-        {" "}
         <LoginPage />
       </Route>
       <Route path="/board/note">
         <NotePage />
       </Route>
       <Route path="/admin/locations">
-        {" "}
         <AdminLocationsPage />
       </Route>
     </>

@@ -1,5 +1,4 @@
 import React from "react";
-import { MapItem } from "./map";
 import { MapIcons } from "./icons/icons";
 import styles from "./map-element.module.css";
 

@@ -1,29 +1,33 @@
+import { useCallback, useEffect, useState } from "react";
 import { debounced } from "src/helpers/debounce";
+import { locationsStore } from "src/stores/locations.store";
 import { AdminApi } from "./admin";
 
 const adminRoute = `/api/Admin/locations`;
 const adminTagRoute = `/api/Admin/tags`;
 
 export class LocationsApi extends AdminApi {
-  public addLocation(location: Omit<Location, "id">) {
+  public addLocation(location: Omit<InsomniaLocation, "id">) {
     return this.adminFetch(`${adminRoute}/add`, {
       method: "POST",
       body: JSON.stringify(location),
     });
   }
 
-  public async getLocations(): Promise<Location[]> {
+  public async getLocations(): Promise<InsomniaLocation[]> {
     const loc = await this.fetch<
-      (Omit<Location, "tags"> & { tags: { id }[] })[]
+      (Omit<InsomniaLocation, "tags"> & { tags: { id }[] })[]
     >("/api/Locations/all/full");
     return loc.map((x) => ({
       ...x,
       tags: x.tags.map((x) => x.id),
-    })) as Location[];
+    })) as InsomniaLocation[];
   }
 
   @debounced(400)
-  public updateLocation(location: Partial<Location> & Pick<Location, "id">) {
+  public updateLocation(
+    location: Partial<InsomniaLocation> & Pick<InsomniaLocation, "id">
+  ) {
     return this.adminFetch(`${adminRoute}/edit`, {
       method: "PUT",
       body: JSON.stringify(location),
@@ -70,19 +74,3 @@ export class LocationsApi extends AdminApi {
     });
   }
 }
-
-export type Tag = {
-  id: number;
-  name: string;
-};
-
-export type Location = {
-  id: number;
-  name: string;
-  x: number;
-  y: number;
-  lat: number;
-  lng: number;
-  tags: number[];
-  image: string;
-};

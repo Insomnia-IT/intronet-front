@@ -1,5 +1,4 @@
 import { Computed, Observable } from "cellx-decorators";
-import { Location, Tag } from "../api/locations";
 import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 
@@ -38,7 +37,7 @@ class LocationsStore {
     Promise.all([this.Tags.isLoaded, this.Locations.isLoaded]).then(() => {
       setTimeout(() => this.update(), 60_000);
       if (this.Locations.toArray().length == 0) {
-        const locations: Location[] = [
+        const locations: InsomniaLocation[] = [
           {
             lat: 54.68255965779291,
             lng: 35.07497888587355,
@@ -70,6 +69,7 @@ class LocationsStore {
             id: 1,
           },
         ];
+        // @ts-ignore
         this.Locations.addRange(locations);
       }
       this.update();
@@ -86,33 +86,31 @@ class LocationsStore {
   }
 
   @Observable
-  Locations = new ObservableDB<Location>("locations");
+  Locations = new ObservableDB<InsomniaLocation>("locations");
 
   @Observable
   Tags = new ObservableDB<Tag>("tags");
 
   @Computed
-  public get FullLocations(): ReadonlyArray<LocationFull> {
+  public get FullLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.Locations.toArray().map((x) => ({
       ...x,
+      // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
     }));
   }
 
-  updateLocation(x: LocationFull) {
+  updateLocation(x: InsomniaLocationFull) {
     this.Locations.update({
       ...x,
+      // @ts-ignore
       tags: x.tags.map((t) => t.id),
     });
   }
 
-  deleteLocation(location: LocationFull | Location) {
+  deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
     this.Locations.remove(location.id);
   }
 }
 
 export const locationsStore = new LocationsStore();
-
-export type LocationFull = Omit<Location, "tags"> & {
-  tags: Tag[];
-};

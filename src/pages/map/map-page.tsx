@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { MapComponent, MapItem } from "./map";
-import { cellState, useCellState } from "../../helpers/cell-state";
-import { mapStore } from "src/stores/map.store";
-import { Button, Icon } from "react-bulma-components";
-import styles from "./map-page.module.css";
 import { Observable } from "cellx-decorators";
-import { LocationFull, locationsStore } from "../../stores/locations.store";
-import { MapToolbar } from "./map-toolbar";
-import { adminApi } from "../../api/admin";
+import React from "react";
+import { Button, Icon } from "react-bulma-components";
+import { locationsStore } from "src/stores/locations.store";
+import { mapStore } from "src/stores/map.store";
+import { cellState } from "../../helpers/cell-state";
+import { MapComponent } from "./map";
+import styles from "./map-page.module.css";
+import { MapToolbar } from "./MapToolbar";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -15,11 +14,12 @@ export class MapPage extends React.PureComponent {
   @Observable
   selected: MapItem = null;
 
-  private locationToMapItem(x: LocationFull) {
+  private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
         ? mapStore.MapGeoConverter.fromGeo({
             lat: x.lat,
+            // @ts-ignore
             lng: x.lng,
           })
         : { X: x.x, Y: x.y },
@@ -27,7 +27,7 @@ export class MapPage extends React.PureComponent {
       title: x.name,
       id: x.id,
       radius: 10,
-    } as MapItem;
+    } as unknown as MapItem;
   }
 
   get mapItems() {
@@ -42,7 +42,6 @@ export class MapPage extends React.PureComponent {
 
   render() {
     if (!this.state.image) return <></>;
-    console.log(this.state.items);
     return (
       <>
         <MapComponent
@@ -60,7 +59,11 @@ export class MapPage extends React.PureComponent {
             </Icon>
           </Button>
         </div>
-        {this.state.selected && <MapToolbar item={this.state.selected} />}
+        <MapToolbar
+          item={this.state.selected}
+          items={this.state.items}
+          onChange={(oldItem, newItem) => (this.selected = newItem)}
+        />
       </>
     );
   }
@@ -68,8 +71,10 @@ export class MapPage extends React.PureComponent {
   updateLocation = (x: MapItem) => {
     const location = locationsStore.Locations.get(x.id);
     if (this.isMap) {
+      // @ts-ignore
       Object.assign(location, mapStore.MapGeoConverter.toGeo(x.point));
     } else {
+      // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
     }
     locationsStore.Locations.update(location);

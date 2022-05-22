@@ -1,11 +1,10 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { MapComponent, MapItem } from "./map";
+import { MapComponent } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";
 import { MapPage } from "./map-page";
-import { LocationFull, locationsStore } from "../../stores/locations.store";
 
-const locations: LocationFull[] = [
+const locations: InsomniaLocationFull[] = [
   {
     lat: 54.68255965779291,
     lng: 35.07497888587355,
@@ -60,7 +59,7 @@ Schema.args = {
     icon: x.image,
     title: x.name,
     id: x.id,
-  })) as MapItem[],
+  })) as unknown as MapItem[],
   image: {
     url: "/images/schema.jpg",
     width: 1280,
@@ -89,6 +88,7 @@ const converter = new TileConverter(
   256
 );
 Geo.args = {
+  // @ts-ignore
   items: locations.map((x) => ({
     point: converter.fromGeo(x),
     icon: x.image,
