@@ -1,6 +1,7 @@
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
-import { Block, Columns } from "react-bulma-components";
 import { MapItemPicker } from "./MapItemPicker";
+
 export type MapToolbarProps = {
   item?: MapItem;
   items?: MapItem[];
@@ -9,17 +10,16 @@ export type MapToolbarProps = {
 
 export function MapToolbar({ item, items, onChange }: MapToolbarProps) {
   return (
-    <Columns.Column
-      tablet={{
-        size: "one-third",
-      }}
-      desktop={{
-        size: "one-third",
+    <SimpleGrid
+      columns={{
+        sm: 1,
+        md: 3,
+        lg: 4,
       }}
     >
-      <Block>
+      <Box position="sticky" top="0" width="100%">
         <MapItemPicker item={item} items={items} onChange={onChange} />
-      </Block>
-    </Columns.Column>
+      </Box>
+    </SimpleGrid>
   );
 }

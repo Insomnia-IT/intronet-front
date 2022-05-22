@@ -4,6 +4,7 @@ import { Button, Icon } from "react-bulma-components";
 import { locationsStore } from "src/stores/locations.store";
 import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
+import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./MapToolbar";
 
@@ -43,14 +44,14 @@ export class MapPage extends React.PureComponent {
     if (!this.state.image) return <></>;
     return (
       <>
-        {/* <MapComponent
+        <MapComponent
           items={this.state.items}
           isMovingEnabled={true}
           image={this.state.image}
           onClick={console.log}
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
-        /> */}
+        />
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>
@@ -61,7 +62,7 @@ export class MapPage extends React.PureComponent {
         <MapToolbar
           item={this.state.selected}
           items={this.state.items}
-          onChange={(oldItem, newItem) => console.log(newItem)}
+          onChange={(oldItem, newItem) => (this.selected = newItem)}
         />
       </>
     );
