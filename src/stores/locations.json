@@ -1,0 +1,1718 @@
+{
+  "type": "FeatureCollection",
+  "name": "Административные объекты",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "КПП-1",
+        "description": "23.04.2021 17:14:37<br>styleUrl: #icon-1756-880E4F<br>styleUrl: #icon-1756-880E4F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.059189,
+          54.691625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "КПП горка",
+        "description": "styleUrl: #icon-1650-9C27B0-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.077516,
+          54.683258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "КПП-парковка",
+        "description": "styleUrl: #icon-1650-0288D1-nodesc<br>styleUrl: #icon-1650-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.087263,
+          54.680358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "пеший вход",
+        "description": "23.04.2021 16:14:50<br>styleUrl: #icon-1596-880E4F<br>styleUrl: #icon-1595-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.086233,
+          54.679164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "адм. энергоснаб",
+        "description": "styleUrl: #icon-1641-9C27B0-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.09406,
+          54.6826
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "медпункт",
+        "description": "23.04.2021 17:05:35<br>styleUrl: #icon-1624-C2185B<br>styleUrl: #icon-1624-C2185B"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.08396,
+          54.678857
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "домик полиции",
+        "description": "23.04.2021 17:56:15<br>styleUrl: #icon-1657-0288D1<br>styleUrl: #icon-1657-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.083869,
+          54.679811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "электрохауз",
+        "description": "styleUrl: #icon-1561-9C27B0-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.084279,
+          54.679345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "кухня",
+        "description": "23.04.2021 8:28:35<br>styleUrl: #icon-1577-C2185B<br>styleUrl: #icon-1577-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085158,
+          54.67917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "сокровищница хаттифнатов",
+        "description": "23.04.2021 17:34:10<br>styleUrl: #icon-1524-C2185B<br>styleUrl: #icon-1524-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.081594,
+          54.681201
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "сокровищница хаттифнатов",
+        "description": "23.04.2021 17:27:33<br>styleUrl: #poly-9C27B0-2000-26<br>styleUrl: #poly-9C27B0-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.081338,
+              54.681669
+            ],
+            [
+              35.080952,
+              54.681483
+            ],
+            [
+              35.081403,
+              54.680882
+            ],
+            [
+              35.082025,
+              54.681148
+            ],
+            [
+              35.081338,
+              54.681669
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "верстак",
+        "description": "sym: Flag, Blue<br>time: 2021-05-16T11:32:37Z<br>ele: 150.7276<br>styleUrl: #icon-1539-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.084724,
+          54.679298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "штаб",
+        "description": "sym: Flag, Blue<br>time: 2021-05-16T11:34:17Z<br>ele: 153.1245<br>styleUrl: #icon-1548-9C27B0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085814,
+          54.679023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "домик дарка",
+        "description": "styleUrl: #icon-1529-9C27B0-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085753,
+          54.679093
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "дровяной сарай",
+        "description": "styleUrl: #icon-1802-9C27B0-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.090056,
+          54.678631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админстоянка",
+        "description": "23.04.2021 8:21:26<br>styleUrl: #icon-1644-0288D1<br>styleUrl: #icon-1644-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085194,
+          54.679686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админстоянка",
+        "description": "23.04.2021 8:20:47<br>styleUrl: #poly-0288D1-2000-26<br>styleUrl: #poly-0288D1-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.084491,
+              54.679912
+            ],
+            [
+              35.083976,
+              54.679788
+            ],
+            [
+              35.08587,
+              54.679357
+            ],
+            [
+              35.086186,
+              54.679499
+            ],
+            [
+              35.084491,
+              54.679912
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "баня фила (место!)",
+        "description": "styleUrl: #icon-1899-0288D1-nodesc<br>styleUrl: #icon-1899-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.07609,
+          54.68105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "радиососна",
+        "description": "styleUrl: #icon-1899-BDBDBD-nodesc<br>styleUrl: #icon-1720-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085989,
+          54.677244
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "набережная электриков",
+        "description": "17.05.2021 17:09:32<br>styleUrl: #icon-1863-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.080741,
+          54.678214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "центральное купаться запрещено",
+        "description": "17.05.2021 17:08:57<br>styleUrl: #poly-0288D1-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.086095,
+              54.676958
+            ],
+            [
+              35.086111,
+              54.677266
+            ],
+            [
+              35.085923,
+              54.677355
+            ],
+            [
+              35.085301,
+              54.677324
+            ],
+            [
+              35.085071,
+              54.677135
+            ],
+            [
+              35.086063,
+              54.676819
+            ],
+            [
+              35.086095,
+              54.676958
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "купаться запрещено",
+        "description": "17.05.2021 17:17:40<br>styleUrl: #icon-1863-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.080758,
+          54.678345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "купаться запрещено",
+        "description": "17.05.2021 17:22:58<br>styleUrl: #icon-1863-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.079245,
+          54.678736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "купаться запрещено",
+        "description": "17.05.2021 17:23:32<br>styleUrl: #icon-1863-0288D1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.074819,
+          54.682532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь аниматоров",
+        "description": "23.04.2021 16:59:00<br>styleUrl: #icon-1509-0F9D58<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.088833,
+          54.676526
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь аниматоров",
+        "description": "23.04.2021 16:58:41<br>styleUrl: #poly-0F9D58-2000-26<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.089949,
+              54.676253
+            ],
+            [
+              35.090003,
+              54.676367
+            ],
+            [
+              35.089831,
+              54.676386
+            ],
+            [
+              35.089649,
+              54.676414
+            ],
+            [
+              35.089547,
+              54.676595
+            ],
+            [
+              35.089032,
+              54.676663
+            ],
+            [
+              35.08848,
+              54.676761
+            ],
+            [
+              35.088249,
+              54.676485
+            ],
+            [
+              35.088708,
+              54.676369
+            ],
+            [
+              35.089713,
+              54.676135
+            ],
+            [
+              35.089869,
+              54.676166
+            ],
+            [
+              35.089949,
+              54.676253
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админка",
+        "description": "23.04.2021 8:17:21<br>styleUrl: #icon-1602-0288D1<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.08375,
+          54.679158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админка",
+        "description": "23.04.2021 8:15:43<br>styleUrl: #poly-87CEAC-2000-26<br>styleUrl: #poly-0F9D58-3901-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.083708,
+              54.678985
+            ],
+            [
+              35.084123,
+              54.679019
+            ],
+            [
+              35.084352,
+              54.678932
+            ],
+            [
+              35.084512,
+              54.67887
+            ],
+            [
+              35.085832,
+              54.678985
+            ],
+            [
+              35.086026,
+              54.679078
+            ],
+            [
+              35.085972,
+              54.679184
+            ],
+            [
+              35.085821,
+              54.67933
+            ],
+            [
+              35.085435,
+              54.679407
+            ],
+            [
+              35.085017,
+              54.679519
+            ],
+            [
+              35.084545,
+              54.679624
+            ],
+            [
+              35.083987,
+              54.67973
+            ],
+            [
+              35.083504,
+              54.679841
+            ],
+            [
+              35.083054,
+              54.679947
+            ],
+            [
+              35.082603,
+              54.679605
+            ],
+            [
+              35.082308,
+              54.679322
+            ],
+            [
+              35.082496,
+              54.679246
+            ],
+            [
+              35.082823,
+              54.679202
+            ],
+            [
+              35.08315,
+              54.679158
+            ],
+            [
+              35.083558,
+              54.679053
+            ],
+            [
+              35.083708,
+              54.678985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админка 2",
+        "description": "styleUrl: #icon-1602-0288D1-nodesc<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085343,
+          54.681596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "админка 2",
+        "description": "styleUrl: #poly-87CEAC-1200-77-nodesc<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.085917,
+              54.682718
+            ],
+            [
+              35.0853,
+              54.682774
+            ],
+            [
+              35.085016,
+              54.682765
+            ],
+            [
+              35.084932,
+              54.681321
+            ],
+            [
+              35.085284,
+              54.681242
+            ],
+            [
+              35.08647,
+              54.681189
+            ],
+            [
+              35.086352,
+              54.681518
+            ],
+            [
+              35.085917,
+              54.682718
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь зари",
+        "description": "styleUrl: #icon-1602-0F9D58-nodesc<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.095907,
+          54.676091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь зари",
+        "description": "styleUrl: #poly-87CEAC-1200-77-nodesc<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.094736,
+              54.67539
+            ],
+            [
+              35.095401,
+              54.675471
+            ],
+            [
+              35.096218,
+              54.675854
+            ],
+            [
+              35.096427,
+              54.675913
+            ],
+            [
+              35.096792,
+              54.676124
+            ],
+            [
+              35.097001,
+              54.676279
+            ],
+            [
+              35.097098,
+              54.676515
+            ],
+            [
+              35.096942,
+              54.67667
+            ],
+            [
+              35.096647,
+              54.676717
+            ],
+            [
+              35.0961,
+              54.676404
+            ],
+            [
+              35.094328,
+              54.675803
+            ],
+            [
+              35.094736,
+              54.67539
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь яранги и музыкантов",
+        "description": "styleUrl: #icon-1899-0288D1-nodesc<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.091001,
+          54.675892
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь яранги и музыкантов",
+        "description": "styleUrl: #poly-87CEAC-1200-77-nodesc<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.091234,
+              54.675516
+            ],
+            [
+              35.091999,
+              54.675303
+            ],
+            [
+              35.092476,
+              54.675322
+            ],
+            [
+              35.09275,
+              54.67534
+            ],
+            [
+              35.092868,
+              54.675505
+            ],
+            [
+              35.092803,
+              54.675849
+            ],
+            [
+              35.092578,
+              54.675877
+            ],
+            [
+              35.092433,
+              54.675942
+            ],
+            [
+              35.091982,
+              54.676171
+            ],
+            [
+              35.091228,
+              54.676281
+            ],
+            [
+              35.090842,
+              54.676169
+            ],
+            [
+              35.09067,
+              54.675785
+            ],
+            [
+              35.091234,
+              54.675516
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь локус солус",
+        "description": "styleUrl: #icon-1771-E65100-nodesc<br>styleUrl: #icon-1771-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.07874,
+          54.678689
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь локус солус",
+        "description": "styleUrl: #poly-E65100-1200-77<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.078928,
+              54.678944
+            ],
+            [
+              35.078563,
+              54.678661
+            ],
+            [
+              35.078907,
+              54.678547
+            ],
+            [
+              35.079298,
+              54.678872
+            ],
+            [
+              35.078928,
+              54.678944
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь хаттифнатов",
+        "description": "styleUrl: #icon-1899-0288D1-nodesc<br>styleUrl: #icon-1637-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.082343,
+          54.679112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь хаттифнатов",
+        "description": "styleUrl: #poly-097138-1200-77-nodesc<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.081404,
+              54.67915
+            ],
+            [
+              35.082343,
+              54.678874
+            ],
+            [
+              35.082923,
+              54.678883
+            ],
+            [
+              35.083763,
+              54.678902
+            ],
+            [
+              35.08186,
+              54.679383
+            ],
+            [
+              35.081404,
+              54.67915
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь кафе ДП",
+        "description": "sym: Flag, Blue<br>time: 2021-05-15T17:02:44Z<br>ele: 149.3874<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.076997,
+          54.680454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь кафе ДП",
+        "description": "styleUrl: #poly-87CEAC-1200-77-nodesc<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.077733,
+              54.679943
+            ],
+            [
+              35.077669,
+              54.68004
+            ],
+            [
+              35.0771,
+              54.680629
+            ],
+            [
+              35.076349,
+              54.680344
+            ],
+            [
+              35.076553,
+              54.680046
+            ],
+            [
+              35.076918,
+              54.679506
+            ],
+            [
+              35.077264,
+              54.679698
+            ],
+            [
+              35.077733,
+              54.679943
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь зари2",
+        "description": "17.05.2021 16:59:44<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.097102,
+          54.677598
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь зари2",
+        "description": "17.05.2021 16:59:03<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.09684,
+              54.6785
+            ],
+            [
+              35.096615,
+              54.678283
+            ],
+            [
+              35.096824,
+              54.677864
+            ],
+            [
+              35.096867,
+              54.677625
+            ],
+            [
+              35.097076,
+              54.677436
+            ],
+            [
+              35.097205,
+              54.677445
+            ],
+            [
+              35.097194,
+              54.677771
+            ],
+            [
+              35.09721,
+              54.677935
+            ],
+            [
+              35.097092,
+              54.678292
+            ],
+            [
+              35.09684,
+              54.6785
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь лаборатории и альпинистов",
+        "description": "17.05.2021 17:02:13<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.093432,
+          54.675641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь лаборатории и альпинистов",
+        "description": "17.05.2021 17:01:47<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.094682,
+              54.675375
+            ],
+            [
+              35.094409,
+              54.67566
+            ],
+            [
+              35.094285,
+              54.675778
+            ],
+            [
+              35.093926,
+              54.675824
+            ],
+            [
+              35.092868,
+              54.675821
+            ],
+            [
+              35.092932,
+              54.675399
+            ],
+            [
+              35.093336,
+              54.675396
+            ],
+            [
+              35.093524,
+              54.675387
+            ],
+            [
+              35.093883,
+              54.675266
+            ],
+            [
+              35.093953,
+              54.675272
+            ],
+            [
+              35.094001,
+              54.675291
+            ],
+            [
+              35.094216,
+              54.675282
+            ],
+            [
+              35.094682,
+              54.675375
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь ярмарочников",
+        "description": "17.05.2021 17:10:23<br>styleUrl: #icon-1602-0F9D58"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.08625,
+          54.676862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь ярмарочников",
+        "description": "17.05.2021 17:10:00<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.086202,
+              54.677055
+            ],
+            [
+              35.086111,
+              54.67681
+            ],
+            [
+              35.087662,
+              54.676608
+            ],
+            [
+              35.087763,
+              54.676698
+            ],
+            [
+              35.086202,
+              54.677055
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь фудкортов",
+        "description": "17.05.2021 18:17:56<br>styleUrl: #poly-0F9D58-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.092477,
+              54.682607
+            ],
+            [
+              35.092756,
+              54.682127
+            ],
+            [
+              35.093894,
+              54.682384
+            ],
+            [
+              35.093599,
+              54.682834
+            ],
+            [
+              35.092477,
+              54.682607
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь катавасии",
+        "description": "styleUrl: #icon-1602-0F9D58-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.084767,
+          54.677372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь катавасии",
+        "description": "styleUrl: #poly-0F9D58-1200-77-nodesc"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.084652,
+              54.67751
+            ],
+            [
+              35.084469,
+              54.677367
+            ],
+            [
+              35.085034,
+              54.67717
+            ],
+            [
+              35.085227,
+              54.677276
+            ],
+            [
+              35.084947,
+              54.677408
+            ],
+            [
+              35.084657,
+              54.67751
+            ],
+            [
+              35.084652,
+              54.67751
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "инженерный лагерь",
+        "description": "styleUrl: #poly-0F9D58-1200-77-nodesc"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.082983,
+              54.679963
+            ],
+            [
+              35.082326,
+              54.680089
+            ],
+            [
+              35.081543,
+              54.679503
+            ],
+            [
+              35.082219,
+              54.679314
+            ],
+            [
+              35.082983,
+              54.679963
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "инженерный лагерь",
+        "description": "styleUrl: #icon-1619-0F9D58-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.082438,
+          54.67984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "вход в админку детской",
+        "description": "styleUrl: #icon-1899-0F9D58-nodesc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.077634,
+          54.681365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь ДП",
+        "description": "styleUrl: #poly-0F9D58-1200-77-nodesc"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.077858,
+              54.681275
+            ],
+            [
+              35.078335,
+              54.681513
+            ],
+            [
+              35.077858,
+              54.681867
+            ],
+            [
+              35.07738,
+              54.682013
+            ],
+            [
+              35.077096,
+              54.681861
+            ],
+            [
+              35.077858,
+              54.681275
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "адм. энергоснаб",
+        "description": "styleUrl: #poly-9C27B0-1200-77-nodesc"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.093722,
+              54.682784
+            ],
+            [
+              35.093958,
+              54.682399
+            ],
+            [
+              35.094204,
+              54.682418
+            ],
+            [
+              35.094408,
+              54.682604
+            ],
+            [
+              35.094151,
+              54.682864
+            ],
+            [
+              35.093722,
+              54.682784
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь есина и зайца",
+        "description": "17.05.2021 17:08:04<br>styleUrl: #poly-F9A825-2000-26"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.088118,
+              54.676847
+            ],
+            [
+              35.087898,
+              54.676571
+            ],
+            [
+              35.088029,
+              54.676538
+            ],
+            [
+              35.088185,
+              54.676497
+            ],
+            [
+              35.088415,
+              54.676783
+            ],
+            [
+              35.088118,
+              54.676847
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь кинобара",
+        "description": "01.05.2022 5:01:56"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.094327,
+              54.682859
+            ],
+            [
+              35.094618,
+              54.683314
+            ],
+            [
+              35.094162,
+              54.683429
+            ],
+            [
+              35.09372,
+              54.682927
+            ],
+            [
+              35.094327,
+              54.682859
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь кинобара",
+        "description": "01.05.2022 5:02:15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.094284,
+          54.683272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "техзона сцены",
+        "description": "01.05.2022 5:14:52"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.090255,
+              54.676421
+            ],
+            [
+              35.089874,
+              54.676123
+            ],
+            [
+              35.090609,
+              54.675827
+            ],
+            [
+              35.09084,
+              54.676193
+            ],
+            [
+              35.090255,
+              54.676421
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "техзона сцены, гримерка, парковка",
+        "description": "01.05.2022 5:15:23"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.090459,
+          54.676085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "штаб строяка и хозпалатка",
+        "description": "01.05.2022 5:30:13"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085695,
+          54.679205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "островок безопасности",
+        "description": "01.05.2022 5:33:57"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.083088,
+          54.678777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь витражей",
+        "description": "01.05.2022 6:05:15"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.090791,
+              54.682372
+            ],
+            [
+              35.091044,
+              54.681873
+            ],
+            [
+              35.092605,
+              54.682254
+            ],
+            [
+              35.092412,
+              54.682627
+            ],
+            [
+              35.090791,
+              54.682372
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь витражей",
+        "description": "01.05.2022 6:05:36"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.091247,
+          54.682247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "ДОСКИ",
+        "description": "01.05.2022 6:16:02"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.084982,
+          54.678978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "яблонька",
+        "description": "07.05.2022 2:02:57"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.080677,
+          54.678574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь жор-птицы",
+        "description": "07.05.2022 2:09:37"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.081273,
+              54.678466
+            ],
+            [
+              35.081279,
+              54.678308
+            ],
+            [
+              35.081676,
+              54.678221
+            ],
+            [
+              35.081724,
+              54.678366
+            ],
+            [
+              35.081273,
+              54.678466
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь жор-птицы",
+        "description": "07.05.2022 2:10:08"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.081558,
+          54.678304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "лагерь фудкортов",
+        "description": "07.05.2022 2:28:24"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0929,
+          54.682375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "центральное купаться запрещено!",
+        "description": "07.05.2022 2:43:12"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.085315,
+          54.677063
+        ]
+      }
+    }
+  ]
+}

@@ -3,6 +3,26 @@
   transition: transform ease .3s;
 }
 
-.selected{
+.hoverOnly {
+  display: none;
+}
+
+.element:hover .hoverOnly {
+  display: initial;
+}
+
+.selected {
   transform: scale(1.4);
+}
+
+.selectedOnly {
+  display: none;
+}
+
+.selected .selectedOnly {
+  display: initial;
+}
+
+.selected .hoverOnly {
+  display: initial;
 }
