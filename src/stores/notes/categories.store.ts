@@ -47,6 +47,10 @@ class CategoriesStore {
     return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID).count
   }
 
+  get isAll() {
+    return this.ActiveCategory === ALL_CATEGORY_ID
+  }
+
   private onChangeCategory() {
     // Обнуление страницы
     pagesStore.resetPages()

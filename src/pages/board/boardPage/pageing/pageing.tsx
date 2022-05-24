@@ -3,10 +3,12 @@ import ArrowRight from 'src/icons/arrowRight'
 import styles from './pageing.module.scss'
 import { pagesStore } from 'src/stores';
 import { Observer } from 'cellx-react';
+import { categoriesStore } from '../../../../stores/notes/categories.store';
 
 @Observer
 export default class Pageing extends React.Component<{}, {}> {
   render() {
+    if (categoriesStore.isAll) return (<></>)
     return (
       <div className={styles.container}>
         <button className={styles.button + ' button-clear'} onClick={pagesStore.prevPage} disabled={pagesStore.page == 1}>
