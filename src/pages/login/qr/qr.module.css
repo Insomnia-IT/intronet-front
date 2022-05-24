@@ -1,11 +1,26 @@
-.qrReader{
-  display: flex;
+.container {
   flex-direction: column;
+  gap: 1em;
+  min-height: 0;
+  max-width: 800px;
+  width: 100%;
+  align-self: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .camera {
-  height: 600px;
-  background: #AAA;
+  height: 100%;
+}
+
+.button {
+  composes: button from "/src/styles.css";
+  flex: 1;
+}
+
+.fileButton {
+  composes: button;
 }
 
 .fileButton input {

@@ -1,63 +1,95 @@
-import QrScanner from 'qr-scanner';
-import React, {ChangeEvent} from 'react';
+import QrScanner from "qr-scanner";
+import React, { ChangeEvent } from "react";
 import style from "./qr.module.css";
-import * as Bulma from "react-bulma-components";
-import {pdf2png} from "./pdf2png";
+import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { pdf2png } from "./pdf2png";
+import { AddIcon, CheckIcon } from "@chakra-ui/icons";
 
-export class QRReader extends React.Component<{
-  fps?: number;
-  qrbox?,
-  aspectRatio?: number;
-  disableFlip?: boolean;
-  verbose?: boolean;
-  onSuccess(string);
-  onError(error);
-}, { camera: boolean; result?: string; }> {
-
-  private config = Object.assign({
-    fps: 60,
-    qrbox: null,
-    aspectRatio: 1,
-    disableFlip: false,
-    supportedScanTypes: [],
-  }, this.props)
+export class QRReader extends React.Component<
+  {
+    fps?: number;
+    qrbox?;
+    aspectRatio?: number;
+    disableFlip?: boolean;
+    verbose?: boolean;
+    onSuccess(string);
+    onError(error);
+  },
+  { camera: boolean; result?: string; valid?: boolean; value?: string }
+> {
+  private config = Object.assign(
+    {
+      fps: 60,
+      qrbox: null,
+      aspectRatio: 1,
+      disableFlip: false,
+      supportedScanTypes: [],
+    },
+    this.props
+  );
   private reader: QrScanner;
   state = {
     camera: false,
-    result: null
+    result: null,
+    valid: false,
+    value: "",
   };
 
   videoRef = React.createRef<HTMLVideoElement>();
 
   render() {
-    return <div className={style.qrReader}>
-      <Bulma.Button renderAs={'label'}
-                    onClick={this.StopCamera}
-                    className={style.fileButton}>
-        <span>Choose file</span>
-        <input type="file"
-               onChange={this.ScanFile}/>
-      </Bulma.Button>
-      <Bulma.Form.Control>
-        <span>Ticket number</span>
-        <Bulma.Form.Input placeholder={'17 цифр'}
-                          onChange={this.OnInput}
-                          onClick={this.StopCamera}/>
-      </Bulma.Form.Control>
-      <Bulma.Button onClick={this.ToggleCamera}>{this.state.camera ? 'Stop' : 'Camera'}</Bulma.Button>
-      <video ref={this.videoRef}
-             style={{display: this.state.camera ? 'initial' : 'none'}}
-             className={style.camera}/>
-    </div>;
+    return (
+      <div className={style.container}>
+        <FormControl>
+          <FormLabel>Войти по номеру билета</FormLabel>
+          <Input
+            type="number"
+            placeholder={"17 цифр"}
+            onChange={this.OnInput}
+            onClick={this.StopCamera}
+          />
+          {this.state.valid && (
+            <button
+              className={style.button}
+              onClick={() => this.props.onSuccess(this.state.value)}
+            >
+              <CheckIcon />
+            </button>
+          )}
+        </FormControl>
+        <Flex
+          visibility={this.state.camera ? "visible" : "hidden"}
+          flex="1"
+          order={[1, null, 3]}
+          justifyContent="center"
+          minHeight="0"
+        >
+          <video ref={this.videoRef} />
+        </Flex>
+        <Box
+          order={2}
+          display="flex"
+          justifyContent="space-between"
+          style={{ gap: "1em" }}
+        >
+          <label onClick={this.StopCamera} className={style.fileButton}>
+            <AddIcon />
+            <span>Войти по билету</span>
+            <input type="file" onChange={this.ScanFile} />
+          </label>
+          <button className={style.button} onClick={this.ToggleCamera}>
+            {this.state.camera ? "Отключить камеру" : "Сканировать QR-код"}
+          </button>
+        </Box>
+      </div>
+    );
   }
 
   ScanFile = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const file = e.target.files[0];
       console.log(file.name);
-      const img = file.name.endsWith('.pdf')
-        ? await pdf2png(file)
-        : file;
+      const img = file.name.endsWith(".pdf") ? await pdf2png(file) : file;
       const res = await QrScanner.scanImage(img, {
         alsoTryWithoutScanRegion: true,
       });
@@ -70,20 +102,31 @@ export class QRReader extends React.Component<{
     // const res = await this.reader.start(camera, this.config, this.onSuccess, console.log);
   };
 
+  componentWillUnmount() {
+    this.StopCamera();
+  }
+
   StopCamera = () => this.state.camera && this.ToggleCamera();
   ToggleCamera = async () => {
-    this.setState(state => ({
-      camera: !state.camera
+    this.setState((state) => ({
+      camera: !state.camera,
     }));
-    if (this.reader)
-      return this.reader.stop();
-    this.reader = new QrScanner(this.videoRef.current, res => {
-      this.ToggleCamera();
-      this.onSuccess(res);
-    }, {
-      highlightCodeOutline: true,
-      highlightScanRegion: true,
-    });
+    if (this.reader) {
+      this.reader.stop();
+      this.reader = null;
+      return;
+    }
+    this.reader = new QrScanner(
+      this.videoRef.current,
+      (res) => {
+        this.ToggleCamera();
+        this.onSuccess(res);
+      },
+      {
+        highlightCodeOutline: true,
+        highlightScanRegion: true,
+      }
+    );
     await this.reader.start();
     // if (this.state.camera) {
     //   this.setState({camera: false});
@@ -93,22 +136,23 @@ export class QRReader extends React.Component<{
     // this.setState({camera: true})
   };
 
-  onSuccess = async result => {
+  onSuccess = async (result) => {
     const data = result.data as string;
     this.setState({
-      result: data
+      result: data,
     });
     this.props.onSuccess(data);
-  }
+  };
 
-  OnInput = e => {
+  OnInput = (e) => {
     const value = e.target.value;
-    if (/^\d{13}$/.test(value)){
-      this.props.onSuccess(value);
-    }
-  }
+    this.setState({
+      valid: /^\d{13}$/.test(value),
+      value,
+    });
+  };
 
-  onError = async error => {
+  onError = async (error) => {
     this.props.onError(error);
-  }
+  };
 }

@@ -1,55 +1,58 @@
 import { ObservableMap } from "cellx-collections";
-import { Observable } from "cellx-decorators";
+import { Computed, Observable } from "cellx-decorators";
 import { Dexie, Table } from "dexie";
 import { qrApi } from "src/api";
 import { ulid } from "../helpers/ulid";
+import { ObservableDB } from "./observableDB";
 
 class AccountStore {
-  // @ts-ignore
-  private db: Table<Account> = this.initDB();
-
-  private initDB() {
-    const db = new Dexie("accounts");
-    db.version(1).stores({
-      accounts: `id`,
-    });
-    // @ts-ignore
-    return db.accounts;
-  }
-
-  constructor() {
-    this.load();
-  }
-
   @Observable
-  public Accounts = new ObservableMap<string, Account>();
+  private db = new ObservableDB<Account>("accounts");
 
-  private async load() {
-    const accs = await this.db.toArray();
-    this.Accounts.clear();
-    accs.forEach((x) => this.Accounts.set(x.id, x));
+  public get Accounts() {
+    return this.db.toArray();
+  }
+  public get Selected() {
+    return this.Accounts.find((x) => x.isSelected);
   }
 
   public Add(qr: string) {
     const acc = {
       id: ulid(),
       qr,
-      name: "default",
+      name: null,
       token: null,
       isValid: false,
+      isSelected: this.Selected == null,
     };
     qrApi.checkUserQR(qr).then((valid) => {
       acc.isValid = valid;
-      this.Accounts.set(acc.id, acc);
-      this.db.put(acc);
+      this.db.update(acc, "user");
     });
-    this.Accounts.set(acc.id, acc);
-    this.db.put(acc);
+    this.db.add(acc, "user");
   }
 
   Remove(acc: Account) {
-    this.Accounts.delete(acc.id);
-    this.db.delete(acc.id);
+    this.db.remove(acc.id, "user");
+  }
+
+  Select(id: string) {
+    if (this.Selected) {
+      this.db.update(
+        {
+          ...this.Selected,
+          isSelected: false,
+        },
+        "user"
+      );
+    }
+    this.db.update(
+      {
+        ...this.db.get(id),
+        isSelected: true,
+      },
+      "user"
+    );
   }
 }
 
@@ -61,4 +64,5 @@ export type Account = {
   name: string;
   isValid: boolean;
   token?: string;
+  isSelected: boolean;
 };

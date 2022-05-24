@@ -1,4 +1,4 @@
-import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Navbar } from "src/components/Navbar/Navbar";
 import { Routing } from "../pages/routing";
@@ -6,14 +6,14 @@ import styles from "./app.style.module.css";
 
 export const App = () => (
   <ChakraProvider>
-    <Flex
-      className={styles.main}
-      // from 0-30-48em column reverse, the rest is column
-      direction={["column-reverse", null, "column"]}
-      align="stretch"
-    >
-      <Navbar />
-      <Routing />
+    <Flex className={styles.main} direction="column" align="stretch">
+      {/* from 0-30-48em reverse order, the rest is normal order */}
+      <Box order={[2, null, 0]}>
+        <Navbar />
+      </Box>
+      <Flex direction="column" flex={1} minHeight={0}>
+        <Routing />
+      </Flex>
     </Flex>
   </ChakraProvider>
 );

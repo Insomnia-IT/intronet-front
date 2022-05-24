@@ -2,9 +2,11 @@ import { EventEmitter } from "cellx";
 import { Dexie, Table } from "dexie";
 import { compare } from "../helpers/compare";
 
-export class ObservableDB<T extends { id: number }> extends EventEmitter {
+export class ObservableDB<
+  T extends { id: number | string }
+> extends EventEmitter {
   private table: Table<T>;
-  private items = new Map<number, T>();
+  private items = new Map<number | string, T>();
 
   public isLoaded = new Promise<void>((resolve) =>
     this.once("loaded", () => resolve())
@@ -18,7 +20,7 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
     });
     this.table = db[name];
     this.table.toArray().then((items) => {
-      this.items = new Map<number, T>(items.map((x) => [x.id, x]));
+      this.items = new Map<number | string, T>(items.map((x) => [x.id, x]));
       this.emit("change", {
         value: items,
       });
@@ -65,7 +67,7 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
     }
   }
 
-  remove(key: number, source: "user" | "server" | "db" = "user") {
+  remove(key: number | string, source: "user" | "server" | "db" = "user") {
     if (source != "db") {
       this.table.delete(key);
       this.items.delete(key);
@@ -78,8 +80,8 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
   }
 
   clear() {
-    this.table.clear()
-    this.items.clear()
+    this.table.clear();
+    this.items.clear();
   }
 
   add(value: T, source: "user" | "server" | "db" = "user") {
@@ -97,7 +99,7 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
   }
 
   addRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
-    valueArr.forEach((value) => this.add(value, source))
+    valueArr.forEach((value) => this.add(value, source));
   }
 
   update(value: T, source: "user" | "server" | "db" = "user") {
@@ -114,7 +116,7 @@ export class ObservableDB<T extends { id: number }> extends EventEmitter {
     });
   }
 
-  get(id: number): T {
+  get(id: number | string): T {
     return this.items.get(id);
   }
 
