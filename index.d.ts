@@ -65,3 +65,11 @@ type Tag = {
   id: number;
   name: string;
 };
+
+type Movie = {
+  id: number | string;
+  title: string;
+  start: Date;
+  end: Date;
+  author: string;
+};
