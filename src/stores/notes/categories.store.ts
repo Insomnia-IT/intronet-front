@@ -2,7 +2,6 @@ import { Computed, Observable } from "cellx-decorators";
 import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from 'src/stores';
-import { INotes } from './notes.store';
 import { ObservableDB } from '../observableDB';
 
 export interface ICategory {

@@ -73,3 +73,10 @@ type Movie = {
   end: Date;
   author: string;
 };
+
+interface INotes {
+  id: number
+  title: string
+  text: string
+  categoryId: number
+}

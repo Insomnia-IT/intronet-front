@@ -2,13 +2,6 @@ import { Observable } from 'cellx-decorators';
 import NotesApi from '../../api/notes';
 import { ObservableDB } from '../observableDB';
 
-export interface INotes {
-  id: number
-  title: string
-  text: string
-  categoryId: number
-}
-
 class NotesStore {
   private api = new NotesApi
 
