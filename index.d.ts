@@ -80,3 +80,10 @@ interface INotes {
   text: string
   categoryId: number
 }
+
+interface ICategory {
+  id: number // Id категории
+  name: string //название категории
+  count: number //количество элементов которым присвоена данная категория
+  color: string // Цвет категории, для раскрашивания её карточки
+}

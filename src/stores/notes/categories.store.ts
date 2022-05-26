@@ -4,12 +4,6 @@ import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from 'src/stores';
 import { ObservableDB } from '../observableDB';
 
-export interface ICategory {
-  id: number // Id категории
-  name: string //название категории
-  count: number //количество элементов которым присвоена данная категория
-}
-
 export const ALL_CATEGORY_ID = 1
 
 class CategoriesStore {

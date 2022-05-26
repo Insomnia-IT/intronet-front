@@ -1,9 +1,10 @@
 import { Observer } from 'cellx-react'
 import * as React from 'react'
-import styles from './categories.module.scss'
 import { Tabs } from 'react-bulma-components'
-import { ALL_CATEGORY_ID, categoriesStore } from 'src/stores';
+import { categoriesStore, notesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
+import { HStack, Tag } from '@chakra-ui/react';
+import CategoryCard from './categoryCard/categoryCard';
 
 export interface ICategoriesProps {
   activeCategory: number
@@ -22,23 +23,19 @@ export default class Categories extends React.Component<{}, {}> {
     categoriesStore.load()
   }
 
-  handleClick = (id: number) => {
-    return () => {
-      categoriesStore.activeCategory = id
-    }
-  }
+  handleClick = (id: number) => categoriesStore.activeCategory = id
 
   render() {
     return (
-      <Tabs align='center'>
-        <Loading isLoading={categoriesStore.isLoading} height={40} width={40} className={styles.loading}>
-          {categoriesStore.allCategory.map(tab => {
-            return (<Tabs.Tab key={tab.id} active={tab.id == categoriesStore.activeCategory} onClick={this.handleClick(tab.id)}>
-              {tab.name}
-            </Tabs.Tab>)
+      <HStack spacing={2} as='ul'>
+        <Loading isLoading={categoriesStore.isLoading} height={40} width={40}>
+          {categoriesStore.allCategory.map(category => {
+            return (<CategoryCard categoryObj={category} onClick={this.handleClick} activeCategory={categoriesStore.activeCategory} >
+              {category.name}
+            </CategoryCard>)
           })}
         </Loading>
-      </Tabs>
+      </HStack>
     )
   }
 }
