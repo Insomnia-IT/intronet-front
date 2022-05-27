@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'wouter';
-import { Box, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react'
 import { InfoText } from 'src/components/infoText/infoText';
 

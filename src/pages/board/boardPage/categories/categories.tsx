@@ -1,8 +1,8 @@
 import { Observer } from 'cellx-react'
 import * as React from 'react'
-import { categoriesStore, notesStore } from 'src/stores';
+import { categoriesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
-import { HStack, Tag } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
 import CategoryCard from './categoryCard/categoryCard';
 import { Box } from '@chakra-ui/react';
 
