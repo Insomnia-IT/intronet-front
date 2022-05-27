@@ -1,6 +1,5 @@
-import { INotes } from '../stores/notes/notes.store';
 import { AdminApi } from './admin';
-import { ALL_CATEGORY_ID, ICategory } from './../stores';
+import { ALL_CATEGORY_ID } from './../stores';
 import { COUNT_NOTES_OF_PAGE } from 'src/stores';
 
 const notesRout = '/api/notes'

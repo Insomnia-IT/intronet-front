@@ -2,14 +2,7 @@ import { Computed, Observable } from "cellx-decorators";
 import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from 'src/stores';
-import { INotes } from './notes.store';
 import { ObservableDB } from '../observableDB';
-
-export interface ICategory {
-  id: number // Id категории
-  name: string //название категории
-  count: number //количество элементов которым присвоена данная категория
-}
 
 export const ALL_CATEGORY_ID = 1
 
@@ -45,6 +38,10 @@ class CategoriesStore {
 
   get allNotesCount() {
     return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID).count
+  }
+
+  get isAll() {
+    return this.ActiveCategory === ALL_CATEGORY_ID
   }
 
   private onChangeCategory() {
