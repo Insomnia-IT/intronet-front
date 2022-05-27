@@ -1,15 +1,15 @@
 import * as React from 'react'
-import { Tag } from '@chakra-ui/react'
+import { Tag, TagProps } from '@chakra-ui/react'
 
-interface ITag {
+interface ICategoryCard extends TagProps {
   categoryObj: ICategory
   key?: number | string;
   activeCategory: ICategory['id']
-  onClick?: (id?: ICategory['id']) => void
+  _onClick?: (id?: ICategory['id']) => void
   children: string | React.ReactNode
 }
 
-export default function CategoryCard({ categoryObj, key = categoryObj.id, activeCategory, onClick, children }: ITag) {
+export default function CategoryCard({ categoryObj, key = categoryObj.id, activeCategory, _onClick, children }: React.PropsWithChildren<ICategoryCard>) {
   const color = categoryObj.color || 'gray.400'
   const isActive = activeCategory === categoryObj.id
 
@@ -23,7 +23,12 @@ export default function CategoryCard({ categoryObj, key = categoryObj.id, active
       borderRadius={'2rem'}
       bg={isActive ? color : 'transparent'}
       color={isActive ? 'white' : color}
-      onClick={() => onClick(categoryObj.id)}
+      onClick={() => _onClick(categoryObj.id)}
+      cursor={'pointer'}
+      flexShrink={1}
+      flexBasis={'content'}
+      fontSize={'md'}
+      lineHeight={1.5}
     >
       {children}
     </ Tag>
