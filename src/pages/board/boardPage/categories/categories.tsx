@@ -43,9 +43,16 @@ export default class Categories extends React.Component<{}, {}> {
             width={40}
           >
             {categoriesStore.allCategory.map(category => {
-              return (<CategoryCard as={'li'} categoryObj={category} _last={{ marginRight: '2rem' }} _onClick={this.handleClick} activeCategory={categoriesStore.activeCategory} >
-                {category.name}
-              </CategoryCard>)
+              return (
+                <CategoryCard
+                  as={'li'}
+                  key={category.id}
+                  categoryObj={category}
+                  _last={{ marginRight: '2rem' }}
+                  onClick={() => categoriesStore.activeCategory = category.id}
+                  isActive={categoriesStore.activeCategory === category.id}
+                />
+              )
             })}
           </Loading>
         </HStack>
