@@ -7,7 +7,7 @@ interface ICategoryCard extends TagProps {
 }
 
 export function CategoryCard({ categoryObj, isActive, children, ...rest }: React.PropsWithChildren<ICategoryCard>) {
-  const color = categoryObj.color || 'gray.400'
+  const color = categoryObj.color || 'brand.300'
 
   return (
     <Tag
@@ -15,7 +15,7 @@ export function CategoryCard({ categoryObj, isActive, children, ...rest }: React
       px={4}
       borderRadius={'2rem'}
       bg={isActive ? color : 'transparent'}
-      color={isActive ? 'white' : 'gray.500'}
+      color={isActive ? 'white' : color}
       cursor={'pointer'}
       flexShrink={1}
       flexBasis={'content'}
