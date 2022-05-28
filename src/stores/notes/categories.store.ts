@@ -36,8 +36,16 @@ class CategoriesStore {
     this.onChangeCategory()
   }
 
+  getCategory(id: ICategory['id']) {
+    return this.allCategory.find((category) => category.id === id)
+  }
+
+  getCategoryColor(id: ICategory['id']): null | string {
+    return this.isAll ? this.getCategory(ALL_CATEGORY_ID).color : this.getCategory(id).color
+  }
+
   get allNotesCount() {
-    return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID).count
+    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID).count
   }
 
   get isAll() {
