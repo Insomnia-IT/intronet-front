@@ -13,11 +13,9 @@ export function CategoryCard({ categoryObj, isActive, children, ...rest }: React
     <Tag
       py={2}
       px={4}
-      border={'1px'}
-      borderColor={color}
       borderRadius={'2rem'}
       bg={isActive ? color : 'transparent'}
-      color={isActive ? 'white' : color}
+      color={isActive ? 'white' : 'gray.500'}
       cursor={'pointer'}
       flexShrink={1}
       flexBasis={'content'}

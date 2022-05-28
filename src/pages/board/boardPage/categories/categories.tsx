@@ -31,7 +31,7 @@ export default class Categories extends React.Component<{}, {}> {
         className='hide-scrollbar'
       >
         <HStack
-          spacing={2}
+          spacing={0}
           as='ul'
           flex={1}
           minWidth={'max-content'}
