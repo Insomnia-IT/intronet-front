@@ -16,7 +16,7 @@ export default function Header() {
         Доска Объявлений
       </Heading>
       <Text as='p' fontSize='sm' color={'gray.400'}>
-        Объявление можно опубликовать в <Link as={WouterLink} to='/' variant={'brandLink'}>инфоцентре</Link>
+        Объявление можно опубликовать в <Link as={WouterLink} to='/' variant={'brandLinkClickable'}>инфоцентре</Link>
       </Text>
     </VStack>
   )

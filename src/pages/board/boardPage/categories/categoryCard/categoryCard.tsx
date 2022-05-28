@@ -9,7 +9,7 @@ interface ICategoryCard extends TagProps {
   children: string | React.ReactNode
 }
 
-export default function CategoryCard({ categoryObj, key = categoryObj.id, activeCategory, _onClick, children }: React.PropsWithChildren<ICategoryCard>) {
+export function CategoryCard({ categoryObj, key = categoryObj.id, activeCategory, _onClick, children, ...rest }: React.PropsWithChildren<ICategoryCard>) {
   const color = categoryObj.color || 'gray.400'
   const isActive = activeCategory === categoryObj.id
 
@@ -29,6 +29,7 @@ export default function CategoryCard({ categoryObj, key = categoryObj.id, active
       flexBasis={'content'}
       fontSize={'md'}
       lineHeight={1.5}
+      {...rest}
     >
       {children}
     </ Tag>
