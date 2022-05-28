@@ -1,4 +1,5 @@
-import { extendTheme, textDecoration } from "@chakra-ui/react"
+import { extendTheme, theme as defaultTheme } from "@chakra-ui/react"
+import { Link } from "./components/link"
 
 export const theme = extendTheme({
   colors: {
@@ -7,20 +8,6 @@ export const theme = extendTheme({
     },
   },
   components: {
-    Link: {
-      variants: {
-        brandLink: {
-          color: 'brand.300',
-          _hover: {
-            color: 'brand.300',
-            textDecoration: 'none',
-          },
-          _focus: {
-            outline: 'none',
-            boxShadow: 'none',
-          },
-        }
-      }
-    }
+    Link,
   }
 })
