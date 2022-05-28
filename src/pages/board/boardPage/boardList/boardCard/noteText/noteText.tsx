@@ -8,7 +8,7 @@ export type INoteText = {
 
 const COUNT_CHAR_OF_SHORT_TEXT = 176
 
-const WrapText = ({ children, ...res }: React.PropsWithChildren<TextProps>) => (<Text as={'p'} size={'sm'} {...res}>{children}</Text>)
+const WrapText = ({ children, ...res }: React.PropsWithChildren<TextProps>) => (<Text as={'p'} fontSize={'sm'} {...res}>{children}</Text>)
 
 export const NoteText = ({ text }: INoteText) => {
   const [isOpen, setIsOpen] = React.useState(false)
@@ -21,10 +21,7 @@ export const NoteText = ({ text }: INoteText) => {
   const shortText = text.slice(0, COUNT_CHAR_OF_SHORT_TEXT - ending.length) + ending
 
   return (
-    <WrapText
-      as='p'
-      fontSize='sm'
-    >
+    <WrapText>
       {!isOpen ? shortText : text}
       {' '}
       <ToggleBtn onClick={toggleOpen}>
