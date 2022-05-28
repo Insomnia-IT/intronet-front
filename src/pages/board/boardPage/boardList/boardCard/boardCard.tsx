@@ -1,23 +1,36 @@
 import * as React from 'react'
 import styles from './boardCard.module.scss'
 import { Link } from 'wouter';
-import { Button } from 'react-bulma-components';
+import { Box, VStack, Heading } from '@chakra-ui/react';
+import { categoriesStore } from 'src/stores';
+import { NoteText } from './noteText/noteText';
 
-export type INotesCard = Omit<INotes, 'categoryId'>
 
-export default function BoardCard({ title, text, id }: INotesCard) {
+export type INotesCard = {
+  notesInfoObj: INotes
+}
+
+export const BoardCard = ({ notesInfoObj }: INotesCard) => {
+  const { title, text, categoryId } = notesInfoObj
+  const color = categoriesStore.getCategoryColor(categoryId) || 'gray.200'
+
   return (
-    <div className={styles.card + ' p-5'}>
-      <h3 className='mb-2 is-size-4'>
+    <VStack
+      align={'flex-start'}
+      px={4}
+      py={5}
+      spacing={2}
+      border={'1px solid'}
+      borderColor={color}
+      borderRadius={'2xl'}
+    >
+      <Heading
+        as='h3'
+        size={'md'}
+      >
         {title}
-      </h3>
-      <p className={styles.desc}>
-        {text}
-      </p>
-      <div className={styles.shadow + ' mb-4'}></div>
-      <Button color='primary' renderAs={Link} to={`/board/note?id=${id}`}>
-        Подробнее
-      </Button>
-    </div>
+      </Heading>
+      <NoteText text={text} />
+    </VStack>
   )
 }
