@@ -1,16 +1,23 @@
 import * as React from 'react'
-import { Link } from 'wouter';
+import { Link as WouterLink } from 'wouter';
 import { VStack } from '@chakra-ui/react';
-import { Heading } from '@chakra-ui/react'
-import { InfoText } from 'src/components/infoText/infoText';
+import { Heading, Text, Link } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react';
 
 export default function Header() {
   return (
-    <VStack align={'flex-start'} spacing={'2px'}>
-      <Heading as='h1' fontSize={'2rem'} lineHeight={1.5}>Объявления</Heading>
-      <InfoText>
-        Публикуются в <Link to='/'>инфоцентре</Link>
-      </InfoText>
+    <VStack align={'start'} spacing={[0, null, 1]}>
+      <Heading
+        as='h1'
+        maxWidth={['250px', null, 'none']}
+        size={'xl'}
+        color={'gray.700'}
+      >
+        Доска Объявлений
+      </Heading>
+      <Text as='p' fontSize='sm' color={'gray.400'}>
+        Объявление можно опубликовать в <Link as={WouterLink} to='/' variant={'brandLink'}>инфоцентре</Link>
+      </Text>
     </VStack>
   )
 }
