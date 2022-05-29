@@ -41,7 +41,8 @@ class CategoriesStore {
   }
 
   getCategoryColor(id: ICategory['id']): null | string {
-    return this.isAll ? this.getCategory(ALL_CATEGORY_ID).color : this.getCategory(id).color
+    const color = this.getCategory(id).color
+    return color || 'brand.300'
   }
 
   get allNotesCount() {
