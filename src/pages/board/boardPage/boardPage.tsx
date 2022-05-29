@@ -36,11 +36,11 @@ export function BoardPage() {
         >
           <BoardList></BoardList>
         </Box>
-        <Box
+        {/* <Box
           alignSelf={'center'}
         >
           <Pageing />
-        </Box>
+        </Box> */}
       </VStack>
     </Container>
   );

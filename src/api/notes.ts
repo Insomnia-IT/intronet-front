@@ -10,11 +10,15 @@ export default class NotesApi extends AdminApi {
     super()
   }
 
-  public getNote(id: number): Promise<INotes> {
+  getNote(id: number): Promise<INotes> {
     return this.fetch(`${notesRout}/${id}`)
   }
 
-  public getNotes(page = 1, count = COUNT_NOTES_OF_PAGE, categoriesIds: number[] = []): Promise<INotes[]> {
+  getAllNotes(): Promise<INotes[]> {
+    return this.fetch(`${notesRout}/all`)
+  }
+
+  getNotes(page = 1, count = COUNT_NOTES_OF_PAGE, categoriesIds: number[] = []): Promise<INotes[]> {
     // Если в переданном categoriesIds есть общая категория,
     // то нужно заменить массив с категориями на пустой массив,
     // что бы в запросе не было категории, и сервер вернул их все.
@@ -28,11 +32,11 @@ export default class NotesApi extends AdminApi {
     return this.fetch(url)
   }
 
-  public getNotesAll(): Promise<INotes[]> {
+  getNotesAll(): Promise<INotes[]> {
     return this.fetch(`${notesRout}/all`)
   }
 
-  public createNote(name: string, description: string): Promise<null> {
+  createNote(name: string, description: string): Promise<null> {
     return this.adminFetch(`${notesRout}/add`, {
       method: 'POST',
       body: JSON.stringify({
@@ -42,7 +46,7 @@ export default class NotesApi extends AdminApi {
     })
   }
 
-  public editNote(id: number, name?: string, description?: string): Promise<null> {
+  editNote(id: number, name?: string, description?: string): Promise<null> {
     return this.adminFetch(`${notesRout}/edit`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -53,7 +57,7 @@ export default class NotesApi extends AdminApi {
     })
   }
 
-  public deleteNote(id: number): Promise<null> {
+  deleteNote(id: number): Promise<null> {
     return this.adminFetch(`${notesRout}/delete/${id}`)
   }
 
