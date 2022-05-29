@@ -2,7 +2,7 @@ import * as React from 'react'
 import styles from './boardList.module.scss'
 import { BoardCard } from './boardCard/boardCard';
 import { Observer } from 'cellx-react';
-import { notesStore, pagesStore } from 'src/stores';
+import { notesStore, pagesStore, categoriesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
 import { VStack } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
@@ -28,9 +28,12 @@ export default class BoardList extends React.Component<{}, {}> {
           >
             {pagesStore.notes.map(note => {
               return (
-                <li key={note.id}>
-                  <BoardCard notesInfoObj={note} />
-                </li>
+                <BoardCard
+                  key={note.id}
+                  _last={{ mb: 4 }}
+                  notesInfoObj={note}
+                  activeColor={categoriesStore.getCategoryColor(note.categoryId)}
+                />
               )
             })}
           </VStack>

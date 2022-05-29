@@ -9,7 +9,10 @@ import { Box } from '@chakra-ui/react';
 
 export function BoardPage() {
   return (
-    <Container maxH={'calc(100vh - 64px)'} >
+    <Container
+      h={'100%'}
+    //  maxH={'calc(100vh - 64px)'} 
+    >
       <VStack
         pt={8}
         align={'flex-start'}
@@ -33,11 +36,11 @@ export function BoardPage() {
         >
           <BoardList></BoardList>
         </Box>
-        <Box
+        {/* <Box
           alignSelf={'center'}
         >
           <Pageing />
-        </Box>
+        </Box> */}
       </VStack>
     </Container>
   );
