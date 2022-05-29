@@ -28,9 +28,11 @@ export default class BoardList extends React.Component<{}, {}> {
           >
             {pagesStore.notes.map(note => {
               return (
-                <li key={note.id}>
-                  <BoardCard notesInfoObj={note} />
-                </li>
+                <BoardCard
+                  key={note.id}
+                  _last={{ mb: 4 }}
+                  notesInfoObj={note}
+                />
               )
             })}
           </VStack>

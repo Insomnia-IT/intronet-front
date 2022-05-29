@@ -1,16 +1,14 @@
 import * as React from 'react'
-import styles from './boardCard.module.scss'
-import { Link } from 'wouter';
-import { Box, VStack, Heading } from '@chakra-ui/react';
+import { VStack, StackProps, Heading } from '@chakra-ui/react';
 import { categoriesStore } from 'src/stores';
 import { NoteText } from './noteText/noteText';
 
 
-export type INotesCard = {
+export interface INotesCard extends StackProps {
   notesInfoObj: INotes
 }
 
-export const BoardCard = ({ notesInfoObj }: INotesCard) => {
+export const BoardCard = ({ notesInfoObj, ...res }: INotesCard) => {
   const { title, text, categoryId } = notesInfoObj
   const color = categoriesStore.getCategoryColor(categoryId) || 'gray.200'
 
@@ -23,6 +21,7 @@ export const BoardCard = ({ notesInfoObj }: INotesCard) => {
       border={'1px solid'}
       borderColor={color}
       borderRadius={'2xl'}
+      {...res}
     >
       <Heading
         as='h3'
