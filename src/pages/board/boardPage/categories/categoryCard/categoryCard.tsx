@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Tag, TagProps } from '@chakra-ui/react'
+import { categoriesStore } from 'src/stores';
 
 interface ICategoryCard extends TagProps {
   categoryObj: ICategory
@@ -7,7 +8,7 @@ interface ICategoryCard extends TagProps {
 }
 
 export function CategoryCard({ categoryObj, isActive, children, ...rest }: React.PropsWithChildren<ICategoryCard>) {
-  const color = categoryObj.color || 'brand.300'
+  const color = categoriesStore.getCategoryColor(categoryObj.id)
 
   return (
     <Tag
