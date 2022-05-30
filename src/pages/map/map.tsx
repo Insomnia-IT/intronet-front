@@ -19,7 +19,6 @@ export class MapComponent extends React.PureComponent<MapProps> {
 
   state = cellState(this, {
     transform: () => this.Transform,
-    selected: null as MapItem,
     scale: () => this.scale,
   });
 
@@ -30,7 +29,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         onPointerUp={this.onClick}
         onPointerDown={(e) => {
           if (!e.nativeEvent.defaultPrevented) {
-            this.setState({ selected: null });
+            this.props.onSelect(null);
           }
         }}
         className={styles.container}
@@ -54,7 +53,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
               <MapElement
                 item={x}
                 key={x.id}
-                selected={this.state.selected?.id === x.id}
+                selected={this.props.selected?.id === x.id}
                 onSelect={(item) => {
                   this.setState({ selected: item });
                   this.props.onSelect(item);
@@ -146,6 +145,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
 
 export type MapProps = {
   items: MapItem[];
+  selected: MapItem;
   image: ImageInfo;
   location?: boolean;
   isMovingEnabled: boolean;
