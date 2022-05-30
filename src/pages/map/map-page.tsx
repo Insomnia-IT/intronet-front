@@ -6,7 +6,7 @@ import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
-import { MapToolbar } from "./map-toolbar";
+import { MapToolbar } from "./map-toolbar/map-toolbar";
 
 export class MapPage extends React.PureComponent {
   @Observable

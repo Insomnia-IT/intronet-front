@@ -87,3 +87,25 @@ interface ICategory {
   count: number; //количество элементов которым присвоена данная категория
   color: string; // Цвет категории, для раскрашивания её карточки
 }
+
+type Day = "Thursday" | "Friday" | "Saturday" | "Sunday";
+
+interface Schedule {
+  id: string;
+  locationId: number;
+  day: Day;
+  auditoryElements: Auditory[];
+}
+
+interface Auditory {
+  Number: 1 | 2;
+  Elements: AuditoryElement[];
+}
+interface AuditoryElement {
+  Name: string; //Название пункта расписания.
+  Description: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
+  Time: string; //Время начала.
+  Speaker: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
+  IsCanceled: bool; //Если = true, значит отменено.
+  Changes: string; //Изменения в расписании по данному пункту.
+}
