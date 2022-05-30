@@ -41,6 +41,7 @@ declare module "*.html" {
 type InsomniaLocation = {
   id: number;
   name: string;
+  description: string;
   x: number;
   y: number;
   lat: number;
@@ -75,15 +76,15 @@ type Movie = {
 };
 
 interface INotes {
-  id: number
-  title: string
-  text: string
-  categoryId: number
+  id: number;
+  title: string;
+  text: string;
+  categoryId: number;
 }
 
 interface ICategory {
-  id: number // Id категории
-  name: string //название категории
-  count: number //количество элементов которым присвоена данная категория
-  color: string // Цвет категории, для раскрашивания её карточки
+  id: number; // Id категории
+  name: string; //название категории
+  count: number; //количество элементов которым присвоена данная категория
+  color: string; // Цвет категории, для раскрашивания её карточки
 }
