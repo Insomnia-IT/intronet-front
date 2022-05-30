@@ -48,7 +48,6 @@ export function MapToolbar(props: MapToolbarProps) {
         </div>
         <div className={styles.content}>
           <div className={styles.header}>{location.name}</div>
-          <div>{location.description}</div>
         </div>
       </div>
     </>

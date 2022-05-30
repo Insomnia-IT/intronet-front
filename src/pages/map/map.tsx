@@ -85,7 +85,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         this.Transform = e.data.Apply(this.Transform);
       });
       dragHandler.on("transform", (e) => {
-        const { selected } = this.state;
+        const { selected } = this.props;
         if (selected) {
           selected.point = new TransformMatrix()
             .Apply(this.Transform.Inverse())
