@@ -2,8 +2,9 @@ import React from "react";
 import { scheduleStore } from "../../../stores/schedule.store";
 import { Computed, Observable } from "cellx-decorators";
 import { cellState } from "../../../helpers/cell-state";
-import { Flex, Grid, GridItem, Tag } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import styles from "./schedule.module.css";
+import { Chip } from "src/components/chip/chip";
 
 export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   @Observable
@@ -40,48 +41,47 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   render() {
     return (
       <>
-        <Flex align="center" flexDirection="row">
+        <HStack padding="16px 0" align="center" flexDirection="row">
           {Days.map((day) => {
             return (
-              <Tag
+              <Chip
                 key={day}
                 onClick={() => {
                   this.day = day;
+                  this.auditory = 1;
                 }}
-                bg={this.state.day == day ? "#6BBDB0" : "white"}
-                color={this.state.day == day ? "white" : "#718096"}
+                active={this.state.day == day}
               >
                 {dayNames[day]}
-              </Tag>
+              </Chip>
             );
           })}
-        </Flex>
+        </HStack>
         {this.state.auditories.length > 1 && (
           <div className={styles.tags}>
             {this.state.auditories.map((auditory) => {
               return (
-                <Tag
-                  className={
-                    this.state.auditory == auditory
-                      ? styles.tagSelected
-                      : styles.tag
-                  }
+                <Chip
+                  active={this.state.auditory == auditory}
                   key={auditory}
                   onClick={() => {
                     this.auditory = auditory;
                   }}
                 >
                   {auditoryNames[auditory]}
-                </Tag>
+                </Chip>
               );
             })}
           </div>
         )}
-        Расписание
+        <header>Расписание</header>
         {this.state.schedules.map((x, i) => (
           <div className={styles.schedule} key={i}>
-            <div className={styles.time}>{x.Time}</div>
-            <div className={styles.name}>{x.Name}</div>
+            <div className={styles.time}>{x.IsCanceled ? "Х" : x.Time}</div>
+            <div className={styles.name}>
+              {x.Name} {x.Changes && <Alert color={alertColors.red} />}
+              <span className={styles.changes}>{x.Changes}</span>
+            </div>
             <div className={styles.descr}>{x.Description}</div>
           </div>
         ))}
@@ -99,6 +99,20 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
       scheduleStore.loadSchedule(this.props.locationId);
     }
   }
+}
+
+const alertColors = {
+  main: "#6BBDB0",
+  red: "#EB5757",
+  gray: "#BFBFBF",
+};
+
+function Alert({ color }) {
+  return (
+    <svg fill={color} width="20px" height="20px">
+      <path d="M9 5H11V11H9V5ZM10 20C4.48 20 0 15.52 0 10C0 4.48 4.48 0 10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20ZM10 2C5.59 2 2 5.59 2 10C2 14.41 5.59 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2ZM9 13H11V15H9V13Z" />
+    </svg>
+  );
 }
 
 type ScheduleProps = {
