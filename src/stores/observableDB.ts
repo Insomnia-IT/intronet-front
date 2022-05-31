@@ -84,6 +84,11 @@ export class ObservableDB<
     this.items.clear();
   }
 
+  addOrUpdate(value: T, source: "user" | "server" | "db" = "user") {
+    if (this.items.has(value.id)) this.update(value, source);
+    else this.add(value, source);
+  }
+
   add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
     if (source != "db") {
@@ -100,6 +105,9 @@ export class ObservableDB<
 
   addRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
     valueArr.forEach((value) => this.add(value, source));
+  }
+  addOrUpdateRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
+    valueArr.forEach((value) => this.addOrUpdate(value, source));
   }
 
   update(value: T, source: "user" | "server" | "db" = "user") {

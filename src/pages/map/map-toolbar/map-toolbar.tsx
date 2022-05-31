@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { locationsStore } from "../../stores/locations.store";
+import { locationsStore } from "src/stores/locations.store";
 import styles from "./map-toolbar.module.css";
+import { ScheduleComponent } from "./schedule";
 
 export type MapToolbarProps = {
   id: number | string;
@@ -48,7 +49,7 @@ export function MapToolbar(props: MapToolbarProps) {
         </div>
         <div className={styles.content}>
           <div className={styles.header}>{location.name}</div>
-          <div>{location.description}</div>
+          {expanded && <ScheduleComponent locationId={location.id} />}
         </div>
       </div>
     </>
