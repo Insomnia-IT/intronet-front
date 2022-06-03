@@ -13,6 +13,8 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   auditory: 1 | 2 = 1;
   @Observable
   day: Day = "Thursday";
+  @Observable
+  selectedElement: AuditoryElement;
 
   @Computed
   get Auditories() {
@@ -36,12 +38,19 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
     auditories: () => Array.from(new Set(this.Auditories.map((x) => x.Number))),
     auditory: () => this.auditory,
     day: () => this.day,
+    selectedElement: () => this.selectedElement,
   });
 
   render() {
     return (
       <>
-        <HStack padding="16px 0" align="center" flexDirection="row">
+        <HStack
+          className={styles.chips}
+          padding="16px 0"
+          align="center"
+          flexDirection="row"
+          overflowX="scroll"
+        >
           {Days.map((day) => {
             return (
               <Chip
@@ -57,34 +66,52 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
             );
           })}
         </HStack>
-        {this.state.auditories.length > 1 && (
-          <div className={styles.tags}>
-            {this.state.auditories.map((auditory) => {
-              return (
-                <Chip
-                  active={this.state.auditory == auditory}
-                  key={auditory}
-                  onClick={() => {
-                    this.auditory = auditory;
-                  }}
+        {this.state.schedules.length > 0 && (
+          <>
+            <header>Расписание</header>
+            {this.state.auditories.length > 1 && (
+              <div className={styles.tags}>
+                {this.state.auditories.map((auditory) => {
+                  return (
+                    <Chip
+                      active={this.state.auditory == auditory}
+                      key={auditory}
+                      onClick={() => {
+                        this.auditory = auditory;
+                      }}
+                    >
+                      {auditoryNames[auditory]}
+                    </Chip>
+                  );
+                })}
+              </div>
+            )}
+            {this.state.schedules.map((x, i) => (
+              <div
+                className={styles.schedule}
+                onClick={() =>
+                  (this.selectedElement =
+                    this.state.selectedElement === x ? null : x)
+                }
+                key={i}
+              >
+                <div
+                  className={x.IsCanceled ? styles.timeCanceled : styles.time}
                 >
-                  {auditoryNames[auditory]}
-                </Chip>
-              );
-            })}
-          </div>
+                  {x.IsCanceled ? "отмена" : x.Time}
+                </div>
+                <div className={styles.name}>
+                  {x.Name} {x.Changes && <Alert color={alertColors.red} />}
+                  <span className={styles.changes}>{x.Changes}</span>
+                </div>
+                <div className={styles.descr}>{x.Description}</div>
+                {this.state.selectedElement === x && (
+                  <div className={styles.info}>{x.Speaker}</div>
+                )}
+              </div>
+            ))}
+          </>
         )}
-        <header>Расписание</header>
-        {this.state.schedules.map((x, i) => (
-          <div className={styles.schedule} key={i}>
-            <div className={styles.time}>{x.IsCanceled ? "Х" : x.Time}</div>
-            <div className={styles.name}>
-              {x.Name} {x.Changes && <Alert color={alertColors.red} />}
-              <span className={styles.changes}>{x.Changes}</span>
-            </div>
-            <div className={styles.descr}>{x.Description}</div>
-          </div>
-        ))}
       </>
     );
   }

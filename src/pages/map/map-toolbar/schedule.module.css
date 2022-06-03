@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
 }
+.chips::-webkit-scrollbar{
+  display: none;
+}
 
 .tag {
 
@@ -39,6 +42,11 @@ header {
   line-height: 150%;
 }
 
+.timeCanceled{
+  composes: time;
+  font-size: 12px;
+}
+
 .name {
   grid-row: 1;
   grid-column: 2;
@@ -64,4 +72,11 @@ header {
   font-size: 12px;
   line-height: 150%;
   border-bottom: #F2F2F2 solid 1px;
+}
+
+.info{
+  grid-column: 1 / span 2;
+  height: 5em;
+  background: #AAA;
+  width: 100%;
 }

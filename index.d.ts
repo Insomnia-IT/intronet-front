@@ -41,6 +41,7 @@ declare module "*.html" {
 type InsomniaLocation = {
   id: number;
   name: string;
+  description: string;
   x: number;
   y: number;
   lat: number;
