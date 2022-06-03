@@ -10,7 +10,7 @@ class CategoriesStore {
   private api = new NotesApi
 
   @Observable
-  IsLoading: boolean = true
+  IsLoading: boolean = false
 
   @Observable
   ActiveCategory: number = ALL_CATEGORY_ID
@@ -75,7 +75,6 @@ class CategoriesStore {
   }
 
   load = async () => {
-    this.IsLoading = true
     try {
       const categories = await this.api.getAllCategories()
       this.AllCategory.clear()
