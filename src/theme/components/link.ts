@@ -1,5 +1,6 @@
 const brandLink = {
   color: 'brand.300',
+  fontSize: '.875rem',
   _hover: {
     color: 'brand.300',
     textDecoration: 'none',
