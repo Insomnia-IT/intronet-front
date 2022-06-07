@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./PT_Mono/PTMono.woff2) format('woff2'),
+  url(./PT_Mono/PTMono-Regular.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url(./PT_Mono/PT-Mono_Bold.woff2) format('woff2'),
+       url(./PT_Mono/PT-Mono_Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./Open-Sans_Regular.woff2) format('woff2'),
+  url(./OpenSans-Regular.ttf) format('ttf');
+}
+
+* {
+  font-feature-settings: normal!important;
+}

@@ -8,7 +8,6 @@ import styles from "./app.style.module.css";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    {/* <Fonts /> */}
     <Flex className={styles.main} direction="column" align="stretch">
       {/* from 0-30-48em reverse order, the rest is normal order */}
       <Box order={[2, null, 0]}>
