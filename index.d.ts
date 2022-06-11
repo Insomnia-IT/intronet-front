@@ -73,3 +73,16 @@ type Movie = {
   end: Date;
   author: string;
 };
+
+interface INote {
+  id: number;
+  title: string;
+  text: string;
+  categoryId: number;
+}
+
+interface ICategory {
+  id: number; // Id категории
+  name: string; //название категории
+  count: number; //количество элементов которым присвоена данная категория
+}
