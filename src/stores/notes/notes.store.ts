@@ -1,61 +1,69 @@
-import { Observable } from 'cellx-decorators';
-import NotesApi from '../../api/notes';
-import { ObservableDB } from '../observableDB';
-
-export interface INotes {
-  id: number
-  title: string
-  text: string
-  categoryId: number
-}
+import { Observable } from "cellx-decorators";
+import NotesApi from "../../api/notes";
+import { ObservableDB } from "../observableDB";
 
 class NotesStore {
-  private api = new NotesApi
+  private api = new NotesApi();
 
   @Observable
-  Notes = new ObservableDB<INotes>('notes');
+  Notes = new ObservableDB<INote>("notes");
 
   @Observable
-  IsLoading: boolean = true
+  IsLoading: boolean = true;
 
   get isLoading() {
-    return this.IsLoading
+    return this.IsLoading;
   }
 
   toggleLoading = () => {
-    this.IsLoading = !this.isLoading
-  }
+    this.IsLoading = !this.isLoading;
+  };
 
   // Загрузка первых 20 объявлений каждой категории
   public load = async () => {
-    this.IsLoading = true
-    let notes: INotes[]
+    this.IsLoading = true;
+    let notes: INote[];
     try {
-      notes = await this.api.getNotes()
-      this.Notes.clear()
-      this.Notes.addRange(notes)
-      this.IsLoading = false
+      notes = await this.api.getNotes();
+      this.Notes.clear();
+      this.Notes.addRange(notes);
+      this.IsLoading = false;
     } catch {
-      this.IsLoading = false
+      this.IsLoading = false;
     }
-  }
+  };
 
   // Загрузка новых объявлений выбранной категории
-  public loadNewNotes = async (categoryId: number, page: number, count: number) => {
-    this.IsLoading = true
-    const newNotes = await this.api.getNotes(page, count, [categoryId])
-    this.Notes.addRange(newNotes)
-    this.IsLoading = false
-  }
+  public loadNewNotes = async (
+    categoryId: number,
+    page: number,
+    count: number
+  ) => {
+    this.IsLoading = true;
+    const newNotes = await this.api.getNotes(page, count, [categoryId]);
+    this.Notes.addRange(newNotes);
+    this.IsLoading = false;
+  };
+
+  /**
+   * Изменяет запись по id
+   * @param {INote} body Тело реквеста
+   */
+  public editNote = async (body: INote) => {
+    this.IsLoading = true;
+    await this.api.editNote(body);
+    this.Notes.update(body);
+    this.IsLoading = false;
+  };
 
   // Отдаёт стор с объявлениями
   get notes() {
-    return this.Notes.toArray()
+    return this.Notes.toArray();
   }
 
   getNote(id: number) {
-    return this.notes.find(note => note.id === id)
+    return this.notes.find((note) => note.id === id);
   }
 }
 
-export const notesStore = new NotesStore()
+export const notesStore = new NotesStore();

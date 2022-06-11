@@ -1,87 +1,90 @@
-import { INotes } from '../stores/notes/notes.store';
-import { AdminApi } from './admin';
-import { ALL_CATEGORY_ID, ICategory } from './../stores';
-import { COUNT_NOTES_OF_PAGE } from 'src/stores';
+import { AdminApi } from "./admin";
+import { ALL_CATEGORY_ID } from "./../stores";
+import { COUNT_NOTES_OF_PAGE } from "src/stores";
 
-const notesRout = '/api/notes'
-const categoriesRout = 'categories'
+const notesRoute = "/api/notes";
+const categoriesRoute = "categories";
 
 export default class NotesApi extends AdminApi {
   constructor() {
-    super()
+    super();
   }
 
-  public getNote(id: number): Promise<INotes> {
-    return this.fetch(`${notesRout}/${id}`)
+  public getNote(id: number): Promise<INote> {
+    return this.fetch(`${notesRoute}/${id}`);
   }
 
-  public getNotes(page = 1, count = COUNT_NOTES_OF_PAGE, categoriesIds: number[] = []): Promise<INotes[]> {
+  public getNotes(
+    page = 1,
+    count = COUNT_NOTES_OF_PAGE,
+    categoriesIds: number[] = []
+  ): Promise<INote[]> {
     // Если в переданном categoriesIds есть общая категория,
     // то нужно заменить массив с категориями на пустой массив,
     // что бы в запросе не было категории, и сервер вернул их все.
-    let smartFilter = true
+    let smartFilter = true;
     if (categoriesIds.includes(ALL_CATEGORY_ID)) {
-      categoriesIds = []
-      smartFilter = false
+      categoriesIds = [];
+      smartFilter = false;
     }
 
-    const url = `${notesRout}/filter?Page=${page}&Count=${count}&${categoriesIds.length > 0 ? (`CategoriesIds=` + categoriesIds.join('&CategoriesIds=')) : `IsSmartFilter=${smartFilter}`}`
-    return this.fetch(url)
+    const url = `${notesRoute}/filter?Page=${page}&Count=${count}&${
+      categoriesIds.length > 0
+        ? `CategoriesIds=` + categoriesIds.join("&CategoriesIds=")
+        : `IsSmartFilter=${smartFilter}`
+    }`;
+    return this.fetch(url);
   }
 
-  public getNotesAll(): Promise<INotes[]> {
-    return this.fetch(`${notesRout}/all`)
+  public getNotesAll(): Promise<INote[]> {
+    return this.fetch(`${notesRoute}/all`);
   }
 
   public createNote(name: string, description: string): Promise<null> {
-    return this.adminFetch(`${notesRout}/add`, {
-      method: 'POST',
+    return this.adminFetch(`${notesRoute}/add`, {
+      method: "POST",
       body: JSON.stringify({
         name,
-        description
-      })
-    })
+        description,
+      }),
+    });
   }
 
-  public editNote(id: number, name?: string, description?: string): Promise<null> {
-    return this.adminFetch(`${notesRout}/edit`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        id,
-        name,
-        description
-      })
-    })
+  public editNote(body: INote): Promise<null> {
+    return this.adminFetch(`${notesRoute}/edit`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    });
   }
 
   public deleteNote(id: number): Promise<null> {
-    return this.adminFetch(`${notesRout}/delete/${id}`)
+    return this.adminFetch(`${notesRoute}/delete/${id}`);
   }
 
   getCategory = (id: number): Promise<ICategory> => {
-    return this.fetch(`${notesRout}/category/${id}`)
-  }
+    return this.fetch(`${notesRoute}/category/${id}`);
+  };
 
   getAllCategories = (): Promise<ICategory[]> => {
-    return this.fetch(`${notesRout}/${categoriesRout}`)
-  }
+    return this.fetch(`${notesRoute}/${categoriesRoute}`);
+  };
 
   createNewCategory = (name: string): Promise<null> => {
-    return this.adminFetch(`${notesRout}/${categoriesRout}/add`, {
-      method: 'POST',
+    return this.adminFetch(`${notesRoute}/${categoriesRoute}/add`, {
+      method: "POST",
       body: JSON.stringify({
-        name
-      })
-    })
-  }
+        name,
+      }),
+    });
+  };
 
   editCategory = (id: number, newName: string): Promise<null> => {
-    return this.adminFetch(`${notesRout}/${categoriesRout}/edit`, {
-      method: 'PUT',
+    return this.adminFetch(`${notesRoute}/${categoriesRoute}/edit`, {
+      method: "PUT",
       body: JSON.stringify({
         id,
-        name: newName
-      })
-    })
-  }
+        name: newName,
+      }),
+    });
+  };
 }
