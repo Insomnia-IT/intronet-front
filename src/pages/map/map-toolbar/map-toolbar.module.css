@@ -1,0 +1,54 @@
+.toolbar{
+  position: absolute;
+  bottom: 0;
+  height: 115px;
+  background: white;
+  width: 100%;
+  transition: height .3s ease;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.expandedToolbar{
+  composes: toolbar;
+  height: 90%;
+}
+
+.close{
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  z-index: 1;
+}
+
+.up {
+  flex: 32px 0 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.down{
+  composes: up;
+}
+.down > svg{
+  transform: rotate(180deg);
+}
+
+.content {
+  flex: 1;
+  padding: 0 16px;
+}
+
+.header{
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 133%;
+}
+.description{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}

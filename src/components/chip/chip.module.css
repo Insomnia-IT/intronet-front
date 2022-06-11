@@ -1,0 +1,17 @@
+.chip{
+  padding: 8px 16px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+  color: #808080;
+  cursor: pointer;
+}
+
+.chipActive {
+  composes: chip;
+  background: #6BBDB0;
+  color: white;
+}

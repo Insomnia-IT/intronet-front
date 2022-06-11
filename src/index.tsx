@@ -1,8 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.sass";
-// import './fonts/fonts/PT-Mono_Bold.woff2';
-import './fonts/fonts/Open-Sans_Regular.woff2'
 import { App } from "./app/app";
 
 const container = document.getElementById("root");
