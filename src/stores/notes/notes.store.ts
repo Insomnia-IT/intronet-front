@@ -46,6 +46,19 @@ class NotesStore {
   };
 
   /**
+   * Добавляет запись
+   * @param {INote} body Тело реквеста
+   */
+  public addNote = async (
+    body: Partial<INote> & Pick<INote, "title" | "text">
+  ) => {
+    this.IsLoading = true;
+    await this.api.createNote(body.title, body.text);
+    this.load();
+    this.IsLoading = false;
+  };
+
+  /**
    * Изменяет запись по id
    * @param {INote} body Тело реквеста
    */

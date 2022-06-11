@@ -41,17 +41,24 @@ export default class NotesApi extends AdminApi {
   }
 
   public createNote(name: string, description: string): Promise<null> {
-    return this.adminFetch(`${notesRoute}/add`, {
+    return this.adminFetch(`/api/admin/notes/add`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "POST",
       body: JSON.stringify({
-        name,
-        description,
+        title: name,
+        text: description,
+        categoryId: 1,
       }),
     });
   }
 
   public editNote(body: INote): Promise<null> {
-    return this.adminFetch(`${notesRoute}/edit`, {
+    return this.adminFetch(`/api/admin/notes/edit`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "PUT",
       body: JSON.stringify(body),
     });

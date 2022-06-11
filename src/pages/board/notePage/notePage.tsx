@@ -23,7 +23,7 @@ export default function NotePage() {
       await notesStore.editNote({ ...note, ...editedNote });
       toast({
         title: "Объявление успешно изменено!",
-        status: "error",
+        status: "success",
         duration: 3000,
         isClosable: true,
       });
@@ -51,7 +51,7 @@ export default function NotePage() {
       >
         <Note id={parseInt(params.get("id"))}></Note>
       </div>
-      <Box position="absolute" bottom="10" right="10">
+      <Box position="absolute" bottom="16" right="16">
         <IconButton
           icon={<EditIcon />}
           aria-label="add article"

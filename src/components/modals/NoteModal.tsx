@@ -46,6 +46,11 @@ export const NoteModal: React.FC<ModalProps<Pick<INote, "text" | "title">>> = ({
           />
         </ModalBody>
         <ModalFooter>
+          {title && text && (
+            <Button colorScheme="red" mr={3} onClick={modalProps.success}>
+              Удалить
+            </Button>
+          )}
           <Button variant="ghost" mr={3} onClick={modalProps.abort}>
             Отменить
           </Button>
