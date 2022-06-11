@@ -13,8 +13,8 @@ export const BtnCopy = ({ show = true, noteId, categoryId, ...rest }: IBtnCopy) 
   const [isСopied, setIsCopied] = React.useState(false)
   const copyUrl = () => {
     if (isСopied) return
-    const currentUrl = document.location.href
-    navigator.clipboard.writeText(currentUrl + '?id=' + noteId.toString())
+    const currentUrl = document.location.host
+    navigator.clipboard.writeText(currentUrl + '/board?id=' + noteId.toString())
       .then(() => {
         setIsCopied(true)
         setTimeout(() => setIsCopied(prev => !prev), 3000)

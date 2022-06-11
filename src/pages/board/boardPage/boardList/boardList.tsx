@@ -9,8 +9,24 @@ import { Box } from '@chakra-ui/react';
 
 @Observer
 export default class BoardList extends React.Component<{}, {}> {
+  private searchParams: URLSearchParams
+  private activeNote: React.RefObject<HTMLLIElement>
+
+  constructor(props) {
+    super(props)
+    this.searchParams = new URLSearchParams(window.location.search)
+    this.activeNote = React.createRef()
+  }
+
   componentDidMount() {
     notesStore.load()
+    if (this.activeNote.current) this.activeNote.current.scrollIntoView({ behavior: 'smooth' })
+    console.log(this.activeNote.current)
+  }
+
+  componentDidUpdate(): void {
+    if (this.activeNote.current) this.activeNote.current.scrollIntoView()
+    console.log(this.activeNote.current)
   }
 
   render() {
@@ -27,13 +43,18 @@ export default class BoardList extends React.Component<{}, {}> {
             spacing={4}
           >
             {pagesStore.notes.map(note => {
+              const activeNote = parseInt(this.searchParams.get('id'))
+              const ref = note.id === activeNote ? this.activeNote : null
               return (
-                <BoardCard
+                <li
                   key={note.id}
-                  _last={{ mb: 4 }}
-                  notesInfoObj={note}
-                  activeColor={categoriesStore.getCategoryColor(note.categoryId)}
-                />
+                  ref={ref}
+                >
+                  <BoardCard
+                    notesInfoObj={note}
+                    activeColor={categoriesStore.getCategoryColor(note.categoryId)}
+                  />
+                </li>
               )
             })}
           </VStack>
