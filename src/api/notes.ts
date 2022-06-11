@@ -69,7 +69,9 @@ export default class NotesApi extends AdminApi {
   }
 
   public deleteNote(id: number): Promise<null> {
-    return this.adminFetch(`${notesRoute}/delete/${id}`);
+    return this.adminFetch(`/api/admin/notes/delete/${id}`, {
+      method: "DELETE",
+    });
   }
 
   getCategory = (id: number): Promise<ICategory> => {

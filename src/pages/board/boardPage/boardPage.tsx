@@ -53,7 +53,7 @@ export const BoardPage: React.FC = () => {
           <Categories />
         </Box>
         <Box minH={1} overflowY={"auto"} w="100%" className={" hide-scrollbar"}>
-          <BoardList></BoardList>
+          <BoardList />
         </Box>
         {/* <Box
           alignSelf={'center'}

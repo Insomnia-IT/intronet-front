@@ -69,6 +69,16 @@ class NotesStore {
     this.IsLoading = false;
   };
 
+  /**
+   * Удаляет запись по id
+   */
+  public removeNote = async (path: { id: number }) => {
+    this.IsLoading = true;
+    await this.api.deleteNote(path.id);
+    this.Notes.remove(path.id);
+    this.IsLoading = false;
+  };
+
   // Отдаёт стор с объявлениями
   get notes() {
     return this.Notes.toArray();
