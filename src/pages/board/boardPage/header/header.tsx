@@ -12,6 +12,7 @@ export default function Header() {
         maxWidth={['250px', null, 'none']}
         size={'xl'}
         color={'gray.700'}
+        lineHeight={'none'}
       >
         Доска Объявлений
       </Heading>

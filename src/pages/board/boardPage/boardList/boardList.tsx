@@ -45,6 +45,7 @@ export default class BoardList extends React.Component<{}, {}> {
             {pagesStore.notes.map(note => {
               const activeNote = parseInt(this.searchParams.get('id'))
               const ref = note.id === activeNote ? this.activeNote : null
+
               return (
                 <li
                   key={note.id}
