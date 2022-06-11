@@ -1,9 +1,11 @@
 import * as React from 'react'
 import styles from './boardList.module.scss'
-import BoardCard from './boardCard/boardCard';
+import { BoardCard } from './boardCard/boardCard';
 import { Observer } from 'cellx-react';
-import { notesStore, pagesStore } from 'src/stores';
+import { notesStore, pagesStore, categoriesStore } from 'src/stores';
 import Loading from 'src/loading/loading';
+import { VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 @Observer
 export default class BoardList extends React.Component<{}, {}> {
@@ -13,20 +15,30 @@ export default class BoardList extends React.Component<{}, {}> {
 
   render() {
     return (
-      <div className={styles.container + ' ' + (notesStore.isLoading ? styles.isLoading : '')}>
+      <Box
+        w={'100%'}
+        className={notesStore.isLoading ? styles.isLoading : ''}
+      >
         <Loading isLoading={notesStore.isLoading}>
           {pagesStore.notes.length === 0 && (<h2 style={{ textAlign: 'center' }}>Объявлений пока нет!</h2>)}
-          <ul className={styles.list}>
+          <VStack
+            as={'ul'}
+            align={'streach'}
+            spacing={4}
+          >
             {pagesStore.notes.map(note => {
               return (
-                <li key={note.id} className={styles.card}>
-                  <BoardCard title={note.title} id={note.id} text={note.text} />
-                </li>
+                <BoardCard
+                  key={note.id}
+                  _last={{ mb: 4 }}
+                  notesInfoObj={note}
+                  activeColor={categoriesStore.getCategoryColor(note.categoryId)}
+                />
               )
             })}
-          </ul>
+          </VStack>
         </Loading>
-      </div>
+      </Box>
     )
   }
 }

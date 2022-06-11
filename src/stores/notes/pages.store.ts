@@ -45,8 +45,13 @@ class PagesStore {
 
   @Computed
   get notes() {
-    const from = this.calculateFrom()
-    return categoriesStore.notes.slice(from, from + COUNT_NOTES_OF_PAGE)
+    // Возвращает только определённое кол-во объявление
+    // const from = this.calculateFrom()
+    // const to = categoriesStore.isAll ? undefined : from + COUNT_NOTES_OF_PAGE
+    // return categoriesStore.notes.slice(from, to)
+
+    // Возвращает все объявления
+    return categoriesStore.notes
   }
 
   private calculateFrom = (): number => (this.Page - 1) * COUNT_NOTES_OF_PAGE

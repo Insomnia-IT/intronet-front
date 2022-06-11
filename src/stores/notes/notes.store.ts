@@ -24,7 +24,7 @@ class NotesStore {
     this.IsLoading = true;
     let notes: INote[];
     try {
-      notes = await this.api.getNotes();
+      notes = await this.api.getAllNotes();
       this.Notes.clear();
       this.Notes.addRange(notes);
       this.IsLoading = false;

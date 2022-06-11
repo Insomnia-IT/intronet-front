@@ -10,6 +10,7 @@ const locations: InsomniaLocationFull[] = [
     lng: 35.07497888587355,
     x: 1078.8210261252755,
     y: 406.92241107963486,
+    description: "",
     name: "родник",
     tags: [],
     image: "",
@@ -20,6 +21,7 @@ const locations: InsomniaLocationFull[] = [
     lng: 35.08512875824405,
     x: 752.1208687440983,
     y: 323.7888888888889,
+    description: "",
     name: "Палаточный лагерь",
     tags: [],
     image: "camping",
@@ -30,6 +32,7 @@ const locations: InsomniaLocationFull[] = [
     lng: 35.08774915484466,
     x: 352.1208687440983,
     y: 323.7888888888889,
+    description: "",
     name: "Экран «Орёл»",
     tags: [],
     image: "cinema",
@@ -46,6 +49,7 @@ export const Schema: ComponentStory<typeof MapComponent> = (args) => (
   <MapComponent
     items={args.items}
     image={args.image}
+    selected={null}
     onClick={console.log}
     onSelect={console.log}
     onChange={console.log}
@@ -71,6 +75,7 @@ export const Geo: ComponentStory<typeof MapComponent> = (args) => (
   <MapComponent
     items={args.items}
     location
+    selected={null}
     isMovingEnabled={true}
     image={args.image}
     onChange={console.log}

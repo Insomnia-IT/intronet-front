@@ -10,11 +10,15 @@ export default class NotesApi extends AdminApi {
     super();
   }
 
-  public getNote(id: number): Promise<INote> {
+  getNote(id: number): Promise<INote> {
     return this.fetch(`${notesRoute}/${id}`);
   }
 
-  public getNotes(
+  getAllNotes(): Promise<INote[]> {
+    return this.fetch(`${notesRoute}/all`);
+  }
+
+  getNotes(
     page = 1,
     count = COUNT_NOTES_OF_PAGE,
     categoriesIds: number[] = []

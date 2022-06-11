@@ -1,5 +1,4 @@
 import { Computed, Observable } from "cellx-decorators";
-import { ObservableList } from "cellx-collections";
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from "src/stores";
 import { ObservableDB } from "../observableDB";
@@ -36,9 +35,21 @@ class CategoriesStore {
     this.onChangeCategory();
   }
 
+  getCategory(id: ICategory["id"]) {
+    return this.allCategory.find((category) => category.id === id);
+  }
+
+  getCategoryColor(id: ICategory["id"]): null | string {
+    return this.getCategory(id).color || "brand.300";
+  }
+
   get allNotesCount() {
-    return this.allCategory.find((category) => category.id == ALL_CATEGORY_ID)
+    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID)
       .count;
+  }
+
+  get isAll() {
+    return this.ActiveCategory === ALL_CATEGORY_ID;
   }
 
   private onChangeCategory() {

@@ -1,19 +1,34 @@
+import { Heading, StackProps, VStack } from "@chakra-ui/react";
 import * as React from "react";
-import styles from "./boardCard.module.scss";
-import { Link } from "wouter";
-import { Button } from "react-bulma-components";
+import { NoteText } from "./noteText/noteText";
 
-export type INotesCard = Omit<INote, "categoryId">;
-
-export default function BoardCard({ title, text, id }: INotesCard) {
-  return (
-    <div className={styles.card + " p-5"}>
-      <h3 className="mb-2 is-size-4">{title}</h3>
-      <p className={styles.desc}>{text}</p>
-      <div className={styles.shadow + " mb-4"}></div>
-      <Button color="primary" renderAs={Link} to={`/board/note?id=${id}`}>
-        Подробнее
-      </Button>
-    </div>
-  );
+export interface INotesCard extends StackProps {
+  notesInfoObj: INote;
+  activeColor: string;
 }
+
+export const BoardCard = ({
+  notesInfoObj,
+  activeColor,
+  ...res
+}: INotesCard) => {
+  const { title, text, categoryId } = notesInfoObj;
+
+  return (
+    <VStack
+      align={"flex-start"}
+      px={4}
+      py={5}
+      spacing={2}
+      border={"1px solid"}
+      borderColor={activeColor}
+      borderRadius={"2xl"}
+      {...res}
+    >
+      <Heading as="h3" size={"md"}>
+        {title}
+      </Heading>
+      <NoteText text={text} />
+    </VStack>
+  );
+};

@@ -6,7 +6,7 @@ import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
-import { MapToolbar } from "./MapToolbar";
+import { MapToolbar } from "./map-toolbar/map-toolbar";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -43,10 +43,11 @@ export class MapPage extends React.PureComponent {
   render() {
     if (!this.state.image) return <></>;
     return (
-      <>
+      <div className={styles.container}>
         <MapComponent
           items={this.state.items}
           isMovingEnabled={true}
+          selected={this.state.selected}
           image={this.state.image}
           onClick={console.log}
           onChange={this.updateLocation}
@@ -59,12 +60,13 @@ export class MapPage extends React.PureComponent {
             </Icon>
           </Button>
         </div>
-        <MapToolbar
-          item={this.state.selected}
-          items={this.state.items}
-          onChange={(oldItem, newItem) => (this.selected = newItem)}
-        />
-      </>
+        {this.state.selected && (
+          <MapToolbar
+            id={this.state.selected.id}
+            onClose={() => (this.selected = null)}
+          />
+        )}
+      </div>
     );
   }
 
