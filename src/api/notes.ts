@@ -1,102 +1,90 @@
-import { AdminApi } from "./admin";
-import { ALL_CATEGORY_ID } from "./../stores";
-import { COUNT_NOTES_OF_PAGE } from "src/stores";
-import { GenericRequest } from "./base";
+import { AdminApi } from './admin';
+import { ALL_CATEGORY_ID } from './../stores';
+import { COUNT_NOTES_OF_PAGE } from 'src/stores';
 
-const notesRoute = "/api/notes";
-const categoriesRoute = "categories";
+const notesRout = '/api/notes'
+const categoriesRout = 'categories'
 
 export default class NotesApi extends AdminApi {
   constructor() {
-    super();
+    super()
   }
 
-  getNote(id: number): Promise<INote> {
-    return this.fetch(`${notesRoute}/${id}`);
+  getNote(id: number): Promise<INotes> {
+    return this.fetch(`${notesRout}/${id}`)
   }
 
-  getAllNotes(): Promise<INote[]> {
-    return this.fetch(`${notesRoute}/all`);
+  getAllNotes(): Promise<INotes[]> {
+    return this.fetch(`${notesRout}/all`)
   }
 
-  getNotes(
-    page = 1,
-    count = COUNT_NOTES_OF_PAGE,
-    categoriesIds: number[] = []
-  ): Promise<INote[]> {
+  getNotes(page = 1, count = COUNT_NOTES_OF_PAGE, categoriesIds: number[] = []): Promise<INotes[]> {
     // Если в переданном categoriesIds есть общая категория,
     // то нужно заменить массив с категориями на пустой массив,
     // что бы в запросе не было категории, и сервер вернул их все.
-    let smartFilter = true;
+    let smartFilter = true
     if (categoriesIds.includes(ALL_CATEGORY_ID)) {
-      categoriesIds = [];
-      smartFilter = false;
+      categoriesIds = []
+      smartFilter = false
     }
 
-    const url = `${notesRoute}/filter?Page=${page}&Count=${count}&${
-      categoriesIds.length > 0
-        ? `CategoriesIds=` + categoriesIds.join("&CategoriesIds=")
-        : `IsSmartFilter=${smartFilter}`
-    }`;
-    return this.fetch(url);
+    const url = `${notesRout}/filter?Page=${page}&Count=${count}&${categoriesIds.length > 0 ? (`CategoriesIds=` + categoriesIds.join('&CategoriesIds=')) : `IsSmartFilter=${smartFilter}`}`
+    return this.fetch(url)
   }
 
-  public getNotesAll(): Promise<INote[]> {
-    return this.fetch(`${notesRoute}/all`);
+  getNotesAll(): Promise<INotes[]> {
+    return this.fetch(`${notesRout}/all`)
   }
 
-  public createNote(request: GenericRequest<null, null, INote>): Promise<null> {
-    return this.adminFetch(`/api/admin/notes/add`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(request.body),
-    });
+  createNote(name: string, description: string): Promise<null> {
+    return this.adminFetch(`${notesRout}/add`, {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        description
+      })
+    })
   }
 
-  public editNote(request: GenericRequest<null, null, INote>): Promise<null> {
-    return this.adminFetch(`/api/admin/notes/edit`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-      body: JSON.stringify(request.body),
-    });
+  editNote(id: number, name?: string, description?: string): Promise<null> {
+    return this.adminFetch(`${notesRout}/edit`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        id,
+        name,
+        description
+      })
+    })
   }
 
-  public deleteNote(
-    request: GenericRequest<{ id: number }, null, null>
-  ): Promise<null> {
-    return this.adminFetch(`/api/admin/notes/delete/${request.path.id}`, {
-      method: "DELETE",
-    });
+  deleteNote(id: number): Promise<null> {
+    return this.adminFetch(`${notesRout}/delete/${id}`)
   }
 
   getCategory = (id: number): Promise<ICategory> => {
-    return this.fetch(`${notesRoute}/category/${id}`);
-  };
+    return this.fetch(`${notesRout}/category/${id}`)
+  }
 
   getAllCategories = (): Promise<ICategory[]> => {
-    return this.fetch(`${notesRoute}/${categoriesRoute}`);
-  };
+    return this.fetch(`${notesRout}/${categoriesRout}`)
+  }
 
   createNewCategory = (name: string): Promise<null> => {
-    return this.adminFetch(`${notesRoute}/${categoriesRoute}/add`, {
-      method: "POST",
+    return this.adminFetch(`${notesRout}/${categoriesRout}/add`, {
+      method: 'POST',
       body: JSON.stringify({
-        name,
-      }),
-    });
-  };
+        name
+      })
+    })
+  }
 
   editCategory = (id: number, newName: string): Promise<null> => {
-    return this.adminFetch(`${notesRoute}/${categoriesRoute}/edit`, {
-      method: "PUT",
+    return this.adminFetch(`${notesRout}/${categoriesRout}/edit`, {
+      method: 'PUT',
       body: JSON.stringify({
         id,
-        name: newName,
-      }),
-    });
-  };
+        name: newName
+      })
+    })
+  }
 }

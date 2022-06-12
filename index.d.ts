@@ -75,7 +75,7 @@ type Movie = {
   author: string;
 };
 
-interface INote {
+interface INotes {
   id: number;
   title: string;
   text: string;
