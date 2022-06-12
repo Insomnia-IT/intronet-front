@@ -9,7 +9,7 @@ class NotesStore {
   Notes = new ObservableDB<INotes>('notes');
 
   @Observable
-  IsLoading: boolean = true
+  IsLoading: boolean = false
 
   get isLoading() {
     return this.IsLoading
@@ -21,7 +21,6 @@ class NotesStore {
 
   // Загрузка первых 20 объявлений каждой категории
   public load = async () => {
-    this.IsLoading = true
     let notes: INotes[]
     try {
       notes = await this.api.getAllNotes()
@@ -43,7 +42,7 @@ class NotesStore {
 
   // Отдаёт стор с объявлениями
   get notes() {
-    return this.Notes.toArray()
+    return this.Notes.toArray().sort((a, b) => b.id - a.id)
   }
 
   getNote(id: number) {
