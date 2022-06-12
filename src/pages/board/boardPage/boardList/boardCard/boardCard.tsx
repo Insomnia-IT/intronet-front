@@ -15,13 +15,15 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import * as React from "react";
 import { NoteModal } from "src/components";
 import { useAppContext } from "src/helpers/AppProvider";
 import { notesStore } from "src/stores";
+import * as React from "react";
 import { NoteText } from "./noteText/noteText";
+import { BtnCopy } from "./btnCopy/btnCopy";
+import { Box } from "@chakra-ui/react";
 
-export interface INotesCard extends StackProps {
+export interface INoteCard extends StackProps {
   notesInfoObj: INote;
   activeColor: string;
 }
@@ -30,12 +32,12 @@ export const BoardCard = ({
   notesInfoObj,
   activeColor,
   ...rest
-}: INotesCard) => {
-  const toast = useToast();
-
+}: INoteCard) => {
   const app = useAppContext();
 
-  const { title, text, categoryId, id } = notesInfoObj;
+  const { title, text, id, categoryId } = notesInfoObj;
+
+  const toast = useToast();
 
   const handleEditIconButtonClick = async () => {
     try {
@@ -90,46 +92,56 @@ export const BoardCard = ({
   };
 
   return (
-    <VStack
-      align="flex-start"
+    <Box
       px={4}
       py={5}
-      spacing={2}
-      border="1px solid"
+      border={"1px solid"}
       borderColor={activeColor}
       borderRadius="2xl"
       {...rest}
     >
-      <Heading as="h3" size={"md"}>
-        {title}
-      </Heading>
-      <NoteText text={text} />
-      <HStack gap="2">
-        <IconButton
-          icon={<EditIcon />}
-          aria-label="Edit note"
-          onClick={handleEditIconButtonClick}
+      <VStack align={"flex-start"} spacing={2} pos={"relative"}>
+        <Heading as="h3" size={"md"}>
+          {title}
+        </Heading>
+        <NoteText text={text} />
+        <HStack gap="2">
+          <IconButton
+            icon={<EditIcon />}
+            aria-label="Edit note"
+            onClick={handleEditIconButtonClick}
+          />
+          <Popover placement="bottom" closeOnBlur={false}>
+            <PopoverTrigger>
+              <IconButton
+                icon={<DeleteIcon />}
+                colorScheme="red"
+                aria-label="Delete note"
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody>Вы уверены, что хотите удалить запись?</PopoverBody>
+              <PopoverFooter>
+                <Button colorScheme="red" onClick={handleDeleteIconButtonClick}>
+                  Удалить
+                </Button>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        </HStack>
+        <BtnCopy
+          noteId={id}
+          categoryId={categoryId}
+          _before={{
+            display: "none",
+          }}
+          h={"16px"}
+          w={"max-content"}
+          mt={0}
         />
-        <Popover placement="bottom" closeOnBlur={false}>
-          <PopoverTrigger>
-            <IconButton
-              icon={<DeleteIcon />}
-              colorScheme="red"
-              aria-label="Delete note"
-            />
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody>Вы уверены, что хотите удалить запись?</PopoverBody>
-            <PopoverFooter>
-              <Button colorScheme="red" onClick={handleDeleteIconButtonClick}>
-                Удалить
-              </Button>
-            </PopoverFooter>
-          </PopoverContent>
-        </Popover>
-      </HStack>
-    </VStack>
+      </VStack>
+    </Box>
   );
 };
