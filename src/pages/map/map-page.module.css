@@ -14,3 +14,13 @@
   position: relative;
   flex: 1;
 }
+
+.search{
+  position: absolute;
+  top: 0;
+  padding: 6px;
+  z-index: 1;
+  width: 100%;
+}
+
+

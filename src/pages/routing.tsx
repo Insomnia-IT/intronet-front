@@ -5,7 +5,6 @@ import { MapPage } from "./map/map-page";
 import { VotingPage } from "./voting/voting-page";
 import { TimetablePage } from "./timetable/timetable-page";
 import { LoginPage } from "./login/login-page";
-import NotePage from "./board/notePage/notePage";
 import { AdminLocationsPage } from "./admin/locations/admin.locations-page";
 
 export const ROUTES = [
@@ -55,7 +54,7 @@ export function Routing() {
         <LoginPage />
       </Route>
       <Route path="/board/note">
-        <NotePage />
+        <div>Where is note page?</div>
       </Route>
       <Route path="/admin/locations">
         <AdminLocationsPage />
