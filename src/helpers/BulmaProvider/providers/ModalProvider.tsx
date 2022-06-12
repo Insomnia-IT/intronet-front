@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { ModalProps } from "src/components/modals";
+import { ModalProps } from "../../../components/modals";
 
 const ModalContext = createContext<{
   modal: JSX.Element;
@@ -46,7 +46,7 @@ export const ModalProvider = ({
         });
         return response;
       } catch (error) {
-        throw error;
+        return error;
       }
     },
     []
@@ -61,7 +61,6 @@ export const ModalProvider = ({
     <ModalContext.Provider
       value={{
         modal,
-        // @ts-ignore
         show,
         hide,
       }}

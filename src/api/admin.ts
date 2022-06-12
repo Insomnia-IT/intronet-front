@@ -9,7 +9,6 @@ export class AdminApi extends BaseApi {
   public adminFetch(url: string, options?: RequestInit): Promise<any> {
     options.headers = {
       Authorization: "Fake",
-      ...options.headers,
     };
     return this.fetch(url, options);
   }

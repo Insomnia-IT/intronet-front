@@ -1,9 +1,10 @@
 import React from "react";
 import { QRReader } from "../qr/qr-reader";
+import * as Bulma from "react-bulma-components";
 import { Account, account } from "../../../stores";
 import { Observable } from "cellx-decorators";
 import { cellState } from "../../../helpers/cell-state";
-import { Box, Editable, Flex, CloseButton, Button } from "@chakra-ui/react";
+import { Box, Editable, Flex, CloseButton } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, CloseIcon } from "@chakra-ui/icons";
 
 function AccountInfo(acc: Account) {
@@ -48,9 +49,9 @@ export class UserLogin extends React.Component {
         )}
         {!this.state.isAdding && this.state.accounts.map(AccountInfo)}
         {!this.shouldShowReader && (
-          <Button onClick={() => (this.isAdding = true)}>
+          <Bulma.Button onClick={() => (this.isAdding = true)}>
             Добавить аккаунт
-          </Button>
+          </Bulma.Button>
         )}
       </Flex>
     );
