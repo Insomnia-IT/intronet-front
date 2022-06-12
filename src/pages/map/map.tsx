@@ -86,7 +86,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
       });
       dragHandler.on("transform", (e) => {
         const { selected } = this.props;
-        if (selected) {
+        if (this.props.isMovingEnabled && selected) {
           selected.point = new TransformMatrix()
             .Apply(this.Transform.Inverse())
             .Apply(e.data as TransformMatrix)
