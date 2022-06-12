@@ -12,7 +12,7 @@ import {
 import React from "react";
 import { ROUTES } from "src/pages/routing";
 import { Link as WouterLink } from "wouter";
-import { MdNavbar } from "./MdNavbar/MdNavbar";
+import { MdNavbar } from "./MdNavbar";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();

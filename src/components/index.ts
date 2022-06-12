@@ -1,2 +1,2 @@
 export * from "./modals";
-export * from "./Navbar";
+export { Navbar } from "./Navbar";

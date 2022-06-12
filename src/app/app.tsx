@@ -1,6 +1,6 @@
 import { Box, ChakraProvider, Flex } from "@chakra-ui/react";
 import React from "react";
-import { Navbar } from "src/components/Navbar/Navbar";
+import { Navbar } from "src/components";
 import { AppProvider, Modals } from "src/helpers/AppProvider";
 import { theme } from "src/theme/theme";
 import { Routing } from "../pages/routing";

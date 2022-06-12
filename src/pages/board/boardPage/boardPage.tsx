@@ -1,14 +1,11 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, IconButton, useToast } from "@chakra-ui/react";
+import { Box, Container, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NoteModal } from "src/components/modals/NoteModal";
 import { useAppContext } from "src/helpers/AppProvider";
 import { notesStore } from "src/stores";
-import { Container, VStack } from "@chakra-ui/react";
 import BoardList from "./boardList/boardList";
-import styles from "./boardPage.module.scss";
 import Categories from "./categories/categories";
-import Pageing from "./pageing/pageing";
 import Header from "./header/header";
 
 export const BoardPage: React.FC = () => {
