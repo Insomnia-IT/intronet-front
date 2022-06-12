@@ -1,6 +1,8 @@
 import React, { PropsWithChildren } from "react";
-import { ModalProvider } from "./providers";
+import { AuthProvider, ModalProvider } from "./providers";
 
-export const AppProvider = ({ children }: PropsWithChildren<any>) => (
-  <ModalProvider>{children}</ModalProvider>
+export const AppProvider = ({ children }: PropsWithChildren<{}>) => (
+  <ModalProvider>
+    <AuthProvider>{children}</AuthProvider>
+  </ModalProvider>
 );

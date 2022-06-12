@@ -1,6 +1,7 @@
-import { useModalContext } from "src/helpers/AppProvider/providers/ModalProvider";
+import { useAuthContext, useModalContext } from "./providers";
 
 export const useAppContext = () => {
   const modals = useModalContext();
-  return { modals };
+  const auth = useAuthContext();
+  return { modals, auth };
 };
