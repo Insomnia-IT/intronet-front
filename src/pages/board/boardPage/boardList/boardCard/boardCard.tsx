@@ -40,7 +40,12 @@ export const BoardCard = ({
   const handleEditIconButtonClick = async () => {
     try {
       const editedNote = await app.modals.show<INote>((props) => (
-        <NoteModal {...props} title={title} text={text} />
+        <NoteModal
+          {...props}
+          title={title}
+          text={text}
+          categoryId={categoryId}
+        />
       ));
       await notesStore.editNote({ id, categoryId, ...editedNote });
       toast({

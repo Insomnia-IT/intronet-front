@@ -49,11 +49,11 @@ class NotesStore {
    * Добавляет запись
    * @param {INote} body Тело реквеста
    */
-  public addNote = async (
-    body: Partial<INote> & Pick<INote, "title" | "text">
-  ) => {
+  public addNote = async (body: INote) => {
     this.IsLoading = true;
-    await this.api.createNote(body.title, body.text);
+    await this.api.createNote({
+      body,
+    });
     this.load();
     this.IsLoading = false;
   };
@@ -64,7 +64,9 @@ class NotesStore {
    */
   public editNote = async (body: INote) => {
     this.IsLoading = true;
-    await this.api.editNote(body);
+    await this.api.editNote({
+      body,
+    });
     this.Notes.update(body);
     this.IsLoading = false;
   };
@@ -74,7 +76,9 @@ class NotesStore {
    */
   public removeNote = async (path: { id: number }) => {
     this.IsLoading = true;
-    await this.api.deleteNote(path.id);
+    await this.api.deleteNote({
+      path,
+    });
     this.Notes.remove(path.id);
     this.IsLoading = false;
   };

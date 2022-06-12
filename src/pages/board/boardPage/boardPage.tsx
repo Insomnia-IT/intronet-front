@@ -1,7 +1,7 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Container, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React from "react";
-import { NoteModal } from "src/components/modals/NoteModal";
+import { NoteModal } from "src/components";
 import { useAppContext } from "src/helpers/AppProvider";
 import { notesStore } from "src/stores";
 import BoardList from "./boardList/boardList";
