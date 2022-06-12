@@ -54,9 +54,7 @@ export class MapPage extends React.PureComponent {
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />
-        <div className={styles.search}>
-          <LocationSearch onSelect={this.selectLocation} />
-        </div>
+        <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>

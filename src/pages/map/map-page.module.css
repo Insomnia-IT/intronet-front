@@ -18,9 +18,18 @@
 .search{
   position: absolute;
   top: 0;
-  padding: 6px;
+  padding: 16px;
   z-index: 1;
   width: 100%;
+  pointer-events: none;
+  max-height: 50vh;
 }
 
+.search > * {
+  pointer-events: initial;
+}
 
+.searchOpened {
+  composes: search;
+  background: white;
+}

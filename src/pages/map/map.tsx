@@ -156,7 +156,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
     if (
       view.X > rect.left + rect.width / 10 &&
       view.X < rect.right - rect.width / 10 &&
-      view.Y > rect.height + rect.height / 10 &&
+      view.Y > rect.top + rect.height / 10 &&
       view.Y < rect.bottom + rect.height / 10
     ) {
       return;
