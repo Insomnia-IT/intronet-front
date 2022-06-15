@@ -7,6 +7,7 @@ import { cellState } from "../../helpers/cell-state";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
+import { LocationSearch } from "./location-search";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -46,13 +47,14 @@ export class MapPage extends React.PureComponent {
       <div className={styles.container}>
         <MapComponent
           items={this.state.items}
-          isMovingEnabled={true}
+          isMovingEnabled={false}
           selected={this.state.selected}
           image={this.state.image}
           onClick={console.log}
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />
+        <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>
@@ -69,6 +71,11 @@ export class MapPage extends React.PureComponent {
       </div>
     );
   }
+
+  selectLocation = (location: InsomniaLocation) => {
+    const mapItem = this.state.items.find((x) => x.id == location.id);
+    this.selected = mapItem;
+  };
 
   updateLocation = (x: MapItem) => {
     const location = locationsStore.Locations.get(x.id);

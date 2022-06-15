@@ -82,11 +82,12 @@ export class MapComponent extends React.PureComponent<MapProps> {
       const zoomHandler = new ZoomHandler(element);
       this.handlers = [dragHandler, zoomHandler];
       zoomHandler.on("transform", (e) => {
-        this.Transform = e.data.Apply(this.Transform);
+        const newTransform = e.data.Apply(this.Transform) as TransformMatrix;
+        this.setTransform(newTransform);
       });
       dragHandler.on("transform", (e) => {
         const { selected } = this.props;
-        if (selected) {
+        if (this.props.isMovingEnabled && selected) {
           selected.point = new TransformMatrix()
             .Apply(this.Transform.Inverse())
             .Apply(e.data as TransformMatrix)
@@ -95,7 +96,8 @@ export class MapComponent extends React.PureComponent<MapProps> {
           this.forceUpdate();
           this.props.onChange(selected);
         } else {
-          this.Transform = e.data.Apply(this.Transform);
+          const newTransform = e.data.Apply(this.Transform) as TransformMatrix;
+          this.setTransform(newTransform);
         }
       });
     } else {
@@ -103,12 +105,25 @@ export class MapComponent extends React.PureComponent<MapProps> {
     }
   };
 
+  setTransform(transform: TransformMatrix) {
+    const scale = transform.Matrix.GetScaleFactor();
+    if (scale > 2 || scale < this.minScale) {
+      return;
+    }
+    this.Transform = transform;
+  }
+  minScale = 1;
+
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     const aspectRatio = rect.width / rect.height;
     const imageRatio = image.width / image.height;
     const scale =
       imageRatio < aspectRatio
+        ? rect.width / image.width
+        : rect.height / image.height;
+    this.minScale =
+      imageRatio > aspectRatio
         ? rect.width / image.width
         : rect.height / image.height;
     this.Transform = new TransformMatrix()
@@ -130,6 +145,27 @@ export class MapComponent extends React.PureComponent<MapProps> {
     if (prevProps.image != this.props.image && this.root) {
       this.initTransform(this.props.image, this.root);
     }
+    if (this.props.selected && prevProps.selected != this.props.selected) {
+      this.scrollTo(this.props.selected);
+    }
+  }
+
+  scrollTo(x: MapItem) {
+    const rect = this.root.getBoundingClientRect();
+    const view = this.Transform.Invoke(x.point);
+    if (
+      view.X > rect.left + rect.width / 10 &&
+      view.X < rect.right - rect.width / 10 &&
+      view.Y > rect.top + rect.height / 10 &&
+      view.Y < rect.bottom + rect.height / 10
+    ) {
+      return;
+    }
+    const shift = {
+      X: (rect.left + rect.right) / 2 - view.X,
+      Y: (rect.top + rect.bottom) / 2 - view.Y,
+    };
+    this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
 
   onClick = (event: React.SyntheticEvent<HTMLDivElement, MouseEvent>) => {

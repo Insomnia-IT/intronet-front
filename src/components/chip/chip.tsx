@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./chip.module.css";
 export function Chip(props: ChipProps) {
   if (!props.icon && !props.value) {
+    const classNames = [styles.chip, props.className];
+    if (props.active)
+      classNames.push(props.activeClassName ?? styles.chipActive);
     return (
-      <div
-        onClick={props.onClick}
-        className={props.active ? styles.chipActive : styles.chip}
-      >
+      <div onClick={props.onClick} className={classNames.join(" ")}>
         {props.children}
       </div>
     );
@@ -17,10 +17,8 @@ type ChipProps = {
   children: any;
   icon?: any;
   value?: number;
-  style?: {
-    color: string;
-    bg: string;
-  };
+  activeClassName?: string;
+  className?: string;
   active: boolean;
   onClick();
 };

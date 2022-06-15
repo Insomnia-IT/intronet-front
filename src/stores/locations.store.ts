@@ -81,10 +81,23 @@ class LocationsStore {
 
   private async update() {
     const [tags, locations] = await Promise.all([
-      this.api.getTags().catch(() => []),
+      this.api.getTags().catch(() => [
+        {
+          id: 1,
+          name: "Избранное",
+        },
+        {
+          id: 2,
+          name: "Экраны",
+        },
+        {
+          id: 3,
+          name: "Душ",
+        },
+      ]),
       this.api.getLocations().catch(() => []),
     ]);
-    this.Tags.merge(tags, "local");
+    this.Tags.merge(tags, "server");
     this.Locations.merge(locations, "local");
   }
 
