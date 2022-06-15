@@ -53,9 +53,6 @@ export function Routing() {
       <Route path="/user-login">
         <LoginPage />
       </Route>
-      <Route path="/board/note">
-        <div>Where is note page?</div>
-      </Route>
       <Route path="/admin/locations">
         <AdminLocationsPage />
       </Route>
