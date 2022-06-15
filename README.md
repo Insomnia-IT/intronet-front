@@ -4,6 +4,8 @@ Web framework for building fast web application with business logic dedicated in
 
 [WIP]
 
+prod: https://intronet.insomniafest.ru/
+
 build: 
   `npm run ci`
    собирает docker image `insomnia/intronet-front` 
