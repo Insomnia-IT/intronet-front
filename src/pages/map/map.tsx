@@ -112,23 +112,20 @@ export class MapComponent extends React.PureComponent<MapProps> {
     }
     this.Transform = transform;
   }
+
   minScale = 1;
 
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     const aspectRatio = rect.width / rect.height;
     const imageRatio = image.width / image.height;
-    const scale =
-      imageRatio < aspectRatio
-        ? rect.width / image.width
-        : rect.height / image.height;
     this.minScale =
-      imageRatio > aspectRatio
+      imageRatio < aspectRatio
         ? rect.width / image.width
         : rect.height / image.height;
     this.Transform = new TransformMatrix()
       .Translate({ X: rect.width / 2, Y: rect.height / 2 })
-      .Scale(scale)
+      .Scale(this.minScale)
       .Translate({
         X: -image.width / 2,
         Y: -image.height / 2,

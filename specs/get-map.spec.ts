@@ -8,7 +8,7 @@ const lngs = [35.04889, 35.114379];
 const converter = new TileConverter();
 
 function geoToIJ(geo: { lat; lng }, level: number) {
-  const { x, y } = converter.fromGeo(geo);
+  const { X: x, Y: y } = converter.fromGeo(geo);
   console.log(x, (1 - y) * 2 ** level);
   return {
     i: Math.floor(x * 2 ** level),
@@ -37,14 +37,16 @@ describe("maps load", () => {
       for (let j = leftTop.j; j < rightBottom.j + 1; j++) {
         const url = getUrl(z, i, j);
         console.log(url);
-        const image = await loadImage(url);
-        context.drawImage(
-          image,
-          (i - leftTop.i) * 256,
-          (j - leftTop.j) * 256,
-          256,
-          256
-        );
+        try {
+          const image = await loadImage(url);
+          context.drawImage(
+            image,
+            (i - leftTop.i) * 256,
+            (j - leftTop.j) * 256,
+            256,
+            256
+          );
+        } catch (e) {}
       }
     const out = fs.createWriteStream(
       __dirname +
