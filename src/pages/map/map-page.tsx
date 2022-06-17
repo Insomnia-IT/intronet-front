@@ -18,7 +18,7 @@ export class MapPage extends React.PureComponent {
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
-        ? mapStore.MapGeoConverter.fromGeo({
+        ? mapStore.Map2GeoConverter.fromGeo({
             lat: x.lat,
             // @ts-ignore
             lng: x.lng,
@@ -36,7 +36,7 @@ export class MapPage extends React.PureComponent {
   }
 
   state = cellState(this, {
-    image: () => (this.isMap ? mapStore.Map : mapStore.Schema),
+    image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
     items: () => this.mapItems,
     selected: () => this.selected,
   });
@@ -81,7 +81,7 @@ export class MapPage extends React.PureComponent {
     const location = locationsStore.Locations.get(x.id);
     if (this.isMap) {
       // @ts-ignore
-      Object.assign(location, mapStore.MapGeoConverter.toGeo(x.point));
+      Object.assign(location, mapStore.Map2GeoConverter.toGeo(x.point));
     } else {
       // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
