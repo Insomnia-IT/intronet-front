@@ -110,3 +110,9 @@ interface AuditoryElement {
   IsCanceled: bool; //Если = true, значит отменено.
   Changes: string; //Изменения в расписании по данному пункту.
 }
+
+interface IArticle {
+  id: number
+  title: string
+  text: string
+}
