@@ -7,6 +7,7 @@ import { cellState } from "../../helpers/cell-state";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
+import { LocationSearch } from "./location-search";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -17,7 +18,7 @@ export class MapPage extends React.PureComponent {
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
-        ? mapStore.MapGeoConverter.fromGeo({
+        ? mapStore.Map2GeoConverter.fromGeo({
             lat: x.lat,
             // @ts-ignore
             lng: x.lng,
@@ -35,7 +36,7 @@ export class MapPage extends React.PureComponent {
   }
 
   state = cellState(this, {
-    image: () => (this.isMap ? mapStore.Map : mapStore.Schema),
+    image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
     items: () => this.mapItems,
     selected: () => this.selected,
   });
@@ -46,13 +47,14 @@ export class MapPage extends React.PureComponent {
       <div className={styles.container}>
         <MapComponent
           items={this.state.items}
-          isMovingEnabled={true}
+          isMovingEnabled={false}
           selected={this.state.selected}
           image={this.state.image}
           onClick={console.log}
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />
+        <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.layers}>
           <Button onClick={() => (this.isMap = !this.isMap)}>
             <Icon>
@@ -70,11 +72,16 @@ export class MapPage extends React.PureComponent {
     );
   }
 
+  selectLocation = (location: InsomniaLocation) => {
+    const mapItem = this.state.items.find((x) => x.id == location.id);
+    this.selected = mapItem;
+  };
+
   updateLocation = (x: MapItem) => {
     const location = locationsStore.Locations.get(x.id);
     if (this.isMap) {
       // @ts-ignore
-      Object.assign(location, mapStore.MapGeoConverter.toGeo(x.point));
+      Object.assign(location, mapStore.Map2GeoConverter.toGeo(x.point));
     } else {
       // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
