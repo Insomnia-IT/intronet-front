@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { ModalProps } from "src/components/modals";
 
-const ModalContext = createContext<{
+export const ModalContext = createContext<{
   modal: JSX.Element;
   show: <T = any>(
     callback: (props: ModalProps<T>) => JSX.Element

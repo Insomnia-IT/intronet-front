@@ -117,6 +117,11 @@ class LocationsStore {
     }));
   }
 
+  addLocation(location: InsomniaLocationFull) {
+    // @ts-ignore
+    this.Locations.add({ ...location });
+  }
+
   updateLocation(x: InsomniaLocationFull) {
     this.Locations.update({
       ...x,
