@@ -117,3 +117,8 @@ type Direction = {
   name: string;
   image: string;
 };
+interface IArticle {
+  id: number;
+  title: string;
+  text: string;
+}

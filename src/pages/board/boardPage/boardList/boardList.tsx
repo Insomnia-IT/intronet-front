@@ -1,66 +1,62 @@
-import * as React from 'react'
-import styles from './boardList.module.scss'
-import { BoardCard } from './boardCard/boardCard';
-import { Observer } from 'cellx-react';
-import { notesStore, pagesStore, categoriesStore } from 'src/stores';
-import Loading from 'src/loading/loading';
-import { VStack } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
+import * as React from "react";
+import { BoardCard } from "./boardCard/boardCard";
+import { Observer } from "cellx-react";
+import { notesStore, pagesStore, categoriesStore } from "src/stores";
+import { VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Intersection } from "../../../../components/intersection";
+import { scrollToRef } from '../../../../helpers/scrollToRef';
 
 @Observer
 export default class BoardList extends React.Component<{}, {}> {
-  private searchParams: URLSearchParams
-  private activeNote: React.RefObject<HTMLLIElement>
+  private searchParams: URLSearchParams;
+  private activeNote: React.RefObject<HTMLLIElement>;
 
   constructor(props) {
-    super(props)
-    this.searchParams = new URLSearchParams(window.location.search)
-    this.activeNote = React.createRef()
+    super(props);
+    this.searchParams = new URLSearchParams(window.location.search);
+    this.activeNote = React.createRef();
   }
 
   componentDidMount() {
-    notesStore.load()
-    if (this.activeNote.current) this.activeNote.current.scrollIntoView({ behavior: 'smooth' })
-    console.log(this.activeNote.current)
+    notesStore.load();
+    if (this.activeNote.current) scrollToRef(this.activeNote, true)
   }
 
   componentDidUpdate(): void {
-    if (this.activeNote.current) this.activeNote.current.scrollIntoView()
-    console.log(this.activeNote.current)
+    if (this.activeNote.current) scrollToRef(this.activeNote, true)
   }
 
   render() {
     return (
-      <Box
-        w={'100%'}
-        className={notesStore.isLoading ? styles.isLoading : ''}
-      >
-        <Loading isLoading={notesStore.isLoading}>
-          {pagesStore.notes.length === 0 && (<h2 style={{ textAlign: 'center' }}>Объявлений пока нет!</h2>)}
-          <VStack
-            as={'ul'}
-            align={'streach'}
-            spacing={4}
-          >
-            {pagesStore.notes.map(note => {
-              const activeNote = parseInt(this.searchParams.get('id'))
-              const ref = note.id === activeNote ? this.activeNote : null
+      <Box w={"100%"}>
+        {pagesStore.notes.length === 0 && (
+          <h2 style={{ textAlign: "center" }}>Объявлений пока нет!</h2>
+        )}
+        <VStack
+          as={"ul"}
+          align={"streach"}
+          spacing={4}
+        >
+          {pagesStore.notes.map((note) => {
+            const activeNote = parseInt(this.searchParams.get("id"));
+            const ref = note.id === activeNote ? this.activeNote : null;
 
-              return (
-                <li
-                  key={note.id}
-                  ref={ref}
-                >
+            return (
+              <li key={note.id} ref={ref}>
+                <Intersection width="100%" height="200px">
                   <BoardCard
-                    notesInfoObj={note}
-                    activeColor={categoriesStore.getCategoryColor(note.categoryId)}
+                    noteInfoObj={note}
+                    activeColor={categoriesStore.getCategoryColor(
+                      note.categoryId
+                    )}
                   />
-                </li>
-              )
-            })}
-          </VStack>
-        </Loading>
+                </Intersection>
+              </li>
+            );
+          })}
+        </VStack>
       </Box>
-    )
+    );
   }
 }

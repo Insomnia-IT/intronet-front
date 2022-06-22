@@ -6,12 +6,12 @@ import { Box } from '@chakra-ui/react';
 
 
 export interface INotesCard extends StackProps {
-  notesInfoObj: INotes
+  noteInfoObj: INotes
   activeColor: string
 }
 
-export const BoardCard = ({ notesInfoObj, activeColor, ...res }: INotesCard) => {
-  const { title, text, id, categoryId } = notesInfoObj
+export const BoardCard = ({ noteInfoObj, activeColor, ...res }: INotesCard) => {
+  const { title, text, id, categoryId } = noteInfoObj
 
   return (
     <Box

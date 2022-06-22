@@ -20,7 +20,7 @@ class NotesStore {
     this.IsLoading = !this.isLoading;
   };
 
-  // Загрузка первых 20 объявлений каждой категории
+  // Загрузка всех объявленй всех категорий
   public load = async () => {
     this.IsLoading = true;
     let notes: INotes[];
@@ -29,9 +29,13 @@ class NotesStore {
       this.Notes.clear();
       this.Notes.addRange(notes);
       this.IsLoading = false;
-    } catch {
-      this.IsLoading = false;
+    } catch (err) {
+      if (err.message) {
+        console.log(err);
+        this.Notes.clear();
+      }
     }
+    this.IsLoading = false;
   };
 
   // Загрузка новых объявлений выбранной категории
