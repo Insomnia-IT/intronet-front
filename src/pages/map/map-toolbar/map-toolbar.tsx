@@ -27,14 +27,7 @@ export function MapToolbar(props: MapToolbarProps) {
       const editedLocation = await app.modals.show<InsomniaLocationFull>(
         (props) => (
           // @ts-ignore
-          <LocationModal
-            {...props}
-            {...location}
-            directionId={
-              // @ts-ignore
-              Array.isArray(location.directionId) ? null : location.directionId
-            }
-          />
+          <LocationModal {...props} {...location} />
         )
       );
       locationsStore.updateLocation(editedLocation);
