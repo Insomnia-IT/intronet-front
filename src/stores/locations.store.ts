@@ -113,7 +113,7 @@ class LocationsStore {
       ...x,
       // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
-      directionId: [],
+      directionId: 0,
     }));
   }
 

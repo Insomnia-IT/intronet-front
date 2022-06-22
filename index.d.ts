@@ -60,7 +60,7 @@ type MapItem = {
 
 type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
   tags: Tag[];
-  directionId: number[];
+  directionId: number;
 };
 
 type Tag = {

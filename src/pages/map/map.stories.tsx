@@ -15,7 +15,7 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "",
     id: 3,
-    directionId: [],
+    directionId: 0,
   },
   {
     lat: 54.68128095334499,
@@ -27,7 +27,7 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "camping",
     id: 2,
-    directionId: [],
+    directionId: 0,
   },
   {
     lat: 54.67735017337062,
@@ -39,7 +39,7 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "cinema",
     id: 1,
-    directionId: [],
+    directionId: 0,
   },
 ];
 
