@@ -27,10 +27,10 @@ export class MapPage extends React.PureComponent {
     try {
       // TODO: fix class component context
       // @ts-ignore
-      const newLocation = await this.context.show<InsomniaLocationFull>(
-        (props) => <LocationModal {...props} />
-      );
-      locationsStore.addLocation(newLocation);
+      const newLocation = await this.context.show<InsomniaLocation>((props) => (
+        <LocationModal {...props} />
+      ));
+      locationsStore.Locations.add(newLocation);
       // TODO: add toast
     } catch (error) {
       // TODO: add toast
