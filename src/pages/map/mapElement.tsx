@@ -25,7 +25,7 @@ export function MapElement(props: {
         }}
       >
         {icon}
-        <text textAnchor="middle" y="25" fontSize="12px">
+        <text textAnchor="middle" y="25" fontSize="10px">
           {props.item.title}
         </text>
       </g>

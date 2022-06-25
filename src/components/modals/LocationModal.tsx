@@ -107,33 +107,25 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                     />
                   </FormControl>
 
-                  {/*<FormControl isRequired>*/}
-                  {/*  <FormLabel htmlFor="x">Координаты Х</FormLabel>*/}
-                  {/*  <Field as={Input} id="x" name="x" type="number" />*/}
-                  {/*</FormControl>*/}
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="lat">Широта</FormLabel>
+                    <Field as={Input} id="lat" name="lat" type="number" />
+                  </FormControl>
 
-                  {/*<FormControl isRequired>*/}
-                  {/*  <FormLabel htmlFor="y">Координаты Y</FormLabel>*/}
-                  {/*  <Field as={Input} id="y" name="y" type="number" />*/}
-                  {/*</FormControl>*/}
-
-                  {/*<FormControl isRequired>*/}
-                  {/*  <FormLabel htmlFor="lat">Широта</FormLabel>*/}
-                  {/*  <Field as={Input} id="lat" name="lat" type="number" />*/}
-                  {/*</FormControl>*/}
-
-                  {/*<FormControl isRequired>*/}
-                  {/*  <FormLabel htmlFor="lon">Долгота</FormLabel>*/}
-                  {/*  <Field as={Input} id="lon" name="lon" type="number" />*/}
-                  {/*</FormControl>*/}
-                  {/*<Button*/}
-                  {/*  onClick={() => {*/}
-                  {/*    props.setFieldValue("lat", center.lat);*/}
-                  {/*    props.setFieldValue("lon", center.lon);*/}
-                  {/*  }}*/}
-                  {/*>*/}
-                  {/*  To Сenter*/}
-                  {/*</Button>*/}
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="lon">Долгота</FormLabel>
+                    <Field as={Input} id="lon" name="lon" type="number" />
+                  </FormControl>
+                  <Button
+                    onClick={() => {
+                      props.setFieldValue("lat", center.lat);
+                      props.setFieldValue("lon", center.lon);
+                      props.setFieldValue("x", 640);
+                      props.setFieldValue("y", 455);
+                    }}
+                  >
+                    Поставить по центру карты
+                  </Button>
                   <FormControl>
                     <FormLabel htmlFor="image">Значок</FormLabel>
                     <HStack>
