@@ -4,7 +4,6 @@ import {
   FormControl,
   FormLabel,
   HStack,
-  Image,
   Input,
   Modal,
   ModalBody,
@@ -22,6 +21,12 @@ import React, { FC, useEffect } from "react";
 import { directionsStore } from "src/stores";
 import { locationsStore } from "src/stores/locations.store";
 import { ModalProps } from ".";
+import { getIconByDirectionId } from "../../pages/map/icons/icons";
+
+const center = {
+  lat: 54.68008397222222,
+  lon: 35.08622484722222,
+};
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
@@ -32,10 +37,10 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
   description,
   directionId,
   tags,
-  x,
-  y,
-  lat,
-  lng,
+  x = 640, // середина карты
+  y = 455,
+  lat = center.lat,
+  lon = center.lon,
   ...modalProps
 }) => {
   const toast = useToast();
@@ -76,7 +81,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
               x: x ?? "",
               y: y ?? "",
               lat: lat ?? "",
-              lng: lng ?? "",
+              lon: lon ?? "",
             } as InsomniaLocationFull
           }
           onSubmit={(newLocation) => modalProps.success(newLocation)}
@@ -102,43 +107,54 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                     />
                   </FormControl>
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="x">Координаты Х</FormLabel>
-                    <Field as={Input} id="x" name="x" type="number" />
-                  </FormControl>
+                  {/*<FormControl isRequired>*/}
+                  {/*  <FormLabel htmlFor="x">Координаты Х</FormLabel>*/}
+                  {/*  <Field as={Input} id="x" name="x" type="number" />*/}
+                  {/*</FormControl>*/}
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="y">Координаты Y</FormLabel>
-                    <Field as={Input} id="y" name="y" type="number" />
-                  </FormControl>
+                  {/*<FormControl isRequired>*/}
+                  {/*  <FormLabel htmlFor="y">Координаты Y</FormLabel>*/}
+                  {/*  <Field as={Input} id="y" name="y" type="number" />*/}
+                  {/*</FormControl>*/}
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="lat">Широта</FormLabel>
-                    <Field as={Input} id="lat" name="lat" type="number" />
-                  </FormControl>
+                  {/*<FormControl isRequired>*/}
+                  {/*  <FormLabel htmlFor="lat">Широта</FormLabel>*/}
+                  {/*  <Field as={Input} id="lat" name="lat" type="number" />*/}
+                  {/*</FormControl>*/}
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="lng">Долгота</FormLabel>
-                    <Field as={Input} id="lng" name="lng" type="number" />
-                  </FormControl>
+                  {/*<FormControl isRequired>*/}
+                  {/*  <FormLabel htmlFor="lon">Долгота</FormLabel>*/}
+                  {/*  <Field as={Input} id="lon" name="lon" type="number" />*/}
+                  {/*</FormControl>*/}
+                  {/*<Button*/}
+                  {/*  onClick={() => {*/}
+                  {/*    props.setFieldValue("lat", center.lat);*/}
+                  {/*    props.setFieldValue("lon", center.lon);*/}
+                  {/*  }}*/}
+                  {/*>*/}
+                  {/*  To Сenter*/}
+                  {/*</Button>*/}
                   <FormControl>
                     <FormLabel htmlFor="image">Значок</FormLabel>
                     <HStack>
                       {directionsStore.Directions.toArray().map((direction) => (
-                        <Image
-                          boxSize="24px"
-                          border={
-                            // @ts-ignore
-                            direction.id === props.values.directionId
-                              ? "1px"
-                              : undefined
-                          }
-                          src={direction.image}
-                          alt="Location department image"
+                        <svg
+                          width={24}
+                          height={24}
+                          viewBox="-15 -15 30 30"
+                          key={direction.id}
+                          style={{
+                            border:
+                              direction.id === props.values.directionId
+                                ? "solid 1px"
+                                : undefined,
+                          }}
                           onClick={() =>
                             props.setFieldValue("directionId", direction.id)
                           }
-                        />
+                        >
+                          {getIconByDirectionId(direction.id)}
+                        </svg>
                       ))}
                     </HStack>
                   </FormControl>

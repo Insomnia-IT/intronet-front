@@ -1,5 +1,5 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, IconButton } from "@chakra-ui/react";
+import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
+import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
@@ -12,12 +12,15 @@ import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
+import { getIconByDirectionId } from "./icons/icons";
 
 export class MapPage extends React.PureComponent {
   @Observable
   isMap = true;
   @Observable
   selected: MapItem = null;
+  @Observable
+  isEditing = false;
   static contextType = ModalContext;
 
   handleAddIconButtonClick = async () => {
@@ -37,12 +40,9 @@ export class MapPage extends React.PureComponent {
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
-        ? mapStore.Map2GeoConverter.fromGeo({
-            lat: x.lat,
-            lng: x.lng,
-          })
+        ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
-      icon: x.image,
+      icon: this.isMap ? getIconByDirectionId(x.directionId) : null,
       title: x.name,
       id: x.id,
       radius: 10,
@@ -56,6 +56,7 @@ export class MapPage extends React.PureComponent {
   state = cellState(this, {
     image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
     items: () => this.mapItems,
+    isEditing: () => this.isEditing,
     selected: () => this.selected,
   });
 
@@ -65,7 +66,7 @@ export class MapPage extends React.PureComponent {
       <div className={styles.container}>
         <MapComponent
           items={this.state.items}
-          isMovingEnabled={false}
+          isMovingEnabled={this.state.isEditing}
           selected={this.state.selected}
           image={this.state.image}
           onClick={() => {}}
@@ -73,22 +74,23 @@ export class MapPage extends React.PureComponent {
           onSelect={(x) => (this.selected = x)}
         />
         <LocationSearch onSelect={this.selectLocation} />
-        <Box pos="absolute" right="1" zIndex="1" bottom="50%">
+        <div className={styles.buttons}>
           <IconButton
             icon={<LayersIcon />}
             onClick={() => (this.isMap = !this.isMap)}
             aria-label="Change view"
           />
-        </Box>
-        <Box pos="absolute" right="12" zIndex="1" bottom="12">
           <IconButton
-            size="lg"
-            isRound
+            icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
+            onClick={() => (this.isEditing = !this.isEditing)}
+            aria-label="Start edit"
+          />
+          <IconButton
             icon={<AddIcon />}
             onClick={this.handleAddIconButtonClick}
             aria-label="Add location"
           />
-        </Box>
+        </div>
         {this.state.selected && (
           <MapToolbar
             id={this.state.selected.id}

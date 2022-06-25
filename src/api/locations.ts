@@ -15,9 +15,9 @@ export class LocationsApi extends AdminApi {
   }
 
   public async getLocations(): Promise<InsomniaLocation[]> {
-    const loc = await this.fetch<
-      (Omit<InsomniaLocation, "tags"> & { tags: { id }[] })[]
-    >("/api/Locations/all/full");
+    const loc = await this.fetch<InsomniaLocationFull[]>(
+      "/api/Locations/all/full"
+    );
     return loc.map((x) => ({
       ...x,
       tags: x.tags.map((x) => x.id),

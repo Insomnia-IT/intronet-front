@@ -8,6 +8,7 @@ import { Close } from "../../../components/close";
 import { Expander } from "../../../components/expander";
 import styles from "./map-toolbar.module.css";
 import { ScheduleComponent } from "./schedule";
+import { useCellState } from "../../../helpers/cell-state";
 
 export type MapToolbarProps = {
   id: number | string;
@@ -16,7 +17,7 @@ export type MapToolbarProps = {
 
 export function MapToolbar(props: MapToolbarProps) {
   const [expanded, setExpanded] = useState(false);
-  const [location] = useState(locationsStore.Locations.get(props.id));
+  const location = locationsStore.Locations.get(props.id);
 
   const app = useAppContext();
 
@@ -64,18 +65,18 @@ export function MapToolbar(props: MapToolbarProps) {
         <div className={styles.content}>
           <div className={styles.header}>{location.name}</div>
           <div className={styles.description}>{location.description}</div>
+          <Box pos="absolute" right="10px" zIndex="1" bottom="10px">
+            <IconButton
+              size="lg"
+              isRound
+              icon={<EditIcon />}
+              aria-label="Edit note"
+              onClick={handleEditIconButtonClick}
+            />
+          </Box>
           {expanded && (
             <>
               <ScheduleComponent locationId={location.id} />
-              <Box pos="absolute" right="12" zIndex="1" bottom="12">
-                <IconButton
-                  size="lg"
-                  isRound
-                  icon={<EditIcon />}
-                  aria-label="Edit note"
-                  onClick={handleEditIconButtonClick}
-                />
-              </Box>
             </>
           )}
         </div>
