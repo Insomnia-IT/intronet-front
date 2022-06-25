@@ -27,7 +27,9 @@ export function MapToolbar(props: MapToolbarProps) {
         </div>
         <div className={styles.content}>
           <div className={styles.header}>{location.name}</div>
-          <div className={styles.description}>{location.description}</div>
+          <div className={styles.description}>
+            {location.description || "Описание локации"}
+          </div>
           {expanded && <ScheduleComponent locationId={location.id} />}
         </div>
       </div>

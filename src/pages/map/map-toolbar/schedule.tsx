@@ -5,6 +5,7 @@ import { cellState } from "../../../helpers/cell-state";
 import { HStack } from "@chakra-ui/react";
 import styles from "./schedule.module.css";
 import { Chip } from "src/components/chip/chip";
+import { ChevronUpIcon } from "@chakra-ui/icons";
 
 export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   @Observable
@@ -44,6 +45,9 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   render() {
     return (
       <>
+        {this.state.schedules.length > 0 && (
+          <header className={styles.header}>Расписание</header>
+        )}
         <HStack
           className={styles.chips}
           padding="16px 0"
@@ -66,26 +70,29 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
             );
           })}
         </HStack>
+        {this.state.auditories.length > 1 && (
+          <div className={styles.tags}>
+            {this.state.auditories.map((auditory) => {
+              return (
+                <div
+                  className={
+                    this.state.auditory == auditory
+                      ? styles.auditoryActive
+                      : styles.auditory
+                  }
+                  key={auditory}
+                  onClick={() => {
+                    this.auditory = auditory;
+                  }}
+                >
+                  {auditoryNames[auditory]}
+                </div>
+              );
+            })}
+          </div>
+        )}
         {this.state.schedules.length > 0 && (
           <>
-            <header>Расписание</header>
-            {this.state.auditories.length > 1 && (
-              <div className={styles.tags}>
-                {this.state.auditories.map((auditory) => {
-                  return (
-                    <Chip
-                      active={this.state.auditory == auditory}
-                      key={auditory}
-                      onClick={() => {
-                        this.auditory = auditory;
-                      }}
-                    >
-                      {auditoryNames[auditory]}
-                    </Chip>
-                  );
-                })}
-              </div>
-            )}
             {this.state.schedules.map((x, i) => (
               <div
                 className={styles.schedule}
@@ -100,14 +107,30 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
                 >
                   {x.IsCanceled ? "отмена" : x.Time}
                 </div>
-                <div className={styles.name}>
-                  {x.Name} {x.Changes && <Alert color={alertColors.red} />}
-                  <span className={styles.changes}>{x.Changes}</span>
-                </div>
-                <div className={styles.descr}>{x.Description}</div>
-                {this.state.selectedElement === x && (
-                  <div className={styles.info}>{x.Speaker}</div>
+                <div className={styles.name}>{x.Name}</div>
+                <ChevronUpIcon
+                  className={
+                    this.state.selectedElement === x
+                      ? styles.expander
+                      : styles.expanderOpened
+                  }
+                />
+                {x.Changes && (
+                  <div className={styles.changes}>
+                    <span>Изменено</span>
+                    {this.state.selectedElement === x && x.Changes}
+                  </div>
                 )}
+                {this.state.selectedElement === x && (
+                  <>
+                    {x.Speaker && (
+                      <div className={styles.info}>
+                        <span>{x.Speaker}</span>
+                      </div>
+                    )}
+                  </>
+                )}
+                <div className={styles.bottomLine} />
               </div>
             ))}
           </>

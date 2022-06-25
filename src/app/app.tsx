@@ -10,7 +10,7 @@ export const App = () => (
   <ChakraProvider theme={theme}>
     <Flex className={styles.main} direction="column" align="stretch">
       {/* from 0-30-48em reverse order, the rest is normal order */}
-      <Box order={[2, null, 0]}>
+      <Box order={[2, null, 0]} zIndex={10}>
         <Navbar />
       </Box>
       <Flex direction="column" flex={1} minHeight={0}>
