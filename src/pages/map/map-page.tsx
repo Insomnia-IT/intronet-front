@@ -1,26 +1,44 @@
+import { AddIcon } from "@chakra-ui/icons";
+import { Box, IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
-import { Button, Icon } from "react-bulma-components";
+import { LocationModal } from "src/components";
+import { ModalContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
 import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
+import { LayersIcon } from "./icons/LayersIcon";
+import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
-import { LocationSearch } from "./location-search";
 
 export class MapPage extends React.PureComponent {
   @Observable
   isMap = true;
   @Observable
   selected: MapItem = null;
+  static contextType = ModalContext;
+
+  handleAddIconButtonClick = async () => {
+    try {
+      // TODO: fix class component context
+      // @ts-ignore
+      const newLocation = await this.context.show<InsomniaLocationFull>(
+        (props) => <LocationModal {...props} />
+      );
+      locationsStore.addLocation(newLocation);
+      // TODO: add toast
+    } catch (error) {
+      // TODO: add toast
+    }
+  };
 
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
         ? mapStore.Map2GeoConverter.fromGeo({
             lat: x.lat,
-            // @ts-ignore
             lng: x.lng,
           })
         : { X: x.x, Y: x.y },
@@ -55,13 +73,22 @@ export class MapPage extends React.PureComponent {
           onSelect={(x) => (this.selected = x)}
         />
         <LocationSearch onSelect={this.selectLocation} />
-        <div className={styles.layers}>
-          <Button onClick={() => (this.isMap = !this.isMap)}>
-            <Icon>
-              <i className="mdi mdi-layers"></i>
-            </Icon>
-          </Button>
-        </div>
+        <Box pos="absolute" right="1" zIndex="1" bottom="50%">
+          <IconButton
+            icon={<LayersIcon />}
+            onClick={() => (this.isMap = !this.isMap)}
+            aria-label="Change view"
+          />
+        </Box>
+        <Box pos="absolute" right="12" zIndex="1" bottom="12">
+          <IconButton
+            size="lg"
+            isRound
+            icon={<AddIcon />}
+            onClick={this.handleAddIconButtonClick}
+            aria-label="Add location"
+          />
+        </Box>
         {this.state.selected && (
           <MapToolbar
             id={this.state.selected.id}

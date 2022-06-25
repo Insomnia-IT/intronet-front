@@ -113,7 +113,13 @@ class LocationsStore {
       ...x,
       // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
+      directionId: 0,
     }));
+  }
+
+  addLocation(location: InsomniaLocationFull) {
+    // @ts-ignore
+    this.Locations.add({ ...location });
   }
 
   updateLocation(x: InsomniaLocationFull) {
