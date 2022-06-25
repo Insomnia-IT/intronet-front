@@ -24,13 +24,13 @@ export function MapToolbar(props: MapToolbarProps) {
 
   const handleEditIconButtonClick = async () => {
     try {
-      const editedLocation = await app.modals.show<InsomniaLocationFull>(
+      const editedLocation = await app.modals.show<InsomniaLocation>(
         (props) => (
           // @ts-ignore
           <LocationModal {...props} {...location} />
         )
       );
-      locationsStore.updateLocation(editedLocation);
+      locationsStore.Locations.update(editedLocation);
       toast({
         title: "Объявление успешно изменено!",
         status: "success",
