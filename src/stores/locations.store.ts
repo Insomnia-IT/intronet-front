@@ -98,7 +98,7 @@ class LocationsStore {
       this.api.getLocations().catch(() => []),
     ]);
     this.Tags.merge(tags, "server");
-    this.Locations.merge(locations, "local");
+    this.Locations.merge(locations, "server");
   }
 
   @Observable
@@ -118,8 +118,7 @@ class LocationsStore {
   }
 
   addLocation(location: InsomniaLocationFull) {
-    // @ts-ignore
-    this.Locations.add({ ...location });
+    this.Locations.add({ ...location, tags: location.tags.map((x) => x.id) });
   }
 
   updateLocation(x: InsomniaLocationFull) {

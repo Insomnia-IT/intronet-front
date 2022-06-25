@@ -68,7 +68,7 @@ export class MapPage extends React.PureComponent {
           isMovingEnabled={false}
           selected={this.state.selected}
           image={this.state.image}
-          onClick={console.log}
+          onClick={() => {}}
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />

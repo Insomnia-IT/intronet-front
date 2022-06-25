@@ -50,11 +50,15 @@
 }
 
 .chip {
+  composes: chip from "src/components/chip/chip.module.css";
   color: #718096;
   border: solid 1px #718096;
+  padding: 7px 15px;
 }
 
 .chipActive {
-  background: #718096;
+  composes: chipActive from "src/components/chip/chip.module.css";
+  padding: 8px 16px;
+  border: none;
   color: white;
 }

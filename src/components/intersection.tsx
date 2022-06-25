@@ -35,9 +35,6 @@ export function Intersection(props: IntersectionProps) {
     ) => {
       if (ev.detail.has(element)) {
         const isVisible = ev.detail.get(element).isIntersecting;
-        if (isVisible) {
-          console.log(element, isVisible);
-        }
         setIsVisible(isVisible);
       }
     };
