@@ -60,6 +60,7 @@ type MapItem = {
 
 type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
   tags: Tag[];
+  directionId: number;
 };
 
 type Tag = {
@@ -111,8 +112,13 @@ interface AuditoryElement {
   Changes: string; //Изменения в расписании по данному пункту.
 }
 
+type Direction = {
+  id: number;
+  name: string;
+  image: string;
+};
 interface IArticle {
-  id: number
-  title: string
-  text: string
+  id: number;
+  title: string;
+  text: string;
 }

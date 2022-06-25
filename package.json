@@ -27,6 +27,7 @@
     "cellx-react": "1.x.x",
     "chakra-react-select": "^4.0.0",
     "dexie": "3.x.x",
+    "formik": "^2.2.9",
     "framer-motion": "^6",
     "luxon": "2.x.x",
     "pdfjs": "2.x.x",
