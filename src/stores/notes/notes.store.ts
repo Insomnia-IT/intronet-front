@@ -55,7 +55,7 @@ class NotesStore {
    */
   public addNote = async (request: GenericRequest<null, null, INotes>) => {
     this.IsLoading = true;
-    await this.api.createNote(request.body.title, request.body.text);
+    await this.api.createNote(request);
     this.load();
     this.IsLoading = false;
   };
@@ -66,11 +66,7 @@ class NotesStore {
    */
   public editNote = async (request: GenericRequest<null, null, INotes>) => {
     this.IsLoading = true;
-    await this.api.editNote(
-      request.body.id,
-      request.body.title,
-      request.body.text
-    );
+    await this.api.editNote(request);
     this.Notes.update(request.body);
     this.IsLoading = false;
   };

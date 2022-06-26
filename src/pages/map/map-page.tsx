@@ -3,6 +3,7 @@ import { Box, IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
+import { RequireAuth } from "src/components/RequireAuth";
 import { ModalContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
 import { mapStore } from "src/stores/map.store";
@@ -80,15 +81,18 @@ export class MapPage extends React.PureComponent {
             aria-label="Change view"
           />
         </Box>
-        <Box pos="absolute" right="12" zIndex="1" bottom="12">
-          <IconButton
-            size="lg"
-            isRound
-            icon={<AddIcon />}
-            onClick={this.handleAddIconButtonClick}
-            aria-label="Add location"
-          />
-        </Box>
+
+        <RequireAuth>
+          <Box pos="absolute" right="12" zIndex="1" bottom="12">
+            <IconButton
+              size="lg"
+              isRound
+              icon={<AddIcon />}
+              onClick={this.handleAddIconButtonClick}
+              aria-label="Add location"
+            />
+          </Box>
+        </RequireAuth>
         {this.state.selected && (
           <MapToolbar
             id={this.state.selected.id}
