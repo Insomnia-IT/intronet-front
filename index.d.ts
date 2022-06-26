@@ -122,3 +122,8 @@ interface IArticle {
   title: string;
   text: string;
 }
+
+type User = {
+  ticketId: string;
+  token: string;
+};
