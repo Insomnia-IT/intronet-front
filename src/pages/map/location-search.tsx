@@ -141,7 +141,6 @@ export class LocationSearch extends React.PureComponent<{
   setOpened = (e: PointerEvent) => {
     const path = e.composedPath();
     this.opened = path.includes(this.root.current);
-    console.log(path, this.root.current, this.opened);
   };
 }
 

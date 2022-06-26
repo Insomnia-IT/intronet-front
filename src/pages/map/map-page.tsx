@@ -1,4 +1,4 @@
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 import { Box, IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
@@ -8,6 +8,7 @@ import { ModalContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
 import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
+import { getIconByDirectionId } from "./icons/icons";
 import { LayersIcon } from "./icons/LayersIcon";
 import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
@@ -19,16 +20,18 @@ export class MapPage extends React.PureComponent {
   isMap = true;
   @Observable
   selected: MapItem = null;
+  @Observable
+  isEditing = false;
   static contextType = ModalContext;
 
   handleAddIconButtonClick = async () => {
     try {
       // TODO: fix class component context
       // @ts-ignore
-      const newLocation = await this.context.show<InsomniaLocationFull>(
-        (props) => <LocationModal {...props} />
-      );
-      locationsStore.addLocation(newLocation);
+      const newLocation = await this.context.show<InsomniaLocation>((props) => (
+        <LocationModal {...props} />
+      ));
+      locationsStore.Locations.add(newLocation);
       // TODO: add toast
     } catch (error) {
       // TODO: add toast
@@ -38,12 +41,9 @@ export class MapPage extends React.PureComponent {
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
       point: this.isMap
-        ? mapStore.Map2GeoConverter.fromGeo({
-            lat: x.lat,
-            lng: x.lng,
-          })
+        ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
-      icon: x.image,
+      icon: this.isMap ? getIconByDirectionId(x.directionId) : null,
       title: x.name,
       id: x.id,
       radius: 10,
@@ -57,6 +57,7 @@ export class MapPage extends React.PureComponent {
   state = cellState(this, {
     image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
     items: () => this.mapItems,
+    isEditing: () => this.isEditing,
     selected: () => this.selected,
   });
 
@@ -66,33 +67,34 @@ export class MapPage extends React.PureComponent {
       <div className={styles.container}>
         <MapComponent
           items={this.state.items}
-          isMovingEnabled={false}
+          isMovingEnabled={this.state.isEditing}
           selected={this.state.selected}
           image={this.state.image}
-          onClick={console.log}
+          onClick={() => {}}
           onChange={this.updateLocation}
           onSelect={(x) => (this.selected = x)}
         />
         <LocationSearch onSelect={this.selectLocation} />
-        <Box pos="absolute" right="1" zIndex="1" bottom="50%">
+        <div className={styles.buttons}>
           <IconButton
             icon={<LayersIcon />}
             onClick={() => (this.isMap = !this.isMap)}
             aria-label="Change view"
           />
-        </Box>
 
-        <RequireAuth>
-          <Box pos="absolute" right="12" zIndex="1" bottom="12">
+          <RequireAuth>
             <IconButton
-              size="lg"
-              isRound
+              icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
+              onClick={() => (this.isEditing = !this.isEditing)}
+              aria-label="Start edit"
+            />
+            <IconButton
               icon={<AddIcon />}
               onClick={this.handleAddIconButtonClick}
               aria-label="Add location"
             />
-          </Box>
-        </RequireAuth>
+          </RequireAuth>
+        </div>
         {this.state.selected && (
           <MapToolbar
             id={this.state.selected.id}

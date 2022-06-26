@@ -13,7 +13,7 @@ export function getLocations() {
           tags: [],
           image: "camping",
           lat: x.geometry.coordinates[1],
-          lng: x.geometry.coordinates[0],
+          lon: x.geometry.coordinates[0],
         } as InsomniaLocation)
     );
 }

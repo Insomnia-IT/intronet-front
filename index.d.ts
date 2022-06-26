@@ -42,17 +42,18 @@ type InsomniaLocation = {
   id: number;
   name: string;
   description: string;
+  directionId: number;
   x: number;
   y: number;
   lat: number;
-  lng: number;
+  lon: number;
   tags: number[];
   image: string;
 };
 
 type MapItem = {
   point: { X; Y };
-  icon;
+  icon: JSX.Element;
   radius;
   id;
   title?: string;
@@ -60,7 +61,6 @@ type MapItem = {
 
 type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
   tags: Tag[];
-  directionId: number;
 };
 
 type Tag = {

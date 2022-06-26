@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./chip.module.css";
 export function Chip(props: ChipProps) {
   if (!props.icon && !props.value) {
-    const classNames = [styles.chip, props.className];
+    const classNames = [props.className ?? styles.chip];
     if (props.active)
       classNames.push(props.activeClassName ?? styles.chipActive);
     return (
