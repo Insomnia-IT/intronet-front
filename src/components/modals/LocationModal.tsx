@@ -59,7 +59,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
         });
       }
     })();
-  }, []);
+  }, [toast]);
 
   return (
     <Modal
@@ -183,11 +183,6 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                     </HStack>
                   </FormControl>
                 </VStack>
-                {/* <Box as="pre" marginY={10}>
-                  {JSON.stringify(props.values, null, 2)}
-                  <br />
-                  {JSON.stringify(props.errors, null, 2)}
-                </Box> */}
               </ModalBody>
               <ModalFooter>
                 <HStack width="full" justifyContent="space-between">

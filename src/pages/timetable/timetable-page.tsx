@@ -1,4 +1,5 @@
 import React from "react";
-export function TimetablePage(){
-  return <>Timetable</>
+import { Timetable } from "./timetable/timetable";
+export function TimetablePage() {
+  return <Timetable />;
 }

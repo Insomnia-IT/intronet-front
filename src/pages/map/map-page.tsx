@@ -1,18 +1,19 @@
 import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
-import { Box, Flex, IconButton } from "@chakra-ui/react";
+import { Box, IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
+import { RequireAuth } from "src/components/RequireAuth";
 import { ModalContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
 import { mapStore } from "src/stores/map.store";
 import { cellState } from "../../helpers/cell-state";
+import { getIconByDirectionId } from "./icons/icons";
 import { LayersIcon } from "./icons/LayersIcon";
 import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
-import { getIconByDirectionId } from "./icons/icons";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -80,16 +81,19 @@ export class MapPage extends React.PureComponent {
             onClick={() => (this.isMap = !this.isMap)}
             aria-label="Change view"
           />
-          <IconButton
-            icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
-            onClick={() => (this.isEditing = !this.isEditing)}
-            aria-label="Start edit"
-          />
-          <IconButton
-            icon={<AddIcon />}
-            onClick={this.handleAddIconButtonClick}
-            aria-label="Add location"
-          />
+
+          <RequireAuth>
+            <IconButton
+              icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
+              onClick={() => (this.isEditing = !this.isEditing)}
+              aria-label="Start edit"
+            />
+            <IconButton
+              icon={<AddIcon />}
+              onClick={this.handleAddIconButtonClick}
+              aria-label="Add location"
+            />
+          </RequireAuth>
         </div>
         {this.state.selected && (
           <MapToolbar
