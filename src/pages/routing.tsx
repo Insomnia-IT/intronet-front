@@ -1,61 +1,33 @@
-import React from "react";
-import { Route } from "wouter";
+import React, { FC } from "react";
 import { BoardPage } from "./board/boardPage/boardPage";
 import { MapPage } from "./map/map-page";
-import { VotingPage } from "./voting/voting-page";
 import { TimetablePage } from "./timetable/timetable-page";
-import { LoginPage } from "./login/login-page";
-import { AdminLocationsPage } from "./admin/locations/admin.locations-page";
+import { VotingPage } from "./voting/voting-page";
 
+import { useRoutes } from "react-router-dom";
 export const ROUTES = [
   {
     text: "Главная",
-    link: "/",
+    path: "/",
     element: <TimetablePage />,
   },
   {
     text: "Объявления",
-    link: "/board",
+    path: "/board",
     element: <BoardPage />,
   },
   {
     text: "Карта",
-    link: "/map",
+    path: "/map",
     element: <MapPage />,
   },
   {
     text: "Голосование",
-    link: "/voting",
+    path: "/voting",
     element: <VotingPage />,
   },
-  // {
-  //   text: 'Вход по билетам',
-  //   link: '/user-login',
-  //   element: <LoginPage />
-  // }
 ];
 
-export function Routing() {
-  return (
-    <>
-      <Route path="/board">
-        <BoardPage />
-      </Route>
-      <Route path="/map">
-        <MapPage />
-      </Route>
-      <Route path="/voting">
-        <VotingPage />
-      </Route>
-      <Route path="/">
-        <TimetablePage />
-      </Route>
-      <Route path="/user-login">
-        <LoginPage />
-      </Route>
-      <Route path="/admin/locations">
-        <AdminLocationsPage />
-      </Route>
-    </>
-  );
-}
+export const Routing: FC = () => {
+  return useRoutes(ROUTES);
+};

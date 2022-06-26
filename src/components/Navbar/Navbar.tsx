@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { ROUTES } from "src/pages/routing";
-import { Link as WouterLink } from "wouter";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { MdNavbar } from "./MdNavbar/MdNavbar";
 
 export const Navbar = () => {
@@ -36,16 +36,16 @@ export const Navbar = () => {
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {ROUTES.map((link) => (
               <Link
-                key={link.link}
+                key={link.path}
                 px={2}
                 py={1}
-                as={WouterLink}
+                as={ReactRouterLink}
+                to={link.path}
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
                   bg: useColorModeValue("gray.200", "gray.700"),
                 }}
-                href={link.link}
               >
                 {link.text}
               </Link>
