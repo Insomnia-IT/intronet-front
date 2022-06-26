@@ -65,5 +65,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://intronet.insomniafest.ru"
+  "proxy": "https://intronet.insomniafest.ru",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
 }
