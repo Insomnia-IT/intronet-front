@@ -49,6 +49,22 @@
 
 }
 
+.buttons{
+  display: flex;
+  position: absolute;
+  right: 5px;
+  pointer-events: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.buttons > button{
+  pointer-events: initial;
+}
+
 .chip {
   composes: chip from "src/components/chip/chip.module.css";
   color: #718096;

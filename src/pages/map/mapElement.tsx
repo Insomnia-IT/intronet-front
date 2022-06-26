@@ -8,10 +8,8 @@ export function MapElement(props: {
   selected: boolean;
   onSelect(x: MapItem);
 }) {
-  const icon = props.item.icon ? (
-    MapIcons[props.item.icon]
-  ) : (
-    <circle r={15} fill="red"></circle>
+  const icon = props.item.icon ?? (
+    <circle className={styles.hoverCircle} r={15} fill="transparent"></circle>
   );
   const classNames = [styles.element];
   if (props.selected) {
@@ -27,7 +25,7 @@ export function MapElement(props: {
         }}
       >
         {icon}
-        <text textAnchor="middle" y="25" fontSize="12px">
+        <text textAnchor="middle" y="25" fontSize="10px">
           {props.item.title}
         </text>
       </g>

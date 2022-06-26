@@ -71,3 +71,14 @@ export const MapIcons = {
     </g>
   ),
 };
+
+const directionToMapIconMap = {
+  1: MapIcons.camping,
+  2: MapIcons.cinema,
+  3: MapIcons.cinema,
+  4: MapIcons.cinema,
+  5: MapIcons.cinema,
+};
+export function getIconByDirectionId(id: number) {
+  return directionToMapIconMap[id] ?? <circle r="15px" fill="#A266" />;
+}
