@@ -45,7 +45,7 @@ export const LoginFormToken: FC<LoginFormTokenProps> = ({
                       placeholder="YourToken"
                     />
                     <FormHelperText>
-                      Токен выдается ИТ-отделом Бессонницы.
+                      Токен выдается штабом.
                     </FormHelperText>
                   </FormControl>
                   <Button
