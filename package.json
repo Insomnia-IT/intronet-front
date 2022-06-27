@@ -36,7 +36,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.x.x",
     "sass": "1.50.0",
-    "typescript": "^4.7.4"
+    "typescript": "4.4.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.5.0-rc.0",
