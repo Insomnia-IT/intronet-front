@@ -44,7 +44,8 @@ export const Navbar = () => {
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
-                  // bg: useColorModeValue("gray.200", "gray.700"),
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
+                  bg: useColorModeValue("gray.200", "gray.700"),
                 }}
               >
                 {link.text}
