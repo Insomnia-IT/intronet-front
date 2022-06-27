@@ -1,4 +1,8 @@
 node_modules
+build
+specs
+run.sh
+.dockerignore
 .github
 .idea
 .storybook
