@@ -14,6 +14,7 @@ import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
+import mapElementStyles from "./map-element.module.css";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -43,7 +44,17 @@ export class MapPage extends React.PureComponent {
       point: this.isMap
         ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
-      icon: this.isMap ? getIconByDirectionId(x.directionId) : null,
+      icon: this.isMap ? (
+        getIconByDirectionId(x.directionId)
+      ) : this.isEditing ? (
+        <circle
+          r={15}
+          className={mapElementStyles.hoverCircle}
+          strokeWidth="2"
+          fill="transparent"
+          stroke="red"
+        ></circle>
+      ) : null,
       title: x.name,
       id: x.id,
       radius: 10,
