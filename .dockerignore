@@ -1,11 +1,7 @@
 node_modules
 build
-<<<<<<< HEAD
-specs
 run.sh
 .dockerignore
-=======
->>>>>>> refs/remotes/origin/master
 .github
 .idea
 .storybook
