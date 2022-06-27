@@ -20,11 +20,12 @@ export class LocationsApi extends AdminApi {
     );
     return loc.map((x) => ({
       ...x,
+      direction: undefined,
+      timetables: undefined,
       tags: x.tags.map((x) => x.id),
     })) as InsomniaLocation[];
   }
 
-  @debounced(400)
   public updateLocation(
     location: Partial<InsomniaLocation> & Pick<InsomniaLocation, "id">
   ) {
