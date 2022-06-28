@@ -9,20 +9,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { ROUTES } from "src/pages/routing";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { MdNavbar } from "./MdNavbar/MdNavbar";
+import { ROUTES } from "src/pages/routing";
+import { MdNavbar } from "./MdNavbar";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const boxBg = useColorModeValue("gray.100", "gray.900");
 
   return (
-    <Box
-      bg={useColorModeValue("gray.100", "gray.900")}
-      px={4}
-      position="sticky"
-      top="0"
-    >
+    <Box bg={boxBg} px={4} position="sticky" top="0">
       <Flex h={16} alignItems={"center"} justifyContent="space-between">
         <MdNavbar />
         <HStack
@@ -44,6 +40,7 @@ export const Navbar = () => {
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
                   bg: useColorModeValue("gray.200", "gray.700"),
                 }}
               >
