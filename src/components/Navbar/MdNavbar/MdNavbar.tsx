@@ -15,10 +15,11 @@ import { ROUTES } from "src/pages/routing";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 export const MdNavbar = () => {
+  const bg = useColorModeValue("gray.200", "gray.700");
   let linkStyle = useMemo(() => ({
     textDecoration: "none",
-    bg: useColorModeValue("gray.200", "gray.700")
-  }), []);
+    bg
+  }), [bg]);
 
   return (
     <>

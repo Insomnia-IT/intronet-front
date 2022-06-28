@@ -15,14 +15,16 @@ import {MdNavbar} from "./MdNavbar";
 
 export const Navbar = () => {
   const {colorMode, toggleColorMode} = useColorMode();
+  const boxBg = useColorModeValue("gray.100", "gray.900");
+  const bg = useColorModeValue("gray.200", "gray.700");
   const linkStyle = useMemo(() => ({
     textDecoration: "none",
-    bg: useColorModeValue("gray.200", "gray.700"),
-  }), []);
+    bg,
+  }), [bg]);
 
   return (
     <Box
-      bg={useColorModeValue("gray.100", "gray.900")}
+      bg={boxBg}
       px={4}
       position="sticky"
       top="0"
