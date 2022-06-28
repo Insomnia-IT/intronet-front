@@ -6,8 +6,6 @@ class ScheduleStore {
   @Observable
   public db = new ObservableDB<Schedule>("schedules");
 
-  constructor() {}
-
   async loadSchedule(locationId: number) {
     await this.db.isLoaded;
     const schedules = await scheduleApi.getSchedules(locationId);

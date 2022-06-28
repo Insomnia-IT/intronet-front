@@ -1,14 +1,11 @@
 import { EditIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { LocationModal } from "src/components";
+import { Close, Expander, LocationModal } from "src/components";
 import { useAppContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
-import { Close } from "../../../components/close";
-import { Expander } from "../../../components/expander";
 import styles from "./map-toolbar.module.css";
 import { ScheduleComponent } from "./schedule";
-import { useCellState } from "../../../helpers/cell-state";
 
 export type MapToolbarProps = {
   id: number | string;

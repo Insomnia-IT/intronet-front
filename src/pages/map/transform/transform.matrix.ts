@@ -1,9 +1,8 @@
-import {Matrix, IPoint} from "./matrix";
+import { Matrix, IPoint } from "./matrix";
 
 export class TransformMatrix {
-
   public Matrix = new Matrix();
-  public Shift = {X: 0, Y: 0};
+  public Shift = { X: 0, Y: 0 };
 
   public Scale(kx, ky = kx) {
     return this.Apply(TransformMatrix.Scale(kx, ky));
@@ -18,7 +17,7 @@ export class TransformMatrix {
   }
 
   public RotateDeg(deg) {
-    return this.Rotate(deg * Math.PI / 180);
+    return this.Rotate((deg * Math.PI) / 180);
   }
 
   public Invoke = (p: IPoint) => {
@@ -33,12 +32,11 @@ export class TransformMatrix {
     return this.Shift;
   }
 
-
   public Inverse(): TransformMatrix {
     const result = new TransformMatrix();
     result.Matrix = this.Matrix.Inverse();
     const s = result.Matrix.Invoke(this.Shift);
-    result.Shift = {X: -s.X, Y: -s.Y};
+    result.Shift = { X: -s.X, Y: -s.Y };
     return result;
   }
 
@@ -47,8 +45,8 @@ export class TransformMatrix {
     if (this.Matrix.IsIdentity()) {
       result.Shift = {
         X: this.Shift.X + matrix.Shift.X,
-        Y: this.Shift.Y + matrix.Shift.Y
-      }
+        Y: this.Shift.Y + matrix.Shift.Y,
+      };
       result.Matrix = matrix.Matrix;
     }
     const s = this.Matrix.Invoke(matrix.Shift);
@@ -61,7 +59,6 @@ export class TransformMatrix {
     result.Matrix = this.Matrix.Multiple(matrix.Matrix);
     return result;
   }
-
 
   /**
    * Применяет трансформацию перевеодя v1 в v2
@@ -85,13 +82,12 @@ export class TransformMatrix {
     const p2 = mt2i.Invoke(v2);
     const shift = {
       X: p2.X - p1.X,
-      Y: p2.Y - p1.Y
-    }
+      Y: p2.Y - p1.Y,
+    };
     // const translate = mt2.Matrix.Invoke(shift);
     const result = mt2.Translate(shift);
     return result;
   }
-
 
   public static Rotate(rad): TransformMatrix {
     const result = new TransformMatrix();
@@ -107,43 +103,49 @@ export class TransformMatrix {
 
   public static FromJSON(data: number[]) {
     const matrix = new TransformMatrix();
-    if (data)
-      matrix.FromJSON(data);
+    if (data) matrix.FromJSON(data);
     return matrix;
   }
 
   public static Scale(kx, ky = kx): TransformMatrix {
     const result = new TransformMatrix();
     result.Matrix = Matrix.Scale(kx, ky);
-    ;
     return result;
   }
 
-  public static Apply(matrix1: TransformMatrix, matrix2: TransformMatrix): TransformMatrix {
+  public static Apply(
+    matrix1: TransformMatrix,
+    matrix2: TransformMatrix
+  ): TransformMatrix {
     return new TransformMatrix().Apply(matrix1).Apply(matrix2);
   }
 
   public Convert(value: number): number {
-    return this.Invoke({X: value, Y: 0}).X;
+    return this.Invoke({ X: value, Y: 0 }).X;
   }
 
   public toString() {
-    return this.Matrix.toString()
-      + ', ' + this.Shift.X
-      + ', ' + this.Shift.Y;
+    return this.Matrix.toString() + ", " + this.Shift.X + ", " + this.Shift.Y;
   }
 
   public ToJSON(): [number, number, number, number, number, number] {
-    return [...this.Matrix.ToJSON(), this.Shift.X, this.Shift.Y] as [number, number, number, number, number, number];
+    return [...this.Matrix.ToJSON(), this.Shift.X, this.Shift.Y] as [
+      number,
+      number,
+      number,
+      number,
+      number,
+      number
+    ];
   }
 
   public FromJSON(dto: number[]) {
-    this.Shift = {X: dto[4], Y: dto[5]};
+    this.Shift = { X: dto[4], Y: dto[5] };
     this.Matrix = new Matrix();
     this.Matrix.FromJSON(dto.slice(0, 4));
   }
 
-  public ToString(type: 'css' | 'svg' = 'css') {
+  public ToString(type: "css" | "svg" = "css") {
     if (this.Matrix.IsIdentity()) {
       return this.ToTranslate(type);
     }
@@ -151,26 +153,27 @@ export class TransformMatrix {
     // return this.Matrix.ToString();
   }
 
-  public ToTranslate3d(type: 'css' | 'svg' = 'css') {
-    const unit = type == 'css'  ? 'px' : '';
-    return 'translate3d(' + this.Shift.X + `${unit},` + this.Shift.Y + `${unit}, 0)`;
+  public ToTranslate3d(type: "css" | "svg" = "css") {
+    const unit = type === "css" ? "px" : "";
+    return (
+      "translate3d(" + this.Shift.X + `${unit},` + this.Shift.Y + `${unit}, 0)`
+    );
   }
 
-  public ToTranslate(type: 'css' | 'svg' = 'css') {
-    const unit = type == 'css'  ? 'px' : '';
-    return 'translate(' + this.Shift.X + `${unit},` + this.Shift.Y + `${unit})`;
+  public ToTranslate(type: "css" | "svg" = "css") {
+    const unit = type === "css" ? "px" : "";
+    return "translate(" + this.Shift.X + `${unit},` + this.Shift.Y + `${unit})`;
   }
 
   public ToTranslateX() {
-    return 'translateX(' + this.Shift.X + 'px)';
+    return "translateX(" + this.Shift.X + "px)";
   }
 
   public ToScale() {
-    return 'scale(' + this.Matrix + ')';
+    return "scale(" + this.Matrix + ")";
   }
 
   public ToScaleTranslate() {
-    return this.ToScale() + ' ' + this.ToTranslate3d();
+    return this.ToScale() + " " + this.ToTranslate3d();
   }
-
 }

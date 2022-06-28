@@ -1,5 +1,4 @@
 import React from "react";
-import { MapIcons } from "./icons/icons";
 import styles from "./map-element.module.css";
 
 export function MapElement(props: {

@@ -8,7 +8,7 @@ import { useAppContext } from "src/helpers/AppProvider";
 import { categoriesStore, notesStore, pagesStore } from "src/stores";
 import { Intersection } from "../../../../components/intersection";
 import { scrollToRef } from "../../../../helpers/scrollToRef";
-import { BoardCard, INotesCard } from "./boardCard/boardCard";
+import { BoardCard } from "./boardCard/boardCard";
 import { useCellState } from "../../../../helpers/cell-state";
 
 export const BoardList: FC = () => {

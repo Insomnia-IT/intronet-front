@@ -130,7 +130,7 @@ export class MapPage extends React.PureComponent {
   }
 
   selectLocation = (location: InsomniaLocation) => {
-    const mapItem = this.state.items.find((x) => x.id == location.id);
+    const mapItem = this.state.items.find((x) => x.id === location.id);
     this.selected = mapItem;
   };
 

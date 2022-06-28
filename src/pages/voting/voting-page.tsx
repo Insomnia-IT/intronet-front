@@ -14,7 +14,7 @@ export class VotingPage extends React.PureComponent {
   });
 
   render() {
-    if (this.state.accounts.length == 0) return <UserLogin />;
+    if (this.state.accounts.length === 0) return <UserLogin />;
     return (
       <>
         <Select

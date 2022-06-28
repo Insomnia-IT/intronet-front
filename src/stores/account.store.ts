@@ -1,6 +1,4 @@
-import { ObservableMap } from "cellx-collections";
-import { Computed, Observable } from "cellx-decorators";
-import { Dexie, Table } from "dexie";
+import { Observable } from "cellx-decorators";
 import { qrApi } from "src/api";
 import { ulid } from "../helpers/ulid";
 import { ObservableDB } from "./observableDB";
@@ -12,6 +10,7 @@ class AccountStore {
   public get Accounts() {
     return this.db.toArray();
   }
+
   public get Selected() {
     return this.Accounts.find((x) => x.isSelected);
   }

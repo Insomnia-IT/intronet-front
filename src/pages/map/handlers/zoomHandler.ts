@@ -47,7 +47,7 @@ export class ZoomHandler extends EventEmitter {
     this.lastGesture = event;
   };
   onDown = (event: TouchEvent) => {
-    if (event.touches.length != 2) return;
+    if (event.touches.length !== 2) return;
     this.lastTouches = this.getLastTouches(event);
     this.root.addEventListener("touchmove", this.onMove, { passive: true });
   };
@@ -61,7 +61,7 @@ export class ZoomHandler extends EventEmitter {
 
   onMove = (event: TouchEvent) => {
     const { center, distance } = this.getLastTouches(event);
-    if (event.touches.length != 2) return;
+    if (event.touches.length !== 2) return;
     if (this.lastTouches) {
       this.zoom(distance / this.lastTouches.distance, center);
     }
