@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import {MoonIcon, SunIcon} from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -8,13 +8,17 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
-import { ROUTES } from "src/pages/routing";
-import { Link as ReactRouterLink } from "react-router-dom";
-import { MdNavbar } from "./MdNavbar/MdNavbar";
+import React, {useMemo} from "react";
+import {ROUTES} from "src/pages/routing";
+import {Link as ReactRouterLink} from "react-router-dom";
+import {MdNavbar} from "./MdNavbar";
 
 export const Navbar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const {colorMode, toggleColorMode} = useColorMode();
+  const linkStyle = useMemo(() => ({
+    textDecoration: "none",
+    bg: useColorModeValue("gray.200", "gray.700"),
+  }), []);
 
   return (
     <Box
@@ -24,32 +28,29 @@ export const Navbar = () => {
       top="0"
     >
       <Flex h={16} alignItems={"center"} justifyContent="space-between">
-        <MdNavbar />
+        <MdNavbar/>
         <HStack
           spacing={8}
           alignItems={"center"}
           display={["none", null, "flex"]}
         >
           <Button onClick={toggleColorMode}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            {colorMode === "light" ? <MoonIcon/> : <SunIcon/>}
           </Button>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+          <HStack as={"nav"} spacing={4} display={{base: "none", md: "flex"}}>
             {ROUTES.map((link) => (
-              <Link
-                key={link.path}
-                px={2}
-                py={1}
-                as={ReactRouterLink}
-                to={link.path}
-                rounded={"md"}
-                _hover={{
-                  textDecoration: "none",
-                  bg: useColorModeValue("gray.200", "gray.700"),
-                }}
-              >
-                {link.text}
-              </Link>
-            ))}
+                <Link
+                  key={link.path}
+                  px={2}
+                  py={1}
+                  as={ReactRouterLink}
+                  to={link.path}
+                  rounded={"md"}
+                  _hover={linkStyle}
+                >
+                  {link.text}
+                </Link>
+              ))}
           </HStack>
         </HStack>
       </Flex>
