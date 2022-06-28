@@ -7,6 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link as ReactRouterLink, useLocation } from "react-router-dom";
 import AdsIcon from "src/images/ads-icon-default-32.svg";
 import AdsFocusIcon from "src/images/ads-icon-focus-32.svg";
 import HomeIcon from "src/images/home-icon-default-32.svg";
@@ -16,7 +17,6 @@ import MapFocusIcon from "src/images/map-icon-focus-32.svg";
 import VoteIcon from "src/images/vote-icon-default-32.svg";
 import VoteFocusIcon from "src/images/vote-icon-focus-32.svg";
 import { ROUTES } from "src/pages/routing";
-import { Link as ReactRouterLink, useLocation } from "react-router-dom";
 
 export const MdNavbar = () => {
   const location = useLocation();
@@ -31,7 +31,7 @@ export const MdNavbar = () => {
           rounded={"md"}
           _hover={{
             textDecoration: "none",
-            // bg: useColorModeValue("gray.200", "gray.700"),
+            bg: useColorModeValue("gray.200", "gray.700"),
           }}
           _focus={{
             boxShadow: "none",
