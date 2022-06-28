@@ -22,8 +22,8 @@ RUN --mount=type=cache,sharing=locked,target=/root/.yarn \
     --mount=type=cache,sharing=locked,target=/app/node_modules/.cache \
     yarn build
 
-RUN --mount=type=cache,sharing=locked,target=/root/.yarn \
-    yarn --production=true --frozen-lockfile
+#RUN --mount=type=cache,sharing=locked,target=/root/.yarn \
+#    yarn --production=true --frozen-lockfile
 
 #RUN /usr/local/bin/node-clean
 
