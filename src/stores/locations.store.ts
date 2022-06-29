@@ -7,7 +7,7 @@ class LocationsStore {
 
   constructor() {
     this.Tags.on("change", (event) => {
-      if (event.data.source == "server") return;
+      if (event.data.source === "server") return;
       switch (event.data.type) {
         case "add":
           this.api.addTag(event.data.value.name);
@@ -21,7 +21,7 @@ class LocationsStore {
       }
     });
     this.Locations.on("change", (event) => {
-      if (event.data.source == "server") return;
+      if (event.data.source === "server") return;
       switch (event.data.type) {
         case "add":
           this.api.addLocation(event.data.value);

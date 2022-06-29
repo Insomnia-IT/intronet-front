@@ -1,91 +1,95 @@
 import { Computed, Observable } from "cellx-decorators";
-import { ObservableList } from 'cellx-collections';
 import NotesApi from "src/api/notes";
-import { notesStore, pagesStore } from 'src/stores';
-import { ObservableDB } from '../observableDB';
+import { notesStore, pagesStore } from "src/stores";
+import { ObservableDB } from "../observableDB";
 
-export const ALL_CATEGORY_ID = 1
+export const ALL_CATEGORY_ID = 1;
 
 class CategoriesStore {
-  private api = new NotesApi
+  private api = new NotesApi();
 
   @Observable
-  IsLoading: boolean = false
+  IsLoading: boolean = false;
 
   @Observable
-  ActiveCategory: number = ALL_CATEGORY_ID
+  ActiveCategory: number = ALL_CATEGORY_ID;
 
   @Observable
-  AllCategory = new ObservableDB<ICategory>('categories')
+  AllCategory = new ObservableDB<ICategory>("categories");
 
   get isLoading() {
-    return this.IsLoading
+    return this.IsLoading;
   }
 
   get activeCategory() {
-    return this.ActiveCategory
+    return this.ActiveCategory;
   }
 
   @Computed
   get allCategory() {
-    return this.AllCategory.toArray()
+    return this.AllCategory.toArray();
   }
 
   set activeCategory(categoryId: number) {
-    this.ActiveCategory = categoryId
-    this.onChangeCategory()
+    this.ActiveCategory = categoryId;
+    this.onChangeCategory();
   }
 
-  getCategory(id: ICategory['id']) {
-    return this.allCategory.find((category) => category.id === id)
+  getCategory(id: ICategory["id"]) {
+    return this.allCategory.find((category) => category.id === id);
   }
 
-  getCategoryColor(id: ICategory['id']): null | string {
-    return this.getCategory(id).color || 'brand.300'
+  getCategoryColor(id: ICategory["id"]): null | string {
+    return this.getCategory(id).color || "brand.300";
   }
 
   get allNotesCount() {
-    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID).count
+    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID)
+      .count;
   }
 
   get isAll() {
-    return this.ActiveCategory === ALL_CATEGORY_ID
+    return this.ActiveCategory === ALL_CATEGORY_ID;
   }
 
   private onChangeCategory() {
     // Обнуление страницы
-    pagesStore.resetPages()
+    pagesStore.resetPages();
 
     if (this.activeCategory === ALL_CATEGORY_ID) {
-      pagesStore.setCountPages(this.allNotesCount)
+      pagesStore.setCountPages(this.allNotesCount);
     } else {
-      const activeCategoryObj = this.allCategory.find((category) => category.id === this.activeCategory)
-      pagesStore.setCountPages(activeCategoryObj.count)
+      const activeCategoryObj = this.allCategory.find(
+        (category) => category.id === this.activeCategory
+      );
+      pagesStore.setCountPages(activeCategoryObj.count);
     }
   }
 
   loadNewNotes(page, count): Promise<void> {
-    return notesStore.loadNewNotes(this.ActiveCategory, page, count)
+    return notesStore.loadNewNotes(this.ActiveCategory, page, count);
   }
 
   @Computed
   get notes(): INotes[] {
-    if (this.ActiveCategory == ALL_CATEGORY_ID) return notesStore.notes
-    return notesStore.notes.filter(note => note.categoryId === this.ActiveCategory)
+    if (this.ActiveCategory === ALL_CATEGORY_ID) return notesStore.notes;
+    return notesStore.notes.filter(
+      (note) => note.categoryId === this.ActiveCategory
+    );
   }
 
   load = async () => {
     try {
-      const categories = await this.api.getAllCategories()
-      this.AllCategory.clear()
-      this.AllCategory.addRange(categories)
-      this.IsLoading = false
+      const categories = await this.api.getAllCategories();
+      this.AllCategory.clear();
+      this.AllCategory.addRange(categories);
+      this.IsLoading = false;
     } catch {
-      this.IsLoading = false
+      this.IsLoading = false;
     }
     // Установка количества страниц
-    pagesStore.setCountPages(this.allNotesCount)
-  }
+    pagesStore.setCountPages(this.allNotesCount);
+  };
 }
 
-export const categoriesStore = new CategoriesStore()
+export const categoriesStore = new CategoriesStore();

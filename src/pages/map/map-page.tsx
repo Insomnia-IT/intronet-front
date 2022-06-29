@@ -1,5 +1,5 @@
 import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
-import { Box, IconButton } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
@@ -14,6 +14,7 @@ import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
+import mapElementStyles from "./map-element.module.css";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -43,7 +44,17 @@ export class MapPage extends React.PureComponent {
       point: this.isMap
         ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
-      icon: this.isMap ? getIconByDirectionId(x.directionId) : null,
+      icon: this.isMap ? (
+        getIconByDirectionId(x.directionId)
+      ) : this.isEditing ? (
+        <circle
+          r={15}
+          className={mapElementStyles.hoverCircle}
+          strokeWidth="2"
+          fill="transparent"
+          stroke="red"
+        ></circle>
+      ) : null,
       title: x.name,
       id: x.id,
       radius: 10,
@@ -78,14 +89,23 @@ export class MapPage extends React.PureComponent {
         <div className={styles.buttons}>
           <IconButton
             icon={<LayersIcon />}
-            onClick={() => (this.isMap = !this.isMap)}
+            onClick={() => {
+              this.isMap = !this.isMap;
+              this.isEditing = false;
+              this.localChanges.clear();
+            }}
             aria-label="Change view"
           />
 
           <RequireAuth>
             <IconButton
               icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
-              onClick={() => (this.isEditing = !this.isEditing)}
+              onClick={() => {
+                if (this.isEditing) {
+                  this.saveLocations();
+                }
+                this.isEditing = !this.isEditing;
+              }}
               aria-label="Start edit"
             />
             <IconButton
@@ -105,13 +125,21 @@ export class MapPage extends React.PureComponent {
     );
   }
 
+  componentWillUnmount() {
+    this.localChanges.clear();
+  }
+
   selectLocation = (location: InsomniaLocation) => {
-    const mapItem = this.state.items.find((x) => x.id == location.id);
+    const mapItem = this.state.items.find((x) => x.id === location.id);
     this.selected = mapItem;
   };
 
+  private localChanges = new Map<number, InsomniaLocation>();
+
   updateLocation = (x: MapItem) => {
-    const location = locationsStore.Locations.get(x.id);
+    const location = {
+      ...(this.localChanges.get(x.id) ?? locationsStore.Locations.get(x.id)),
+    };
     if (this.isMap) {
       // @ts-ignore
       Object.assign(location, mapStore.Map2GeoConverter.toGeo(x.point));
@@ -119,6 +147,14 @@ export class MapPage extends React.PureComponent {
       // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
     }
-    locationsStore.Locations.update(location);
+    this.localChanges.set(location.id, location);
   };
+
+  saveLocations() {
+    const toUpdate = Array.from(this.localChanges.values());
+    this.localChanges.clear();
+    for (let location of toUpdate) {
+      locationsStore.Locations.update(location);
+    }
+  }
 }

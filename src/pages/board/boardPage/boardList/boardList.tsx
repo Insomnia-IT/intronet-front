@@ -9,6 +9,7 @@ import { categoriesStore, notesStore, pagesStore } from "src/stores";
 import { Intersection } from "../../../../components/intersection";
 import { scrollToRef } from "../../../../helpers/scrollToRef";
 import { BoardCard } from "./boardCard/boardCard";
+import { useCellState } from "../../../../helpers/cell-state";
 
 export const BoardList: FC = () => {
   const { id } = useParams();
@@ -100,15 +101,17 @@ export const BoardList: FC = () => {
     if (activeNote.current) scrollToRef(activeNote, true);
   }, []);
 
+  const [notes] = useCellState(() => pagesStore.notes);
+
   return (
     <Box w={"100%"}>
-      {pagesStore.notes.length === 0 && (
+      {notes.length === 0 && (
         <h2 style={{ textAlign: "center" }}>Объявлений пока нет!</h2>
       )}
       <VStack as={"ul"} align={"streach"} spacing={4}>
-        {pagesStore.notes.map((note) => (
+        {notes.map((note) => (
           <li key={note.id} ref={parseInt(id) === note.id ? activeNote : null}>
-            <Intersection width="100%" height="200px">
+            <Intersection width="100%" height={getBoardCardHeight(note) + "px"}>
               <BoardCard
                 noteInfoObj={note}
                 activeColor={categoriesStore.getCategoryColor(note.categoryId)}
@@ -134,3 +137,7 @@ export const BoardList: FC = () => {
     </Box>
   );
 };
+
+function getBoardCardHeight(note: INotes) {
+  return 167;
+}

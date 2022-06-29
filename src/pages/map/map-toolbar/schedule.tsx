@@ -22,15 +22,15 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
     return (
       scheduleStore.db
         .toArray()
-        .filter((x) => x.locationId == this.locationId)
-        .find((x) => x.day == this.day)?.auditoryElements ?? []
+        .filter((x) => x.locationId === this.locationId)
+        .find((x) => x.day === this.day)?.auditoryElements ?? []
     );
   }
 
   @Computed
   get Schedules() {
     return (
-      this.Auditories.find((x) => x.Number == this.auditory)?.Elements ?? []
+      this.Auditories.find((x) => x.Number === this.auditory)?.Elements ?? []
     );
   }
 
@@ -63,7 +63,7 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
                   this.day = day;
                   this.auditory = 1;
                 }}
-                active={this.state.day == day}
+                active={this.state.day === day}
               >
                 {dayNames[day]}
               </Chip>
@@ -76,7 +76,7 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
               return (
                 <div
                   className={
-                    this.state.auditory == auditory
+                    this.state.auditory === auditory
                       ? styles.auditoryActive
                       : styles.auditory
                   }
@@ -149,20 +149,6 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
       scheduleStore.loadSchedule(this.props.locationId);
     }
   }
-}
-
-const alertColors = {
-  main: "#6BBDB0",
-  red: "#EB5757",
-  gray: "#BFBFBF",
-};
-
-function Alert({ color }) {
-  return (
-    <svg fill={color} width="20px" height="20px">
-      <path d="M9 5H11V11H9V5ZM10 20C4.48 20 0 15.52 0 10C0 4.48 4.48 0 10 0C15.52 0 20 4.48 20 10C20 15.52 15.52 20 10 20ZM10 2C5.59 2 2 5.59 2 10C2 14.41 5.59 18 10 18C14.41 18 18 14.41 18 10C18 5.59 14.41 2 10 2ZM9 13H11V15H9V13Z" />
-    </svg>
-  );
 }
 
 type ScheduleProps = {

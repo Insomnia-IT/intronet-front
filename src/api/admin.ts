@@ -2,10 +2,6 @@ import { BaseApi } from "./base";
 import { Observable } from "cellx-decorators";
 
 export class AdminApi extends BaseApi {
-  constructor() {
-    super();
-  }
-
   public adminFetch(url: string, options?: RequestInit): Promise<any> {
     options.headers = {
       Token: localStorage.getItem("token"),

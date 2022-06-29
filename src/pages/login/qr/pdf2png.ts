@@ -7,7 +7,7 @@ export async function pdf2png(file: File) {
       data: await file.arrayBuffer(),
     });
     pdf.onProgress = ({ loaded, total }) => {
-      if (loaded == total) resolve(pdf);
+      if (loaded === total) resolve(pdf);
     };
   });
   const page = await pdf._transport.getPage(1);

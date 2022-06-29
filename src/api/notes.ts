@@ -7,10 +7,6 @@ const notesRout = "/api/notes";
 const categoriesRout = "categories";
 
 export default class NotesApi extends AdminApi {
-  constructor() {
-    super();
-  }
-
   getNote(id: number): Promise<INotes> {
     return this.fetch(`${notesRout}/${id}`);
   }
