@@ -5,7 +5,7 @@ export const useLocalStorageState = <T,>(key: string, initialValue?: T) => {
 
   useEffect(() => {
     if (localStorage.getItem(key)) {
-      setValue(localStorage.getItem(key) as unknown as T);
+      setValue(JSON.parse(localStorage.getItem(key)) as unknown as T);
     } else if (initialValue) {
       localStorage.setItem(key, JSON.stringify(initialValue));
       setValue(initialValue);
