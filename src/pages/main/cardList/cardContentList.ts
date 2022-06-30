@@ -24,6 +24,6 @@ export const cardContentList: TMainPageCard[] = [
   {
     title: "Расписание транспорта от фестиваля",
     img: process.env.PUBLIC_URL + "/images/insomnia_intro_5.webp",
-    link: "/articles",
+    link: "/articles/5",
   },
 ].map(generateId);

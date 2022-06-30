@@ -3,15 +3,16 @@ import { Route } from "wouter";
 import { BoardPage } from "./board/boardPage/boardPage";
 import { MapPage } from "./map/map-page";
 import { VotingPage } from "./voting/voting-page";
-import { TimetablePage } from "./timetable/timetable-page";
 import { LoginPage } from "./login/login-page";
 import { AdminLocationsPage } from "./admin/locations/admin.locations-page";
+import { MainPage } from "./main/mainPage";
+import { ArticlePage } from "./articles/articlePage/articlePage";
 
 export const ROUTES = [
   {
     text: "Главная",
     link: "/",
-    element: <TimetablePage />,
+    element: <MainPage />,
   },
   {
     text: "Объявления",
@@ -38,6 +39,9 @@ export const ROUTES = [
 export function Routing() {
   return (
     <>
+      <Route path="/">
+        <MainPage />
+      </Route>
       <Route path="/board">
         <BoardPage />
       </Route>
@@ -47,14 +51,14 @@ export function Routing() {
       <Route path="/voting">
         <VotingPage />
       </Route>
-      <Route path="/">
-        <TimetablePage />
-      </Route>
       <Route path="/user-login">
         <LoginPage />
       </Route>
       <Route path="/admin/locations">
         <AdminLocationsPage />
+      </Route>
+      <Route path={"/articles/:id"}>
+        {(params) => <ArticlePage id={params.id} />}
       </Route>
     </>
   );

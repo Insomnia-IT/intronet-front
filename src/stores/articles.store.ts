@@ -1,36 +1,37 @@
 import { Observable } from "cellx-decorators";
 import { articlesApi } from "src/api/articles";
-import { ObservableDB } from './observableDB';
+import { ObservableDB } from "./observableDB";
 
-class ArticleStore {
-
+class ArticlesStore {
   constructor() {
-    this.load()
+    this.load();
   }
 
   @Observable
-  Articles = new ObservableDB<IArticle>('articles')
+  Articles = new ObservableDB<IArticle>("articles");
 
   @Observable
-  IsLoading = true
+  IsLoading = true;
 
   public load = async () => {
-    this.IsLoading = true
+    this.IsLoading = true;
 
     try {
-      const newArticles = await articlesApi.getAllArticles()
-      this.Articles.clear()
-      this.Articles.addRange(newArticles)
+      const newArticles = await articlesApi.getAllArticles();
+      this.Articles.clear();
+      this.Articles.addRange(newArticles);
     } catch {}
 
-    this.IsLoading = false
-  }
+    this.IsLoading = false;
+  };
 
   get articles(): IArticle[] {
-    return this.Articles.toArray()
+    return this.Articles.toArray();
   }
 
-  public getArticle(id: IArticle['id']): IArticle {
-    return this.articles.find(article => article.id === id)
+  public getArticle(id: IArticle["id"]): IArticle {
+    return this.articles.find((article) => article.id === id);
   }
 }
+
+export const articlesStore = new ArticlesStore();
