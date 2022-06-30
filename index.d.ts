@@ -112,7 +112,14 @@ interface AuditoryElement {
 }
 
 interface IArticle {
-  id: number
-  title: string
-  text: string
+  id: number;
+  title: string;
+  text: string;
 }
+
+type TMainPageCard = {
+  id: string;
+  title: string;
+  img: string;
+  link: string;
+};
