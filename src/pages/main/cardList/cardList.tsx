@@ -1,6 +1,5 @@
-import React from "react";
-import { FC } from "react";
-import { AspectRatio, Box, Grid, GridItem } from "@chakra-ui/react";
+import { AspectRatio, Grid, GridItem } from "@chakra-ui/react";
+import React, { FC } from "react";
 import { Card } from "./card/card";
 import { cardContentList } from "./cardContentList";
 
@@ -8,6 +7,7 @@ export const CardList: FC = () => {
   return (
     <Grid
       as={"ul"}
+      listStyleType={"none"}
       py={2}
       w={"100%"}
       templateColumns={"repeat(2, 1fr)"}
@@ -26,7 +26,7 @@ export const CardList: FC = () => {
         >
           <AspectRatio
             ratio={
-              cardContentList.length - 1 === index && (index + 1) % 2 == 1
+              cardContentList.length - 1 === index && (index + 1) % 2 === 1
                 ? 2 / 1
                 : 1
             }

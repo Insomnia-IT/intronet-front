@@ -10,12 +10,15 @@ export const useLocalStorageState = <T,>(key: string, initialValue?: T) => {
       localStorage.setItem(key, JSON.stringify(initialValue));
       setValue(initialValue);
     }
-  }, []);
+  }, [initialValue, key]);
 
-  const setLocalStorageState = useCallback((newValue: T) => {
-    localStorage.setItem(key, JSON.stringify(newValue));
-    setValue(newValue);
-  }, []);
+  const setLocalStorageState = useCallback(
+    (newValue: T) => {
+      localStorage.setItem(key, JSON.stringify(newValue));
+      setValue(newValue);
+    },
+    [key]
+  );
 
   return [value, setLocalStorageState, initialValue] as const;
 };

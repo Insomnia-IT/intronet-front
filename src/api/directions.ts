@@ -4,6 +4,7 @@ import { GenericRequest } from "./base";
 const directionsRoute = "/api/directions";
 
 export class DirectionsApi extends AdminApi {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor() {
     super();
   }

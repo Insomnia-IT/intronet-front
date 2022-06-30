@@ -1,11 +1,10 @@
 import { Container, VStack } from "@chakra-ui/react";
 import * as React from "react";
+import { useParams } from "react-router-dom";
 import { BackRoutButton } from "src/components/backRoutButton/backRoutButton";
-import { Heading } from "src/components/heading/heading";
 import Loading from "src/loading/loading";
 import { articlesStore } from "../../../stores/articles.store";
 import { Article } from "./article/article";
-import { useParams } from "react-router-dom";
 
 export const ArticlePage: React.FC = () => {
   React.useEffect(() => {
