@@ -26,3 +26,7 @@
 .selected .hoverOnly {
   display: initial;
 }
+
+.selected .hoverCircle {
+  fill: #A226;
+}

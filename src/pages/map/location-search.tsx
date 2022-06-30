@@ -37,8 +37,8 @@ export class LocationSearch extends React.PureComponent<{
     locations: () =>
       locationsStore.FullLocations.filter(
         (x) =>
-          this.choosedTags.length == 0 ||
-          x.tags.some((tag) => this.choosedTags.some((y) => y.id == tag.id))
+          this.choosedTags.length === 0 ||
+          x.tags.some((tag) => this.choosedTags.some((y) => y.id === tag.id))
       ).filter(filterLocations(this.query)),
   });
 
@@ -141,7 +141,6 @@ export class LocationSearch extends React.PureComponent<{
   setOpened = (e: PointerEvent) => {
     const path = e.composedPath();
     this.opened = path.includes(this.root.current);
-    console.log(path, this.root.current, this.opened);
   };
 }
 

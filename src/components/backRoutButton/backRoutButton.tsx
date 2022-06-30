@@ -1,13 +1,6 @@
+import { Box, BoxProps } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  Box,
-  BoxProps,
-  Button,
-  ChakraComponent,
-  HStack,
-} from "@chakra-ui/react";
-import { ArrowBackIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 
 type BackRoutButtonProps = {
   text?: string;
@@ -19,10 +12,10 @@ export const BackRoutButton: React.FC<BackRoutButtonProps & BoxProps> = ({
   to,
   ...res
 }) => {
-  const [location, setLocation] = useLocation();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    to ? setLocation(to) : window.history.back();
+    to ? navigate(to) : navigate(-1);
   };
 
   return (

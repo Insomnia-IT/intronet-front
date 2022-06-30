@@ -15,16 +15,17 @@ export class LocationsApi extends AdminApi {
   }
 
   public async getLocations(): Promise<InsomniaLocation[]> {
-    const loc = await this.fetch<
-      (Omit<InsomniaLocation, "tags"> & { tags: { id }[] })[]
-    >("/api/Locations/all/full");
+    const loc = await this.fetch<InsomniaLocationFull[]>(
+      "/api/Locations/all/full"
+    );
     return loc.map((x) => ({
       ...x,
+      direction: undefined,
+      timetables: undefined,
       tags: x.tags.map((x) => x.id),
     })) as InsomniaLocation[];
   }
 
-  @debounced(400)
   public updateLocation(
     location: Partial<InsomniaLocation> & Pick<InsomniaLocation, "id">
   ) {

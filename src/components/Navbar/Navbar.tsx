@@ -9,20 +9,17 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
 import { ROUTES } from "src/pages/routing";
-import { Link as WouterLink } from "wouter";
-import { MdNavbar } from "./MdNavbar/MdNavbar";
+import { MdNavbar } from "./MdNavbar";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const boxBg = useColorModeValue("gray.100", "gray.900");
+  const linkBackground = useColorModeValue("gray.200", "gray.700");
 
   return (
-    <Box
-      bg={useColorModeValue("gray.100", "gray.900")}
-      px={4}
-      position="sticky"
-      top="0"
-    >
+    <Box bg={boxBg} px={4} position="sticky" top="0">
       <Flex h={16} alignItems={"center"} justifyContent="space-between">
         <MdNavbar />
         <HStack
@@ -36,16 +33,16 @@ export const Navbar = () => {
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             {ROUTES.map((link) => (
               <Link
-                key={link.link}
+                key={link.path}
                 px={2}
                 py={1}
-                as={WouterLink}
+                as={ReactRouterLink}
+                to={link.path}
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
-                  bg: useColorModeValue("gray.200", "gray.700"),
+                  bg: linkBackground,
                 }}
-                href={link.link}
               >
                 {link.text}
               </Link>

@@ -5,16 +5,19 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { ModalProps } from "../../../components/modals";
+import { ModalProps } from "src/components/modals";
 
-const ModalContext = createContext<{
+export const ModalContext = createContext<{
   modal: JSX.Element;
   show: <T = any>(
     callback: (props: ModalProps<T>) => JSX.Element
   ) => Promise<T>;
   hide: () => void;
-  // @ts-ignore
-}>({});
+}>({
+  hide: () => {},
+  modal: null,
+  show: async () => null,
+});
 
 export type ModalProviderProps = {};
 
@@ -46,7 +49,7 @@ export const ModalProvider = ({
         });
         return response;
       } catch (error) {
-        return error;
+        throw error;
       }
     },
     []
@@ -61,6 +64,7 @@ export const ModalProvider = ({
     <ModalContext.Provider
       value={{
         modal,
+        // @ts-ignore
         show,
         hide,
       }}

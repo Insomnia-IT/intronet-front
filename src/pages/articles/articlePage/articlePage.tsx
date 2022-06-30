@@ -5,17 +5,17 @@ import { Heading } from "src/components/heading/heading";
 import Loading from "src/loading/loading";
 import { articlesStore } from "../../../stores/articles.store";
 import { Article } from "./article/article";
+import { useParams } from "react-router-dom";
 
-type TArticlePageProps = {
-  id: string;
-};
-
-export const ArticlePage: React.FC<TArticlePageProps> = ({ id }) => {
+export const ArticlePage: React.FC = () => {
   React.useEffect(() => {
     if (articlesStore.IsLoading) {
       articlesStore.load();
     }
   }, []);
+
+  const { id } = useParams();
+
   return (
     <VStack
       // align={"flex-start"}

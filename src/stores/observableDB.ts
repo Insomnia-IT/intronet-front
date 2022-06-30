@@ -34,7 +34,7 @@ export class ObservableDB<
    */
   merge(items: T[], sourthOfTruth: "server" | "local") {
     const from = new Map(items.map((x) => [x.id, x]));
-    if (sourthOfTruth == "local") {
+    if (sourthOfTruth === "local") {
       for (let [key, local] of this.entries()) {
         if (!from.has(key)) this.add(local, "db");
         else {
@@ -68,7 +68,7 @@ export class ObservableDB<
   }
 
   remove(key: number | string, source: "user" | "server" | "db" = "user") {
-    if (source != "db") {
+    if (source !== "db") {
       this.table.delete(key);
       this.items.delete(key);
     }
@@ -91,7 +91,7 @@ export class ObservableDB<
 
   add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
-    if (source != "db") {
+    if (source !== "db") {
       this.table.add(value);
       this.items.set(key, value);
     }
@@ -112,7 +112,7 @@ export class ObservableDB<
 
   update(value: T, source: "user" | "server" | "db" = "user") {
     const key = value.id;
-    if (source != "db") {
+    if (source !== "db") {
       this.table.update(key, value);
       this.items.set(key, value);
     }

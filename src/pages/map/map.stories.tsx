@@ -7,7 +7,7 @@ import { MapPage } from "./map-page";
 const locations: InsomniaLocationFull[] = [
   {
     lat: 54.68255965779291,
-    lng: 35.07497888587355,
+    lon: 35.07497888587355,
     x: 1078.8210261252755,
     y: 406.92241107963486,
     description: "",
@@ -15,10 +15,11 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "",
     id: 3,
+    directionId: 0,
   },
   {
     lat: 54.68128095334499,
-    lng: 35.08512875824405,
+    lon: 35.08512875824405,
     x: 752.1208687440983,
     y: 323.7888888888889,
     description: "",
@@ -26,10 +27,11 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "camping",
     id: 2,
+    directionId: 0,
   },
   {
     lat: 54.67735017337062,
-    lng: 35.08774915484466,
+    lon: 35.08774915484466,
     x: 352.1208687440983,
     y: 323.7888888888889,
     description: "",
@@ -37,6 +39,7 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "cinema",
     id: 1,
+    directionId: 0,
   },
 ];
 

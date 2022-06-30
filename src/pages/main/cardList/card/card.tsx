@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Box, Img, Link } from "@chakra-ui/react";
 import { Heading } from "src/components/heading/heading";
 import { VStack } from "@chakra-ui/react";
-import { Link as LinkWouter } from "wouter";
+import { Link as LinkRouter } from "react-router-dom";
 
 export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
   return (
@@ -29,7 +29,7 @@ export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
       >
         <Heading level={3} maxW={"208px"}>
           <Link
-            as={LinkWouter}
+            as={LinkRouter}
             to={link}
             lineHeight={1}
             _after={{

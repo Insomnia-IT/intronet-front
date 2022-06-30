@@ -29,14 +29,14 @@ export class GeoConverter {
 
   public toGeo(point: { X: number; Y: number }) {
     return {
-      lng: this.leftLng + point.X / this.xToLng,
+      lon: this.leftLng + point.X / this.xToLng,
       lat: gToLat(this.minG + point.Y / this.gToY),
     };
   }
 
-  public fromGeo(geo: { lat: number; lng: number }) {
+  public fromGeo(geo: { lat: number; lon: number }) {
     return {
-      X: (geo.lng - this.leftLng) * this.xToLng,
+      X: (geo.lon - this.leftLng) * this.xToLng,
       Y: (latToG(geo.lat) - this.minG) * this.gToY,
     };
   }

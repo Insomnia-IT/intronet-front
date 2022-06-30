@@ -1,11 +1,10 @@
-import React from "react";
-import { QRReader } from "../qr/qr-reader";
-import * as Bulma from "react-bulma-components";
-import { Account, account } from "../../../stores";
+import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Button, Editable, Flex } from "@chakra-ui/react";
 import { Observable } from "cellx-decorators";
+import React from "react";
 import { cellState } from "../../../helpers/cell-state";
-import { Box, Editable, Flex, CloseButton } from "@chakra-ui/react";
-import { AddIcon, DeleteIcon, CloseIcon } from "@chakra-ui/icons";
+import { Account, account } from "../../../stores";
+import { QRReader } from "../qr/qr-reader";
 
 function AccountInfo(acc: Account) {
   const deleteAcc = () => account.Remove(acc);
@@ -29,6 +28,7 @@ export class UserLogin extends React.Component {
   });
 
   get shouldShowReader(): boolean {
+    // eslint-disable-next-line eqeqeq
     return this.state.isAdding || account.Accounts.length == 0;
   }
 
@@ -49,9 +49,9 @@ export class UserLogin extends React.Component {
         )}
         {!this.state.isAdding && this.state.accounts.map(AccountInfo)}
         {!this.shouldShowReader && (
-          <Bulma.Button onClick={() => (this.isAdding = true)}>
+          <Button onClick={() => (this.isAdding = true)}>
             Добавить аккаунт
-          </Bulma.Button>
+          </Button>
         )}
       </Flex>
     );

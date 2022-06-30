@@ -36,6 +36,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
       >
         <img
           src={this.props.image.url}
+          alt="Карта"
           className={styles.img}
           style={{
             transform: this.state.transform.ToString("css"),
@@ -139,10 +140,10 @@ export class MapComponent extends React.PureComponent<MapProps> {
     prevState: Readonly<{}>,
     snapshot?: any
   ) {
-    if (prevProps.image != this.props.image && this.root) {
+    if (prevProps.image !== this.props.image && this.root) {
       this.initTransform(this.props.image, this.root);
     }
-    if (this.props.selected && prevProps.selected != this.props.selected) {
+    if (this.props.selected && prevProps.selected !== this.props.selected) {
       this.scrollTo(this.props.selected);
     }
   }

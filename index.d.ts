@@ -42,17 +42,18 @@ type InsomniaLocation = {
   id: number;
   name: string;
   description: string;
+  directionId: number;
   x: number;
   y: number;
   lat: number;
-  lng: number;
+  lon: number;
   tags: number[];
   image: string;
 };
 
 type MapItem = {
   point: { X; Y };
-  icon;
+  icon: JSX.Element;
   radius;
   id;
   title?: string;
@@ -111,6 +112,11 @@ interface AuditoryElement {
   Changes: string; //Изменения в расписании по данному пункту.
 }
 
+type Direction = {
+  id: number;
+  name: string;
+  image: string;
+};
 interface IArticle {
   id: number;
   title: string;
@@ -122,4 +128,9 @@ type TMainPageCard = {
   title: string;
   img: string;
   link: string;
+}
+
+type User = {
+  ticketId: string;
+  token: string;
 };

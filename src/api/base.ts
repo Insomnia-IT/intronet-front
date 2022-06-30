@@ -1,3 +1,10 @@
+export type GenericRequest<P, Q, B> = {
+  path?: P;
+  query?: Q;
+  body?: B;
+  options?: RequestInit;
+};
+
 export class BaseApi {
   private baseUrl = "";
 
