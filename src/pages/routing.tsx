@@ -9,13 +9,13 @@ import { useRoutes } from "react-router-dom";
 export const ROUTES = [
   {
     text: "Главная",
-    link: "/",
+    path: "/",
     element: <MainPage />,
   },
   {
-    text: 'Статья',
-    link: '/article/:id',
-    element: <ArticlePage></ArticlePage>
+    text: "Статья",
+    path: "/article/:id",
+    element: <ArticlePage></ArticlePage>,
   },
   {
     text: "Объявления",
