@@ -15,6 +15,7 @@ import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
+import { UserMapItem } from "./user-map-item";
 
 export class MapPage extends React.PureComponent {
   @Observable
@@ -24,6 +25,9 @@ export class MapPage extends React.PureComponent {
   @Observable
   isEditing = false;
   static contextType = ModalContext;
+
+  @Observable
+  user = new UserMapItem();
 
   handleAddIconButtonClick = async () => {
     try {
@@ -62,7 +66,13 @@ export class MapPage extends React.PureComponent {
   }
 
   get mapItems() {
-    return locationsStore.FullLocations.map((x) => this.locationToMapItem(x));
+    const items = locationsStore.FullLocations.map((x) =>
+      this.locationToMapItem(x)
+    );
+    if (this.isMap && this.user.isLoaded) {
+      return items.concat([this.user]);
+    }
+    return items;
   }
 
   state = cellState(this, {
