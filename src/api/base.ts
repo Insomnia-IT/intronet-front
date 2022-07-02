@@ -12,6 +12,7 @@ export class BaseApi {
     return fetch(this.baseUrl + url, {
       ...options,
       headers: {
+        // eslint-disable-next-line no-useless-computed-key
         ["content-type"]: "application/json",
         ...options?.headers,
       },
@@ -20,6 +21,7 @@ export class BaseApi {
         resp.ok
           ? resp.json()
           : resp.json().then((err) => {
+              // eslint-disable-next-line no-throw-literal
               throw {
                 ...err,
                 url,

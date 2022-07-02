@@ -26,7 +26,13 @@ export const ModalProvider = ({
 }: PropsWithChildren<ModalProviderProps>) => {
   const [modal, setModal] = useState<JSX.Element>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isActive, setIsActive] = useState(false);
+
+  const hide = useCallback(() => {
+    setIsActive(false);
+    setModal(null);
+  }, []);
 
   const show = useCallback(
     async (callback: (props: ModalProps) => JSX.Element) => {
@@ -52,13 +58,8 @@ export const ModalProvider = ({
         throw error;
       }
     },
-    []
+    [hide]
   );
-
-  const hide = useCallback(() => {
-    setIsActive(false);
-    setModal(null);
-  }, []);
 
   return (
     <ModalContext.Provider

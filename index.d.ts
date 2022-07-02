@@ -125,6 +125,13 @@ interface IArticle {
   text: string;
 }
 
+type TMainPageCard = {
+  id: string;
+  title: string;
+  img: string;
+  link: string;
+}
+
 type User = {
   ticketId: string;
   token: string;
