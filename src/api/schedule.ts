@@ -1,5 +1,4 @@
 import { BaseApi } from "./base";
-
 class ScheduleApi extends BaseApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
     return this.fetch<ScheduleDTO[]>("/api/Schedule/" + locationId)
@@ -9,52 +8,58 @@ class ScheduleApi extends BaseApi {
           (x) =>
             ({
               ...x,
-              id: `${x.locationId}.${x.day}`,
+              locationId,
+              day: Days[x.day],
+              id: `${locationId}.${Days[x.day]}`,
             } as Schedule)
         )
       );
   }
 }
+const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
 
 export const scheduleApi = new ScheduleApi();
 
 type ScheduleDTO = {
   locationId: number;
   day: Day;
-  auditoryElements: Auditory[];
+  audiences: Auditory[];
 };
 
 const mockSchedules: ScheduleDTO[] = [
   {
     locationId: 1,
     day: "Thursday",
-    auditoryElements: [
+    audiences: [
       {
-        Number: 1,
-        Elements: [
+        number: 1,
+        elements: [
           {
-            Name: "«Боксбалет»",
-            Time: "22:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Сидоров",
+            id: 3,
+            name: "«Боксбалет»",
+            time: "22:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Сидоров",
           },
           {
-            Name: "«Самолёт»",
-            Time: "23:22",
-            Description: "Описание мультфильма",
-            Changes: "Время изменилось",
-            IsCanceled: true,
-            Speaker: "Иванов",
+            id: 3,
+            name: "«Самолёт»",
+            time: "23:22",
+            description: "Описание мультфильма",
+            changes: "Время изменилось",
+            isCanceled: true,
+            speaker: "Иванов",
           },
           {
-            Name: "«Смешарики»",
-            Time: "01:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Петров",
+            id: 3,
+            name: "«Смешарики»",
+            time: "01:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Петров",
           },
         ],
       },
@@ -63,62 +68,68 @@ const mockSchedules: ScheduleDTO[] = [
   {
     locationId: 1,
     day: "Friday",
-    auditoryElements: [
+    audiences: [
       {
-        Number: 1,
-        Elements: [
+        number: 1,
+        elements: [
           {
-            Name: "«Боксбалет»",
-            Time: "22:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Сидоров",
+            id: 3,
+            name: "«Боксбалет»",
+            time: "22:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Сидоров",
           },
           {
-            Name: "«Самолёт»",
-            Time: "23:22",
-            Description: "Описание мультфильма",
-            Changes: "Время изменилось",
-            IsCanceled: true,
-            Speaker: "Иванов",
+            id: 3,
+            name: "«Самолёт»",
+            time: "23:22",
+            description: "Описание мультфильма",
+            changes: "Время изменилось",
+            isCanceled: true,
+            speaker: "Иванов",
           },
           {
-            Name: "«Смешарики»",
-            Time: "01:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Петров",
+            id: 3,
+            name: "«Смешарики»",
+            time: "01:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Петров",
           },
         ],
       },
       {
-        Number: 2,
-        Elements: [
+        number: 2,
+        elements: [
           {
-            Name: "«Боксбалет»",
-            Time: "23:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: true,
-            Speaker: "Иванов",
+            id: 3,
+            name: "«Боксбалет»",
+            time: "23:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: true,
+            speaker: "Иванов",
           },
           {
-            Name: "«Самолёт»",
-            Time: "00:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Петров",
+            id: 3,
+            name: "«Самолёт»",
+            time: "00:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Петров",
           },
           {
-            Name: "«Смешарики»",
-            Time: "02:22",
-            Description: "Описание мультфильма",
-            Changes: "",
-            IsCanceled: false,
-            Speaker: "Иванов",
+            id: 3,
+            name: "«Смешарики»",
+            time: "02:22",
+            description: "Описание мультфильма",
+            changes: "",
+            isCanceled: false,
+            speaker: "Иванов",
           },
         ],
       },

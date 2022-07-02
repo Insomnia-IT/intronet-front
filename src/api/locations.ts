@@ -1,6 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
-import { debounced } from "src/helpers/debounce";
-import { locationsStore } from "src/stores/locations.store";
 import { AdminApi } from "./admin";
 
 const adminRoute = `/api/Admin/locations`;
@@ -15,9 +12,9 @@ export class LocationsApi extends AdminApi {
   }
 
   public async getLocations(): Promise<InsomniaLocation[]> {
-    const loc = await this.fetch<InsomniaLocationFull[]>(
-      "/api/Locations/all/full"
-    );
+    const loc = await this.fetch<
+      (InsomniaLocationFull & { timetables: any })[]
+    >("/api/Locations/all/full");
     return loc.map((x) => ({
       ...x,
       direction: undefined,
@@ -75,3 +72,5 @@ export class LocationsApi extends AdminApi {
     });
   }
 }
+
+const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
