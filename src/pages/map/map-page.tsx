@@ -93,7 +93,13 @@ export class MapPage extends React.PureComponent {
           image={this.state.image}
           onClick={() => {}}
           onChange={this.updateLocation}
-          onSelect={(x) => (this.selected = x)}
+          onSelect={(x) => {
+            if (x == this.user) {
+              this.selected = null;
+            } else {
+              this.selected = x;
+            }
+          }}
         />
         <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.buttons}>
