@@ -1,11 +1,12 @@
 import React from "react";
 import { scheduleStore } from "../../../stores/schedule.store";
-import { Computed, Observable } from "cellx-decorators";
+import { Observable } from "cellx-decorators";
 import { cellState } from "../../../helpers/cell-state";
 import { HStack } from "@chakra-ui/react";
 import styles from "./schedule.module.css";
 import { Chip } from "src/components/chip/chip";
 import { ChevronUpIcon } from "@chakra-ui/icons";
+import { locationsStore } from "../../../stores/locations.store";
 
 export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   @Observable
@@ -17,34 +18,20 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   @Observable
   selectedElement: AuditoryElement;
 
-  @Computed
-  get Auditories() {
-    return (
-      scheduleStore.db
-        .toArray()
-        .filter((x) => x.locationId === this.locationId)
-        .find((x) => x.day === this.day)?.auditoryElements ?? []
-    );
-  }
-
-  @Computed
-  get Schedules() {
-    return (
-      this.Auditories.find((x) => x.Number === this.auditory)?.Elements ?? []
-    );
-  }
-
   state = cellState(this, {
-    schedules: () => this.Schedules,
-    auditories: () => Array.from(new Set(this.Auditories.map((x) => x.Number))),
+    schedules: () =>
+      scheduleStore.getSchedules(this.locationId, this.day, this.auditory),
+    auditories: () =>
+      scheduleStore.getAuditorieNumbers(this.locationId, this.day),
     auditory: () => this.auditory,
     day: () => this.day,
     selectedElement: () => this.selectedElement,
+    menu: () => locationsStore.Locations.get(this.locationId)?.menu,
   });
 
   render() {
     return (
-      <>
+      <div className={styles.content}>
         {this.state.schedules.length > 0 && (
           <header className={styles.header}>Расписание</header>
         )}
@@ -91,51 +78,24 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
             })}
           </div>
         )}
-        {this.state.schedules.length > 0 && (
+        {this.state.schedules.map((x, i) => (
+          <ScheduleInfo
+            key={x.id}
+            schedule={x}
+            selected={this.state.selectedElement === x}
+            switchSelection={() => {
+              const isSelected = this.state.selectedElement === x;
+              this.selectedElement = isSelected ? null : x;
+            }}
+          />
+        ))}
+        {this.state.menu && (
           <>
-            {this.state.schedules.map((x, i) => (
-              <div
-                className={styles.schedule}
-                onClick={() =>
-                  (this.selectedElement =
-                    this.state.selectedElement === x ? null : x)
-                }
-                key={i}
-              >
-                <div
-                  className={x.IsCanceled ? styles.timeCanceled : styles.time}
-                >
-                  {x.IsCanceled ? "отмена" : x.Time}
-                </div>
-                <div className={styles.name}>{x.Name}</div>
-                <ChevronUpIcon
-                  className={
-                    this.state.selectedElement === x
-                      ? styles.expander
-                      : styles.expanderOpened
-                  }
-                />
-                {x.Changes && (
-                  <div className={styles.changes}>
-                    <span>Изменено</span>
-                    {this.state.selectedElement === x && x.Changes}
-                  </div>
-                )}
-                {this.state.selectedElement === x && (
-                  <>
-                    {x.Speaker && (
-                      <div className={styles.info}>
-                        <span>{x.Speaker}</span>
-                      </div>
-                    )}
-                  </>
-                )}
-                <div className={styles.bottomLine} />
-              </div>
-            ))}
+            <header className={styles.header}>Меню</header>
+            {this.state.menu}
           </>
         )}
-      </>
+      </div>
     );
   }
 
@@ -151,16 +111,52 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   }
 }
 
+export function ScheduleInfo(prop: {
+  schedule: AuditoryElement;
+  selected: boolean;
+  switchSelection();
+}) {
+  const x = prop.schedule;
+  return (
+    <div className={styles.schedule} onClick={prop.switchSelection}>
+      <div className={x.isCanceled ? styles.timeCanceled : styles.time}>
+        {x.isCanceled ? "отмена" : x.time}
+      </div>
+      <div className={styles.name}>{x.name}</div>
+      <ChevronUpIcon
+        className={prop.selected ? styles.expander : styles.expanderOpened}
+      />
+      {x.changes && (
+        <div className={styles.changes}>
+          <span>Изменено</span>
+          {prop.selected && x.changes}
+        </div>
+      )}
+      {prop.selected && (
+        <>
+          {x.speaker && (
+            <div className={styles.info}>
+              <span>{x.speaker}</span>
+            </div>
+          )}
+        </>
+      )}
+      <div className={styles.bottomLine} />
+    </div>
+  );
+}
+
 type ScheduleProps = {
   locationId: number;
 };
 
-const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday"];
+const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
 const dayNames = {
   Thursday: "Четверг",
   Friday: "Пятница",
   Saturday: "Суббота",
   Sunday: "Воскресенье",
+  Monday: "Понедельник",
 };
 const auditoryNames = {
   1: "Аудитория 1",
