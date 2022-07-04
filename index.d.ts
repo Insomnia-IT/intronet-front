@@ -49,6 +49,7 @@ type InsomniaLocation = {
   lon: number;
   tags: number[];
   image: string;
+  menu?: string;
 };
 
 type MapItem = {
@@ -90,26 +91,27 @@ interface ICategory {
   color: string; // Цвет категории, для раскрашивания её карточки
 }
 
-type Day = "Thursday" | "Friday" | "Saturday" | "Sunday";
+type Day = "Thursday" | "Friday" | "Saturday" | "Sunday" | "Monday";
 
 interface Schedule {
   id: string;
   locationId: number;
   day: Day;
-  auditoryElements: Auditory[];
+  audiences: Auditory[];
 }
 
 interface Auditory {
-  Number: 1 | 2;
-  Elements: AuditoryElement[];
+  number: 1 | 2;
+  elements: AuditoryElement[];
 }
 interface AuditoryElement {
-  Name: string; //Название пункта расписания.
-  Description: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
-  Time: string; //Время начала.
-  Speaker: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
-  IsCanceled: bool; //Если = true, значит отменено.
-  Changes: string; //Изменения в расписании по данному пункту.
+  id: number;
+  name: string; //Название пункта расписания.
+  description: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
+  time: string; //Время начала.
+  speaker: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
+  isCanceled: bool; //Если = true, значит отменено.
+  changes: string; //Изменения в расписании по данному пункту.
 }
 
 type Direction = {

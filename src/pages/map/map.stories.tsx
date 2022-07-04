@@ -39,6 +39,7 @@ const locations: InsomniaLocationFull[] = [
     tags: [],
     image: "cinema",
     id: 1,
+
     directionId: 0,
   },
 ];
