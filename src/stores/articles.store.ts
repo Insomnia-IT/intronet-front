@@ -18,6 +18,7 @@ class ArticlesStore {
 
     try {
       const newArticles = await articlesApi.getAllArticles();
+
       this.Articles.clear();
       this.Articles.addRange(newArticles);
     } catch {}
