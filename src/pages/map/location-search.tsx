@@ -147,6 +147,10 @@ export class LocationSearch extends React.PureComponent<{
 function filterLocations(query: string) {
   const regEx = new RegExp(query, "iu");
   return (location: InsomniaLocationFull) => {
-    return location.name.match(regEx);
+    return (
+      location.name.match(regEx) ||
+      location.description.match(regEx) ||
+      location.menu.match(regEx)
+    );
   };
 }
