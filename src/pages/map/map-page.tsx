@@ -94,7 +94,7 @@ export class MapPage extends React.PureComponent {
           onClick={() => {}}
           onChange={this.updateLocation}
           onSelect={(x) => {
-            if (x == this.user) {
+            if (x === this.user) {
               this.selected = null;
             } else {
               this.selected = x;
