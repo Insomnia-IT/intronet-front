@@ -16,6 +16,7 @@ import { MdNavbar } from "./MdNavbar";
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const boxBg = useColorModeValue("gray.100", "gray.900");
+  const linkBackground = useColorModeValue("gray.200", "gray.700");
 
   return (
     <Box bg={boxBg} px={4} position="sticky" top="0">
@@ -40,8 +41,7 @@ export const Navbar = () => {
                 rounded={"md"}
                 _hover={{
                   textDecoration: "none",
-                  // eslint-disable-next-line react-hooks/rules-of-hooks
-                  bg: useColorModeValue("gray.200", "gray.700"),
+                  bg: linkBackground,
                 }}
               >
                 {link.text}

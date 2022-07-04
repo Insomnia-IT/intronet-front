@@ -6,6 +6,13 @@ export const theme = extendTheme({
     heading: `'PT Mono', sans-serif`,
     body: `'Open Sans', sans-serif`,
   },
+  styles: {
+    global: {
+      "html, body": {
+        color: "gray.700",
+      },
+    },
+  },
   colors: {
     brand: {
       300: "#6BBDB0",

@@ -1,11 +1,4 @@
-import React, {
-  Children,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { JsxElement } from "typescript";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 
 const visibleElements = new EventTarget();
 // <Map<Element, IntersectionObserverEntry>>(

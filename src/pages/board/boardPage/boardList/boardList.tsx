@@ -2,7 +2,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React, { FC, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { NoteModal } from "src/components";
+import { NoteModal } from "src/components/modals";
 import { RequireAuth } from "src/components/RequireAuth";
 import { useAppContext } from "src/helpers/AppProvider";
 import { categoriesStore, notesStore, pagesStore } from "src/stores";

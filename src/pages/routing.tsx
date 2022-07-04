@@ -1,15 +1,21 @@
 import React, { FC } from "react";
 import { BoardPage } from "./board/boardPage/boardPage";
 import { MapPage } from "./map/map-page";
-import { TimetablePage } from "./timetable/timetable-page";
 import { VotingPage } from "./voting/voting-page";
+import { MainPage } from "./main/mainPage";
+import { ArticlePage } from "./articles/articlePage/articlePage";
 
 import { useRoutes } from "react-router-dom";
 export const ROUTES = [
   {
     text: "Главная",
     path: "/",
-    element: <TimetablePage />,
+    element: <MainPage />,
+  },
+  {
+    text: "Статья",
+    path: "/article/:id",
+    element: <ArticlePage></ArticlePage>,
   },
   {
     text: "Объявления",

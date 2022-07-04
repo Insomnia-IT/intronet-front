@@ -14,7 +14,12 @@ export function BoardPage() {
         <Box minW={"100%"}>
           <Categories />
         </Box>
-        <Box minH={1} overflowY={"auto"} w="100%" className={" hide-scrollbar"}>
+        <Box
+          minH={1}
+          overflowY={"auto"}
+          w={"100%"}
+          className={" hide-scrollbar"}
+        >
           <BoardList></BoardList>
         </Box>
       </VStack>

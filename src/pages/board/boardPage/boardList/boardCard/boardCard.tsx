@@ -2,7 +2,6 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  Heading,
   HStack,
   IconButton,
   Popover,
@@ -16,9 +15,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { Heading } from "src/components/heading/heading";
 import { RequireAuth } from "src/components/RequireAuth";
 import { BtnCopy } from "./btnCopy/btnCopy";
 import { NoteText } from "./noteText/noteText";
+
 
 export interface INotesCard extends StackProps {
   noteInfoObj: INotes;
@@ -42,13 +43,11 @@ export const BoardCard = ({
       py={5}
       border={"1px solid"}
       borderColor={activeColor}
-      borderRadius="2xl"
+      borderRadius={"2xl"}
       {...rest}
     >
       <VStack align={"flex-start"} spacing={2} pos={"relative"}>
-        <Heading as="h3" size={"md"}>
-          {title}
-        </Heading>
+        <Heading level={2}>{title}</Heading>
         <NoteText text={text} />
 
         <RequireAuth>

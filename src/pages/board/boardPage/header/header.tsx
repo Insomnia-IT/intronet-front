@@ -1,16 +1,14 @@
-import { Heading, Link, Text, VStack } from "@chakra-ui/react";
+import { Link, Text, VStack } from "@chakra-ui/react";
 import * as React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { Heading } from "src/components/heading/heading";
 
 export default function Header() {
   return (
     <VStack align={"start"} spacing={[0, null, 1]}>
       <Heading
-        as="h1"
-        maxWidth={["250px", null, "none"]}
-        size={"xl"}
-        color={"gray.700"}
-        lineHeight={"none"}
+        maxWidth={['250px', null, 'none']}
+        level={1}
       >
         Доска Объявлений
       </Heading>
