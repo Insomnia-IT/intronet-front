@@ -2,6 +2,7 @@ import { AdminApi } from "./admin";
 import { GenericRequest } from "./base";
 
 const directionsRoute = "/api/directions";
+const adminDirectionsRoute = "/api/Admin/directions";
 
 export class DirectionsApi extends AdminApi {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -30,7 +31,7 @@ export class DirectionsApi extends AdminApi {
       }
     >
   ): Promise<null> {
-    return this.adminFetch(`${directionsRoute}/add`, {
+    return this.adminFetch(`${adminDirectionsRoute}/add`, {
       method: "POST",
       body: JSON.stringify(request.body),
     });
@@ -48,7 +49,7 @@ export class DirectionsApi extends AdminApi {
       }
     >
   ): Promise<null> {
-    return this.adminFetch(`${directionsRoute}/edit`, {
+    return this.adminFetch(`${adminDirectionsRoute}/edit`, {
       method: "PUT",
       body: JSON.stringify(request.body),
     });
@@ -57,6 +58,6 @@ export class DirectionsApi extends AdminApi {
   deleteDirection(
     request: GenericRequest<{ id: number }, null, null>
   ): Promise<null> {
-    return this.adminFetch(`${directionsRoute}/delete/${request.path.id}`);
+    return this.adminFetch(`${adminDirectionsRoute}/delete/${request.path.id}`);
   }
 }
