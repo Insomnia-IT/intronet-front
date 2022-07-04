@@ -11,7 +11,7 @@ import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { cellState } from "src/helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { Observable } from "cellx-decorators";
-import { MapIcons } from "./icons/icons";
+import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "cellx-collections";
@@ -102,9 +102,9 @@ export class LocationSearch extends React.PureComponent<{
               {this.state.locations.map((x) => (
                 <Flex
                   key={x.id}
-                  padding="16px"
+                  padding="16px 0"
                   gap="10px"
-                  alignItems="flex-end"
+                  alignItems="center"
                   onClick={() => {
                     this.props.onSelect(x);
                     this.opened = false;
@@ -114,7 +114,7 @@ export class LocationSearch extends React.PureComponent<{
                     style={{ width: 30, height: 30 }}
                     viewBox="-20 -20 40 40"
                   >
-                    {MapIcons[x.image]}
+                    {getIconByDirectionId(x.directionId)}
                   </svg>
                   <div>{x.name}</div>
                 </Flex>
