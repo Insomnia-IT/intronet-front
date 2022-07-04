@@ -33,8 +33,8 @@ class ScheduleStore {
     auditory: 1 | 2
   ): AuditoryElement[] {
     const auditories = this.getAuditories(locationId, day);
-    if (auditories.length == 0) return [];
-    if (auditories.length == 1) return auditories[0].elements;
+    if (auditories.length === 0) return [];
+    if (auditories.length === 1) return auditories[0].elements;
     return auditories.find((x) => x.number === auditory).elements;
   }
 }

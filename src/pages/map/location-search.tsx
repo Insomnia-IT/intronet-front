@@ -16,6 +16,7 @@ import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "cellx-collections";
 import { Close } from "src/components/close";
+import { scheduleStore } from "../../stores/schedule.store";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocation);
@@ -147,10 +148,24 @@ export class LocationSearch extends React.PureComponent<{
 function filterLocations(query: string) {
   const regEx = new RegExp(query, "iu");
   return (location: InsomniaLocationFull) => {
-    return (
+    const simpleResult =
       location.name.match(regEx) ||
       location.description.match(regEx) ||
-      location.menu.match(regEx)
-    );
+      location.menu.match(regEx);
+    if (simpleResult) {
+      return true;
+    }
+    const schedules = scheduleStore.db
+      .toArray()
+      .filter((x) => x.locationId === location.id);
+    return schedules
+      .flatMap((x) => x.audiences)
+      .flatMap((x) => x.elements)
+      .some(
+        (x) =>
+          x.name.match(regEx) ||
+          x.speaker.match(regEx) ||
+          x.description.match(regEx)
+      );
   };
 }
