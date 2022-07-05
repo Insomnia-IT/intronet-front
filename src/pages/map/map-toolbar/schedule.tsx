@@ -35,13 +35,7 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
         {this.state.schedules.length > 0 && (
           <header className={styles.header}>Расписание</header>
         )}
-        <HStack
-          className={styles.chips}
-          padding="16px 0"
-          align="center"
-          flexDirection="row"
-          overflowX="scroll"
-        >
+        <HStack className={styles.chips}>
           {Days.map((day) => {
             return (
               <Chip
@@ -137,6 +131,18 @@ export function ScheduleInfo(prop: {
           {x.speaker && (
             <div className={styles.info}>
               <span>{x.speaker}</span>
+            </div>
+          )}
+          {x.description && (
+            <div className={styles.descr}>
+              <span>
+                1. Richie's Plank Experience - одной стороны, это симулятор, но
+                с другой игра, в которой вы сможете попробовать преодолеть страх
+                высоты... (или нет). 2. Epic Roller Coasters — игроков ждут
+                прекрасные виды, длинные трассы и незабываемые впечатления. 3.
+                VR игра INSOMNIA создана по мотивам игры Алхимия специально для
+                фестиваля.
+              </span>
             </div>
           )}
         </>

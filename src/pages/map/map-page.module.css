@@ -45,8 +45,20 @@
   display: initial;
 }
 
-.chips {
 
+/* Скрываем scrollbar для Chrome, Safari и Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+  /* Скрываем scrollbar для IE, Edge и Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+  scrollbar-height: none; /* Firefox */
+}
+
+.chips {
+  composes: hide-scrollbar;
 }
 
 .buttons{

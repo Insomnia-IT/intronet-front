@@ -19,6 +19,18 @@ class DirectionsStore {
   toggleLoading = () => {
     this.IsLoading = !this.isLoading;
   };
+  //
+  // constructor() {
+  //   Object.keys(MapIcons).forEach((key) => {
+  //     this.api.createDirection({
+  //       body: {
+  //         name: key,
+  //         file: null,
+  //         image: "",
+  //       },
+  //     });
+  //   });
+  // }
 
   /**
    * Возвращает список картинок для локаций

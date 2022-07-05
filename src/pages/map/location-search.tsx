@@ -11,11 +11,12 @@ import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { cellState } from "src/helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { Observable } from "cellx-decorators";
-import { MapIcons } from "./icons/icons";
+import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "cellx-collections";
 import { Close } from "src/components/close";
+import { scheduleStore } from "../../stores/schedule.store";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocation);
@@ -102,9 +103,9 @@ export class LocationSearch extends React.PureComponent<{
               {this.state.locations.map((x) => (
                 <Flex
                   key={x.id}
-                  padding="16px"
+                  padding="16px 0"
                   gap="10px"
-                  alignItems="flex-end"
+                  alignItems="center"
                   onClick={() => {
                     this.props.onSelect(x);
                     this.opened = false;
@@ -114,7 +115,7 @@ export class LocationSearch extends React.PureComponent<{
                     style={{ width: 30, height: 30 }}
                     viewBox="-20 -20 40 40"
                   >
-                    {MapIcons[x.image]}
+                    {getIconByDirectionId(x.directionId)}
                   </svg>
                   <div>{x.name}</div>
                 </Flex>
@@ -147,6 +148,24 @@ export class LocationSearch extends React.PureComponent<{
 function filterLocations(query: string) {
   const regEx = new RegExp(query, "iu");
   return (location: InsomniaLocationFull) => {
-    return location.name.match(regEx);
+    const simpleResult =
+      location.name.match(regEx) ||
+      location.description.match(regEx) ||
+      location.menu.match(regEx);
+    if (simpleResult) {
+      return true;
+    }
+    const schedules = scheduleStore.db
+      .toArray()
+      .filter((x) => x.locationId === location.id);
+    return schedules
+      .flatMap((x) => x.audiences)
+      .flatMap((x) => x.elements)
+      .some(
+        (x) =>
+          x.name.match(regEx) ||
+          x.speaker.match(regEx) ||
+          x.description.match(regEx)
+      );
   };
 }
