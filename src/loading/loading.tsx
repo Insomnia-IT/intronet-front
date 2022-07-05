@@ -19,16 +19,12 @@ export default function Loading({
 }) {
   if (isLoading) {
     return (
-      <Box
-        w='100%'
-        display={'grid'}
-        placeItems='center'
-      >
+      <Box w="100%" display={"grid"} placeItems="center">
         <Spinner
           width={width - margin * 2}
           height={height - margin * 2}
           className={styles.spinner + " " + className}
-          color="currentColor"
+          color={"brand.300"}
           style={{ margin: margin.toString() + "px" }}
         />
       </Box>
