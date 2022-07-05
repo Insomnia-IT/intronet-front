@@ -1,27 +1,25 @@
 import { BaseApi } from "./base";
 
-const articlesRoot = "api/pages";
+const articlesRoot = "/api/pages";
 
 const testArticles: IArticle[] = [
   {
     id: 1,
-    title: "Название",
-    text: `## Features
-
-    - Import a HTML file and watch it magically convert to Markdown
-    - Drag and drop images (requires your Dropbox account be linked)
-    - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-    - Drag and drop markdown and HTML files into Dillinger
-    - Export documents as Markdown, HTML and PDF`,
+    title: "Наши принципы и ценности",
+    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
+  },
+  {
+    id: 2,
+    title: "Наши принципы и ценности",
+    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
   },
 ];
 
 export class ArticlesApi extends BaseApi {
   public getAllArticles(): Promise<IArticle[]> {
-    // return this.fetch(`${articlesRoot}/all`)
+    // return this.fetch(`${articlesRoot}/all`);
     return new Promise((res, rej) => {
-      // setTimeout((res(testArticles)), 2000)
-      res(testArticles);
+      setTimeout(() => res(testArticles), 1500);
     });
   }
 
