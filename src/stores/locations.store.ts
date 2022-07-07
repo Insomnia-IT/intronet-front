@@ -41,25 +41,14 @@ class LocationsStore {
   }
 
   private async update() {
-    const [tags, locations] = await Promise.all([
-      this.api.getTags().catch(() => [
-        {
-          id: 1,
-          name: "Избранное",
-        },
-        {
-          id: 2,
-          name: "Экраны",
-        },
-        {
-          id: 3,
-          name: "Душ",
-        },
-      ]),
-      this.api.getLocations().catch(() => []),
-    ]);
-    this.Tags.merge(tags, "server");
-    this.Locations.merge(locations, "server");
+    this.api
+      .getTags()
+      .then((tags) => this.Tags.merge(tags, "server"))
+      .catch((err) => console.warn("Синхронизация Tags не удалась"));
+    this.api
+      .getLocations()
+      .then((locations) => this.Locations.merge(locations, "server"))
+      .catch((err) => console.warn("Синхронизация Locations не удалась"));
   }
 
   @Observable

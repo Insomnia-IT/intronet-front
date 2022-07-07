@@ -100,7 +100,6 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   ) {
     if (this.locationId !== this.props.locationId) {
       this.locationId = this.props.locationId;
-      scheduleStore.loadSchedule(this.props.locationId);
     }
   }
 }
@@ -116,7 +115,10 @@ export function ScheduleInfo(prop: {
       <div className={x.isCanceled ? styles.timeCanceled : styles.time}>
         {x.isCanceled ? "отмена" : x.time}
       </div>
-      <div className={styles.name}>{x.name}</div>
+      <div className={styles.name}>
+        {x.name}
+        {x.age && <span className={styles.age}>{x.age}</span>}
+      </div>
       <ChevronUpIcon
         className={prop.selected ? styles.expander : styles.expanderOpened}
       />
@@ -135,20 +137,31 @@ export function ScheduleInfo(prop: {
           )}
           {x.description && (
             <div className={styles.descr}>
-              <span>
-                1. Richie's Plank Experience - одной стороны, это симулятор, но
-                с другой игра, в которой вы сможете попробовать преодолеть страх
-                высоты... (или нет). 2. Epic Roller Coasters — игроков ждут
-                прекрасные виды, длинные трассы и незабываемые впечатления. 3.
-                VR игра INSOMNIA создана по мотивам игры Алхимия специально для
-                фестиваля.
-              </span>
+              <span>{x.description}</span>
+            </div>
+          )}
+          {x.movies && (
+            <div className={styles.movies}>
+              {x.movies.map((movie) => (
+                <Movie key={movie.id} movie={movie} />
+              ))}
             </div>
           )}
         </>
       )}
       <div className={styles.bottomLine} />
     </div>
+  );
+}
+
+function Movie({ movie }: { movie: MovieInfo }) {
+  return (
+    <>
+      <span style={{ gridColumn: 1 }}>
+        {movie.name} / {movie.author} / {movie.country}
+      </span>
+      <span style={{ gridColumn: 2 }}>{movie.duration}"</span>
+    </>
   );
 }
 

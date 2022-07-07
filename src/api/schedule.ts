@@ -1,138 +1,114 @@
 import { BaseApi } from "./base";
+
 class ScheduleApi extends BaseApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
-    return this.fetch<ScheduleDTO[]>("/api/Schedule/" + locationId)
-      .catch((e) => mockSchedules)
+    return this.fetch<ScheduleDTO[]>("/api/Schedule/" + locationId).then(
+      (items) =>
+        items.map(
+          (x) =>
+            ({
+              locationId,
+              day: Days[x.day],
+              id: `${locationId}.${Days[x.day]}`,
+              audiences: x.audiences.map((a) => ({
+                number: a.number,
+                elements: a.elements.map((e) => ({
+                  ...e,
+                  type: "lecture",
+                })),
+              })),
+            } as Schedule)
+        )
+    );
+  }
+
+  getAnimations(locationId: number): Promise<Schedule[]> {
+    return this.fetch<AnimationDTO[]>("/api/Animations/all/" + locationId)
+      .catch((e) => [
+        {
+          id: 1,
+          screenId: locationId,
+          day: 0,
+          name: "ЦУЭ 1",
+          groups: [
+            {
+              id: 1,
+              name: "Анимация для всех",
+              time: "23:45",
+              ageLimit: "12 + ",
+              elements: [
+                {
+                  id: 1,
+                  name: "The Thundered Man",
+                  country: "France",
+                  duration: "3'58\"",
+                  author: "Valentine Vendroux",
+                },
+                {
+                  id: 2,
+                  name: "Про удава Ваню",
+                  country: "ru",
+                  duration: "8:45",
+                  author: "Ваня",
+                },
+                {
+                  id: 3,
+                  name: "Про гуся Антонину",
+                  country: "ru",
+                  duration: "8:45",
+                  author: "Антонина",
+                },
+              ],
+            },
+          ],
+        } as AnimationDTO,
+      ])
       .then((items) =>
         items.map(
           (x) =>
             ({
-              ...x,
-              locationId,
+              locationId: x.screenId,
               day: Days[x.day],
               id: `${locationId}.${Days[x.day]}`,
+              audiences: [
+                {
+                  number: 1,
+                  elements: x.groups.map((gr) => ({
+                    id: gr.id,
+                    type: "animation",
+                    name: gr.name,
+                    time: gr.time,
+                    age: gr.ageLimit,
+                    movies: gr.elements,
+                  })),
+                },
+              ],
             } as Schedule)
         )
       );
   }
 }
+
 const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
 
 export const scheduleApi = new ScheduleApi();
 
 type ScheduleDTO = {
   locationId: number;
-  day: Day;
+  day: number;
   audiences: Auditory[];
 };
 
-const mockSchedules: ScheduleDTO[] = [
-  {
-    locationId: 1,
-    day: "Thursday",
-    audiences: [
-      {
-        number: 1,
-        elements: [
-          {
-            id: 3,
-            name: "«Боксбалет»",
-            time: "22:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Сидоров",
-          },
-          {
-            id: 3,
-            name: "«Самолёт»",
-            time: "23:22",
-            description: "Описание мультфильма",
-            changes: "Время изменилось",
-            isCanceled: true,
-            speaker: "Иванов",
-          },
-          {
-            id: 3,
-            name: "«Смешарики»",
-            time: "01:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Петров",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    locationId: 1,
-    day: "Friday",
-    audiences: [
-      {
-        number: 1,
-        elements: [
-          {
-            id: 3,
-            name: "«Боксбалет»",
-            time: "22:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Сидоров",
-          },
-          {
-            id: 3,
-            name: "«Самолёт»",
-            time: "23:22",
-            description: "Описание мультфильма",
-            changes: "Время изменилось",
-            isCanceled: true,
-            speaker: "Иванов",
-          },
-          {
-            id: 3,
-            name: "«Смешарики»",
-            time: "01:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Петров",
-          },
-        ],
-      },
-      {
-        number: 2,
-        elements: [
-          {
-            id: 3,
-            name: "«Боксбалет»",
-            time: "23:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: true,
-            speaker: "Иванов",
-          },
-          {
-            id: 3,
-            name: "«Самолёт»",
-            time: "00:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Петров",
-          },
-          {
-            id: 3,
-            name: "«Смешарики»",
-            time: "02:22",
-            description: "Описание мультфильма",
-            changes: "",
-            isCanceled: false,
-            speaker: "Иванов",
-          },
-        ],
-      },
-    ],
-  },
-];
+type AnimationDTO = {
+  id: number;
+  screenId: number;
+  day: number;
+  name: string;
+  groups: {
+    id: number;
+    name: string;
+    time: string;
+    ageLimit: string;
+    elements: MovieInfo[];
+  }[];
+};
