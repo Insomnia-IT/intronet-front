@@ -1,15 +1,40 @@
 import { ObservableDB } from "./observableDB";
 import { scheduleApi } from "../api/schedule";
 import { Observable } from "cellx-decorators";
+import { locationsStore } from "./locations.store";
 
 class ScheduleStore {
+  constructor() {
+    this.loadAll();
+    setTimeout(() => this.loadAll(), 5000);
+  }
+
+  async loadAll() {
+    for (let location of locationsStore.Locations.values()) {
+      if (location.directionId === 2) {
+        this.loadAnimationsSchedule(location.id);
+      } else {
+        this.loadSchedule(location.id);
+      }
+    }
+  }
+
   @Observable
   public db = new ObservableDB<Schedule>("schedules");
 
-  async loadSchedule(locationId: number) {
+  private async loadAnimationsSchedule(locationId: number) {
     await this.db.isLoaded;
-    const schedules = await scheduleApi.getSchedules(locationId);
-    this.db.addOrUpdateRange(schedules);
+    await scheduleApi
+      .getAnimations(locationId)
+      .then((schedules) => this.db.addOrUpdateRange(schedules, "server"))
+      .catch((err) => console.warn("Синхронизация schedules не удалась"));
+  }
+  private async loadSchedule(locationId: number) {
+    await this.db.isLoaded;
+    await scheduleApi
+      .getSchedules(locationId)
+      .then((schedules) => this.db.addOrUpdateRange(schedules, "server"))
+      .catch((err) => console.warn("Синхронизация schedules не удалась"));
   }
 
   private getAuditories(locationId: number, day: Day): Auditory[] {

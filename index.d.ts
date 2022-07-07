@@ -106,13 +106,24 @@ interface Auditory {
 }
 interface AuditoryElement {
   id: number;
+  type: "animation" | "lecture";
   name: string; //Название пункта расписания.
   description: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
   time: string; //Время начала.
   speaker: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
   isCanceled: bool; //Если = true, значит отменено.
   changes: string; //Изменения в расписании по данному пункту.
+  age?: string;
+  movies?: MovieInfo[];
 }
+
+type MovieInfo = {
+  id: number;
+  name: string;
+  country: string;
+  duration: string;
+  author: string;
+};
 
 type Direction = {
   id: number;
@@ -130,7 +141,7 @@ type TMainPageCard = {
   title: string;
   img: string;
   link: string;
-}
+};
 
 type User = {
   ticketId: string;

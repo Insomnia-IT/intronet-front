@@ -42,7 +42,7 @@ class DirectionsStore {
       this.Directions.clear();
       this.Directions.addRange(directions);
     } catch (error) {
-      throw error;
+      console.warn("Синхронизация Directions не удалась");
     } finally {
       this.IsLoading = false;
     }

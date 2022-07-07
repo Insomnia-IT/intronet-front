@@ -21,7 +21,9 @@ class ArticlesStore {
 
       this.Articles.clear();
       this.Articles.addRange(newArticles);
-    } catch {}
+    } catch {
+      console.warn("Синхронизация Articles не удалась");
+    }
 
     this.IsLoading = false;
   };
