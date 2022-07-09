@@ -7,11 +7,11 @@ const notesRout = "/api/notes";
 const categoriesRout = "categories";
 
 export default class NotesApi extends AdminApi {
-  getNote(id: number): Promise<INotes> {
+  getNote(id: number): Promise<INote> {
     return this.fetch(`${notesRout}/${id}`);
   }
 
-  getAllNotes(): Promise<INotes[]> {
+  getAllNotes(): Promise<INote[]> {
     return this.fetch(`${notesRout}/all`);
   }
 
@@ -19,7 +19,7 @@ export default class NotesApi extends AdminApi {
     page = 1,
     count = COUNT_NOTES_OF_PAGE,
     categoriesIds: number[] = []
-  ): Promise<INotes[]> {
+  ): Promise<INote[]> {
     // Если в переданном categoriesIds есть общая категория,
     // то нужно заменить массив с категориями на пустой массив,
     // что бы в запросе не было категории, и сервер вернул их все.
@@ -37,11 +37,11 @@ export default class NotesApi extends AdminApi {
     return this.fetch(url);
   }
 
-  getNotesAll(): Promise<INotes[]> {
+  getNotesAll(): Promise<INote[]> {
     return this.fetch(`${notesRout}/all`);
   }
 
-  createNote(request: GenericRequest<null, null, INotes>): Promise<null> {
+  createNote(request: GenericRequest<null, null, INote>): Promise<null> {
     return this.adminFetch(`api/Admin/notes/add`, {
       method: "POST",
       body: JSON.stringify({
@@ -50,7 +50,7 @@ export default class NotesApi extends AdminApi {
     });
   }
 
-  editNote(request: GenericRequest<null, null, INotes>): Promise<null> {
+  editNote(request: GenericRequest<null, null, INote>): Promise<null> {
     return this.adminFetch(`api/Admin/notes/edit`, {
       method: "PUT",
       body: JSON.stringify({
