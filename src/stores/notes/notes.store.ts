@@ -7,7 +7,7 @@ class NotesStore {
   private api = new NotesApi();
 
   @Observable
-  Notes = new ObservableDB<INotes>("notes");
+  Notes = new ObservableDB<INote>("notes");
 
   @Observable
   IsLoading: boolean = false;
@@ -23,7 +23,7 @@ class NotesStore {
   // Загрузка всех объявленй всех категорий
   public load = async () => {
     this.IsLoading = true;
-    let notes: INotes[];
+    let notes: INote[];
     try {
       notes = await this.api.getAllNotes();
       this.Notes.clear();
@@ -53,7 +53,7 @@ class NotesStore {
   /**
    * Добавляет запись
    */
-  public addNote = async (request: GenericRequest<null, null, INotes>) => {
+  public addNote = async (request: GenericRequest<null, null, INote>) => {
     this.IsLoading = true;
     await this.api.createNote(request);
     this.load();
@@ -64,7 +64,7 @@ class NotesStore {
    * Изменяет запись по id
    * @param {INote} body Тело реквеста
    */
-  public editNote = async (request: GenericRequest<null, null, INotes>) => {
+  public editNote = async (request: GenericRequest<null, null, INote>) => {
     this.IsLoading = true;
     await this.api.editNote(request);
     this.Notes.update(request.body);

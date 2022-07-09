@@ -16,7 +16,7 @@ import { NoteForm } from "../forms";
  * @param title Название объявления
  * @param text Содержимое объявления
  */
-export const NoteModal: FC<ModalProps<INotes>> = ({
+export const NoteModal: FC<ModalProps<INote>> = ({
   id,
   title,
   text,
