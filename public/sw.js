@@ -60,6 +60,7 @@ self.env = new SwEnv("/", {
           "/images/insomnia_intro_3.webp",
           "/images/insomnia_intro_4.webp",
           "/images/insomnia_intro_5.webp",
+          "/fonts/Open-Sans_Regular.woff2",
           // '/static/js/bundle.js',
           // '/fonts/PT_Root_UI/light/PT_Root_UI_Light.woff2',
           // '/fonts/PT_Root_UI/medium/PT_Root_UI_Medium.woff2',
