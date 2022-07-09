@@ -18,10 +18,28 @@ export const parseDate = (date: string): string => {
   const ISOString = ISODate + "T" + dateT;
   const ISOStringWithTimeZone = ISOString + "+03:00";
   const dateObj = new Date(ISOStringWithTimeZone);
-  const weekday = weekdayList[dateObj.getDay()];
-  const time = dateObj
+  let firstPart: string;
+
+  const nowDay = new Date();
+  if (
+    dateObj.getFullYear() === nowDay.getFullYear() &&
+    dateObj.getMonth() === nowDay.getMonth() &&
+    dateObj.getDate() === nowDay.getDate()
+  ) {
+    firstPart = "Сегодня";
+  } else if (
+    dateObj.getFullYear() === nowDay.getFullYear() &&
+    dateObj.getMonth() === nowDay.getMonth() &&
+    dateObj.getDate() === nowDay.getDate() - 1
+  ) {
+    firstPart = "Вчера";
+  } else {
+    firstPart = weekdayList[dateObj.getDay()];
+  }
+
+  const secondPart = dateObj
     .toLocaleTimeString("ru-RU", { hour12: false })
     .slice(0, -3);
 
-  return `${weekday}, ${time}`;
+  return `${firstPart}, ${secondPart}`;
 };
