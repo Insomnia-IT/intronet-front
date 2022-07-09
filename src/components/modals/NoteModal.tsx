@@ -16,13 +16,9 @@ import { NoteForm } from "../forms";
  * @param title Название объявления
  * @param text Содержимое объявления
  */
-export const NoteModal: FC<ModalProps<INote>> = ({
-  id,
-  title,
-  text,
-  categoryId,
-  ...modalProps
-}) => {
+export const NoteModal: FC<
+  ModalProps<Omit<Omit<INote, "createdDate">, "createdBy">>
+> = ({ id, title, text, categoryId, ...modalProps }) => {
   return (
     <Modal
       isOpen={modalProps.show}

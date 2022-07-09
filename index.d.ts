@@ -82,6 +82,8 @@ interface INote {
   title: string;
   text: string;
   categoryId: number;
+  createdDate: string;
+  createdBy: "admin" | null;
 }
 
 interface ICategory {

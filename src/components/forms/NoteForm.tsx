@@ -14,9 +14,9 @@ import { useCellState } from "src/helpers/cell-state";
 import { categoriesStore } from "src/stores";
 
 export type NoteFormProps = {
-  onSubmit?: (note: INote) => void;
+  onSubmit?: (note: Omit<Omit<INote, "createdDate">, "createdBy">) => void;
   onCancel?: () => void;
-} & { note?: INote };
+} & { note?: Omit<Omit<INote, "createdDate">, "createdBy"> };
 
 export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
   const [categories] = useCellState(categoriesStore);
