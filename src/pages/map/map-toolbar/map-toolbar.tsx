@@ -5,7 +5,7 @@ import { Close, Expander, LocationModal } from "src/components";
 import { useAppContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
 import styles from "./map-toolbar.module.css";
-import { ScheduleComponent } from "./schedule";
+import { ScheduleComponent } from "../../../components/schedule/schedule";
 
 export type MapToolbarProps = {
   id: number | string;

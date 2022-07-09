@@ -1,12 +1,12 @@
 import React from "react";
-import { scheduleStore } from "../../../stores/schedule.store";
+import { scheduleStore } from "../../stores/schedule.store";
 import { Observable } from "cellx-decorators";
-import { cellState } from "../../../helpers/cell-state";
+import { cellState } from "../../helpers/cell-state";
 import { HStack } from "@chakra-ui/react";
 import styles from "./schedule.module.css";
 import { Chip } from "src/components/chip/chip";
 import { ChevronUpIcon } from "@chakra-ui/icons";
-import { locationsStore } from "../../../stores/locations.store";
+import { locationsStore } from "../../stores/locations.store";
 
 export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   @Observable
@@ -112,9 +112,7 @@ export function ScheduleInfo(prop: {
   const x = prop.schedule;
   return (
     <div className={styles.schedule} onClick={prop.switchSelection}>
-      <div className={x.isCanceled ? styles.timeCanceled : styles.time}>
-        {x.isCanceled ? "отмена" : x.time}
-      </div>
+      <div className={styles.time}>{x.time}</div>
       <div className={styles.name}>
         {x.name}
         {x.age && <span className={styles.age}>{x.age}</span>}
@@ -122,10 +120,15 @@ export function ScheduleInfo(prop: {
       <ChevronUpIcon
         className={prop.selected ? styles.expander : styles.expanderOpened}
       />
-      {x.changes && (
+      {x.changes && !x.isCanceled && (
         <div className={styles.changes}>
           <span>Изменено</span>
           {prop.selected && x.changes}
+        </div>
+      )}
+      {x.isCanceled && (
+        <div className={styles.canceled}>
+          <span>Отменено</span>
         </div>
       )}
       {prop.selected && (

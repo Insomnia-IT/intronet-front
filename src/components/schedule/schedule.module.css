@@ -99,6 +99,23 @@ header {
 }
 
 
+
+.canceled {
+  grid-row: 3;
+  grid-column: 2 / span 2;
+  display: flex;
+  font-size: 12px;
+  gap: 8px;
+}
+.canceled > span{
+  background: #E57287;
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 1px 4px;
+  margin-bottom: 8px;
+  width: auto;
+}
 .changes {
   grid-row: 3;
   grid-column: 2 / span 2;
