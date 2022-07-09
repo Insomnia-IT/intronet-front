@@ -2,6 +2,27 @@ import { Computed, Observable } from "cellx-decorators";
 import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 
+export enum Direction {
+  screen = 1,
+  bath = 2,
+  cafe = 3,
+  wc = 4,
+  fire = 5,
+  staffCamp = 6,
+  lectures = 7,
+  bathhouse = 8,
+  meeting = 9,
+  tentRent = 10,
+  scene = 11,
+  playground = 12,
+  lab = 13,
+  info = 14,
+  fair = 15,
+  checkpoint = 16,
+  artObject = 17,
+  camping = 18,
+}
+
 class LocationsStore {
   private api = locationsApi;
 
@@ -64,6 +85,11 @@ class LocationsStore {
       // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
     }));
+  }
+
+  @Computed
+  public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
+    return this.FullLocations.filter((x) => x.directionId === Direction.screen);
   }
 
   addLocation(location: InsomniaLocationFull) {
