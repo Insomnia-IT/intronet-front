@@ -22,8 +22,6 @@ export const parseDate = (date: string): string => {
   const time = dateObj
     .toLocaleTimeString("ru-RU", { hour12: false })
     .slice(0, -3);
-  console.log(dateObj.toLocaleDateString());
-  // console.log(time);
 
   return `${weekday}, ${time}`;
 };
