@@ -77,11 +77,13 @@ type Movie = {
   author: string;
 };
 
-interface INotes {
+interface INote {
   id: number;
   title: string;
   text: string;
   categoryId: number;
+  createdDate: string;
+  createdBy: "admin" | null;
 }
 
 interface ICategory {

@@ -71,7 +71,7 @@ class CategoriesStore {
   }
 
   @Computed
-  get notes(): INotes[] {
+  get notes(): INote[] {
     if (this.ActiveCategory === ALL_CATEGORY_ID) return notesStore.notes;
     return notesStore.notes.filter(
       (note) => note.categoryId === this.ActiveCategory

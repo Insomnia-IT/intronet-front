@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-globals */
 self.isDebug = true;
 importScripts("./sw/module.sw.js");
 fetch("/asset-manifest.json")
@@ -18,7 +20,19 @@ self.env = new SwEnv("/", {
     },
   },
   cache: {
-    controlExtentions: ["js", "css", "woff2", "ttf", "otf", "eot", "ico"],
+    controlExtentions: [
+      "js",
+      "css",
+      "woff2",
+      "ttf",
+      "png",
+      "webp",
+      "jpg",
+      "json",
+      "otf",
+      "eot",
+      "ico",
+    ],
     items: [
       {
         title: "root",
@@ -35,6 +49,9 @@ self.env = new SwEnv("/", {
           "/index.html",
           "/sw/index.js",
           "/icons/96x96.png",
+          "/icons/32x32.png",
+          "/icons/192x192.png",
+          "/fonts/fonts.css",
           "/manifest.json",
           "/pdf.min.js",
           "/pdf.worker.js",
@@ -45,6 +62,7 @@ self.env = new SwEnv("/", {
           "/images/insomnia_intro_3.webp",
           "/images/insomnia_intro_4.webp",
           "/images/insomnia_intro_5.webp",
+          "/fonts/Open-Sans_Regular.woff2",
           // '/static/js/bundle.js',
           // '/fonts/PT_Root_UI/light/PT_Root_UI_Light.woff2',
           // '/fonts/PT_Root_UI/medium/PT_Root_UI_Medium.woff2',

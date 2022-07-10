@@ -22,7 +22,7 @@ export const BoardList: FC = () => {
 
   const handleAdd = async () => {
     try {
-      const newNote = await app.modals.show<INotes>((props) => (
+      const newNote = await app.modals.show<INote>((props) => (
         <NoteModal {...props} />
       ));
       await notesStore.addNote({
@@ -47,9 +47,9 @@ export const BoardList: FC = () => {
     }
   };
 
-  const handleEdit = async (note: INotes) => {
+  const handleEdit = async (note: INote) => {
     try {
-      const editedNote = await app.modals.show<INotes>((props) => (
+      const editedNote = await app.modals.show<INote>((props) => (
         <NoteModal {...props} {...note} />
       ));
       await notesStore.editNote({
@@ -74,7 +74,7 @@ export const BoardList: FC = () => {
     }
   };
 
-  const handleDelete = async (note: INotes) => {
+  const handleDelete = async (note: INote) => {
     try {
       await notesStore.removeNote({ path: { id: note.id } });
       toast({
@@ -138,6 +138,6 @@ export const BoardList: FC = () => {
   );
 };
 
-function getBoardCardHeight(note: INotes) {
+function getBoardCardHeight(note: INote) {
   return 167;
 }

@@ -18,14 +18,14 @@ import * as React from "react";
 import { Heading } from "src/components/heading/heading";
 import { RequireAuth } from "src/components/RequireAuth";
 import { BtnCopy } from "./btnCopy/btnCopy";
+import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
 
-
-export interface INotesCard extends StackProps {
-  noteInfoObj: INotes;
+export interface IBoardCard extends StackProps {
+  noteInfoObj: INote;
   activeColor: string;
-  onEditIconButtonClick?: (note: INotes) => void;
-  onDeleteIconButtonClick?: (note: INotes) => void;
+  onEditIconButtonClick?: (note: INote) => void;
+  onDeleteIconButtonClick?: (note: INote) => void;
 }
 
 export const BoardCard = ({
@@ -34,13 +34,14 @@ export const BoardCard = ({
   onEditIconButtonClick,
   onDeleteIconButtonClick,
   ...rest
-}: INotesCard) => {
+}: IBoardCard) => {
   const { title, text, id, categoryId } = noteInfoObj;
 
   return (
     <Box
       px={4}
       py={5}
+      pb={2}
       border={"1px solid"}
       borderColor={activeColor}
       borderRadius={"2xl"}
@@ -95,6 +96,10 @@ export const BoardCard = ({
           w={"max-content"}
           mt={0}
         />
+
+        <Box alignSelf={"flex-end"}>
+          <CreatedDate date={noteInfoObj.createdDate} />
+        </Box>
       </VStack>
     </Box>
   );
