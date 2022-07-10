@@ -1,4 +1,4 @@
-import * as React from "react"; //ffff
+import * as React from "react";
 import styles from "./loading.module.scss";
 import { Box, Spinner } from "@chakra-ui/react";
 
