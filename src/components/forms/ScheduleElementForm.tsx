@@ -64,7 +64,7 @@ export const ScheduleElementForm: FC<ScheduleElementFormProps> = ({
                 h="20"
               />
             </FormControl>
-            <FormControl isDisabled={!auditoryElement?.id}>
+            <FormControl isDisabled={!auditoryElement?.name}>
               <FormLabel htmlFor="isCanceled">Отменен</FormLabel>
               <Field as={Switch} id="isCanceled" name="isCanceled" />
               {props.values.isCanceled && (

@@ -45,15 +45,17 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
     <div className={styles.content}>
       <div className={styles.header}>{location.name}</div>
       <div className={styles.description}>{location.description}</div>
-      <Box pos="absolute" right="10px" zIndex="1" bottom="10px">
-        <IconButton
-          size="lg"
-          isRound
-          icon={<EditIcon />}
-          aria-label="Edit note"
-          onClick={editLocation}
-        />
-      </Box>
+      <RequireAuth>
+        <Box pos="absolute" right="10px" zIndex="1" bottom="10px">
+          <IconButton
+            size="lg"
+            isRound
+            icon={<EditIcon />}
+            aria-label="Edit note"
+            onClick={editLocation}
+          />
+        </Box>
+      </RequireAuth>
       {expanded && (
         <>
           <ConnectedLocationSchedule
@@ -71,7 +73,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                     Добавить
                   </Button>
                 </RequireAuth>
-                <Box>
+                <Box alignSelf="flex-start">
                   <LocationMenu description={menu} />
                 </Box>
               </>
