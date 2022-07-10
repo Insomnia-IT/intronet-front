@@ -4,8 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 export function useCellState<T>(
   getter: (() => T) | T
 ): [T, (value: T) => void, Cell<T>] {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const cell = useMemo(() => new Cell(getter), []);
+  const cell = useMemo(() => new Cell(getter), [getter]);
   const [value, setter] = useState(getter);
   useEffect(() => {
     const listener = (e) => {
@@ -15,8 +14,7 @@ export function useCellState<T>(
     return () => {
       cell.offChange(listener);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cell]);
   return [value, (v) => cell.set(v), cell];
 }
 

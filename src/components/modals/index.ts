@@ -1,6 +1,7 @@
 export * from "./NoteModal";
 export * from "./LocationModal";
 export * from "./LoginModal";
+export * from "./ScheduleElementModal";
 
 export type ModalProps<T = any> = {
   show?: boolean;

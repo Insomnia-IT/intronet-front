@@ -52,15 +52,28 @@ class ScheduleStore {
     );
   }
 
-  getSchedules(
+  async editSchedule(schedule: Schedule) {
+    try {
+      await scheduleApi.editSchedule(schedule);
+      this.db.addOrUpdate(schedule);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  getAuditoryElements(
     locationId: number,
     day: Day,
     auditory: 1 | 2
   ): AuditoryElement[] {
     const auditories = this.getAuditories(locationId, day);
     if (auditories.length === 0) return [];
-    if (auditories.length === 1) return auditories[0].elements;
-    return auditories.find((x) => x.number === auditory).elements;
+    const result = auditories.find((x) => x.number === auditory);
+    return result?.elements || [];
+  }
+
+  getSchedules(): Schedule[] {
+    return this.db.toArray();
   }
 }
 

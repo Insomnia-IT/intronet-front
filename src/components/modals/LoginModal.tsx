@@ -22,9 +22,7 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
   ticketId,
   ...modalProps
 }) => {
-  const [loginMethod, setLoginMethod] = useState<"ticketId" | "token">(
-    "ticketId"
-  );
+  const [loginMethod, setLoginMethod] = useState<"ticketId" | "token">("token");
   return (
     <Modal
       isOpen={modalProps.show}
@@ -63,14 +61,14 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
                     modalProps.success({ token: newToken })
                   }
                 />
-                <Button
+                {/* <Button
                   rightIcon={<ArrowForwardIcon />}
                   colorScheme="blue"
                   variant="link"
                   onClick={() => setLoginMethod("ticketId")}
                 >
                   Не волонтер? Вам сюда
-                </Button>
+                </Button> */}
               </>
             )}
           </VStack>
