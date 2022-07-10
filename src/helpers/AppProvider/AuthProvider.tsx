@@ -9,9 +9,9 @@ const AuthContext = createContext<{
 }>({ setTicketId: () => {}, setToken: () => {} });
 
 export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [ticketId, setTicketId] = useLocalStorageState<string>("ticket_id");
+  const [ticketId, setTicketId] = useLocalStorageState<string>("");
 
-  const [token, setToken] = useLocalStorageState<string>("token");
+  const [token, setToken] = useLocalStorageState<string>("");
 
   return (
     <AuthContext.Provider

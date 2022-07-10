@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
 import React from "react";
 import { useAppContext } from "src/helpers/AppProvider";
-import { LoginModal } from "../modals";
+import { LoginModal, LogoutModal } from "../modals";
 
 export const LoginButton: React.FC<ButtonProps> = (props) => {
   const app = useAppContext();
@@ -20,8 +20,20 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      const answer = await app.modals.show<Partial<User>>((props) => (
+        <LogoutModal {...props} />
+      ));
+      if (answer) fetch("api/admin/logout");
+    } catch (err) {
+      if (err instanceof Error) {
+      }
+    }
+  };
+
   return (
-    <Button onClick={handleLogin} {...props}>
+    <Button onClick={app.auth.token ? handleLogout : handleLogin} {...props}>
       Войти
     </Button>
   );
