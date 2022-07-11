@@ -17,6 +17,7 @@ import {
 import * as React from "react";
 import { Heading } from "src/components/heading/heading";
 import { RequireAuth } from "src/components/RequireAuth";
+import { useAppContext } from "src/helpers/AppProvider";
 import { BtnCopy } from "./btnCopy/btnCopy";
 import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
@@ -24,6 +25,7 @@ import { NoteText } from "./noteText/noteText";
 export interface IBoardCard extends StackProps {
   noteInfoObj: INote;
   activeColor: string;
+  categoryName?: ICategory["name"];
   onEditIconButtonClick?: (note: INote) => void;
   onDeleteIconButtonClick?: (note: INote) => void;
 }
@@ -33,9 +35,12 @@ export const BoardCard = ({
   activeColor,
   onEditIconButtonClick,
   onDeleteIconButtonClick,
+  categoryName,
   ...rest
 }: IBoardCard) => {
   const { title, text, id, categoryId } = noteInfoObj;
+
+  const app = useAppContext();
 
   return (
     <Box
@@ -51,39 +56,43 @@ export const BoardCard = ({
         <Heading level={2}>{title}</Heading>
         <NoteText text={text} />
 
-        <RequireAuth>
-          <HStack gap="2">
-            <IconButton
-              icon={<EditIcon />}
-              aria-label="Edit note"
-              onClick={() => onEditIconButtonClick?.(noteInfoObj)}
-            />
+        <RequireAuth role={["admin", "poteryashki"]}>
+          {(app.auth.username === "admin" ||
+            (app.auth.username === "poteryashki" &&
+              categoryName === "Потеряшки")) && (
+            <HStack gap="2">
+              <IconButton
+                icon={<EditIcon />}
+                aria-label="Edit note"
+                onClick={() => onEditIconButtonClick?.(noteInfoObj)}
+              />
 
-            <Popover placement="bottom" closeOnBlur={false}>
-              <PopoverTrigger>
-                <IconButton
-                  icon={<DeleteIcon />}
-                  colorScheme="red"
-                  aria-label="Delete note"
-                />
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody>
-                  Вы уверены, что хотите удалить запись?
-                </PopoverBody>
-                <PopoverFooter>
-                  <Button
+              <Popover placement="bottom" closeOnBlur={false}>
+                <PopoverTrigger>
+                  <IconButton
+                    icon={<DeleteIcon />}
                     colorScheme="red"
-                    onClick={() => onDeleteIconButtonClick?.(noteInfoObj)}
-                  >
-                    Удалить
-                  </Button>
-                </PopoverFooter>
-              </PopoverContent>
-            </Popover>
-          </HStack>
+                    aria-label="Delete note"
+                  />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverBody>
+                    Вы уверены, что хотите удалить запись?
+                  </PopoverBody>
+                  <PopoverFooter>
+                    <Button
+                      colorScheme="red"
+                      onClick={() => onDeleteIconButtonClick?.(noteInfoObj)}
+                    >
+                      Удалить
+                    </Button>
+                  </PopoverFooter>
+                </PopoverContent>
+              </Popover>
+            </HStack>
+          )}
         </RequireAuth>
 
         <BtnCopy

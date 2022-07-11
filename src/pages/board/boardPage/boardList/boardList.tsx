@@ -117,22 +117,34 @@ export const BoardList: FC = () => {
                 activeColor={categoriesStore.getCategoryColor(note.categoryId)}
                 onEditIconButtonClick={handleEdit}
                 onDeleteIconButtonClick={handleDelete}
+                categoryName={
+                  categoriesStore.getCategory(categoriesStore.ActiveCategory)
+                    .name
+                }
               />
             </Intersection>
           </li>
         ))}
       </VStack>
 
-      <RequireAuth>
-        <Box pos="absolute" right="16" zIndex="1" bottom="16">
-          <IconButton
-            size="lg"
-            isRound
-            icon={<AddIcon />}
-            onClick={handleAdd}
-            aria-label="Add note"
-          />
-        </Box>
+      <RequireAuth role={["admin", "poteryashki"]}>
+        {
+          // Боже милостивый, прости меня за этот код
+          (app.auth.username === "admin" ||
+            (app.auth.username === "poteryashki" &&
+              categoriesStore.getCategory(categoriesStore.ActiveCategory)
+                ?.name === "Потеряшки")) && (
+            <Box pos="absolute" right="16" zIndex="1" bottom="16">
+              <IconButton
+                size="lg"
+                isRound
+                icon={<AddIcon />}
+                onClick={handleAdd}
+                aria-label="Add note"
+              />
+            </Box>
+          )
+        }
       </RequireAuth>
     </Box>
   );

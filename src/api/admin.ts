@@ -3,10 +3,6 @@ import { Observable } from "cellx-decorators";
 
 export class AdminApi extends BaseApi {
   public adminFetch(url: string, options?: RequestInit): Promise<any> {
-    options.headers = {
-      Token: localStorage.getItem("token"),
-      ...options.headers,
-    };
     return this.fetch(url, options);
   }
 
