@@ -5,6 +5,7 @@ import { MapPage } from "./map/map-page";
 
 import { useRoutes } from "react-router-dom";
 import { TimetablePage } from "./timetable/timetable-page";
+import { ArticlePageWithId } from "./articles/articlePage/articlePage";
 
 export const ROUTES = [
   {
@@ -12,11 +13,11 @@ export const ROUTES = [
     path: "/",
     element: <MainPage />,
   },
-  // {
-  //   text: "Статья",
-  //   path: "/article/:id",
-  //   element: <ArticlePageWithId></ArticlePageWithId>,
-  // },
+  {
+    text: "Статья",
+    path: "/article/:id",
+    element: <ArticlePageWithId></ArticlePageWithId>,
+  },
   {
     text: "Объявления",
     path: "/board",
