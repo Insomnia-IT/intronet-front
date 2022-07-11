@@ -2,7 +2,7 @@ import { Computed, Observable } from "cellx-decorators";
 import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 
-export enum Direction {
+export enum Directions {
   screen = 1,
   bath = 2,
   cafe = 3,
@@ -89,7 +89,9 @@ class LocationsStore {
 
   @Computed
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
-    return this.FullLocations.filter((x) => x.directionId === Direction.screen);
+    return this.FullLocations.filter(
+      (x) => x.directionId === Directions.screen
+    );
   }
 
   addLocation(location: InsomniaLocationFull) {

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -17,9 +18,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-import React, { FC, useEffect } from "react";
-import { directionsStore } from "src/stores";
-import { locationsStore } from "src/stores/locations.store";
+import React, { FC } from "react";
+import { Directions, locationsStore } from "src/stores/locations.store";
 import { ModalProps } from ".";
 import { getIconByDirectionId } from "../../pages/map/icons/icons";
 
@@ -43,23 +43,23 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
   lon = center.lon,
   ...modalProps
 }) => {
-  const toast = useToast();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await directionsStore.getAll();
-      } catch (error) {
-        toast({
-          title: "Ошибка получения направления.",
-          description: error.message,
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-    })();
-  }, [toast]);
+  // const toast = useToast();
+  //
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       await directionsStore.getAll();
+  //     } catch (error) {
+  //       toast({
+  //         title: "Ошибка получения направления.",
+  //         description: error.message,
+  //         status: "error",
+  //         duration: 3000,
+  //         isClosable: true,
+  //       });
+  //     }
+  //   })();
+  // }, [toast]);
 
   return (
     <Modal
@@ -128,27 +128,31 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                   </Button>
                   <FormControl>
                     <FormLabel htmlFor="image">Значок</FormLabel>
-                    <HStack>
-                      {directionsStore.Directions.toArray().map((direction) => (
-                        <svg
-                          width={24}
-                          height={24}
-                          viewBox="-15 -15 30 30"
-                          key={direction.id}
-                          style={{
-                            border:
-                              direction.id === props.values.directionId
-                                ? "solid 1px"
-                                : undefined,
-                          }}
-                          onClick={() =>
-                            props.setFieldValue("directionId", direction.id)
-                          }
-                        >
-                          {getIconByDirectionId(direction.id)}
-                        </svg>
-                      ))}
-                    </HStack>
+                    <Flex flexWrap="wrap">
+                      {Object.keys(Directions)
+                        .map((x) => +x)
+                        .filter(Number.isFinite)
+                        .map((direction: Directions) => (
+                          <svg
+                            width={36}
+                            height={36}
+                            viewBox="-15 -15 30 30"
+                            key={direction}
+                            style={{
+                              flex: "auto",
+                              border:
+                                direction === props.values.directionId
+                                  ? "solid 1px"
+                                  : undefined,
+                            }}
+                            onClick={() =>
+                              props.setFieldValue("directionId", direction)
+                            }
+                          >
+                            {getIconByDirectionId(direction)}
+                          </svg>
+                        ))}
+                    </Flex>
                   </FormControl>
 
                   <FormControl>

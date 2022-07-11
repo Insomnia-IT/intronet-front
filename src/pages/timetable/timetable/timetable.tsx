@@ -2,6 +2,7 @@ import { DateTime } from "luxon";
 import React, { FC, useState } from "react";
 import { ScheduleComponent } from "../../../components/schedule/schedule";
 import styles from "../../../components/schedule/schedule.module.css";
+import { locationsStore } from "../../../stores/locations.store";
 
 export type TimetableProps = {
   list?: TimetableSlot[];
@@ -12,18 +13,18 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
   return (
     <>
       <div className={styles.tags}>
-        {[1, 2].map((screenId) => {
+        {locationsStore.ScreenLocations.map((location) => {
           return (
             <div
               className={
-                screen === screenId ? styles.auditoryActive : styles.auditory
+                screen === location.id ? styles.auditoryActive : styles.auditory
               }
-              key={screenId}
+              key={location.id}
               onClick={() => {
-                setScreen(screenId);
+                setScreen(location.id);
               }}
             >
-              {screenNames[screenId]}
+              {location.name ?? screenNames[location.id]}
             </div>
           );
         })}
@@ -34,8 +35,8 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
 };
 
 const screenNames = {
-  1: "Экран 1",
-  2: "Экран 2",
+  1: "Полевой экран",
+  2: "Речной экран",
 };
 
 export type TimetableSlot = {

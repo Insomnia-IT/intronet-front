@@ -51,13 +51,15 @@ export class MapPage extends React.PureComponent {
       icon: this.isMap ? (
         getIconByDirectionId(x.directionId)
       ) : this.isEditing ? (
-        <circle
-          r={15}
-          className={mapElementStyles.hoverCircle}
-          strokeWidth="2"
-          fill="transparent"
-          stroke="red"
-        ></circle>
+        <>
+          <circle
+            r={15}
+            className={mapElementStyles.hoverCircle}
+            strokeWidth="2"
+            fill="transparent"
+            stroke="red"
+          ></circle>
+        </>
       ) : null,
       title: x.name,
       id: x.id,

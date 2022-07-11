@@ -1,11 +1,11 @@
 import React from "react";
-import { Direction } from "src/stores/locations.store";
+import { Directions } from "src/stores/locations.store";
 import styles from "../map-element.module.css";
 
 export const MapIcons: {
-  [key in Direction]: any;
+  [key in Directions]: any;
 } = {
-  [Direction.camping]: (
+  [Directions.camping]: (
     <g fill="#78CCFF" transform="translate(-32,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -26,7 +26,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.screen]: (
+  [Directions.screen]: (
     <g fill="#A692F3" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -60,7 +60,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.bath]: (
+  [Directions.bath]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -114,7 +114,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.cafe]: (
+  [Directions.cafe]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -135,7 +135,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.wc]: (
+  [Directions.wc]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -165,7 +165,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.fire]: (
+  [Directions.fire]: (
     <g fill="#DE4F69" transform="translate(-23,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -189,7 +189,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.staffCamp]: (
+  [Directions.staffCamp]: (
     <g fill="#DE4F69" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -210,7 +210,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.lectures]: (
+  [Directions.lectures]: (
     <g fill="#A692F3" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -231,7 +231,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.bathhouse]: (
+  [Directions.bathhouse]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -260,7 +260,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.meeting]: (
+  [Directions.meeting]: (
     <g fill="#DE4F69" transform="translate(-24,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -281,7 +281,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.tentRent]: (
+  [Directions.tentRent]: (
     <g fill="#FFD28B" transform="translate(-26,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -307,7 +307,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.scene]: (
+  [Directions.scene]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -335,7 +335,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.playground]: (
+  [Directions.playground]: (
     <g fill="#78CCFF" transform="translate(-30,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -382,7 +382,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.lab]: (
+  [Directions.lab]: (
     <g fill="#78CCFF" transform="translate(-21,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -410,7 +410,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.info]: (
+  [Directions.info]: (
     <g fill="#78CCFF" transform="translate(-18,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -436,7 +436,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.fair]: (
+  [Directions.fair]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -464,7 +464,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.checkpoint]: (
+  [Directions.checkpoint]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -498,7 +498,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Direction.artObject]: (
+  [Directions.artObject]: (
     <g fill="#78CCFF" transform="translate(-18,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -526,6 +526,6 @@ export const MapIcons: {
   ),
 };
 
-export function getIconByDirectionId(id: Direction) {
+export function getIconByDirectionId(id: Directions) {
   return MapIcons[id] ?? <circle r="15px" fill="#A266" />;
 }

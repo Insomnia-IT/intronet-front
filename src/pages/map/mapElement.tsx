@@ -7,9 +7,7 @@ export function MapElement(props: {
   selected: boolean;
   onSelect(x: MapItem);
 }) {
-  const icon = props.item.icon ?? (
-    <circle className={styles.hoverCircle} r={15} fill="transparent"></circle>
-  );
+  const icon = props.item.icon ?? <></>;
   const classNames = [styles.element];
   if (props.selected) {
     classNames.push(styles.selected);
