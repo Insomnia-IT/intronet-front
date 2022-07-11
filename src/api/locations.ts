@@ -72,5 +72,3 @@ export class LocationsApi extends AdminApi {
     });
   }
 }
-
-const Days: Day[] = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];

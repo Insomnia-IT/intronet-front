@@ -3,7 +3,10 @@ import { FC, PropsWithChildren } from "react";
 import { useAuthContext } from "src/helpers/AppProvider/AuthProvider";
 
 export type RequireAuthProps = {
-  role?: "admin" | "searcher";
+  // на бессоннице есть админы, а есть поисково-спасательный отряд, которым
+  // тоже нужны права админов, но чтобы те не похерили что-нибудь случайно
+  // нужно сделать такое разделение
+  role?: "admin" | "poteryashki";
 };
 
 /**
@@ -14,6 +17,13 @@ export const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({
   role = "admin",
 }) => {
   const auth = useAuthContext();
-  if (auth.token) return <>{children}</>;
+  // проверяем, есть ли токен в провайдере
+  // не пустой ли он
+  // проверяем, соответствуюет ли допустимая роль компонента юзернейму
+
+  // т.к. по факту у нас нет ролевой модели, здесь используется обыкновенное сравнение
+  // юзернейма-как-роли с ролью компонента
+  if (auth.token && auth.token.length > 0 && role === auth.username)
+    return <>{children}</>;
   return null;
 };

@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-globals */
 self.isDebug = true;
 importScripts("./sw/module.sw.js");
 fetch("/asset-manifest.json")
