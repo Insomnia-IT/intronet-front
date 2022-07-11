@@ -1,6 +1,6 @@
-import { BaseApi } from "./base";
+import { AdminApi } from "./admin";
 
-class ScheduleApi extends BaseApi {
+class ScheduleApi extends AdminApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
     return this.fetch<ScheduleDTO[]>("/api/Schedule/" + locationId).then(
       (items) =>
@@ -86,6 +86,17 @@ class ScheduleApi extends BaseApi {
             } as Schedule)
         )
       );
+  }
+
+  async editSchedule(schedule: Schedule) {
+    try {
+      await this.adminFetch("/api/Admin/locations/schedule/add-or-edit", {
+        body: JSON.stringify(schedule),
+        method: "POST",
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

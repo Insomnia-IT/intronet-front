@@ -1,6 +1,7 @@
 export * from "./NoteModal";
 export * from "./LocationModal";
 export * from "./LoginModal";
+export * from "./ScheduleElementModal";
 export * from "./LogoutModal";
 
 export type ModalProps<T = any> = {

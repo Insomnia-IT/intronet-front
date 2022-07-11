@@ -19,8 +19,7 @@ export class ScheduleComponent extends React.PureComponent<ScheduleProps> {
   selectedElement: AuditoryElement;
 
   state = cellState(this, {
-    schedules: () =>
-      scheduleStore.getSchedules(this.locationId, this.day, this.auditory),
+    schedules: () => scheduleStore.getSchedules(),
     auditories: () =>
       scheduleStore.getAuditorieNumbers(this.locationId, this.day),
     auditory: () => this.auditory,

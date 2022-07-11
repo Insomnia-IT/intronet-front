@@ -6010,7 +6010,7 @@ cookie-signature@1.0.6:
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
 
-cookie@0.5.0:
+cookie@0.5.0, cookie@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
@@ -15240,6 +15240,11 @@ use-callback-ref@^1.2.5, use-callback-ref@^1.3.0:
   integrity sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==
   dependencies:
     tslib "^2.0.0"
+
+use-cookie-state@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/use-cookie-state/-/use-cookie-state-2.0.0.tgz#ce94a5ceb1806ca2bee85140151f37eb38dea844"
+  integrity sha512-9J7VZLcj9gWYoAsSWQM5WFgdhucD8qHplCB+6dKxU1cHmttjjkVgsV8Y7z9Dqb514soqWt1+sLE87yoIDr/gUw==
 
 use-sidecar@^1.0.5, use-sidecar@^1.1.2:
   version "1.1.2"
