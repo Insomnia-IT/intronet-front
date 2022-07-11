@@ -16,7 +16,7 @@ import MapIcon from "src/images/map-icon-default-32.svg";
 import MapFocusIcon from "src/images/map-icon-focus-32.svg";
 import VoteIcon from "src/images/vote-icon-default-32.svg";
 import VoteFocusIcon from "src/images/vote-icon-focus-32.svg";
-import { ROUTES } from "src/pages/routing";
+import { NAVBAR_ROUTES } from "src/pages/routing";
 
 export const MdNavbar = () => {
   const location = useLocation();
@@ -27,7 +27,7 @@ export const MdNavbar = () => {
         <Link
           flexBasis="0"
           flexGrow={1}
-          key={ROUTES[0].path}
+          key={NAVBAR_ROUTES[0].path}
           rounded={"md"}
           _hover={{
             textDecoration: "none",
@@ -36,7 +36,7 @@ export const MdNavbar = () => {
           _focus={{
             boxShadow: "none",
           }}
-          to={ROUTES[0].path}
+          to={NAVBAR_ROUTES[0].path}
           as={ReactRouterLink}
           _activeLink={{
             fontcolor: "#6BBDB0",
@@ -45,7 +45,9 @@ export const MdNavbar = () => {
           <VStack>
             <Image
               src={
-                location.pathname === ROUTES[0].path ? HomeFocusIcon : HomeIcon
+                location.pathname === NAVBAR_ROUTES[0].path
+                  ? HomeFocusIcon
+                  : HomeIcon
               }
             />
             <Text
@@ -53,10 +55,12 @@ export const MdNavbar = () => {
               size="none"
               mt="0!important"
               color={
-                location.pathname === ROUTES[0].path ? "#6BBDB0" : undefined
+                location.pathname === NAVBAR_ROUTES[0].path
+                  ? "#6BBDB0"
+                  : undefined
               }
             >
-              {ROUTES[0].text}
+              {NAVBAR_ROUTES[0].text}
             </Text>
           </VStack>
         </Link>
@@ -65,7 +69,7 @@ export const MdNavbar = () => {
         <Link
           flexBasis={0}
           flexGrow={1}
-          key={ROUTES[1].path}
+          key={NAVBAR_ROUTES[1].path}
           rounded={"md"}
           _hover={{
             textDecoration: "none",
@@ -75,12 +79,14 @@ export const MdNavbar = () => {
             boxShadow: "none",
           }}
           as={ReactRouterLink}
-          to={ROUTES[1].path}
+          to={NAVBAR_ROUTES[1].path}
         >
           <VStack>
             <Image
               src={
-                location.pathname === ROUTES[1].path ? AdsFocusIcon : AdsIcon
+                location.pathname === NAVBAR_ROUTES[1].path
+                  ? AdsFocusIcon
+                  : AdsIcon
               }
             />
             <Text
@@ -88,10 +94,12 @@ export const MdNavbar = () => {
               size="none"
               mt="0!important"
               color={
-                location.pathname === ROUTES[1].path ? "#6BBDB0" : undefined
+                location.pathname === NAVBAR_ROUTES[1].path
+                  ? "#6BBDB0"
+                  : undefined
               }
             >
-              {ROUTES[1].text}
+              {NAVBAR_ROUTES[1].text}
             </Text>
           </VStack>
         </Link>
@@ -100,7 +108,7 @@ export const MdNavbar = () => {
         <Link
           flexBasis={0}
           flexGrow={1}
-          key={ROUTES[2].path}
+          key={NAVBAR_ROUTES[2].path}
           rounded={"md"}
           _hover={{
             textDecoration: "none",
@@ -110,12 +118,14 @@ export const MdNavbar = () => {
           _focus={{
             boxShadow: "none",
           }}
-          to={ROUTES[2].path}
+          to={NAVBAR_ROUTES[2].path}
         >
           <VStack>
             <Image
               src={
-                location.pathname === ROUTES[2].path ? MapFocusIcon : MapIcon
+                location.pathname === NAVBAR_ROUTES[2].path
+                  ? MapFocusIcon
+                  : MapIcon
               }
             />
             <Text
@@ -123,10 +133,12 @@ export const MdNavbar = () => {
               size="none"
               mt="0!important"
               color={
-                location.pathname === ROUTES[2].path ? "#6BBDB0" : undefined
+                location.pathname === NAVBAR_ROUTES[2].path
+                  ? "#6BBDB0"
+                  : undefined
               }
             >
-              {ROUTES[2].text}
+              {NAVBAR_ROUTES[2].text}
             </Text>
           </VStack>
         </Link>
@@ -135,7 +147,7 @@ export const MdNavbar = () => {
         <Link
           flexBasis={0}
           flexGrow={1}
-          key={ROUTES[3].path}
+          key={NAVBAR_ROUTES[3].path}
           rounded={"md"}
           _hover={{
             textDecoration: "none",
@@ -145,12 +157,14 @@ export const MdNavbar = () => {
             boxShadow: "none",
           }}
           as={ReactRouterLink}
-          to={ROUTES[3].path}
+          to={NAVBAR_ROUTES[3].path}
         >
           <VStack>
             <Image
               src={
-                location.pathname === ROUTES[3].path ? VoteFocusIcon : VoteIcon
+                location.pathname === NAVBAR_ROUTES[3].path
+                  ? VoteFocusIcon
+                  : VoteIcon
               }
             />
             <Text
@@ -158,10 +172,12 @@ export const MdNavbar = () => {
               size="none"
               mt="0!important"
               color={
-                location.pathname === ROUTES[3].path ? "#6BBDB0" : undefined
+                location.pathname === NAVBAR_ROUTES[3].path
+                  ? "#6BBDB0"
+                  : undefined
               }
             >
-              {ROUTES[3].text}
+              {NAVBAR_ROUTES[3].text}
             </Text>
           </VStack>
         </Link>

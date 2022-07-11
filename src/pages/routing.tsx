@@ -5,18 +5,14 @@ import { MapPage } from "./map/map-page";
 
 import { useRoutes } from "react-router-dom";
 import { TimetablePage } from "./timetable/timetable-page";
+import { ArticlePageWithId } from "./articles/articlePage/articlePage";
 
-export const ROUTES = [
+export const NAVBAR_ROUTES = [
   {
     text: "Главная",
     path: "/",
     element: <MainPage />,
   },
-  // {
-  //   text: "Статья",
-  //   path: "/article/:id",
-  //   element: <ArticlePageWithId></ArticlePageWithId>,
-  // },
   {
     text: "Объявления",
     path: "/board",
@@ -27,11 +23,6 @@ export const ROUTES = [
     path: "/map",
     element: <MapPage />,
   },
-  // {
-  //   text: "Голосование",
-  //   path: "/voting",
-  //   element: <VotingPage />,
-  // },
   {
     text: "Расписание",
     path: "/timetable",
@@ -39,6 +30,20 @@ export const ROUTES = [
   },
 ];
 
+export const ALL_ROUTES = [
+  ...NAVBAR_ROUTES,
+  {
+    text: "Статья",
+    path: "/article/:id",
+    element: <ArticlePageWithId></ArticlePageWithId>,
+  },
+  // {
+  //   text: "Голосование",
+  //   path: "/voting",
+  //   element: <VotingPage />,
+  // },
+];
+
 export const Routing: FC = () => {
-  return useRoutes(ROUTES);
+  return useRoutes(ALL_ROUTES);
 };

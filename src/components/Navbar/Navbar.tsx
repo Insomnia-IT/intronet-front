@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { ROUTES } from "src/pages/routing";
+import { NAVBAR_ROUTES } from "src/pages/routing";
 import { MdNavbar } from "./MdNavbar";
 
 export const Navbar = () => {
@@ -31,7 +31,7 @@ export const Navbar = () => {
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-            {ROUTES.map((link) => (
+            {NAVBAR_ROUTES.map((link) => (
               <Link
                 key={link.path}
                 px={2}
