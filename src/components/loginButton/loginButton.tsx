@@ -16,6 +16,7 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
       try {
         const response = await fetch(`/api/admin/auth/?token=${user.token}`);
         if (!response.ok) throw new Error("Введен неверный токен.");
+        app.auth.syncCookies();
         toast({
           title: "Вы успешно авторизовались.",
           status: "success",
@@ -39,7 +40,8 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
       const answer = await app.modals.show<Partial<User>>((props) => (
         <LogoutModal {...props} />
       ));
-      if (answer) fetch("api/admin/logout");
+      if (answer) await fetch("api/admin/logout");
+      app.auth.syncCookies();
     } catch (err) {
       if (err instanceof Error) {
       }

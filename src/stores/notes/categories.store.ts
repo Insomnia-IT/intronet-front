@@ -1,4 +1,5 @@
 import { Computed, Observable } from "cellx-decorators";
+import { GenericRequest } from "src/api/base";
 import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from "src/stores";
 import { ObservableDB } from "../observableDB";
@@ -90,6 +91,32 @@ class CategoriesStore {
     // Установка количества страниц
     pagesStore.setCountPages(this.allNotesCount);
   };
+
+  async addCategory(request: GenericRequest<null, null, ICategory["name"]>) {
+    try {
+      this.IsLoading = true;
+      await this.api.createNewCategory(request.body);
+      this.load();
+    } catch (error) {
+      throw error;
+    } finally {
+      this.IsLoading = false;
+    }
+  }
+
+  async editCategory(
+    request: GenericRequest<null, null, Pick<ICategory, "id" | "name">>
+  ) {
+    try {
+      this.IsLoading = true;
+      await this.api.editCategory(request);
+      this.load();
+    } catch (error) {
+      throw error;
+    } finally {
+      this.IsLoading = false;
+    }
+  }
 }
 
 export const categoriesStore = new CategoriesStore();

@@ -1,10 +1,15 @@
 import { Box, Container, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { FC } from "react";
+import { useAddCategory, useEditCategory } from "src/hooks";
 import { BoardList } from "./boardList/boardList";
 import Categories from "./categories/categories";
 import Header from "./header/header";
 
-export function BoardPage() {
+export const BoardPage: FC = () => {
+  const editCategory = useEditCategory();
+
+  const addCategory = useAddCategory();
+
   return (
     <Container h={"100%"}>
       <VStack pt={8} align={"flex-start"} spacing={4} w={"100%"} maxH={"100%"}>
@@ -12,7 +17,10 @@ export function BoardPage() {
           <Header />
         </Box>
         <Box minW={"100%"}>
-          <Categories />
+          <Categories
+            onEditCategory={editCategory}
+            onAddCategory={addCategory}
+          />
         </Box>
         <Box
           minH={1}
@@ -20,9 +28,9 @@ export function BoardPage() {
           w={"100%"}
           className={" hide-scrollbar"}
         >
-          <BoardList></BoardList>
+          <BoardList />
         </Box>
       </VStack>
     </Container>
   );
-}
+};
