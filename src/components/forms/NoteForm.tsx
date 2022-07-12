@@ -12,6 +12,7 @@ import { Field, Form, Formik } from "formik";
 import React, { FC } from "react";
 import { useCellState } from "src/helpers/cell-state";
 import { categoriesStore } from "src/stores";
+import { RequireAuth } from "../RequireAuth";
 
 export type NoteFormProps = {
   onSubmit?: (note: Omit<INote, "createdDate" | "createdBy">) => void;
@@ -21,7 +22,7 @@ export type NoteFormProps = {
 export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
   const [categories] = useCellState(categoriesStore);
   return (
-    <Formik initialValues={{ ...note }} onSubmit={onSubmit}>
+    <Formik initialValues={{ ...note, categoryId: 2 }} onSubmit={onSubmit}>
       {(props) => (
         <Form key="form">
           <Stack spacing={4}>
@@ -46,27 +47,29 @@ export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
                 h="20"
               />
             </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="categoryId">Категория</FormLabel>
-              <HStack>
-                {categories.allCategory.map((category) => (
-                  <Tag
-                    key={category.id}
-                    color={category.color}
-                    onClick={() =>
-                      props.setFieldValue("categoryId", category.id)
-                    }
-                    border={
-                      category.id === props.values.categoryId
-                        ? "1px"
-                        : undefined
-                    }
-                  >
-                    {category.name}
-                  </Tag>
-                ))}
-              </HStack>
-            </FormControl>
+            <RequireAuth>
+              <FormControl>
+                <FormLabel htmlFor="categoryId">Категория</FormLabel>
+                <HStack>
+                  {categories.allCategory.map((category) => (
+                    <Tag
+                      key={category.id}
+                      color={category.color}
+                      onClick={() =>
+                        props.setFieldValue("categoryId", category.id)
+                      }
+                      border={
+                        category.id === props.values.categoryId
+                          ? "1px"
+                          : undefined
+                      }
+                    >
+                      {category.name}
+                    </Tag>
+                  ))}
+                </HStack>
+              </FormControl>
+            </RequireAuth>
             <Button
               bg={"blue.400"}
               color={"white"}

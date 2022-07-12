@@ -9,6 +9,7 @@ export const weekdayList: string[] = [
 ];
 
 export const parseDate = (date: string): string => {
+  if (!date) return "";
   // example date - 06/28/2022 13:12:23
 
   const [dateD, dateT] = date.split(" ");

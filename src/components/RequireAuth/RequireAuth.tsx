@@ -6,7 +6,7 @@ export type RequireAuthProps = {
   // на бессоннице есть админы, а есть поисково-спасательный отряд, которым
   // тоже нужны права админов, но чтобы те не похерили что-нибудь случайно
   // нужно сделать такое разделение
-  role?: "admin" | "poteryashki";
+  role?: "admin" | "poteryashki" | ("admin" | "poteryashki")[];
 };
 
 /**
@@ -23,7 +23,12 @@ export const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({
 
   // т.к. по факту у нас нет ролевой модели, здесь используется обыкновенное сравнение
   // юзернейма-как-роли с ролью компонента
-  if (auth.token && auth.token.length > 0 && role === auth.username)
+  if (
+    auth.token &&
+    auth.token.length > 0 &&
+    (role === auth.username ||
+      role.includes(auth.username as "admin" | "poteryashki"))
+  )
     return <>{children}</>;
   return null;
 };

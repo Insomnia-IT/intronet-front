@@ -3,16 +3,16 @@ import { ALL_CATEGORY_ID } from "./../stores";
 import { COUNT_NOTES_OF_PAGE } from "src/stores";
 import { GenericRequest } from "./base";
 
-const notesRout = "/api/notes";
-const categoriesRout = "categories";
+const notesRoute = "/api/notes";
+const categoriesRoute = "categories";
 
 export default class NotesApi extends AdminApi {
   getNote(id: number): Promise<INote> {
-    return this.fetch(`${notesRout}/${id}`);
+    return this.fetch(`${notesRoute}/${id}`);
   }
 
   getAllNotes(): Promise<INote[]> {
-    return this.fetch(`${notesRout}/all`);
+    return this.fetch(`${notesRoute}/all`);
   }
 
   getNotes(
@@ -29,7 +29,7 @@ export default class NotesApi extends AdminApi {
       smartFilter = false;
     }
 
-    const url = `${notesRout}/filter?Page=${page}&Count=${count}&${
+    const url = `${notesRoute}/filter?Page=${page}&Count=${count}&${
       categoriesIds.length > 0
         ? `CategoriesIds=` + categoriesIds.join("&CategoriesIds=")
         : `IsSmartFilter=${smartFilter}`
@@ -38,7 +38,7 @@ export default class NotesApi extends AdminApi {
   }
 
   getNotesAll(): Promise<INote[]> {
-    return this.fetch(`${notesRout}/all`);
+    return this.fetch(`${notesRoute}/all`);
   }
 
   createNote(request: GenericRequest<null, null, INote>): Promise<null> {
@@ -60,19 +60,21 @@ export default class NotesApi extends AdminApi {
   }
 
   deleteNote(id: number): Promise<null> {
-    return this.adminFetch(`api/Admin/notes/delete/${id}`);
+    return this.adminFetch(`api/Admin/notes/delete/${id}`, {
+      method: "DELETE",
+    });
   }
 
   getCategory = (id: number): Promise<ICategory> => {
-    return this.fetch(`${notesRout}/category/${id}`);
+    return this.fetch(`${notesRoute}/category/${id}`);
   };
 
   getAllCategories = (): Promise<ICategory[]> => {
-    return this.fetch(`${notesRout}/${categoriesRout}`);
+    return this.fetch(`${notesRoute}/${categoriesRoute}`);
   };
 
   createNewCategory = (name: string): Promise<null> => {
-    return this.adminFetch(`${notesRout}/${categoriesRout}/add`, {
+    return this.adminFetch(`api/admin/notes/${categoriesRoute}/add`, {
       method: "POST",
       body: JSON.stringify({
         name,
@@ -80,13 +82,12 @@ export default class NotesApi extends AdminApi {
     });
   };
 
-  editCategory = (id: number, newName: string): Promise<null> => {
-    return this.adminFetch(`${notesRout}/${categoriesRout}/edit`, {
+  editCategory = (
+    request: GenericRequest<null, null, Pick<ICategory, "id" | "name">>
+  ): Promise<null> => {
+    return this.adminFetch(`api/admin/notes/${categoriesRoute}/edit`, {
       method: "PUT",
-      body: JSON.stringify({
-        id,
-        name: newName,
-      }),
+      body: JSON.stringify(request.body),
     });
   };
 }
