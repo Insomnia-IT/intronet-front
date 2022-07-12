@@ -19,7 +19,8 @@ const observer = new IntersectionObserver(
 );
 
 export function Intersection(props: IntersectionProps) {
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>();
+  const [height, setHeight] = useState(props.height);
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     const element = ref.current;
@@ -29,6 +30,10 @@ export function Intersection(props: IntersectionProps) {
       if (ev.detail.has(element)) {
         const isVisible = ev.detail.get(element).isIntersecting;
         setIsVisible(isVisible);
+        if (!isVisible) {
+          setHeight(element.getBoundingClientRect().height);
+          console.log(element.getBoundingClientRect().height);
+        }
       }
     };
     visibleElements.addEventListener("change", listener);
@@ -41,7 +46,7 @@ export function Intersection(props: IntersectionProps) {
   if (isVisible) {
     return <div ref={ref}>{props.children}</div>;
   }
-  return <div ref={ref} style={{ width: props.width, height: props.height }} />;
+  return <div ref={ref} style={{ width: props.width, height }} />;
 }
 
 type IntersectionProps = {
