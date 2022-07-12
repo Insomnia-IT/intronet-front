@@ -1,8 +1,6 @@
 import { Observable } from "cellx-decorators";
 import { DirectionsApi } from "src/api/directions";
 import { ObservableDB } from "./observableDB";
-import { MapIcons } from "../pages/map/icons/icons";
-import { Directions } from "./locations.store";
 
 class DirectionsStore {
   private api = new DirectionsApi();
@@ -31,14 +29,15 @@ class DirectionsStore {
   public async getAll() {
     this.IsLoading = true;
     try {
+      const directions = await this.api.getDirections();
       this.Directions.clear();
-      this.Directions.addRange(
-        Object.keys(MapIcons).map((x) => ({
-          id: +x,
-          name: Directions[+x],
-          image: "",
-        }))
-      );
+      this.Directions.addRange(directions);
+      // Object.keys(MapIcons).map((x) => ({
+      //   id: +x,
+      //   name: Directions[+x],
+      //   image: "",
+      // }))
+      // );
       // for (let direction of this.Directions.toArray()) {
       //   await this.api.createDirection({
       //     body: {

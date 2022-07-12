@@ -4,7 +4,6 @@ import { useCellState } from "../../helpers/cell-state";
 import { directionsStore } from "../../stores";
 import { getIconByDirectionId } from "./icons/icons";
 import { Flex } from "@chakra-ui/react";
-import mapElementStyles from "./map-element.module.css";
 
 export function MapElement(props: {
   item: MapItem;
