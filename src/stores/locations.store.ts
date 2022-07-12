@@ -3,24 +3,26 @@ import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 
 export enum Directions {
-  screen = 1,
-  bath = 2,
-  cafe = 3,
-  wc = 4,
-  fire = 5,
-  staffCamp = 6,
-  lectures = 7,
-  bathhouse = 8,
-  meeting = 9,
-  tentRent = 10,
-  scene = 11,
-  playground = 12,
-  lab = 13,
-  info = 14,
-  fair = 15,
-  checkpoint = 16,
-  artObject = 17,
-  camping = 18,
+  camping = 1,
+  screen = 2,
+  bath = 3,
+  cafe = 4,
+  wc = 5,
+  fire = 6,
+  staffCamp = 7,
+  lectures = 8,
+  info = 9,
+  bathhouse = 10,
+  meeting = 11,
+  tentRent = 12,
+  scene = 13,
+  playground = 14,
+  lab = 15,
+  fair = 17,
+  checkpoint = 18,
+  artObject = 19,
+  washing = 20,
+  animation = 21,
 }
 
 class LocationsStore {
@@ -90,16 +92,19 @@ class LocationsStore {
   @Computed
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.FullLocations.filter(
-      (x) => x.directionId === Directions.screen
+      (x) => x.directionId === Directions.staffCamp
     );
   }
 
-  addLocation(location: InsomniaLocationFull) {
-    this.Locations.add({
-      ...location,
-      id: Math.max(0, ...this.Locations.toArray().map((x) => x.id)) + 1,
-      tags: location.tags.map((x) => x.id),
-    });
+  @Computed
+  public get Infocenter(): InsomniaLocationFull {
+    return this.FullLocations.find((x) => x.directionId === Directions.info);
+  }
+
+  async addLocation(location: InsomniaLocation) {
+    location.id = await this.api.addLocation(location);
+    console.log(location.id);
+    this.Locations.add(location, "server");
   }
 
   updateLocation(x: InsomniaLocationFull) {

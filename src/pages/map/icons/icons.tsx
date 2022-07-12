@@ -3,7 +3,7 @@ import { Directions } from "src/stores/locations.store";
 import styles from "../map-element.module.css";
 
 export const MapIcons: {
-  [key in Directions]: any;
+  [key in Directions]?: any;
 } = {
   [Directions.camping]: (
     <g fill="#78CCFF" transform="translate(-32,-16) scale(0.5)">

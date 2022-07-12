@@ -1,15 +1,18 @@
 import { DateTime } from "luxon";
 import React, { FC, useState } from "react";
-import { ScheduleComponent } from "../../../components/schedule/schedule";
 import styles from "../../../components/schedule/schedule.module.css";
 import { locationsStore } from "../../../stores/locations.store";
+import { ConnectedLocationSchedule } from "../../../components/Location/LocationSchedule";
+import { LocationScheduleInfo } from "../../../components/Location/LocationSchedule/LocationScheduleInfo";
+import { useCellState } from "../../../helpers/cell-state";
 
 export type TimetableProps = {
   list?: TimetableSlot[];
 };
 
 export const Timetable: FC<TimetableProps> = ({ list }) => {
-  const [screen, setScreen] = useState(1);
+  const [screens] = useCellState(() => locationsStore.ScreenLocations);
+  const [screen, setScreen] = useState(screens[0]?.id);
   return (
     <>
       <div className={styles.tags}>
@@ -29,7 +32,10 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
           );
         })}
       </div>
-      <ScheduleComponent locationId={screen} />
+      <ConnectedLocationSchedule
+        locationId={screen}
+        renderScheduleInfo={LocationScheduleInfo}
+      />
     </>
   );
 };
