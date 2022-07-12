@@ -1,5 +1,5 @@
 import { Box, HStack, Tab, TabList, Tabs, VStack } from "@chakra-ui/react";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Chip } from "src/components/chip/chip";
 import { AUDITORY_NAMES, DAYS, DAY_NAMES } from "src/constants";
 import { useAppContext } from "src/helpers/AppProvider";
@@ -21,11 +21,10 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
   onSelectedElementChange,
 }) => {
   const app = useAppContext();
-  const [show] = useState(
+  const show =
     app.auth.username === "admin" ||
-      (schedules &&
-        schedules.filter(({ locationId: l }) => l === locationId).length > 0)
-  );
+    (schedules &&
+      schedules.filter(({ locationId: l }) => l === locationId).length > 0);
 
   return (
     <div className={styles.content}>
