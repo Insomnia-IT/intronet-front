@@ -26,7 +26,7 @@ export class UserMapItem extends EventEmitter implements MapItem {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition((e) => {
         this.isAccurate = e.coords.accuracy < 50;
-        this.radius = Math.max(5, 550 / 10);
+        this.radius = Math.max(5, e.coords.accuracy / 10);
         this.point = mapStore.Map2GeoConverter.fromGeo({
           lat: e.coords.latitude,
           lon: e.coords.longitude,
