@@ -96,7 +96,7 @@ interface ICategory {
 type Day = "Thursday" | "Friday" | "Saturday" | "Sunday" | "Monday";
 
 interface Schedule {
-  id: string;
+  id: number;
   locationId: number;
   day: Day;
   audiences: Auditory[];

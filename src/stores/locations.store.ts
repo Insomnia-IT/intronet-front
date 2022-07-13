@@ -102,9 +102,8 @@ class LocationsStore {
   }
 
   async addLocation(location: InsomniaLocation) {
-    location.id = await this.api.addLocation(location);
-    console.log(location.id);
-    this.Locations.add(location, "server");
+    const created = await this.api.addLocation(location);
+    this.Locations.add(created, "server");
   }
 
   updateLocation(x: InsomniaLocationFull) {

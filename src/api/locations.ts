@@ -8,19 +8,23 @@ export class LocationsApi extends AdminApi {
     return this.adminFetch(`${adminRoute}/add`, {
       method: "POST",
       body: JSON.stringify(location),
-    });
+    }).then((x) => this.readDTO(x));
   }
 
   public async getLocations(): Promise<InsomniaLocation[]> {
-    const loc = await this.fetch<
-      (InsomniaLocationFull & { timetables: any })[]
-    >("/api/Locations/all/full");
-    return loc.map((x) => ({
+    const loc = await this.fetch<any[]>("/api/Locations/all/full");
+    return loc.map((x) => this.readDTO(x)) as InsomniaLocation[];
+  }
+
+  private readDTO(
+    x: InsomniaLocationFull & { timetables: any; direction }
+  ): InsomniaLocation {
+    delete x.timetables;
+    delete x.direction;
+    return {
       ...x,
-      direction: undefined,
-      timetables: undefined,
       tags: x.tags.map((x) => x.id),
-    })) as InsomniaLocation[];
+    };
   }
 
   public updateLocation(

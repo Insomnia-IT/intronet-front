@@ -51,7 +51,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
       )}
       {showAuditories && (
         <div className={styles.tags}>
-          {auditories.map((a) => {
+          {(isAdmin ? ([1, 2] as (1 | 2)[]) : auditories).map((a) => {
             return (
               <div
                 className={

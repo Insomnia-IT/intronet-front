@@ -1,7 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { ScheduleElementModal } from "src/components/modals";
-import { DAYS } from "src/constants";
 import { useAppContext } from "src/helpers/AppProvider";
 import { scheduleStore } from "src/stores/schedule.store";
 
@@ -47,13 +46,7 @@ export const useEditSchedule = () => {
           ...editedAuditoryElement,
         };
 
-        await scheduleStore.editSchedule({
-          ...currentSchedule,
-          // @ts-ignore
-          day: DAYS.findIndex((d) => d === day),
-          // @ts-ignore
-          id: parseInt(currentSchedule.id[0]),
-        });
+        await scheduleStore.editSchedule(currentSchedule);
 
         toast({
           title: "Событие успешно изменено!",
