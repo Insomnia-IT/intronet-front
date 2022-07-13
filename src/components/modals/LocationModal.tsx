@@ -29,6 +29,10 @@ const center = {
   lat: 54.68008397222222,
   lon: 35.08622484722222,
 };
+const centerXY = {
+  x: 5512 / 2,
+  y: 3892 / 2,
+};
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
@@ -39,8 +43,8 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
   description,
   directionId,
   tags,
-  x = 640, // середина карты
-  y = 455,
+  x = centerXY.x, // середина карты
+  y = centerXY.y,
   lat = center.lat,
   lon = center.lon,
   ...modalProps
@@ -124,8 +128,8 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                     onClick={() => {
                       props.setFieldValue("lat", center.lat);
                       props.setFieldValue("lon", center.lon);
-                      props.setFieldValue("x", 640);
-                      props.setFieldValue("y", 455);
+                      props.setFieldValue("x", centerXY.x);
+                      props.setFieldValue("y", centerXY.y);
                     }}
                   >
                     Поставить по центру карты
@@ -160,6 +164,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                     <FormLabel htmlFor="tags">Тэги</FormLabel>
                     <HStack
                       align="center"
+                      flexWrap="wrap"
                       flexDirection="row"
                       overflowX="scroll"
                     >
