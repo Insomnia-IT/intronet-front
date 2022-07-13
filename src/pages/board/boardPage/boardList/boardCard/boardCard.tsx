@@ -42,6 +42,9 @@ export const BoardCard = ({
 
   const app = useAppContext();
 
+  // Если у объявления нет никакого контента, и пользователь не обладает редакторскими павами, объявление не отображается.
+  if (!title && !text && !app.auth.token) return <></>;
+
   return (
     <Box
       px={4}
