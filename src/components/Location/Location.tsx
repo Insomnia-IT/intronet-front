@@ -77,9 +77,11 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                     Добавить
                   </Button>
                 </RequireAuth>
-                <Box alignSelf="flex-start">
-                  <LocationMenu description={menu} />
-                </Box>
+                {menu && (
+                  <Box alignSelf="flex-start">
+                    <LocationMenu description={menu} />
+                  </Box>
+                )}
               </>
             )}
             renderScheduleInfo={(props) => (

@@ -1,10 +1,11 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Chip } from "src/components/chip/chip";
 import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "src/constants";
 import { useAppContext } from "src/helpers/AppProvider";
 import styles from "./styles.module.css";
 import { LocationScheduleProps } from "./types";
+import { scheduleStore } from "../../../stores/schedule.store";
 
 export const LocationSchedule: FC<LocationScheduleProps> = ({
   locationId,
@@ -26,7 +27,6 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
     isAdmin ||
     (schedules &&
       schedules.filter(({ locationId: l }) => l === locationId).length > 0);
-
   const showAuditories = isAdmin || auditories.length > 1;
   return (
     <div className={styles.content}>

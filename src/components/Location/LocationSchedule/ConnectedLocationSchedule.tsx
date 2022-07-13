@@ -58,6 +58,7 @@ export class ConnectedLocationSchedule extends React.PureComponent<
   ) {
     if (this.locationId !== this.props.locationId) {
       this.locationId = this.props.locationId;
+      scheduleStore.load(this.locationId);
     }
   }
 }
