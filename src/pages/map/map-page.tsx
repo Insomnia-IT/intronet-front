@@ -1,6 +1,6 @@
 import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
-import { Observable } from "cellx-decorators";
+import { Computed, Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
 import { RequireAuth } from "src/components/RequireAuth";
@@ -16,15 +16,25 @@ import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
+import { useParams } from "react-router-dom";
 
-export class MapPage extends React.PureComponent {
+export function MapPageWithRouting() {
+  const { locationId } = useParams<{ locationId }>();
+  return <MapPage locationId={locationId} />;
+}
+
+export class MapPage extends React.PureComponent<{ locationId? }> {
   @Observable
   isMap = true;
   @Observable
-  selected: MapItem = null;
+  selected: number;
   @Observable
   isEditing = false;
   static contextType = ModalContext;
+
+  componentDidMount() {
+    this.selected = +this.props.locationId;
+  }
 
   @Observable
   user = new UserMapItem();
@@ -36,7 +46,7 @@ export class MapPage extends React.PureComponent {
       const newLocation = await this.context.show<InsomniaLocation>((props) => (
         <LocationModal {...props} />
       ));
-      locationsStore.Locations.add(newLocation);
+      locationsStore.addLocation(newLocation);
       // TODO: add toast
     } catch (error) {
       // TODO: add toast
@@ -51,13 +61,15 @@ export class MapPage extends React.PureComponent {
       icon: this.isMap ? (
         getIconByDirectionId(x.directionId)
       ) : this.isEditing ? (
-        <circle
-          r={15}
-          className={mapElementStyles.hoverCircle}
-          strokeWidth="2"
-          fill="transparent"
-          stroke="red"
-        ></circle>
+        <>
+          <circle
+            r={15}
+            className={mapElementStyles.hoverCircle}
+            strokeWidth="2"
+            fill="transparent"
+            stroke="red"
+          ></circle>
+        </>
       ) : null,
       title: x.name,
       id: x.id,
@@ -65,6 +77,7 @@ export class MapPage extends React.PureComponent {
     } as unknown as MapItem;
   }
 
+  @Computed
   get mapItems() {
     const items = locationsStore.FullLocations.map((x) =>
       this.locationToMapItem(x)
@@ -79,7 +92,7 @@ export class MapPage extends React.PureComponent {
     image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
     items: () => this.mapItems,
     isEditing: () => this.isEditing,
-    selected: () => this.selected,
+    selected: () => this.mapItems.find((x) => x.id === this.selected),
   });
 
   render() {
@@ -93,11 +106,11 @@ export class MapPage extends React.PureComponent {
           image={this.state.image}
           onClick={() => {}}
           onChange={this.updateLocation}
-          onSelect={(x) => {
+          onSelect={(x: MapItem) => {
             if (x === this.user) {
               this.selected = null;
             } else {
-              this.selected = x;
+              this.selected = x?.id;
             }
           }}
         />
@@ -131,12 +144,12 @@ export class MapPage extends React.PureComponent {
             />
           </RequireAuth>
         </div>
-        {this.state.selected && (
+        {this.state.selected ? (
           <MapToolbar
             id={this.state.selected.id}
             onClose={() => (this.selected = null)}
           />
-        )}
+        ) : null}
       </div>
     );
   }
@@ -146,8 +159,7 @@ export class MapPage extends React.PureComponent {
   }
 
   selectLocation = (location: InsomniaLocation) => {
-    const mapItem = this.state.items.find((x) => x.id === location.id);
-    this.selected = mapItem;
+    this.selected = location.id;
   };
 
   private localChanges = new Map<number, InsomniaLocation>();

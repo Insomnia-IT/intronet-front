@@ -44,7 +44,11 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
   return (
     <div className={styles.content}>
       <div className={styles.header}>{location.name}</div>
-      <div className={styles.description}>{location.description}</div>
+      <div
+        className={expanded ? styles.descriptionExpanded : styles.description}
+      >
+        {location.description}
+      </div>
       <RequireAuth>
         <Box pos="absolute" right="10px" zIndex="1" bottom="10px">
           <IconButton

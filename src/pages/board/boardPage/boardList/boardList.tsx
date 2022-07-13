@@ -151,5 +151,5 @@ export const BoardList: FC = () => {
 };
 
 function getBoardCardHeight(note: INote) {
-  return 167;
+  return 100;
 }

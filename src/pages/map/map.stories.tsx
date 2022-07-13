@@ -112,6 +112,4 @@ Geo.args = {
 };
 
 export const Page: ComponentStory<typeof MapPage> = (args) => <MapPage />;
-Page.args = {
-  locations,
-};
+Page.args = {};

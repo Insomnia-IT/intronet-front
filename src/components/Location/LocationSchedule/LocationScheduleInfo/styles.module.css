@@ -1,54 +1,7 @@
-.header {
-  padding-top: 20px;
-}
-
-.tags {
-  display: flex;
-  justify-content: flex-start;
-  padding-bottom: 16px;
-}
-.chips {
-  flex: auto 0 0;
-  flex-shrink: 0;
-  padding: 16px 0;
-  align-items: center;
-  flex-direction: row;
-  overflow-x: auto;
-}
-
-.chips::-webkit-scrollbar {
-  display: none;
-}
-
-.tag {
-}
-
-.tagSelected {
-  composes: tag;
-}
-
 .schedule {
   display: grid;
   grid: auto / 60px 1fr 24px;
   padding: 16px 0;
-}
-
-.content {
-  overflow-y: auto;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  font-family: "PT Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 150%;
-  /* identical to box height, or 30px */
-  padding-bottom: 4px;
-  letter-spacing: -0.01em;
 }
 
 .time {
@@ -155,15 +108,4 @@ header {
 }
 .info:before {
   content: "Ведёт ";
-}
-
-.auditory {
-  padding: 8px 16px;
-  color: #4a5568;
-}
-.auditoryActive {
-  composes: auditory;
-  color: #6bbdb0;
-  padding-bottom: 6px;
-  border-bottom: solid 2px;
 }

@@ -147,6 +147,11 @@ export class MapComponent extends React.PureComponent<MapProps> {
       this.scrollTo(this.props.selected);
     }
   }
+  componentDidMount() {
+    if (this.props.selected) {
+      this.scrollTo(this.props.selected);
+    }
+  }
 
   scrollTo(x: MapItem) {
     const rect = this.root.getBoundingClientRect();

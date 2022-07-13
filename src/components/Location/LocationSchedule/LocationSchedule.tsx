@@ -1,7 +1,7 @@
-import { Box, HStack, Tab, TabList, Tabs, VStack } from "@chakra-ui/react";
+import { Box, HStack, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { Chip } from "src/components/chip/chip";
-import { AUDITORY_NAMES, DAYS, DAY_NAMES } from "src/constants";
+import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "src/constants";
 import { useAppContext } from "src/helpers/AppProvider";
 import styles from "./styles.module.css";
 import { LocationScheduleProps } from "./types";
@@ -21,11 +21,13 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
   onSelectedElementChange,
 }) => {
   const app = useAppContext();
+  const isAdmin = app.auth.username === "admin";
   const show =
-    app.auth.username === "admin" ||
+    isAdmin ||
     (schedules &&
       schedules.filter(({ locationId: l }) => l === locationId).length > 0);
 
+  const showAuditories = isAdmin || auditories.length > 1;
   return (
     <div className={styles.content}>
       {show && <header className={styles.header}>Расписание</header>}
@@ -47,25 +49,24 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
           })}
         </HStack>
       )}
-      {show && (
-        <Tabs
-          colorScheme="teal"
-          isFitted
-          index={auditory - 1}
-          onChange={(index) => {
-            // здесь мы точно уверены, что индекс это или 0, или 1
-            onAuditoryChange((index + 1) as unknown as 1 | 2);
-          }}
-        >
-          <TabList>
-            {(show || auditories.length === 1) && (
-              <Tab>{AUDITORY_NAMES[1]}</Tab>
-            )}
-            {(show || auditories.length === 2) && (
-              <Tab>{AUDITORY_NAMES[2]}</Tab>
-            )}
-          </TabList>
-        </Tabs>
+      {showAuditories && (
+        <div className={styles.tags}>
+          {auditories.map((a) => {
+            return (
+              <div
+                className={
+                  a === auditory ? styles.auditoryActive : styles.auditory
+                }
+                key={a}
+                onClick={() => {
+                  onAuditoryChange(a);
+                }}
+              >
+                {AUDITORY_NAMES[a]}
+              </div>
+            );
+          })}
+        </div>
       )}
       <VStack mt="4">
         {auditoryElements.map(

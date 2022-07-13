@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import { BoardPage } from "./board/boardPage/boardPage";
 import { MainPage } from "./main/mainPage";
-import { MapPage } from "./map/map-page";
+import { MapPageWithRouting } from "./map/map-page";
 
 import { useRoutes } from "react-router-dom";
 import { TimetablePage } from "./timetable/timetable-page";
 import { ArticlePageWithId } from "./articles/articlePage/articlePage";
+import { DirectionsPage } from "./map/mapElement";
 
 export const NAVBAR_ROUTES = [
   {
@@ -21,7 +22,7 @@ export const NAVBAR_ROUTES = [
   {
     text: "Карта",
     path: "/map",
-    element: <MapPage />,
+    element: <MapPageWithRouting />,
   },
   {
     text: "Расписание",
@@ -36,6 +37,16 @@ export const ALL_ROUTES = [
     text: "Статья",
     path: "/article/:id",
     element: <ArticlePageWithId></ArticlePageWithId>,
+  },
+  {
+    text: "Направления",
+    path: "/directions",
+    element: <DirectionsPage />,
+  },
+  {
+    text: "Локация",
+    path: "/map/:locationId",
+    element: <MapPageWithRouting />,
   },
   // {
   //   text: "Голосование",

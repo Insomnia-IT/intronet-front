@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -18,10 +19,11 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import React, { FC, useEffect } from "react";
-import { directionsStore } from "src/stores";
 import { locationsStore } from "src/stores/locations.store";
 import { ModalProps } from ".";
 import { getIconByDirectionId } from "../../pages/map/icons/icons";
+import { directionsStore } from "../../stores";
+import { useCellState } from "../../helpers/cell-state";
 
 const center = {
   lat: 54.68008397222222,
@@ -60,6 +62,8 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
       }
     })();
   }, [toast]);
+
+  const [direcitons] = useCellState(() => directionsStore.Directions.toArray());
 
   return (
     <Modal
@@ -128,14 +132,15 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                   </Button>
                   <FormControl>
                     <FormLabel htmlFor="image">Значок</FormLabel>
-                    <HStack>
-                      {directionsStore.Directions.toArray().map((direction) => (
+                    <Flex flexWrap="wrap">
+                      {direcitons.map((direction: Direction) => (
                         <svg
-                          width={24}
-                          height={24}
+                          width={36}
+                          height={36}
                           viewBox="-15 -15 30 30"
                           key={direction.id}
                           style={{
+                            flex: "auto",
                             border:
                               direction.id === props.values.directionId
                                 ? "solid 1px"
@@ -148,7 +153,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                           {getIconByDirectionId(direction.id)}
                         </svg>
                       ))}
-                    </HStack>
+                    </Flex>
                   </FormControl>
 
                   <FormControl>

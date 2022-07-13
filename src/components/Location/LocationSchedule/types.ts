@@ -7,12 +7,12 @@ export type LocationScheduleProps = {
   onDayChange?: (day: Day) => void;
   auditory: Auditory["number"];
   onAuditoryChange?: (auditory: Auditory["number"]) => void;
-  auditories: Auditory[];
+  auditories: (1 | 2)[];
   auditoryElements: Auditory["elements"];
   locationId: number;
   selectedElement: AuditoryElement;
   onSelectedElementChange?: (auditoryElement: AuditoryElement) => void;
-  renderScheduleInfo: (props: LocationScheduleInfoProps) => ReactNode;
+  renderScheduleInfo?: (props: LocationScheduleInfoProps) => ReactNode;
   renderScheduleFooter?: (
     props: Pick<LocationScheduleInfoProps, "auditory" | "schedules" | "day">
   ) => ReactNode;

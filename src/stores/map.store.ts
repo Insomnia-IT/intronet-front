@@ -4,7 +4,7 @@ import { TileConverter } from "../helpers/tile.converter";
 
 class MapStore {
   constructor() {
-    this.load("/images/schema.jpg").then((x) => (this.Schema = x));
+    this.load("/images/schema4.webp").then((x) => (this.Schema = x));
     // this.load("/images/map.webp").then((x) => (this.Map = x));
     this.load("/images/map2.webp").then((x) => (this.Map2 = x));
   }
