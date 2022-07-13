@@ -54,8 +54,8 @@ class ScheduleStore {
 
   async editSchedule(schedule: Schedule) {
     try {
-      await scheduleApi.editSchedule(schedule);
-      this.db.addOrUpdate(schedule);
+      const updated = await scheduleApi.editSchedule(schedule);
+      this.db.addOrUpdate(updated);
     } catch (error) {
       throw error;
     }
@@ -74,6 +74,12 @@ class ScheduleStore {
 
   getSchedules(): Schedule[] {
     return this.db.toArray();
+  }
+
+  getSchedule(locationId: number, day: Day) {
+    return this.getSchedules().find(
+      (x) => x.locationId === locationId && x.day === day
+    );
   }
 }
 

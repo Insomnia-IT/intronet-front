@@ -33,7 +33,7 @@ const center = {
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
  */
-export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
+export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
   id,
   name,
   description,
@@ -86,7 +86,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
               y: y ?? "",
               lat: lat ?? "",
               lon: lon ?? "",
-            } as InsomniaLocationFull
+            } as InsomniaLocation
           }
           onSubmit={(newLocation) => modalProps.success(newLocation)}
         >
@@ -171,15 +171,19 @@ export const LocationModal: FC<ModalProps<InsomniaLocationFull>> = ({
                             size="lg"
                             borderRadius="full"
                             variant={
-                              props.values.tags
-                                // @ts-ignore
-                                .includes(tag.id)
+                              props.values.tags.includes(tag.id)
                                 ? "solid"
                                 : "outline"
                             }
-                            onClick={() =>
-                              props.setFieldValue("tags", [tag.id])
-                            }
+                            onClick={() => {
+                              const tags = new Set(props.values.tags);
+                              if (tags.has(tag.id)) {
+                                tags.delete(tag.id);
+                              } else {
+                                tags.add(tag.id);
+                              }
+                              props.setFieldValue("tags", Array.from(tags));
+                            }}
                           >
                             {tag.name}
                           </Tag>
