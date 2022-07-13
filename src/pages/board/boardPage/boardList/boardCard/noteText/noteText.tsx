@@ -18,6 +18,8 @@ export const NoteText = ({ text }: INoteText) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleOpen = () => setIsOpen((prev) => !prev);
 
+  if (!text) return <></>;
+
   const isBig = text.length > COUNT_CHAR_OF_SHORT_TEXT;
   if (!isBig) return <WrapText>{text}</WrapText>;
 

@@ -18,7 +18,6 @@ import * as React from "react";
 import { Heading } from "src/components/heading/heading";
 import { RequireAuth } from "src/components/RequireAuth";
 import { useAppContext } from "src/helpers/AppProvider";
-import { BtnCopy } from "./btnCopy/btnCopy";
 import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
 
@@ -38,9 +37,12 @@ export const BoardCard = ({
   categoryName,
   ...rest
 }: IBoardCard) => {
-  const { title, text, id, categoryId } = noteInfoObj;
+  const { title, text } = noteInfoObj;
 
   const app = useAppContext();
+
+  // Если у объявления нет никакого контента, и пользователь не обладает редакторскими павами, объявление не отображается.
+  if (!title && !text && !app.auth.token) return <></>;
 
   return (
     <Box
@@ -95,16 +97,15 @@ export const BoardCard = ({
           )}
         </RequireAuth>
 
-        <BtnCopy
+        {/* <BtnCopy
           noteId={id}
-          categoryId={categoryId}
           _before={{
             display: "none",
           }}
           h={"16px"}
           w={"max-content"}
           mt={0}
-        />
+        /> */}
 
         <Box alignSelf={"flex-end"}>
           <CreatedDate date={noteInfoObj.createdDate} />
