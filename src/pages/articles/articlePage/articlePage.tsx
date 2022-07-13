@@ -1,5 +1,4 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
-import { Observer } from "cellx-react";
 import * as React from "react";
 import { BackRoutButton } from "src/components/backRoutButton/backRoutButton";
 import { Heading } from "src/components/heading/heading";

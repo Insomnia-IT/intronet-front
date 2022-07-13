@@ -32,7 +32,6 @@ export function Intersection(props: IntersectionProps) {
         setIsVisible(isVisible);
         if (!isVisible) {
           setHeight(element.getBoundingClientRect().height);
-          console.log(element.getBoundingClientRect().height);
         }
       }
     };
