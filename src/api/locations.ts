@@ -43,7 +43,7 @@ export class LocationsApi extends AdminApi {
   }
 
   public getTags(): Promise<Tag[]> {
-    return this.fetch("/api/tags/all");
+    return this.fetch<Tag[]>("/api/tags/all").catch((e) => [] as Tag[]);
   }
 
   public addTag(name: string) {
