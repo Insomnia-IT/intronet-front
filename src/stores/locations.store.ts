@@ -92,7 +92,7 @@ class LocationsStore {
   @Computed
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.FullLocations.filter(
-      (x) => x.directionId === Directions.staffCamp
+      (x) => x.directionId === Directions.screen
     );
   }
 
