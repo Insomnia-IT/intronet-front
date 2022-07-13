@@ -51,7 +51,6 @@
     "@storybook/preset-create-react-app": "4.x.x",
     "@storybook/react": "6.5.0-rc.0",
     "husky": ">=6",
-    "canvas": "latest",
     "lint-staged": ">=10",
     "prettier": "^2.6.2",
     "ts-jest": "^28.0.2"
