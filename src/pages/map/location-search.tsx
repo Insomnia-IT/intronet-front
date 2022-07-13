@@ -149,9 +149,9 @@ function filterLocations(query: string) {
   const regEx = new RegExp(query, "iu");
   return (location: InsomniaLocationFull) => {
     const simpleResult =
-      location.name.match(regEx) ||
-      location.description.match(regEx) ||
-      location.menu.match(regEx);
+      location.name?.match(regEx) ||
+      location.description?.match(regEx) ||
+      location.menu?.match(regEx);
     if (simpleResult) {
       return true;
     }
@@ -163,9 +163,9 @@ function filterLocations(query: string) {
       .flatMap((x) => x.elements)
       .some(
         (x) =>
-          x.name.match(regEx) ||
-          x.speaker.match(regEx) ||
-          x.description.match(regEx)
+          x.name?.match(regEx) ||
+          x.speaker?.match(regEx) ||
+          x.description?.match(regEx)
       );
   };
 }
