@@ -49,8 +49,8 @@ export function DirectionsPage() {
           className={
             styles.element + " " + (selected === x.id ? styles.selected : "")
           }
-          style={{ width: 60, height: 80 }}
-          viewBox="-20 -20 40 40"
+          style={{ width: 100, height: 80 }}
+          viewBox="-30 -30 60 60"
           onClick={() => {
             setSelected(x.id);
           }}
