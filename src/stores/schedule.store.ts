@@ -1,13 +1,14 @@
 import { ObservableDB } from "./observableDB";
 import { scheduleApi } from "../api/schedule";
 import { Observable } from "cellx-decorators";
-import { Directions, locationsStore } from "./locations.store";
+import { locationsStore } from "./locations.store";
+import { Directions } from "../api/directions";
 
 class ScheduleStore {
-  constructor() {
-    // this.loadAll();
-    // setTimeout(() => this.loadAll(), 5000);
-  }
+  // constructor() {
+  // this.loadAll();
+  // setTimeout(() => this.loadAll(), 5000);
+  // }
 
   async loadAll() {
     for (let location of locationsStore.Locations.values()) {

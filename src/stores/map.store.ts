@@ -1,5 +1,4 @@
 import { Observable } from "cellx-decorators";
-import { GeoConverter } from "../helpers/geo.converter";
 import { TileConverter } from "../helpers/tile.converter";
 
 class MapStore {

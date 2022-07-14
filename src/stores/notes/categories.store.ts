@@ -41,7 +41,7 @@ class CategoriesStore {
   }
 
   getCategoryColor(id: ICategory["id"]): null | string {
-    return this.getCategory(id).color || "brand.300";
+    return this.getCategory(id)?.color || "brand.300";
   }
 
   get allNotesCount() {
