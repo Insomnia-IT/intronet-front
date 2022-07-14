@@ -79,6 +79,7 @@ export class LocationSearch extends React.PureComponent<{
               padding="16px 0"
               align="center"
               flexDirection="row"
+              flex="auto 0 0"
               overflowX="scroll"
             >
               {this.state.tags.map((tag) => {
@@ -99,7 +100,13 @@ export class LocationSearch extends React.PureComponent<{
                 );
               })}
             </HStack>
-            <Flex direction="column" bg="white">
+            <Flex
+              direction="column"
+              bg="white"
+              flex="1"
+              minHeight="0"
+              overflowY="auto"
+            >
               {this.state.locations.map((x) => (
                 <Flex
                   key={x.id}
