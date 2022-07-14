@@ -1,6 +1,5 @@
 import { useToast } from "@chakra-ui/react";
 import { useCallback } from "react";
-import { DAYS } from "src/constants";
 import { scheduleStore } from "src/stores/schedule.store";
 
 /**
@@ -36,7 +35,7 @@ export const useDeleteSchedule = (locationId: Schedule["locationId"]) => {
         ] = {
           ...auditoryElement,
           // @ts-ignore
-          isDeleted: true
+          isDeleted: true,
         };
         // await scheduleStore.editSchedule({
         //   ...currentSchedule,
