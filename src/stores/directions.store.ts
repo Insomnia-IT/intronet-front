@@ -1,5 +1,5 @@
 import { Observable } from "cellx-decorators";
-import { DirectionsApi } from "src/api/directions";
+import { Directions, DirectionsApi } from "src/api/directions";
 import { ObservableDB } from "./observableDB";
 
 class DirectionsStore {
@@ -122,6 +122,65 @@ class DirectionsStore {
   //     this.IsLoading = false;
   //   }
   // };
+
+  public DirectionToDirection(id: number): Directions {
+    const x = this.Directions.get(id);
+    switch (x?.name) {
+      case "Затмение":
+        return Directions.artObject;
+      case "Ярмарка":
+        return Directions.fair;
+      case "Лекторий":
+        return Directions.lectures;
+      case "Хатифнатты":
+        return Directions.lectures;
+      case "Мастер-классы":
+        return Directions.masterClass;
+      case "locus":
+        return Directions.cafe;
+      case "Кафе":
+        return Directions.cafe;
+      case "Детская площадка":
+        return Directions.playground;
+      case "Арт-объект":
+        return Directions.artObject;
+      case "Точка сборки":
+        return Directions.meeting;
+      case "Платный лагерь":
+        return Directions.camping;
+      case "Инфоцентр":
+        return Directions.info;
+      case "АниматорSKYа":
+        return Directions.lectures;
+      case "Альпинист":
+        return Directions.artObject;
+      case "Экран":
+        return Directions.screen;
+      case "Медлокация":
+        return Directions.meeting;
+      case "Музыкальная сцена":
+        return Directions.music;
+      case "ШТАБ":
+        return Directions.staffCamp;
+      case "КПП":
+        return Directions.checkpoint;
+      case "Парковка":
+        return Directions.checkpoint;
+      case "Костер":
+      case "Костёр":
+        return Directions.fire;
+      case "WC":
+        return Directions.wc;
+      case "Душ":
+        return Directions.bath;
+      case "Баня":
+        return Directions.bathhouse;
+      case "Прокат палаток":
+        return Directions.tentRent;
+      default:
+        return null;
+    }
+  }
 }
 
 export const directionsStore = new DirectionsStore();
