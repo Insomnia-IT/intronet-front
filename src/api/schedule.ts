@@ -50,34 +50,32 @@ class ScheduleApi extends AdminApi {
     }));
   }
 
-  getAnimations(locationId: number): Promise<Schedule[]> {
-    return this.fetch<AnimationDTO[]>("/api/Cartoons/" + locationId).then(
-      (items) =>
-        items.map(
-          (x) =>
-            ({
-              locationId: x.locationId,
-              day: Days[x.day],
-              id: `${x.locationId}.${x.day}`,
-              audiences: [
-                {
-                  number: 1,
-                  elements: x.blocks.map((b) => ({
-                    id: b.title + b.part,
-                    type: "animation",
-                    changes: null,
-                    isCanceled: false,
-                    speaker: "",
-                    description: b.subTitle,
-                    name: b.part ? `${b.title} #${b.part}` : b.title,
-                    time: b.start,
-                    age: b.minAge,
-                    movies: b.movies,
-                  })),
-                },
-              ],
-            } as Schedule)
-        )
+  async getAnimations(locationId: number): Promise<Schedule[]> {
+    const dto = await this.fetch<AnimationDTO>("/api/Cartoons/" + locationId);
+    return [dto].map(
+      (x) =>
+        ({
+          locationId: x.locationId,
+          day: Days[x.day],
+          id: `${x.locationId}.${x.day}`,
+          audiences: [
+            {
+              number: 1,
+              elements: x.blocks.map((b) => ({
+                id: b.title + b.part + b.subTitle,
+                type: "animation",
+                changes: null,
+                isCanceled: false,
+                speaker: "",
+                description: b.subTitle,
+                name: b.part ? `${b.title} ${b.subTitle} #${b.part}` : b.title,
+                time: b.start,
+                age: b.minAge,
+                movies: b.movies,
+              })),
+            },
+          ],
+        } as Schedule)
     );
   }
 

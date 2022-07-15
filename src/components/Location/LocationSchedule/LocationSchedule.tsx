@@ -68,7 +68,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
         </div>
       )}
       <VStack mt="4">
-        {auditoryElements.map(
+        {sortAuditoryElements(auditoryElements).map(
           (auditoryElement: AuditoryElement, index: number) => (
             <Box w="full" key={auditoryElement.id}>
               {renderScheduleInfo?.({
@@ -95,3 +95,21 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
     </div>
   );
 };
+
+function sortAuditoryElements(elements: AuditoryElement[]) {
+  elements.sort((a, b) => {
+    const aTimeS = a.time.split(":").map(Number);
+    const bTimeS = b.time.split(":").map(Number);
+    let aTime = aTimeS[0] * 60 + aTimeS[1];
+    let bTime = bTimeS[0] * 60 + bTimeS[1];
+    if (aTime < 12 * 60) {
+      aTime += 24 * 60;
+    }
+    if (bTime < 12 * 60) {
+      bTime += 24 * 60;
+    }
+    return aTime - bTime;
+  });
+  console.log(elements.map((x) => x.time));
+  return elements;
+}

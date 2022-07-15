@@ -30,6 +30,6 @@ export class BaseApi {
               };
             })
       )
-      .then((x) => x.model);
+      .then((x) => x.model ?? x);
   }
 }
