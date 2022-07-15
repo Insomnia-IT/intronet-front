@@ -1,16 +1,16 @@
 import { generateId } from "src/helpers/generateId";
 
 export const cardContentList: TMainPageCard[] = [
-  {
-    title: "Правила фестиваля",
-    img: process.env.PUBLIC_URL + "/images/insomnia_intro_1.webp",
-    link: "/article/1",
-  },
-  {
-    title: "История фестиваля",
-    img: process.env.PUBLIC_URL + "/images/insomnia_intro_2.webp",
-    link: "/article/2",
-  },
+  // {
+  //   title: "Правила фестиваля",
+  //   img: process.env.PUBLIC_URL + "/images/insomnia_intro_1.webp",
+  //   link: "/article/1",
+  // },
+  // {
+  //   title: "История фестиваля",
+  //   img: process.env.PUBLIC_URL + "/images/insomnia_intro_2.webp",
+  //   link: "/article/2",
+  // },
   {
     title: "Техника безопасности",
     img: process.env.PUBLIC_URL + "/images/insomnia_intro_3.webp",
