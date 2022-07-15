@@ -1,4 +1,5 @@
 import { AdminApi } from "./admin";
+import { locationsStore } from "../stores/locations.store";
 
 class ScheduleApi extends AdminApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
@@ -22,48 +23,36 @@ class ScheduleApi extends AdminApi {
     } as Schedule;
   }
 
-  getAnimations(locationId: number): Promise<Schedule[]> {
-    return this.fetch<AnimationDTO[]>("/api/Animations/all/" + locationId)
-      .catch((e) => [
+  async getAllAnimations(): Promise<Schedule[]> {
+    const cartoons = await this.fetch<any[]>("/api/Cartoons/schedule");
+    return cartoons.map((x) => ({
+      locationId: locationsStore.FullLocations.find((l) => l.name === x.screen)
+        .id,
+      id: `${x.screen}.${x.day}`,
+      day: Days[x.day],
+      audiences: [
         {
-          id: 1,
-          screenId: locationId,
-          day: 0,
-          name: "ЦУЭ 1",
-          groups: [
-            {
-              id: 1,
-              name: "Анимация для всех",
-              time: "23:45",
-              ageLimit: "12 + ",
-              elements: [
-                {
-                  id: 1,
-                  name: "The Thundered Man",
-                  country: "France",
-                  duration: "3'58\"",
-                  author: "Valentine Vendroux",
-                },
-                {
-                  id: 2,
-                  name: "Про удава Ваню",
-                  country: "ru",
-                  duration: "8:45",
-                  author: "Ваня",
-                },
-                {
-                  id: 3,
-                  name: "Про гуся Антонину",
-                  country: "ru",
-                  duration: "8:45",
-                  author: "Антонина",
-                },
-              ],
-            },
-          ],
-        } as AnimationDTO,
-      ])
-      .then((items) =>
+          number: 1,
+          elements: x.blocks.map((b) => ({
+            id: b.title + b.part,
+            type: "animation",
+            changes: null,
+            isCanceled: false,
+            speaker: "",
+            movies: b.movies,
+            age: b.minAge,
+            name: b.part ? `${b.title} #${b.part}` : b.title,
+            time: b.start,
+            description: b.subtitle,
+          })),
+        },
+      ],
+    }));
+  }
+
+  getAnimations(locationId: number): Promise<Schedule[]> {
+    return this.fetch<AnimationDTO[]>("/api/Cartoons/" + locationId).then(
+      (items) =>
         items.map(
           (x) =>
             ({
@@ -85,7 +74,7 @@ class ScheduleApi extends AdminApi {
               ],
             } as Schedule)
         )
-      );
+    );
   }
 
   async editSchedule(schedule: Schedule) {
@@ -127,7 +116,7 @@ type AnimationDTO = {
     id: number;
     name: string;
     time: string;
-    ageLimit: string;
+    ageLimit: number;
     elements: MovieInfo[];
   }[];
 };

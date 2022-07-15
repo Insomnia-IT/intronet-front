@@ -38,8 +38,8 @@ export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
           )}
           {x.movies && (
             <div className={styles.movies}>
-              {x.movies.map((movie) => (
-                <ScheduleInfoMovie key={movie.id} movie={movie} />
+              {x.movies.map((movie, index) => (
+                <ScheduleInfoMovie key={index} movie={movie} />
               ))}
             </div>
           )}

@@ -96,7 +96,7 @@ interface ICategory {
 type Day = "Thursday" | "Friday" | "Saturday" | "Sunday" | "Monday";
 
 interface Schedule {
-  id: number;
+  id: number | string;
   locationId: number;
   day: Day;
   audiences: Auditory[];
@@ -110,19 +110,19 @@ interface AuditoryElement {
   id: number;
   type: "animation" | "lecture";
   name: string; //Название пункта расписания.
-  description: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
+  description?: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
   time: string; //Время начала.
-  speaker: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
-  isCanceled: bool; //Если = true, значит отменено.
-  changes: string; //Изменения в расписании по данному пункту.
-  age?: string;
+  speaker?: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
+  isCanceled?: bool; //Если = true, значит отменено.
+  changes?: string; //Изменения в расписании по данному пункту.
+  age?: number;
   movies?: MovieInfo[];
 }
 
 type MovieInfo = {
-  id: number;
   name: string;
   country: string;
+  year;
   duration: string;
   author: string;
 };

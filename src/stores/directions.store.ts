@@ -135,7 +135,7 @@ class DirectionsStore {
       case "Хатифнатты":
         return Directions.lectures;
       case "Мастер-классы":
-        return Directions.masterClass;
+        return Directions.lectures;
       case "locus":
         return Directions.cafe;
       case "Кафе":
@@ -169,6 +169,8 @@ class DirectionsStore {
       case "Костер":
       case "Костёр":
         return Directions.fire;
+      case "":
+      case "Туалет":
       case "WC":
         return Directions.wc;
       case "Душ":
