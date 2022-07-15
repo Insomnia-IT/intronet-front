@@ -13,7 +13,7 @@ export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
       </div>
       <div className={styles.name}>
         {x.name}
-        {x.age && <span className={styles.age}>{x.age}</span>}
+        {x.age && <span className={styles.age}>{x.age}+</span>}
       </div>
       <ChevronUpIcon
         className={props.selected ? styles.expander : styles.expanderOpened}

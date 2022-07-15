@@ -5,6 +5,7 @@ import { locationsStore } from "../../../stores/locations.store";
 import { ConnectedLocationSchedule } from "../../../components/Location/LocationSchedule";
 import { LocationScheduleInfo } from "../../../components/Location/LocationSchedule/LocationScheduleInfo";
 import { useCellState } from "../../../helpers/cell-state";
+import { Flex } from "@chakra-ui/react";
 
 export type TimetableProps = {
   list?: TimetableSlot[];
@@ -12,11 +13,12 @@ export type TimetableProps = {
 
 export const Timetable: FC<TimetableProps> = ({ list }) => {
   const [screens] = useCellState(() => locationsStore.ScreenLocations);
-  const [screen, setScreen] = useState(screens[0]?.id);
+  const [screen, setScreen] = useState(() => screens[0]?.id);
+  console.log(screens, screen);
   return (
-    <>
+    <Flex overflowY="auto" flexDirection="column">
       <div className={styles.tags}>
-        {locationsStore.ScreenLocations.map((location) => {
+        {screens.map((location) => {
           return (
             <div
               className={
@@ -36,7 +38,7 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
         locationId={screen}
         renderScheduleInfo={LocationScheduleInfo}
       />
-    </>
+    </Flex>
   );
 };
 
