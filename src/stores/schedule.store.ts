@@ -75,6 +75,7 @@ class ScheduleStore {
   ): AuditoryElement[] {
     const auditories = this.getAuditories(locationId, day);
     if (auditories.length === 0) return [];
+    if (auditories.length === 1) return auditories[0].elements;
     const result = auditories.find((x) => x.number === auditory);
     return result?.elements || [];
   }
