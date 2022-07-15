@@ -107,7 +107,7 @@ interface Auditory {
   elements: AuditoryElement[];
 }
 interface AuditoryElement {
-  id: number;
+  id: number | string;
   type: "animation" | "lecture";
   name: string; //Название пункта расписания.
   description?: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)

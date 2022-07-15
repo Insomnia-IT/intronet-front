@@ -62,13 +62,17 @@ class ScheduleApi extends AdminApi {
               audiences: [
                 {
                   number: 1,
-                  elements: x.groups.map((gr) => ({
-                    id: gr.id,
+                  elements: x.blocks.map((b) => ({
+                    id: b.title + b.part,
                     type: "animation",
-                    name: gr.name,
-                    time: gr.time,
-                    age: gr.ageLimit,
-                    movies: gr.elements,
+                    changes: null,
+                    isCanceled: false,
+                    speaker: "",
+                    description: b.subTitle,
+                    name: b.part ? `${b.title} #${b.part}` : b.title,
+                    time: b.start,
+                    age: b.minAge,
+                    movies: b.movies,
                   })),
                 },
               ],
@@ -112,11 +116,13 @@ type AnimationDTO = {
   screenId: number;
   day: number;
   name: string;
-  groups: {
-    id: number;
-    name: string;
-    time: string;
-    ageLimit: number;
-    elements: MovieInfo[];
+  blocks: {
+    title: string;
+    subTitle: string;
+    start: string;
+    end: string;
+    minAge: number;
+    part: number;
+    movies: MovieInfo[];
   }[];
 };
