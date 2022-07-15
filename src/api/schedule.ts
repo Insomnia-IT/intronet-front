@@ -56,9 +56,9 @@ class ScheduleApi extends AdminApi {
         items.map(
           (x) =>
             ({
-              locationId: x.screenId,
+              locationId: x.locationId,
               day: Days[x.day],
-              id: x.id,
+              id: `${x.locationId}.${x.day}`,
               audiences: [
                 {
                   number: 1,
@@ -112,10 +112,9 @@ type ScheduleDTO = {
 };
 
 type AnimationDTO = {
-  id: number;
-  screenId: number;
+  locationId: number;
   day: number;
-  name: string;
+  screen: string;
   blocks: {
     title: string;
     subTitle: string;
