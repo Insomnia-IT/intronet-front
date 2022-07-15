@@ -110,6 +110,5 @@ function sortAuditoryElements(elements: AuditoryElement[]) {
     }
     return aTime - bTime;
   });
-  console.log(elements.map((x) => x.time));
   return elements;
 }

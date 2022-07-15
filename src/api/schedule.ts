@@ -1,5 +1,4 @@
 import { AdminApi } from "./admin";
-import { locationsStore } from "../stores/locations.store";
 
 class ScheduleApi extends AdminApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
@@ -23,36 +22,9 @@ class ScheduleApi extends AdminApi {
     } as Schedule;
   }
 
-  async getAllAnimations(): Promise<Schedule[]> {
-    const cartoons = await this.fetch<any[]>("/api/Cartoons/schedule");
-    return cartoons.map((x) => ({
-      locationId: locationsStore.FullLocations.find((l) => l.name === x.screen)
-        .id,
-      id: `${x.screen}.${x.day}`,
-      day: Days[x.day],
-      audiences: [
-        {
-          number: 1,
-          elements: x.blocks.map((b) => ({
-            id: b.title + b.part,
-            type: "animation",
-            changes: null,
-            isCanceled: false,
-            speaker: "",
-            movies: b.movies,
-            age: b.minAge,
-            name: b.part ? `${b.title} #${b.part}` : b.title,
-            time: b.start,
-            description: b.subtitle,
-          })),
-        },
-      ],
-    }));
-  }
-
   async getAnimations(locationId: number): Promise<Schedule[]> {
-    const dto = await this.fetch<AnimationDTO>("/api/Cartoons/" + locationId);
-    return [dto].map(
+    const dto = await this.fetch<AnimationDTO[]>("/api/Cartoons/" + locationId);
+    return dto.map(
       (x) =>
         ({
           locationId: x.locationId,
@@ -68,7 +40,9 @@ class ScheduleApi extends AdminApi {
                 isCanceled: false,
                 speaker: "",
                 description: b.subTitle,
-                name: b.part ? `${b.title} ${b.subTitle} #${b.part}` : b.title,
+                name: b.subTitle
+                  ? `${b.title} ${b.subTitle} #${b.part}`
+                  : b.title,
                 time: b.start,
                 age: b.minAge,
                 movies: b.movies,
