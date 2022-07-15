@@ -73,17 +73,15 @@ export default class NotesApi extends AdminApi {
     return this.fetch(`${notesRoute}/${categoriesRoute}`);
   };
 
-  createNewCategory = (name: string): Promise<null> => {
+  createNewCategory = (cat: ICategory): Promise<null> => {
     return this.adminFetch(`api/admin/notes/${categoriesRoute}/add`, {
       method: "POST",
-      body: JSON.stringify({
-        name,
-      }),
+      body: JSON.stringify(cat),
     });
   };
 
   editCategory = (
-    request: GenericRequest<null, null, Pick<ICategory, "id" | "name">>
+    request: GenericRequest<null, null, ICategory>
   ): Promise<null> => {
     return this.adminFetch(`api/admin/notes/${categoriesRoute}/edit`, {
       method: "PUT",

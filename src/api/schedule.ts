@@ -3,23 +3,23 @@ import { AdminApi } from "./admin";
 class ScheduleApi extends AdminApi {
   getSchedules(locationId: number): Promise<Schedule[]> {
     return this.fetch<ScheduleDTO[]>("/api/Schedule/" + locationId).then(
-      (items) =>
-        items.map(
-          (x) =>
-            ({
-              locationId,
-              day: Days[x.day],
-              id: `${locationId}.${Days[x.day]}`,
-              audiences: x.audiences.map((a) => ({
-                number: a.number,
-                elements: a.elements.map((e) => ({
-                  ...e,
-                  type: "lecture",
-                })),
-              })),
-            } as Schedule)
-        )
+      (items) => items.map((x) => this.readScheduleDTO(x, locationId))
     );
+  }
+
+  private readScheduleDTO(x: ScheduleDTO, locationId: number): Schedule {
+    return {
+      locationId,
+      day: Days[x.day],
+      id: x.id,
+      audiences: x.audiences.map((a) => ({
+        ...a,
+        elements: a.elements.map((e) => ({
+          ...e,
+          type: "lecture",
+        })),
+      })),
+    } as Schedule;
   }
 
   getAnimations(locationId: number): Promise<Schedule[]> {
@@ -69,7 +69,7 @@ class ScheduleApi extends AdminApi {
             ({
               locationId: x.screenId,
               day: Days[x.day],
-              id: `${locationId}.${Days[x.day]}`,
+              id: x.id,
               audiences: [
                 {
                   number: 1,
@@ -90,10 +90,17 @@ class ScheduleApi extends AdminApi {
 
   async editSchedule(schedule: Schedule) {
     try {
-      await this.adminFetch("/api/Admin/locations/schedule/add-or-edit", {
-        body: JSON.stringify(schedule),
-        method: "POST",
-      });
+      const res = await this.adminFetch(
+        "/api/Admin/locations/schedule/add-or-edit",
+        {
+          body: JSON.stringify({
+            ...schedule,
+            day: Days.indexOf(schedule.day),
+          }),
+          method: "POST",
+        }
+      );
+      return this.readScheduleDTO(res, schedule.locationId);
     } catch (error) {
       throw error;
     }
@@ -106,6 +113,7 @@ export const scheduleApi = new ScheduleApi();
 
 type ScheduleDTO = {
   locationId: number;
+  id: number;
   day: number;
   audiences: Auditory[];
 };

@@ -2,20 +2,26 @@ import { ObservableDB } from "./observableDB";
 import { scheduleApi } from "../api/schedule";
 import { Observable } from "cellx-decorators";
 import { locationsStore } from "./locations.store";
+import { Directions } from "../api/directions";
 
 class ScheduleStore {
-  constructor() {
-    this.loadAll();
-    setTimeout(() => this.loadAll(), 5000);
-  }
+  // constructor() {
+  // this.loadAll();
+  // setTimeout(() => this.loadAll(), 5000);
+  // }
 
   async loadAll() {
     for (let location of locationsStore.Locations.values()) {
-      if (location.directionId === 2) {
-        this.loadAnimationsSchedule(location.id);
-      } else {
-        this.loadSchedule(location.id);
-      }
+      await this.load(location.id);
+    }
+  }
+
+  async load(locationId) {
+    const location = locationsStore.Locations.get(locationId);
+    if (location.directionId === Directions.screen) {
+      await this.loadAnimationsSchedule(location.id);
+    } else {
+      await this.loadSchedule(location.id);
     }
   }
 
@@ -29,6 +35,7 @@ class ScheduleStore {
       .then((schedules) => this.db.addOrUpdateRange(schedules, "server"))
       .catch((err) => console.warn("Синхронизация schedules не удалась"));
   }
+
   private async loadSchedule(locationId: number) {
     await this.db.isLoaded;
     await scheduleApi
@@ -54,8 +61,8 @@ class ScheduleStore {
 
   async editSchedule(schedule: Schedule) {
     try {
-      await scheduleApi.editSchedule(schedule);
-      this.db.addOrUpdate(schedule);
+      const updated = await scheduleApi.editSchedule(schedule);
+      this.db.addOrUpdate(updated);
     } catch (error) {
       throw error;
     }
@@ -74,6 +81,12 @@ class ScheduleStore {
 
   getSchedules(): Schedule[] {
     return this.db.toArray();
+  }
+
+  getSchedule(locationId: number, day: Day) {
+    return this.getSchedules().find(
+      (x) => x.locationId === locationId && x.day === day
+    );
   }
 }
 

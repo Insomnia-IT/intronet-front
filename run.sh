@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME=intronet
+NAME=intronet-front
 
 docker build -t $NAME .
 docker rm -f $NAME

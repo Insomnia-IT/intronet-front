@@ -1,6 +1,7 @@
 import React from "react";
-import { Directions } from "src/stores/locations.store";
 import styles from "../map-element.module.css";
+import { Directions } from "../../../api/directions";
+import { directionsStore } from "../../../stores";
 
 export const MapIcons: {
   [key in Directions]?: any;
@@ -307,7 +308,7 @@ export const MapIcons: {
       />
     </g>
   ),
-  [Directions.scene]: (
+  [Directions.music]: (
     <g fill="#78CCFF" transform="translate(-16,-16) scale(0.5)">
       <path
         className={styles.hoverOnly}
@@ -526,6 +527,7 @@ export const MapIcons: {
   ),
 };
 
-export function getIconByDirectionId(id: Directions) {
-  return MapIcons[id] ?? <circle r="15px" fill="#A266" />;
+export function getIconByDirectionId(id: number) {
+  const x = directionsStore.DirectionToDirection(id);
+  return MapIcons[x] ?? <circle r="15px" fill="#A266" />;
 }

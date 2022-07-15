@@ -25,7 +25,7 @@ export class TileConverter {
 
   public toGeo(point: { X: number; Y: number }) {
     return {
-      lng: x2lng((point.X / this.scale + this.offset.x) / 2 ** this.zoom),
+      lon: x2lng((point.X / this.scale + this.offset.x) / 2 ** this.zoom),
       lat: yToLat((point.Y / this.scale + this.offset.y) / 2 ** this.zoom),
     };
   }

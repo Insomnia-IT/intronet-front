@@ -19,7 +19,7 @@ export const useAddCategory = () => {
         <CategoryModal {...props} />
       ));
       await categoriesStore.addCategory({
-        body: editedCategory.name,
+        body: editedCategory,
       });
       toast({
         title: "Категория успешно добавлена!",

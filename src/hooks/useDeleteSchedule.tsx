@@ -1,6 +1,5 @@
 import { useToast } from "@chakra-ui/react";
 import { useCallback } from "react";
-import { DAYS } from "src/constants";
 import { scheduleStore } from "src/stores/schedule.store";
 
 /**
@@ -31,19 +30,23 @@ export const useDeleteSchedule = (locationId: Schedule["locationId"]) => {
 
         // элементу аудитории текущего расписания по выбранному дня
         // присваеваем измененные данные из модалки
-        currentSchedule.audiences[editedAuidenceIndex].elements.splice(
-          auditoryElementIndex,
-          1
-        );
+        currentSchedule.audiences[editedAuidenceIndex].elements[
+          auditoryElementIndex
+        ] = {
+          ...auditoryElement,
+          // @ts-ignore
+          isDeleted: true,
+        };
+        // await scheduleStore.editSchedule({
+        //   ...currentSchedule,
+        //   // @ts-ignore
+        //   day: DAYS.findIndex((d) => d === day),
+        //   // @ts-ignore
+        //   id: parseInt(currentSchedule.id[0]),
+        //   locationId,
+        // });
 
-        await scheduleStore.editSchedule({
-          ...currentSchedule,
-          // @ts-ignore
-          day: DAYS.findIndex((d) => d === day),
-          // @ts-ignore
-          id: parseInt(currentSchedule.id[0]),
-          locationId,
-        });
+        await scheduleStore.editSchedule(currentSchedule);
 
         toast({
           title: "Событие успешно удалено!",

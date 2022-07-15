@@ -4,16 +4,10 @@ import * as React from "react";
 
 interface IBtnCopy extends LinkProps {
   noteId: INote["id"];
-  categoryId: INote["categoryId"];
   show?: boolean;
 }
 
-export const BtnCopy = ({
-  show = true,
-  noteId,
-  categoryId,
-  ...rest
-}: IBtnCopy) => {
+export const BtnCopy = ({ show = true, noteId, ...rest }: IBtnCopy) => {
   const [isСopied, setIsCopied] = React.useState(false);
   const copyUrl = () => {
     if (isСopied) return;

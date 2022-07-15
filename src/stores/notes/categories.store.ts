@@ -41,7 +41,7 @@ class CategoriesStore {
   }
 
   getCategoryColor(id: ICategory["id"]): null | string {
-    return this.getCategory(id).color || "brand.300";
+    return this.getCategory(id)?.color || "brand.300";
   }
 
   get allNotesCount() {
@@ -92,7 +92,7 @@ class CategoriesStore {
     pagesStore.setCountPages(this.allNotesCount);
   };
 
-  async addCategory(request: GenericRequest<null, null, ICategory["name"]>) {
+  async addCategory(request: GenericRequest<null, null, ICategory>) {
     try {
       this.IsLoading = true;
       await this.api.createNewCategory(request.body);
@@ -104,9 +104,7 @@ class CategoriesStore {
     }
   }
 
-  async editCategory(
-    request: GenericRequest<null, null, Pick<ICategory, "id" | "name">>
-  ) {
+  async editCategory(request: GenericRequest<null, null, ICategory>) {
     try {
       this.IsLoading = true;
       await this.api.editCategory(request);
