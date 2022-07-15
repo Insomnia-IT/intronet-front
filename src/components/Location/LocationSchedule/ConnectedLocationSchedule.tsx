@@ -5,6 +5,7 @@ import { locationsStore } from "../../../stores/locations.store";
 import { scheduleStore } from "../../../stores/schedule.store";
 import { LocationSchedule } from "./LocationSchedule";
 import { LocationScheduleProps } from "./types";
+import { DAYS } from "../../../constants";
 
 export class ConnectedLocationSchedule extends React.PureComponent<
   Pick<
@@ -17,7 +18,7 @@ export class ConnectedLocationSchedule extends React.PureComponent<
   @Observable
   auditory: 1 | 2 = 1;
   @Observable
-  day: Day = "Thursday";
+  day: Day = DAYS[new Date().getDate() - 14];
   @Observable
   selectedElement: AuditoryElement;
 

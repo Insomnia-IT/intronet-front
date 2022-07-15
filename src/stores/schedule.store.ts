@@ -3,6 +3,7 @@ import { scheduleApi } from "../api/schedule";
 import { Observable } from "cellx-decorators";
 import { locationsStore } from "./locations.store";
 import { Directions } from "../api/directions";
+import { directionsStore } from "./directions.store";
 
 class ScheduleStore {
   // constructor() {
@@ -18,7 +19,10 @@ class ScheduleStore {
 
   async load(locationId) {
     const location = locationsStore.Locations.get(locationId);
-    if (location.directionId === Directions.screen) {
+    if (
+      directionsStore.DirectionToDirection(location.directionId) ===
+      Directions.screen
+    ) {
       await this.loadAnimationsSchedule(location.id);
     } else {
       await this.loadSchedule(location.id);
