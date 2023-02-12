@@ -5,6 +5,10 @@ export type GenericRequest<P, Q, B> = {
   options?: RequestInit;
 };
 
+const noBodyResponse = (code: number) => ({
+  code,
+});
+
 export class BaseApi {
   private baseUrl = "";
 
@@ -17,19 +21,27 @@ export class BaseApi {
         ...options?.headers,
       },
     })
-      .then((resp) =>
-        resp.ok
-          ? resp.json()
-          : resp.json().then((err) => {
-              // eslint-disable-next-line no-throw-literal
-              throw {
-                ...err,
-                url,
-                options,
-                headers: resp.headers,
-              };
-            })
-      )
+      .then(async (resp) => {
+        console.debug("resp", resp);
+        if (resp.ok) {
+          try {
+            return await resp.json();
+          } catch {
+            // Code 201, 204, etc. - no content (body)
+            return noBodyResponse(resp.status);
+          }
+        } else {
+          resp.json().then((err) => {
+            // eslint-disable-next-line no-throw-literal
+            throw {
+              ...err,
+              url,
+              options,
+              headers: resp.headers,
+            };
+          });
+        }
+      })
       .then((x) => x.model ?? x);
   }
 }
