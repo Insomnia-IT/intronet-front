@@ -4,7 +4,7 @@ Web framework for building fast web application with business logic dedicated in
 
 [WIP]
 
-prod: https://intronet.insomniafest.ru/
+prod: https://intro.cherepusick.keenetic.name
 
 build: 
   `npm run ci`
