@@ -1,7 +1,7 @@
 import { Link, Text, VStack } from "@chakra-ui/react";
 import * as React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { Heading } from "src/components/heading/heading";
+import { Heading } from "@src/components/heading/heading";
 import { useCellState } from "../../../../helpers/cell-state";
 import { locationsStore } from "../../../../stores/locations.store";
 

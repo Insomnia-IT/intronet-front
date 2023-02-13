@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { FC } from "react";
-import { ModalProps } from "src/components/modals";
+import { ModalProps } from "@src/components/modals";
 
 export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
   token,

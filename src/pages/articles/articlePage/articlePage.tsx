@@ -1,9 +1,9 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
 import * as React from "react";
-import { BackRoutButton } from "src/components/backRoutButton/backRoutButton";
-import { Heading } from "src/components/heading/heading";
-import { withId, WithIdProps } from "src/helpers/AddParams/addParams";
-import Loading from "src/loading/loading";
+import { BackRoutButton } from "@src/components/backRoutButton/backRoutButton";
+import { Heading } from "@src/components/heading/heading";
+import { withId, WithIdProps } from "@src/helpers/AddParams/addParams";
+import Loading from "@src/loading/loading";
 import { articlesStore } from "../../../stores/articles.store";
 import { Article } from "./article/article";
 

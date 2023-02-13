@@ -1,4 +1,4 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { TileConverter } from "../helpers/tile.converter";
 
 class MapStore {
@@ -27,12 +27,12 @@ class MapStore {
       });
   }
 
-  @Observable
+  @cell
   public Schema: ImageInfo = null;
 
-  // @Observable
+  // @cell
   // public Map: ImageInfo = null;
-  @Observable
+  @cell
   public Map2: ImageInfo = null;
   //
   // public Map2GeoConverter = new GeoConverter(

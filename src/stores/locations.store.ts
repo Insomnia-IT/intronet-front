@@ -1,4 +1,4 @@
-import { Computed, Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
 import { Directions } from "../api/directions";
@@ -9,30 +9,30 @@ class LocationsStore {
 
   constructor() {
     this.Tags.on("change", (event) => {
-      if (event.data.source === "server") return;
-      switch (event.data.type) {
+      if (event.source === "server") return;
+      switch (event.type) {
         case "add":
-          this.api.addTag(event.data.value.name);
+          this.api.addTag(event.value.name);
           break;
         case "update":
-          this.api.updateTag(event.data.value);
+          this.api.updateTag(event.value);
           break;
         case "delete":
-          this.api.deleteTag(event.data.key);
+          this.api.deleteTag(event.key as number);
           break;
       }
     });
     this.Locations.on("change", (event) => {
-      if (event.data.source === "server") return;
-      switch (event.data.type) {
+      if (event.source === "server") return;
+      switch (event.type) {
         case "add":
-          this.api.addLocation(event.data.value);
+          this.api.addLocation(event.value);
           break;
         case "update":
-          this.api.updateLocation(event.data.value);
+          this.api.updateLocation(event.value);
           break;
         case "delete":
-          this.api.deleteLocation(event.data.key);
+          this.api.deleteLocation(event.key as number);
           break;
       }
     });
@@ -53,13 +53,13 @@ class LocationsStore {
       .catch((err) => console.warn("Синхронизация Locations не удалась"));
   }
 
-  @Observable
+  @cell
   Locations = new ObservableDB<InsomniaLocation>("locations");
 
-  @Observable
+  @cell
   Tags = new ObservableDB<Tag>("tags");
 
-  @Computed
+  @cell
   public get FullLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.Locations.toArray().map((x) => ({
       ...x,
@@ -68,7 +68,7 @@ class LocationsStore {
     }));
   }
 
-  @Computed
+  @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.FullLocations.filter(
       (x) =>
@@ -77,7 +77,7 @@ class LocationsStore {
     );
   }
 
-  @Computed
+  @cell
   public get Infocenter(): InsomniaLocationFull {
     return this.FullLocations.find(
       (x) =>

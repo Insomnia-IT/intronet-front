@@ -1,11 +1,11 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, HStack, IconButton } from "@chakra-ui/react";
-import { Observer } from "cellx-react";
 import * as React from "react";
-import { RequireAuth } from "src/components/RequireAuth";
-import Loading from "src/loading/loading";
-import { categoriesStore } from "src/stores";
+import { RequireAuth } from "@src/components/RequireAuth";
+import Loading from "@src/loading/loading";
+import { categoriesStore } from "@src/stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
+import {cellState} from "../../../../helpers/cell-state";
 
 export interface ICategoriesProps {
   activeCategory?: number;
@@ -14,11 +14,16 @@ export interface ICategoriesProps {
   onAddCategory?: () => void;
 }
 
-@Observer
-export default class Categories extends React.Component<ICategoriesProps, {}> {
+export default class Categories extends React.PureComponent<ICategoriesProps, {}> {
   componentDidMount() {
     categoriesStore.load();
   }
+
+  state = cellState(this, {
+    isLoading: () => categoriesStore.isLoading,
+    allCategory: () => categoriesStore.allCategory,
+    activeCategory: () => categoriesStore.activeCategory
+  })
 
   handleClick = (id: number) => (categoriesStore.activeCategory = id);
 
@@ -32,8 +37,8 @@ export default class Categories extends React.Component<ICategoriesProps, {}> {
         className="hide-scrollbar"
       >
         <HStack spacing={0} as="ul" flex={1} minWidth={"max-content"}>
-          <Loading isLoading={categoriesStore.isLoading} height={40} width={40}>
-            {categoriesStore.allCategory.map((category) => {
+          <Loading isLoading={this.state.isLoading} height={40} width={40}>
+            {this.state.allCategory.map((category) => {
               return (
                 <CategoryCard
                   as={"li"}
@@ -41,7 +46,7 @@ export default class Categories extends React.Component<ICategoriesProps, {}> {
                   categoryObj={category}
                   _last={{ marginRight: "2rem" }}
                   onClick={() => (categoriesStore.activeCategory = category.id)}
-                  isActive={categoriesStore.activeCategory === category.id}
+                  isActive={this.state.activeCategory === category.id}
                   onIconLeftClick={this.props.onEditCategory}
                 />
               );

@@ -1,8 +1,8 @@
 import { EditIcon } from "@chakra-ui/icons";
 import { Tag, TagLeftIcon, TagProps } from "@chakra-ui/react";
 import * as React from "react";
-import { RequireAuth } from "src/components/RequireAuth";
-import { categoriesStore } from "src/stores";
+import { RequireAuth } from "@src/components/RequireAuth";
+import { categoriesStore } from "@src/stores";
 
 interface ICategoryCard extends TagProps {
   categoryObj: ICategory;

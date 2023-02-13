@@ -1,6 +1,6 @@
 import { ObservableDB } from "./observableDB";
 import { scheduleApi } from "../api/schedule";
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { locationsStore } from "./locations.store";
 import { Directions } from "../api/directions";
 import { directionsStore } from "./directions.store";
@@ -29,7 +29,7 @@ class ScheduleStore {
     }
   }
 
-  @Observable
+  @cell
   public db = new ObservableDB<Schedule>("schedules");
 
   private async loadAnimationsSchedule(locationId: number) {

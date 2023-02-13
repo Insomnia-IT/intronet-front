@@ -1,8 +1,10 @@
-import { EventEmitter } from "cellx";
+import { EventEmitter } from "@cmmn/cell/lib";
 import { mapStore } from "../../stores/map.store";
 import React from "react";
 
-export class UserMapItem extends EventEmitter implements MapItem {
+export class UserMapItem extends EventEmitter<{
+  change: void;
+}> implements MapItem {
   get icon(): JSX.Element {
     if (this.radius > 150) {
       return <></>;
@@ -35,9 +37,7 @@ export class UserMapItem extends EventEmitter implements MapItem {
           lon: e.coords.longitude,
         });
         this.isLoaded = true;
-        this.emit({
-          type: "change",
-        });
+        this.emit("change");
       });
     } else {
     }

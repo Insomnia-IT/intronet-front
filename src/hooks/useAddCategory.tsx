@@ -1,8 +1,8 @@
 import { useToast } from "@chakra-ui/react";
 import React, { useCallback } from "react";
-import { CategoryModal } from "src/components/modals";
-import { useAppContext } from "src/helpers/AppProvider";
-import { categoriesStore } from "src/stores";
+import { CategoryModal } from "@src/components/modals";
+import { useAppContext } from "@src/helpers/AppProvider";
+import { categoriesStore } from "@src/stores";
 
 /**
  * Хук для добавляния категорий

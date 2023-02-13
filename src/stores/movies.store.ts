@@ -1,8 +1,8 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 
 class MoviesStore {
-  @Observable
+  @cell
   private db = new ObservableDB<Movie>("movies");
 
   public get Movies(): Movie[] {

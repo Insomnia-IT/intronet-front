@@ -1,6 +1,6 @@
 import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Button, Editable, Flex } from "@chakra-ui/react";
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import React from "react";
 import { cellState } from "../../../helpers/cell-state";
 import { Account, account } from "../../../stores";
@@ -19,7 +19,7 @@ function AccountInfo(acc: Account) {
 }
 
 export class UserLogin extends React.Component {
-  @Observable
+  @cell
   isAdding = false;
 
   state = cellState(this, {

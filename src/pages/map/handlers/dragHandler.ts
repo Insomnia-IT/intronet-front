@@ -1,7 +1,9 @@
 import { TransformMatrix } from "../transform/transform.matrix";
-import { EventEmitter } from "cellx";
+import { EventEmitter } from "@cmmn/cell/lib";
 
-export class DragHandler extends EventEmitter {
+export class DragHandler extends EventEmitter<{
+  transform: TransformMatrix
+}> {
   constructor(private root: HTMLDivElement) {
     super();
     this.root.style.touchAction = "none";
@@ -49,6 +51,6 @@ export class DragHandler extends EventEmitter {
     this.root.removeEventListener("pointerup", this.onUp);
     this.root.removeEventListener("touchstart", this.countTouches);
     this.root.removeEventListener("touchend", this.countTouches);
-    this.off();
+    super.dispose();
   }
 }

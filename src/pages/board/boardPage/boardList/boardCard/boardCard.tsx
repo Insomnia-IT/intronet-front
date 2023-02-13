@@ -15,9 +15,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Heading } from "src/components/heading/heading";
-import { RequireAuth } from "src/components/RequireAuth";
-import { useAppContext } from "src/helpers/AppProvider";
+import { Heading } from "@src/components/heading/heading";
+import { RequireAuth } from "@src/components/RequireAuth";
+import { useAppContext } from "@src/helpers/AppProvider";
 import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
 

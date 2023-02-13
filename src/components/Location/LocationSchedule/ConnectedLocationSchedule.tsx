@@ -1,4 +1,4 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import React from "react";
 import { cellState } from "../../../helpers/cell-state";
 import { locationsStore } from "../../../stores/locations.store";
@@ -13,13 +13,13 @@ export class ConnectedLocationSchedule extends React.PureComponent<
     "renderScheduleInfo" | "renderScheduleFooter" | "locationId"
   >
 > {
-  @Observable
+  @cell
   locationId: number;
-  @Observable
+  @cell
   auditory: 1 | 2 = 1;
-  @Observable
+  @cell
   day: Day = DAYS[new Date().getDate() - 14];
-  @Observable
+  @cell
   selectedElement: AuditoryElement;
 
   state = cellState(this, {

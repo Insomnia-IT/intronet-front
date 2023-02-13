@@ -1,11 +1,15 @@
 {
+  "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
     "module": "esnext",
+    "outDir": "dist/esm",
+    "declarationDir": "dist/typings",
     "moduleResolution": "Node",
     "target": "ES2019",
     "composite": true,
     "sourceMap": true,
-    "baseUrl": "./",
+    "baseUrl": "",
+    "rootDir": "",
     "experimentalDecorators": true,
     "checkJs": false,
     "skipLibCheck": true,
@@ -21,6 +25,14 @@
       "dom"
     ],
     "paths": {
+      "@src/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": [
+    "*.spec.ts"
+  ],
+  "include": [
+    "src/**/*",
+    "index.d.ts"
+  ]
 }

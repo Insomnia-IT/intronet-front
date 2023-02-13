@@ -1,7 +1,7 @@
-import { Computed, Observable } from "cellx-decorators";
-import { GenericRequest } from "src/api/base";
-import NotesApi from "src/api/notes";
-import { notesStore, pagesStore } from "src/stores";
+import { cell } from "@cmmn/cell/lib";
+import { GenericRequest } from "@src/api/base";
+import NotesApi from "@src/api/notes";
+import { notesStore, pagesStore } from "@src/stores";
 import { ObservableDB } from "../observableDB";
 
 export const ALL_CATEGORY_ID = 1;
@@ -9,13 +9,13 @@ export const ALL_CATEGORY_ID = 1;
 class CategoriesStore {
   private api = new NotesApi();
 
-  @Observable
+  @cell
   IsLoading: boolean = false;
 
-  @Observable
+  @cell
   ActiveCategory: number = ALL_CATEGORY_ID;
 
-  @Observable
+  @cell
   AllCategory = new ObservableDB<ICategory>("categories");
 
   get isLoading() {
@@ -26,7 +26,7 @@ class CategoriesStore {
     return this.ActiveCategory;
   }
 
-  @Computed
+  @cell
   get allCategory() {
     return this.AllCategory.toArray();
   }
@@ -45,8 +45,7 @@ class CategoriesStore {
   }
 
   get allNotesCount() {
-    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID)
-      .count;
+    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID)?.count ?? 0;
   }
 
   get isAll() {
@@ -71,7 +70,7 @@ class CategoriesStore {
     return notesStore.loadNewNotes(this.ActiveCategory, page, count);
   }
 
-  @Computed
+  @cell
   get notes(): INote[] {
     if (this.ActiveCategory === ALL_CATEGORY_ID) return notesStore.notes;
     return notesStore.notes.filter(
@@ -117,4 +116,4 @@ class CategoriesStore {
   }
 }
 
-export const categoriesStore = new CategoriesStore();
+export const categoriesStore = window['categoriesStore'] = new CategoriesStore();
