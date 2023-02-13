@@ -1,8 +1,8 @@
 import { useToast } from "@chakra-ui/react";
 import React, { useCallback } from "react";
-import { LocationModal } from "@src/components/modals";
-import { useAppContext } from "@src/helpers/AppProvider";
-import { locationsStore } from "@src/stores/locations.store";
+import { LocationModal } from "src/components/modals";
+import { useAppContext } from "src/helpers/AppProvider";
+import { locationsStore } from "src/stores/locations.store";
 
 /**
  * Хук для редактирования локации

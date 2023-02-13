@@ -8,14 +8,14 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { cellState } from "@src/helpers/cell-state";
+import { cellState } from "src/helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { cell } from "@cmmn/cell/lib";
 import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
-import { Close } from "@src/components/close";
+import { Close } from "src/components/close";
 import { scheduleStore } from "../../stores/schedule.store";
 
 export class LocationSearch extends React.PureComponent<{

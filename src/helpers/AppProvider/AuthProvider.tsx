@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-import { useLocalStorageState } from "@src/helpers/useLocalStorageState";
+import { useLocalStorageState } from "src/helpers/useLocalStorageState";
 import { useCookieState } from "use-cookie-state";
 
 const AuthContext = createContext<{

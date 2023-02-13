@@ -22,10 +22,10 @@ import {
   useAddSchedule,
   useDeleteSchedule,
   useEditLocation,
-} from "@src/hooks";
+} from "src/hooks";
 import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
-import { useCellState } from "@src/helpers/cell-state";
-import { locationsStore } from "@src/stores/locations.store";
+import { useCellState } from "src/helpers/cell-state";
+import { locationsStore } from "src/stores/locations.store";
 import { ConnectedLocationSchedule } from "./LocationSchedule";
 
 export const Location: FC<LocationProps> = ({ location, expanded }) => {

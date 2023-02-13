@@ -1,7 +1,7 @@
 import { cell } from "@cmmn/cell/lib";
-import { GenericRequest } from "@src/api/base";
-import NotesApi from "@src/api/notes";
-import { notesStore, pagesStore } from "@src/stores";
+import { GenericRequest } from "src/api/base";
+import NotesApi from "src/api/notes";
+import { notesStore, pagesStore } from "src/stores";
 import { ObservableDB } from "../observableDB";
 
 export const ALL_CATEGORY_ID = 1;

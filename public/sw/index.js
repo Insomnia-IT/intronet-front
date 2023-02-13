@@ -1,5 +1,5 @@
 "use strict";
-if (navigator.serviceWorker && !location.host.includes("local")) {
+if (navigator.serviceWorker && !location.host.startsWith("localhost")) {
   const isFirstInstall = !(
     navigator.serviceWorker.controller instanceof ServiceWorker
   ); // при первой установке на клиенте еще нет sw
@@ -19,18 +19,6 @@ if (navigator.serviceWorker && !location.host.includes("local")) {
       default:
         warnSw(`unhandled message "${data.type}"`);
     }
-  });
-  window.addEventListener("beforeinstallprompt", event => {
-    window.installApp = event.prompt();
-    event.userChoice
-      .then(choiceResult => {
-        this.userChoiceResult = choiceResult.outcome;
-        console.info(userChoiceResult)
-        window.installApp = null;
-      })
-      .catch((error) => {
-        console.error(error)
-      });
   });
 
   //region Update

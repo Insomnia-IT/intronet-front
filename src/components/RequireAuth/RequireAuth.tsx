@@ -1,6 +1,6 @@
 import React from "react";
 import { FC, PropsWithChildren } from "react";
-import { useAuthContext } from "@src/helpers/AppProvider/AuthProvider";
+import { useAuthContext } from "src/helpers/AppProvider/AuthProvider";
 
 export type RequireAuthProps = {
   // на бессоннице есть админы, а есть поисково-спасательный отряд, которым

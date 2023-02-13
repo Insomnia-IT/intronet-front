@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import { qrApi } from "@src/api";
+import { qrApi } from "src/api";
 import { ulid } from "../helpers/ulid";
 import { ObservableDB } from "./observableDB";
 

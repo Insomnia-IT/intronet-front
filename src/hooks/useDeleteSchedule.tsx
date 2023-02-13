@@ -1,6 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import { useCallback } from "react";
-import { scheduleStore } from "@src/stores/schedule.store";
+import { scheduleStore } from "src/stores/schedule.store";
 
 /**
  * Хук для удаления элемента расписания

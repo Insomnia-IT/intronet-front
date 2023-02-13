@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { NAVBAR_ROUTES } from "@src/pages/routing";
+import { NAVBAR_ROUTES } from "src/pages/routing";
 import { MdNavbar } from "./MdNavbar";
 
 export const Navbar = () => {

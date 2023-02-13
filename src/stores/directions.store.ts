@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import { Directions, DirectionsApi } from "@src/api/directions";
+import { Directions, DirectionsApi } from "src/api/directions";
 import { ObservableDB } from "./observableDB";
 
 class DirectionsStore {

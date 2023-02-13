@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Intronet web site for insomnia fest",
   "scripts": {
-    "compile": "cmmn compile --watch",
-    "bundle": "cmmn bundle",
-    "run": "cmmn bundle --watch --run",
     "start": "react-scripts start",
     "story": "start-storybook -p 6006",
     "build": "react-scripts build",
@@ -43,7 +40,6 @@
     "use-cookie-state": "^2.0.0"
   },
   "devDependencies": {
-    "@cmmn/tools": "link://~/dev/cmmn/tools",
     "@storybook/addon-actions": "6.5.0-rc.0",
     "@storybook/addon-essentials": "6.5.0-rc.0",
     "@storybook/addon-links": "6.5.0-rc.0",
@@ -88,7 +84,7 @@
     "main": {
       "input": "dist/esm/src/index.js",
       "module": "es",
-      "port": 3001,
+      "port": 5001,
       "styles": "modules",
       "html": "assets/index.html"
     }

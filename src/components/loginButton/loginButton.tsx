@@ -1,6 +1,6 @@
 import { Button, ButtonProps, useToast } from "@chakra-ui/react";
 import React from "react";
-import { useAppContext } from "@src/helpers/AppProvider";
+import { useAppContext } from "src/helpers/AppProvider";
 import { LoginModal, LogoutModal } from "../modals";
 
 export const LoginButton: React.FC<ButtonProps> = (props) => {

@@ -1,6 +1,6 @@
 import { AdminApi } from "./admin";
 import { ALL_CATEGORY_ID } from "./../stores";
-import { COUNT_NOTES_OF_PAGE } from "@src/stores";
+import { COUNT_NOTES_OF_PAGE } from "src/stores";
 import { GenericRequest } from "./base";
 
 const notesRoute = "/api/notes";
