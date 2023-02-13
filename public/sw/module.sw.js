@@ -381,7 +381,7 @@
                     await this.cache.get(e, r.Resource.fetchData(i, s));
                   } catch (e) {
                     const t = `can't pre-cache '${i}', ${e.message}`;
-                    if (o) throw new Error("sw " + t);
+                    // if (o) throw new Error("sw " + t);
                     self.logError(t);
                   }
                 self.log("pre-cache complete");
