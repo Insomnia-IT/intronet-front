@@ -4,11 +4,13 @@ self.isDebug = true;
 
 const assets = [
   "/",
+  '/asset-manifest.json',
   "/root.version",
   "/index.html",
-  "/sw/index.js",
+  "/sw-load.js",
   "/icons/96x96.png",
   "/icons/32x32.png",
+  "/icons/144x144.png",
   "/icons/192x192.png",
   "/fonts/fonts.css",
   "/manifest.json",
@@ -20,6 +22,16 @@ const assets = [
   "/images/insomnia_intro_4.webp",
   "/images/insomnia_intro_5.webp",
   "/fonts/Open-Sans_Regular.woff2",
+  "/icons/toolbar/ads-icon-default-32.svg",
+  "/icons/toolbar/ads-icon-focus-32.svg",
+  "/icons/toolbar/home-icon-default-32.svg",
+  "/icons/toolbar/home-icon-focus-32.svg",
+  "/icons/toolbar/logo-black-100.png",
+  "/icons/toolbar/logo-white-100.png",
+  "/icons/toolbar/map-icon-default-32.svg",
+  "/icons/toolbar/map-icon-focus-32.svg",
+  "/icons/toolbar/vote-icon-default-32.svg",
+  "/icons/toolbar/vote-icon-focus-32.svg",
 ];
 
 self.addEventListener("install", (event) => {
@@ -93,19 +105,25 @@ class SwStorage{
     }
   }
 
-  load(){
-    return caches.open(this.name).then(cache => Promise.all(
+  async load(){
+    const cache = await caches.open(this.name);
+    await Promise.all(
       assets.map(a => this.getFromCacheOrFetch(cache, a).catch(e => void 0))
-    ).then(() => {
-      this.resolve(cache);
-      return cache;
-    }));
+    )
+    const assetsManifest = await cache.match('/asset-manifest.json').then(x => x.json());
+
+    for (let key in assetsManifest.files) {
+      if (!key.match(/\.(css|js)$/))
+        continue;
+      await this.getFromCacheOrFetch(cache, assetsManifest.files[key]).catch(e => void 0)
+    }
+    this.resolve(cache);
+    return cache;
   }
 
   async getFromCacheOrFetch(cache, request){
-    return (await cache.match(request)) ?? this.fetchWithNotify(request).then(res => {
-      cache.put(request, res)
-    });
+    return (await cache.match(request)) ?? this.fetchWithNotify(request)
+      .then(res => cache.put(request, res).then(() => res));
   }
 
   async fetchWithNotify(request){

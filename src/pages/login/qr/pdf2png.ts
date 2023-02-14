@@ -1,3 +1,6 @@
+declare global {
+  export const pdfjsLib: any;
+}
 export async function pdf2png(file: File) {
   const pdf = await new Promise<any>(async (resolve) => {
     const pdf = await pdfjsLib.getDocument({

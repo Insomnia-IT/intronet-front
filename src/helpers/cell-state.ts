@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Cell, BaseCell}  from "@cmmn/cell/lib";
+import { Cell }  from "@cmmn/cell/lib";
 
 export function useCellState<T>(
   getter: (() => T) | T

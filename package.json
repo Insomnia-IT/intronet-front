@@ -8,13 +8,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ci": "react-scripts build --prod && cd build && docker build . -t insomnia/intronet-front",
+    "ci": "docker build . -t insomnia/intronet-front",
     "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.0",
     "@chakra-ui/react": "^2.0.2",
-    "@cmmn/cell": "link://~/dev/cmmn/cell",
+    "@cmmn/cell": "1.7.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@types/luxon": "^2.3.1",
