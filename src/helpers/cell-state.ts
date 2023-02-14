@@ -1,5 +1,5 @@
-import { Cell } from "cellx";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { Cell }  from "@cmmn/cell/lib";
 
 export function useCellState<T>(
   getter: (() => T) | T
@@ -8,11 +8,11 @@ export function useCellState<T>(
   const [value, setter] = useState(getter);
   useEffect(() => {
     const listener = (e) => {
-      setter(cell.get());
+      setter(e.value);
     };
-    cell.onChange(listener);
+    cell.on('change', listener);
     return () => {
-      cell.offChange(listener);
+      cell.dispose();
     };
   }, [cell]);
   return [value, (v) => cell.set(v), cell];
@@ -37,9 +37,9 @@ export function cellState<TState>(
   const origUnmount = component.componentWillUnmount;
   component.componentDidMount = function () {
     for (let [key, cell] of cells) {
-      cell.onChange((ev) => {
+      cell.on('change', (ev) => {
         component.setState({
-          [key]: cell.get(),
+          [key]: ev.value,
         });
       });
       component.setState({

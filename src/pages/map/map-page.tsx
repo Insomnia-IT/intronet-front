@@ -1,6 +1,6 @@
+import { cell } from "@cmmn/cell/lib";
 import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/react";
-import { Computed, Observable } from "cellx-decorators";
 import React from "react";
 import { LocationModal } from "src/components";
 import { RequireAuth } from "src/components/RequireAuth";
@@ -24,11 +24,11 @@ export function MapPageWithRouting() {
 }
 
 export class MapPage extends React.PureComponent<{ locationId? }> {
-  @Observable
+  @cell
   isMap = true;
-  @Observable
+  @cell
   selected: number;
-  @Observable
+  @cell
   isEditing = false;
   static contextType = ModalContext;
 
@@ -36,7 +36,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     this.selected = +this.props.locationId;
   }
 
-  @Observable
+  @cell
   user = new UserMapItem();
 
   handleAddIconButtonClick = async () => {
@@ -77,7 +77,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     } as unknown as MapItem;
   }
 
-  @Computed
+  @cell
   get mapItems() {
     const items = locationsStore.FullLocations.map((x) =>
       this.locationToMapItem(x)

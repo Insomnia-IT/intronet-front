@@ -1,10 +1,16 @@
-import { EventEmitter } from "cellx";
 import { Dexie, Table } from "dexie";
 import { compare } from "../helpers/compare";
+import {EventEmitter} from "@cmmn/cell/lib";
 
 export class ObservableDB<
   T extends { id: number | string }
-> extends EventEmitter {
+> extends EventEmitter<{
+  loaded: void;
+  change: {type: "init"; value: T[];  source: "user" | "server" | "db"} |
+    {type: "update"; key: string | number; value: T; source: "user" | "server" | "db"} |
+    {type: "add"; key: string | number; value: T; source: "user" | "server" | "db"} |
+    {type: "delete"; key: string | number; source: "user" | "server" | "db"}
+}> {
   private table: Table<T>;
   private items = new Map<number | string, T>();
 
@@ -22,6 +28,8 @@ export class ObservableDB<
     this.table.toArray().then((items) => {
       this.items = new Map<number | string, T>(items.map((x) => [x.id, x]));
       this.emit("change", {
+        source: "db",
+        type: "init",
         value: items,
       });
       this.emit("loaded");

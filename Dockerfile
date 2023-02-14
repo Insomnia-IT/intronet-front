@@ -1,10 +1,5 @@
 FROM node:18-alpine as builder
 
-#RUN apk add --no-cache curl
-#RUN curl -sf https://gobinaries.com/tj/node-prune | sh
-#RUN echo "yarn cache clean --force && node-prune" > /usr/local/bin/node-clean && chmod +x /usr/local/bin/node-clean
-
-
 ENV NODE_ENV=production
 ENV YARN_CACHE_FOLDER=/root/.yarn
 ENV NODE_ENV=production

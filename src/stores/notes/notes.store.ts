@@ -1,4 +1,4 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { GenericRequest } from "src/api/base";
 import NotesApi from "../../api/notes";
 import { ObservableDB } from "../observableDB";
@@ -6,10 +6,10 @@ import { ObservableDB } from "../observableDB";
 class NotesStore {
   private api = new NotesApi();
 
-  @Observable
+  @cell
   Notes = new ObservableDB<INote>("notes");
 
-  @Observable
+  @cell
   IsLoading: boolean = false;
 
   get isLoading() {

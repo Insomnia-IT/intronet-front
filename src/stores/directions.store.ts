@@ -1,14 +1,14 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { Directions, DirectionsApi } from "src/api/directions";
 import { ObservableDB } from "./observableDB";
 
 class DirectionsStore {
   private api = new DirectionsApi();
 
-  @Observable
+  @cell
   Directions = new ObservableDB<Direction>("directions");
 
-  @Observable
+  @cell
   IsLoading: boolean = false;
 
   get isLoading() {

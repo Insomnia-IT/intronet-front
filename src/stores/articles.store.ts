@@ -1,4 +1,4 @@
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { articlesApi } from "src/api/articles";
 import { ObservableDB } from "./observableDB";
 
@@ -7,10 +7,10 @@ class ArticlesStore {
     this.load();
   }
 
-  @Observable
+  @cell
   Articles = new ObservableDB<IArticle>("articles");
 
-  @Observable
+  @cell
   IsLoading = true;
 
   public load = async () => {

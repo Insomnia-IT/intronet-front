@@ -10,24 +10,24 @@ import {
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { cellState } from "src/helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
-import { ObservableList } from "cellx-collections";
+import { ObservableList } from "@cmmn/cell/lib";
 import { Close } from "src/components/close";
 import { scheduleStore } from "../../stores/schedule.store";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocation);
 }> {
-  @Observable
+  @cell
   choosedTags = new ObservableList<Tag>();
 
-  @Observable
+  @cell
   query: string;
 
-  @Observable
+  @cell
   opened: boolean = false;
 
   state = cellState(this, {
@@ -89,9 +89,9 @@ export class LocationSearch extends React.PureComponent<{
                     className={styles.chip}
                     activeClassName={styles.chipActive}
                     onClick={() => {
-                      this.choosedTags.contains(tag)
+                      this.choosedTags.includes(tag)
                         ? this.choosedTags.remove(tag)
-                        : this.choosedTags.add(tag);
+                        : this.choosedTags.push(tag);
                     }}
                     active={this.state.choosedTags.includes(tag)}
                   >

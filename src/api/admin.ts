@@ -1,12 +1,12 @@
 import { BaseApi } from "./base";
-import { Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 
 export class AdminApi extends BaseApi {
   public adminFetch(url: string, options?: RequestInit): Promise<any> {
     return this.fetch(url, options);
   }
 
-  @Observable
+  @cell
   public isAdmin = !!localStorage.getItem("admin");
 }
 

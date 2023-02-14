@@ -1,4 +1,4 @@
-import { Computed, Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import React from "react";
 import { cellState } from "../../helpers/cell-state";
 import { ImageInfo } from "../../stores/map.store";
@@ -9,10 +9,10 @@ import { MapElement } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
 
 export class MapComponent extends React.PureComponent<MapProps> {
-  @Observable
+  @cell
   Transform = new TransformMatrix();
 
-  @Computed
+  @cell
   get scale() {
     return this.Transform.Matrix.GetScaleFactor();
   }
@@ -83,7 +83,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
       const zoomHandler = new ZoomHandler(element);
       this.handlers = [dragHandler, zoomHandler];
       zoomHandler.on("transform", (e) => {
-        const newTransform = e.data.Apply(this.Transform) as TransformMatrix;
+        const newTransform = e.Apply(this.Transform) as TransformMatrix;
         this.setTransform(newTransform);
       });
       dragHandler.on("transform", (e) => {
@@ -91,13 +91,13 @@ export class MapComponent extends React.PureComponent<MapProps> {
         if (this.props.isMovingEnabled && selected) {
           selected.point = new TransformMatrix()
             .Apply(this.Transform.Inverse())
-            .Apply(e.data as TransformMatrix)
+            .Apply(e)
             .Apply(this.Transform)
             .Invoke(selected.point);
           this.forceUpdate();
           this.props.onChange(selected);
         } else {
-          const newTransform = e.data.Apply(this.Transform) as TransformMatrix;
+          const newTransform = e.Apply(this.Transform) as TransformMatrix;
           this.setTransform(newTransform);
         }
       });

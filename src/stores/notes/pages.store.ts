@@ -1,14 +1,14 @@
-import { Computed, Observable } from "cellx-decorators";
+import { cell } from "@cmmn/cell/lib";
 import { categoriesStore } from "src/stores";
 
 export const COUNT_NOTES_OF_PAGE = 5;
 const INITIAL_PAGE = 1;
 
 class PagesStore {
-  @Observable
+  @cell
   Page = INITIAL_PAGE;
 
-  @Observable
+  @cell
   CountPages: number = 3;
 
   isLastPage = this.page === this.countPages;
@@ -43,7 +43,7 @@ class PagesStore {
     this.Page = INITIAL_PAGE;
   };
 
-  @Computed
+  @cell
   get notes() {
     // Возвращает только определённое кол-во объявление
     // const from = this.calculateFrom()

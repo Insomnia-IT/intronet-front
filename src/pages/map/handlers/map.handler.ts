@@ -1,9 +1,11 @@
 import { TransformMatrix } from "../transform/transform.matrix";
 import { DragHandler } from "./dragHandler";
 import { ZoomHandler } from "./zoomHandler";
-import { EventEmitter } from "cellx";
+import { EventEmitter } from "@cmmn/cell/lib";
 
-export class MapHandler extends EventEmitter {
+export class MapHandler extends EventEmitter<{
+  transform: TransformMatrix
+}> {
   constructor(public root: HTMLDivElement) {
     super();
   }
@@ -12,12 +14,12 @@ export class MapHandler extends EventEmitter {
 
   dispose() {
     this.Handlers.forEach((x) => x.dispose());
-    this.off();
+    super.dispose();
   }
 
   init(image: { width; height }) {
     for (let handler of this.Handlers) {
-      handler.on("transform", (t) => this.emit("transform", t.data));
+      handler.on("transform", (t) => this.emit("transform", t));
     }
     const rect = this.root.getBoundingClientRect();
     const aspectRatio = rect.width / rect.height;

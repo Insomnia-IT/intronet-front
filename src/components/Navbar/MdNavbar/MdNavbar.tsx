@@ -8,14 +8,6 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink, useLocation } from "react-router-dom";
-import AdsIcon from "src/images/ads-icon-default-32.svg";
-import AdsFocusIcon from "src/images/ads-icon-focus-32.svg";
-import HomeIcon from "src/images/home-icon-default-32.svg";
-import HomeFocusIcon from "src/images/home-icon-focus-32.svg";
-import MapIcon from "src/images/map-icon-default-32.svg";
-import MapFocusIcon from "src/images/map-icon-focus-32.svg";
-import VoteIcon from "src/images/vote-icon-default-32.svg";
-import VoteFocusIcon from "src/images/vote-icon-focus-32.svg";
 import { NAVBAR_ROUTES } from "src/pages/routing";
 
 export const MdNavbar = () => {
@@ -46,8 +38,8 @@ export const MdNavbar = () => {
             <Image
               src={
                 location.pathname === NAVBAR_ROUTES[0].path
-                  ? HomeFocusIcon
-                  : HomeIcon
+                  ?  '/icons/toolbar/home-icon-focus-32.svg'
+                  : '/icons/toolbar/home-icon-default-32.svg'
               }
             />
             <Text
@@ -85,8 +77,8 @@ export const MdNavbar = () => {
             <Image
               src={
                 location.pathname === NAVBAR_ROUTES[1].path
-                  ? AdsFocusIcon
-                  : AdsIcon
+                  ?  '/icons/toolbar/ads-icon-focus-32.svg'
+                  : '/icons/toolbar/ads-icon-default-32.svg'
               }
             />
             <Text
@@ -124,8 +116,8 @@ export const MdNavbar = () => {
             <Image
               src={
                 location.pathname === NAVBAR_ROUTES[2].path
-                  ? MapFocusIcon
-                  : MapIcon
+                  ?  '/icons/toolbar/map-icon-focus-32.svg'
+                  : '/icons/toolbar/map-icon-default-32.svg'
               }
             />
             <Text
@@ -163,8 +155,8 @@ export const MdNavbar = () => {
             <Image
               src={
                 location.pathname === NAVBAR_ROUTES[3].path
-                  ? VoteFocusIcon
-                  : VoteIcon
+                  ?  '/icons/toolbar/vote-icon-focus-32.svg'
+                  : '/icons/toolbar/vote-icon-default-32.svg'
               }
             />
             <Text
