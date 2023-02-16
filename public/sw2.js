@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
-self.isDebug = true;
-
 const assets = [
   "/",
   '/asset-manifest.json',
@@ -35,13 +33,16 @@ const assets = [
 ];
 
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
+  event.waitUntil(caches.delete('root').catch())
 });
 self.addEventListener("activate", (event) => {
   self.skipWaiting();
   setInterval(() => storage.checkUpdate(), 10*60*1000);
 });
 self.addEventListener("fetch", async (event) => {
+  if (event.request.url.match('\.reload')){
+    await storage.clear();
+  }
   console.log(`Handling fetch event for ${event.request.url}`);
   event.respondWith(storage.getResponse(event.request));
 });
@@ -49,7 +50,7 @@ self.addEventListener("fetch", async (event) => {
 self.addEventListener("message", (event) => {
   switch (event.data?.action){
     case "init":
-      storage.init().then(() => {
+      storage.loading.then(() => {
         event.source.postMessage({
           action: 'init'
         });
@@ -60,17 +61,20 @@ self.addEventListener("message", (event) => {
 
 class SwStorage{
   resolve = () => {};
-  loading = new Promise(resolve => this.resolve = resolve);
 
   constructor(name) {
     this.name = name;
+    this.loading = new Promise(resolve => this.resolve = resolve);
+    if (self.origin.includes('local')) {
+      this.clear().then(() => this.load())
+    }else {
+      this.load();
+    }
   }
 
-  async init(){
-    if (self.origin.includes('local')) {
-      await caches.delete(this.name);
-    }
-    return this.load();
+
+  clear(){
+    return caches.delete(this.name);
   }
 
   async checkUpdate(){
@@ -118,6 +122,7 @@ class SwStorage{
       await this.getFromCacheOrFetch(cache, assetsManifest.files[key]).catch(e => void 0)
     }
     this.resolve(cache);
+    console.log('cache loaded')
     return cache;
   }
 

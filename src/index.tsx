@@ -5,6 +5,9 @@ import { App } from "./app/app";
 
 window.addEventListener('init', () => {
   const container = document.getElementById("root");
+  for (let child of Array.from(container.children)) {
+    child.remove();
+  }
   const root = createRoot(container);
   root.render(
     <React.StrictMode>

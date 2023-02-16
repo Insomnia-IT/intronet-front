@@ -3,6 +3,49 @@
 <head>
   <meta charset="utf-8"/>
   <script src="/sw-load.js"></script>
+  <style>
+    html, body{
+      margin: 0;
+      padding: 0;
+    }
+    #start{
+      opacity: 0;
+      background: #e57287;
+      animation: start 8s 1s  ease alternate-reverse infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      height: 100vh;
+    }
+    #start:before{
+      content: 'INSOMNIA FEST';
+      text-transform: capitalize;
+      font-size: 10vw;
+      font-family: Arial;
+      font-weight: bold;
+      backdrop-filter: invert();
+      padding: 1em 0;
+      text-align: center;
+    }
+    @keyframes start {
+      0% {
+        opacity: 1;
+        color: #e57287;
+        background: #e57287;
+      }
+      50% {
+        opacity: 1;
+        color: #4a5568;
+        background: #4a5568;
+      }
+      100% {
+        opacity: 1;
+        color: #ffb746;
+        background: #ffb746;
+      }
+    }
+  </style>
   <meta name="google" content="notranslate">
   <link rel="icon" type="image/x-icon" href="./icons/32x32.png"/>
   <link rel="shortcut icon" type="image/x-icon" href="./icons/32x32.png"/>
@@ -16,6 +59,8 @@
 </head>
 <body>
 <noscript>Включите JavaScript чтобы воспользоваться программой.</noscript>
-<div id="root"></div>
+<div id="root">
+  <div id="start"></div>
+</div>
 </body>
 </html>

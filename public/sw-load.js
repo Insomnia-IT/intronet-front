@@ -1,9 +1,14 @@
 "use strict";
-if (navigator.serviceWorker) {
+if (navigator.serviceWorker && !location.href.includes('localhost')) {
   const isFirstInstall = !(
     navigator.serviceWorker.controller instanceof ServiceWorker
   ); // при первой установке на клиенте еще нет sw
 
+  if (location.pathname.match(/reload/)){
+    navigator.serviceWorker.getRegistration()
+      .then(x => x.unregister())
+      .then(x => location.pathname = '/');
+  }
   if (navigator.serviceWorker.controller) {
     navigator.serviceWorker.controller.postMessage({
       action: 'init'
@@ -40,16 +45,15 @@ if (navigator.serviceWorker) {
     // changes, eg a new worker has skipped waiting and become
     // the new active worker.
   });
-  const headScripts = Array.from(document.head.querySelectorAll('script'))
-    .filter(x => x !== document.currentScript);
+
   navigator.serviceWorker.addEventListener("message", ({ data }) => {
     switch (data.action){
       case "loading":
-        // console.log('loading', data);
         break;
 
       case "init":
         window.dispatchEvent(new CustomEvent('init'))
+        console.log('init')
         break;
       case "new-version":
         console.log('app has new version');
@@ -60,4 +64,9 @@ if (navigator.serviceWorker) {
     console.log(data);
   });
   window.addEventListener('beforeinstallprompt', console.log)
+}else{
+  window.addEventListener('load', ()=>{
+    window.dispatchEvent(new CustomEvent('init'))
+    console.log('init')
+  }, {once: true})
 }

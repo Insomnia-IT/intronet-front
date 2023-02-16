@@ -7,5 +7,5 @@ services:
       - ./build:/app
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 8081:80
+      - 5001:80
 
