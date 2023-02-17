@@ -3,9 +3,10 @@ import { FC } from "react";
 import { Box, Img, Link } from "@chakra-ui/react";
 import { Heading } from "src/components/heading/heading";
 import { VStack } from "@chakra-ui/react";
-import { Link as LinkRouter } from "react-router-dom";
+import {useRouter} from "../../../routing";
 
 export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
+  const {goTo} = useRouter();
   return (
     <VStack
       pos={"relative"}
@@ -29,8 +30,7 @@ export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
       >
         <Heading level={3} maxW={"208px"}>
           <Link
-            as={LinkRouter}
-            to={link}
+            onClick={() => goTo(link)}
             lineHeight={1}
             _after={{
               content: '""',

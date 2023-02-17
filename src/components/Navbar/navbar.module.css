@@ -1,0 +1,36 @@
+.navbar {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  background: var(--blue);
+  z-index: 10;
+}
+
+@media screen and (orientation: portrait){
+  .navbar{
+    bottom: 0;
+    flex-flow: row nowrap;
+    width: 100vw;
+  }
+}
+@media screen and (orientation: landscape){
+  .navbar{
+    right: 0;
+    flex-flow: column nowrap;
+    height: 100vh;
+  }
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  --color: #808080;
+}
+
+.itemSelected{
+  composes: item;
+  --color: #A6D020;
+
+}

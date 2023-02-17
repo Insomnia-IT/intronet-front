@@ -1,7 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React, { FC, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
 import { NoteModal } from "src/components/modals";
 import { RequireAuth } from "src/components/RequireAuth";
 import { useAppContext } from "src/helpers/AppProvider";
@@ -10,10 +9,11 @@ import { Intersection } from "../../../../components/intersection";
 import { scrollToRef } from "../../../../helpers/scrollToRef";
 import { BoardCard } from "./boardCard/boardCard";
 import { useCellState } from "../../../../helpers/cell-state";
+import {useRouter} from "../../../routing";
 
 export const BoardList: FC = () => {
-  const { id } = useParams();
-
+  const { route } = useRouter();
+  const id = route[1];
   const activeNote = useRef<HTMLLIElement>(null);
 
   const app = useAppContext();
@@ -110,7 +110,7 @@ export const BoardList: FC = () => {
       )}
       <VStack as={"ul"} align={"streach"} spacing={4}>
         {notes.map((note) => (
-          <li key={note.id} ref={parseInt(id) === note.id ? activeNote : null}>
+          <li key={note.id} ref={+id === note.id ? activeNote : null}>
             <Intersection width="100%" height={getBoardCardHeight(note) + "px"}>
               <BoardCard
                 noteInfoObj={note}

@@ -14,16 +14,16 @@ export const cardContentList: TMainPageCard[] = [
   {
     title: "Техника безопасности",
     img: process.env.PUBLIC_URL + "/images/insomnia_intro_3.webp",
-    link: "/article/3",
+    link: ['article', '3'],
   },
   {
     title: "FAQ",
     img: process.env.PUBLIC_URL + "/images/insomnia_intro_4.webp",
-    link: "/article/4",
+    link: ['article', '4'],
   },
   {
     title: "Расписание транспорта от фестиваля",
     img: process.env.PUBLIC_URL + "/images/insomnia_intro_5.webp",
-    link: "/article/5",
+    link: ['article', '5'],
   },
 ].map(generateId);

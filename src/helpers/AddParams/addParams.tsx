@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import {useRouter} from "../../pages/routing";
 
 export type WithIdProps = {
   id: string;
@@ -13,9 +13,9 @@ export const withId = <T extends WithIdProps>(
     WrappedComponent.displayName || WrappedComponent.name || "Component";
 
   const ComponentWithId = (props: Omit<T, keyof WithIdProps>) => {
-    const params = useParams();
+    const {route} = useRouter();
 
-    return <WrappedComponent {...params} {...(props as T)} />;
+    return <WrappedComponent id={route[1]} {...(props as T)} />;
   };
 
   ComponentWithId.displayName = `withId(${displayName})`;

@@ -49,7 +49,6 @@ export function cellState<TState>(
     origMount && origMount.call(component);
   };
   component.componentWillUnmount = function () {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (let [key, cell] of cells) {
       cell.dispose();
     }

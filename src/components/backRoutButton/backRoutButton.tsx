@@ -1,6 +1,6 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import {useRouter} from "../../pages/routing";
 
 type BackRoutButtonProps = {
   text?: string;
@@ -9,18 +9,13 @@ type BackRoutButtonProps = {
 
 export const BackRoutButton: React.FC<BackRoutButtonProps & BoxProps> = ({
   text = "Назад",
-  to,
   ...res
 }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    to ? navigate(to) : navigate(-1);
-  };
+  const {back, goTo} = useRouter();
 
   return (
     <Box
-      onClick={handleClick}
+      onClick={back}
       as={"button"}
       display={"flex"}
       alignItems={"center"}

@@ -3,63 +3,66 @@ import { BoardPage } from "./board/boardPage/boardPage";
 import { MainPage } from "./main/mainPage";
 import { MapPageWithRouting } from "./map/map-page";
 
-import { useRoutes, Navigate } from "react-router-dom";
 import { TimetablePage } from "./timetable/timetable-page";
 import { ArticlePageWithId } from "./articles/articlePage/articlePage";
 import { DirectionsPage } from "./map/mapElement";
 
-export const NAVBAR_ROUTES = [
-  {
-    text: "Главная",
-    path: "/main",
-    element: <MainPage />,
+export const routes = {
+  main: {
+    name: 'main',
+    title: "Главная",
+    Component: MainPage,
   },
-  {
-    text: "Объявления",
-    path: "/board",
-    element: <BoardPage />,
+  board: {
+    name: 'board',
+    title: "Объявления",
+    Component: BoardPage,
   },
-  {
-    text: "Карта",
-    path: "/map",
-    element: <MapPageWithRouting />,
+  map: {
+    name: 'map',
+    title: "Карта",
+    Component: MapPageWithRouting,
   },
-  {
-    text: "Расписание",
-    path: "/timetable",
-    element: <TimetablePage />,
+  article: {
+    name: 'article',
+    title: "Статья",
+    Component: ArticlePageWithId,
   },
-];
-
-export const ALL_ROUTES = [
-  ...NAVBAR_ROUTES,
-  {
-    text: "Redirect to map",
-    path: "/",
-    element: <Navigate replace to={"/map"}></Navigate>,
+  timetable: {
+    name: 'timetable',
+    title: "Расписание",
+    Component: TimetablePage,
   },
-  {
-    text: "Статья",
-    path: "/article/:id",
-    element: <ArticlePageWithId></ArticlePageWithId>,
-  },
-  {
-    text: "Направления",
-    path: "/directions",
-    element: <DirectionsPage />,
-  },
-  {
-    text: "Локация",
-    path: "/map/:locationId",
-    element: <MapPageWithRouting />,
-  },
-  // {
-  //   text: "Голосование",
-  //   path: "/voting",
-  //   element: <VotingPage />,
-  // },
-];
-
-export const Routing: FC = () => {
-  return useRoutes(ALL_ROUTES);
+  directions: {
+    name: 'directions',
+    title: "Направления",
+    Component: DirectionsPage,
+  }
 };
+
+export function useRouter(){
+  const [route, setRoute] = React.useState<Array<string |number>>(location.pathname.split('/'));
+  const goTo = React.useCallback((path: (string | null | number)[], replace: boolean = false) => {
+    setRoute(path.filter(x => x !== null));
+    (replace ? history.replaceState : history.pushState)(undefined, undefined,
+      '/'+path.filter(x => x !== null).join('/'))
+  }, []);
+  React.useEffect(() => {
+    if (route.length === 0){
+      goTo(['map'], true);
+    }
+  }, route);
+  React.useEffect(() => {
+    const listener = () => {
+      setRoute(location.pathname.split('/'));
+    };
+    window.addEventListener('popstate', listener);
+    return () => window.removeEventListener('popstate', listener);
+  }, []);
+  return {
+    back: history.back.bind(history),
+    route,
+    active: routes[route[0]] ?? routes.map,
+    goTo
+  }
+}

@@ -16,11 +16,11 @@ import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
-import { useParams } from "react-router-dom";
+import {useRouter} from "../routing";
 
 export function MapPageWithRouting() {
-  const { locationId } = useParams<{ locationId }>();
-  return <MapPage locationId={locationId} />;
+  const { route } = useRouter();
+  return <MapPage locationId={route[1]} />;
 }
 
 export class MapPage extends React.PureComponent<{ locationId? }> {

@@ -142,7 +142,7 @@ type TMainPageCard = {
   id: string;
   title: string;
   img: string;
-  link: string;
+  link: string[];
 };
 
 type User = {
