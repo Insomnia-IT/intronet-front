@@ -6,6 +6,8 @@ import { MapPageWithRouting } from "./map/map-page";
 import { TimetablePage } from "./timetable/timetable-page";
 import { ArticlePageWithId } from "./articles/articlePage/articlePage";
 import { DirectionsPage } from "./map/mapElement";
+import {Cell} from "@cmmn/cell/lib";
+import {useCellState} from "../helpers/cell-state";
 
 export const routes = {
   main: {
@@ -40,25 +42,22 @@ export const routes = {
   }
 };
 
+const routeCell = new Cell<Array<string |number>>(location.pathname.split('/').slice(1))
+const goTo = (path: (string | null | number)[], replace: boolean = false) => {
+  routeCell.set(path.filter(x => x !== null));
+  const url = '/'+path.filter(x => x !== null).join('/');
+  history[replace ? 'replaceState' : 'pushState'](null, null, url)
+};
+window.addEventListener('popstate',  () => {
+  routeCell.set(location.pathname.split('/').slice(1));
+});
+if (location.pathname === '/'){
+  goTo(['map'], true);
+}
+
 export function useRouter(){
-  const [route, setRoute] = React.useState<Array<string |number>>(location.pathname.split('/'));
-  const goTo = React.useCallback((path: (string | null | number)[], replace: boolean = false) => {
-    setRoute(path.filter(x => x !== null));
-    (replace ? history.replaceState : history.pushState)(undefined, undefined,
-      '/'+path.filter(x => x !== null).join('/'))
-  }, []);
-  React.useEffect(() => {
-    if (route.length === 0){
-      goTo(['map'], true);
-    }
-  }, route);
-  React.useEffect(() => {
-    const listener = () => {
-      setRoute(location.pathname.split('/'));
-    };
-    window.addEventListener('popstate', listener);
-    return () => window.removeEventListener('popstate', listener);
-  }, []);
+  const [route] = useCellState(() => routeCell.get());
+
   return {
     back: history.back.bind(history),
     route,
