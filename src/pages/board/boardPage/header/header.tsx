@@ -16,7 +16,7 @@ export default function Header() {
       <Text as="p" fontSize="sm" color={"gray.400"}>
         Объявление можно опубликовать в{" "}
         <Link
-          onClick={() => goTo(['map', info?.id])}
+          onClick={() => goTo(['map', info?._id])}
           variant={"brandLinkClickable"}
         >
           инфоцентре

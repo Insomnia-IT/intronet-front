@@ -17,13 +17,13 @@ class AccountStore {
 
   public Add(qr: string) {
     const acc = {
-      id: ulid(),
+      _id: ulid(),
       qr,
       name: null,
       token: null,
       isValid: false,
       isSelected: this.Selected == null,
-    };
+    } as Account;
     qrApi.checkUserQR(qr).then((valid) => {
       acc.isValid = valid;
       this.db.update(acc, "user");
@@ -32,7 +32,7 @@ class AccountStore {
   }
 
   Remove(acc: Account) {
-    this.db.remove(acc.id, "user");
+    this.db.remove(acc._id, "user");
   }
 
   Select(id: string) {
@@ -58,7 +58,7 @@ class AccountStore {
 export const account = new AccountStore();
 
 export type Account = {
-  id: string;
+  _id: string;
   qr: string;
   name: string;
   isValid: boolean;

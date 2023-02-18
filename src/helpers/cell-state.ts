@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Cell }  from "@cmmn/cell/lib";
 
 export function useCellState<T>(
-  getter: (() => T) | T
+  getter: (() => T) | T,
+  deps: any[] = []
 ): [T, (value: T) => void, Cell<T>] {
-  const cell = useMemo(() => new Cell(getter), [getter]);
+  const cell = useMemo(() => new Cell(getter), [getter, ...deps]);
   const [value, setter] = useState(getter);
   useEffect(() => {
     const listener = (e) => {

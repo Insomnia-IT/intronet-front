@@ -31,7 +31,7 @@ export const useAddSchedule = (locationId: Schedule["locationId"]) => {
             locationId,
             day,
             audiences: [],
-            id: undefined,
+            _id: undefined,
           } as Schedule);
 
         const audience =

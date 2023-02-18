@@ -24,7 +24,7 @@ export class VotingPage extends React.PureComponent {
           options={this.state.accounts.map(accToSelectItem)}
         />
         {this.state.movies.map((x) => (
-          <Flex key={x.id}>{x.title}</Flex>
+          <Flex key={x._id}>{x.title}</Flex>
         ))}
       </>
     );
@@ -35,6 +35,6 @@ function accToSelectItem(acc: Account) {
   if (!acc) return null;
   return {
     label: acc.name ?? acc.qr,
-    value: acc.id,
+    value: acc._id,
   };
 }

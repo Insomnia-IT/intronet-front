@@ -9,7 +9,7 @@ import { QRReader } from "../qr/qr-reader";
 function AccountInfo(acc: Account) {
   const deleteAcc = () => account.Remove(acc);
   return (
-    <Flex key={acc.id}>
+    <Flex key={acc._id}>
       <Editable>{acc.name ?? acc.qr}</Editable>
       <button>
         <DeleteIcon onClick={deleteAcc} />

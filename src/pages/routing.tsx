@@ -4,7 +4,7 @@ import { MainPage } from "./main/mainPage";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
-import { ArticlePageWithId } from "./articles/articlePage/articlePage";
+import { ArticlePage } from "./articles/articlePage/articlePage";
 import { DirectionsPage } from "./map/mapElement";
 import {Cell} from "@cmmn/cell/lib";
 import {useCellState} from "../helpers/cell-state";
@@ -28,7 +28,7 @@ export const routes = {
   article: {
     name: 'article',
     title: "Статья",
-    Component: ArticlePageWithId,
+    Component: ArticlePage,
   },
   timetable: {
     name: 'timetable',

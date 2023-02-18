@@ -22,7 +22,7 @@ export type NoteFormProps = {
 export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
   const [categories] = useCellState(categoriesStore);
   return (
-    <Formik initialValues={{ ...note, categoryId: 2 }} onSubmit={onSubmit}>
+    <Formik initialValues={{ ...note, categoryId: '2' }} onSubmit={onSubmit}>
       {(props) => (
         <Form key="form">
           <Stack spacing={4}>
@@ -53,13 +53,13 @@ export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
                 <HStack>
                   {categories.allCategory.map((category) => (
                     <Tag
-                      key={category.id}
+                      key={category._id}
                       color={category.color}
                       onClick={() =>
-                        props.setFieldValue("categoryId", category.id)
+                        props.setFieldValue("categoryId", category._id)
                       }
                       border={
-                        category.id === props.values.categoryId
+                        category._id === props.values.categoryId
                           ? "1px"
                           : undefined
                       }

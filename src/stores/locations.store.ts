@@ -7,52 +7,6 @@ import { directionsStore } from "./directions.store";
 class LocationsStore {
   private api = locationsApi;
 
-  constructor() {
-    this.Tags.on("change", (event) => {
-      if (event.source === "server") return;
-      switch (event.type) {
-        case "add":
-          this.api.addTag(event.value.name);
-          break;
-        case "update":
-          this.api.updateTag(event.value);
-          break;
-        case "delete":
-          this.api.deleteTag(event.key as number);
-          break;
-      }
-    });
-    this.Locations.on("change", (event) => {
-      if (event.source === "server") return;
-      switch (event.type) {
-        case "add":
-          this.api.addLocation(event.value);
-          break;
-        case "update":
-          this.api.updateLocation(event.value);
-          break;
-        case "delete":
-          this.api.deleteLocation(event.key as number);
-          break;
-      }
-    });
-    Promise.all([this.Tags.isLoaded, this.Locations.isLoaded]).then(() => {
-      setTimeout(() => this.update(), 60_000);
-      this.update();
-    });
-  }
-
-  private async update() {
-    this.api
-      .getTags()
-      .then((tags) => this.Tags.merge(tags, "server"))
-      .catch((err) => console.warn("Синхронизация Tags не удалась"));
-    this.api
-      .getLocations()
-      .then((locations) => this.Locations.merge(locations, "server"))
-      .catch((err) => console.warn("Синхронизация Locations не удалась"));
-  }
-
   @cell
   Locations = new ObservableDB<InsomniaLocation>("locations");
 
@@ -94,12 +48,12 @@ class LocationsStore {
     this.Locations.update({
       ...x,
       // @ts-ignore
-      tags: x.tags.map((t) => t.id),
+      tags: x.tags.map((t) => t._id),
     });
   }
 
   deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
-    this.Locations.remove(location.id);
+    this.Locations.remove(location._id);
   }
 }
 

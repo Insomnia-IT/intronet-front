@@ -27,13 +27,13 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
   @cell
   isMap = true;
   @cell
-  selected: number;
+  selected: string;
   @cell
   isEditing = false;
   static contextType = ModalContext;
 
   componentDidMount() {
-    this.selected = +this.props.locationId;
+    this.selected = this.props.locationId;
   }
 
   @cell
@@ -72,7 +72,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
         </>
       ) : null,
       title: x.name,
-      id: x.id,
+      id: x._id,
       radius: 10,
     } as unknown as MapItem;
   }
@@ -159,10 +159,10 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
   }
 
   selectLocation = (location: InsomniaLocation) => {
-    this.selected = location.id;
+    this.selected = location._id;
   };
 
-  private localChanges = new Map<number, InsomniaLocation>();
+  private localChanges = new Map<string, InsomniaLocation>();
 
   updateLocation = (x: MapItem) => {
     const location = {
@@ -175,7 +175,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
       // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
     }
-    this.localChanges.set(location.id, location);
+    this.localChanges.set(location._id, location);
   };
 
   saveLocations() {

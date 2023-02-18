@@ -14,7 +14,7 @@ export class ConnectedLocationSchedule extends React.PureComponent<
   >
 > {
   @cell
-  locationId: number;
+  locationId: string;
   @cell
   auditory: 1 | 2 = 1;
   @cell

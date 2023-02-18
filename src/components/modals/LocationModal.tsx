@@ -38,7 +38,7 @@ const centerXY = {
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
  */
 export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
-  id,
+  _id,
   name,
   description,
   directionId,
@@ -81,7 +81,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
         <Formik
           initialValues={
             {
-              id: id ?? null,
+              _id: _id ?? null,
               name: name ?? "",
               description: description ?? "",
               directionId: directionId ?? 0,
@@ -142,19 +142,19 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                           width={36}
                           height={36}
                           viewBox="-15 -15 30 30"
-                          key={direction.id}
+                          key={direction._id}
                           style={{
                             flex: "auto",
                             border:
-                              direction.id === props.values.directionId
+                              direction._id === props.values.directionId
                                 ? "solid 1px"
                                 : undefined,
                           }}
                           onClick={() =>
-                            props.setFieldValue("directionId", direction.id)
+                            props.setFieldValue("directionId", direction._id)
                           }
                         >
-                          {getIconByDirectionId(direction.id)}
+                          {getIconByDirectionId(direction._id)}
                         </svg>
                       ))}
                     </Flex>
@@ -172,20 +172,20 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                         return (
                           <Tag
                             id="tags"
-                            key={tag.id}
+                            key={tag._id}
                             size="lg"
                             borderRadius="full"
                             variant={
-                              props.values.tags.includes(tag.id)
+                              props.values.tags.includes(tag._id)
                                 ? "solid"
                                 : "outline"
                             }
                             onClick={() => {
-                              const tags = new Set(props.values.tags);
-                              if (tags.has(tag.id)) {
-                                tags.delete(tag.id);
+                              const tags = new Set<string>(props.values.tags);
+                              if (tags.has(tag._id)) {
+                                tags.delete(tag._id);
                               } else {
-                                tags.add(tag.id);
+                                tags.add(tag._id);
                               }
                               props.setFieldValue("tags", Array.from(tags));
                             }}

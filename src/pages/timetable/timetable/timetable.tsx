@@ -13,7 +13,7 @@ export type TimetableProps = {
 
 export const Timetable: FC<TimetableProps> = ({ list }) => {
   const [screens] = useCellState(() => locationsStore.ScreenLocations);
-  const [screen, setScreen] = useState(() => screens[0]?.id);
+  const [screen, setScreen] = useState(() => screens[0]?._id);
   console.log(screens, screen);
   return (
     <Flex overflowY="auto" flexDirection="column">
@@ -22,14 +22,14 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
           return (
             <div
               className={
-                screen === location.id ? styles.auditoryActive : styles.auditory
+                screen === location._id ? styles.auditoryActive : styles.auditory
               }
-              key={location.id}
+              key={location._id}
               onClick={() => {
-                setScreen(location.id);
+                setScreen(location._id);
               }}
             >
-              {location.name ?? screenNames[location.id]}
+              {location.name ?? screenNames[location._id]}
             </div>
           );
         })}

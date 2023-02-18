@@ -37,8 +37,8 @@ self.addEventListener("install", (event) => {
 });
 self.addEventListener("activate", (event) => {
   self.skipWaiting();
-  setInterval(() => storage.checkUpdate(), 10*60*1000);
 });
+setInterval(() => storage.checkUpdate(), 10*60*1000);
 self.addEventListener("fetch", async (event) => {
   if (event.request.url.match('\.reload')){
     await storage.clear();

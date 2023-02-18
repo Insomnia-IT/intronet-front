@@ -17,7 +17,7 @@ export function CategoryCard({
   onIconLeftClick,
   ...rest
 }: React.PropsWithChildren<ICategoryCard>) {
-  const color = categoriesStore.getCategoryColor(categoryObj.id);
+  const color = categoriesStore.getCategoryColor(categoryObj._id);
 
   return (
     <Tag

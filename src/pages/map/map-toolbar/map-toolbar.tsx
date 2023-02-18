@@ -4,7 +4,7 @@ import { locationsStore } from "src/stores/locations.store";
 import styles from "./map-toolbar.module.css";
 
 export type MapToolbarProps = {
-  id: number | string;
+  id: string;
   onClose();
 };
 

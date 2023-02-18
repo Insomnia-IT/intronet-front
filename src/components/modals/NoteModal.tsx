@@ -18,7 +18,7 @@ import { NoteForm } from "../forms";
  */
 export const NoteModal: FC<
   ModalProps<Omit<Omit<INote, "createdDate">, "createdBy">>
-> = ({ id, title, text, categoryId, ...modalProps }) => {
+> = ({ _id, title, text, categoryId, ...modalProps }) => {
   return (
     <Modal
       isOpen={modalProps.show}
@@ -35,7 +35,7 @@ export const NoteModal: FC<
               text,
               title,
               categoryId,
-              id,
+              _id: _id,
             }}
             onSubmit={modalProps.success}
             onCancel={modalProps.abort}

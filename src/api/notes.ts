@@ -18,7 +18,7 @@ export default class NotesApi extends AdminApi {
   getNotes(
     page = 1,
     count = COUNT_NOTES_OF_PAGE,
-    categoriesIds: number[] = []
+    categoriesIds: string[] = []
   ): Promise<INote[]> {
     // Если в переданном categoriesIds есть общая категория,
     // то нужно заменить массив с категориями на пустой массив,

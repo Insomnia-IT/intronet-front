@@ -25,7 +25,7 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
     activeCategory: () => categoriesStore.activeCategory
   })
 
-  handleClick = (id: number) => (categoriesStore.activeCategory = id);
+  handleClick = (id: string) => (categoriesStore.activeCategory = id);
 
   render() {
     return (
@@ -42,11 +42,11 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
               return (
                 <CategoryCard
                   as={"li"}
-                  key={category.id}
+                  key={category._id}
                   categoryObj={category}
                   _last={{ marginRight: "2rem" }}
-                  onClick={() => (categoriesStore.activeCategory = category.id)}
-                  isActive={this.state.activeCategory === category.id}
+                  onClick={() => (categoriesStore.activeCategory = category._id)}
+                  isActive={this.state.activeCategory === category._id}
                   onIconLeftClick={this.props.onEditCategory}
                 />
               );

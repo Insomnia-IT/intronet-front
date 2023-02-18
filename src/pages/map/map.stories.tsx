@@ -14,8 +14,8 @@ const locations: InsomniaLocationFull[] = [
     name: "родник",
     tags: [],
     image: "",
-    id: 3,
-    directionId: 0,
+    _id: '3',
+    directionId: '0',
   },
   {
     lat: 54.68128095334499,
@@ -26,8 +26,8 @@ const locations: InsomniaLocationFull[] = [
     name: "Палаточный лагерь",
     tags: [],
     image: "camping",
-    id: 2,
-    directionId: 0,
+    _id: '2',
+    directionId: '0',
   },
   {
     lat: 54.67735017337062,
@@ -38,9 +38,9 @@ const locations: InsomniaLocationFull[] = [
     name: "Экран «Орёл»",
     tags: [],
     image: "cinema",
-    id: 1,
+    _id: '1',
 
-    directionId: 0,
+    directionId: '0',
   },
 ];
 
@@ -66,7 +66,7 @@ Schema.args = {
     point: { X: x.x, Y: x.y },
     icon: x.image,
     title: x.name,
-    id: x.id,
+    id: x._id,
   })) as unknown as MapItem[],
   image: {
     url: "/images/schema.jpg",
@@ -102,7 +102,7 @@ Geo.args = {
     point: converter.fromGeo(x),
     icon: x.image,
     title: x.name,
-    id: x.id,
+    id: x._id,
   })),
   image: {
     url: "/images/map.png",

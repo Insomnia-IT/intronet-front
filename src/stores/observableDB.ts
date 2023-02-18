@@ -1,9 +1,9 @@
-import { Dexie, Table } from "dexie";
 import { compare } from "../helpers/compare";
 import {EventEmitter} from "@cmmn/cell/lib";
+import PouchDB from "pouchdb-browser";
 
 export class ObservableDB<
-  T extends { id: number | string }
+  T extends { _id: string }
 > extends EventEmitter<{
   loaded: void;
   change: {type: "init"; value: T[];  source: "user" | "server" | "db"} |
@@ -11,26 +11,22 @@ export class ObservableDB<
     {type: "add"; key: string | number; value: T; source: "user" | "server" | "db"} |
     {type: "delete"; key: string | number; source: "user" | "server" | "db"}
 }> {
-  private table: Table<T>;
-  private items = new Map<number | string, T>();
+  private table= new PouchDB<T>(this.name);
+  private items = new Map<string, T>();
 
   public isLoaded = new Promise<void>((resolve) =>
     this.once("loaded", () => resolve())
   );
 
-  constructor(name: string) {
+  constructor(protected name: string) {
     super();
-    const db = new Dexie(name);
-    db.version(1).stores({
-      [name]: `id`,
-    });
-    this.table = db[name];
-    this.table.toArray().then((items) => {
-      this.items = new Map<number | string, T>(items.map((x) => [x.id, x]));
+    this.table = new PouchDB<T>(name);
+    this.table.allDocs<T>().then((items) => {
+      this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
       this.emit("change", {
         source: "db",
         type: "init",
-        value: items,
+        value: items.rows.map(x => x.doc),
       });
       this.emit("loaded");
     });
@@ -41,7 +37,7 @@ export class ObservableDB<
    * @param items
    */
   merge(items: T[], sourthOfTruth: "server" | "local") {
-    const from = new Map(items.map((x) => [x.id, x]));
+    const from = new Map(items.map((x) => [x._id, x]));
     if (sourthOfTruth === "local") {
       for (let [key, local] of this.entries()) {
         if (!from.has(key)) this.add(local, "db");
@@ -75,9 +71,12 @@ export class ObservableDB<
     }
   }
 
-  remove(key: number | string, source: "user" | "server" | "db" = "user") {
+  remove(key: string, source: "user" | "server" | "db" = "user") {
     if (source !== "db") {
-      this.table.delete(key);
+      this.table.remove({
+        _id: key.toString(),
+        _rev: null
+      });
       this.items.delete(key);
     }
     this.emit("change", {
@@ -88,19 +87,19 @@ export class ObservableDB<
   }
 
   clear() {
-    this.table.clear();
+    this.table.allDocs().then(x => Promise.all(x.rows.map(d => this.table.remove(d.doc))));
     this.items.clear();
   }
 
   addOrUpdate(value: T, source: "user" | "server" | "db" = "user") {
-    if (this.items.has(value.id)) this.update(value, source);
+    if (this.items.has(value._id)) this.update(value, source);
     else this.add(value, source);
   }
 
   add(value: T, source: "user" | "server" | "db" = "user") {
-    const key = value.id;
+    const key = value._id;
     if (source !== "db") {
-      this.table.add(value);
+      this.table.put(value).catch(() => void 0);
       this.items.set(key, value);
     }
     this.emit("change", {
@@ -119,9 +118,9 @@ export class ObservableDB<
   }
 
   update(value: T, source: "user" | "server" | "db" = "user") {
-    const key = value.id;
+    const key = value._id;
     if (source !== "db") {
-      this.table.update(key, value);
+      this.table.put(value);
       this.items.set(key, value);
     }
     this.emit("change", {
@@ -132,7 +131,7 @@ export class ObservableDB<
     });
   }
 
-  get(id: number | string): T {
+  get(id: string): T {
     return this.items.get(id);
   }
 

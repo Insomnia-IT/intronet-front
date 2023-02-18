@@ -70,7 +70,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
       <VStack mt="4">
         {sortAuditoryElements(auditoryElements).map(
           (auditoryElement: AuditoryElement, index: number) => (
-            <Box w="full" key={auditoryElement.id}>
+            <Box w="full" key={auditoryElement._id}>
               {renderScheduleInfo?.({
                 auditoryElement,
                 selected: selectedElement === auditoryElement,

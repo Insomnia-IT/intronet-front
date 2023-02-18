@@ -33,7 +33,7 @@ export const CategoriesForm: FC<CategoriesFormProps> = ({
               <VStack spacing="4">
                 {props.values.categories &&
                   props.values.categories.map((category, index) => (
-                    <FormControl key={category.id} isRequired>
+                    <FormControl key={category._id} isRequired>
                       <FormLabel htmlFor={`categories.${index}.id`}>
                         Наименование
                       </FormLabel>

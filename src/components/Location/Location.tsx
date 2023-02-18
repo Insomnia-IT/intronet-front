@@ -31,14 +31,14 @@ import { ConnectedLocationSchedule } from "./LocationSchedule";
 export const Location: FC<LocationProps> = ({ location, expanded }) => {
   const editSchedule = useEditSchedule();
 
-  const addSchedule = useAddSchedule(location.id);
+  const addSchedule = useAddSchedule(location._id);
 
-  const deleteSchedule = useDeleteSchedule(location.id);
+  const deleteSchedule = useDeleteSchedule(location._id);
 
   const editLocation = useEditLocation(location);
 
   const [menu] = useCellState(
-    () => locationsStore.Locations.get(location.id)?.menu
+    () => locationsStore.Locations.get(location._id)?.menu
   );
 
   return (
@@ -63,7 +63,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
       {expanded && (
         <>
           <ConnectedLocationSchedule
-            locationId={location.id}
+            locationId={location._id}
             renderScheduleFooter={(props) => (
               <>
                 <RequireAuth>
@@ -89,7 +89,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                 <Box w="full">
                   <LocationScheduleInfo
                     {...props}
-                    key={props.auditoryElement.id}
+                    key={props.auditoryElement._id}
                   />
                 </Box>
                 <RequireAuth>

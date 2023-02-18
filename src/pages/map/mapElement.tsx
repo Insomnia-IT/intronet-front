@@ -41,28 +41,28 @@ export function MapElement(props: {
 // временно, для дебага иконок направлений
 export function DirectionsPage() {
   const [directions] = useCellState(() => directionsStore.Directions.toArray());
-  const [selected, setSelected] = useState<number>(null);
+  const [selected, setSelected] = useState<string | null>(null);
   return (
     <Flex wrap="wrap">
       {directions.map((x) => (
         <svg
           className={
-            styles.element + " " + (selected === x.id ? styles.selected : "")
+            styles.element + " " + (selected === x._id ? styles.selected : "")
           }
           style={{ width: 100, height: 80 }}
           viewBox="-30 -30 60 60"
           onClick={() => {
-            setSelected(x.id);
+            setSelected(x._id);
           }}
-          key={x.id}
+          key={x._id}
         >
-          {getIconByDirectionId(x.id)}
+          {getIconByDirectionId(x._id)}
           <circle r={0} cx={0} cy={0} fill={"red"} />
           <text fontSize={8} textAnchor="middle" y="18">
             {x.name}
           </text>
           <text fontSize={8} textAnchor="middle" y="-18">
-            {x.id}
+            {x._id}
           </text>
         </svg>
       ))}

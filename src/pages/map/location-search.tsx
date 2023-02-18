@@ -39,7 +39,7 @@ export class LocationSearch extends React.PureComponent<{
       locationsStore.FullLocations.filter(
         (x) =>
           this.choosedTags.length === 0 ||
-          x.tags.some((tag) => this.choosedTags.some((y) => y.id === tag.id))
+          x.tags.some((tag) => this.choosedTags.some((y) => y._id === tag._id))
       ).filter(filterLocations(this.query)),
   });
 
@@ -85,7 +85,7 @@ export class LocationSearch extends React.PureComponent<{
               {this.state.tags.map((tag) => {
                 return (
                   <Chip
-                    key={tag.id}
+                    key={tag._id}
                     className={styles.chip}
                     activeClassName={styles.chipActive}
                     onClick={() => {
@@ -109,7 +109,7 @@ export class LocationSearch extends React.PureComponent<{
             >
               {this.state.locations.map((x) => (
                 <Flex
-                  key={x.id}
+                  key={x._id}
                   padding="16px 0"
                   gap="10px"
                   alignItems="center"
@@ -164,7 +164,7 @@ function filterLocations(query: string) {
     }
     const schedules = scheduleStore.db
       .toArray()
-      .filter((x) => x.locationId === location.id);
+      .filter((x) => x.locationId === location._id);
     return schedules
       .flatMap((x) => x.audiences)
       .flatMap((x) => x.elements)

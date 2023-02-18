@@ -53,7 +53,7 @@ export const BoardList: FC = () => {
         <NoteModal {...props} {...note} />
       ));
       await notesStore.editNote({
-        body: { id, categoryId: note.categoryId, ...editedNote },
+        body: { _id: id, categoryId: note.categoryId, ...editedNote },
       });
       toast({
         title: "Объявление успешно изменено!",
@@ -76,7 +76,7 @@ export const BoardList: FC = () => {
 
   const handleDelete = async (note: INote) => {
     try {
-      await notesStore.removeNote({ path: { id: note.id } });
+      await notesStore.removeNote({ path: { id: note._id } });
       toast({
         title: "Объявление успешно удалено!",
         status: "success",
@@ -110,7 +110,7 @@ export const BoardList: FC = () => {
       )}
       <VStack as={"ul"} align={"streach"} spacing={4}>
         {notes.map((note) => (
-          <li key={note.id} ref={+id === note.id ? activeNote : null}>
+          <li key={note._id} ref={id === note._id ? activeNote : null}>
             <Intersection width="100%" height={getBoardCardHeight(note) + "px"}>
               <BoardCard
                 noteInfoObj={note}

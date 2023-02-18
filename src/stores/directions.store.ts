@@ -123,7 +123,7 @@ class DirectionsStore {
   //   }
   // };
 
-  public DirectionToDirection(id: number): Directions {
+  public DirectionToDirection(id: string): Directions {
     const x = this.Directions.get(id);
     switch (x?.name) {
       case "Затмение":

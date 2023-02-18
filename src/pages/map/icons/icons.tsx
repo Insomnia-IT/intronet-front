@@ -527,7 +527,7 @@ export const MapIcons: {
   ),
 };
 
-export function getIconByDirectionId(id: number) {
+export function getIconByDirectionId(id: string) {
   const x = directionsStore.DirectionToDirection(id);
   return MapIcons[x] ?? <circle r="15px" fill="#A266" />;
 }

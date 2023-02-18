@@ -6,7 +6,7 @@ export function getLocations() {
     .map(
       (x, index) =>
         ({
-          id: index,
+          _id: index,
           name: x.properties.Name,
           x: 0,
           y: 0,

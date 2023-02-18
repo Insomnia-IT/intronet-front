@@ -4,7 +4,7 @@ const adminRoute = `/api/Admin/locations`;
 const adminTagRoute = `/api/Admin/tags`;
 
 export class LocationsApi extends AdminApi {
-  public addLocation(location: Omit<InsomniaLocation, "id">) {
+  public addLocation(location: Omit<InsomniaLocation, "_id">) {
     return this.adminFetch(`${adminRoute}/add`, {
       method: "POST",
       body: JSON.stringify(location),
@@ -23,12 +23,12 @@ export class LocationsApi extends AdminApi {
     delete x.direction;
     return {
       ...x,
-      tags: x.tags.map((x) => x.id),
+      tags: x.tags.map((x) => x._id),
     };
   }
 
   public updateLocation(
-    location: Partial<InsomniaLocation> & Pick<InsomniaLocation, "id">
+    location: Partial<InsomniaLocation> & Pick<InsomniaLocation, "_id">
   ) {
     return this.adminFetch(`${adminRoute}/edit`, {
       method: "PUT",
@@ -68,7 +68,7 @@ export class LocationsApi extends AdminApi {
 
   public updateTagPicture(tag: Tag, picture: Blob) {
     const data = new FormData();
-    data.append("Id", tag.id.toString());
+    data.append("Id", tag._id.toString());
     data.append("File", picture);
     return this.adminFetch(`${adminTagRoute}/add`, {
       method: "POST",

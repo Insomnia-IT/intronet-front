@@ -3,7 +3,7 @@ import { Link, LinkProps, Text } from "@chakra-ui/react";
 import * as React from "react";
 
 interface IBtnCopy extends LinkProps {
-  noteId: INote["id"];
+  noteId: INote["_id"];
   show?: boolean;
 }
 

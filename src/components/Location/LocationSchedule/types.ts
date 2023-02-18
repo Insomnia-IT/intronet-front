@@ -9,7 +9,7 @@ export type LocationScheduleProps = {
   onAuditoryChange?: (auditory: Auditory["number"]) => void;
   auditories: (1 | 2)[];
   auditoryElements: Auditory["elements"];
-  locationId: number;
+  locationId: string;
   selectedElement: AuditoryElement;
   onSelectedElementChange?: (auditoryElement: AuditoryElement) => void;
   renderScheduleInfo?: (props: LocationScheduleInfoProps) => ReactNode;

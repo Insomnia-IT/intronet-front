@@ -23,17 +23,17 @@ class MoviesStore {
             {
               title: "Крестный отец",
               author: "Скорсезе",
-              id: 1,
+              _id: '1',
             },
             {
               title: "Королевство полной луны",
               author: "Андерсон",
-              id: 2,
+              _id: '2',
             },
             {
               title: "Титаник",
               author: "Кэмерон",
-              id: 3,
+              _id: '3',
             },
           ] as Movie[]
       )

@@ -40,7 +40,7 @@ class NotesStore {
 
   // Загрузка новых объявлений выбранной категории
   public loadNewNotes = async (
-    categoryId: number,
+    categoryId: string,
     page: number,
     count: number
   ) => {
@@ -75,21 +75,21 @@ class NotesStore {
    * Удаляет запись по id
    */
   public removeNote = async (
-    request: GenericRequest<{ id: number }, null, null>
+    request: GenericRequest<{ id: string }, null, null>
   ) => {
     this.IsLoading = true;
-    await this.api.deleteNote(request.path.id);
+    // await this.api.deleteNote(request.path.id);
     this.Notes.remove(request.path.id);
     this.IsLoading = false;
   };
 
   // Отдаёт стор с объявлениями
   get notes() {
-    return this.Notes.toArray().sort((a, b) => b.id - a.id);
+    return this.Notes.toArray().sort((a, b) => b._id > a._id ? 1 : (b._id == a._id ? 0 : -1));
   }
 
-  getNote(id: number) {
-    return this.notes.find((note) => note.id === id);
+  getNote(id: string) {
+    return this.notes.find((note) => note._id === id);
   }
 }
 

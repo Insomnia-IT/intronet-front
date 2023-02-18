@@ -15,7 +15,7 @@ import { ScheduleElementForm } from "../forms";
  * Модальное окно, которое позволяет добавлять/редактировать/удалять объявление
  */
 export const ScheduleElementModal: FC<ModalProps<Partial<AuditoryElement>>> = ({
-  id,
+  _id,
   name,
   description,
   changes,
@@ -37,7 +37,7 @@ export const ScheduleElementModal: FC<ModalProps<Partial<AuditoryElement>>> = ({
         <ModalBody>
           <ScheduleElementForm
             auditoryElement={{
-              id,
+              _id: _id,
               name,
               description,
               changes,

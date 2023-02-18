@@ -4,7 +4,7 @@ import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from "src/stores";
 import { ObservableDB } from "../observableDB";
 
-export const ALL_CATEGORY_ID = 1;
+export const ALL_CATEGORY_ID = '1';
 
 class CategoriesStore {
   private api = new NotesApi();
@@ -13,7 +13,7 @@ class CategoriesStore {
   IsLoading: boolean = false;
 
   @cell
-  ActiveCategory: number = ALL_CATEGORY_ID;
+  ActiveCategory: string = ALL_CATEGORY_ID;
 
   @cell
   AllCategory = new ObservableDB<ICategory>("categories");
@@ -31,21 +31,21 @@ class CategoriesStore {
     return this.AllCategory.toArray();
   }
 
-  set activeCategory(categoryId: number) {
+  set activeCategory(categoryId: string) {
     this.ActiveCategory = categoryId;
     this.onChangeCategory();
   }
 
-  getCategory(id: ICategory["id"]) {
-    return this.allCategory.find((category) => category.id === id);
+  getCategory(id: ICategory["_id"]) {
+    return this.allCategory.find((category) => category._id === id);
   }
 
-  getCategoryColor(id: ICategory["id"]): null | string {
+  getCategoryColor(id: ICategory["_id"]): null | string {
     return this.getCategory(id)?.color || "brand.300";
   }
 
   get allNotesCount() {
-    return this.allCategory.find((category) => category.id === ALL_CATEGORY_ID)?.count ?? 0;
+    return this.allCategory.find((category) => category._id === ALL_CATEGORY_ID)?.count ?? 0;
   }
 
   get isAll() {
@@ -60,7 +60,7 @@ class CategoriesStore {
       pagesStore.setCountPages(this.allNotesCount);
     } else {
       const activeCategoryObj = this.allCategory.find(
-        (category) => category.id === this.activeCategory
+        (category) => category._id === this.activeCategory
       );
       pagesStore.setCountPages(activeCategoryObj.count);
     }
