@@ -27,6 +27,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.json",
+    ".private/**/*.json",
     "index.d.ts"
   ]
 }

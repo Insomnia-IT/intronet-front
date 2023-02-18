@@ -97,7 +97,6 @@ export const BoardList: FC = () => {
   };
 
   useEffect(() => {
-    notesStore.load();
     if (activeNote.current) scrollToRef(activeNote, true);
   }, []);
 

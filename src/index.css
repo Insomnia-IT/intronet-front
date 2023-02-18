@@ -37,4 +37,9 @@ body, html {
   scroll-behavior: smooth;
 }
 
-
+.flex{
+  display: flex;
+}
+.column{
+  flex-direction: column;
+}

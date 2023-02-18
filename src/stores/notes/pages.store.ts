@@ -26,14 +26,14 @@ class PagesStore {
     this.CountPages = Math.ceil(countOfNotes / COUNT_NOTES_OF_PAGE);
   };
 
-  nextPage = async () => {
-    this.Page++;
-
-    const from = this.calculateFrom();
-    if (categoriesStore.notes.length <= from) {
-      categoriesStore.loadNewNotes(this.page, COUNT_NOTES_OF_PAGE);
-    }
-  };
+  // nextPage = async () => {
+  //   this.Page++;
+  //
+  //   const from = this.calculateFrom();
+  //   if (categoriesStore.notes.length <= from) {
+  //     categoriesStore.loadNewNotes(this.page, COUNT_NOTES_OF_PAGE);
+  //   }
+  // };
 
   prevPage = () => {
     this.Page--;

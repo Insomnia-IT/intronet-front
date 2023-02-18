@@ -77,6 +77,23 @@ type Movie = {
   author: string;
 };
 
+type MovieBlock = {
+  _id: string;
+  day: number;
+  locationId: string;
+  info: {
+    "Title": string;
+    "SubTitle": string;
+    "TitleEn": string;
+    "SubTitleEn": string;
+    "MinAge": number;
+    "Part": number;
+    "Start": string;
+    "End": string;
+  };
+  movies: MovieInfo[];
+}
+
 interface INote {
   _id: string;
   title: string;
@@ -150,3 +167,12 @@ type User = {
   token: string;
 };
 
+
+namespace JSX {
+  interface IntrinsicElements {
+    div: {
+      flex?: boolean;
+      column?: boolean;
+    } & JSX.IntrinsicElements['div'];
+  }
+}

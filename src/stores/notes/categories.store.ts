@@ -64,9 +64,9 @@ class CategoriesStore {
     }
   }
 
-  loadNewNotes(page, count): Promise<void> {
-    return notesStore.loadNewNotes(this.ActiveCategory, page, count);
-  }
+  // loadNewNotes(page, count): Promise<void> {
+    // return notesStore.loadNewNotes(this.ActiveCategory, page, count);
+  // }
 
   @cell
   get notes(): INote[] {

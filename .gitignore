@@ -16,3 +16,4 @@ build
 .work
 **/.swc
 .env
+.private

@@ -6,9 +6,10 @@ export function useCellState<T>(
   deps: any[] = []
 ): [T, (value: T) => void, Cell<T>] {
   const cell = useMemo(() => new Cell(getter), [getter, ...deps]);
-  const [value, setter] = useState(getter);
+  const [value, setter] = useState(cell.get());
   useEffect(() => {
     const listener = (e) => {
+      console.log(e.value)
       setter(e.value);
     };
     cell.on('change', listener);
@@ -16,6 +17,9 @@ export function useCellState<T>(
       cell.dispose();
     };
   }, [cell]);
+  useEffect(() => {
+    setter(cell.get());
+  }, deps)
   return [value, (v) => cell.set(v), cell];
 }
 

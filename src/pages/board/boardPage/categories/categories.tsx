@@ -16,7 +16,6 @@ export interface ICategoriesProps {
 
 export default class Categories extends React.PureComponent<ICategoriesProps, {}> {
   componentDidMount() {
-    categoriesStore.load();
   }
 
   state = cellState(this, {

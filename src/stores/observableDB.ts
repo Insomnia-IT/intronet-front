@@ -45,7 +45,7 @@ export class ObservableDB<
       }
     });
     const items = await this.db.allDocs<T>({
-      include_docs: true
+      include_docs: true,
     })
     this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
     this.emit("change", {
@@ -111,7 +111,9 @@ export class ObservableDB<
   }
 
   clear() {
-    this.db.allDocs().then(x => Promise.all(x.rows.map(d => this.db.remove(d.doc))));
+    this.db.allDocs().then(x => Promise.all(x.rows.map(d => this.db.remove(d.id, d.value.rev))))
+      .then(x => this.db.compact())
+      .then(x => this.db.viewCleanup())
     this.items.clear();
   }
 
