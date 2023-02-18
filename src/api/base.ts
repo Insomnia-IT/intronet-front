@@ -22,7 +22,7 @@ export class BaseApi {
       },
     })
       .then(async (resp) => {
-        console.debug("resp", resp);
+        // console.debug("resp", resp);
         if (resp.ok) {
           try {
             return await resp.json();

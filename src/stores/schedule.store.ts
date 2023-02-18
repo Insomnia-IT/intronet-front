@@ -1,52 +1,10 @@
 import { ObservableDB } from "./observableDB";
-import { scheduleApi } from "../api/schedule";
 import { cell } from "@cmmn/cell/lib";
-import { locationsStore } from "./locations.store";
-import { Directions } from "../api/directions";
-import { directionsStore } from "./directions.store";
 
 class ScheduleStore {
-  // constructor() {
-  // this.loadAll();
-  // setTimeout(() => this.loadAll(), 5000);
-  // }
-
-  async loadAll() {
-    for (let location of locationsStore.Locations.values()) {
-      await this.load(location._id);
-    }
-  }
-
-  async load(locationId) {
-    const location = locationsStore.Locations.get(locationId);
-    if (
-      directionsStore.DirectionToDirection(location.directionId) ===
-      Directions.screen
-    ) {
-      await this.loadAnimationsSchedule(location._id);
-    } else {
-      await this.loadSchedule(location._id);
-    }
-  }
 
   @cell
   public db = new ObservableDB<Schedule>("schedules");
-
-  private async loadAnimationsSchedule(locationId: string) {
-    await this.db.isLoaded;
-    await scheduleApi
-      .getAnimations(locationId)
-      .then((schedules) => this.db.addOrUpdateRange(schedules, "server"))
-      .catch((err) => console.warn("Синхронизация schedules не удалась"));
-  }
-
-  private async loadSchedule(locationId: string) {
-    await this.db.isLoaded;
-    await scheduleApi
-      .getSchedules(locationId)
-      .then((schedules) => this.db.addOrUpdateRange(schedules, "server"))
-      .catch((err) => console.warn("Синхронизация schedules не удалась"));
-  }
 
   private getAuditories(locationId: string, day: Day): Auditory[] {
     return (
@@ -65,8 +23,7 @@ class ScheduleStore {
 
   async editSchedule(schedule: Schedule) {
     try {
-      const updated = await scheduleApi.editSchedule(schedule);
-      this.db.addOrUpdate(updated);
+      this.db.addOrUpdate(schedule);
     } catch (error) {
       throw error;
     }

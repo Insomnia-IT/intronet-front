@@ -1,10 +1,8 @@
 import { cell } from "@cmmn/cell/lib";
 import { GenericRequest } from "src/api/base";
-import NotesApi from "../../api/notes";
 import { ObservableDB } from "../observableDB";
 
 class NotesStore {
-  private api = new NotesApi();
 
   @cell
   Notes = new ObservableDB<INote>("notes");
@@ -20,44 +18,11 @@ class NotesStore {
     this.IsLoading = !this.isLoading;
   };
 
-  // Загрузка всех объявленй всех категорий
-  public load = async () => {
-    this.IsLoading = true;
-    let notes: INote[];
-    try {
-      notes = await this.api.getAllNotes();
-      this.Notes.clear();
-      this.Notes.addRange(notes);
-      this.IsLoading = false;
-    } catch (err) {
-      if (err.message) {
-        console.log(err);
-        this.Notes.clear();
-      }
-    }
-    this.IsLoading = false;
-  };
-
-  // Загрузка новых объявлений выбранной категории
-  public loadNewNotes = async (
-    categoryId: string,
-    page: number,
-    count: number
-  ) => {
-    this.IsLoading = true;
-    const newNotes = await this.api.getNotes(page, count, [categoryId]);
-    this.Notes.addRange(newNotes);
-    this.IsLoading = false;
-  };
-
   /**
    * Добавляет запись
    */
   public addNote = async (request: GenericRequest<null, null, INote>) => {
-    this.IsLoading = true;
-    await this.api.createNote(request);
-    this.load();
-    this.IsLoading = false;
+    await this.Notes.add(request.body);
   };
 
   /**
@@ -65,10 +30,7 @@ class NotesStore {
    * @param {INote} body Тело реквеста
    */
   public editNote = async (request: GenericRequest<null, null, INote>) => {
-    this.IsLoading = true;
-    await this.api.editNote(request);
-    this.Notes.update(request.body);
-    this.IsLoading = false;
+    await this.Notes.update(request.body);
   };
 
   /**

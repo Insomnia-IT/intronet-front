@@ -1,11 +1,36 @@
 import { cell } from "@cmmn/cell/lib";
-import { locationsApi } from "../api";
 import { ObservableDB } from "./observableDB";
-import { Directions } from "../api/directions";
 import { directionsStore } from "./directions.store";
+import locationsJSON from "./locations.json";
+import {mapStore} from "./map.store";
 
 class LocationsStore {
-  private api = locationsApi;
+
+  constructor() {
+    this.Locations.isLoaded.then(() =>{
+      if ([...this.Locations.keys()].length === 0){
+        console.log('import locations from json')
+        const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
+          const geo = {
+            lat: x.geometry.coordinates[1] as number,
+            lon: x.geometry.coordinates[0] as number,
+          };
+          const point = mapStore.Map2GeoConverter.fromGeo(geo);
+          return ({
+            _id: `fake.${i}`,
+            tags: [],
+            directionId: '',
+            name: x.properties.Name,
+            description: x.properties.description,
+            ...geo,
+            x: point.X,
+            y: point.Y
+          } as InsomniaLocation);
+        });
+        this.Locations.addRange(locations);
+      }
+    })
+  }
 
   @cell
   Locations = new ObservableDB<InsomniaLocation>("locations");
@@ -58,3 +83,26 @@ class LocationsStore {
 }
 
 export const locationsStore = new LocationsStore();
+
+
+export enum Directions {
+  fair = 2,
+  lectures = 4,
+  masterClass = 6,
+  playground = 8,
+  artObject = 10,
+  meeting = 11,
+  cafe = 12,
+  tentRent = 13,
+  info = 15,
+  screen = 16,
+  music = 20,
+  staffCamp = 21,
+  checkpoint = 22,
+  camping = 81,
+  bath = 83,
+  wc = 85,
+  fire = 86,
+  bathhouse = 90,
+  lab = 95,
+}

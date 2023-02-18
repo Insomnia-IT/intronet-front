@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../map-element.module.css";
-import { Directions } from "../../../api/directions";
 import { directionsStore } from "../../../stores";
+import {Directions} from "../../../stores/locations.store";
 
 export const MapIcons: {
   [key in Directions]?: any;

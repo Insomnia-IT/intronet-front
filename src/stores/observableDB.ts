@@ -2,6 +2,8 @@ import { compare } from "../helpers/compare";
 import {EventEmitter} from "@cmmn/cell/lib";
 import PouchDB from "pouchdb-browser";
 
+const remote = `http://admin:password@localhost:5984`
+
 export class ObservableDB<
   T extends { _id: string }
 > extends EventEmitter<{
@@ -11,7 +13,7 @@ export class ObservableDB<
     {type: "add"; key: string | number; value: T; source: "user" | "server" | "db"} |
     {type: "delete"; key: string | number; source: "user" | "server" | "db"}
 }> {
-  private table= new PouchDB<T>(this.name);
+  private db= new PouchDB<T>(this.name);
   private items = new Map<string, T>();
 
   public isLoaded = new Promise<void>((resolve) =>
@@ -20,16 +22,38 @@ export class ObservableDB<
 
   constructor(protected name: string) {
     super();
-    this.table = new PouchDB<T>(name);
-    this.table.allDocs<T>().then((items) => {
-      this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
-      this.emit("change", {
-        source: "db",
-        type: "init",
-        value: items.rows.map(x => x.doc),
-      });
-      this.emit("loaded");
+    window[name] = this;
+    this.init();
+  }
+
+  async init(){
+    const sync = PouchDB.sync(`${remote}/${this.name}`, this.db, {
+      live: true,
+      retry: true
     });
+    sync.on('change', event => {
+      if (event.direction == "push")
+        return;
+      for (let doc of event.change.docs) {
+        this.items.set(doc._id, doc);
+        this.emit("change", {
+          source: "server",
+          type: "update",
+          key: doc._id,
+          value: doc
+        });
+      }
+    });
+    const items = await this.db.allDocs<T>({
+      include_docs: true
+    })
+    this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
+    this.emit("change", {
+      source: "db",
+      type: "init",
+      value: items.rows.map(x => x.doc),
+    });
+    this.emit("loaded");
   }
 
   /**
@@ -73,7 +97,7 @@ export class ObservableDB<
 
   remove(key: string, source: "user" | "server" | "db" = "user") {
     if (source !== "db") {
-      this.table.remove({
+      this.db.remove({
         _id: key.toString(),
         _rev: null
       });
@@ -87,7 +111,7 @@ export class ObservableDB<
   }
 
   clear() {
-    this.table.allDocs().then(x => Promise.all(x.rows.map(d => this.table.remove(d.doc))));
+    this.db.allDocs().then(x => Promise.all(x.rows.map(d => this.db.remove(d.doc))));
     this.items.clear();
   }
 
@@ -99,7 +123,7 @@ export class ObservableDB<
   add(value: T, source: "user" | "server" | "db" = "user") {
     const key = value._id;
     if (source !== "db") {
-      this.table.put(value).catch(() => void 0);
+      this.db.put(value).catch(console.log);
       this.items.set(key, value);
     }
     this.emit("change", {
@@ -120,7 +144,10 @@ export class ObservableDB<
   update(value: T, source: "user" | "server" | "db" = "user") {
     const key = value._id;
     if (source !== "db") {
-      this.table.put(value);
+      this.db.get(value._id).then(res => this.db.put(({
+        ...value,
+        _rev: res._rev
+      }))).catch(console.log);
       this.items.set(key, value);
     }
     this.emit("change", {

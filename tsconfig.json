@@ -22,5 +22,11 @@
     ],
     "paths": {
     }
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.json",
+    "index.d.ts"
+  ]
 }

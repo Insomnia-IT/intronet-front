@@ -1,6 +1,6 @@
 import {BaseApi} from "./base";
 
-export class QRApi extends BaseApi {
+class QRApi extends BaseApi {
 
   async checkUserQR(qr: string) {
     try {
@@ -11,3 +11,5 @@ export class QRApi extends BaseApi {
     }
   }
 }
+
+export const qrApi = new QRApi();

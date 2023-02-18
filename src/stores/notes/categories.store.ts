@@ -1,13 +1,11 @@
 import { cell } from "@cmmn/cell/lib";
 import { GenericRequest } from "src/api/base";
-import NotesApi from "src/api/notes";
 import { notesStore, pagesStore } from "src/stores";
 import { ObservableDB } from "../observableDB";
 
 export const ALL_CATEGORY_ID = '1';
 
 class CategoriesStore {
-  private api = new NotesApi();
 
   @cell
   IsLoading: boolean = false;
@@ -78,41 +76,12 @@ class CategoriesStore {
     );
   }
 
-  load = async () => {
-    try {
-      const categories = await this.api.getAllCategories();
-      this.AllCategory.clear();
-      this.AllCategory.addRange(categories);
-      this.IsLoading = false;
-    } catch {
-      this.IsLoading = false;
-    }
-    // Установка количества страниц
-    pagesStore.setCountPages(this.allNotesCount);
-  };
-
   async addCategory(request: GenericRequest<null, null, ICategory>) {
-    try {
-      this.IsLoading = true;
-      await this.api.createNewCategory(request.body);
-      this.load();
-    } catch (error) {
-      throw error;
-    } finally {
-      this.IsLoading = false;
-    }
+    await this.AllCategory.add(request.body);
   }
 
   async editCategory(request: GenericRequest<null, null, ICategory>) {
-    try {
-      this.IsLoading = true;
-      await this.api.editCategory(request);
-      this.load();
-    } catch (error) {
-      throw error;
-    } finally {
-      this.IsLoading = false;
-    }
+    await this.AllCategory.update(request.body);
   }
 }
 
