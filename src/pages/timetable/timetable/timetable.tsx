@@ -2,10 +2,7 @@ import { DateTime } from "luxon";
 import React, { FC, useState } from "react";
 import styles from "../../../components/schedule/schedule.module.css";
 import {Directions, locationsStore} from "../../../stores/locations.store";
-import { ConnectedLocationSchedule } from "../../../components/Location/LocationSchedule";
-import { LocationScheduleInfo } from "../../../components/Location/LocationSchedule/LocationScheduleInfo";
 import { useCellState } from "../../../helpers/cell-state";
-import { Flex } from "@chakra-ui/react";
 import {moviesStore} from "../../../stores";
 import {ScheduleInfoMovie} from "../../../components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
 
@@ -20,7 +17,7 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
     return moviesStore.Movies.filter(x => x.locationId === screen)
   }, [screen]);
   return (
-    <Flex overflowY="auto" flexDirection="column">
+    <div className="flex column">
       <div className={styles.tags}>
         {screens.map((location) => (
           <div
@@ -42,7 +39,7 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
           <ScheduleInfoMovie movie={m}/>
         </div>)}
       </div>))}
-    </Flex>
+    </div>
   );
 };
 

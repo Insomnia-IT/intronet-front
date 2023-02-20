@@ -3,7 +3,6 @@ import styles from "./map-element.module.css";
 import { useCellState } from "../../helpers/cell-state";
 import { directionsStore } from "../../stores";
 import { getIconByDirectionId } from "./icons/icons";
-import { Flex } from "@chakra-ui/react";
 
 export function MapElement(props: {
   item: MapItem;
@@ -43,7 +42,7 @@ export function DirectionsPage() {
   const [directions] = useCellState(() => directionsStore.Directions.toArray());
   const [selected, setSelected] = useState<string | null>(null);
   return (
-    <Flex wrap="wrap">
+    <div className="flex column">
       {directions.map((x) => (
         <svg
           className={
@@ -66,6 +65,6 @@ export function DirectionsPage() {
           </text>
         </svg>
       ))}
-    </Flex>
+    </div>
   );
 }

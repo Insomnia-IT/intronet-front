@@ -1,6 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
 import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
-import { IconButton } from "@chakra-ui/react";
 import React from "react";
 import { LocationModal } from "src/components";
 import { RequireAuth } from "src/components/RequireAuth";
@@ -116,32 +115,30 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
         />
         <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.buttons}>
-          <IconButton
-            icon={<LayersIcon />}
+          <LayersIcon
+            style={{cursor: 'pointer'}}
             onClick={() => {
               this.isMap = !this.isMap;
               this.isEditing = false;
               this.localChanges.clear();
             }}
-            aria-label="Change view"
-          />
+            aria-label="Change view"/>
+
 
           <RequireAuth>
-            <IconButton
-              icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
-              onClick={() => {
-                if (this.isEditing) {
-                  this.saveLocations();
-                }
-                this.isEditing = !this.isEditing;
-              }}
-              aria-label="Start edit"
-            />
-            <IconButton
-              icon={<AddIcon />}
-              onClick={this.handleAddIconButtonClick}
-              aria-label="Add location"
-            />
+            {this.isEditing ? <CheckIcon aria-label="Start edit" onClick={() => {
+              if (this.isEditing) {
+                this.saveLocations();
+              }
+              this.isEditing = !this.isEditing;
+            }}/> : <EditIcon aria-label="Start edit" onClick={() => {
+              if (this.isEditing) {
+                this.saveLocations();
+              }
+              this.isEditing = !this.isEditing;
+            }}/>}
+            <AddIcon onClick={this.handleAddIconButtonClick}
+                     aria-label="Add location"/>
           </RequireAuth>
         </div>
         {this.state.selected ? (
