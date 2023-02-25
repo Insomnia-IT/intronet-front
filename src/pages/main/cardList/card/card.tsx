@@ -1,7 +1,7 @@
 import React from "react";
 import { FC } from "react";
 import { Box, Img, Link } from "@chakra-ui/react";
-import { Heading } from "src/components/heading/heading";
+import { Heading } from "@components/heading/heading";
 import { VStack } from "@chakra-ui/react";
 import {useRouter} from "../../../routing";
 

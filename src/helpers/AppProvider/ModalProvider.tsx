@@ -5,7 +5,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { ModalProps } from "src/components/modals";
+import { ModalProps } from "@components/modals";
 
 export const ModalContext = createContext<{
   modal: JSX.Element;

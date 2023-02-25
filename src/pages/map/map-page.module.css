@@ -50,20 +50,7 @@
   display: initial;
 }
 
-
-/* Скрываем scrollbar для Chrome, Safari и Opera */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-  /* Скрываем scrollbar для IE, Edge и Firefox */
-.hide-scrollbar {
-  -ms-overflow-style: none; /* IE и Edge */
-  scrollbar-width: none; /* Firefox */
-  scrollbar-height: none; /* Firefox */
-}
-
 .chips {
-  composes: hide-scrollbar;
   padding: 16px 0;
   align-items: center;
   display: flex;
@@ -89,14 +76,14 @@
 }
 
 .chip {
-  composes: chip from "src/components/chip/chip.module.css";
+  composes: chip from "../../components/chip/chip.module.css";
   color: #718096;
   border: solid 1px #718096;
   padding: 7px 15px;
 }
 
 .chipActive {
-  composes: chipActive from "src/components/chip/chip.module.css";
+  composes: chipActive from "../../components/chip/chip.module.css";
   padding: 8px 16px;
   border: none;
   color: white;

@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import { categoriesStore } from "src/stores";
+import { categoriesStore } from "@stores";
 
 export const COUNT_NOTES_OF_PAGE = 5;
 const INITIAL_PAGE = 1;

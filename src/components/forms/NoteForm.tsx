@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import React, { FC } from "react";
-import { useCellState } from "src/helpers/cell-state";
-import { categoriesStore } from "src/stores";
+import { useCellState } from "@helpers/cell-state";
+import { categoriesStore } from "@stores";
 import { RequireAuth } from "../RequireAuth";
 
 export type NoteFormProps = {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Close, Expander } from "src/components";
-import { locationsStore } from "src/stores/locations.store";
+import { Close, Expander } from "@components";
+import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";
 
 export type MapToolbarProps = {

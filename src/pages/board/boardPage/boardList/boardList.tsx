@@ -1,10 +1,10 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React, { FC, useEffect, useRef } from "react";
-import { NoteModal } from "src/components/modals";
-import { RequireAuth } from "src/components/RequireAuth";
-import { useAppContext } from "src/helpers/AppProvider";
-import { categoriesStore, notesStore, pagesStore } from "src/stores";
+import { NoteModal } from "@components/modals";
+import { RequireAuth } from "@components/RequireAuth";
+import { useAppContext } from "@helpers/AppProvider";
+import { categoriesStore, notesStore, pagesStore } from "@stores";
 import { Intersection } from "../../../../components/intersection";
 import { scrollToRef } from "../../../../helpers/scrollToRef";
 import { BoardCard } from "./boardCard/boardCard";

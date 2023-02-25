@@ -1,10 +1,10 @@
 import { cell } from "@cmmn/cell/lib";
 import React from "react";
-import {Button} from "src/components";
-import { RequireAuth } from "src/components/RequireAuth";
-import { ModalContext } from "src/helpers/AppProvider";
-import { locationsStore } from "src/stores/locations.store";
-import { mapStore } from "src/stores/map.store";
+import {Button} from "@components";
+import { RequireAuth } from "@components/RequireAuth";
+import { ModalContext } from "@helpers/AppProvider";
+import { locationsStore } from "@stores/locations.store";
+import { mapStore } from "@stores/map.store";
 import { cellState } from "../../helpers/cell-state";
 import { getIconByDirectionId } from "./icons/icons";
 import { LayersIcon } from "./icons/LayersIcon";

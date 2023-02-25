@@ -1,8 +1,8 @@
 import { useToast } from "@chakra-ui/react";
 import React, { useCallback } from "react";
-import { ScheduleElementModal } from "src/components/modals";
-import { useAppContext } from "src/helpers/AppProvider";
-import { scheduleStore } from "src/stores/schedule.store";
+import { ScheduleElementModal } from "@components/modals";
+import { useAppContext } from "@helpers/AppProvider";
+import { scheduleStore } from "@stores/schedule.store";
 
 /**
  * Хук для редактирования элемента расписания

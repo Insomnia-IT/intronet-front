@@ -1,25 +1,24 @@
 {
+  "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "Node",
-    "target": "ES2019",
-    "composite": true,
-    "sourceMap": true,
     "baseUrl": "./",
-    "experimentalDecorators": true,
-    "checkJs": false,
-    "skipLibCheck": true,
     "jsx": "react",
-    "skipDefaultLibCheck": true,
     "allowJs": true,
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true ,
     "lib": [
       "ESNext",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@hooks": ["./src/hooks"],
+      "@icons": ["./src/icons"],
+      "@constants": ["./src/constants"],
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@api": ["./src/api"],
+      "@stores": ["./src/stores"],
+      "@stores/*": ["./src/stores/*"]
+    }
   },
   "include": [
     "src/**/*.ts",

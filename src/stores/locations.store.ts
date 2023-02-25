@@ -1,7 +1,7 @@
 import { cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
-import locationsJSON from "./locations.json";
+// import locationsJSON from "./locations.json";
 import {mapStore} from "./map.store";
 
 class LocationsStore {
@@ -10,27 +10,31 @@ class LocationsStore {
     this.Locations.isLoaded.then(() =>{
       if ([...this.Locations.keys()].length === 0){
         console.log('import locations from json')
-        const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
-          const geo = {
-            lat: x.geometry.coordinates[1] as number,
-            lon: x.geometry.coordinates[0] as number,
-          };
-          const point = mapStore.Map2GeoConverter.fromGeo(geo);
-          return ({
-            _id: `fake.${i}`,
-            tags: [],
-            directionId: '',
-            name: x.properties.Name,
-            description: x.properties.description,
-            ...geo,
-            x: point.X,
-            y: point.Y
-          } as InsomniaLocation);
-        });
-        this.Locations.addRange(locations);
+        // this.getFromJSON();
       }
     })
   }
+
+  // private async getFromJSON() {
+  //   const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
+  //     const geo = {
+  //       lat: x.geometry.coordinates[1] as number,
+  //       lon: x.geometry.coordinates[0] as number,
+  //     };
+  //     const point = mapStore.Map2GeoConverter.fromGeo(geo);
+  //     return ({
+  //       _id: `fake.${i}`,
+  //       tags: [],
+  //       directionId: '',
+  //       name: x.properties.Name,
+  //       description: x.properties.description,
+  //       ...geo,
+  //       x: point.X,
+  //       y: point.Y
+  //     } as InsomniaLocation);
+  //   });
+  //   this.Locations.addRange(locations);
+  // }
 
   @cell
   Locations = new ObservableDB<InsomniaLocation>("locations");

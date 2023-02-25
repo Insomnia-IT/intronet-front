@@ -1,6 +1,6 @@
 import React from "react";
-import { Navbar } from "src/components";
-import { AppProvider, Modals } from "src/helpers/AppProvider";
+import { Navbar } from "@components";
+import { AppProvider, Modals } from "@helpers/AppProvider";
 import styles from "./app.style.module.css";
 import {useRouter} from "../pages/routing";
 

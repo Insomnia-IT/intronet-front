@@ -1,4 +1,4 @@
-import { generateId } from "src/helpers/generateId";
+import { generateId } from "@helpers/generateId";
 
 export const cardContentList: TMainPageCard[] = [
   // {

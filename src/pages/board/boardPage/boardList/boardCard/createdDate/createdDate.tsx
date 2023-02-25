@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text } from "@chakra-ui/react";
-import { parseDate } from "src/helpers/parseDate";
+import { parseDate } from "@helpers/parseDate";
 
 type TCreatedDateProps = {
   date: string;

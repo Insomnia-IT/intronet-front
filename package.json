@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Intronet web site for insomnia fest",
   "scripts": {
-    "start": "react-scripts start",
+    "compile": "cmmn compile --watch",
+    "run": "cmmn spawn compile --watch bundle --watch serve -b",
+    "bundle:watch": "cmmn bundle --watch",
+    "bundle:stats": "cmmn bundle --prod --stats",
+    "build": "cmmn bundle --prod",
     "story": "start-storybook -p 6006",
-    "build": "react-scripts build --stats",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "ci": "docker build . -t insomnia/intronet-front",
     "prepare": "husky install"
   },
@@ -21,6 +22,7 @@
     "@types/node": "17.x.x",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "acebase-client": "^1.20.0",
     "chakra-react-select": "^4.0.0",
     "chakra-ui-markdown-renderer": "^4.1.0",
     "cookie": "^0.5.0",
@@ -32,12 +34,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.3",
-    "react-scripts": "5.x.x",
-    "sass": "1.50.0",
     "typescript": "4.6.4",
     "use-cookie-state": "^2.0.0"
   },
   "devDependencies": {
+    "@cmmn/tools": "^1.7.5",
     "@storybook/addon-actions": "6.5.0-rc.0",
     "@storybook/addon-essentials": "6.5.0-rc.0",
     "@storybook/addon-links": "6.5.0-rc.0",
@@ -54,18 +55,6 @@
   },
   "author": "",
   "license": "ISC",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "proxy": "https://intro.cherepusick.keenetic.name",
   "cmmn": {
     "main": {
@@ -73,7 +62,10 @@
       "module": "es",
       "port": 5001,
       "styles": "modules",
-      "html": "assets/index.html"
+      "html": "src/index.html",
+      "mount": {
+        "/": "./public"
+      }
     }
   }
 }

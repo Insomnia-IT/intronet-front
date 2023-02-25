@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import React, { FC, useEffect } from "react";
-import { locationsStore } from "src/stores/locations.store";
+import { locationsStore } from "@stores/locations.store";
 import { ModalProps } from ".";
 import { getIconByDirectionId } from "../../pages/map/icons/icons";
 import { directionsStore } from "../../stores";

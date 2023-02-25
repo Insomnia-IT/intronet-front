@@ -1,6 +1,6 @@
 import { Box, Container, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
-import { useAddCategory, useEditCategory } from "src/hooks";
+import { useAddCategory, useEditCategory } from "@hooks";
 import { BoardList } from "./boardList/boardList";
 import Categories from "./categories/categories";
 import Header from "./header/header";

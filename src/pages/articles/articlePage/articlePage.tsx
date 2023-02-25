@@ -1,8 +1,8 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
 import * as React from "react";
-import { BackRoutButton } from "src/components/backRoutButton/backRoutButton";
-import { Heading } from "src/components/heading/heading";
-import Loading from "src/loading/loading";
+import { BackRoutButton } from "@components/backRoutButton/backRoutButton";
+import { Heading } from "@components/heading/heading";
+import {Loading} from "@components";
 import { articlesStore } from "../../../stores/articles.store";
 import { Article } from "./article/article";
 import {useCellState} from "../../../helpers/cell-state";

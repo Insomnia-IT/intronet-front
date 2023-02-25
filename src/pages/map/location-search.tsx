@@ -1,5 +1,5 @@
 import React from "react";
-import { cellState } from "src/helpers/cell-state";
+import { cellState } from "@helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { cell } from "@cmmn/cell/lib";
 import { getIconByDirectionId } from "./icons/icons";
@@ -7,7 +7,7 @@ import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
 import { scheduleStore } from "../../stores/schedule.store";
-import { Icons } from "src/icons";
+import { Icons } from "@icons";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocation);

@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import { GenericRequest } from "src/api/base";
+import { GenericRequest } from "@api";
 import { ObservableDB } from "../observableDB";
 
 class NotesStore {

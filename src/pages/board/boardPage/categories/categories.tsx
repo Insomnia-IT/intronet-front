@@ -1,11 +1,11 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, HStack, IconButton } from "@chakra-ui/react";
 import * as React from "react";
-import { RequireAuth } from "src/components/RequireAuth";
-import Loading from "src/loading/loading";
-import { categoriesStore } from "src/stores";
+import { RequireAuth } from "@components/RequireAuth";
+import {Loading} from "@components";
+import { categoriesStore } from "@stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
-import {cellState} from "../../../../helpers/cell-state";
+import {cellState} from "@helpers/cell-state";
 
 export interface ICategoriesProps {
   activeCategory?: number;

@@ -1,10 +1,10 @@
 import * as React from "react";
-import styles from "./loading.module.scss";
+import styles from "./loading.module.css";
 import { Box, Spinner } from "@chakra-ui/react";
 
 const margin: number = 5;
 
-export default function Loading({
+export function Loading({
   isLoading,
   children,
   className,
