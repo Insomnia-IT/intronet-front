@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Close, Expander, Location } from "src/components";
+import { Close, Expander } from "src/components";
 import { locationsStore } from "src/stores/locations.store";
 import styles from "./map-toolbar.module.css";
 
@@ -25,7 +25,7 @@ export function MapToolbar(props: MapToolbarProps) {
         >
           <Expander />
         </div>
-        <Location location={location} expanded={expanded} />
+        {/*<Location location={location} expanded={expanded} />*/}
       </div>
     </>
   );

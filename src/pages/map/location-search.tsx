@@ -1,13 +1,4 @@
 import React from "react";
-import {
-  Flex,
-  HStack,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from "@chakra-ui/react";
-import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { cellState } from "src/helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { cell } from "@cmmn/cell/lib";
@@ -15,8 +6,8 @@ import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
-import { Close } from "src/components/close";
 import { scheduleStore } from "../../stores/schedule.store";
+import { Icons } from "src/icons";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocation);
@@ -51,36 +42,24 @@ export class LocationSearch extends React.PureComponent<{
         ref={this.root}
         className={this.state.opened ? styles.searchOpened : styles.search}
       >
-        <Flex direction="row">
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <SearchIcon color="gray.300" />
-            </InputLeftElement>
-            <Input
-              bg={"white"}
+        <div className="flex">
+            <Icons.Search/>
+            <input
+              className="flex-1"
               value={this.state.query}
               placeholder="Поиск мест и мероприятий"
               onChange={(e) => (this.query = e.target.value)}
             />
             {this.state.query && (
-              <InputRightElement onClick={() => (this.query = "")}>
-                <CloseIcon color="gray.200" />
-              </InputRightElement>
+              <Icons.Cancel onClick={() => (this.query = "")}/>
             )}
-          </InputGroup>
           <div className={styles.close} onClick={() => (this.opened = false)}>
-            <Close />
+            <Icons.Close />
           </div>
-        </Flex>
+        </div>
         {this.state.opened && (
           <>
-            <HStack
-              className={styles.chips}
-              padding="16px 0"
-              align="center"
-              flexDirection="row"
-              flex="auto 0 0"
-              overflowX="scroll"
+            <div className={styles.chips}
             >
               {this.state.tags.map((tag) => {
                 return (
@@ -99,20 +78,11 @@ export class LocationSearch extends React.PureComponent<{
                   </Chip>
                 );
               })}
-            </HStack>
-            <Flex
-              direction="column"
-              bg="white"
-              flex="1"
-              minHeight="0"
-              overflowY="auto"
-            >
+            </div>
+            <div className="flex column">
               {this.state.locations.map((x) => (
-                <Flex
+                <div className="flex"
                   key={x._id}
-                  padding="16px 0"
-                  gap="10px"
-                  alignItems="center"
                   onClick={() => {
                     this.props.onSelect(x);
                     this.opened = false;
@@ -125,9 +95,9 @@ export class LocationSearch extends React.PureComponent<{
                     {getIconByDirectionId(x.directionId)}
                   </svg>
                   <div>{x.name}</div>
-                </Flex>
+                </div>
               ))}
-            </Flex>
+            </div>
           </>
         )}
       </div>

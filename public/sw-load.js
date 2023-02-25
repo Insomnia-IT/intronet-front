@@ -1,5 +1,5 @@
 "use strict";
-if (navigator.serviceWorker && !location.href.includes('localhost')) {
+if (navigator.serviceWorker && !location.href.includes('local')) {
   const isFirstInstall = !(
     navigator.serviceWorker.controller instanceof ServiceWorker
   ); // при первой установке на клиенте еще нет sw

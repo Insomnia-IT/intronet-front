@@ -1,11 +1,7 @@
 import React, { FC } from "react";
-import { BoardPage } from "./board/boardPage/boardPage";
-import { MainPage } from "./main/mainPage";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
-import { ArticlePage } from "./articles/articlePage/articlePage";
-import { DirectionsPage } from "./map/mapElement";
 import {Cell} from "@cmmn/cell/lib";
 import {useCellState} from "../helpers/cell-state";
 
@@ -13,12 +9,12 @@ export const routes = {
   main: {
     name: 'main',
     title: "Главная",
-    Component: MainPage,
+    Component: null,
   },
   board: {
     name: 'board',
     title: "Объявления",
-    Component: BoardPage,
+    Component: null,
   },
   map: {
     name: 'map',
@@ -28,7 +24,7 @@ export const routes = {
   article: {
     name: 'article',
     title: "Статья",
-    Component: ArticlePage,
+    Component: null,
   },
   timetable: {
     name: 'timetable',
@@ -38,7 +34,7 @@ export const routes = {
   directions: {
     name: 'directions',
     title: "Направления",
-    Component: DirectionsPage,
+    Component: null,
   }
 };
 

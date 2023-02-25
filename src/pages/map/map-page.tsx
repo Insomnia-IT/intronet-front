@@ -1,7 +1,6 @@
 import { cell } from "@cmmn/cell/lib";
-import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
 import React from "react";
-import { LocationModal } from "src/components";
+import {Button} from "src/components";
 import { RequireAuth } from "src/components/RequireAuth";
 import { ModalContext } from "src/helpers/AppProvider";
 import { locationsStore } from "src/stores/locations.store";
@@ -16,6 +15,7 @@ import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
 import {useRouter} from "../routing";
+import {Icons} from "../../icons";
 
 export function MapPageWithRouting() {
   const { route } = useRouter();
@@ -42,10 +42,10 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     try {
       // TODO: fix class component context
       // @ts-ignore
-      const newLocation = await this.context.show<InsomniaLocation>((props) => (
-        <LocationModal {...props} />
-      ));
-      locationsStore.addLocation(newLocation);
+      // const newLocation = await this.context.show<InsomniaLocation>((props) => (
+      //   <LocationModal {...props} />
+      // ));
+      // locationsStore.addLocation(newLocation);
       // TODO: add toast
     } catch (error) {
       // TODO: add toast
@@ -126,19 +126,18 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
 
 
           <RequireAuth>
-            {this.isEditing ? <CheckIcon aria-label="Start edit" onClick={() => {
+            <Button aria-label="Start edit" onClick={() => {
               if (this.isEditing) {
                 this.saveLocations();
               }
               this.isEditing = !this.isEditing;
-            }}/> : <EditIcon aria-label="Start edit" onClick={() => {
-              if (this.isEditing) {
-                this.saveLocations();
-              }
-              this.isEditing = !this.isEditing;
-            }}/>}
-            <AddIcon onClick={this.handleAddIconButtonClick}
-                     aria-label="Add location"/>
+            }}>
+              {this.isEditing ? <Icons.Ok/> : <Icons.Edit/>}
+            </Button>
+            <Button onClick={this.handleAddIconButtonClick}
+                     aria-label="Add location">
+              <Icons.Add/>
+            </Button>
           </RequireAuth>
         </div>
         {this.state.selected ? (

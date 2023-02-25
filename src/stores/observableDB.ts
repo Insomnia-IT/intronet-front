@@ -2,7 +2,8 @@ import { compare } from "../helpers/compare";
 import {EventEmitter} from "@cmmn/cell/lib";
 import PouchDB from "pouchdb-browser";
 
-const remote = `http://admin:password@localhost:5984`
+const remote = `${location.protocol}//admin:password@${location.host}/db`
+
 
 export class ObservableDB<
   T extends { _id: string }
