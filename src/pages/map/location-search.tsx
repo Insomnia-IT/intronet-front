@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 import { cellState } from "@helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { cell } from "@cmmn/cell/lib";
@@ -10,7 +10,7 @@ import { scheduleStore } from "../../stores/schedule.store";
 import { Icons } from "@icons";
 
 export class LocationSearch extends React.PureComponent<{
-  onSelect(location: InsomniaLocation);
+  onSelect(location: InsomniaLocationFull);
 }> {
   @cell
   choosedTags = new ObservableList<Tag>();
@@ -48,7 +48,7 @@ export class LocationSearch extends React.PureComponent<{
               className="flex-1"
               value={this.state.query}
               placeholder="Поиск мест и мероприятий"
-              onChange={(e) => (this.query = e.target.value)}
+              onChange={(e) => (this.query = e.currentTarget.value)}
             />
             {this.state.query && (
               <Icons.Cancel onClick={() => (this.query = "")}/>

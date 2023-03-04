@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "preact/compat";
 import styles from "./map-element.module.css";
 import { useCellState } from "../../helpers/cell-state";
 import { directionsStore } from "../../stores";
@@ -24,7 +24,7 @@ export function MapElement(props: {
       <g
         className={classNames.join(" ")}
         onPointerDown={(e) => {
-          e.nativeEvent.preventDefault();
+          e.preventDefault();
           props.onSelect(props.item);
         }}
       >

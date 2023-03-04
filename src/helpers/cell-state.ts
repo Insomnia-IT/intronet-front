@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "preact/compat";
 import { Cell }  from "@cmmn/cell/lib";
 
 export function useCellState<T>(
@@ -23,7 +23,7 @@ export function useCellState<T>(
 }
 
 export function cellState<TState>(
-  component: React.Component,
+  component: ComponentLike,
   state: StateOfGetters<TState>
 ): TState {
   const result: Partial<TState> = {};
@@ -66,3 +66,9 @@ export type GetterOrValue<T> = T | (() => T);
 export type StateOfGetters<T> = {
   [key in keyof T]: GetterOrValue<T[key]>;
 };
+
+export type ComponentLike = {
+  componentDidMount?(): void;
+  componentWillUnmount?(): void;
+  setState(state: any);
+}

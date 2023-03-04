@@ -1,5 +1,5 @@
 import { Modal } from "@components/modal";
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { ModalProps } from ".";
 import { ScheduleElementForm } from "../forms";
 

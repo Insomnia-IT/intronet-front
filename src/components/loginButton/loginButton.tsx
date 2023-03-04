@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 import { LogoutModal } from "../modals/LogoutModal";
 import { LoginModal } from "../modals/LoginModal";
 import {Button, ButtonProps, toast} from "@components";

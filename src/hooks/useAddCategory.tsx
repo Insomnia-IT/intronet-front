@@ -1,5 +1,5 @@
 import {toast} from "@components";
-import React, { useCallback } from "react";
+import React, { useCallback } from "preact/compat";
 import { useAppContext } from "@helpers/AppProvider";
 import { categoriesStore } from "@stores";
 import {CategoryModal} from "@components/modals";

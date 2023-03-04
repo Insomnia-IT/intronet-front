@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from "preact/compat";
 import { ScheduleElementModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { scheduleStore } from "@stores/schedule.store";

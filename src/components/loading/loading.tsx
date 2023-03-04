@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "preact/compat";
 import styles from "./loading.module.css";
 import { Box, Spinner } from "@chakra-ui/react";
 
@@ -12,7 +12,7 @@ export function Loading({
   height = 100,
 }: {
   isLoading: boolean;
-  children: React.ReactNode;
+  children: JSX.Element | JSX.Element[];
   className?: string;
   width?: number;
   height?: number;

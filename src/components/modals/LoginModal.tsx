@@ -1,5 +1,5 @@
 import {Modal} from "@components/modal";
-import React, { FC, useState } from "react";
+import React, { FC, useState } from "preact/compat";
 import { ModalProps } from ".";
 import { LoginFormToken } from "../forms/LoginFormToken";
 import {Button} from "@components";
@@ -25,7 +25,7 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
         <Modal.CloseButton />
         <Modal.Header></Modal.Header>
         <Modal.Body>
-          <div spacing={5}>
+          <div >
             {loginMethod === "ticketId" && (
               <>
                 {/*<LoginFormTicket*/}

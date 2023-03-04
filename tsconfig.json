@@ -2,7 +2,8 @@
   "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "jsx": "react",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "allowJs": true,
     "resolveJsonModule": true,
     "lib": [
@@ -27,5 +28,9 @@
     "src/**/*.json",
     ".private/**/*.json",
     "index.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.stories.tsx"
   ]
 }

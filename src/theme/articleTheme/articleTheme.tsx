@@ -1,5 +1,5 @@
 import { Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import React from "preact/compat";
 
 export const articleTheme = {
   h3: (props) => {

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from "preact/compat";
 import { LocationModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";

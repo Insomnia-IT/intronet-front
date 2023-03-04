@@ -1,11 +1,10 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, HStack, IconButton } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 import { RequireAuth } from "@components/RequireAuth";
-import {Loading} from "@components";
+import {Button, Loading} from "@components";
 import { categoriesStore } from "@stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
 import {cellState} from "@helpers/cell-state";
+import { Icons } from "@icons";
 
 export interface ICategoriesProps {
   activeCategory?: number;
@@ -28,39 +27,29 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
 
   render() {
     return (
-      <Box
-        display={"flex"}
-        maxW={"100vw"}
-        flex={1}
-        overflowX={"auto"}
-        className="hide-scrollbar"
-      >
-        <HStack spacing={0} as="ul" flex={1} minWidth={"max-content"}>
+      <div>
+        <div>
           <Loading isLoading={this.state.isLoading} height={40} width={40}>
-            {this.state.allCategory.map((category) => {
-              return (
+            {this.state.allCategory.map((category) => (
                 <CategoryCard
                   as={"li"}
                   key={category._id}
                   categoryObj={category}
-                  _last={{ marginRight: "2rem" }}
+                  _last={{marginRight: "2rem"}}
                   onClick={() => (categoriesStore.activeCategory = category._id)}
                   isActive={this.state.activeCategory === category._id}
                   onIconLeftClick={this.props.onEditCategory}
                 />
-              );
-            })}
+              ))}
           </Loading>
           <RequireAuth>
-            <IconButton
-              icon={<AddIcon />}
+            <Button
               aria-label="Add category"
-              isRound
               onClick={this.props.onAddCategory}
-            />
+            ><Icons.Add/></Button>
           </RequireAuth>
-        </HStack>
-      </Box>
+        </div>
+      </div>
     );
   }
 }

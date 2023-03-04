@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { useAddCategory, useEditCategory } from "@hooks";
 import { BoardList } from "./boardList/boardList";
 import Categories from "./categories/categories";
@@ -10,21 +10,18 @@ export const BoardPage: FC = () => {
   const addCategory = useAddCategory();
 
   return (
-    <div h={"100%"}>
-      <div pt={8} align={"flex-start"} spacing={4} w={"100%"} maxH={"100%"}>
+    <div>
+      <div>
         <div>
           <Header />
         </div>
-        <div minW={"100%"}>
+        <div >
           <Categories
             onEditCategory={editCategory}
             onAddCategory={addCategory}
           />
         </div>
         <div
-          minH={1}
-          overflowY={"auto"}
-          w={"100%"}
           className={" hide-scrollbar"}
         >
           <BoardList />

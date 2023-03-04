@@ -2,10 +2,10 @@ import React, {
   createContext,
   PropsWithChildren,
   useCallback,
-  useContext,
-} from "react";
+  useContext, useState,
+} from "preact/compat";
 import { useLocalStorageState } from "@helpers/useLocalStorageState";
-import { useCookieState } from "use-cookie-state";
+// import { useCookieState } from "use-cookie-state";
 
 const AuthContext = createContext<{
   ticketId?: string;
@@ -25,9 +25,9 @@ const AuthContext = createContext<{
 export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
   const [ticketId, setTicketId] = useLocalStorageState<string>("");
 
-  const [token, setToken] = useCookieState("Token", "");
+  const [token, setToken] = useState("");
 
-  const [username, setUsername] = useCookieState("UserName", "");
+  const [username, setUsername] = useState("");
 
   /**
    * Синхронизирует куки в document.cookie со стейтом в контексте,

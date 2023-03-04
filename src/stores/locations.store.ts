@@ -1,7 +1,7 @@
 import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
-import locationsJSON from "./locations.json";
+// import locationsJSON from "./locations.json";
 import {mapStore} from "./map.store";
 
 class LocationsStore {
@@ -16,24 +16,25 @@ class LocationsStore {
   }
 
   private async getFromJSON() {
-    const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
-      const geo = {
-        lat: x.geometry.coordinates[1] as number,
-        lon: x.geometry.coordinates[0] as number,
-      };
-      const point = mapStore.Map2GeoConverter.fromGeo(geo);
-      return ({
-        _id: Fn.ulid(),
-        tags: [],
-        directionId: '',
-        name: x.properties.Name,
-        description: x.properties.description,
-        ...geo,
-        x: point.X,
-        y: point.Y
-      } as InsomniaLocation);
-    });
-    this.Locations.addRange(locations);
+    // const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
+    //   const geo = {
+    //     lat: x.geometry.coordinates[1] as number,
+    //     lon: x.geometry.coordinates[0] as number,
+    //   };
+    //   const point = mapStore.Map2GeoConverter.fromGeo(geo);
+    //   return ({
+    //     _id: Fn.ulid(),
+    //     tags: [],
+    //     directionId: '',
+    //     name: x.properties.Name,
+    //     image: "camping",
+    //     description: x.properties.description,
+    //     ...geo,
+    //     x: point.X,
+    //     y: point.Y
+    //   } as InsomniaLocation);
+    // });
+    // this.Locations.addRange(locations);
   }
 
   @cell

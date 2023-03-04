@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 import Styles from "./modal.module.css";
 
 export type ModalProps = {

@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "react";
+import React from "preact/compat";
 import { cellState } from "@helpers/cell-state";
 import { locationsStore, scheduleStore } from "@stores";
 import { LocationSchedule } from "./LocationSchedule";

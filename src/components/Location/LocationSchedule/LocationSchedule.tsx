@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { Chip } from "@components/chip/chip";
 import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
 import { useAppContext } from "@helpers/AppProvider";
@@ -66,10 +66,10 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
           })}
         </div>
       )}
-      <div mt="4">
+      <div>
         {sortAuditoryElements(auditoryElements).map(
           (auditoryElement: AuditoryElement, index: number) => (
-            <div w="full" key={auditoryElement._id}>
+            <div key={auditoryElement._id}>
               {renderScheduleInfo?.({
                 auditoryElement,
                 selected: selectedElement === auditoryElement,

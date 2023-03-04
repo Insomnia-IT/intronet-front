@@ -1,5 +1,5 @@
 import { Link, Text, VStack } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 import { useCellState } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import {useRouter} from "../../../routing";

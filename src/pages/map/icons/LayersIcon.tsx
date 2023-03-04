@@ -1,7 +1,7 @@
-import React from "react";
+import React from "preact/compat";
 import {Button} from "../../../components";
 
-export const LayersIcon = (props: JSX.IntrinsicElements['svg']) => (
+export const LayersIcon = (props: React.JSX.HTMLAttributes<SVGSVGElement>) => (
   <Button>
     <svg viewBox="0 0 24 24" width="24" height="24" {...props} enableBackground="1">
       <path

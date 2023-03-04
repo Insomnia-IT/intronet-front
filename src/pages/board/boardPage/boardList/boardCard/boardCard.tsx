@@ -1,20 +1,12 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   HStack,
   IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverTrigger,
   StackProps,
   VStack,
 } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 import { RequireAuth } from "@components/RequireAuth";
 import { useAppContext } from "@helpers/AppProvider";
 import { CreatedDate } from "./createdDate/createdDate";
@@ -44,15 +36,7 @@ export const BoardCard = ({
   if (!title && !text && !app.auth.token) return <></>;
 
   return (
-    <Box
-      px={4}
-      py={5}
-      pb={2}
-      border={"1px solid"}
-      borderColor={activeColor}
-      borderRadius={"2xl"}
-      {...rest}
-    >
+    <div>
       <VStack align={"flex-start"} spacing={2} pos={"relative"}>
         <h2>{title}</h2>
         <NoteText text={text} />
@@ -68,30 +52,30 @@ export const BoardCard = ({
                 onClick={() => onEditIconButtonClick?.(noteInfoObj)}
               />
 
-              <Popover placement="bottom" closeOnBlur={false}>
-                <PopoverTrigger>
-                  <IconButton
-                    icon={<DeleteIcon />}
-                    colorScheme="red"
-                    aria-label="Delete note"
-                  />
-                </PopoverTrigger>
-                <PopoverContent>
-                  <PopoverArrow />
-                  <PopoverCloseButton />
-                  <PopoverBody>
-                    Вы уверены, что хотите удалить запись?
-                  </PopoverBody>
-                  <PopoverFooter>
-                    <Button
-                      colorScheme="red"
-                      onClick={() => onDeleteIconButtonClick?.(noteInfoObj)}
-                    >
-                      Удалить
-                    </Button>
-                  </PopoverFooter>
-                </PopoverContent>
-              </Popover>
+              {/*<Popover placement="bottom" closeOnBlur={false}>*/}
+              {/*  <PopoverTrigger>*/}
+              {/*    <IconButton*/}
+              {/*      icon={<DeleteIcon />}*/}
+              {/*      colorScheme="red"*/}
+              {/*      aria-label="Delete note"*/}
+              {/*    />*/}
+              {/*  </PopoverTrigger>*/}
+              {/*  <PopoverContent>*/}
+              {/*    <PopoverArrow />*/}
+              {/*    <PopoverCloseButton />*/}
+              {/*    <PopoverBody>*/}
+              {/*      Вы уверены, что хотите удалить запись?*/}
+              {/*    </PopoverBody>*/}
+              {/*    <PopoverFooter>*/}
+              {/*      <Button*/}
+              {/*        colorScheme="red"*/}
+              {/*        onClick={() => onDeleteIconButtonClick?.(noteInfoObj)}*/}
+              {/*      >*/}
+              {/*        Удалить*/}
+              {/*      </Button>*/}
+              {/*    </PopoverFooter>*/}
+              {/*  </PopoverContent>*/}
+              {/*</Popover>*/}
             </HStack>
           )}
         </RequireAuth>
@@ -110,6 +94,6 @@ export const BoardCard = ({
           <CreatedDate date={noteInfoObj.createdDate} />
         </Box>
       </VStack>
-    </Box>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import {toast} from "@components";
-import { useCallback } from "react";
+import { useCallback } from "preact/compat";
 import { scheduleStore } from "@stores/schedule.store";
 
 /**

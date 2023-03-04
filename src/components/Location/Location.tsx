@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { LocationProps } from "./types";
 import styles from "./styles.module.css";
 import { RequireAuth } from "../RequireAuth";
@@ -38,7 +38,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
         {location.description}
       </div>
       <RequireAuth>
-        <div pos="absolute" right="10px" zIndex="1" bottom="10px">
+        <div >
           <Button
             aria-label="Edit note"
             onClick={editLocation}
@@ -59,7 +59,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                   </Button>
                 </RequireAuth>
                 {menu && (
-                  <div alignSelf="flex-start">
+                  <div>
                     <LocationMenu description={menu} />
                   </div>
                 )}
@@ -67,7 +67,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
             )}
             renderScheduleInfo={(props) => (
               <div>
-                <div w="full">
+                <div>
                   <LocationScheduleInfo
                     {...props}
                     key={props.auditoryElement._id}

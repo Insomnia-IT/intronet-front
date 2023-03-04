@@ -1,6 +1,6 @@
 import { ResolvablePromise } from "@cmmn/cell/lib";
 import { ModalProps } from "@components/modals";
-import React from "react";
+import React from "preact/compat";
 import {Modal as BaseModal} from "./modal";
 import {Cell} from "@cmmn/cell/lib";
 import {useCellState} from "@helpers/cell-state";
@@ -32,7 +32,7 @@ const parts = {
   }
 }
 
-const currentModal = new Cell<React.ReactElement>(null);
+const currentModal = new Cell<React.JSX.Element>(null);
 
 export const ModalSlot: React.FC = () => {
   const [current] = useCellState(() => currentModal.get());

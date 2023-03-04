@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "preact/compat";
 import { Text, TextProps } from "@chakra-ui/react";
 import { ToggleBtn } from "./toggleBtn/toggleBtn";
 

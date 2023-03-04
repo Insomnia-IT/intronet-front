@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "react";
+import React from "preact/compat";
 import {Button} from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
@@ -154,7 +154,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     this.localChanges.clear();
   }
 
-  selectLocation = (location: InsomniaLocation) => {
+  selectLocation = (location: InsomniaLocationFull) => {
     this.selected = location._id;
   };
 

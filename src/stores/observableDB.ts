@@ -14,7 +14,7 @@ export class ObservableDB<
 
   protected items = new Map<string, T>();
 
-  public isLoaded = this.onceAsync("loaded");
+  public isLoaded: Promise<void> = this.onceAsync("loaded");
 
   constructor(public name: string) {
     super();
@@ -167,8 +167,13 @@ export class ObservableDB<
   }
 
   async sync() {
+    await versions.isLoaded;
     const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
-    await remote.replicate.to(this.db);
+    if (!versions.items.has(this.name)) {
+      versions.add({_id: this.name, version: Fn.ulid()});
+    } else if (versions.haveChanges.get(this.name)) {
+      await remote.replicate.to(this.db);
+    }
     versions.on('change', async e => {
       if (e.type == 'update' && e.key == this.name){
         await remote.replicate.to(this.db);
@@ -193,9 +198,17 @@ class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
     super('versions');
   }
 
+  public haveChanges = new Map<string, boolean>();
+
   async init(){
+    await this.loadItems();
+    const versions = new Map(this.items);
     const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
     await remote.replicate.to(this.db);
+    await this.loadItems();
+    for (let item of this.items.values()) {
+      this.haveChanges.set(item._id, item.version !== versions.get(item._id)?.version);
+    }
     const sync = PouchDB.sync(remote, this.db, {
       live: true,
       retry: true

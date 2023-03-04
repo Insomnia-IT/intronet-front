@@ -1,7 +1,7 @@
 import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import {Directions, locationsStore} from "./locations.store";
-import data from "./movies.json";
+// import data from "./movies.json";
 
 class MoviesStore {
   @cell
@@ -20,53 +20,53 @@ class MoviesStore {
   }
 
   async getFromJSON(){
-    for (let i = 0; i < data.length; i++) {
-      const dayInfo = data[i];
-      const location = locationsStore.Locations.toArray().find(x => x.name === dayInfo.Screen);
-      let locationId = '';
-      if (!location){
-        locationId = Fn.ulid();
-        await locationsStore.addLocation({
-          name: dayInfo.Screen,
-          ...center,
-          ...centerXY,
-          directionId: Directions.screen.toString(),
-          description: 'Экран',
-          tags: [],
-          _id: locationId,
-          menu: undefined,
-          image: ''
-        });
-      }else {
-        locationId = location._id;
-      }
-      dayInfo.Screen
-      for (let i = 0; i < dayInfo.Blocks.length; i++) {
-        const block = dayInfo.Blocks[i];
-        this.db.add({
-          _id: Fn.ulid(),
-          day: dayInfo.Day,
-          info: {
-            Title: block.Title,
-            SubTitle: block.SubTitle,
-            TitleEn: block.TitleEn,
-            SubTitleEn: block.SubTitleEn,
-            MinAge: block.MinAge,
-            Part: block.Part,
-            Start: block.Start,
-            End: block.End,
-          },
-          movies: block.Movies.map(x => ({
-            name: x.Name,
-            author: x.Author,
-            country: x.Country,
-            year: x.Year,
-            duration: x.Duration
-          })),
-          locationId: locationId
-        })
-      }
-    }
+  //   for (let i = 0; i < data.length; i++) {
+  //     const dayInfo = data[i];
+  //     const location = locationsStore.Locations.toArray().find(x => x.name === dayInfo.Screen);
+  //     let locationId = '';
+  //     if (!location){
+  //       locationId = Fn.ulid();
+  //       await locationsStore.addLocation({
+  //         name: dayInfo.Screen,
+  //         ...center,
+  //         ...centerXY,
+  //         directionId: Directions.screen.toString(),
+  //         description: 'Экран',
+  //         tags: [],
+  //         _id: locationId,
+  //         menu: undefined,
+  //         image: ''
+  //       });
+  //     }else {
+  //       locationId = location._id;
+  //     }
+  //     dayInfo.Screen
+  //     for (let i = 0; i < dayInfo.Blocks.length; i++) {
+  //       const block = dayInfo.Blocks[i];
+  //       this.db.add({
+  //         _id: Fn.ulid(),
+  //         day: dayInfo.Day,
+  //         info: {
+  //           Title: block.Title,
+  //           SubTitle: block.SubTitle,
+  //           TitleEn: block.TitleEn,
+  //           SubTitleEn: block.SubTitleEn,
+  //           MinAge: block.MinAge,
+  //           Part: block.Part,
+  //           Start: block.Start,
+  //           End: block.End,
+  //         },
+  //         movies: block.Movies.map(x => ({
+  //           name: x.Name,
+  //           author: x.Author,
+  //           country: x.Country,
+  //           year: x.Year,
+  //           duration: x.Duration
+  //         })),
+  //         locationId: locationId
+  //       })
+  //     }
+  //   }
   }
 }
 

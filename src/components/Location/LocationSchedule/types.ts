@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { LocationScheduleInfoProps } from "./LocationScheduleInfo";
 
 export type LocationScheduleProps = {
@@ -12,8 +11,8 @@ export type LocationScheduleProps = {
   locationId: string;
   selectedElement: AuditoryElement;
   onSelectedElementChange?: (auditoryElement: AuditoryElement) => void;
-  renderScheduleInfo?: (props: LocationScheduleInfoProps) => ReactNode;
+  renderScheduleInfo?: (props: LocationScheduleInfoProps) => JSX.Element;
   renderScheduleFooter?: (
     props: Pick<LocationScheduleInfoProps, "auditory" | "schedules" | "day">
-  ) => ReactNode;
+  ) => JSX.Element;
 };

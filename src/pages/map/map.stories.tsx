@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MapComponent } from "./map";
 import { TileConverter } from "../../helpers/tile.converter";

@@ -1,5 +1,5 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 import { BackRoutButton } from "@components/backRoutButton/backRoutButton";
 import {Loading} from "@components";
 import { articlesStore } from "../../../stores/articles.store";

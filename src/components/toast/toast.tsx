@@ -1,6 +1,6 @@
 import {Cell} from "@cmmn/cell/lib";
 import {useCellState} from "@helpers/cell-state";
-import React from "react";
+import React from "preact/compat";
 
 export function toast(config: ToastInfo){
   cell.set(config);

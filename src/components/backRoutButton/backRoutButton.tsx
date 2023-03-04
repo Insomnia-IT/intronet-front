@@ -1,5 +1,5 @@
 import { Box, BoxProps } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 import {useRouter} from "../../pages/routing";
 
 type BackRoutButtonProps = {

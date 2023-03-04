@@ -1,6 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "preact/compat";
 import { NoteModal } from "@components/modals";
 import { RequireAuth } from "@components/RequireAuth";
 import { useAppContext } from "@helpers/AppProvider";

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "preact/compat";
 import { Text } from "@chakra-ui/react";
 import { parseDate } from "@helpers/parseDate";
 

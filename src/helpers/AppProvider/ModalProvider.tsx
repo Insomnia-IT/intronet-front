@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useContext,
   useState,
-} from "react";
+} from "preact/compat";
 import { ModalProps } from "@components/modals";
 
 export const ModalContext = createContext<{

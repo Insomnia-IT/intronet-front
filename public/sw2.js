@@ -2,7 +2,6 @@
 /* eslint-disable no-restricted-globals */
 const assets = [
   "/",
-  '/asset-manifest.json',
   "/root.version",
   "/index.html",
   "/sw-load.js",
@@ -114,13 +113,6 @@ class SwStorage{
     await Promise.all(
       assets.map(a => this.getFromCacheOrFetch(cache, a).catch(e => void 0))
     )
-    const assetsManifest = await cache.match('/asset-manifest.json').then(x => x.json());
-
-    for (let key in assetsManifest.files) {
-      if (!key.match(/\.(css|js)$/))
-        continue;
-      await this.getFromCacheOrFetch(cache, assetsManifest.files[key]).catch(e => void 0)
-    }
     this.resolve(cache);
     console.log('cache loaded')
     return cache;
@@ -142,6 +134,8 @@ class SwStorage{
   }
 
   getResponse(request){
+    if (new URL(request.url).pathname.match(/^\/(api|db)/))
+      return fetch(request);
     if (request.url.match(/\.\w+$/))
       return this.loading.then(cache => this.getFromCacheOrFetch(cache, request));
     return this.loading.then(cache => this.getFromCacheOrFetch(cache, '/'));

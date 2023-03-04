@@ -1,6 +1,6 @@
 import {Modal} from "@components/modal";
-import * as React from "react";
-import { FC } from "react";
+import * as React from "preact/compat";
+import { FC } from "preact/compat";
 import { ModalProps } from "@components/modals";
 import {Button} from "@components";
 
@@ -16,9 +16,9 @@ export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
         <Modal.CloseButton />
         <Modal.Header></Modal.Header>
         <Modal.Body>
-          <div spacing={5}>
-            <div fontSize={"3xl"}>Уверены, что хотите выйти?</div>
-            <div spacing={3} width={"100%"} align={"stretch"}>
+          <div>
+            <div>Уверены, что хотите выйти?</div>
+            <div width={"100%"} >
               <Button
                 onClick={() => modalProps.success(true)}
               >

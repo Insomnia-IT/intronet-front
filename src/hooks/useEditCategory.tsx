@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from "preact/compat";
 import { CategoryModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { categoriesStore } from "@stores";
