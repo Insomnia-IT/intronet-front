@@ -3,13 +3,14 @@ import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
 import {Cell} from "@cmmn/cell/lib";
-import {useCellState} from "../helpers/cell-state";
+import {useCellState} from "@helpers/cell-state";
+import {MainPage} from "./main/mainPage";
 
 export const routes = {
   main: {
     name: 'main',
     title: "Главная",
-    Component: null,
+    Component: MainPage,
   },
   board: {
     name: 'board',

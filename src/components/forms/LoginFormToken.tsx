@@ -1,69 +1,36 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "react";
+import React, {FC} from "react";
 
 export type LoginFormTokenProps = {
-  onSubmit?: (token: User["token"]) => void;
-  onCancel?: () => void;
+  onSubmit?: (token: User["token"]) => void; onCancel?: () => void;
 } & { token?: User["token"] };
 
 export const LoginFormToken: FC<LoginFormTokenProps> = ({
-  token,
-  onSubmit,
-}) => {
-  return (
-    <Formik
-      initialValues={{ token }}
-      onSubmit={({ token: newToken }) => onSubmit(newToken)}
-    >
-      {(props) => (
-        <Form key="form">
-          <Flex align={"center"} justify={"center"}>
-            <Stack spacing={8}>
-              <Stack align={"center"}>
-                <Heading fontSize={"4xl"}>Войдите в Ваш аккаунт</Heading>
-              </Stack>
-              <Box rounded={"lg"}>
-                <Stack spacing={4}>
-                  <FormControl>
-                    <FormLabel htmlFor="token">Токен</FormLabel>
-                    <Field
-                      as={Input}
-                      id="token"
-                      name="token"
-                      type="text"
-                      placeholder="YourToken"
-                    />
-                    <FormHelperText>
-                      Токен выдается штабом.
-                    </FormHelperText>
-                  </FormControl>
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    onClick={() => onSubmit(props.values.token)}
-                  >
-                    Войти
-                  </Button>
-                </Stack>
-              </Box>
-            </Stack>
-          </Flex>
-        </Form>
-      )}
-    </Formik>
-  );
+                                                          token, onSubmit,
+                                                        }) => {
+  return (<form onSubmit={e => {
+      e.preventDefault();
+      const data = new FormData(e.target as HTMLFormElement);
+      onSubmit(data.get('token').toString());
+    }}>
+      <div align={"center"} justify={"center"}>
+        <div spacing={8}>
+          <div align={"center"}>
+            <h2>Войдите в Ваш аккаунт</h2>
+          </div>
+          <div rounded={"lg"}>
+            <div spacing={4}>
+              <label>
+                <div>Токен</div>
+                <input name="token" type="text" placeholder="YourToken"
+                />
+                <i>
+                  Токен выдается штабом.
+                </i>
+              </label>
+              <input type='submit' value="Войти"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>);
 };

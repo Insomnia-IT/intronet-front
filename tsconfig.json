@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "jsx": "react",
     "allowJs": true,
+    "resolveJsonModule": true,
     "lib": [
       "ESNext",
       "dom"

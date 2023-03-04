@@ -1,0 +1,9 @@
+.modal{
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  max-height: 80vh;
+  z-index: 10;
+  background: aliceblue;
+  height: auto;
+}

@@ -1,7 +1,7 @@
 import { cell } from "@cmmn/cell/lib";
 import { qrApi } from "@api";
-import { ulid } from "../helpers/ulid";
 import { ObservableDB } from "./observableDB";
+import {Fn} from "@cmmn/cell/lib";
 
 class AccountStore {
   @cell
@@ -17,7 +17,7 @@ class AccountStore {
 
   public Add(qr: string) {
     const acc = {
-      _id: ulid(),
+      _id: Fn.ulid(),
       qr,
       name: null,
       token: null,

@@ -1,4 +1,4 @@
-import { useToast } from "@chakra-ui/react";
+import {toast} from "@components";
 import React, { useCallback } from "react";
 import { ScheduleElementModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
@@ -10,8 +10,6 @@ import { scheduleStore } from "@stores/schedule.store";
  */
 export const useAddSchedule = (locationId: Schedule["locationId"]) => {
   const app = useAppContext();
-
-  const toast = useToast();
 
   return useCallback(
     async (

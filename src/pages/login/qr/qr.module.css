@@ -15,7 +15,7 @@
 }
 
 .button {
-  composes: button from "/src/styles.css";
+  composes: button from "/public/styles/styles.css";
   flex: 1;
 }
 

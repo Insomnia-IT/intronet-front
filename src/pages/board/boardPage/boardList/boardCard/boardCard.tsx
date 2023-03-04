@@ -15,7 +15,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Heading } from "@components/heading/heading";
 import { RequireAuth } from "@components/RequireAuth";
 import { useAppContext } from "@helpers/AppProvider";
 import { CreatedDate } from "./createdDate/createdDate";
@@ -55,7 +54,7 @@ export const BoardCard = ({
       {...rest}
     >
       <VStack align={"flex-start"} spacing={2} pos={"relative"}>
-        <Heading level={2}>{title}</Heading>
+        <h2>{title}</h2>
         <NoteText text={text} />
 
         <RequireAuth role={["admin", "poteryashki"]}>

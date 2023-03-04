@@ -1,9 +1,8 @@
-import { cell } from "@cmmn/cell/lib";
+import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import {Directions, locationsStore} from "./locations.store";
-import {ulid} from "../helpers/ulid";
+import data from "./movies.json";
 
-const data = [];
 class MoviesStore {
   @cell
   private db = new ObservableDB<MovieBlock>("movies");
@@ -26,7 +25,7 @@ class MoviesStore {
       const location = locationsStore.Locations.toArray().find(x => x.name === dayInfo.Screen);
       let locationId = '';
       if (!location){
-        locationId = ulid();
+        locationId = Fn.ulid();
         await locationsStore.addLocation({
           name: dayInfo.Screen,
           ...center,
@@ -45,7 +44,7 @@ class MoviesStore {
       for (let i = 0; i < dayInfo.Blocks.length; i++) {
         const block = dayInfo.Blocks[i];
         this.db.add({
-          _id: ulid(),
+          _id: Fn.ulid(),
           day: dayInfo.Day,
           info: {
             Title: block.Title,

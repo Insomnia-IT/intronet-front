@@ -1,8 +1,8 @@
-import { useToast } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { LocationModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
+import {toast} from "@components";
 
 /**
  * Хук для редактирования локации
@@ -11,7 +11,6 @@ import { locationsStore } from "@stores/locations.store";
 export const useEditLocation = (location: InsomniaLocation) => {
   const app = useAppContext();
 
-  const toast = useToast();
 
   return useCallback(async () => {
     try {

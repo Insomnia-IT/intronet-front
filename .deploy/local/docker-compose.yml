@@ -24,8 +24,11 @@ services:
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
+    ports:
+      - 5984:5984
     volumes:
       - ./.data:/opt/couchdb/data
+      - ./couchdb.ini:/opt/couchdb/etc/local.ini
     networks:
       main:
 

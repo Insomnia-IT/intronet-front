@@ -1,9 +1,5 @@
-import { compare } from "../helpers/compare";
-import {EventEmitter} from "@cmmn/cell/lib";
+import { EventEmitter, compare, Fn } from "@cmmn/cell/lib";
 import PouchDB from "pouchdb-browser";
-
-const remote = `${location.protocol}//admin:password@${location.host}/db`
-
 
 export class ObservableDB<
   T extends { _id: string }
@@ -14,46 +10,21 @@ export class ObservableDB<
     {type: "add"; key: string | number; value: T; source: "user" | "server" | "db"} |
     {type: "delete"; key: string | number; source: "user" | "server" | "db"}
 }> {
-  private db= new PouchDB<T>(this.name);
-  private items = new Map<string, T>();
+  protected db= new PouchDB<T>(this.name);
 
-  public isLoaded = new Promise<void>((resolve) =>
-    this.once("loaded", () => resolve())
-  );
+  protected items = new Map<string, T>();
 
-  constructor(protected name: string) {
+  public isLoaded = this.onceAsync("loaded");
+
+  constructor(public name: string) {
     super();
     window[name] = this;
     this.init();
   }
 
-  async init(){
-    const sync = PouchDB.sync(`${remote}/${this.name}`, this.db, {
-      live: true,
-      retry: true
-    });
-    sync.on('change', event => {
-      if (event.direction == "push")
-        return;
-      for (let doc of event.change.docs) {
-        this.items.set(doc._id, doc);
-        this.emit("change", {
-          source: "server",
-          type: "update",
-          key: doc._id,
-          value: doc
-        });
-      }
-    });
-    const items = await this.db.allDocs<T>({
-      include_docs: true,
-    })
-    this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
-    this.emit("change", {
-      source: "db",
-      type: "init",
-      value: items.rows.map(x => x.doc),
-    });
+  async init() {
+    await this.sync();
+
     this.emit("loaded");
   }
 
@@ -115,6 +86,7 @@ export class ObservableDB<
     this.db.allDocs().then(x => Promise.all(x.rows.map(d => this.db.remove(d.id, d.value.rev))))
       .then(x => this.db.compact())
       .then(x => this.db.viewCleanup())
+      .then(x => versions.update({_id: this.name, version: Fn.ulid()}));
     this.items.clear();
   }
 
@@ -135,6 +107,7 @@ export class ObservableDB<
       value,
       source,
     });
+    return value;
   }
 
   addRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
@@ -180,4 +153,69 @@ export class ObservableDB<
   values() {
     return this.items.values();
   }
+
+  async loadItems(){
+    const items = await this.db.allDocs<T>({
+      include_docs: true,
+    });
+    this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
+    this.emit("change", {
+      source: "db",
+      type: "init",
+      value: items.rows.map(x => x.doc),
+    });
+  }
+
+  async sync() {
+    const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
+    await remote.replicate.to(this.db);
+    versions.on('change', async e => {
+      if (e.type == 'update' && e.key == this.name){
+        await remote.replicate.to(this.db);
+        await this.loadItems();
+      }
+    });
+    this.on('change', async e => {
+      if (e.type !== 'init') {
+        await this.db.replicate.to(remote);
+        await versions.addOrUpdate({
+          _id: this.name,
+          version: Fn.ulid()
+        });
+      }
+    })
+    await this.loadItems();
+  }
 }
+
+class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
+  constructor() {
+    super('versions');
+  }
+
+  async init(){
+    const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
+    await remote.replicate.to(this.db);
+    const sync = PouchDB.sync(remote, this.db, {
+      live: true,
+      retry: true
+    });
+    sync.on('change', event => {
+      if (event.direction == "push")
+        return;
+      for (let doc of event.change.docs) {
+        this.items.set(doc._id, doc as any);
+        this.emit("change", {
+          source: "server",
+          type: "update",
+          key: doc._id,
+          value: doc as any
+        });
+      }
+    });
+    this.emit("loaded");
+  }
+
+}
+
+const versions = new VersionsDB();

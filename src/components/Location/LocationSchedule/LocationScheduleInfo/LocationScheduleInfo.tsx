@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { LocationScheduleInfoProps } from "./types";
 import styles from "./styles.module.css";
-import { ChevronUpIcon } from "@chakra-ui/icons";
 import { ScheduleInfoMovie } from "./ScheduleInfoMovie";
+import { Icons } from "@icons";
 
 export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
   const x = props.auditoryElement;
@@ -15,7 +15,7 @@ export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
         {x.name}
         {x.age && <span className={styles.age}>{x.age}+</span>}
       </div>
-      <ChevronUpIcon
+      <Icons.ArrowRight
         className={props.selected ? styles.expander : styles.expanderOpened}
       />
       {x.changes && (

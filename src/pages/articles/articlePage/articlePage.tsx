@@ -1,7 +1,6 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
 import * as React from "react";
 import { BackRoutButton } from "@components/backRoutButton/backRoutButton";
-import { Heading } from "@components/heading/heading";
 import {Loading} from "@components";
 import { articlesStore } from "../../../stores/articles.store";
 import { Article } from "./article/article";
@@ -19,9 +18,7 @@ export const ArticlePage: React.FC = () => {
         <Loading isLoading={isLoading}>
           {article ? (
             <>
-              <Heading level={1} mb={4}>
-                {article.title}
-              </Heading>
+              <h1>{article.title}</h1>
               <Article md={article.text}></Article>
             </>
           ) : (

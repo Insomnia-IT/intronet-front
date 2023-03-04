@@ -1,4 +1,3 @@
-import { Box, Container, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { useAddCategory, useEditCategory } from "@hooks";
 import { BoardList } from "./boardList/boardList";
@@ -11,26 +10,26 @@ export const BoardPage: FC = () => {
   const addCategory = useAddCategory();
 
   return (
-    <Container h={"100%"}>
-      <VStack pt={8} align={"flex-start"} spacing={4} w={"100%"} maxH={"100%"}>
-        <Box>
+    <div h={"100%"}>
+      <div pt={8} align={"flex-start"} spacing={4} w={"100%"} maxH={"100%"}>
+        <div>
           <Header />
-        </Box>
-        <Box minW={"100%"}>
+        </div>
+        <div minW={"100%"}>
           <Categories
             onEditCategory={editCategory}
             onAddCategory={addCategory}
           />
-        </Box>
-        <Box
+        </div>
+        <div
           minH={1}
           overflowY={"auto"}
           w={"100%"}
           className={" hide-scrollbar"}
         >
           <BoardList />
-        </Box>
-      </VStack>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };

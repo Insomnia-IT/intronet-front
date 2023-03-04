@@ -1,29 +1,11 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Tag,
-  Textarea,
-  useToast,
-  VStack,
-} from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import React, { FC, useEffect } from "react";
-import { locationsStore } from "@stores/locations.store";
 import { ModalProps } from ".";
 import { getIconByDirectionId } from "../../pages/map/icons/icons";
-import { directionsStore } from "../../stores";
-import { useCellState } from "../../helpers/cell-state";
+import { directionsStore, locationsStore } from "@stores";
+import { useCellState } from "@helpers/cell-state";
+import {Button, toast} from "@components";
+import {Modal} from "@components/modal";
 
 const center = {
   lat: 54.68008397222222,
@@ -49,8 +31,6 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
   lon = center.lon,
   ...modalProps
 }) => {
-  const toast = useToast();
-
   useEffect(() => {
     (async () => {
       try {
@@ -75,9 +55,9 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
       onClose={modalProps.abort}
       scrollBehavior="outside"
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader></ModalHeader>
+      <Modal.Overlay />
+      <Modal.Content>
+        <Modal.Header></Modal.Header>
         <Formik
           initialValues={
             {
@@ -96,34 +76,32 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
         >
           {(props) => (
             <Form key="form">
-              <ModalBody>
-                <VStack gap="4" alignItems="unset">
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="name">Название локации</FormLabel>
-                    <Field as={Input} id="name" name="name" type="text" />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel htmlFor="description">
+              <Modal.Body>
+                <div gap="4" alignItems="unset">
+                  <label>
+                    <div htmlFor="name">Название локации</div>
+                    <input required id="name" name="name" type="text" />
+                  </label>
+                  <label>
+                    <div htmlFor="description">
                       Описание локации
-                    </FormLabel>
-                    <Field
-                      as={Textarea}
+                    </div>
+                    <textarea
                       id="description"
                       name="description"
-                      type="text"
-                      height="20"
+                      style={{height:20}}
                     />
-                  </FormControl>
+                  </label>
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="lat">Широта</FormLabel>
-                    <Field as={Input} id="lat" name="lat" type="number" />
-                  </FormControl>
+                  <label>
+                    <div htmlFor="lat">Широта</div>
+                    <input required id="lat" name="lat" type="number" />
+                  </label>
 
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="lon">Долгота</FormLabel>
-                    <Field as={Input} id="lon" name="lon" type="number" />
-                  </FormControl>
+                  <label >
+                    <div htmlFor="lon">Долгота</div>
+                    <input required id="lon" name="lon" type="number" />
+                  </label>
                   <Button
                     onClick={() => {
                       props.setFieldValue("lat", center.lat);
@@ -134,9 +112,9 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                   >
                     Поставить по центру карты
                   </Button>
-                  <FormControl>
-                    <FormLabel htmlFor="image">Значок</FormLabel>
-                    <Flex flexWrap="wrap">
+                  <label>
+                    <div htmlFor="image">Значок</div>
+                    <div flexWrap="wrap">
                       {direcitons.map((direction: Direction) => (
                         <svg
                           width={36}
@@ -157,12 +135,12 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                           {getIconByDirectionId(direction._id)}
                         </svg>
                       ))}
-                    </Flex>
-                  </FormControl>
+                    </div>
+                  </label>
 
-                  <FormControl>
-                    <FormLabel htmlFor="tags">Тэги</FormLabel>
-                    <HStack
+                  <label>
+                    <div htmlFor="tags">Тэги</div>
+                    <div
                       align="center"
                       flexWrap="wrap"
                       flexDirection="row"
@@ -170,7 +148,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                     >
                       {locationsStore.Tags.toArray().map((tag) => {
                         return (
-                          <Tag
+                          <div
                             id="tags"
                             key={tag._id}
                             size="lg"
@@ -191,43 +169,40 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
                             }}
                           >
                             {tag.name}
-                          </Tag>
+                          </div>
                         );
                       })}
-                    </HStack>
-                  </FormControl>
-                </VStack>
-              </ModalBody>
-              <ModalFooter>
-                <HStack width="full" justifyContent="space-between">
-                  <Box>
-                    <Button
-                      variant="solid"
-                      colorScheme="red"
+                    </div>
+                  </label>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <div width="full" justifyContent="space-between">
+                  <div>
+                    <Button solid
                       onClick={modalProps.abort}
                       disabled
                     >
                       Удалить
                     </Button>
-                  </Box>
-                  <Box>
-                    <Button variant="ghost" mr={3} onClick={modalProps.abort}>
+                  </div>
+                  <div>
+                    <Button onClick={modalProps.abort}>
                       Отменить
                     </Button>
                     <Button
-                      colorScheme="blue"
                       type="submit"
                       isLoading={props.isSubmitting}
                     >
                       Сохранить
                     </Button>
-                  </Box>
-                </HStack>
-              </ModalFooter>
+                  </div>
+                </div>
+              </Modal.Footer>
             </Form>
           )}
         </Formik>
-      </ModalContent>
+      </Modal.Content>
     </Modal>
   );
 };

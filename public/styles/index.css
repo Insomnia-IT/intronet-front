@@ -5,6 +5,7 @@ body, html {
   overflow: hidden;
   overscroll-behavior: contain;
 }
+
 .button-clear {
   margin: 0;
   padding: 0;
@@ -12,6 +13,7 @@ body, html {
   border: none;
   border-radius: 0;
 }
+
 #root {
   height: 100%;
   display: flex;
@@ -19,6 +21,7 @@ body, html {
   min-height: 0;
   --blue: #edf2f7;
 }
+
 /* Скрываем scrollbar для Chrome, Safari и Opera */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -29,6 +32,7 @@ body, html {
   -ms-overflow-style: none; /* IE и Edge */
   scrollbar-width: none; /* Firefox */
 }
+
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -37,9 +41,10 @@ body, html {
   scroll-behavior: smooth;
 }
 
-.flex{
+.flex {
   display: flex;
 }
-.column{
+
+.column {
   flex-direction: column;
 }

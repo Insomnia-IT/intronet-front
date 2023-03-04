@@ -1,10 +1,9 @@
 import { DateTime } from "luxon";
 import React, { FC, useState } from "react";
 import styles from "../../../components/schedule/schedule.module.css";
-import {Directions, locationsStore} from "../../../stores/locations.store";
-import { useCellState } from "../../../helpers/cell-state";
-import {moviesStore} from "../../../stores";
-import {ScheduleInfoMovie} from "../../../components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
+import {Directions, locationsStore, moviesStore} from "@stores";
+import { useCellState } from "@helpers/cell-state";
+import {ScheduleInfoMovie} from "@components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
 
 export type TimetableProps = {
   list?: TimetableSlot[];

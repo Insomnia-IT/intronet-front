@@ -11,3 +11,9 @@ build:
    собирает docker image `insomnia/intronet-front` 
 
 запуск: docker-compose
+
+## dev
+
+* `npm run run`
+* или `npm run compile`, `npm run bundle:watch`, `npm run serve`
+

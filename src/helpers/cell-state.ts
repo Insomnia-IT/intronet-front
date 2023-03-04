@@ -9,7 +9,6 @@ export function useCellState<T>(
   const [value, setter] = useState(cell.get());
   useEffect(() => {
     const listener = (e) => {
-      console.log(e.value)
       setter(e.value);
     };
     cell.on('change', listener);
