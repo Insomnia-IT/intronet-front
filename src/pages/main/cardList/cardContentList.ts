@@ -14,19 +14,19 @@ export const cardContentList: TMainPageCard[] = [
   {
     _id: Fn.ulid(),
     title: "Техника безопасности",
-    img:"/images/insomnia_intro_3.webp",
+    img: "/public/images/insomnia_intro_3.webp",
     link: ['article', '3'],
   },
   {
     _id: Fn.ulid(),
     title: "FAQ",
-    img: "/images/insomnia_intro_4.webp",
+    img: "/public/images/insomnia_intro_4.webp",
     link: ['article', '4'],
   },
   {
     _id: Fn.ulid(),
     title: "Расписание транспорта от фестиваля",
-    img:  "/images/insomnia_intro_5.webp",
+    img:  "/public/images/insomnia_intro_5.webp",
     link: ['article', '5'],
   },
 ];

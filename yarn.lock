@@ -1931,27 +1931,27 @@
   resolved "https://registry.yarnpkg.com/@chakra-ui/visually-hidden/-/visually-hidden-2.0.15.tgz#60df64e0ab97d95fee4e6c61ccabd15fd5ace398"
   integrity sha512-WWULIiucYRBIewHKFA7BssQ2ABLHLVd9lrUo3N3SZgR0u4ZRDDVEUNOy+r+9ruDze8+36dGbN9wsN1IdELtdOw==
 
-"@cmmn/cell@1.7.10":
-  version "1.7.10"
-  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.10.tgz#ed96ca83f4bafc8f42abf139310217737ac00a80"
-  integrity sha512-dF3SK7c/oVgyZKqy/9FwmJPphhZQ+o/OsDcOe5zzVTtyMNSOHmY6HnS9ppte7OENV7aOHwZlKXqJ/wtQU+shew==
+"@cmmn/cell@1.7.11":
+  version "1.7.11"
+  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.11.tgz#0bea1afd55c69631cf9c8d9321db2098d512b1b1"
+  integrity sha512-sLPFVoeRUxH/ITM23y8kITFYrTtQplS51IkAFYG+mKD2BrVyB/cH1k5umkII29S7USVVJhNPFnQLwbmJS/7ijw==
   dependencies:
-    "@cmmn/core" "^1.7.10"
+    "@cmmn/core" "^1.7.11"
 
-"@cmmn/core@^1.7.10":
-  version "1.7.10"
-  resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-1.7.10.tgz#fcfd30f05206603c52d02b613386a749a42d641e"
-  integrity sha512-NCuPj1KcjMEUZRV1MWVIli3va3NUEAd7WJwwffMdbiwsUixK3ywhUkhLb/fMvn54kMkrBRF0F3j77LtQpoctzQ==
+"@cmmn/core@^1.7.11":
+  version "1.7.11"
+  resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-1.7.11.tgz#95e279e115d0a077b71b5da43b1f89adf3ead515"
+  integrity sha512-UsjmctYin9AjwCd48S6jMUAzKLdhsxqyMoKBS30ZSBQ5MQTBLIOF1ooo3Y1pcuqHyuCMGr1WrXMZKiHysE8CRA==
   dependencies:
     "@types/luxon" "2.x.x"
     bind-decorator "^1.0.11"
     luxon "2.x.x"
     msgpackr "^1.5.2"
 
-"@cmmn/tools@1.7.10":
-  version "1.7.10"
-  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-1.7.10.tgz#9e58a9d3ce9882b2db6071e8a318e3d0c82dfc8a"
-  integrity sha512-ld38eezNBeGeliSnj+xmdzT8+FiDPI/oypkTwPPpuV+FyEVyvO9xNqUvUveC1NcSGaRUp+PJJbf0VyhyuovrOg==
+"@cmmn/tools@1.7.11":
+  version "1.7.11"
+  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-1.7.11.tgz#00ef13f4fd7ebf50fea6bc500abbca58e74b833d"
+  integrity sha512-bjBKTWvRNdX3V4LhpJUR+8L/AOgW7qj/teNuwcGiV38nPtHK54KXzJhSMKycJPmfYZWclsAvCnyKhWEi00PPkA==
   dependencies:
     "@jest/globals" "27.x.x"
     "@modular-css/rollup" "28"

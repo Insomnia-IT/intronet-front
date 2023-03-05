@@ -14,6 +14,8 @@ build:
 
 ## dev
 
-* `npm run run`
-* или `npm run compile`, `npm run bundle:watch`, `npm run serve`
+* `npm run ci` - make docker production image
+* `docker compose up -d` - start local production server on :8092
+* `npm run run` - serve dev version with auto refresh on :5001 with db proxy to :8092
+* или `npm run compile`, `npm run bundle:watch`, `npm run serve` - same but in different processes
 

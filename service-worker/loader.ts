@@ -1,6 +1,8 @@
 "use strict";
 import {ServiceWorkerAction} from "./actions";
 
+// @ts-ignore
+const sw = process.env.NODE_ENV == 'production' ? "/sw.min.js" : "/sw.js";
 if (navigator.serviceWorker && !location.href.includes('localhost')) {
 
   const handle = globalThis.ServiceWorkerHandle = {
@@ -37,7 +39,7 @@ if (navigator.serviceWorker && !location.href.includes('localhost')) {
       action: 'init'
     });
   }else {
-    navigator.serviceWorker.register("/sw.min.js", {scope: "/"}).then(reg => {
+    navigator.serviceWorker.register(sw, {scope: "/"}).then(reg => {
       reg.addEventListener('updatefound', () => {
         // A wild service worker has appeared in reg.installing!
         const newWorker = reg.installing;
