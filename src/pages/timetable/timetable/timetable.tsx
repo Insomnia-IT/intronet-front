@@ -10,7 +10,7 @@ export type TimetableProps = {
 };
 
 export const Timetable: FC<TimetableProps> = ({ list }) => {
-  const [screens] = useCellState(() => locationsStore.Locations.toArray().filter(x => x.directionId == Directions.screen.toString()));
+  const [screens] = useCellState(() => locationsStore.FullLocations.filter(x => x.directionId == 'screen'));
   const [screen, setScreen] = useState(() => screens[0]?._id);
   const [blocks] = useCellState(() => {
     return moviesStore.Movies.filter(x => x.locationId === screen)

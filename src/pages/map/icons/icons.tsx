@@ -1,7 +1,6 @@
 import React from "preact/compat";
 import styles from "../map-element.module.css";
-import { directionsStore } from "@stores";
-import {Directions} from "@stores";
+import {Directions, directionsStore} from "@stores";
 
 export const MapIcons: {
   [key in Directions]?: any;
@@ -528,6 +527,6 @@ export const MapIcons: {
 };
 
 export function getIconByDirectionId(id: string) {
-  const x = directionsStore.DirectionToDirection(id);
+  const x = directionsStore.DirectionToDirection(id) ?? Directions[id];
   return MapIcons[x] ?? <circle r="15px" fill="#A266" />;
 }
