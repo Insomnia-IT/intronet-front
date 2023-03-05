@@ -4,7 +4,7 @@ import {ServiceWorkerAction} from "./actions";
 declare var self: ServiceWorkerGlobalScope;
 import assets from "./assets.json";
 
-const versionUrl = '/root.version';
+const versionUrl = '/public/root.version';
 
 export class SwStorage {
   resolve: () => void;
