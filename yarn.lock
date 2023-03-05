@@ -1931,14 +1931,14 @@
   resolved "https://registry.yarnpkg.com/@chakra-ui/visually-hidden/-/visually-hidden-2.0.15.tgz#60df64e0ab97d95fee4e6c61ccabd15fd5ace398"
   integrity sha512-WWULIiucYRBIewHKFA7BssQ2ABLHLVd9lrUo3N3SZgR0u4ZRDDVEUNOy+r+9ruDze8+36dGbN9wsN1IdELtdOw==
 
-"@cmmn/cell@1.7.9":
-  version "1.7.9"
-  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.9.tgz#8cfcc53706139808bae1a82d5794535c62e206d3"
-  integrity sha512-NrYcsO5HNbTBQPA0XN02ovQpCLSA5gw3AtOK4ArOA54hfWCDFf+AjBq57jAzHZFUweiDMETmWkBUDaDhAaP2UQ==
+"@cmmn/cell@1.7.10":
+  version "1.7.10"
+  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.10.tgz#ed96ca83f4bafc8f42abf139310217737ac00a80"
+  integrity sha512-dF3SK7c/oVgyZKqy/9FwmJPphhZQ+o/OsDcOe5zzVTtyMNSOHmY6HnS9ppte7OENV7aOHwZlKXqJ/wtQU+shew==
   dependencies:
-    "@cmmn/core" "^1.7.9"
+    "@cmmn/core" "^1.7.10"
 
-"@cmmn/core@^1.7.9":
+"@cmmn/core@^1.7.10":
   version "1.7.10"
   resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-1.7.10.tgz#fcfd30f05206603c52d02b613386a749a42d641e"
   integrity sha512-NCuPj1KcjMEUZRV1MWVIli3va3NUEAd7WJwwffMdbiwsUixK3ywhUkhLb/fMvn54kMkrBRF0F3j77LtQpoctzQ==
@@ -1948,10 +1948,10 @@
     luxon "2.x.x"
     msgpackr "^1.5.2"
 
-"@cmmn/tools@1.7.9":
-  version "1.7.9"
-  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-1.7.9.tgz#fff356644ad75d1ed27a883f006aa929566afcd5"
-  integrity sha512-zSxvq+jXukl4SE2RvMCG7c54GQAGD4twsBeeO0rrEydQrWiPznxwetcc9gXNXbbvzE3iAKHfvCNafHJ4NfLraQ==
+"@cmmn/tools@1.7.10":
+  version "1.7.10"
+  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-1.7.10.tgz#9e58a9d3ce9882b2db6071e8a318e3d0c82dfc8a"
+  integrity sha512-ld38eezNBeGeliSnj+xmdzT8+FiDPI/oypkTwPPpuV+FyEVyvO9xNqUvUveC1NcSGaRUp+PJJbf0VyhyuovrOg==
   dependencies:
     "@jest/globals" "27.x.x"
     "@modular-css/rollup" "28"

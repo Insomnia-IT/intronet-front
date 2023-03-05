@@ -1,10 +1,10 @@
 import { cell } from "@cmmn/cell/lib";
-import { TileConverter } from "../helpers/tile.converter";
+import { TileConverter } from "@helpers/tile.converter";
 
 class MapStore {
   constructor() {
-    this.load("/images/schema4.webp").then((x) => (this.Schema = x));
-    this.load("/images/map_17_78306_41656_78314_41663.png").then(
+    this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
+    this.load("/public/images/map_17_78306_41656_78314_41663.png").then(
       (x) => (this.Map2 = x)
     );
     // this.load("/images/map2.webp").then((x) => (this.Map2 = x));

@@ -8,13 +8,16 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     container_name: intronet-front
     ports:
-      - 8092:80
+      - "8092:80"
 
   db:
-    container_name: db
+    container_name: insomnia_couchdb
     image: couchdb
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
+    ports:
+      - 5984:5984
     volumes:
       - ./.data:/opt/couchdb/data
+      - ./couchdb.ini:/opt/couchdb/etc/local.ini

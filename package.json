@@ -6,16 +6,16 @@
     "compile": "cmmn compile --watch",
     "serve": "cmmn serve -b",
     "run": "cmmn spawn compile --watch bundle --watch serve -b",
-    "bundle:watch": "cmmn bundle --watch",
-    "bundle:stats": "cmmn bundle --prod --stats",
-    "build": "cmmn bundle --prod",
+    "bundle:watch": "cmmn bundle -b --watch",
+    "bundle:stats": "cmmn bundle -b --prod --stats",
+    "build": "cmmn compile -b && cmmn bundle -b --prod",
     "story": "start-storybook -p 6006",
     "ci": "docker build . -t insomnia/intronet-front"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.0",
     "@chakra-ui/react": "^2.0.2",
-    "@cmmn/cell": "1.7.9",
+    "@cmmn/cell": "1.7.10",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@types/luxon": "^2.3.1",
@@ -33,7 +33,7 @@
     "typescript": "4.6.4"
   },
   "devDependencies": {
-    "@cmmn/tools": "1.7.9",
+    "@cmmn/tools": "1.7.10",
     "@storybook/addon-actions": "6.5.0-rc.0",
     "@storybook/addon-essentials": "6.5.0-rc.0",
     "@storybook/addon-links": "6.5.0-rc.0",
@@ -61,7 +61,7 @@
       "inject": "json",
       "html": "src/index.html",
       "mount": {
-        "/": "./public"
+        "/public": "./public"
       }
     },
     "sw": {
