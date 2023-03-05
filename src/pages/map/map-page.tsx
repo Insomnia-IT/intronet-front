@@ -1,12 +1,10 @@
 import { cell } from "@cmmn/cell/lib";
-import { AddIcon, CheckIcon, EditIcon } from "@chakra-ui/icons";
-import { IconButton } from "@chakra-ui/react";
-import React from "react";
-import { LocationModal } from "src/components";
-import { RequireAuth } from "src/components/RequireAuth";
-import { ModalContext } from "src/helpers/AppProvider";
-import { locationsStore } from "src/stores/locations.store";
-import { mapStore } from "src/stores/map.store";
+import React from "preact/compat";
+import {Button} from "@components";
+import { RequireAuth } from "@components/RequireAuth";
+import { ModalContext } from "@helpers/AppProvider";
+import { locationsStore } from "@stores/locations.store";
+import { mapStore } from "@stores/map.store";
 import { cellState } from "../../helpers/cell-state";
 import { getIconByDirectionId } from "./icons/icons";
 import { LayersIcon } from "./icons/LayersIcon";
@@ -17,6 +15,7 @@ import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
 import {useRouter} from "../routing";
+import {Icons} from "../../icons";
 
 export function MapPageWithRouting() {
   const { route } = useRouter();
@@ -27,13 +26,13 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
   @cell
   isMap = true;
   @cell
-  selected: number;
+  selected: string;
   @cell
   isEditing = false;
   static contextType = ModalContext;
 
   componentDidMount() {
-    this.selected = +this.props.locationId;
+    this.selected = this.props.locationId;
   }
 
   @cell
@@ -43,10 +42,10 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     try {
       // TODO: fix class component context
       // @ts-ignore
-      const newLocation = await this.context.show<InsomniaLocation>((props) => (
-        <LocationModal {...props} />
-      ));
-      locationsStore.addLocation(newLocation);
+      // const newLocation = await this.context.show<InsomniaLocation>((props) => (
+      //   <LocationModal {...props} />
+      // ));
+      // locationsStore.addLocation(newLocation);
       // TODO: add toast
     } catch (error) {
       // TODO: add toast
@@ -72,7 +71,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
         </>
       ) : null,
       title: x.name,
-      id: x.id,
+      id: x._id,
       radius: 10,
     } as unknown as MapItem;
   }
@@ -116,32 +115,29 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
         />
         <LocationSearch onSelect={this.selectLocation} />
         <div className={styles.buttons}>
-          <IconButton
-            icon={<LayersIcon />}
+          <LayersIcon
+            style={{cursor: 'pointer'}}
             onClick={() => {
               this.isMap = !this.isMap;
               this.isEditing = false;
               this.localChanges.clear();
             }}
-            aria-label="Change view"
-          />
+            aria-label="Change view"/>
+
 
           <RequireAuth>
-            <IconButton
-              icon={this.isEditing ? <CheckIcon /> : <EditIcon />}
-              onClick={() => {
-                if (this.isEditing) {
-                  this.saveLocations();
-                }
-                this.isEditing = !this.isEditing;
-              }}
-              aria-label="Start edit"
-            />
-            <IconButton
-              icon={<AddIcon />}
-              onClick={this.handleAddIconButtonClick}
-              aria-label="Add location"
-            />
+            <Button aria-label="Start edit" onClick={() => {
+              if (this.isEditing) {
+                this.saveLocations();
+              }
+              this.isEditing = !this.isEditing;
+            }}>
+              {this.isEditing ? <Icons.Ok/> : <Icons.Edit/>}
+            </Button>
+            <Button onClick={this.handleAddIconButtonClick}
+                     aria-label="Add location">
+              <Icons.Add/>
+            </Button>
           </RequireAuth>
         </div>
         {this.state.selected ? (
@@ -158,11 +154,11 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     this.localChanges.clear();
   }
 
-  selectLocation = (location: InsomniaLocation) => {
-    this.selected = location.id;
+  selectLocation = (location: InsomniaLocationFull) => {
+    this.selected = location._id;
   };
 
-  private localChanges = new Map<number, InsomniaLocation>();
+  private localChanges = new Map<string, InsomniaLocation>();
 
   updateLocation = (x: MapItem) => {
     const location = {
@@ -175,7 +171,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
       // @ts-ignore
       Object.assign(location, { x: x.point.X, y: x.point.Y });
     }
-    this.localChanges.set(location.id, location);
+    this.localChanges.set(location._id, location);
   };
 
   saveLocations() {

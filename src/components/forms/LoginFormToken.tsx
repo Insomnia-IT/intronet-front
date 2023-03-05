@@ -1,69 +1,43 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "react";
+import React, {FC, useState} from "preact/compat";
+import {cell, Cell} from "@cmmn/cell/lib";
 
 export type LoginFormTokenProps = {
-  onSubmit?: (token: User["token"]) => void;
-  onCancel?: () => void;
+  onSubmit?: (token: User["token"]) => void; onCancel?: () => void;
 } & { token?: User["token"] };
 
 export const LoginFormToken: FC<LoginFormTokenProps> = ({
-  token,
-  onSubmit,
-}) => {
-  return (
-    <Formik
-      initialValues={{ token }}
-      onSubmit={({ token: newToken }) => onSubmit(newToken)}
-    >
-      {(props) => (
-        <Form key="form">
-          <Flex align={"center"} justify={"center"}>
-            <Stack spacing={8}>
-              <Stack align={"center"}>
-                <Heading fontSize={"4xl"}>Войдите в Ваш аккаунт</Heading>
-              </Stack>
-              <Box rounded={"lg"}>
-                <Stack spacing={4}>
-                  <FormControl>
-                    <FormLabel htmlFor="token">Токен</FormLabel>
-                    <Field
-                      as={Input}
-                      id="token"
-                      name="token"
-                      type="text"
-                      placeholder="YourToken"
-                    />
-                    <FormHelperText>
-                      Токен выдается штабом.
-                    </FormHelperText>
-                  </FormControl>
-                  <Button
-                    bg={"blue.400"}
-                    color={"white"}
-                    _hover={{
-                      bg: "blue.500",
-                    }}
-                    onClick={() => onSubmit(props.values.token)}
-                  >
-                    Войти
-                  </Button>
-                </Stack>
-              </Box>
-            </Stack>
-          </Flex>
-        </Form>
-      )}
-    </Formik>
-  );
+                                                          token, onSubmit,
+                                                        }) => {
+  const [state, setField] = useForm({
+    token
+  });
+
+  return <div>
+    <h2>Войдите в Ваш аккаунт</h2>
+    <label>
+      <div>Токен</div>
+      <input value={state.token}
+             onChange={e => setField('token', e.currentTarget.value)}
+             name="token"
+             type="text"
+             placeholder="YourToken"/>
+      <i>
+        Токен выдается штабом.
+      </i>
+    </label>
+    <button onClick={() => onSubmit(state.token)}>Войти</button>
+  </div>;
 };
+
+
+export function useForm<T>(initial: Partial<T>):[
+  Partial<T>, SetField<T>
+] {
+  const [state, setState] = React.useState(initial);
+  const setField = React.useCallback((field, value) => setState(state => ({
+    ...state, [field]: value
+  })), [])
+  return [state, setField];
+}
+
+type SetField<T, TKey extends keyof T = keyof T> = (key: TKey, value: T[TKey]) => void;

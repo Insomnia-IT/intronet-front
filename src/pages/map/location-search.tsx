@@ -1,25 +1,16 @@
-import React from "react";
-import {
-  Flex,
-  HStack,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from "@chakra-ui/react";
-import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { cellState } from "src/helpers/cell-state";
+import React from "preact/compat";
+import { cellState } from "@helpers/cell-state";
 import { locationsStore } from "../../stores/locations.store";
 import { cell } from "@cmmn/cell/lib";
 import { getIconByDirectionId } from "./icons/icons";
 import styles from "./map-page.module.css";
 import { Chip } from "../../components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
-import { Close } from "src/components/close";
 import { scheduleStore } from "../../stores/schedule.store";
+import { Icons } from "@icons";
 
 export class LocationSearch extends React.PureComponent<{
-  onSelect(location: InsomniaLocation);
+  onSelect(location: InsomniaLocationFull);
 }> {
   @cell
   choosedTags = new ObservableList<Tag>();
@@ -39,7 +30,7 @@ export class LocationSearch extends React.PureComponent<{
       locationsStore.FullLocations.filter(
         (x) =>
           this.choosedTags.length === 0 ||
-          x.tags.some((tag) => this.choosedTags.some((y) => y.id === tag.id))
+          x.tags.some((tag) => this.choosedTags.some((y) => y._id === tag._id))
       ).filter(filterLocations(this.query)),
   });
 
@@ -51,41 +42,29 @@ export class LocationSearch extends React.PureComponent<{
         ref={this.root}
         className={this.state.opened ? styles.searchOpened : styles.search}
       >
-        <Flex direction="row">
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <SearchIcon color="gray.300" />
-            </InputLeftElement>
-            <Input
-              bg={"white"}
+        <div className="flex">
+            <Icons.Search/>
+            <input
+              className="flex-1"
               value={this.state.query}
               placeholder="Поиск мест и мероприятий"
-              onChange={(e) => (this.query = e.target.value)}
+              onChange={(e) => (this.query = e.currentTarget.value)}
             />
             {this.state.query && (
-              <InputRightElement onClick={() => (this.query = "")}>
-                <CloseIcon color="gray.200" />
-              </InputRightElement>
+              <Icons.Cancel onClick={() => (this.query = "")}/>
             )}
-          </InputGroup>
           <div className={styles.close} onClick={() => (this.opened = false)}>
-            <Close />
+            <Icons.Close />
           </div>
-        </Flex>
+        </div>
         {this.state.opened && (
           <>
-            <HStack
-              className={styles.chips}
-              padding="16px 0"
-              align="center"
-              flexDirection="row"
-              flex="auto 0 0"
-              overflowX="scroll"
+            <div className={styles.chips}
             >
               {this.state.tags.map((tag) => {
                 return (
                   <Chip
-                    key={tag.id}
+                    key={tag._id}
                     className={styles.chip}
                     activeClassName={styles.chipActive}
                     onClick={() => {
@@ -99,20 +78,11 @@ export class LocationSearch extends React.PureComponent<{
                   </Chip>
                 );
               })}
-            </HStack>
-            <Flex
-              direction="column"
-              bg="white"
-              flex="1"
-              minHeight="0"
-              overflowY="auto"
-            >
+            </div>
+            <div className="flex column">
               {this.state.locations.map((x) => (
-                <Flex
-                  key={x.id}
-                  padding="16px 0"
-                  gap="10px"
-                  alignItems="center"
+                <div className="flex"
+                  key={x._id}
                   onClick={() => {
                     this.props.onSelect(x);
                     this.opened = false;
@@ -125,9 +95,9 @@ export class LocationSearch extends React.PureComponent<{
                     {getIconByDirectionId(x.directionId)}
                   </svg>
                   <div>{x.name}</div>
-                </Flex>
+                </div>
               ))}
-            </Flex>
+            </div>
           </>
         )}
       </div>
@@ -164,7 +134,7 @@ function filterLocations(query: string) {
     }
     const schedules = scheduleStore.db
       .toArray()
-      .filter((x) => x.locationId === location.id);
+      .filter((x) => x.locationId === location._id);
     return schedules
       .flatMap((x) => x.audiences)
       .flatMap((x) => x.elements)

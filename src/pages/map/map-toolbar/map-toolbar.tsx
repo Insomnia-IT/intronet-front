@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Close, Expander, Location } from "src/components";
-import { locationsStore } from "src/stores/locations.store";
+import React, { useState } from "preact/compat";
+import { Expander } from "@components";
+import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";
+import {Icons} from "@icons";
+import {Location} from "@components/Location";
 
 export type MapToolbarProps = {
-  id: number | string;
+  id: string;
   onClose();
 };
 
@@ -17,7 +19,7 @@ export function MapToolbar(props: MapToolbarProps) {
     <>
       <div className={expanded ? styles.expandedToolbar : styles.toolbar}>
         <div className={styles.close} onClick={props.onClose}>
-          <Close />
+          <Icons.Close />
         </div>
         <div
           className={expanded ? styles.down : styles.up}

@@ -1,13 +1,12 @@
-import { useToast } from "@chakra-ui/react";
-import { useCallback } from "react";
-import { scheduleStore } from "src/stores/schedule.store";
+import {toast} from "@components";
+import { useCallback } from "preact/compat";
+import { scheduleStore } from "@stores/schedule.store";
 
 /**
  * Хук для удаления элемента расписания
  * @returns Функция удаления.
  */
 export const useDeleteSchedule = (locationId: Schedule["locationId"]) => {
-  const toast = useToast();
 
   return useCallback(
     async (

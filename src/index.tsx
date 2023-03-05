@@ -1,6 +1,5 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
+import "./polyfill";
+import React, {render} from "preact/compat";
 import { App } from "./app/app";
 
 window.addEventListener('init', () => {
@@ -8,12 +7,7 @@ window.addEventListener('init', () => {
   for (let child of Array.from(container.children)) {
     child.remove();
   }
-  const root = createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
+  render(<App />, document.querySelector('#root'));
 });
 
 // If you want to start measuring performance in your app, pass a function

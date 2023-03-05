@@ -1,7 +1,7 @@
 import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Button, Editable, Flex } from "@chakra-ui/react";
 import { cell } from "@cmmn/cell/lib";
-import React from "react";
+import React from "preact/compat";
 import { cellState } from "../../../helpers/cell-state";
 import { Account, account } from "../../../stores";
 import { QRReader } from "../qr/qr-reader";
@@ -9,7 +9,7 @@ import { QRReader } from "../qr/qr-reader";
 function AccountInfo(acc: Account) {
   const deleteAcc = () => account.Remove(acc);
   return (
-    <Flex key={acc.id}>
+    <Flex key={acc._id}>
       <Editable>{acc.name ?? acc.qr}</Editable>
       <button>
         <DeleteIcon onClick={deleteAcc} />
@@ -18,7 +18,7 @@ function AccountInfo(acc: Account) {
   );
 }
 
-export class UserLogin extends React.Component {
+export class UserLogin extends React.Component<any, any> {
   @cell
   isAdding = false;
 

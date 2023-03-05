@@ -1,44 +1,44 @@
 import { DateTime } from "luxon";
-import React, { FC, useState } from "react";
+import React, { FC, useState } from "preact/compat";
 import styles from "../../../components/schedule/schedule.module.css";
-import { locationsStore } from "../../../stores/locations.store";
-import { ConnectedLocationSchedule } from "../../../components/Location/LocationSchedule";
-import { LocationScheduleInfo } from "../../../components/Location/LocationSchedule/LocationScheduleInfo";
-import { useCellState } from "../../../helpers/cell-state";
-import { Flex } from "@chakra-ui/react";
+import {locationsStore, moviesStore} from "@stores";
+import { useCellState } from "@helpers/cell-state";
+import {ScheduleInfoMovie} from "@components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
 
 export type TimetableProps = {
   list?: TimetableSlot[];
 };
 
 export const Timetable: FC<TimetableProps> = ({ list }) => {
-  const [screens] = useCellState(() => locationsStore.ScreenLocations);
-  const [screen, setScreen] = useState(() => screens[0]?.id);
-  console.log(screens, screen);
+  const [screens] = useCellState(() => locationsStore.FullLocations.filter(x => x.directionId == 'screen'));
+  const [screen, setScreen] = useState(() => screens[0]?._id);
+  const [blocks] = useCellState(() => {
+    return moviesStore.Movies.filter(x => x.locationId === screen)
+  }, [screen]);
   return (
-    <Flex overflowY="auto" flexDirection="column">
+    <div className="flex column">
       <div className={styles.tags}>
-        {screens.map((location) => {
-          return (
-            <div
-              className={
-                screen === location.id ? styles.auditoryActive : styles.auditory
-              }
-              key={location.id}
-              onClick={() => {
-                setScreen(location.id);
-              }}
-            >
-              {location.name ?? screenNames[location.id]}
-            </div>
-          );
-        })}
+        {screens.map((location) => (
+          <div
+            className={
+              screen === location._id ? styles.auditoryActive : styles.auditory
+            }
+            key={location._id}
+            onClick={() => {
+              setScreen(location._id);
+            }}
+          >
+            {location.name ?? screenNames[location._id]}
+          </div>
+        ))}
       </div>
-      <ConnectedLocationSchedule
-        locationId={screen}
-        renderScheduleInfo={LocationScheduleInfo}
-      />
-    </Flex>
+      {blocks.map(x => (<div key={x._id} className="flex column">
+        <header>{x.info.Title}</header>
+        {x.movies.map((m, i) => <div key={i}>
+          <ScheduleInfoMovie movie={m}/>
+        </div>)}
+      </div>))}
+    </div>
   );
 };
 

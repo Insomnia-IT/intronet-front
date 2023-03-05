@@ -39,15 +39,15 @@ declare module "*.html" {
 }
 
 type InsomniaLocation = {
-  id: number;
+  _id: string;
   name: string;
   description: string;
-  directionId: number;
+  directionId: string;
   x: number;
   y: number;
   lat: number;
   lon: number;
-  tags: number[];
+  tags: string[];
   image: string;
   menu?: string;
 };
@@ -65,29 +65,46 @@ type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
 };
 
 type Tag = {
-  id: number;
+  _id: string;
   name: string;
 };
 
 type Movie = {
-  id: number | string;
+  _id: string;
   title: string;
   start: Date;
   end: Date;
   author: string;
 };
 
+type MovieBlock = {
+  _id: string;
+  day: number;
+  locationId: string;
+  info: {
+    "Title": string;
+    "SubTitle": string;
+    "TitleEn": string;
+    "SubTitleEn": string;
+    "MinAge": number;
+    "Part": number;
+    "Start": string;
+    "End": string;
+  };
+  movies: MovieInfo[];
+}
+
 interface INote {
-  id: number;
+  _id: string;
   title: string;
   text: string;
-  categoryId: number;
+  categoryId: string;
   createdDate: string;
   createdBy: "admin" | null;
 }
 
 interface ICategory {
-  id: number; // Id категории
+  _id: string; // Id категории
   name: string; //название категории
   count: number; //количество элементов которым присвоена данная категория
   color: string; // Цвет категории, для раскрашивания её карточки
@@ -96,8 +113,8 @@ interface ICategory {
 type Day = "Thursday" | "Friday" | "Saturday" | "Sunday" | "Monday";
 
 interface Schedule {
-  id: number | string;
-  locationId: number;
+  _id: string;
+  locationId: string;
   day: Day;
   audiences: Auditory[];
 }
@@ -107,7 +124,7 @@ interface Auditory {
   elements: AuditoryElement[];
 }
 interface AuditoryElement {
-  id: number | string;
+  _id: string;
   type: "animation" | "lecture";
   name: string; //Название пункта расписания.
   description?: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
@@ -128,18 +145,18 @@ type MovieInfo = {
 };
 
 type Direction = {
-  id: number;
+  _id: string;
   name: string;
   image: string;
 };
 interface IArticle {
-  id: number;
+  _id: string;
   title: string;
   text: string;
 }
 
 type TMainPageCard = {
-  id: string;
+  _id: string;
   title: string;
   img: string;
   link: string[];
@@ -149,3 +166,13 @@ type User = {
   ticketId: string;
   token: string;
 };
+
+
+namespace JSX {
+  interface IntrinsicElements {
+    div: {
+      flex?: boolean;
+      column?: boolean;
+    } & JSX.IntrinsicElements['div'];
+  }
+}

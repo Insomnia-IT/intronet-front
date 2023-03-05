@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { LocationMenuProps } from "./types";
 import styles from "./styles.module.css";
 

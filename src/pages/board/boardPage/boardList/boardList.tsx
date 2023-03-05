@@ -1,10 +1,10 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
-import React, { FC, useEffect, useRef } from "react";
-import { NoteModal } from "src/components/modals";
-import { RequireAuth } from "src/components/RequireAuth";
-import { useAppContext } from "src/helpers/AppProvider";
-import { categoriesStore, notesStore, pagesStore } from "src/stores";
+import React, { FC, useEffect, useRef } from "preact/compat";
+import { NoteModal } from "@components/modals";
+import { RequireAuth } from "@components/RequireAuth";
+import { useAppContext } from "@helpers/AppProvider";
+import { categoriesStore, notesStore, pagesStore } from "@stores";
 import { Intersection } from "../../../../components/intersection";
 import { scrollToRef } from "../../../../helpers/scrollToRef";
 import { BoardCard } from "./boardCard/boardCard";
@@ -53,7 +53,7 @@ export const BoardList: FC = () => {
         <NoteModal {...props} {...note} />
       ));
       await notesStore.editNote({
-        body: { id, categoryId: note.categoryId, ...editedNote },
+        body: { _id: id, categoryId: note.categoryId, ...editedNote },
       });
       toast({
         title: "Объявление успешно изменено!",
@@ -76,7 +76,7 @@ export const BoardList: FC = () => {
 
   const handleDelete = async (note: INote) => {
     try {
-      await notesStore.removeNote({ path: { id: note.id } });
+      await notesStore.removeNote({ path: { id: note._id } });
       toast({
         title: "Объявление успешно удалено!",
         status: "success",
@@ -97,7 +97,6 @@ export const BoardList: FC = () => {
   };
 
   useEffect(() => {
-    notesStore.load();
     if (activeNote.current) scrollToRef(activeNote, true);
   }, []);
 
@@ -110,7 +109,7 @@ export const BoardList: FC = () => {
       )}
       <VStack as={"ul"} align={"streach"} spacing={4}>
         {notes.map((note) => (
-          <li key={note.id} ref={+id === note.id ? activeNote : null}>
+          <li key={note._id} ref={id === note._id ? activeNote : null}>
             <Intersection width="100%" height={getBoardCardHeight(note) + "px"}>
               <BoardCard
                 noteInfoObj={note}

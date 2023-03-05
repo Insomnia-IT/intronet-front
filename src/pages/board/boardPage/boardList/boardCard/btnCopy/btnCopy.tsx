@@ -1,9 +1,9 @@
 import { LinkIcon } from "@chakra-ui/icons";
 import { Link, LinkProps, Text } from "@chakra-ui/react";
-import * as React from "react";
+import * as React from "preact/compat";
 
 interface IBtnCopy extends LinkProps {
-  noteId: INote["id"];
+  noteId: INote["_id"];
   show?: boolean;
 }
 

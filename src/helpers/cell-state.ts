@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "preact/compat";
 import { Cell }  from "@cmmn/cell/lib";
 
 export function useCellState<T>(
-  getter: (() => T) | T
+  getter: (() => T) | T,
+  deps: any[] = []
 ): [T, (value: T) => void, Cell<T>] {
-  const cell = useMemo(() => new Cell(getter), [getter]);
-  const [value, setter] = useState(getter);
+  const cell = useMemo(() => new Cell(getter), [getter, ...deps]);
+  const [value, setter] = useState(cell.get());
   useEffect(() => {
     const listener = (e) => {
       setter(e.value);
@@ -15,11 +16,14 @@ export function useCellState<T>(
       cell.dispose();
     };
   }, [cell]);
+  useEffect(() => {
+    setter(cell.get());
+  }, deps)
   return [value, (v) => cell.set(v), cell];
 }
 
 export function cellState<TState>(
-  component: React.Component,
+  component: ComponentLike,
   state: StateOfGetters<TState>
 ): TState {
   const result: Partial<TState> = {};
@@ -62,3 +66,9 @@ export type GetterOrValue<T> = T | (() => T);
 export type StateOfGetters<T> = {
   [key in keyof T]: GetterOrValue<T[key]>;
 };
+
+export type ComponentLike = {
+  componentDidMount?(): void;
+  componentWillUnmount?(): void;
+  setState(state: any);
+}

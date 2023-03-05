@@ -1,138 +1,110 @@
-import { Dexie, Table } from "dexie";
-import { compare } from "../helpers/compare";
-import {EventEmitter} from "@cmmn/cell/lib";
+import { EventEmitter, compare, Fn, AsyncQueue } from "@cmmn/cell/lib";
+import PouchDB from "pouchdb-browser";
 
 export class ObservableDB<
-  T extends { id: number | string }
+  T extends { _id: string }
 > extends EventEmitter<{
   loaded: void;
-  change: {type: "init"; value: T[];  source: "user" | "server" | "db"} |
-    {type: "update"; key: string | number; value: T; source: "user" | "server" | "db"} |
-    {type: "add"; key: string | number; value: T; source: "user" | "server" | "db"} |
-    {type: "delete"; key: string | number; source: "user" | "server" | "db"}
+  change: {type: "init"; value: T[]; } |
+    {type: "update"; key: string | number; value: T;} |
+    {type: "batch-update"; keys: string[]; values: T[];} |
+    {type: "add"; key: string | number; value: T;} |
+    {type: "batch-add"; keys: string[]; values: T[];} |
+    {type: "delete"; key: string | number;}
 }> {
-  private table: Table<T>;
-  private items = new Map<number | string, T>();
+  protected db= new PouchDB<T>(this.name);
 
-  public isLoaded = new Promise<void>((resolve) =>
-    this.once("loaded", () => resolve())
-  );
+  protected items = new Map<string, T>();
 
-  constructor(name: string) {
+  public isLoaded: Promise<void> = this.onceAsync("loaded");
+
+  constructor(public name: string) {
     super();
-    const db = new Dexie(name);
-    db.version(1).stores({
-      [name]: `id`,
-    });
-    this.table = db[name];
-    this.table.toArray().then((items) => {
-      this.items = new Map<number | string, T>(items.map((x) => [x.id, x]));
-      this.emit("change", {
-        source: "db",
-        type: "init",
-        value: items,
-      });
-      this.emit("loaded");
-    });
+    window[name] = this;
+    this.init();
   }
 
-  /**
-   * Merges data from server-side
-   * @param items
-   */
-  merge(items: T[], sourthOfTruth: "server" | "local") {
-    const from = new Map(items.map((x) => [x.id, x]));
-    if (sourthOfTruth === "local") {
-      for (let [key, local] of this.entries()) {
-        if (!from.has(key)) this.add(local, "db");
-        else {
-          const server = from.get(key);
-          if (!compare(server, local)) {
-            this.update(local, "db");
-          }
-        }
-      }
-      for (let key of from.keys()) {
-        if (!this.items.has(key)) {
-          this.remove(key, "db");
-        }
-      }
-    } else {
-      for (let [key, server] of from.entries()) {
-        if (!this.items.has(key)) this.add(server, "server");
-        else {
-          const local = this.get(key);
-          if (!compare(server, local)) {
-            this.update(server, "server");
-          }
-        }
-      }
-      for (let key of this.keys()) {
-        if (!from.has(key)) {
-          this.remove(key, "server");
-        }
-      }
+  async init() {
+    try {
+      await this.sync();
+    } finally {
+      this.emit('loaded');
     }
   }
 
-  remove(key: number | string, source: "user" | "server" | "db" = "user") {
-    if (source !== "db") {
-      this.table.delete(key);
-      this.items.delete(key);
-    }
+  async remove(key: string) {
+    await this.db.remove({
+      _id: key.toString(),
+      _rev: null
+    });
+    this.items.delete(key);
     this.emit("change", {
       type: "delete",
       key,
-      source,
     });
   }
 
-  clear() {
-    this.table.clear();
+  async clear() {
+    await this.db.allDocs().then(x => Promise.all(x.rows.map(d => this.db.remove(d.id, d.value.rev))))
+      .then(x => this.db.compact())
+      .then(x => this.db.viewCleanup())
     this.items.clear();
+    this.emit('change',{
+      type: 'delete',
+      key: undefined
+    })
   }
 
-  addOrUpdate(value: T, source: "user" | "server" | "db" = "user") {
-    if (this.items.has(value.id)) this.update(value, source);
-    else this.add(value, source);
+  async addOrUpdate(value: T, skipChange = false) {
+    if (this.items.has(value._id)) {
+      await this.update(value, skipChange);
+    } else {
+      await this.add(value, skipChange);
+    }
   }
 
-  add(value: T, source: "user" | "server" | "db" = "user") {
-    const key = value.id;
-    if (source !== "db") {
-      this.table.add(value);
-      this.items.set(key, value);
+  async add(value: T, skipChange = false) {
+    const key = value._id;
+    await this.db.put(value).catch(console.log);
+    this.items.set(key, value);
+    if (!skipChange) {
+      this.emit("change", {
+        type: "add",
+        key,
+        value,
+      });
+    }
+    return value;
+  }
+
+  async addRange(valueArr: T[]) {
+    for (const value of valueArr) {
+      await this.add(value, true);
     }
     this.emit("change", {
-      type: "add",
-      key,
-      value,
-      source,
+      type: "batch-add",
+      keys: valueArr.map(x => x._id),
+      values: valueArr,
     });
   }
 
-  addRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
-    valueArr.forEach((value) => this.add(value, source));
-  }
-  addOrUpdateRange(valueArr: T[], source: "user" | "server" | "db" = "user") {
-    valueArr.forEach((value) => this.addOrUpdate(value, source));
-  }
-
-  update(value: T, source: "user" | "server" | "db" = "user") {
-    const key = value.id;
-    if (source !== "db") {
-      this.table.update(key, value);
-      this.items.set(key, value);
+  update(value: T,  skipChange = false) {
+    const key = value._id;
+    this.db.get(value._id).then(res => this.db.put(({
+      ...value,
+      _rev: res._rev
+    }))).catch(console.log);
+    this.items.set(key, value);
+    if (!skipChange) {
+      this.emit("change", {
+        type: "update",
+        key,
+        value,
+      });
     }
-    this.emit("change", {
-      type: "update",
-      key,
-      value,
-      source,
-    });
   }
 
-  get(id: number | string): T {
+  get(id: string): T {
     return this.items.get(id);
   }
 
@@ -151,4 +123,86 @@ export class ObservableDB<
   values() {
     return this.items.values();
   }
+
+  async loadItems(){
+    const items = await this.db.allDocs<T>({
+      include_docs: true,
+    });
+    this.items = new Map<string, T>(items.rows.map((x) => [x.id, x.doc]));
+    this.emit("change", {
+      type: "init",
+      value: items.rows.map(x => x.doc),
+    });
+  }
+
+  async sync() {
+    await versions.isLoaded;
+    const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
+    if (!versions.items.has(this.name)) {
+      versions.add({_id: this.name, version: Fn.ulid()});
+    } else if (versions.haveChanges.get(this.name)) {
+      await remote.replicate.to(this.db);
+    }
+    versions.on('change', async e => {
+      if (e.type == 'update' && e.key == this.name){
+        await remote.replicate.to(this.db);
+        await this.loadItems();
+      }
+    });
+    const syncQueue = new AsyncQueue();
+    this.on('change', async e => {
+      if (e.type !== 'init') {
+        syncQueue.Invoke(async () => {
+          await this.db.replicate.to(remote);
+          await versions.addOrUpdate({
+            _id: this.name,
+            version: Fn.ulid()
+          });
+        });
+      }
+    })
+    await this.loadItems();
+  }
 }
+
+class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
+  constructor() {
+    super('versions');
+  }
+
+  public haveChanges = new Map<string, boolean>();
+
+  async init(){
+    await this.loadItems();
+    const versions = new Map(this.items);
+    try {
+      const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
+      await remote.replicate.to(this.db);
+      await this.loadItems();
+      for (let item of this.items.values()) {
+        this.haveChanges.set(item._id, item.version !== versions.get(item._id)?.version);
+      }
+      const sync = PouchDB.sync(remote, this.db, {
+        live: true,
+        retry: true
+      });
+      sync.on('change', event => {
+        if (event.direction == "push")
+          return;
+        for (let doc of event.change.docs) {
+          this.items.set(doc._id, doc as any);
+        }
+        this.emit("change", {
+          type: "batch-update",
+          keys: event.change.docs.map(x => x._id),
+          values: event.change.docs as any[]
+        });
+      });
+    }finally {
+      this.emit("loaded");
+    }
+  }
+
+}
+
+const versions = new VersionsDB();

@@ -1,8 +1,8 @@
-import { useToast } from "@chakra-ui/react";
-import React, { useCallback } from "react";
-import { ScheduleElementModal } from "src/components/modals";
-import { useAppContext } from "src/helpers/AppProvider";
-import { scheduleStore } from "src/stores/schedule.store";
+import {toast} from "@components";
+import React, { useCallback } from "preact/compat";
+import { ScheduleElementModal } from "@components/modals";
+import { useAppContext } from "@helpers/AppProvider";
+import { scheduleStore } from "@stores/schedule.store";
 
 /**
  * Хук для создания элемента расписания
@@ -10,8 +10,6 @@ import { scheduleStore } from "src/stores/schedule.store";
  */
 export const useAddSchedule = (locationId: Schedule["locationId"]) => {
   const app = useAppContext();
-
-  const toast = useToast();
 
   return useCallback(
     async (
@@ -31,7 +29,7 @@ export const useAddSchedule = (locationId: Schedule["locationId"]) => {
             locationId,
             day,
             audiences: [],
-            id: undefined,
+            _id: undefined,
           } as Schedule);
 
         const audience =

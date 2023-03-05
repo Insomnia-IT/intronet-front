@@ -1,0 +1,18 @@
+.button{
+  background: white;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 0 8px 2px #808080;
+}
+.button:hover{
+  box-shadow: 0 0 8px 4px #808080;
+
+}
+.button:active{
+  box-shadow: 0 0 18px 2px #808080;
+}
+
+.button:focus{
+  box-shadow: 0 0 4px 6px #808080;
+  outline: none;
+}

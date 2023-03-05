@@ -1,57 +1,23 @@
-import React from "react";
-import { FC } from "react";
-import { Box, Img, Link } from "@chakra-ui/react";
-import { Heading } from "src/components/heading/heading";
-import { VStack } from "@chakra-ui/react";
+import React from "preact/compat";
+import { FC } from "preact/compat";
 import {useRouter} from "../../../routing";
 
 export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
   const {goTo} = useRouter();
   return (
-    <VStack
-      pos={"relative"}
-      spacing={0}
-      align={"flex-start"}
-      // p={2}
-      border={"1px solid"}
-      borderColor={"gray.200"}
-      borderRadius={16}
-      boxSize={"100%"}
-      justifyContent={"space-between"}
-    >
-      <Box
-        pos={"absolute"}
-        top={0}
-        right={0}
-        bottom={0}
-        left={0}
-        p={[4, 5]}
-        // pl={3}
-      >
-        <Heading level={3} maxW={"208px"}>
-          <Link
-            onClick={() => goTo(link)}
-            lineHeight={1}
-            _after={{
-              content: '""',
-              position: "absolute",
-              top: 0,
-              right: 0,
-              bottom: 0,
-              left: 0,
-            }}
-          >
+    <div>
+      <div>
+        <h3>
+          <a onClick={() => goTo(link)}>
             {title}
-          </Link>
-        </Heading>
-      </Box>
-      <Img
+          </a>
+        </h3>
+      </div>
+      <img
         src={img}
         height={"100%"}
         width={"100%"}
-        objectFit={"cover"}
-        borderRadius={16}
-      ></Img>
-    </VStack>
+      ></img>
+    </div>
   );
 };

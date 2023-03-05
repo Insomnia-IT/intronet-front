@@ -1,8 +1,8 @@
-import { useToast } from "@chakra-ui/react";
-import React, { useCallback } from "react";
-import { CategoryModal } from "src/components/modals";
-import { useAppContext } from "src/helpers/AppProvider";
-import { categoriesStore } from "src/stores";
+import React, { useCallback } from "preact/compat";
+import { CategoryModal } from "@components/modals";
+import { useAppContext } from "@helpers/AppProvider";
+import { categoriesStore } from "@stores";
+import {toast} from "@components";
 
 /**
  * Хук для редактирования категории
@@ -10,8 +10,6 @@ import { categoriesStore } from "src/stores";
  */
 export const useEditCategory = () => {
   const app = useAppContext();
-
-  const toast = useToast();
 
   return useCallback(
     async (category: ICategory) => {

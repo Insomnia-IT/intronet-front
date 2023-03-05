@@ -1,13 +1,5 @@
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from "@chakra-ui/react";
-import React, { FC } from "react";
+import { Modal } from "@components/modal";
+import React, { FC } from "preact/compat";
 import { ModalProps } from ".";
 import { CategoryForm } from "../forms";
 
@@ -23,19 +15,19 @@ export const CategoryModal: FC<
       onClose={modalProps.abort}
       scrollBehavior="outside"
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalHeader></ModalHeader>
-        <ModalBody>
+      <Modal.Overlay />
+      <Modal.Content>
+        <Modal.CloseButton />
+        <Modal.Header></Modal.Header>
+        <Modal.Body>
           <CategoryForm
             category={category}
             onSubmit={modalProps.success}
             onCancel={modalProps.abort}
           />
-        </ModalBody>
-        <ModalFooter></ModalFooter>
-      </ModalContent>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal.Content>
     </Modal>
   );
 };

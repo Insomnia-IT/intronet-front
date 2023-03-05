@@ -1,11 +1,10 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, HStack, IconButton } from "@chakra-ui/react";
-import * as React from "react";
-import { RequireAuth } from "src/components/RequireAuth";
-import Loading from "src/loading/loading";
-import { categoriesStore } from "src/stores";
+import * as React from "preact/compat";
+import { RequireAuth } from "@components/RequireAuth";
+import {Button, Loading} from "@components";
+import { categoriesStore } from "@stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
-import {cellState} from "../../../../helpers/cell-state";
+import {cellState} from "@helpers/cell-state";
+import { Icons } from "@icons";
 
 export interface ICategoriesProps {
   activeCategory?: number;
@@ -16,7 +15,6 @@ export interface ICategoriesProps {
 
 export default class Categories extends React.PureComponent<ICategoriesProps, {}> {
   componentDidMount() {
-    categoriesStore.load();
   }
 
   state = cellState(this, {
@@ -25,43 +23,33 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
     activeCategory: () => categoriesStore.activeCategory
   })
 
-  handleClick = (id: number) => (categoriesStore.activeCategory = id);
+  handleClick = (id: string) => (categoriesStore.activeCategory = id);
 
   render() {
     return (
-      <Box
-        display={"flex"}
-        maxW={"100vw"}
-        flex={1}
-        overflowX={"auto"}
-        className="hide-scrollbar"
-      >
-        <HStack spacing={0} as="ul" flex={1} minWidth={"max-content"}>
+      <div>
+        <div>
           <Loading isLoading={this.state.isLoading} height={40} width={40}>
-            {this.state.allCategory.map((category) => {
-              return (
+            {this.state.allCategory.map((category) => (
                 <CategoryCard
                   as={"li"}
-                  key={category.id}
+                  key={category._id}
                   categoryObj={category}
-                  _last={{ marginRight: "2rem" }}
-                  onClick={() => (categoriesStore.activeCategory = category.id)}
-                  isActive={this.state.activeCategory === category.id}
+                  _last={{marginRight: "2rem"}}
+                  onClick={() => (categoriesStore.activeCategory = category._id)}
+                  isActive={this.state.activeCategory === category._id}
                   onIconLeftClick={this.props.onEditCategory}
                 />
-              );
-            })}
+              ))}
           </Loading>
           <RequireAuth>
-            <IconButton
-              icon={<AddIcon />}
+            <Button
               aria-label="Add category"
-              isRound
               onClick={this.props.onAddCategory}
-            />
+            ><Icons.Add/></Button>
           </RequireAuth>
-        </HStack>
-      </Box>
+        </div>
+      </div>
     );
   }
 }

@@ -1,5 +1,5 @@
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import * as React from "react";
+import * as React from "preact/compat";
 import ReactMarkdown from "react-markdown";
 import { articleTheme } from "../../../../theme/articleTheme/articleTheme";
 

@@ -1,18 +1,8 @@
-import {
-  Button,
-  Heading,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  VStack,
-} from "@chakra-ui/react";
-import * as React from "react";
-import { FC } from "react";
-import { ModalProps } from "src/components/modals";
+import {Modal} from "@components/modal";
+import * as React from "preact/compat";
+import { FC } from "preact/compat";
+import { ModalProps } from "@components/modals";
+import {Button} from "@components";
 
 export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
   token,
@@ -21,39 +11,29 @@ export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
 }) => {
   return (
     <Modal isOpen={modalProps.show} onClose={modalProps.abort}>
-      <ModalOverlay></ModalOverlay>
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalHeader></ModalHeader>
-        <ModalBody>
-          <VStack spacing={5}>
-            <Heading fontSize={"3xl"}>Уверены, что хотите выйти?</Heading>
-            <VStack spacing={3} width={"100%"} align={"stretch"}>
+      <Modal.Overlay></Modal.Overlay>
+      <Modal.Content>
+        <Modal.CloseButton />
+        <Modal.Header></Modal.Header>
+        <Modal.Body>
+          <div>
+            <div>Уверены, что хотите выйти?</div>
+            <div width={"100%"} >
               <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
                 onClick={() => modalProps.success(true)}
               >
                 Да
               </Button>
               <Button
-                bg={"red.500"}
-                color={"white"}
-                _hover={{
-                  bg: "red.600",
-                }}
                 onClick={modalProps.abort}
               >
                 Нет
               </Button>
-            </VStack>
-          </VStack>
-        </ModalBody>
-        <ModalFooter />
-      </ModalContent>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer />
+      </Modal.Content>
     </Modal>
   );
 };

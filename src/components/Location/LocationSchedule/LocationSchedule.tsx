@@ -1,8 +1,7 @@
-import { Box, HStack, VStack } from "@chakra-ui/react";
-import React, { FC } from "react";
-import { Chip } from "src/components/chip/chip";
-import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "src/constants";
-import { useAppContext } from "src/helpers/AppProvider";
+import React, { FC } from "preact/compat";
+import { Chip } from "@components/chip/chip";
+import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
+import { useAppContext } from "@helpers/AppProvider";
 import styles from "./styles.module.css";
 import { LocationScheduleProps } from "./types";
 
@@ -31,7 +30,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
     <div className={styles.content}>
       {show && <header className={styles.header}>Расписание</header>}
       {show && (
-        <HStack className={styles.chips}>
+        <div className={styles.chips}>
           {DAYS.map((d) => {
             return (
               <Chip
@@ -46,7 +45,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
               </Chip>
             );
           })}
-        </HStack>
+        </div>
       )}
       {showAuditories && (
         <div className={styles.tags}>
@@ -67,10 +66,10 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
           })}
         </div>
       )}
-      <VStack mt="4">
+      <div>
         {sortAuditoryElements(auditoryElements).map(
           (auditoryElement: AuditoryElement, index: number) => (
-            <Box w="full" key={auditoryElement.id}>
+            <div key={auditoryElement._id}>
               {renderScheduleInfo?.({
                 auditoryElement,
                 selected: selectedElement === auditoryElement,
@@ -83,7 +82,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
                 auditory: auditory,
                 auditoryElementIndex: index,
               })}
-            </Box>
+            </div>
           )
         )}
         {renderScheduleFooter?.({
@@ -91,7 +90,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
           day: day,
           auditory: auditory,
         })}
-      </VStack>
+      </div>
     </div>
   );
 };

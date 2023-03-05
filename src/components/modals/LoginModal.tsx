@@ -1,18 +1,9 @@
-import { ArrowForwardIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  VStack,
-} from "@chakra-ui/react";
-import React, { FC, useState } from "react";
+import {Modal} from "@components/modal";
+import React, { FC, useState } from "preact/compat";
 import { ModalProps } from ".";
-import { LoginFormTicket, LoginFormToken } from "../forms";
+import { LoginFormToken } from "../forms/LoginFormToken";
+import {Button} from "@components";
+import { Icons } from "@icons";
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
@@ -29,27 +20,24 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
       onClose={modalProps.abort}
       scrollBehavior="outside"
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalHeader></ModalHeader>
-        <ModalBody>
-          <VStack spacing={5}>
+      <Modal.Overlay />
+      <Modal.Content>
+        <Modal.CloseButton />
+        <Modal.Header></Modal.Header>
+        <Modal.Body>
+          <div >
             {loginMethod === "ticketId" && (
               <>
-                <LoginFormTicket
-                  onSubmit={(newTicketId) =>
-                    modalProps.success({ ticketId: newTicketId })
-                  }
-                  ticketId={ticketId}
-                />
+                {/*<LoginFormTicket*/}
+                {/*  onSubmit={(newTicketId) =>*/}
+                {/*    modalProps.success({ ticketId: newTicketId })*/}
+                {/*  }*/}
+                {/*  ticketId={ticketId}*/}
+                {/*/>*/}
                 <Button
-                  rightIcon={<ArrowForwardIcon />}
-                  colorScheme="blue"
-                  variant="link"
                   onClick={() => setLoginMethod("token")}
                 >
-                  Волонтер? Вам сюда
+                  Волонтер? Вам сюда <Icons.ArrowRight />
                 </Button>
               </>
             )}
@@ -71,10 +59,10 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
                 </Button> */}
               </>
             )}
-          </VStack>
-        </ModalBody>
-        <ModalFooter></ModalFooter>
-      </ModalContent>
+          </div>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal.Content>
     </Modal>
   );
 };

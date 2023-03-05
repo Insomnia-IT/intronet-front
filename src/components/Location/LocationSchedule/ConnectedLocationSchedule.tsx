@@ -1,11 +1,10 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "react";
-import { cellState } from "../../../helpers/cell-state";
-import { locationsStore } from "../../../stores/locations.store";
-import { scheduleStore } from "../../../stores/schedule.store";
+import React from "preact/compat";
+import { cellState } from "@helpers/cell-state";
+import { locationsStore, scheduleStore } from "@stores";
 import { LocationSchedule } from "./LocationSchedule";
 import { LocationScheduleProps } from "./types";
-import { DAYS } from "../../../constants";
+import { DAYS } from "@constants";
 
 export class ConnectedLocationSchedule extends React.PureComponent<
   Pick<
@@ -14,7 +13,7 @@ export class ConnectedLocationSchedule extends React.PureComponent<
   >
 > {
   @cell
-  locationId: number;
+  locationId: string;
   @cell
   auditory: 1 | 2 = 1;
   @cell
@@ -59,7 +58,6 @@ export class ConnectedLocationSchedule extends React.PureComponent<
   ) {
     if (this.locationId !== this.props.locationId) {
       this.locationId = this.props.locationId;
-      scheduleStore.load(this.locationId);
     }
   }
 }

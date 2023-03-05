@@ -1,44 +1,32 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { LocationProps } from "./types";
 import styles from "./styles.module.css";
-import {
-  Box,
-  Button,
-  HStack,
-  IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverTrigger,
-} from "@chakra-ui/react";
-import { EditIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { RequireAuth } from "../RequireAuth";
 import { LocationMenu } from "./LocationMenu";
 import {
-  useEditSchedule,
-  useAddSchedule,
-  useDeleteSchedule,
-  useEditLocation,
-} from "src/hooks";
+  // useEditSchedule,
+  // useAddSchedule,
+  // useDeleteSchedule,
+  // useEditLocation,
+} from "@hooks";
 import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
-import { useCellState } from "src/helpers/cell-state";
-import { locationsStore } from "src/stores/locations.store";
+import { useCellState } from "@helpers/cell-state";
+import { locationsStore } from "@stores";
 import { ConnectedLocationSchedule } from "./LocationSchedule";
+import { Icons } from "@icons";
+import {Button} from "@components";
 
 export const Location: FC<LocationProps> = ({ location, expanded }) => {
-  const editSchedule = useEditSchedule();
+  const editSchedule = (...args) => void 0;//useEditSchedule();
 
-  const addSchedule = useAddSchedule(location.id);
+  const addSchedule = (...args) => void 0;//useAddSchedule(location._id);
 
-  const deleteSchedule = useDeleteSchedule(location.id);
+  const deleteSchedule = (...args) => void 0;//useDeleteSchedule(location._id);
 
-  const editLocation = useEditLocation(location);
+  const editLocation = (...args) => void 0// useEditLocation(location);
 
   const [menu] = useCellState(
-    () => locationsStore.Locations.get(location.id)?.menu
+    () => locationsStore.Locations.get(location._id)?.menu
   );
 
   return (
@@ -50,53 +38,43 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
         {location.description}
       </div>
       <RequireAuth>
-        <Box pos="absolute" right="10px" zIndex="1" bottom="10px">
-          <IconButton
-            size="lg"
-            isRound
-            icon={<EditIcon />}
+        <div >
+          <Button
             aria-label="Edit note"
             onClick={editLocation}
-          />
-        </Box>
+          ><Icons.Edit/></Button>
+        </div>
       </RequireAuth>
       {expanded && (
         <>
           <ConnectedLocationSchedule
-            locationId={location.id}
+            locationId={location._id}
             renderScheduleFooter={(props) => (
               <>
                 <RequireAuth>
-                  <Button
-                    leftIcon={<AddIcon />}
-                    colorScheme="teal"
-                    onClick={() =>
+                  <Button onClick={() =>
                       addSchedule(props.schedules, props.day, props.auditory)
-                    }
-                  >
-                    Добавить
+                    }>
+                    <Icons.Add />Добавить
                   </Button>
                 </RequireAuth>
                 {menu && (
-                  <Box alignSelf="flex-start">
+                  <div>
                     <LocationMenu description={menu} />
-                  </Box>
+                  </div>
                 )}
               </>
             )}
             renderScheduleInfo={(props) => (
-              <HStack>
-                <Box w="full">
+              <div>
+                <div>
                   <LocationScheduleInfo
                     {...props}
-                    key={props.auditoryElement.id}
+                    key={props.auditoryElement._id}
                   />
-                </Box>
+                </div>
                 <RequireAuth>
-                  <IconButton
-                    size="lg"
-                    isRound
-                    icon={<EditIcon />}
+                  <Button
                     aria-label="Edit note"
                     onClick={() =>
                       editSchedule(
@@ -107,42 +85,42 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                         props.auditoryElementIndex
                       )
                     }
-                  />
-                  <Popover placement="bottom" closeOnBlur={false}>
-                    <PopoverTrigger>
-                      <IconButton
-                        isRound
-                        icon={<DeleteIcon />}
-                        colorScheme="red"
-                        aria-label="Delete the event"
-                      />
-                    </PopoverTrigger>
-                    <PopoverContent>
-                      <PopoverArrow />
-                      <PopoverCloseButton />
-                      <PopoverBody>
-                        Вы уверены, что хотите удалить событие?
-                      </PopoverBody>
-                      <PopoverFooter>
-                        <Button
-                          colorScheme="red"
-                          onClick={() =>
-                            deleteSchedule(
-                              props.schedules,
-                              props.auditoryElement,
-                              props.day,
-                              props.auditory,
-                              props.auditoryElementIndex
-                            )
-                          }
-                        >
-                          Удалить
-                        </Button>
-                      </PopoverFooter>
-                    </PopoverContent>
-                  </Popover>
+                  ><Icons.Edit /></Button>
+                  {/*<Popover placement="bottom" closeOnBlur={false}>*/}
+                  {/*  <PopoverTrigger>*/}
+                  {/*    <IconButton*/}
+                  {/*      isRound*/}
+                  {/*      icon={<DeleteIcon />}*/}
+                  {/*      colorScheme="red"*/}
+                  {/*      aria-label="Delete the event"*/}
+                  {/*    />*/}
+                  {/*  </PopoverTrigger>*/}
+                  {/*  <PopoverContent>*/}
+                  {/*    <PopoverArrow />*/}
+                  {/*    <PopoverCloseButton />*/}
+                  {/*    <PopoverBody>*/}
+                  {/*      Вы уверены, что хотите удалить событие?*/}
+                  {/*    </PopoverBody>*/}
+                  {/*    <PopoverFooter>*/}
+                  {/*      <Button*/}
+                  {/*        colorScheme="red"*/}
+                  {/*        onClick={() =>*/}
+                  {/*          deleteSchedule(*/}
+                  {/*            props.schedules,*/}
+                  {/*            props.auditoryElement,*/}
+                  {/*            props.day,*/}
+                  {/*            props.auditory,*/}
+                  {/*            props.auditoryElementIndex*/}
+                  {/*          )*/}
+                  {/*        }*/}
+                  {/*      >*/}
+                  {/*        Удалить*/}
+                  {/*      </Button>*/}
+                  {/*    </PopoverFooter>*/}
+                  {/*  </PopoverContent>*/}
+                  {/*</Popover>*/}
                 </RequireAuth>
-              </HStack>
+              </div>
             )}
           />
         </>

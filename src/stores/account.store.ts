@@ -1,7 +1,7 @@
 import { cell } from "@cmmn/cell/lib";
-import { qrApi } from "src/api";
-import { ulid } from "../helpers/ulid";
+import { qrApi } from "@api";
 import { ObservableDB } from "./observableDB";
+import {Fn} from "@cmmn/cell/lib";
 
 class AccountStore {
   @cell
@@ -17,22 +17,22 @@ class AccountStore {
 
   public Add(qr: string) {
     const acc = {
-      id: ulid(),
+      _id: Fn.ulid(),
       qr,
       name: null,
       token: null,
       isValid: false,
       isSelected: this.Selected == null,
-    };
+    } as Account;
     qrApi.checkUserQR(qr).then((valid) => {
       acc.isValid = valid;
-      this.db.update(acc, "user");
+      this.db.update(acc);
     });
-    this.db.add(acc, "user");
+    this.db.add(acc);
   }
 
   Remove(acc: Account) {
-    this.db.remove(acc.id, "user");
+    this.db.remove(acc._id);
   }
 
   Select(id: string) {
@@ -42,7 +42,6 @@ class AccountStore {
           ...this.Selected,
           isSelected: false,
         },
-        "user"
       );
     }
     this.db.update(
@@ -50,7 +49,6 @@ class AccountStore {
         ...this.db.get(id),
         isSelected: true,
       },
-      "user"
     );
   }
 }
@@ -58,7 +56,7 @@ class AccountStore {
 export const account = new AccountStore();
 
 export type Account = {
-  id: string;
+  _id: string;
   qr: string;
   name: string;
   isValid: boolean;

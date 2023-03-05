@@ -1,10 +1,8 @@
 import { cell } from "@cmmn/cell/lib";
-import { articlesApi } from "src/api/articles";
 import { ObservableDB } from "./observableDB";
 
 class ArticlesStore {
   constructor() {
-    this.load();
   }
 
   @cell
@@ -13,28 +11,27 @@ class ArticlesStore {
   @cell
   IsLoading = true;
 
-  public load = async () => {
-    this.IsLoading = true;
-
-    try {
-      const newArticles = await articlesApi.getAllArticles();
-
-      this.Articles.clear();
-      this.Articles.addRange(newArticles);
-    } catch {
-      console.warn("Синхронизация Articles не удалась");
-    }
-
-    this.IsLoading = false;
-  };
-
   get articles(): IArticle[] {
     return this.Articles.toArray();
   }
 
-  public getArticle(id: IArticle["id"]): IArticle {
-    return this.articles.find((article) => article.id === id);
+  public getArticle(id: IArticle["_id"]): IArticle {
+    return this.articles.find((article) => article._id === id);
   }
 }
 
 export const articlesStore = new ArticlesStore();
+
+
+const testArticles: IArticle[] = [
+  {
+    _id: '1',
+    title: "Наши принципы и ценности",
+    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
+  },
+  {
+    _id: '2',
+    title: "Наши принципы и ценности",
+    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
+  },
+];

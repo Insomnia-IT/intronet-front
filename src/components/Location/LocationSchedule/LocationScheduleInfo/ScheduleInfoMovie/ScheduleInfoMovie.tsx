@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from "preact/compat";
 import { ScheduleInfoMovieProps } from "./types";
 
 export const ScheduleInfoMovie: FC<ScheduleInfoMovieProps> = ({ movie }) => (

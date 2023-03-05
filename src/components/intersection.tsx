@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "preact/compat";
 
 const visibleElements = new EventTarget();
 // <Map<Element, IntersectionObserverEntry>>(
@@ -51,5 +51,5 @@ export function Intersection(props: IntersectionProps) {
 type IntersectionProps = {
   width?: number | string;
   height?: number | string;
-  children: ReactElement;
+  children: JSX.Element;
 };

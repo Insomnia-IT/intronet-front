@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 import styles from "./chip.module.css";
 export function Chip(props: ChipProps) {
   if (!props.icon && !props.value) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "preact/compat";
 
 import {DateTime} from "luxon";
 import { ComponentMeta, ComponentStory } from "@storybook/react";

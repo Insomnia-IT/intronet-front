@@ -61352,7 +61352,7 @@ function handleOverflow(node, extraNode, space) {
 class AppearanceFilter extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "appearanceFilter");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -61369,7 +61369,7 @@ class Arc extends _xfa_object.XFAObject {
       validate: x => x === 1
     });
     this.hand = (0, _utils.getStringOption)(attributes.hand, ["even", "left", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.startAngle = (0, _utils.getFloat)({
       data: attributes.startAngle,
       defaultValue: 0,
@@ -61479,7 +61479,7 @@ class Area extends _xfa_object.XFAObject {
       defaultValue: 1,
       validate: n => n >= 1 || n === -1
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.relevant = (0, _utils.getRelevant)(attributes.relevant);
     this.use = attributes.use || "";
@@ -61576,7 +61576,7 @@ class Area extends _xfa_object.XFAObject {
 class Assist extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "assist", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.role = attributes.role || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -61621,7 +61621,7 @@ class Barcode extends _xfa_object.XFAObject {
       defaultValue: -1,
       validate: x => x >= 0 && x <= 8
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.moduleHeight = (0, _utils.getMeasurement)(attributes.moduleHeight, "5mm");
     this.moduleWidth = (0, _utils.getMeasurement)(attributes.moduleWidth, "0.25mm");
     this.printCheckDigit = (0, _utils.getInteger)({
@@ -61674,7 +61674,7 @@ exports.BindItems = BindItems;
 class Bookend extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "bookend");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leader = attributes.leader || "";
     this.trailer = attributes.trailer || "";
     this.use = attributes.use || "";
@@ -61686,7 +61686,7 @@ class Bookend extends _xfa_object.XFAObject {
 class BooleanElement extends _xfa_object.Option01 {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "boolean");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -61703,7 +61703,7 @@ class Border extends _xfa_object.XFAObject {
     super(TEMPLATE_NS_ID, "border", true);
     this.break = (0, _utils.getStringOption)(attributes.break, ["close", "open"]);
     this.hand = (0, _utils.getStringOption)(attributes.hand, ["even", "left", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.presence = (0, _utils.getStringOption)(attributes.presence, ["visible", "hidden", "inactive", "invisible"]);
     this.relevant = (0, _utils.getRelevant)(attributes.relevant);
     this.use = attributes.use || "";
@@ -61813,7 +61813,7 @@ class Break extends _xfa_object.XFAObject {
     this.beforeTarget = attributes.beforeTarget || "";
     this.bookendLeader = attributes.bookendLeader || "";
     this.bookendTrailer = attributes.bookendTrailer || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.overflowLeader = attributes.overflowLeader || "";
     this.overflowTarget = attributes.overflowTarget || "";
     this.overflowTrailer = attributes.overflowTrailer || "";
@@ -61832,7 +61832,7 @@ class Break extends _xfa_object.XFAObject {
 class BreakAfter extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "breakAfter", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leader = attributes.leader || "";
     this.startNew = (0, _utils.getInteger)({
       data: attributes.startNew,
@@ -61852,7 +61852,7 @@ class BreakAfter extends _xfa_object.XFAObject {
 class BreakBefore extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "breakBefore", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leader = attributes.leader || "";
     this.startNew = (0, _utils.getInteger)({
       data: attributes.startNew,
@@ -61878,7 +61878,7 @@ class Button extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "button", true);
     this.highlight = (0, _utils.getStringOption)(attributes.highlight, ["inverted", "none", "outline", "push"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -61937,7 +61937,7 @@ class Button extends _xfa_object.XFAObject {
 class Calculate extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "calculate", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.override = (0, _utils.getStringOption)(attributes.override, ["disabled", "error", "ignore", "warning"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -61951,7 +61951,7 @@ class Calculate extends _xfa_object.XFAObject {
 class Caption extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "caption", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.placement = (0, _utils.getStringOption)(attributes.placement, ["left", "bottom", "inline", "right", "top"]);
     this.presence = (0, _utils.getStringOption)(attributes.presence, ["visible", "hidden", "inactive", "invisible"]);
     this.reserve = Math.ceil((0, _utils.getMeasurement)(attributes.reserve));
@@ -62085,7 +62085,7 @@ class Caption extends _xfa_object.XFAObject {
 class Certificate extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "certificate");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62097,7 +62097,7 @@ class Certificates extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "certificates", true);
     this.credentialServerPolicy = (0, _utils.getStringOption)(attributes.credentialServerPolicy, ["optional", "required"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.url = attributes.url || "";
     this.urlPolicy = attributes.urlPolicy || "";
     this.use = attributes.use || "";
@@ -62115,7 +62115,7 @@ class Certificates extends _xfa_object.XFAObject {
 class CheckButton extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "checkButton", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.mark = (0, _utils.getStringOption)(attributes.mark, ["default", "check", "circle", "cross", "diamond", "square", "star"]);
     this.shape = (0, _utils.getStringOption)(attributes.shape, ["square", "round"]);
     this.size = (0, _utils.getMeasurement)(attributes.size, "10pt");
@@ -62194,7 +62194,7 @@ class ChoiceList extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "choiceList", true);
     this.commitOn = (0, _utils.getStringOption)(attributes.commitOn, ["select", "exit"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.open = (0, _utils.getStringOption)(attributes.open, ["userControl", "always", "multiSelect", "onEntry"]);
     this.textEntry = (0, _utils.getInteger)({
       data: attributes.textEntry,
@@ -62298,7 +62298,7 @@ class Color extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "color", true);
     this.cSpace = (0, _utils.getStringOption)(attributes.cSpace, ["SRGB"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.value = attributes.value ? (0, _utils.getColor)(attributes.value) : "";
@@ -62318,7 +62318,7 @@ class Color extends _xfa_object.XFAObject {
 class Comb extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "comb");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.numberOfCells = (0, _utils.getInteger)({
       data: attributes.numberOfCells,
       defaultValue: 0,
@@ -62334,7 +62334,7 @@ class Connect extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "connect", true);
     this.connection = attributes.connection || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.ref = attributes.ref || "";
     this.usage = (0, _utils.getStringOption)(attributes.usage, ["exportAndImport", "exportOnly", "importOnly"]);
     this.use = attributes.use || "";
@@ -62348,7 +62348,7 @@ class ContentArea extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "contentArea", true);
     this.h = (0, _utils.getMeasurement)(attributes.h);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.relevant = (0, _utils.getRelevant)(attributes.relevant);
     this.use = attributes.use || "";
@@ -62391,7 +62391,7 @@ class ContentArea extends _xfa_object.XFAObject {
 class Corner extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "corner", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.inverted = (0, _utils.getInteger)({
       data: attributes.inverted,
       defaultValue: 0,
@@ -62419,7 +62419,7 @@ class Corner extends _xfa_object.XFAObject {
 class DateElement extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "date");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62440,7 +62440,7 @@ class DateElement extends _xfa_object.ContentObject {
 class DateTime extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "dateTime");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62462,7 +62462,7 @@ class DateTimeEdit extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "dateTimeEdit", true);
     this.hScrollPolicy = (0, _utils.getStringOption)(attributes.hScrollPolicy, ["auto", "off", "on"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.picker = (0, _utils.getStringOption)(attributes.picker, ["host", "none"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62507,7 +62507,7 @@ class Decimal extends _xfa_object.ContentObject {
       defaultValue: 2,
       validate: x => true
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leadDigits = (0, _utils.getInteger)({
       data: attributes.leadDigits,
       defaultValue: -1,
@@ -62532,7 +62532,7 @@ class Decimal extends _xfa_object.ContentObject {
 class DefaultUi extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "defaultUi", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -62543,7 +62543,7 @@ class DefaultUi extends _xfa_object.XFAObject {
 class Desc extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "desc", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.boolean = new _xfa_object.XFAObjectArray();
@@ -62563,7 +62563,7 @@ class Desc extends _xfa_object.XFAObject {
 class DigestMethod extends _xfa_object.OptionObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "digestMethod", ["", "SHA1", "SHA256", "SHA512", "RIPEMD160"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
@@ -62573,7 +62573,7 @@ class DigestMethod extends _xfa_object.OptionObject {
 class DigestMethods extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "digestMethods", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62593,7 +62593,7 @@ class Draw extends _xfa_object.XFAObject {
     });
     this.h = attributes.h ? (0, _utils.getMeasurement)(attributes.h) : "";
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.locale = attributes.locale || "";
     this.maxH = (0, _utils.getMeasurement)(attributes.maxH, "0pt");
     this.maxW = (0, _utils.getMeasurement)(attributes.maxW, "0pt");
@@ -62738,7 +62738,7 @@ class Edge extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "edge", true);
     this.cap = (0, _utils.getStringOption)(attributes.cap, ["square", "butt", "round"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.presence = (0, _utils.getStringOption)(attributes.presence, ["visible", "hidden", "inactive", "invisible"]);
     this.stroke = (0, _utils.getStringOption)(attributes.stroke, ["solid", "dashDot", "dashDotDot", "dashed", "dotted", "embossed", "etched", "lowered", "raised"]);
     this.thickness = (0, _utils.getMeasurement)(attributes.thickness, "0.5pt");
@@ -62807,7 +62807,7 @@ class Edge extends _xfa_object.XFAObject {
 class Encoding extends _xfa_object.OptionObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encoding", ["adbe.x509.rsa_sha1", "adbe.pkcs7.detached", "adbe.pkcs7.sha1"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
@@ -62817,7 +62817,7 @@ class Encoding extends _xfa_object.OptionObject {
 class Encodings extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encodings", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62829,7 +62829,7 @@ class Encodings extends _xfa_object.XFAObject {
 class Encrypt extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encrypt", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.certificate = null;
@@ -62840,7 +62840,7 @@ class Encrypt extends _xfa_object.XFAObject {
 class EncryptData extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encryptData", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.operation = (0, _utils.getStringOption)(attributes.operation, ["encrypt", "decrypt"]);
     this.target = attributes.target || "";
     this.use = attributes.use || "";
@@ -62854,7 +62854,7 @@ class EncryptData extends _xfa_object.XFAObject {
 class Encryption extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encryption", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62866,7 +62866,7 @@ class Encryption extends _xfa_object.XFAObject {
 class EncryptionMethod extends _xfa_object.OptionObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encryptionMethod", ["", "AES256-CBC", "TRIPLEDES-CBC", "AES128-CBC", "AES192-CBC"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
@@ -62876,7 +62876,7 @@ class EncryptionMethod extends _xfa_object.OptionObject {
 class EncryptionMethods extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "encryptionMethods", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62889,7 +62889,7 @@ class Event extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "event", true);
     this.activity = (0, _utils.getStringOption)(attributes.activity, ["click", "change", "docClose", "docReady", "enter", "exit", "full", "indexChange", "initialize", "mouseDown", "mouseEnter", "mouseExit", "mouseUp", "postExecute", "postOpen", "postPrint", "postSave", "postSign", "postSubmit", "preExecute", "preOpen", "prePrint", "preSave", "preSign", "preSubmit", "ready", "validationState"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.listen = (0, _utils.getStringOption)(attributes.listen, ["refOnly", "refAndDescendents"]);
     this.name = attributes.name || "";
     this.ref = attributes.ref || "";
@@ -62910,7 +62910,7 @@ class ExData extends _xfa_object.ContentObject {
     super(TEMPLATE_NS_ID, "exData");
     this.contentType = attributes.contentType || "";
     this.href = attributes.href || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.maxLength = (0, _utils.getInteger)({
       data: attributes.maxLength,
       defaultValue: -1,
@@ -62958,7 +62958,7 @@ class ExObject extends _xfa_object.XFAObject {
     this.classId = attributes.classId || "";
     this.codeBase = attributes.codeBase || "";
     this.codeType = attributes.codeType || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -62991,7 +62991,7 @@ class ExclGroup extends _xfa_object.XFAObject {
     });
     this.h = attributes.h ? (0, _utils.getMeasurement)(attributes.h) : "";
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.layout = (0, _utils.getStringOption)(attributes.layout, ["position", "lr-tb", "rl-row", "rl-tb", "row", "table", "tb"]);
     this.maxH = (0, _utils.getMeasurement)(attributes.maxH, "0pt");
     this.maxW = (0, _utils.getMeasurement)(attributes.maxW, "0pt");
@@ -63241,7 +63241,7 @@ class Execute extends _xfa_object.XFAObject {
     super(TEMPLATE_NS_ID, "execute");
     this.connection = attributes.connection || "";
     this.executeType = (0, _utils.getStringOption)(attributes.executeType, ["import", "remerge"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.runAt = (0, _utils.getStringOption)(attributes.runAt, ["client", "both", "server"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63252,7 +63252,7 @@ class Execute extends _xfa_object.XFAObject {
 class Extras extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "extras", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63284,7 +63284,7 @@ class Field extends _xfa_object.XFAObject {
     });
     this.h = attributes.h ? (0, _utils.getMeasurement)(attributes.h) : "";
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.locale = attributes.locale || "";
     this.maxH = (0, _utils.getMeasurement)(attributes.maxH, "0pt");
     this.maxW = (0, _utils.getMeasurement)(attributes.maxW, "0pt");
@@ -63669,7 +63669,7 @@ exports.Field = Field;
 class Fill extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "fill", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.presence = (0, _utils.getStringOption)(attributes.presence, ["visible", "hidden", "inactive", "invisible"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63742,7 +63742,7 @@ class Filter extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "filter", true);
     this.addRevocationInfo = (0, _utils.getStringOption)(attributes.addRevocationInfo, ["", "required", "optional", "none"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63768,7 +63768,7 @@ class Filter extends _xfa_object.XFAObject {
 class Float extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "float");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63799,7 +63799,7 @@ class Font extends _xfa_object.XFAObject {
       defaultValue: 100,
       validate: x => x >= 0
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.kerningMode = (0, _utils.getStringOption)(attributes.kerningMode, ["none", "pair"]);
     this.letterSpacing = (0, _utils.getMeasurement)(attributes.letterSpacing, "0");
     this.lineThrough = (0, _utils.getInteger)({
@@ -63894,7 +63894,7 @@ class Font extends _xfa_object.XFAObject {
 class Format extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "format", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -63906,7 +63906,7 @@ class Format extends _xfa_object.XFAObject {
 class Handler extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "handler");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -63932,7 +63932,7 @@ class Hyphenation extends _xfa_object.XFAObject {
       defaultValue: 0,
       validate: x => x === 1
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.pushCharacterCount = (0, _utils.getInteger)({
       data: attributes.pushCharacterCount,
       defaultValue: 3,
@@ -63960,7 +63960,7 @@ class Image extends _xfa_object.StringObject {
     this.aspect = (0, _utils.getStringOption)(attributes.aspect, ["fit", "actual", "height", "none", "width"]);
     this.contentType = attributes.contentType || "";
     this.href = attributes.href || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.transferEncoding = (0, _utils.getStringOption)(attributes.transferEncoding, ["base64", "none", "package"]);
     this.use = attributes.use || "";
@@ -64051,7 +64051,7 @@ class ImageEdit extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "imageEdit", true);
     this.data = (0, _utils.getStringOption)(attributes.data, ["link", "embed"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.border = null;
@@ -64076,7 +64076,7 @@ class ImageEdit extends _xfa_object.XFAObject {
 class Integer extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "integer");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64096,7 +64096,7 @@ class Integer extends _xfa_object.ContentObject {
 class Issuers extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "issuers", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64108,7 +64108,7 @@ class Issuers extends _xfa_object.XFAObject {
 class Items extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "items", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.presence = (0, _utils.getStringOption)(attributes.presence, ["visible", "hidden", "inactive", "invisible"]);
     this.ref = attributes.ref || "";
@@ -64148,7 +64148,7 @@ exports.Items = Items;
 class Keep extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "keep", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     const options = ["none", "contentArea", "pageArea"];
     this.intact = (0, _utils.getStringOption)(attributes.intact, options);
     this.next = (0, _utils.getStringOption)(attributes.next, options);
@@ -64169,7 +64169,7 @@ class KeyUsage extends _xfa_object.XFAObject {
     this.decipherOnly = (0, _utils.getStringOption)(attributes.decipherOnly, options);
     this.digitalSignature = (0, _utils.getStringOption)(attributes.digitalSignature, options);
     this.encipherOnly = (0, _utils.getStringOption)(attributes.encipherOnly, options);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.keyAgreement = (0, _utils.getStringOption)(attributes.keyAgreement, options);
     this.keyCertSign = (0, _utils.getStringOption)(attributes.keyCertSign, options);
     this.keyEncipherment = (0, _utils.getStringOption)(attributes.keyEncipherment, options);
@@ -64185,7 +64185,7 @@ class Line extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "line", true);
     this.hand = (0, _utils.getStringOption)(attributes.hand, ["even", "left", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.slope = (0, _utils.getStringOption)(attributes.slope, ["\\", "/"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64268,7 +64268,7 @@ class Line extends _xfa_object.XFAObject {
 class Linear extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "linear", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["toRight", "toBottom", "toLeft", "toTop"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64288,7 +64288,7 @@ class Linear extends _xfa_object.XFAObject {
 class LockDocument extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "lockDocument");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64304,7 +64304,7 @@ class Manifest extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "manifest", true);
     this.action = (0, _utils.getStringOption)(attributes.action, ["include", "all", "exclude"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64318,7 +64318,7 @@ class Margin extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "margin", true);
     this.bottomInset = (0, _utils.getMeasurement)(attributes.bottomInset, "0");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leftInset = (0, _utils.getMeasurement)(attributes.leftInset, "0");
     this.rightInset = (0, _utils.getMeasurement)(attributes.rightInset, "0");
     this.topInset = (0, _utils.getMeasurement)(attributes.topInset, "0");
@@ -64338,7 +64338,7 @@ class Margin extends _xfa_object.XFAObject {
 class Mdp extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "mdp");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.permissions = (0, _utils.getInteger)({
       data: attributes.permissions,
       defaultValue: 2,
@@ -64354,7 +64354,7 @@ class Mdp extends _xfa_object.XFAObject {
 class Medium extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "medium");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.imagingBBox = (0, _utils.getBBox)(attributes.imagingBBox);
     this.long = (0, _utils.getMeasurement)(attributes.long);
     this.orientation = (0, _utils.getStringOption)(attributes.orientation, ["portrait", "landscape"]);
@@ -64371,7 +64371,7 @@ class Medium extends _xfa_object.XFAObject {
 class Message extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "message", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.text = new _xfa_object.XFAObjectArray();
@@ -64383,7 +64383,7 @@ class NumericEdit extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "numericEdit", true);
     this.hScrollPolicy = (0, _utils.getStringOption)(attributes.hScrollPolicy, ["auto", "off", "on"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.border = null;
@@ -64422,7 +64422,7 @@ class NumericEdit extends _xfa_object.XFAObject {
 class Occur extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "occur", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.initial = attributes.initial !== "" ? (0, _utils.getInteger)({
       data: attributes.initial,
       defaultValue: "",
@@ -64474,7 +64474,7 @@ class Occur extends _xfa_object.XFAObject {
 class Oid extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "oid");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64485,7 +64485,7 @@ class Oid extends _xfa_object.StringObject {
 class Oids extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "oids", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64497,7 +64497,7 @@ class Oids extends _xfa_object.XFAObject {
 class Overflow extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "overflow");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.leader = attributes.leader || "";
     this.target = attributes.target || "";
     this.trailer = attributes.trailer || "";
@@ -64535,7 +64535,7 @@ class PageArea extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "pageArea", true);
     this.blankOrNotBlank = (0, _utils.getStringOption)(attributes.blankOrNotBlank, ["any", "blank", "notBlank"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.initialNumber = (0, _utils.getInteger)({
       data: attributes.initialNumber,
       defaultValue: 1,
@@ -64665,7 +64665,7 @@ class PageSet extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "pageSet", true);
     this.duplexImposition = (0, _utils.getStringOption)(attributes.duplexImposition, ["longEdge", "shortEdge"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.relation = (0, _utils.getStringOption)(attributes.relation, ["orderedOccurrence", "duplexPaginated", "simplexPaginated"]);
     this.relevant = (0, _utils.getRelevant)(attributes.relevant);
@@ -64761,7 +64761,7 @@ class Para extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "para", true);
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.lineHeight = attributes.lineHeight ? (0, _utils.getMeasurement)(attributes.lineHeight, "0pt") : "";
     this.marginLeft = attributes.marginLeft ? (0, _utils.getMeasurement)(attributes.marginLeft, "0pt") : "";
     this.marginRight = attributes.marginRight ? (0, _utils.getMeasurement)(attributes.marginRight, "0pt") : "";
@@ -64835,7 +64835,7 @@ class PasswordEdit extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "passwordEdit", true);
     this.hScrollPolicy = (0, _utils.getStringOption)(attributes.hScrollPolicy, ["auto", "off", "on"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.passwordChar = attributes.passwordChar || "*";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64849,7 +64849,7 @@ class PasswordEdit extends _xfa_object.XFAObject {
 class Pattern extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "pattern", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["crossHatch", "crossDiagonal", "diagonalLeft", "diagonalRight", "horizontal", "vertical"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -64892,7 +64892,7 @@ class Pattern extends _xfa_object.XFAObject {
 class Picture extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "picture");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
@@ -65019,7 +65019,7 @@ class Proto extends _xfa_object.XFAObject {
 class Radial extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "radial", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["toEdge", "toCenter"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65039,7 +65039,7 @@ class Radial extends _xfa_object.XFAObject {
 class Reason extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "reason");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65050,7 +65050,7 @@ class Reason extends _xfa_object.StringObject {
 class Reasons extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "reasons", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65063,7 +65063,7 @@ class Rectangle extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "rectangle", true);
     this.hand = (0, _utils.getStringOption)(attributes.hand, ["even", "left", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.corner = new _xfa_object.XFAObjectArray(4);
@@ -65141,7 +65141,7 @@ class Rectangle extends _xfa_object.XFAObject {
 class RefElement extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "ref");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
@@ -65153,7 +65153,7 @@ class Script extends _xfa_object.StringObject {
     super(TEMPLATE_NS_ID, "script");
     this.binding = attributes.binding || "";
     this.contentType = attributes.contentType || "";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.runAt = (0, _utils.getStringOption)(attributes.runAt, ["client", "both", "server"]);
     this.use = attributes.use || "";
@@ -65177,7 +65177,7 @@ exports.SetProperty = SetProperty;
 class SignData extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "signData", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.operation = (0, _utils.getStringOption)(attributes.operation, ["sign", "clear", "verify"]);
     this.ref = attributes.ref || "";
     this.target = attributes.target || "";
@@ -65192,7 +65192,7 @@ class SignData extends _xfa_object.XFAObject {
 class Signature extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "signature", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["PDF1.3", "PDF1.6"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65208,7 +65208,7 @@ class Signature extends _xfa_object.XFAObject {
 class Signing extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "signing", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65220,7 +65220,7 @@ class Signing extends _xfa_object.XFAObject {
 class Solid extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "solid", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -65240,7 +65240,7 @@ class Speak extends _xfa_object.StringObject {
       defaultValue: 0,
       validate: x => x === 1
     });
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.priority = (0, _utils.getStringOption)(attributes.priority, ["custom", "caption", "name", "toolTip"]);
     this.rid = attributes.rid || "";
     this.use = attributes.use || "";
@@ -65252,7 +65252,7 @@ class Speak extends _xfa_object.StringObject {
 class Stipple extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "stipple", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.rate = (0, _utils.getInteger)({
       data: attributes.rate,
       defaultValue: 50,
@@ -65289,7 +65289,7 @@ class Subform extends _xfa_object.XFAObject {
     this.columnWidths = (attributes.columnWidths || "").trim().split(/\s+/).map(x => x === "-1" ? -1 : (0, _utils.getMeasurement)(x));
     this.h = attributes.h ? (0, _utils.getMeasurement)(attributes.h) : "";
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.layout = (0, _utils.getStringOption)(attributes.layout, ["position", "lr-tb", "rl-row", "rl-tb", "row", "table", "tb"]);
     this.locale = attributes.locale || "";
     this.maxH = (0, _utils.getMeasurement)(attributes.maxH, "0pt");
@@ -65658,7 +65658,7 @@ class Subform extends _xfa_object.XFAObject {
 class SubformSet extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "subformSet", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.relation = (0, _utils.getStringOption)(attributes.relation, ["ordered", "choice", "unordered"]);
     this.relevant = (0, _utils.getRelevant)(attributes.relevant);
@@ -65700,7 +65700,7 @@ class SubjectDN extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "subjectDN");
     this.delimiter = attributes.delimiter || ",";
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65719,7 +65719,7 @@ class SubjectDN extends _xfa_object.ContentObject {
 class SubjectDNs extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "subjectDNs", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -65737,7 +65737,7 @@ class Submit extends _xfa_object.XFAObject {
       validate: x => x === 1
     });
     this.format = (0, _utils.getStringOption)(attributes.format, ["xdp", "formdata", "pdf", "urlencoded", "xfd", "xml"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.target = attributes.target || "";
     this.textEncoding = (0, _utils.getKeyword)({
       data: attributes.textEncoding ? attributes.textEncoding.toLowerCase() : "",
@@ -66031,7 +66031,7 @@ exports.Template = Template;
 class Text extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "text");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.maxChars = (0, _utils.getInteger)({
       data: attributes.maxChars,
       defaultValue: 0,
@@ -66140,7 +66140,7 @@ class TextEdit extends _xfa_object.XFAObject {
       validate: x => x === 1
     });
     this.hScrollPolicy = (0, _utils.getStringOption)(attributes.hScrollPolicy, ["auto", "off", "on"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.multiLine = (0, _utils.getInteger)({
       data: attributes.multiLine,
       defaultValue: "",
@@ -66204,7 +66204,7 @@ class TextEdit extends _xfa_object.XFAObject {
 class Time extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "time");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -66225,7 +66225,7 @@ class Time extends _xfa_object.StringObject {
 class TimeStamp extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "timeStamp");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.server = attributes.server || "";
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
@@ -66237,7 +66237,7 @@ class TimeStamp extends _xfa_object.XFAObject {
 class ToolTip extends _xfa_object.StringObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "toolTip");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.rid = attributes.rid || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -66248,7 +66248,7 @@ class ToolTip extends _xfa_object.StringObject {
 class Traversal extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "traversal", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -66260,7 +66260,7 @@ class Traversal extends _xfa_object.XFAObject {
 class Traverse extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "traverse", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.operation = (0, _utils.getStringOption)(attributes.operation, ["next", "back", "down", "first", "left", "right", "up"]);
     this.ref = attributes.ref || "";
     this.use = attributes.use || "";
@@ -66282,7 +66282,7 @@ class Traverse extends _xfa_object.XFAObject {
 class Ui extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "ui", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
@@ -66339,7 +66339,7 @@ class Validate extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "validate", true);
     this.formatTest = (0, _utils.getStringOption)(attributes.formatTest, ["warning", "disabled", "error"]);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.nullTest = (0, _utils.getStringOption)(attributes.nullTest, ["disabled", "error", "warning"]);
     this.scriptTest = (0, _utils.getStringOption)(attributes.scriptTest, ["error", "disabled", "warning"]);
     this.use = attributes.use || "";
@@ -66355,7 +66355,7 @@ class Validate extends _xfa_object.XFAObject {
 class Value extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "value", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.override = (0, _utils.getInteger)({
       data: attributes.override,
       defaultValue: 0,
@@ -66462,7 +66462,7 @@ exports.Value = Value;
 class Variables extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "variables", true);
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.boolean = new _xfa_object.XFAObjectArray();
@@ -69885,7 +69885,7 @@ class Present extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "present", true);
     this.behaviorOverride = null;
-    this.cache = null;
+    this.resolve = null;
     this.common = null;
     this.copies = null;
     this.destination = null;
@@ -70931,7 +70931,7 @@ class ConnectionSet extends _xfa_object.XFAObject {
 class EffectiveInputPolicy extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "effectiveInputPolicy");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -70942,7 +70942,7 @@ class EffectiveInputPolicy extends _xfa_object.XFAObject {
 class EffectiveOutputPolicy extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "effectiveOutputPolicy");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -70953,7 +70953,7 @@ class EffectiveOutputPolicy extends _xfa_object.XFAObject {
 class Operation extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "operation");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.input = attributes.input || "";
     this.name = attributes.name || "";
     this.output = attributes.output || "";
@@ -70966,7 +70966,7 @@ class Operation extends _xfa_object.StringObject {
 class RootElement extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "rootElement");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -70977,7 +70977,7 @@ class RootElement extends _xfa_object.StringObject {
 class SoapAction extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "soapAction");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -70988,7 +70988,7 @@ class SoapAction extends _xfa_object.StringObject {
 class SoapAddress extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "soapAddress");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -70999,7 +70999,7 @@ class SoapAddress extends _xfa_object.StringObject {
 class Uri extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "uri");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -71010,7 +71010,7 @@ class Uri extends _xfa_object.StringObject {
 class WsdlAddress extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "wsdlAddress");
-    this.id = attributes.id || "";
+    this._id = attributes.id || "";
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -73747,7 +73747,7 @@ class PDFWorkerStreamRangeReader {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __w_pdfjs_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -73761,14 +73761,14 @@ class PDFWorkerStreamRangeReader {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __w_pdfjs_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -73781,12 +73781,12 @@ class PDFWorkerStreamRangeReader {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__w_pdfjs_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -73797,7 +73797,7 @@ class PDFWorkerStreamRangeReader {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.

@@ -1,5 +1,5 @@
 import QrScanner from "qr-scanner";
-import React, { ChangeEvent } from "react";
+import React, {ChangeEvent} from "preact/compat";
 import style from "./qr.module.css";
 import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { pdf2png } from "./pdf2png";
@@ -87,7 +87,7 @@ export class QRReader extends React.Component<
 
   ScanFile = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
-      const file = e.target.files[0];
+      const file = e.currentTarget.files[0];
       console.log(file.name);
       const img = file.name.endsWith(".pdf") ? await pdf2png(file) : file;
       const res = await QrScanner.scanImage(img, {
@@ -97,7 +97,7 @@ export class QRReader extends React.Component<
     } catch (e) {
       this.onError(e);
     }
-    e.target.value = null;
+    e.currentTarget.value = null;
     // const res = await this.reader.scanFile(e.target.files[0]);
     // const res = await this.reader.start(camera, this.config, this.onSuccess, console.log);
   };

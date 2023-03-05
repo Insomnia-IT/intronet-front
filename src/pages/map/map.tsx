@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "react";
+import React from "preact/compat";
 import { cellState } from "../../helpers/cell-state";
 import { ImageInfo } from "../../stores/map.store";
 import { DragHandler } from "./handlers/dragHandler";
@@ -28,7 +28,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
         ref={this.setHandler}
         onPointerUp={this.onClick}
         onPointerDown={(e) => {
-          if (!e.nativeEvent.defaultPrevented) {
+          if (!e.defaultPrevented) {
             this.props.onSelect(null);
           }
         }}
@@ -61,7 +61,6 @@ export class MapComponent extends React.PureComponent<MapProps> {
                 }}
                 transform={new TransformMatrix()
                   .Apply(this.state.transform)
-                  // @ts-ignore
                   .Translate(x.point)
                   .Scale(1 / this.state.scale)
                   .ToString("svg")}
@@ -75,7 +74,7 @@ export class MapComponent extends React.PureComponent<MapProps> {
   //region Handlers
   private root: HTMLDivElement;
   private handlers: (DragHandler | ZoomHandler)[];
-  setHandler = (element) => {
+  setHandler = (element: HTMLDivElement) => {
     this.root = element;
     if (element) {
       this.initTransform(this.props.image, element);
@@ -118,6 +117,10 @@ export class MapComponent extends React.PureComponent<MapProps> {
 
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
+    if (rect.width == 0 || rect.height == 0){
+      rect.width = window.innerWidth;
+      rect.height = window.innerHeight;
+    }
     const aspectRatio = rect.width / rect.height;
     const imageRatio = image.width / image.height;
     this.minScale =
@@ -171,11 +174,11 @@ export class MapComponent extends React.PureComponent<MapProps> {
     this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
 
-  onClick = (event: React.SyntheticEvent<HTMLDivElement, MouseEvent>) => {
+  onClick = (event: React.TargetedEvent<HTMLDivElement, MouseEvent>) => {
     const rect = this.root.getBoundingClientRect();
     const p = {
-      X: event.nativeEvent.pageX - rect.left,
-      Y: event.nativeEvent.pageY - rect.top,
+      X: event.pageX - rect.left,
+      Y: event.pageY - rect.top,
     };
     const point = this.Transform.Inverse().Invoke(p);
     this.props.onClick(point);

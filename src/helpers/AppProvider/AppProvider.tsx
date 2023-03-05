@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "preact/compat";
 import { AuthProvider } from "./AuthProvider";
 import { ModalProvider } from "./ModalProvider";
 

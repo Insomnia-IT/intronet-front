@@ -1,9 +1,8 @@
 import { cell } from "@cmmn/cell/lib";
-import { Directions, DirectionsApi } from "src/api/directions";
+import { Directions } from "./locations.store";
 import { ObservableDB } from "./observableDB";
 
 class DirectionsStore {
-  private api = new DirectionsApi();
 
   @cell
   Directions = new ObservableDB<Direction>("directions");
@@ -26,32 +25,9 @@ class DirectionsStore {
   /**
    * Возвращает список картинок для локаций
    */
-  public async getAll() {
-    this.IsLoading = true;
-    try {
-      const directions = await this.api.getDirections();
-      this.Directions.clear();
-      this.Directions.addRange(directions);
-      // Object.keys(MapIcons).map((x) => ({
-      //   id: +x,
-      //   name: Directions[+x],
-      //   image: "",
-      // }))
-      // );
-      // for (let direction of this.Directions.toArray()) {
-      //   await this.api.createDirection({
-      //     body: {
-      //       file: null,
-      //       image: "",
-      //       name: direction.name,
-      //     },
-      //   });
-      // }
-    } catch (error) {
-      console.warn("Синхронизация Directions не удалась");
-    } finally {
-      this.IsLoading = false;
-    }
+  public async getAll(): Promise<Direction[]> {
+    await this.Directions.isLoaded;
+    return this.Directions.toArray();
   }
 
   /**
@@ -123,7 +99,7 @@ class DirectionsStore {
   //   }
   // };
 
-  public DirectionToDirection(id: number): Directions {
+  public DirectionToDirection(id: string): Directions {
     const x = this.Directions.get(id);
     switch (x?.name) {
       case "Затмение":

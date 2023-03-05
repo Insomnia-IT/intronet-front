@@ -1,60 +1,44 @@
-import { cell } from "@cmmn/cell/lib";
-import { locationsApi } from "../api";
+import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
-import { Directions } from "../api/directions";
 import { directionsStore } from "./directions.store";
+// import locationsJSON from "./locations.json";
+import {mapStore} from "./map.store";
+import {getRandomItem} from "@helpers/getRandomItem";
 
 class LocationsStore {
-  private api = locationsApi;
 
-  constructor() {
-    this.Tags.on("change", (event) => {
-      if (event.source === "server") return;
-      switch (event.type) {
-        case "add":
-          this.api.addTag(event.value.name);
-          break;
-        case "update":
-          this.api.updateTag(event.value);
-          break;
-        case "delete":
-          this.api.deleteTag(event.key as number);
-          break;
-      }
-    });
-    this.Locations.on("change", (event) => {
-      if (event.source === "server") return;
-      switch (event.type) {
-        case "add":
-          this.api.addLocation(event.value);
-          break;
-        case "update":
-          this.api.updateLocation(event.value);
-          break;
-        case "delete":
-          this.api.deleteLocation(event.key as number);
-          break;
-      }
-    });
-    Promise.all([this.Tags.isLoaded, this.Locations.isLoaded]).then(() => {
-      setTimeout(() => this.update(), 60_000);
-      this.update();
-    });
-  }
 
-  private async update() {
-    this.api
-      .getTags()
-      .then((tags) => this.Tags.merge(tags, "server"))
-      .catch((err) => console.warn("Синхронизация Tags не удалась"));
-    this.api
-      .getLocations()
-      .then((locations) => this.Locations.merge(locations, "server"))
-      .catch((err) => console.warn("Синхронизация Locations не удалась"));
+  private async getFromJSON() {
+    // const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
+    //   const geo = {
+    //     lat: x.geometry.coordinates[1] as number,
+    //     lon: x.geometry.coordinates[0] as number,
+    //   };
+    //   const point = mapStore.Map2GeoConverter.fromGeo(geo);
+    //   return ({
+    //     _id: Fn.ulid(),
+    //     tags: [],
+    //     directionId: getRandomItem(directionIds),
+    //     name: x.properties.Name,
+    //     image: "camping",
+    //     description: x.properties.description,
+    //     ...geo,
+    //     x: point.X,
+    //     y: point.Y
+    //   } as InsomniaLocation);
+    // });
+    // this.Locations.addRange(locations);
   }
 
   @cell
   Locations = new ObservableDB<InsomniaLocation>("locations");
+
+  IsLoaded = this.Locations.isLoaded.then(() =>{
+    if ([...this.Locations.keys()].length === 0){
+      console.log('import locations from json')
+      return this.getFromJSON();
+    }
+  })
 
   @cell
   Tags = new ObservableDB<Tag>("tags");
@@ -86,21 +70,48 @@ class LocationsStore {
   }
 
   async addLocation(location: InsomniaLocation) {
-    const created = await this.api.addLocation(location);
-    this.Locations.add(created, "server");
+    await this.IsLoaded;
+    await this.Locations.add(location);
   }
 
-  updateLocation(x: InsomniaLocationFull) {
-    this.Locations.update({
+ async updateLocation(x: InsomniaLocationFull) {
+    await this.IsLoaded;
+    await this.Locations.update({
       ...x,
       // @ts-ignore
-      tags: x.tags.map((t) => t.id),
+      tags: x.tags.map((t) => t._id),
     });
   }
 
-  deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
-    this.Locations.remove(location.id);
+  async deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
+    await this.IsLoaded;
+    await this.Locations.remove(location._id);
   }
 }
 
 export const locationsStore = new LocationsStore();
+
+
+export enum Directions {
+  fair = 2,
+  lectures = 4,
+  masterClass = 6,
+  playground = 8,
+  artObject = 10,
+  meeting = 11,
+  cafe = 12,
+  tentRent = 13,
+  info = 15,
+  screen = 16,
+  music = 20,
+  staffCamp = 21,
+  checkpoint = 22,
+  camping = 81,
+  bath = 83,
+  wc = 85,
+  fire = 86,
+  bathhouse = 90,
+  lab = 95,
+}
+
+const directionIds = Object.keys(Directions).filter(x => Number.isNaN(+x));
