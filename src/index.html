@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <script src="/sw-load.js"></script>
+  <script defer src="/sw-loader.min.js"></script>
   <style>
     html, body{
       margin: 0;
@@ -17,6 +17,8 @@
       justify-content: center;
       align-items: stretch;
       height: 100vh;
+      --percent: 0;
+      clip-path: polygon(0 calc(var(--percent)*2vh), calc(var(--percent)*2vw) 0, 0 0);
     }
     #start:before{
       content: 'INSOMNIA FEST';
@@ -47,10 +49,10 @@
     }
   </style>
   <meta name="google" content="notranslate">
-  <link rel="icon" type="image/x-icon" href="../public/icons/32x32.png"/>
-  <link rel="shortcut icon" type="image/x-icon" href="../public/icons/32x32.png"/>
+  <link rel="icon" type="image/x-icon" href="/icons/32x32.png"/>
+  <link rel="shortcut icon" type="image/x-icon" href="/icons/32x32.png"/>
   <link rel="manifest" href="/manifest.json"/>
-  <link rel="apple-touch-icon" sizes="144x144" href="../public/icons/144x144.png"/>
+  <link rel="apple-touch-icon" sizes="144x144" href="/icons/144x144.png"/>
   <link rel="stylesheet" href="/styles/index.css">
   <meta name="theme-color" content="#FFF"/>
   <meta name="viewport"
@@ -61,7 +63,7 @@
 <body>
 <noscript>Включите JavaScript чтобы воспользоваться программой.</noscript>
 <div id="root">
-  <div id="start"></div>
+  <div id="start"/>
 </div>
 </body>
 </html>

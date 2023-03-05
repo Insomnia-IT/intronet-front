@@ -19,7 +19,7 @@ export const routes = {
   },
   map: {
     name: 'map',
-    title: "Карта",
+    title: "Карта 2",
     Component: MapPageWithRouting,
   },
   article: {

@@ -14,6 +14,7 @@ export const App = () => {
           <Navbar/>
           <Toast/>
           <ModalSlot />
+          <div id="loader" class={styles.loader}></div>
         </div>
     </AppProvider>
   );

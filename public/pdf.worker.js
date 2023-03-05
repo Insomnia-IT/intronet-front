@@ -69885,7 +69885,7 @@ class Present extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "present", true);
     this.behaviorOverride = null;
-    this.cache = null;
+    this.resolve = null;
     this.common = null;
     this.copies = null;
     this.destination = null;

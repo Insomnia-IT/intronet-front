@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import React, { FC, useState } from "preact/compat";
 import styles from "../../../components/schedule/schedule.module.css";
-import {Directions, locationsStore, moviesStore} from "@stores";
+import {locationsStore, moviesStore} from "@stores";
 import { useCellState } from "@helpers/cell-state";
 import {ScheduleInfoMovie} from "@components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
 

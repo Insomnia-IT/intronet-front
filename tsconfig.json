@@ -23,6 +23,8 @@
     }
   },
   "include": [
+    "service-worker/*.ts",
+    "service-worker/*.json",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.json",
