@@ -31,11 +31,8 @@ export class ObservableDB<
   }
 
   async init() {
-    try {
-      await this.sync();
-    } finally {
-      this.emit('loaded');
-    }
+    await this.loadItems().then(x => this.emit('loaded'));
+    await this.sync();
   }
 
   async remove(key: string) {
@@ -139,19 +136,12 @@ export class ObservableDB<
       type: "init",
       value: items.rows.map(x => x.doc),
     });
-    console.log(items);
   }
 
   public syncQueue = new AsyncQueue();
   async sync() {
-    const versions = VersionsDB.Instance;
-    await versions.isLoaded;
     const remote = new PouchDB(`${ObservableDB.Remote}/${this.name}`);
-    if (!versions.items.has(this.name)) {
-      await versions.add({_id: this.name, version: Fn.ulid()});
-    } else if (versions.haveChanges.get(this.name)) {
-      await remote.replicate.to(this.db);
-    }
+    const versions = VersionsDB.Instance;
     versions.on('change', async e => {
       if (e.type == 'update' && e.key == this.name && e.fromReplication){
         await remote.replicate.to(this.db);
@@ -173,7 +163,18 @@ export class ObservableDB<
         });
       }
     })
-    await this.loadItems();
+    await versions.isLoaded;
+    if (!versions.items.has(this.name)) {
+      await versions.add({_id: this.name, version: Fn.ulid()});
+    } else if (versions.haveChanges.get(this.name)) {
+      await remote.replicate.to(this.db);
+      console.log('replicated', this.name);
+      await this.loadItems();
+      this.emit('change', {
+        type: 'init',
+        value: Array.from(this.items.values()),
+      })
+    }
   }
 }
 

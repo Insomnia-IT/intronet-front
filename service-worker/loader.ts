@@ -10,7 +10,7 @@ if (navigator.serviceWorker && !location.href.includes('localhost')) {
     worker: navigator.serviceWorker.controller,
     size: 0,
     get percent(){
-      return this.size / 2223289;
+      return this.size / 2209895;
     },
     reload(){
       this.worker.postMessage({
@@ -32,6 +32,7 @@ if (navigator.serviceWorker && !location.href.includes('localhost')) {
   if (location.pathname.match(/\.reload/)){
     navigator.serviceWorker.getRegistration()
       .then(x => x?.unregister())
+      .catch()
       .then(x => location.pathname = '/');
   }
   if (navigator.serviceWorker.controller) {

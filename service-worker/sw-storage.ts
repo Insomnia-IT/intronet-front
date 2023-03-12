@@ -24,25 +24,31 @@ export class SwStorage {
     return caches.delete(this.name);
   }
 
+  private isUpdating = false;
   async checkUpdate(force = false){
     console.log(`check ${versionUrl} for update`);
     try {
-      const version = await fetch(versionUrl).then(x => x.text());
+      const version = await this.getVersion();
       if (version === this.version && !force) {
         console.log(`check ${versionUrl} for update: same version found, ${version}`);
         return;
       }
+      this.isUpdating = true;
       console.log(`start update to version ${version}`);
       const newStorage = new SwStorage('tmp', version);
-      newStorage.load().then(async newCache => {
+      newStorage.load(false).then(async newCache => {
         for (let key of await newCache.keys()) {
           await this.cache.delete(key);
           await this.cache.put(key, await newCache.match(key));
         }
         await newStorage.clear();
         await this.sendAll({action: 'new-version' as ServiceWorkerAction})
+        console.log(`updated to version ${version}`);
+      }).catch(e => {
+        console.log('failed update');
+      }).finally(() => {
+        this.isUpdating = false;
       })
-      console.log(`updated to version ${version}`);
     }catch (e){
       console.error(e);
     }
@@ -57,11 +63,20 @@ export class SwStorage {
     }
   }
 
-  async load(){
-    this.version ??= await fetch(versionUrl).then(x => x.text());
+  private getVersion(){
+    return fetch(versionUrl).then(x => x.ok ? x.text() : Promise.reject(`Failed load version`));
+  }
+
+  async load(ignoreErrors = true){
+    this.version ??= await this.getVersion();
     this.cache = await caches.open(this.name);
     await Promise.all(
-      assets.map(a => this.getFromCacheOrFetch(new Request(a)).catch(console.error))
+      assets.map(a => this.getFromCacheOrFetch(new Request(a)).catch(e => {
+        if (ignoreErrors)
+          console.error(e);
+        else
+          throw e;
+      }))
     )
     this.resolve();
     return this.cache;
@@ -73,6 +88,9 @@ export class SwStorage {
 
   async fetchAndPut(request: Request){
     const res = await fetch(new Request(request.url + `?hash=${+new Date()}`));
+    if (!res.ok){
+      throw new Error(`Failed load `+ request.url + ', status: ' + res.status)
+    }
     const clone = res.clone();
     const blob = await clone.blob()
     await this.sendAll({
