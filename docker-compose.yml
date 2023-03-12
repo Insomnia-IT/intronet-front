@@ -3,12 +3,12 @@ services:
   web:
     build:
       context: .
-    image: insomnia/intronet-front
+    image: ${IMAGE}
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     container_name: intronet-front
     ports:
-      - "8092:80"
+      - "4000:80"
     links:
       - db
     depends_on:
@@ -21,7 +21,7 @@ services:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
     ports:
-      - 5984:5984
+      - "5984:5984"
     volumes:
       - ./.data:/opt/couchdb/data
       - ./couchdb.ini:/opt/couchdb/etc/local.ini

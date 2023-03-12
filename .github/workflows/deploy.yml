@@ -17,7 +17,9 @@ jobs:
       - name: stop container
         run: docker rm -f $IMAGE_NAME
       - name: run image
-        run: docker run -d -p 4000:80 --network=apps --restart=always --name $IMAGE_NAME $IMAGE_NAME:$GITHUB_SHA
+        uses: isbang/compose-action@v1.4.1
+        env:
+          IMAGE: $IMAGE_NAME:$GITHUB_SHA
       - name: cleanup docker containers
         run: docker container prune --filter "until=24h" -f
       - name: cleanup docker images
