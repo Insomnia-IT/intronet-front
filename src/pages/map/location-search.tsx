@@ -44,12 +44,14 @@ export class LocationSearch extends React.PureComponent<{
       >
         <div className="flex">
             <Icons.Search/>
-            <input
-              className="flex-1"
-              value={this.state.query}
-              placeholder="Поиск мест и мероприятий"
-              onChange={(e) => (this.query = e.currentTarget.value)}
-            />
+            {this.state.opened && (
+              <input
+                className="flex-1"
+                value={this.state.query}
+                placeholder="Поиск мест и мероприятий"
+                onChange={(e) => (this.query = e.currentTarget.value)}
+              />
+            )}
             {this.state.query && (
               <Icons.Cancel onClick={() => (this.query = "")}/>
             )}
@@ -86,6 +88,7 @@ export class LocationSearch extends React.PureComponent<{
                   onClick={() => {
                     this.props.onSelect(x);
                     this.opened = false;
+                    this.query = undefined;
                   }}
                 >
                   <svg

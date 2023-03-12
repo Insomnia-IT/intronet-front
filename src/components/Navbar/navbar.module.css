@@ -2,30 +2,30 @@
   position: absolute;
   display: flex;
   justify-content: space-around;
-  background: var(--blue);
+  /*background: var(--blue);*/
   z-index: 10;
+  font-size: 1.4rem;
+  bottom: .5em;
+  flex-flow: row nowrap;
+  width: 100vw;
 }
 
-@media screen and (orientation: portrait){
-  .navbar{
-    bottom: 0;
-    flex-flow: row nowrap;
-    width: 100vw;
-  }
-}
-@media screen and (orientation: landscape){
+/*@media screen and (orientation: landscape){*/
+/*  .navbar{*/
+/*    right: 0;*/
+/*    flex-flow: column nowrap;*/
+/*    height: 100vh;*/
+/*  }*/
+/*}*/
+
+@media screen and (min-width: 500px){
   .navbar{
     right: 0;
-    flex-flow: column nowrap;
-    height: 100vh;
+    width: 300px;
   }
 }
 
 .item{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1em;
   --color: #808080;
 }
 

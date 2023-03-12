@@ -9,6 +9,10 @@ services:
     container_name: intronet-front
     ports:
       - "8092:80"
+    links:
+      - db
+    depends_on:
+      - db
 
   db:
     container_name: insomnia_couchdb

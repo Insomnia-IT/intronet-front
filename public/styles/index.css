@@ -20,6 +20,7 @@ body, html {
   flex-direction: column;
   min-height: 0;
   --blue: #edf2f7;
+  --deep-blue: #42D8;
 }
 
 /* Скрываем scrollbar для Chrome, Safari и Opera */
