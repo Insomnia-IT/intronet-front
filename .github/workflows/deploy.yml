@@ -13,11 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build . --tag $IMAGE_NAME:$GITHUB_SHA
+        run: docker compose build
       - name: stop container
-        run: docker rm -f $IMAGE_NAME
+        run: docker compose down
       - name: run image
-        uses: isbang/compose-action@v1.4.1
+        run: docker compose up -d
       - name: cleanup docker containers
         run: docker container prune --filter "until=24h" -f
       - name: cleanup docker images
