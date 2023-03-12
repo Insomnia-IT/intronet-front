@@ -7,13 +7,12 @@ import { titlesList } from "./titelsList";
 export const MainPage = () => {
   return (
     <>
-      {/* Login button - кнопка для админов, невидимая, располагается в правом верхнем углу экрана */}
-      <LoginButton />
-      <div className={"hide-scrollbar"}>
+      {/* Login button - кнопка для админов, невидимая, располагается в правом верхнем углу экрана */ }
+      <LoginButton/>
+      <div className={ "hide-scrollbar" }>
         <div>
-          <div>
-            <h1>{getRandomItem(titlesList)}</h1>
-          </div>
+          <h1>{ getRandomItem(titlesList) }</h1>
+
           <CardList></CardList>
         </div>
       </div>

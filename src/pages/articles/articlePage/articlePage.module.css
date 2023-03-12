@@ -1,0 +1,10 @@
+.container {
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+
+.plug {
+  font-size: 1rem;
+  text-align: center;
+}

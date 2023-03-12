@@ -1,6 +1,5 @@
 import * as React from "preact/compat";
-import { Text, TextProps } from "@chakra-ui/react";
-import { ToggleBtn } from "./toggleBtn/toggleBtn";
+import styles from "./noteText.module.css";
 
 export type INoteText = {
   text: INote["text"];
@@ -8,10 +7,10 @@ export type INoteText = {
 
 const COUNT_CHAR_OF_SHORT_TEXT = 176;
 
-const WrapText = ({ children, ...res }: React.PropsWithChildren<TextProps>) => (
-  <Text as={"p"} fontSize={"sm"} {...res}>
+const WrapText = ({ children }: React.PropsWithChildren) => (
+  <p className={styles.text} >
     {children}
-  </Text>
+  </p>
 );
 
 export const NoteText = ({ text }: INoteText) => {
@@ -30,9 +29,9 @@ export const NoteText = ({ text }: INoteText) => {
   return (
     <WrapText>
       {!isOpen ? shortText : text}{" "}
-      <ToggleBtn onClick={toggleOpen}>
+      <button onClick={toggleOpen}>
         {isOpen ? "Свернуть" : "Подробнее"}
-      </ToggleBtn>
+      </button>
     </WrapText>
   );
 };

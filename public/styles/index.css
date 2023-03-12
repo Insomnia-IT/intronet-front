@@ -21,6 +21,28 @@ body, html {
   min-height: 0;
   --blue: #edf2f7;
   --deep-blue: #42D8;
+
+  --color-electric-blues: #536bf3;
+  --color-ch-orange: #ff4b16;
+  --color-vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #ff6d76 32.81%, #4b6bf8 100%);
+  --color-bon-yellow: #fda631;
+  --color-ins-night: #0c1035;
+  --color-cyber-disco: #fe4ba9;
+  --color-sunrise: #f2888c;
+  --color-medium-blue: #1c2573;
+  --color-white: #fff;
+  --color-new-pink: #ff6e76;
+  --color-cold-white: #f7fcff;
+  --color-soft-gradient: radial-gradient(100% 613.64% at 4.04% 0%, #d8eef4 0%, rgba(211, 184, 255, 0.46) 93.3%);
+  --color-grey: #646995;
+  --color-soft-gradient2: radial-gradient(100% 613.64% at 4.04% 0%, #fffbe9 0%, rgba(249, 184, 255, 0.46) 93.3%);
+  --color-experiment: radial-gradient(100% 613.64% at 4.04% 0%, #e9faff 0%, #e7d9ff 93.3%);
+
+  --shadow-pink: 0px 4px 12px rgba(248, 192, 194, 0.14), -4px -4px 12px rgba(248, 192, 194, 0.14), 0px 4px 12px rgba(248, 192, 194, 0.14);
+  --shadow-drop: 0px -4px 16px rgba(0, 0, 0, 0.05);
+
+  --z-index-buttons: 11;
+  --z-index-bottomsheet : 20;
 }
 
 /* Скрываем scrollbar для Chrome, Safari и Opera */
@@ -48,4 +70,73 @@ body, html {
 
 .column {
   flex-direction: column;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+h4 {
+  font-family: 'SF Compact', sans-serif;
+  font-style: normal;
+  font-weight: 556;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+p.big {
+  font-family: 'SF Compact Text', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+p {
+  font-family: 'SF Pro Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+p.small {
+  font-family: 'SF Compact Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
 }

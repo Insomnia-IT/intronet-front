@@ -1,51 +1,36 @@
-import { EditIcon } from "@chakra-ui/icons";
-import { Tag, TagLeftIcon, TagProps } from "@chakra-ui/react";
 import * as React from "preact/compat";
 import { RequireAuth } from "@components/RequireAuth";
 import { categoriesStore } from "@stores";
+import styles from "./categoryCard.module.css";
 
-interface ICategoryCard extends TagProps {
+interface ICategoryCard {
   categoryObj: ICategory;
   isActive?: boolean;
+  onClick?: () => void;
   onIconLeftClick?: (category: ICategory) => void;
 }
 
 export function CategoryCard({
-  categoryObj,
-  isActive,
-  children,
-  onIconLeftClick,
-  ...rest
-}: React.PropsWithChildren<ICategoryCard>) {
+                               categoryObj,
+                               isActive,
+                               children,
+                               onIconLeftClick
+                             }: React.PropsWithChildren<ICategoryCard>) {
   const color = categoriesStore.getCategoryColor(categoryObj._id);
 
   return (
-    <div>
-      <Tag
-        py={2}
-        px={4}
-        borderRadius={"2rem"}
-        bg={isActive ? color : "transparent"}
-        color={isActive ? "white" : color}
-        cursor={"pointer"}
-        flexShrink={1}
-        flexBasis={"content"}
-        fontSize={"md"}
-        lineHeight={1.5}
-        {...rest}
-      >
-        <RequireAuth>
-          <TagLeftIcon
-            boxSize="5"
-            as={EditIcon}
-            onClick={(event) => {
-              event.stopPropagation();
-              onIconLeftClick(categoryObj);
-            }}
-          />
-        </RequireAuth>
-        {categoryObj.name}
-      </Tag>
+
+    <div className={ styles.card }
+         style={{ color: isActive ? "white" : color }}>
+      <RequireAuth>
+        <button
+          onClick={ (event) => {
+            event.stopPropagation();
+            onIconLeftClick(categoryObj);
+          } }
+        />
+      </RequireAuth>
+      { categoryObj.name }
     </div>
   );
 }

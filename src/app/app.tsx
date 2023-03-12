@@ -1,9 +1,9 @@
 import React from "preact/compat";
-import {Navbar, Toast} from "@components";
-import { AppProvider, Modals } from "@helpers/AppProvider";
+import { Navbar, Toast } from "@components";
+import { ModalSlot } from "@components/modal";
+import { AppProvider } from "@helpers/AppProvider";
+import { useRouter } from "../pages/routing";
 import styles from "./app.style.module.css";
-import {useRouter} from "../pages/routing";
-import {ModalSlot} from "@components/modal";
 
 export const App = () => {
   const {active: {Component}} = useRouter();

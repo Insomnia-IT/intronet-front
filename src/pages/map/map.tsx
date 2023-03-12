@@ -1,12 +1,12 @@
-import { cell } from "@cmmn/cell/lib";
 import React from "preact/compat";
-import { cellState } from "../../helpers/cell-state";
-import { ImageInfo } from "../../stores/map.store";
+import { cell } from "@cmmn/cell/lib";
+import { cellState } from "@helpers/cell-state";
+import { ImageInfo } from "@stores/map.store";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
-import styles from "./map.module.css";
 import { MapElement } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
+import styles from "./map.module.css";
 
 export class MapComponent extends React.PureComponent<MapProps> {
   @cell

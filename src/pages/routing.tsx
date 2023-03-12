@@ -1,10 +1,11 @@
-import React, { FC } from "preact/compat";
+import React from "preact/compat";
 import { MapPageWithRouting } from "./map/map-page";
-
 import { TimetablePage } from "./timetable/timetable-page";
-import {Cell} from "@cmmn/cell/lib";
-import {useCellState} from "@helpers/cell-state";
-import {MainPage} from "./main/mainPage";
+import { Cell } from "@cmmn/cell/lib";
+import { useCellState } from "@helpers/cell-state";
+import { MainPage } from "./main/mainPage";
+import { BoardPage } from "./board/boardPage/boardPage";
+import { ArticlePage } from "./articles/articlePage/articlePage";
 
 export const routes = {
   main: {
@@ -15,7 +16,7 @@ export const routes = {
   board: {
     name: 'board',
     title: "Объявления",
-    Component: null,
+    Component: BoardPage,
   },
   map: {
     name: 'map',
@@ -39,21 +40,23 @@ export const routes = {
   }
 };
 
-const routeCell = new Cell<Array<string |number>>(location.pathname.split('/').slice(1))
+const routeCell = new Cell<Array<string | number>>(location.pathname.split('/').slice(1));
 const goTo = (path: (string | null | number)[], replace: boolean = false) => {
   routeCell.set(path.filter(x => x !== null));
-  const url = '/'+path.filter(x => x !== null).join('/');
+  const url = '/' + path.filter(x => x !== null).join('/');
   history[replace ? 'replaceState' : 'pushState'](null, null, url)
 };
-window.addEventListener('popstate',  () => {
+
+window.addEventListener('popstate', () => {
   routeCell.set(location.pathname.split('/').slice(1));
 });
-if (location.pathname === '/'){
-  goTo(['map'], true);
+
+if (location.pathname === '/') {
+  goTo([ 'map' ], true);
 }
 
-export function useRouter(){
-  const [route] = useCellState(() => routeCell.get());
+export function useRouter() {
+  const [ route ] = useCellState(() => routeCell.get());
 
   return {
     back: history.back.bind(history),

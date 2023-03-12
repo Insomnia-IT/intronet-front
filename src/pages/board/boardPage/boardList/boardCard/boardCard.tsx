@@ -1,18 +1,11 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  HStack,
-  IconButton,
-  StackProps,
-  VStack,
-} from "@chakra-ui/react";
 import * as React from "preact/compat";
 import { RequireAuth } from "@components/RequireAuth";
 import { useAppContext } from "@helpers/AppProvider";
 import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
+import styles from "./boardCard.module.css";
 
-export interface IBoardCard extends StackProps {
+export interface IBoardCard {
   noteInfoObj: INote;
   activeColor: string;
   categoryName?: ICategory["name"];
@@ -21,14 +14,13 @@ export interface IBoardCard extends StackProps {
 }
 
 export const BoardCard = ({
-  noteInfoObj,
-  activeColor,
-  onEditIconButtonClick,
-  onDeleteIconButtonClick,
-  categoryName,
-  ...rest
-}: IBoardCard) => {
-  const { title, text } = noteInfoObj;
+                            noteInfoObj,
+                            activeColor,
+                            onEditIconButtonClick,
+                            onDeleteIconButtonClick,
+                            categoryName,
+                          }: IBoardCard) => {
+  const {title, text} = noteInfoObj;
 
   const app = useAppContext();
 
@@ -36,64 +28,17 @@ export const BoardCard = ({
   if (!title && !text && !app.auth.token) return <></>;
 
   return (
-    <div>
-      <VStack align={"flex-start"} spacing={2} pos={"relative"}>
-        <h2>{title}</h2>
-        <NoteText text={text} />
+    <div className={ styles.container }>
+      <span className={ styles.textBody }>
+        <span className={ styles.header }>
+          <h3>{ title }</h3>
+        </span>
+        <NoteText text={ text }/>
+      </span>
 
-        <RequireAuth role={["admin", "poteryashki"]}>
-          {(app.auth.username === "admin" ||
-            (app.auth.username === "poteryashki" &&
-              categoryName === "Потеряшки")) && (
-            <HStack gap="2">
-              <IconButton
-                icon={<EditIcon />}
-                aria-label="Edit note"
-                onClick={() => onEditIconButtonClick?.(noteInfoObj)}
-              />
-
-              {/*<Popover placement="bottom" closeOnBlur={false}>*/}
-              {/*  <PopoverTrigger>*/}
-              {/*    <IconButton*/}
-              {/*      icon={<DeleteIcon />}*/}
-              {/*      colorScheme="red"*/}
-              {/*      aria-label="Delete note"*/}
-              {/*    />*/}
-              {/*  </PopoverTrigger>*/}
-              {/*  <PopoverContent>*/}
-              {/*    <PopoverArrow />*/}
-              {/*    <PopoverCloseButton />*/}
-              {/*    <PopoverBody>*/}
-              {/*      Вы уверены, что хотите удалить запись?*/}
-              {/*    </PopoverBody>*/}
-              {/*    <PopoverFooter>*/}
-              {/*      <Button*/}
-              {/*        colorScheme="red"*/}
-              {/*        onClick={() => onDeleteIconButtonClick?.(noteInfoObj)}*/}
-              {/*      >*/}
-              {/*        Удалить*/}
-              {/*      </Button>*/}
-              {/*    </PopoverFooter>*/}
-              {/*  </PopoverContent>*/}
-              {/*</Popover>*/}
-            </HStack>
-          )}
-        </RequireAuth>
-
-        {/* <BtnCopy
-          noteId={id}
-          _before={{
-            display: "none",
-          }}
-          h={"16px"}
-          w={"max-content"}
-          mt={0}
-        /> */}
-
-        <Box alignSelf={"flex-end"}>
-          <CreatedDate date={noteInfoObj.createdDate} />
-        </Box>
-      </VStack>
+      <div className={ styles.footer }>
+        <CreatedDate date={ noteInfoObj.createdDate }/>
+      </div>
     </div>
   );
 };

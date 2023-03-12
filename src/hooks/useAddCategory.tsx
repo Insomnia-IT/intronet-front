@@ -1,8 +1,8 @@
-import {toast} from "@components";
 import React, { useCallback } from "preact/compat";
+import { toast } from "@components";
+import { CategoryModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { categoriesStore } from "@stores";
-import {CategoryModal} from "@components/modals";
 
 /**
  * Хук для добавляния категорий
@@ -14,7 +14,7 @@ export const useAddCategory = () => {
   return useCallback(async () => {
     try {
       const editedCategory = await app.modals.show<ICategory>((props) => (
-        <CategoryModal {...props} />
+        <CategoryModal { ...props } />
       ));
       await categoriesStore.addCategory({
         body: editedCategory,
@@ -36,5 +36,5 @@ export const useAddCategory = () => {
         });
       }
     }
-  }, [app.modals, toast]);
+  }, [ app.modals, toast ]);
 };

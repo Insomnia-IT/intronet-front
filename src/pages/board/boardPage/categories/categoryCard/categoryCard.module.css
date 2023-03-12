@@ -1,0 +1,9 @@
+.card {
+  display: flex;
+  flex-shrink: 1;
+  flex-basis: content;
+  font-size: 14px;
+  line-height: 1.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+}

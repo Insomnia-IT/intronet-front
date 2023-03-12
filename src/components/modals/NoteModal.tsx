@@ -29,7 +29,7 @@ export const NoteModal: FC<
               categoryId,
               _id: _id,
             }}
-            onSubmit={modalProps.success}
+            onSubmit={(note) => modalProps.success(note)}
             onCancel={modalProps.abort}
           />
         </Modal.Body>

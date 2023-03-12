@@ -1,30 +1,31 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, IconButton, useToast, VStack } from "@chakra-ui/react";
 import React, { FC, useEffect, useRef } from "preact/compat";
-import { NoteModal } from "@components/modals";
-import { RequireAuth } from "@components/RequireAuth";
-import { useAppContext } from "@helpers/AppProvider";
+
 import { categoriesStore, notesStore, pagesStore } from "@stores";
-import { Intersection } from "../../../../components/intersection";
-import { scrollToRef } from "../../../../helpers/scrollToRef";
+import { Button, toast } from "@components";
+import { NoteModal } from "@components/modals";
+import { Intersection } from "@components/intersection";
+import { Modal } from "@components/modal";
+import { useAppContext } from "@helpers/AppProvider";
+import { scrollToRef } from "@helpers/scrollToRef";
+import { useCellState } from "@helpers/cell-state";
 import { BoardCard } from "./boardCard/boardCard";
-import { useCellState } from "../../../../helpers/cell-state";
-import {useRouter} from "../../../routing";
+import { useRouter } from "../../../routing";
+import styles from "./boardList.module.css";
+import btnStyle from "../../../../components/button/button.module.css";
 
 export const BoardList: FC = () => {
-  const { route } = useRouter();
+  const {route} = useRouter();
   const id = route[1];
   const activeNote = useRef<HTMLLIElement>(null);
 
   const app = useAppContext();
 
-  const toast = useToast();
-
   const handleAdd = async () => {
     try {
-      const newNote = await app.modals.show<INote>((props) => (
-        <NoteModal {...props} />
+      const newNote = await Modal.show<INote>((props) => (
+        <NoteModal { ...props } />
       ));
+
       await notesStore.addNote({
         body: newNote,
       });
@@ -49,11 +50,11 @@ export const BoardList: FC = () => {
 
   const handleEdit = async (note: INote) => {
     try {
-      const editedNote = await app.modals.show<INote>((props) => (
-        <NoteModal {...props} {...note} />
+      const editedNote = await Modal.show<INote>((props) => (
+        <NoteModal { ...props } { ...note } />
       ));
       await notesStore.editNote({
-        body: { _id: id, categoryId: note.categoryId, ...editedNote },
+        body: {_id: id, categoryId: note.categoryId, ...editedNote},
       });
       toast({
         title: "Объявление успешно изменено!",
@@ -76,7 +77,7 @@ export const BoardList: FC = () => {
 
   const handleDelete = async (note: INote) => {
     try {
-      await notesStore.removeNote({ path: { id: note._id } });
+      await notesStore.removeNote({path: {id: note._id}});
       toast({
         title: "Объявление успешно удалено!",
         status: "success",
@@ -100,52 +101,41 @@ export const BoardList: FC = () => {
     if (activeNote.current) scrollToRef(activeNote, true);
   }, []);
 
-  const [notes] = useCellState(() => pagesStore.notes);
+  const [ notes ] = useCellState(() => pagesStore.notes);
 
   return (
-    <Box w={"100%"}>
-      {notes.length === 0 && (
-        <h2 style={{ textAlign: "center" }}>Объявлений пока нет!</h2>
-      )}
-      <VStack as={"ul"} align={"streach"} spacing={4}>
-        {notes.map((note) => (
-          <li key={note._id} ref={id === note._id ? activeNote : null}>
-            <Intersection width="100%" height={getBoardCardHeight(note) + "px"}>
+    <div width="100%">
+      { notes.length === 0 && (
+        <h2 style={ {textAlign: "center"} }>Объявлений пока нет!</h2>
+      ) }
+      <ul className={ styles.list }>
+        { notes.map((note) => (
+          <li key={ note._id } ref={ id === note._id ? activeNote : null }>
+            <Intersection width="100%" height={ getBoardCardHeight(note) + "px" }>
               <BoardCard
-                noteInfoObj={note}
-                activeColor={categoriesStore.getCategoryColor(note.categoryId)}
-                onEditIconButtonClick={handleEdit}
-                onDeleteIconButtonClick={handleDelete}
-                categoryName={
-                  categoriesStore.getCategory(categoriesStore.ActiveCategory)
-                    .name
-                }
+                noteInfoObj={ note }
+                activeColor={ categoriesStore.getCategoryColor(note.categoryId) }
+                onEditIconButtonClick={ handleEdit }
+                onDeleteIconButtonClick={ handleDelete }
               />
             </Intersection>
           </li>
-        ))}
-      </VStack>
+        )) }
+      </ul>
 
-      <RequireAuth role={["admin", "poteryashki"]}>
-        {
-          // Боже милостивый, прости меня за этот код
-          (app.auth.username === "admin" ||
-            (app.auth.username === "poteryashki" &&
-              categoriesStore.getCategory(categoriesStore.ActiveCategory)
-                ?.name === "Потеряшки")) && (
-            <Box pos="absolute" right="16" zIndex="1" bottom="16">
-              <IconButton
-                size="lg"
-                isRound
-                icon={<AddIcon />}
-                onClick={handleAdd}
-                aria-label="Add note"
-              />
-            </Box>
-          )
-        }
-      </RequireAuth>
-    </Box>
+      <section className={ styles.actions }>
+        <Button
+          className={ btnStyle.button_blue }
+          onClick={ handleAdd }
+          aria-label="Add note"
+        >{ 'Добавить' }</Button>
+
+        <Button
+          className={ btnStyle.button_blue }
+          onClick={ () => console.log('Route to add new one')}
+        >{ 'Мои объявления' }</Button>
+      </section>
+    </div>
   );
 };
 

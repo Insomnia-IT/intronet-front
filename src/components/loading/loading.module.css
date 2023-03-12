@@ -1,6 +1,20 @@
 .spinner {
-  height: 100%;
+  display: flex;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.spinner-container {
+  width: 20px;
+  height: 20px;
+  background: #6bbdb0;
+  animation: spinner-rotate 1.3s cubic-bezier(0.35, 0.4, 0.25, 0.6) infinite;
+}
+
+@keyframes spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }

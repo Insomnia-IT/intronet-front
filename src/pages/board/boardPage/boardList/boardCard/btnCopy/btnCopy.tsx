@@ -1,16 +1,15 @@
-import { LinkIcon } from "@chakra-ui/icons";
-import { Link, LinkProps, Text } from "@chakra-ui/react";
-import * as React from "preact/compat";
+import React from "preact/compat";
+import styles from "./btnCopy.module.css";
 
-interface IBtnCopy extends LinkProps {
+interface BtnCopyProps {
   noteId: INote["_id"];
   show?: boolean;
 }
 
-export const BtnCopy = ({ show = true, noteId, ...rest }: IBtnCopy) => {
-  const [isСopied, setIsCopied] = React.useState(false);
+export function BtnCopy({show = true, noteId, ...rest}: BtnCopyProps) {
+  const [ isCopied, setIsCopied ] = React.useState(false);
   const copyUrl = () => {
-    if (isСopied) return;
+    if (isCopied) return;
     const currentUrl = document.location.host;
     navigator.clipboard
       .writeText(currentUrl + "/board?id=" + noteId.toString())
@@ -21,20 +20,15 @@ export const BtnCopy = ({ show = true, noteId, ...rest }: IBtnCopy) => {
   };
   return (
     <>
-      {show && (
-        <Link
-          onClick={copyUrl}
-          variant={"brandLinkClickable"}
-          as={"button"}
-          display={"flex"}
-          alignItems={"center"}
-          gap={1}
-          {...rest}
+      { show && (
+        <button
+          className={ styles.button }
+          onClick={ copyUrl }
+          { ...rest }
         >
-          <LinkIcon display={"block"} />
-          <Text>{!isСopied ? "Копировать ссылку" : "Скопировано"}</Text>
-        </Link>
-      )}
+          { !isCopied ? "Копировать ссылку" : "Скопировано" }
+        </button>
+      ) }
     </>
   );
-};
+}

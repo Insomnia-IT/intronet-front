@@ -22,7 +22,6 @@ class ArticlesStore {
 
 export const articlesStore = new ArticlesStore();
 
-
 const testArticles: IArticle[] = [
   {
     _id: '1',

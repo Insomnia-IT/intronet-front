@@ -1,6 +1,5 @@
 import React from "preact/compat";
-
-import {DateTime} from "luxon";
+import { DateTime } from "luxon";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Timetable } from "./timetable";
 
@@ -11,7 +10,7 @@ export default {
 
 
 export const Primary: ComponentStory<typeof Timetable>
-  = (args) => <Timetable list={args.list}/>;
+  = (args) => <Timetable list={ args.list }/>;
 
 Primary.args = {
   list: [

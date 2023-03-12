@@ -1,6 +1,6 @@
 import * as React from "preact/compat";
-import { Text } from "@chakra-ui/react";
 import { parseDate } from "@helpers/parseDate";
+import styles from "./createdDate.module.css";
 
 type TCreatedDateProps = {
   date: string;
@@ -8,8 +8,8 @@ type TCreatedDateProps = {
 
 export const CreatedDate: React.FC<TCreatedDateProps> = ({ date }) => {
   return (
-    <Text fontSize={"14px"} color={"gray.400"}>
+    <p className={styles.date} >
       {parseDate(date)}
-    </Text>
+    </p>
   );
 };

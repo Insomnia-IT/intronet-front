@@ -1,10 +1,9 @@
 import * as React from "preact/compat";
 import { RequireAuth } from "@components/RequireAuth";
-import {Button, Loading} from "@components";
+import { Loading } from "@components";
 import { categoriesStore } from "@stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
-import {cellState} from "@helpers/cell-state";
-import { Icons } from "@icons";
+import { cellState } from "@helpers/cell-state";
 
 export interface ICategoriesProps {
   activeCategory?: number;
@@ -29,24 +28,22 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
     return (
       <div>
         <div>
-          <Loading isLoading={this.state.isLoading} height={40} width={40}>
-            {this.state.allCategory.map((category) => (
-                <CategoryCard
-                  as={"li"}
-                  key={category._id}
-                  categoryObj={category}
-                  _last={{marginRight: "2rem"}}
-                  onClick={() => (categoriesStore.activeCategory = category._id)}
-                  isActive={this.state.activeCategory === category._id}
-                  onIconLeftClick={this.props.onEditCategory}
-                />
-              ))}
+          <Loading isLoading={ this.state.isLoading }>
+            { this.state.allCategory.map((category) => (
+              <CategoryCard
+                key={ category._id }
+                categoryObj={ category }
+                onClick={ () => (categoriesStore.activeCategory = category._id) }
+                isActive={ this.state.activeCategory === category._id }
+                onIconLeftClick={ this.props.onEditCategory }
+              />
+            )) }
           </Loading>
           <RequireAuth>
-            <Button
+            <button
               aria-label="Add category"
-              onClick={this.props.onAddCategory}
-            ><Icons.Add/></Button>
+              onClick={ this.props.onAddCategory }
+            ></button>
           </RequireAuth>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import { Modal } from "@components/modal";
 import React, { FC } from "preact/compat";
-import { ModalProps } from ".";
+import { Modal } from "@components/modal";
+import { ModalProps } from "@components/modals";
 import { CategoryForm } from "../forms";
 
 /**
@@ -26,7 +26,7 @@ export const CategoryModal: FC<
             onCancel={modalProps.abort}
           />
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer />
       </Modal.Content>
     </Modal>
   );

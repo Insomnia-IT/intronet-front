@@ -1,8 +1,7 @@
-import {Modal} from "@components/modal";
-import * as React from "preact/compat";
-import { FC } from "preact/compat";
+import React, { FC } from "preact/compat";
+import { Button } from "@components";
+import { Modal } from "@components/modal";
 import { ModalProps } from "@components/modals";
-import {Button} from "@components";
 
 export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
   token,
@@ -16,7 +15,7 @@ export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
         <Modal.CloseButton />
         <Modal.Header></Modal.Header>
         <Modal.Body>
-          <div>
+          <>
             <div>Уверены, что хотите выйти?</div>
             <div width={"100%"} >
               <Button
@@ -30,7 +29,7 @@ export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
                 Нет
               </Button>
             </div>
-          </div>
+          </>
         </Modal.Body>
         <Modal.Footer />
       </Modal.Content>

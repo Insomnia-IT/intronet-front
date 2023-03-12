@@ -1,8 +1,7 @@
-.button{
+.button {
   background: var(--blue);
   border-radius: 100%;
   border: none;
-  aspect-ratio: 1;
   box-shadow: 0 0 8px 2px var(--deep-blue);
   font-size: inherit;
   display: flex;
@@ -13,20 +12,71 @@
   --color: #808080;
   color: var(--color);
 }
-.button:hover{
+
+.button:hover {
   box-shadow: 0 0 8px 4px var(--deep-blue);
 
 }
-.button:active{
+
+.button:active {
   box-shadow: 0 0 18px 2px var(--deep-blue);
 }
 
-.button:focus{
+.button:focus {
   box-shadow: 0 0 4px 6px var(--deep-blue);
   outline: none;
 }
 
-.selected{
+.selected {
   box-shadow: 0 0 18px 2px var(--deep-blue);
   --color: var(--deep-blue)
+}
+
+.button_gradient,
+.button_ghost,
+.button_blue,
+.button_orange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 24px;
+  color: var(--color-white);
+  font-family: 'Unbounded', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  box-shadow: none;
+}
+
+.button_gradient {
+  background: var(--color-vivid-gradient);
+}
+
+.button_blue {
+  background-color: var(--color-electric-blues);
+}
+
+.button_orange {
+  background-color: var(--color-ch-orange);
+}
+
+.button_ghost {
+  color: var(--color-medium-blue);
+  border-radius: 56px;
+  border: 2px solid var(--color-medium-blue);
+}
+
+.wide {
+  width: 100%;
+}
+
+.small {
+  width: fit-content;
+}
+
+.disabled {
+  pointer-events: none;
+  color: #bcbfda;
 }

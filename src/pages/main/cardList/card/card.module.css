@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  min-width: calc(50% - 20px);
+  position: relative;
+  border-radius: 16px;
+}
+
+.title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
