@@ -13,11 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker compose build
+        run: docker-compose build
       - name: stop container
-        run: docker compose down
+        run: docker-compose down
       - name: run image
-        run: docker compose up -d
+        run: docker-compose up -d
       - name: cleanup docker containers
         run: docker container prune --filter "until=24h" -f
       - name: cleanup docker images
