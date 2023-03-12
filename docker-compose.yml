@@ -27,8 +27,11 @@ services:
     networks:
       apps:
     volumes:
-      - ./.data:/opt/couchdb/data
+      - couchdb_data:/opt/couchdb/data
       - ./couchdb.ini:/opt/couchdb/etc/local.ini
+
+volumes:
+  couchdb_data:
 
 networks:
   apps:
