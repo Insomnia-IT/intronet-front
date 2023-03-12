@@ -9,6 +9,8 @@ services:
     container_name: intronet-front
     ports:
       - "4000:80"
+    networks:
+      apps:
     links:
       - db
     depends_on:
@@ -22,6 +24,12 @@ services:
       COUCHDB_PASSWORD: password
     ports:
       - "5984:5984"
+    networks:
+      apps:
     volumes:
       - ./.data:/opt/couchdb/data
       - ./couchdb.ini:/opt/couchdb/etc/local.ini
+
+networks:
+  apps:
+    external: true
