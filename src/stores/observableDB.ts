@@ -5,13 +5,19 @@ export class ObservableDB<
   T extends { _id: string }
 > extends EventEmitter<{
   loaded: void;
-  change: {type: "init"; value: T[]; } |
+  change: {type: "init"; value: T[]; } | (
     {type: "update"; key: string | number; value: T;} |
     {type: "batch-update"; keys: string[]; values: T[];} |
     {type: "add"; key: string | number; value: T;} |
     {type: "batch-add"; keys: string[]; values: T[];} |
     {type: "delete"; key: string | number;}
+    ) & {fromReplication?: boolean;}
 }> {
+
+  public static Remote = globalThis.location
+    ? `${location.protocol}//admin:password@${location.host}/db`
+    : `http://admin:password@localhost:5984`;
+
   protected db= new PouchDB<T>(this.name);
 
   protected items = new Map<string, T>();
@@ -20,7 +26,7 @@ export class ObservableDB<
 
   constructor(public name: string) {
     super();
-    window[name] = this;
+    globalThis[name] = this;
     this.init();
   }
 
@@ -133,26 +139,32 @@ export class ObservableDB<
       type: "init",
       value: items.rows.map(x => x.doc),
     });
+    console.log(items);
   }
 
+  public syncQueue = new AsyncQueue();
   async sync() {
+    const versions = VersionsDB.Instance;
     await versions.isLoaded;
-    const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
+    const remote = new PouchDB(`${ObservableDB.Remote}/${this.name}`);
     if (!versions.items.has(this.name)) {
-      versions.add({_id: this.name, version: Fn.ulid()});
+      await versions.add({_id: this.name, version: Fn.ulid()});
     } else if (versions.haveChanges.get(this.name)) {
       await remote.replicate.to(this.db);
     }
     versions.on('change', async e => {
-      if (e.type == 'update' && e.key == this.name){
+      if (e.type == 'update' && e.key == this.name && e.fromReplication){
+        await remote.replicate.to(this.db);
+        await this.loadItems();
+      }
+      if (e.type == 'batch-update' && e.keys.includes(this.name) && e.fromReplication){
         await remote.replicate.to(this.db);
         await this.loadItems();
       }
     });
-    const syncQueue = new AsyncQueue();
     this.on('change', async e => {
-      if (e.type !== 'init') {
-        syncQueue.Invoke(async () => {
+      if (e.type !== 'init' && !e.fromReplication) {
+        this.syncQueue.Invoke(async () => {
           await this.db.replicate.to(remote);
           await versions.addOrUpdate({
             _id: this.name,
@@ -165,7 +177,14 @@ export class ObservableDB<
   }
 }
 
+
 class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
+
+  private static _instance: VersionsDB | undefined;
+  public static get Instance(){
+    return (this._instance ??= new VersionsDB());
+  }
+
   constructor() {
     super('versions');
   }
@@ -176,15 +195,22 @@ class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
     await this.loadItems();
     const versions = new Map(this.items);
     try {
-      const remote = new PouchDB(`${location.protocol}//admin:password@${location.host}/db/${this.name}`);
-      await remote.replicate.to(this.db);
+      const remote = new PouchDB(`${ObservableDB.Remote}/${this.name}`);
+      const info = await remote.info().catch(e => {
+        return null;
+      })
+      if (info) {
+        await remote.replicate.to(this.db);
+      }
       await this.loadItems();
       for (let item of this.items.values()) {
         this.haveChanges.set(item._id, item.version !== versions.get(item._id)?.version);
       }
       const sync = PouchDB.sync(remote, this.db, {
         live: true,
-        retry: true
+        retry: true,
+        timeout: 10_000,
+        heartbeat: 10_000
       });
       sync.on('change', event => {
         if (event.direction == "push")
@@ -195,7 +221,8 @@ class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
         this.emit("change", {
           type: "batch-update",
           keys: event.change.docs.map(x => x._id),
-          values: event.change.docs as any[]
+          values: event.change.docs as any[],
+          fromReplication: true
         });
       });
     }finally {
@@ -204,5 +231,3 @@ class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
   }
 
 }
-
-const versions = new VersionsDB();

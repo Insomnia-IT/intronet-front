@@ -34,7 +34,7 @@ export class ConnectedLocationSchedule extends React.PureComponent<
     day: () => this.day,
     selectedElement: () => this.selectedElement,
     schedules: () => scheduleStore.getSchedules(),
-    menu: () => locationsStore.Locations.get(this.locationId)?.menu,
+    menu: () => locationsStore.db.get(this.locationId)?.menu,
   });
 
   render() {

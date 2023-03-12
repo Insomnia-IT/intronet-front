@@ -13,7 +13,7 @@ export type MapToolbarProps = {
 export function MapToolbar(props: MapToolbarProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const location = locationsStore.Locations.get(props.id);
+  const location = locationsStore.db.get(props.id);
 
   return (
     <>

@@ -85,4 +85,4 @@ class CategoriesStore {
   }
 }
 
-export const categoriesStore = window['categoriesStore'] = new CategoriesStore();
+export const categoriesStore = globalThis['categoriesStore'] = new CategoriesStore();

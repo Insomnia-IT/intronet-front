@@ -67,5 +67,19 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "permissions": [
+    "unlimitedStorage",
+    "clipboardRead",
+    "clipboardWrite",
+    "geolocation",
+    "notifications",
+    "webRequest",
+    "idle",
+    "cookies",
+    "background"
+  ],
+  "host_permissions": [
+    "https://intro.cherepusick.keenetic.name"
   ]
 }

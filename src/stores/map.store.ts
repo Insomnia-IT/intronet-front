@@ -3,10 +3,14 @@ import { TileConverter } from "@helpers/tile.converter";
 
 class MapStore {
   constructor() {
-    this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
-    this.load("/public/images/map_17_78306_41656_78314_41663.png").then(
-      (x) => (this.Map2 = x)
-    );
+    try {
+      this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
+      this.load("/public/images/map_17_78306_41656_78314_41663.png").then(
+        (x) => (this.Map2 = x)
+      );
+    }catch (e){
+
+    }
     // this.load("/images/map2.webp").then((x) => (this.Map2 = x));
   }
 

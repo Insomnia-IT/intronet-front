@@ -26,7 +26,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
   const editLocation = (...args) => void 0// useEditLocation(location);
 
   const [menu] = useCellState(
-    () => locationsStore.Locations.get(location._id)?.menu
+    () => locationsStore.db.get(location._id)?.menu
   );
 
   return (

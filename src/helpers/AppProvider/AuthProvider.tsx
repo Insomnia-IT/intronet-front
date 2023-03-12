@@ -35,13 +35,18 @@ export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
    * поскольку куки устанавливаются в обход setCookieState
    */
   const syncCookies = useCallback(() => {
-    const cookie = `; ${document.cookie}`;
-    const actualToken = cookie.split(`; Token=`).pop().split(";").shift();
-    const actualUserName = cookie.split(`; UserName=`).pop().split(";").shift();
+    const cookie = Object.fromEntries(document.cookie.split(';')
+      .map(x => x.trim())
+      .map(x => x.split('=').map(x => x.toLowerCase())));
+    const actualToken = cookie.token;
+    const actualUserName = cookie.username;
+    console.log(actualToken, actualUserName);
     setToken(actualToken);
     setUsername(actualUserName);
   }, [setToken, setUsername]);
-
+  React.useEffect(() =>{
+    syncCookies();
+  }, []);
   return (
     <AuthContext.Provider
       value={{

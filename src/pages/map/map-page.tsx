@@ -162,7 +162,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
 
   updateLocation = (x: MapItem) => {
     const location = {
-      ...(this.localChanges.get(x.id) ?? locationsStore.Locations.get(x.id)),
+      ...(this.localChanges.get(x.id) ?? locationsStore.db.get(x.id)),
     };
     if (this.isMap) {
       // @ts-ignore
@@ -178,7 +178,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     const toUpdate = Array.from(this.localChanges.values());
     this.localChanges.clear();
     for (let location of toUpdate) {
-      locationsStore.Locations.update(location);
+      locationsStore.db.update(location);
     }
   }
 }

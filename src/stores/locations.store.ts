@@ -1,51 +1,19 @@
 import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
-// import locationsJSON from "./locations.json";
-import {mapStore} from "./map.store";
-import {getRandomItem} from "@helpers/getRandomItem";
 
 class LocationsStore {
 
-
-  private async getFromJSON() {
-    // const locations = locationsJSON.features.filter(x => x.geometry.type == 'Point').map((x,i) => {
-    //   const geo = {
-    //     lat: x.geometry.coordinates[1] as number,
-    //     lon: x.geometry.coordinates[0] as number,
-    //   };
-    //   const point = mapStore.Map2GeoConverter.fromGeo(geo);
-    //   return ({
-    //     _id: Fn.ulid(),
-    //     tags: [],
-    //     directionId: getRandomItem(directionIds),
-    //     name: x.properties.Name,
-    //     image: "camping",
-    //     description: x.properties.description,
-    //     ...geo,
-    //     x: point.X,
-    //     y: point.Y
-    //   } as InsomniaLocation);
-    // });
-    // this.Locations.addRange(locations);
-  }
-
   @cell
-  Locations = new ObservableDB<InsomniaLocation>("locations");
+  db = new ObservableDB<InsomniaLocation>("locations");
 
-  IsLoaded = this.Locations.isLoaded.then(() =>{
-    if ([...this.Locations.keys()].length === 0){
-      console.log('import locations from json')
-      return this.getFromJSON();
-    }
-  })
-
+  IsLoaded = this.db.isLoaded;
   @cell
   Tags = new ObservableDB<Tag>("tags");
 
   @cell
   public get FullLocations(): ReadonlyArray<InsomniaLocationFull> {
-    return this.Locations.toArray().map((x) => ({
+    return this.db.toArray().map((x) => ({
       ...x,
       // @ts-ignore
       tags: x.tags.map((id) => this.Tags.get(id)),
@@ -71,12 +39,12 @@ class LocationsStore {
 
   async addLocation(location: InsomniaLocation) {
     await this.IsLoaded;
-    await this.Locations.add(location);
+    await this.db.add(location);
   }
 
  async updateLocation(x: InsomniaLocationFull) {
     await this.IsLoaded;
-    await this.Locations.update({
+    await this.db.update({
       ...x,
       // @ts-ignore
       tags: x.tags.map((t) => t._id),
@@ -85,7 +53,7 @@ class LocationsStore {
 
   async deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
     await this.IsLoaded;
-    await this.Locations.remove(location._id);
+    await this.db.remove(location._id);
   }
 }
 
@@ -113,5 +81,3 @@ export enum Directions {
   bathhouse = 90,
   lab = 95,
 }
-
-const directionIds = Object.keys(Directions).filter(x => Number.isNaN(+x));
