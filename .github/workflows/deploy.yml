@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: [self-hosted, acsrv]
     env:
       IMAGE_NAME: intronet-front
     steps:
