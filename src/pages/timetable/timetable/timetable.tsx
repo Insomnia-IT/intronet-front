@@ -3,7 +3,6 @@ import React, { FC, useState } from "preact/compat";
 import styles from "../../../components/schedule/schedule.module.css";
 import {locationsStore, moviesStore} from "@stores";
 import { useCellState } from "@helpers/cell-state";
-import {ScheduleInfoMovie} from "@components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
 import {AnimationBlock} from "@components/cards/animation-block";
 
 export type TimetableProps = {
@@ -16,6 +15,13 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
   const [blocks] = useCellState(() => {
     return moviesStore.Movies.filter(x => x.locationId === screen)
   }, [screen]);
+  console.log('timetable', screen, screens?.[0]?._id)
+  React.useEffect(() => {
+    if (screen) return;
+    console.log(screen, screens?.[0]?._id)
+    setScreen(screens?.[0]?._id);
+  }, [screen, screens?.[0]]);
+
   return (
     <div className="flex column">
       <div className={styles.tags}>

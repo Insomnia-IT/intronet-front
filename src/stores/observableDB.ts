@@ -15,7 +15,7 @@ export class ObservableDB<
 }> {
 
   public static Remote = globalThis.location
-    ? `${location.protocol}//admin:password@${location.host}/db`
+    ? `https://admin:password@intro.cherepusick.keenetic.name/db`
     : `http://admin:password@localhost:5984`;
 
   protected db= new PouchDB<T>(this.name);
