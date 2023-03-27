@@ -4,6 +4,7 @@ import styles from "../../../components/schedule/schedule.module.css";
 import {locationsStore, moviesStore} from "@stores";
 import { useCellState } from "@helpers/cell-state";
 import {ScheduleInfoMovie} from "@components/Location/LocationSchedule/LocationScheduleInfo/ScheduleInfoMovie";
+import {AnimationBlock} from "@components/cards/animation-block";
 
 export type TimetableProps = {
   list?: TimetableSlot[];
@@ -32,12 +33,7 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
           </div>
         ))}
       </div>
-      {blocks.map(x => (<div key={x._id} className="flex column">
-        <header>{x.info.Title}</header>
-        {x.movies.map((m, i) => <div key={i}>
-          <ScheduleInfoMovie movie={m}/>
-        </div>)}
-      </div>))}
+      {blocks.map(x => <AnimationBlock block={x} key={x._id}/>)}
     </div>
   );
 };
