@@ -59,6 +59,7 @@ export class ObservableDB<
   }
 
   async addOrUpdate(value: T, skipChange = false) {
+    await this.isLoaded;
     if (this.items.has(value._id)) {
       await this.update(value, skipChange);
     } else {
@@ -67,6 +68,7 @@ export class ObservableDB<
   }
 
   async add(value: T, skipChange = false) {
+    await this.isLoaded;
     const key = value._id;
     await this.db.put(value).catch(console.log);
     this.items.set(key, value);
@@ -81,6 +83,7 @@ export class ObservableDB<
   }
 
   async addRange(valueArr: T[]) {
+    await this.isLoaded;
     for (const value of valueArr) {
       await this.add(value, true);
     }
@@ -91,7 +94,8 @@ export class ObservableDB<
     });
   }
 
-  update(value: T,  skipChange = false) {
+  async update(value: T,  skipChange = false) {
+    await this.isLoaded;
     const key = value._id;
     this.db.get(value._id).then(res => this.db.put(({
       ...value,
@@ -152,6 +156,7 @@ export class ObservableDB<
         await this.loadItems();
       }
     });
+    return;
     this.on('change', async e => {
       if (e.type !== 'init' && !e.fromReplication) {
         this.syncQueue.Invoke(async () => {
