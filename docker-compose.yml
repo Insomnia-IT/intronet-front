@@ -16,6 +16,25 @@ services:
     depends_on:
       - db
 
+  server:
+    image: node:16-slim
+    volumes:
+      - ./dist/esm/server:/app/dist
+      - ./package.json:/package.json
+      - ./node_modules:/app/node_modules
+    environment:
+      - PORT=80
+      - DATABASE=http://admin:password@db:5984
+    ports:
+      - "5002:80"
+    links:
+      - db
+    depends_on:
+      - db
+    command: ["node", "/app/dist/index.js"]
+    networks:
+      apps:
+
   db:
     container_name: insomnia_couchdb
     image: couchdb

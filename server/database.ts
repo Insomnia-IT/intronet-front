@@ -9,7 +9,7 @@ export class Database<T extends { _id: string; }> extends EventEmitter<{
   loaded: void; change: { type: "init"; value: T[]; } | ({ type: "update"; key: string | number; value: T; } | { type: "batch-update"; keys: string[]; values: T[]; } | { type: "add"; key: string | number; value: T; } | { type: "batch-add"; keys: string[]; values: T[]; } | { type: "delete"; key: string | number; }) & { fromReplication?: boolean; }
 }> {
 
-  protected db = new PouchDB<T & { version: string;}>(`http://admin:password@localhost:5984/${this.name}`);
+  protected db = new PouchDB<T & { version: string;}>(`${process.env.DATABASE || 'http://admin:password@localhost:5984'}/${this.name}`);
   protected index = this.getIndexOrCreate();
 
   constructor(public name: string) {

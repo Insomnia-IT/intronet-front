@@ -1,7 +1,7 @@
 import Fastify from 'fastify'
 import {dbCtrl} from "./db-ctrl";
 const fastify = Fastify({
-  // logger: true
+  logger: true
 })
 
 // Declare a route
@@ -22,7 +22,7 @@ fastify.post<{Params: {name: string;}}>('/data/:name', async function (request, 
 });
 
 // Run the server!
-fastify.listen({ port: 5002 }, function (err, address) {
+fastify.listen({ port: +(process.env.PORT ?? 5002), host: '0.0.0.0' }, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
