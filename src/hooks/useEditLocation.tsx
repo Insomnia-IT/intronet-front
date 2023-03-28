@@ -20,7 +20,7 @@ export const useEditLocation = (location: InsomniaLocation) => {
           <LocationModal {...props} {...location} />
         )
       );
-      locationsStore.db.update(editedLocation);
+      locationsStore.db.addOrUpdate(editedLocation);
       toast({
         title: "Объявление успешно изменено!",
         status: "success",

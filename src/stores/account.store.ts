@@ -26,9 +26,9 @@ class AccountStore {
     } as Account;
     qrApi.checkUserQR(qr).then((valid) => {
       acc.isValid = valid;
-      this.db.update(acc);
+      this.db.addOrUpdate(acc);
     });
-    this.db.add(acc);
+    this.db.addOrUpdate(acc);
   }
 
   Remove(acc: Account) {
@@ -37,14 +37,14 @@ class AccountStore {
 
   Select(id: string) {
     if (this.Selected) {
-      this.db.update(
+      this.db.addOrUpdate(
         {
           ...this.Selected,
           isSelected: false,
         },
       );
     }
-    this.db.update(
+    this.db.addOrUpdate(
       {
         ...this.db.get(id),
         isSelected: true,

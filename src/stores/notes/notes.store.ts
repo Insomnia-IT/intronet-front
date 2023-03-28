@@ -22,7 +22,7 @@ class NotesStore {
    * Добавляет запись
    */
   public addNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.add(request.body);
+    await this.Notes.addOrUpdate(request.body);
   };
 
   /**
@@ -30,7 +30,7 @@ class NotesStore {
    * @param {INote} body Тело реквеста
    */
   public editNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.update(request.body);
+    await this.Notes.addOrUpdate(request.body);
   };
 
   /**

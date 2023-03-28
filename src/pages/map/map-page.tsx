@@ -178,7 +178,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
     const toUpdate = Array.from(this.localChanges.values());
     this.localChanges.clear();
     for (let location of toUpdate) {
-      locationsStore.db.update(location);
+      locationsStore.db.addOrUpdate(location);
     }
   }
 }

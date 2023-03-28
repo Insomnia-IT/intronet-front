@@ -77,11 +77,11 @@ class CategoriesStore {
   }
 
   async addCategory(request: GenericRequest<null, null, ICategory>) {
-    await this.AllCategory.add(request.body);
+    await this.AllCategory.addOrUpdate(request.body);
   }
 
   async editCategory(request: GenericRequest<null, null, ICategory>) {
-    await this.AllCategory.update(request.body);
+    await this.AllCategory.addOrUpdate(request.body);
   }
 }
 

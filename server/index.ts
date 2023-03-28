@@ -13,6 +13,7 @@ fastify.get<{
   Params: {name: string;};
   Querystring: {since?: string;};
 }>('/data/:name', async function (request, reply) {
+  console.log(request.query.since)
   return await dbCtrl.get(request.params.name, request.query.since);
 });
 
