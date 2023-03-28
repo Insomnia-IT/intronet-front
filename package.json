@@ -73,7 +73,7 @@
         "/public": "./public"
       },
       "proxy": {
-        "/api": "http://localhost:5002"
+        "/webapi": "http://localhost:5002"
       }
     },
     "sw": {

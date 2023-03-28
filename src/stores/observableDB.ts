@@ -124,7 +124,7 @@ export class ObservableDB<
     for (let item of this.items.values()) {
       if (item.version <= this.remoteVersion) continue;
       console.log(this.name, item.version, this.remoteVersion);
-      await fetch(`/api/data/${this.name}`, {
+      await fetch(`/webapi/data/${this.name}`, {
         method: 'POST',
         body: JSON.stringify(item)
       }).catch();
@@ -132,7 +132,7 @@ export class ObservableDB<
   }
 
   async loadFromServer(){
-    const newItems = await fetch(`/api/data/${this.name}?since=${this.localVersion}`).then(x => x.json()) as (T & {version: string})[];
+    const newItems = await fetch(`/webapi/data/${this.name}?since=${this.localVersion}`).then(x => x.json()) as (T & {version: string})[];
     for (let newItem of newItems) {
       await this.set(newItem);
     }
@@ -182,7 +182,7 @@ class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
 
   async loadFromServer(){
     try {
-      this.remote = await fetch(`/api/versions`).then(x => x.json());
+      this.remote = await fetch(`/webapi/versions`).then(x => x.json());
     }catch (e){
       console.log('disconnected');
     }
