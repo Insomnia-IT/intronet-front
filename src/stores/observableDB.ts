@@ -109,7 +109,6 @@ export class ObservableDB<
     if (this.syncLock) return;
     this.syncLock = true;
     try {
-      console.log(this.name, this.localVersion < this.remoteVersion)
       if (this.localVersion < this.remoteVersion) {
         await this.loadFromServer();
       } else if (this.localVersion > this.remoteVersion) {

@@ -1931,17 +1931,17 @@
   resolved "https://registry.yarnpkg.com/@chakra-ui/visually-hidden/-/visually-hidden-2.0.15.tgz#60df64e0ab97d95fee4e6c61ccabd15fd5ace398"
   integrity sha512-WWULIiucYRBIewHKFA7BssQ2ABLHLVd9lrUo3N3SZgR0u4ZRDDVEUNOy+r+9ruDze8+36dGbN9wsN1IdELtdOw==
 
-"@cmmn/cell@1.7.12":
-  version "1.7.12"
-  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.12.tgz#eb2ba8c2854f1a37c013744dea2d3ec1373d55cf"
-  integrity sha512-L3VRtF7eLn2dYukYGfK4Voa6kAc5Ujh3H0dSrQFJKTLNwrQ4yJ/hgO+lWvphJFvX64oELTXV2A66tWMkh/KsAQ==
+"@cmmn/cell@1.7.16":
+  version "1.7.16"
+  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-1.7.16.tgz#198bc776386afcdfef3cbfb35e98a1a1ddae7b0e"
+  integrity sha512-Em1Xz+GCMAQ/Ub6tIz427OHO8MkqKPZVXJfC671dc8PsdkhTJW2JYXxuCZiKuxeBXz1Xql9zSEmH/VOJC3Ovrw==
   dependencies:
-    "@cmmn/core" "^1.7.12"
+    "@cmmn/core" "^1.7.16"
 
-"@cmmn/core@^1.7.12":
-  version "1.7.12"
-  resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-1.7.12.tgz#dea9206fedf9382aad0fc4fb5149a832d07d9627"
-  integrity sha512-Xj9VHIz3JwA7ctl/PsHM12CDJQtBaCr7hNrHfgVfOj0UiqrfGX2aSJ+xxw7bP6DjkDdiMlffteBdrbrNa8E2ag==
+"@cmmn/core@^1.7.16":
+  version "1.7.16"
+  resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-1.7.16.tgz#078202c30f93a6f4c887ff09ad0da0508d7a3925"
+  integrity sha512-0T1XDwosYzgwSlZJPvlPj3zc42B/eRfdf0UQnIeTpaKkXwgIGCXXIHW9l5guVi8/bu7V+mt1IAQdzfWEPX/RRA==
   dependencies:
     "@types/luxon" "2.x.x"
     bind-decorator "^1.0.11"

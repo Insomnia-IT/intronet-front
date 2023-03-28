@@ -17,7 +17,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.0",
     "@chakra-ui/react": "^2.0.2",
-    "@cmmn/cell": "1.7.12",
+    "@cmmn/cell": "1.7.16",
     "@cmmn/tools": "1.7.12",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
