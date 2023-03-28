@@ -1,13 +1,20 @@
 import {test} from "@jest/globals";
-import {Directions} from "@stores/locations.store";
 import locationsJSON from "./locations.json";
-import {mapStore} from "@stores/map.store";
 import {getRandomItem} from "@helpers/getRandomItem";
 import { Fn } from "@cmmn/cell/lib";
 import moviesJSON from "./movies.json";
 import {Database} from "./database";
+import {TileConverter} from "@helpers/tile.converter";
 
-const directionIds = Object.keys(Directions).filter(x => Number.isNaN(+x));
+process.env.DATABASE = 'https://admin:password@intro.cherepusick.keenetic.name/db'
+const converter = new TileConverter(
+  {
+    x: 78306,
+    y: 41656,
+  },
+  17,
+  256
+);
 
 test('import-locations', async ()=> {
   const db = new Database<InsomniaLocation>("locations");
@@ -21,7 +28,7 @@ test('import-locations', async ()=> {
       lat: x.geometry.coordinates[1] as number,
       lon: x.geometry.coordinates[0] as number,
     };
-    const point = mapStore.Map2GeoConverter.fromGeo(geo);
+    const point = converter.fromGeo(geo);
     return ({
       _id: Fn.ulid(),
       tags: [],
@@ -37,7 +44,7 @@ test('import-locations', async ()=> {
   for (let loc of data) {
     await db.addOrUpdate({...loc, version: Fn.ulid()})
   }
-}, 20000);
+}, 60000);
 
 
 test('import-movies', async ()=> {
@@ -101,7 +108,7 @@ test('import-movies', async ()=> {
       });
     }
   }
-}, 20000);
+}, 60000);
 
 
 const center = {
@@ -112,3 +119,27 @@ const centerXY = {
   x: 5512 / 2,
   y: 3892 / 2,
 };
+
+
+export enum Directions {
+  fair = 2,
+  lectures = 4,
+  masterClass = 6,
+  playground = 8,
+  artObject = 10,
+  meeting = 11,
+  cafe = 12,
+  tentRent = 13,
+  info = 15,
+  screen = 16,
+  music = 20,
+  staffCamp = 21,
+  checkpoint = 22,
+  camping = 81,
+  bath = 83,
+  wc = 85,
+  fire = 86,
+  bathhouse = 90,
+  lab = 95,
+}
+const directionIds = Object.keys(Directions).filter(x => Number.isNaN(+x));
