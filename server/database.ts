@@ -53,11 +53,12 @@ export class Database<T extends { _id: string; }> extends EventEmitter<{
       fields: ['version'],
       selector: {
       },
-      sort: ['version'],
+      sort: [{
+        version: 'desc'
+      }],
       // limit: 1,
       use_index: index
     });
-    console.log(result.docs[0]?.version, this.name)
     return result.docs[0]?.version ?? null;
   }
 

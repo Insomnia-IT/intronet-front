@@ -1,4 +1,3 @@
-import { Fn } from "@cmmn/cell/lib";
 import {Database} from "./database";
 
 export const dbCtrl = new class {
@@ -10,11 +9,7 @@ export const dbCtrl = new class {
 
   public async addOrUpdate(name: string, value: any){
     const db = databases.get(name);
-    const version = Fn.ulid();
-    await db.addOrUpdate({
-      ...value,
-      _version: version
-    });
+    await db.addOrUpdate(value);
   }
 
   public async getVersions(){

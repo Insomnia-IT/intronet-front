@@ -18,11 +18,17 @@ fastify.get<{
 });
 
 fastify.post<{Params: {name: string;}}>('/data/:name', async function (request, reply) {
-  return await dbCtrl.addOrUpdate(request.params.name, request.body);
+  return await dbCtrl.addOrUpdate(request.params.name, JSON.parse(request.body as string));
+});
+fastify.post('/batch', async function (request, reply) {
+  const data = JSON.parse(request.body as string) as Array<{db: string; value: any}>;
+  for (let item of data) {
+    await dbCtrl.addOrUpdate(item.db, item.value);
+  }
 });
 
 // Run the server!
-fastify.listen({ port: +(process.env.PORT ?? 5002), host: '0.0.0.0' }, function (err, address) {
+fastify.listen({ port: +(process.env.PORT ?? 5002), host: process.env.HOST }, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
