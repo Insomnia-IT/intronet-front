@@ -13,8 +13,24 @@ services:
       apps:
     links:
       - db
+      - server
     depends_on:
       - db
+      - server
+
+  server:
+    build:
+      context: server
+    image: "${IMAGE_NAME_BACKEND}:${GITHUB_SHA}"
+    environment:
+      - PORT=80
+      - DATABASE=http://admin:password@db:5984
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      apps:
 
   db:
     container_name: insomnia_couchdb
@@ -22,8 +38,6 @@ services:
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
-    ports:
-      - "5984:5984"
     networks:
       apps:
     volumes:

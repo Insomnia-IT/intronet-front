@@ -1,4 +1,4 @@
-import { Button } from "@components/button/button";
+import { Button } from "@components";
 import React from "preact/compat";
 import {useRouter, routes} from "../../pages/routing";
 import Styles from "./navbar.module.css";

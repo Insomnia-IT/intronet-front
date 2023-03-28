@@ -1,0 +1,4 @@
+.time{
+    composes: h1 from "../../styles.css";
+    color: var(--new-blue);
+}

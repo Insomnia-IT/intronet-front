@@ -10,10 +10,13 @@ jobs:
     runs-on: [self-hosted, acsrv]
     env:
       IMAGE_NAME: intronet-front
+      IMAGE_NAME_SERVER: intronet-server
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
         run: docker build . --tag $IMAGE_NAME:$GITHUB_SHA
+      - name: Build the Docker image
+        run: docker build server --tag $IMAGE_NAME_SERVER:$GITHUB_SHA
       - name: stop container
         run: docker-compose down
       - name: run image

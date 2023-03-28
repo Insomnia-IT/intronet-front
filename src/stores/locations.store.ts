@@ -39,12 +39,12 @@ class LocationsStore {
 
   async addLocation(location: InsomniaLocation) {
     await this.IsLoaded;
-    await this.db.add(location);
+    await this.db.addOrUpdate(location);
   }
 
  async updateLocation(x: InsomniaLocationFull) {
     await this.IsLoaded;
-    await this.db.update({
+    await this.db.addOrUpdate({
       ...x,
       // @ts-ignore
       tags: x.tags.map((t) => t._id),

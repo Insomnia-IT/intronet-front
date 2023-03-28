@@ -4,6 +4,7 @@ import { AppProvider, Modals } from "@helpers/AppProvider";
 import styles from "./app.style.module.css";
 import {useRouter} from "../pages/routing";
 import {ModalSlot} from "@components/modal";
+import Styles from "../styles.css"
 
 export const App = () => {
   const {active: {Component}} = useRouter();
