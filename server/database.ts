@@ -1,27 +1,20 @@
-import {EventEmitter} from "@cmmn/cell/lib";
-import PouchDB from "pouchdb";
-import upsertPlugin from "pouchdb-upsert";
-import findPlugin from "pouchdb-find";
+import * as PouchDB from "pouchdb";
+import * as upsertPlugin from "pouchdb-upsert";
+import * as findPlugin from "pouchdb-find";
 PouchDB.plugin(upsertPlugin);
 PouchDB.plugin(findPlugin);
 
-export class Database<T extends { _id: string; }> extends EventEmitter<{
-  loaded: void; change: { type: "init"; value: T[]; } | ({ type: "update"; key: string | number; value: T; } | { type: "batch-update"; keys: string[]; values: T[]; } | { type: "add"; key: string | number; value: T; } | { type: "batch-add"; keys: string[]; values: T[]; } | { type: "delete"; key: string | number; }) & { fromReplication?: boolean; }
-}> {
+export class Database<T extends { _id: string; }> {
 
   protected db = new PouchDB<T & { version: string;}>(`${process.env.DATABASE || 'http://admin:password@localhost:5984'}/${this.name}`);
   protected index = this.getIndexOrCreate();
 
   constructor(public name: string) {
-    super();
   }
 
   async remove(key: string) {
     await this.db.remove({
       _id: key.toString(), _rev: null
-    });
-    this.emit("change", {
-      type: "delete", key,
     });
   }
 
