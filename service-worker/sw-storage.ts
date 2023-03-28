@@ -104,7 +104,7 @@ export class SwStorage {
   }
 
   async getResponse(request: Request){
-    if (new URL(request.url).pathname.match(/^\/(api|db)/))
+    if (new URL(request.url).pathname.match(/^\/(api|db|webapi)/))
       return fetch(request);
     await this.loading;
     // routes with extensions: .js, .css, .json...
