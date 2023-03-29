@@ -1,10 +1,8 @@
-import { Field, Form, Formik } from "formik";
 import React, { FC, useEffect } from "preact/compat";
 import { ModalProps } from ".";
-import { getIconByDirectionId } from "../../pages/map/icons/icons";
-import { directionsStore, locationsStore } from "@stores";
+import { directionsStore } from "@stores";
 import { useCellState } from "@helpers/cell-state";
-import {Button, toast} from "@components";
+import { toast} from "@components";
 import {Modal} from "@components/modal";
 
 const center = {

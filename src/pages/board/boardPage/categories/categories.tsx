@@ -4,7 +4,7 @@ import {Button, Loading} from "@components";
 import { categoriesStore } from "@stores";
 import { CategoryCard } from "./categoryCard/categoryCard";
 import {cellState} from "@helpers/cell-state";
-import { Icons } from "@icons";
+import { SvgIcon} from "@icons";
 
 export interface ICategoriesProps {
   activeCategory?: number;
@@ -46,7 +46,7 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
             <Button
               aria-label="Add category"
               onClick={this.props.onAddCategory}
-            ><Icons.Add/></Button>
+            ><SvgIcon id="#add"/></Button>
           </RequireAuth>
         </div>
       </div>

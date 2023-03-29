@@ -2,7 +2,7 @@ import React, { FC } from "preact/compat";
 import { LocationScheduleInfoProps } from "./types";
 import styles from "./styles.module.css";
 import { ScheduleInfoMovie } from "./ScheduleInfoMovie";
-import { Icons } from "@icons";
+import { SvgIcon} from "@icons";
 
 export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
   const x = props.auditoryElement;
@@ -15,7 +15,7 @@ export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
         {x.name}
         {x.age && <span className={styles.age}>{x.age}+</span>}
       </div>
-      <Icons.ArrowRight
+      <SvgIcon id="#arrow-right"
         className={props.selected ? styles.expander : styles.expanderOpened}
       />
       {x.changes && (

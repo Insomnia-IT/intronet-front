@@ -3,11 +3,11 @@
   transition: transform ease .3s;
 }
 
-.hoverOnly {
+:global(.hover-only) {
   display: none;
 }
 
-.element:hover .hoverOnly {
+.element:hover :global(.hover-only) {
   display: initial;
 }
 
@@ -15,15 +15,15 @@
   transform: scale(1.4);
 }
 
-.selectedOnly {
+:global(.selected-only) {
   display: none;
 }
 
-.selected .selectedOnly {
+.selected :global(.selected-only)  {
   display: initial;
 }
 
-.selected .hoverOnly {
+.selected :global(.hover-only) {
   display: initial;
 }
 

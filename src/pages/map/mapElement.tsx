@@ -1,8 +1,8 @@
 import React, { useState } from "preact/compat";
 import styles from "./map-element.module.css";
-import { useCellState } from "../../helpers/cell-state";
-import { directionsStore } from "../../stores";
-import { getIconByDirectionId } from "./icons/icons";
+import { useCellState } from "@helpers/cell-state";
+import { directionsStore } from "@stores";
+import {MapIcon} from "./icons/map-icons";
 
 export function MapElement(props: {
   item: MapItem;
@@ -55,7 +55,7 @@ export function DirectionsPage() {
           }}
           key={x._id}
         >
-          {getIconByDirectionId(x._id)}
+          <MapIcon id={x._id}/>
           <circle r={0} cx={0} cy={0} fill={"red"} />
           <text fontSize={8} textAnchor="middle" y="18">
             {x.name}

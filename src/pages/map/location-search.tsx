@@ -1,13 +1,13 @@
 import React from "preact/compat";
 import { cellState } from "@helpers/cell-state";
-import { locationsStore } from "../../stores/locations.store";
+import { locationsStore } from "@stores";
 import { cell } from "@cmmn/cell/lib";
-import { getIconByDirectionId } from "./icons/icons";
+import {SvgIcon} from "@icons";
 import styles from "./map-page.module.css";
-import { Chip } from "../../components/chip/chip";
+import { Chip } from "@components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
-import { scheduleStore } from "../../stores/schedule.store";
-import { Icons } from "@icons";
+import { scheduleStore } from '@stores';
+import {MapIcon} from "./icons/map-icons";
 
 export class LocationSearch extends React.PureComponent<{
   onSelect(location: InsomniaLocationFull);
@@ -43,7 +43,7 @@ export class LocationSearch extends React.PureComponent<{
         className={this.state.opened ? styles.searchOpened : styles.search}
       >
         <div className="flex">
-            <Icons.Search/>
+            <SvgIcon id="#search"/>
             {this.state.opened && (
               <input
                 className="flex-1"
@@ -53,10 +53,10 @@ export class LocationSearch extends React.PureComponent<{
               />
             )}
             {this.state.query && (
-              <Icons.Cancel onClick={() => (this.query = "")}/>
+              <SvgIcon id="#cancel" onClick={() => (this.query = "")}/>
             )}
           <div className={styles.close} onClick={() => (this.opened = false)}>
-            <Icons.Close />
+            <SvgIcon id="#close" />
           </div>
         </div>
         {this.state.opened && (
@@ -95,7 +95,7 @@ export class LocationSearch extends React.PureComponent<{
                     style={{ width: 30, height: 30 }}
                     viewBox="-20 -20 40 40"
                   >
-                    {getIconByDirectionId(x.directionId)}
+                    <MapIcon id={x.directionId}/>
                   </svg>
                   <div>{x.name}</div>
                 </div>

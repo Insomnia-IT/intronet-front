@@ -3,7 +3,7 @@ import React, { FC, useState } from "preact/compat";
 import { ModalProps } from ".";
 import { LoginFormToken } from "../forms/LoginFormToken";
 import {Button} from "@components";
-import { Icons } from "@icons";
+import {SvgIcon} from "@icons";
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
@@ -37,7 +37,7 @@ export const LoginModal: FC<ModalProps<Partial<User>>> = ({
                 <Button
                   onClick={() => setLoginMethod("token")}
                 >
-                  Волонтер? Вам сюда <Icons.ArrowRight />
+                  Волонтер? Вам сюда <SvgIcon id="#arrow-right" />
                 </Button>
               </>
             )}

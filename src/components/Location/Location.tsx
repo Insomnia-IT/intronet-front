@@ -13,7 +13,7 @@ import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
 import { useCellState } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { ConnectedLocationSchedule } from "./LocationSchedule";
-import { Icons } from "@icons";
+import {SvgIcon} from "@icons";
 import {Button} from "@components";
 
 export const Location: FC<LocationProps> = ({ location, expanded }) => {
@@ -39,10 +39,9 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
       </div>
       <RequireAuth>
         <div >
-          <Button
-            aria-label="Edit note"
-            onClick={editLocation}
-          ><Icons.Edit/></Button>
+          <Button aria-label="Edit note" onClick={editLocation}>
+            <SvgIcon id="#edit"/>
+          </Button>
         </div>
       </RequireAuth>
       {expanded && (
@@ -55,7 +54,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                   <Button onClick={() =>
                       addSchedule(props.schedules, props.day, props.auditory)
                     }>
-                    <Icons.Add />Добавить
+                    <SvgIcon id="#add"/>Добавить
                   </Button>
                 </RequireAuth>
                 {menu && (
@@ -85,7 +84,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                         props.auditoryElementIndex
                       )
                     }
-                  ><Icons.Edit /></Button>
+                  ><SvgIcon id="#edit" /></Button>
                   {/*<Popover placement="bottom" closeOnBlur={false}>*/}
                   {/*  <PopoverTrigger>*/}
                   {/*    <IconButton*/}

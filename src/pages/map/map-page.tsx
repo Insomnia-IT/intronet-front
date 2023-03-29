@@ -5,8 +5,7 @@ import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
 import { mapStore } from "@stores/map.store";
-import { cellState } from "../../helpers/cell-state";
-import { getIconByDirectionId } from "./icons/icons";
+import { cellState } from "@helpers/cell-state";
 import { LayersIcon } from "./icons/LayersIcon";
 import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
@@ -15,7 +14,8 @@ import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
 import {useRouter} from "../routing";
-import {Icons} from "../../icons";
+import {SvgIcon} from "@icons";
+import { MapIcon } from "./icons/map-icons";
 
 export function MapPageWithRouting() {
   const { route } = useRouter();
@@ -58,7 +58,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
         ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
       icon: this.isMap ? (
-        getIconByDirectionId(x.directionId)
+        <MapIcon id={x.directionId}/>
       ) : this.isEditing ? (
         <>
           <circle
@@ -132,11 +132,11 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
               }
               this.isEditing = !this.isEditing;
             }}>
-              {this.isEditing ? <Icons.Ok/> : <Icons.Edit/>}
+              {this.isEditing ? <SvgIcon id="#ok" /> : <SvgIcon id="#edit"/>}
             </Button>
             <Button onClick={this.handleAddIconButtonClick}
                      aria-label="Add location">
-              <Icons.Add/>
+              <SvgIcon id="#add"/>
             </Button>
           </RequireAuth>
         </div>

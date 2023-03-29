@@ -1,6 +1,6 @@
-import * as PouchDB from "pouchdb";
-import * as upsertPlugin from "pouchdb-upsert";
-import * as findPlugin from "pouchdb-find";
+import PouchDB from "pouchdb";
+import upsertPlugin from "pouchdb-upsert";
+import findPlugin from "pouchdb-find";
 PouchDB.plugin(upsertPlugin);
 PouchDB.plugin(findPlugin);
 

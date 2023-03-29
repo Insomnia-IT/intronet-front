@@ -2,8 +2,8 @@ import React, { useState } from "preact/compat";
 import { Expander } from "@components";
 import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";
-import {Icons} from "@icons";
 import {Location} from "@components/Location";
+import {SvgIcon} from "@icons";
 
 export type MapToolbarProps = {
   id: string;
@@ -19,7 +19,7 @@ export function MapToolbar(props: MapToolbarProps) {
     <>
       <div className={expanded ? styles.expandedToolbar : styles.toolbar}>
         <div className={styles.close} onClick={props.onClose}>
-          <Icons.Close />
+          <SvgIcon id="#close" />
         </div>
         <div
           className={expanded ? styles.down : styles.up}
