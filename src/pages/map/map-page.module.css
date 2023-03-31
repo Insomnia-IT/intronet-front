@@ -75,6 +75,23 @@
   pointer-events: initial;
 }
 
+.bottomButtons{
+  position: absolute;
+  z-index: 1;
+  bottom: 56px;
+  width: 100vw;
+  overflow: visible;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.bottomButtons > *{
+  pointer-events: auto;
+}
+
 .chip {
   composes: chip from "../../components/chip/chip.module.css";
   color: #718096;

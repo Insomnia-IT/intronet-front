@@ -10,7 +10,6 @@ const svgDocument = (async function getIcons(){
 export const SvgIcon: React.FC<SvgIconProps> = ({id, g, ...props}) => {
   const ref = React.useRef<SVGGElement & SVGSVGElement>();
   React.useEffect(() => {
-    console.log(ref.current);
     if (!ref.current) return;
     svgDocument.then(div => {
       const icon = div.querySelector(id)?.firstElementChild;

@@ -1,32 +1,22 @@
 .button{
-  background: var(--blue);
-  border-radius: 100%;
+  background: var(--electric-blues);
+  padding: 16px;
+  font-size: 12px;
+  border-radius: 24px;
+  line-height: 14px;
+  text-transform: uppercase;
   border: none;
-  aspect-ratio: 1;
-  box-shadow: 0 0 8px 2px var(--deep-blue);
-  font-size: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: row nowrap;
-  padding: .5em;
-  --color: #808080;
-  color: var(--color);
+  color: var(--white);
 }
+
 .button:hover{
-  box-shadow: 0 0 8px 4px var(--deep-blue);
-
-}
-.button:active{
-  box-shadow: 0 0 18px 2px var(--deep-blue);
-}
-
-.button:focus{
-  box-shadow: 0 0 4px 6px var(--deep-blue);
   outline: none;
 }
-
+.button:active{
+  outline: none;
+}
+.button:focus{
+  outline: none;
+}
 .selected{
-  box-shadow: 0 0 18px 2px var(--deep-blue);
-  --color: var(--deep-blue)
 }

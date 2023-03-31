@@ -113,7 +113,13 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
             }
           }}
         />
-        <LocationSearch onSelect={this.selectLocation} />
+        <div className={styles.bottomButtons}>
+          <Button>
+            <SvgIcon id="#search"/>
+          </Button>
+          <Button>мои места</Button>
+        </div>
+        {/*<LocationSearch onSelect={this.selectLocation} />*/}
         <div className={styles.buttons}>
           <LayersIcon
             style={{cursor: 'pointer'}}
