@@ -62,34 +62,44 @@
 .buttons{
   display: flex;
   position: absolute;
-  right: 5px;
   pointer-events: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 10px;
-  top: 0;
-  bottom: 0;
   z-index: 2;
 }
-.buttons > button{
+.buttons > *{
   pointer-events: initial;
 }
-
-.bottomButtons{
-  position: absolute;
-  z-index: 1;
-  bottom: 56px;
-  width: 100vw;
-  overflow: visible;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 1em;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+.leftButtons{
+  composes: buttons;
+  top: 0;
+  bottom: 0;
+  left: 16px;
+  flex-flow: column nowrap;
+  gap: 16px;
 }
-.bottomButtons > *{
-  pointer-events: auto;
+.rightButtons{
+  composes: buttons;
+  top: 0;
+  right: 16px;
+  height: 100vh;
+  flex-flow: column nowrap;
+  gap: 16px;
+}
+.bottomButtons{
+  composes: buttons;
+  flex-flow: row nowrap;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  gap: 1em;
+}
+
+:global(button).mapButton{
+  width: 56px;
+  height: 64px;
 }
 
 .chip {

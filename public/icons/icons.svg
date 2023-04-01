@@ -546,20 +546,21 @@
             d="M6.45613 0C3.16665 0 0.5 2.66664 0.5 5.95611C0.5 9.24558 3.16665 11.9122 6.45613 11.9122C7.75412 11.9122 8.95513 11.497 9.9336 10.7922L14.1414 15L15.5 13.6414L11.2922 9.43363C11.997 8.45515 12.4123 7.25412 12.4123 5.95611C12.4123 2.66664 9.74561 0 6.45613 0ZM2.42133 5.95611C2.42133 3.72776 4.22777 1.92133 6.45613 1.92133C8.68449 1.92133 10.4909 3.72776 10.4909 5.95611C10.4909 8.18446 8.68449 9.9909 6.45613 9.9909C4.22777 9.9909 2.42133 8.18446 2.42133 5.95611Z"
             fill="currentColor"/>
     </g>
-    <g id="add" transform="translate(48, 0)">
-      <path fill="currentColor"
-            d="M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"></path>
+    <g id="plus" transform="translate(48, 0)">
+      <path d="M12 12V6M12 12H18M12 12V18M12 12H6" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round"/>
     </g>
     <g id="arrow-right" transform="translate(72, 0)">
-      <g transform="scale(0.046875)">
-        <path fill="none" stroke="currentColor" stroke-linecap="round"
-              stroke-linejoin="round" stroke-width="48"
-              d="M268 112l144 144-144 144M392 256H100"/>
-      </g>
+      <path fill="none" stroke="currentColor" stroke-linecap="round"
+            transform="scale(0.046875)"
+            stroke-linejoin="round" stroke-width="48"
+            d="M268 112l144 144-144 144M392 256H100"/>
     </g>
-    <g id="cancel" transform="translate(96, 0)">
-      <path fill="currentColor"
-            d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"></path>
+    <g id="x" transform="translate(96, 0)">
+        <path d="M2.22221 1.33301L16.4066 15.4071M1.5918 15.4071L15.7762 1.33302"
+              stroke="currentColor"
+              transform="scale(1.3333333333333333)"
+              stroke-width="2"/>
     </g>
     <g id="close" transform="translate(0, 24)">
       <path
@@ -571,11 +572,23 @@
             stroke="#636363" fill="none"
             stroke-linecap="round"/>
     </g>
-    <g transform="translate(48, 24)">
+    <g id="bookmark" transform="translate(48, 24)">
+        <path d="M0.5 1.64717V14L5.44743 11.1729C5.95378 10.8836 6.57539 10.8836 7.08173 11.1729L12.0292 14V1.64717C12.0292 0.737597 11.2913 0.00021996 10.3817 0.000156116C7.41611 -5.20435e-05 5.11305 -5.20354e-05 2.14742 0.000156121C1.23785 0.000219963 0.5 0.737596 0.5 1.64717Z"
+              transform="scale(1.7142857142857142)"
+              fill="currentColor"/>
     </g>
-    <g transform="translate(72, 24)">
+    <g id="magic" transform="translate(72, 24)">
+      <svg width="24" height="24" viewBox="0 0 24 24"
+           fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 2L7.70711 6.29289L12 7L7.70711 7.70711L7 12L6.29289 7.70711L2 7L6.29289 6.29289L7 2Z
+                 M14 6L15.4142 12.5858L22 14L15.4142 15.4142L14 22L12.5858 15.4142L6 14L12.5858 12.5858L14 6Z"
+              fill="currentColor"/>
+      </svg>
+
     </g>
-    <g transform="translate(96, 24)">
+    <g id="minus" transform="translate(96, 24)">
+        <path d="M18 12H12H6" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round"/>
     </g>
     <g transform="translate(0, 48)">
     </g>

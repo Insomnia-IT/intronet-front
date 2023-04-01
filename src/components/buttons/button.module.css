@@ -1,5 +1,4 @@
 .button{
-  background: var(--electric-blues);
   padding: 16px;
   font-size: 12px;
   border-radius: 24px;
@@ -7,6 +6,13 @@
   text-transform: uppercase;
   border: none;
   color: var(--white);
+  display: flex;
+  flex-flow: row nowrap;
+  cursor: pointer;
+  gap: 8px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 }
 
 .button:hover{
@@ -19,4 +25,29 @@
   outline: none;
 }
 .selected{
+}
+
+.blue{
+  background: var(--electric-blues);
+}
+.disco{
+  background: var(--cyber-disco);
+}
+.frame{
+  background: var(--white);
+  color: var(--medium-blue);
+  border: solid var(--medium-blue);
+}
+.vivid{
+  background: var(--vivid-gradient);
+}
+
+.close{
+  composes: frame;
+  composes: button;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: transparent;
+  z-index: 2;
 }

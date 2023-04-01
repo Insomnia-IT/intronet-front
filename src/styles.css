@@ -10,6 +10,8 @@
     --cold-white: #F7FCFF;
     --white: #FFF;
     --black: #000;
+
+    --vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 .vividGradient{
