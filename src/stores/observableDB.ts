@@ -142,7 +142,7 @@ export class ObservableDB<
     await VersionsDB.Instance.set({
       _id: this.name,
       version: VersionsDB.Instance.remote[this.name]
-    }, true);
+    });
   }
 
   get remoteVersion(){

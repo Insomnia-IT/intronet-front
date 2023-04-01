@@ -1,5 +1,5 @@
 .activity{
-    composes: purple-gradient from "../../styles.css";
+    background: var(--purple-gradient);
     display: flex;
     flex-direction: column;
     align-items: flex-start;

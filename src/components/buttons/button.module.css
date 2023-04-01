@@ -29,6 +29,7 @@
 
 .blue{
   background: var(--electric-blues);
+  color: var(--white);
 }
 .disco{
   background: var(--cyber-disco);
@@ -42,12 +43,47 @@
   background: var(--vivid-gradient);
 }
 
+
+.buttonsBar {
+  background: transparent;
+  display: flex;
+  position: absolute;
+  pointer-events: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+}
+.buttonsBar > * {
+  pointer-events: initial;
+}
+
 .close{
   composes: frame;
   composes: button;
   position: absolute;
+  z-index: 2;
   right: 16px;
   top: 16px;
-  background: transparent;
-  z-index: 2;
+}
+
+.left{
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+.right{
+  right: 16px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+.bottom{
+  flex-flow: row nowrap;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  gap: 1em;
 }

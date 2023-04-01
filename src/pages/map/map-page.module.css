@@ -59,44 +59,6 @@
   overflow-x: scroll;
 }
 
-.buttons{
-  display: flex;
-  position: absolute;
-  pointer-events: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  z-index: 2;
-}
-.buttons > *{
-  pointer-events: initial;
-}
-.leftButtons{
-  composes: buttons;
-  top: 0;
-  bottom: 0;
-  left: 16px;
-  flex-flow: column nowrap;
-  gap: 16px;
-}
-.rightButtons{
-  composes: buttons;
-  top: 0;
-  right: 16px;
-  height: 100vh;
-  flex-flow: column nowrap;
-  gap: 16px;
-}
-.bottomButtons{
-  composes: buttons;
-  flex-flow: row nowrap;
-  bottom: 56px;
-  left: 0;
-  right: 0;
-  gap: 1em;
-}
-
 :global(button).mapButton{
   width: 56px;
   height: 64px;

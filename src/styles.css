@@ -10,15 +10,8 @@
     --cold-white: #F7FCFF;
     --white: #FFF;
     --black: #000;
-
     --vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-}
-
-.vividGradient{
-  background: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-}
-.purpleGradient{
-    background: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    --purple-gradient: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 .pinkShadow{

@@ -1,6 +1,6 @@
 import { cell } from "@cmmn/cell/lib";
 import React from "preact/compat";
-import {Button, CloseButton} from "@components";
+import {Button, ButtonsBar, CloseButton} from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
@@ -114,7 +114,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
           }}
         />
         <CloseButton/>
-        <div className={styles.bottomButtons}>
+        <ButtonsBar at="bottom">
           <Button type="blue">
             <SvgIcon id="#search" size='14px'/>
           </Button>
@@ -122,18 +122,18 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
             <SvgIcon id="#bookmark" size='14px'/>
             мои места
           </Button>
-        </div>
+        </ButtonsBar>
 
-        <div className={styles.rightButtons}>
+        <ButtonsBar at="right">
           <Button type="frame" className={styles.mapButton}>
             <SvgIcon id="#plus" size='14px' />
           </Button>
           <Button type="frame" className={styles.mapButton}>
             <SvgIcon id="#minus" size='14px' />
           </Button>
-        </div>
+        </ButtonsBar>
         {/*<LocationSearch onSelect={this.selectLocation} />*/}
-        <div className={styles.leftButtons}>
+        <ButtonsBar at="left">
           <Button type="frame" onClick={() => {
             this.isMap = !this.isMap;
             this.isEditing = false;
@@ -156,7 +156,7 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
               <SvgIcon id="#plus"/>
             </Button>
           </RequireAuth>
-        </div>
+        </ButtonsBar>
         {this.state.selected ? (
           <MapToolbar
             id={this.state.selected.id}
