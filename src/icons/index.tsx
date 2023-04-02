@@ -13,9 +13,9 @@ export const SvgIcon: React.FC<SvgIconProps> = ({id, g, size, ...props}) => {
     if (!ref.current) return;
     svgDocument.then(div => {
       const icon = div.querySelector(id)?.firstElementChild as SVGGElement;
-      icon.setAttribute('vector-effect', 'non-scaling-stroke')
       if (!icon)
-        console.warn(`not found icon: `, id);
+        return console.warn(`not found icon: `, id);
+      icon.setAttribute('vector-effect', 'non-scaling-stroke')
       icon && ref.current.appendChild(icon.cloneNode(true));
     });
   }, [ref, id]);
