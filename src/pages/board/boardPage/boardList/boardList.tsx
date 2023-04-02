@@ -10,6 +10,7 @@ import { scrollToRef } from "../../../../helpers/scrollToRef";
 import { BoardCard } from "./boardCard/boardCard";
 import { useCellState } from "../../../../helpers/cell-state";
 import {useRouter} from "../../../routing";
+import {authStore} from "@stores/auth.store";
 
 export const BoardList: FC = () => {
   const { route } = useRouter();
@@ -101,6 +102,7 @@ export const BoardList: FC = () => {
   }, []);
 
   const [notes] = useCellState(() => pagesStore.notes);
+  const [isAdmin] = useCellState(() => authStore.isAdmin);
 
   return (
     <Box w={"100%"}>
@@ -128,11 +130,7 @@ export const BoardList: FC = () => {
 
       <RequireAuth role={["admin", "poteryashki"]}>
         {
-          // Боже милостивый, прости меня за этот код
-          (app.auth.username === "admin" ||
-            (app.auth.username === "poteryashki" &&
-              categoriesStore.getCategory(categoriesStore.ActiveCategory)
-                ?.name === "Потеряшки")) && (
+          isAdmin && (
             <Box pos="absolute" right="16" zIndex="1" bottom="16">
               <IconButton
                 size="lg"

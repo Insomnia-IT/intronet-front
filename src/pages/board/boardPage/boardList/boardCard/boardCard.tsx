@@ -11,6 +11,8 @@ import { RequireAuth } from "@components/RequireAuth";
 import { useAppContext } from "@helpers/AppProvider";
 import { CreatedDate } from "./createdDate/createdDate";
 import { NoteText } from "./noteText/noteText";
+import {useCellState} from "@helpers/cell-state";
+import {authStore} from "@stores/auth.store";
 
 export interface IBoardCard extends StackProps {
   noteInfoObj: INote;
@@ -31,9 +33,9 @@ export const BoardCard = ({
   const { title, text } = noteInfoObj;
 
   const app = useAppContext();
-
+  const [isAdmin] = useCellState(() => authStore.isAdmin);
   // Если у объявления нет никакого контента, и пользователь не обладает редакторскими павами, объявление не отображается.
-  if (!title && !text && !app.auth.token) return <></>;
+  if (!title && !text && !isAdmin) return <></>;
 
   return (
     <div>
@@ -42,9 +44,6 @@ export const BoardCard = ({
         <NoteText text={text} />
 
         <RequireAuth role={["admin", "poteryashki"]}>
-          {(app.auth.username === "admin" ||
-            (app.auth.username === "poteryashki" &&
-              categoryName === "Потеряшки")) && (
             <HStack gap="2">
               <IconButton
                 icon={<EditIcon />}
@@ -77,7 +76,6 @@ export const BoardCard = ({
               {/*  </PopoverContent>*/}
               {/*</Popover>*/}
             </HStack>
-          )}
         </RequireAuth>
 
         {/* <BtnCopy

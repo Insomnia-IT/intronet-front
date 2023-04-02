@@ -2,11 +2,11 @@ import React from "preact/compat";
 import { LogoutModal } from "../modals/LogoutModal";
 import { LoginModal } from "../modals/LoginModal";
 import {Button, ButtonProps, toast} from "@components";
-import {useAuthContext} from "@helpers/AppProvider/AuthProvider";
 import {Modal} from "@components/modal";
+import {authStore} from "@stores/auth.store";
+import {useCellState} from "@helpers/cell-state";
 
 export const LoginButton: React.FC<ButtonProps> = (props) => {
-  const auth = useAuthContext();
 
   const handleLogin = async () => {
     try {
@@ -16,7 +16,7 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
       try {
         const response = await fetch(`/api/admin/auth/?token=${user.token}`);
         if (!response.ok) throw new Error("Введен неверный токен.");
-        auth.syncCookies();
+        authStore.syncCookies();
         toast({
           title: "Вы успешно авторизовались.",
           status: "success",
@@ -34,14 +34,14 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
       }
     } catch (error) {}
   };
-
+  const [isAdmin] = useCellState(() => authStore.isAdmin);
   const handleLogout = async () => {
     try {
       const answer = await Modal.show<Partial<User>>((props) => (
         <LogoutModal {...props} />
       ));
       if (answer) await fetch("api/admin/logout");
-      auth.syncCookies();
+      authStore.syncCookies();
     } catch (err) {
       if (err instanceof Error) {
       }
@@ -49,8 +49,8 @@ export const LoginButton: React.FC<ButtonProps> = (props) => {
   };
 
   return (
-    <Button onClick={auth.token ? handleLogout : handleLogin} {...props}>
-      Войти
+    <Button onClick={isAdmin ? handleLogout : handleLogin} {...props}>
+      {isAdmin ? 'Выйти' : 'Войти'}
     </Button>
   );
 };

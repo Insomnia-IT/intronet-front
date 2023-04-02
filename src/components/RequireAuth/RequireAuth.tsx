@@ -1,6 +1,7 @@
 import React from "preact/compat";
 import { FC, PropsWithChildren } from "preact/compat";
-import { useAuthContext } from "@helpers/AppProvider/AuthProvider";
+import {useCellState} from "@helpers/cell-state";
+import {authStore} from "@stores/auth.store";
 
 export type RequireAuthProps = {
   // на бессоннице есть админы, а есть поисково-спасательный отряд, которым
@@ -16,19 +17,14 @@ export const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({
   children,
   role = "admin",
 }) => {
-  const auth = useAuthContext();
+  const [isAdmin] = useCellState(() => authStore.isAdmin);
   // проверяем, есть ли токен в провайдере
   // не пустой ли он
   // проверяем, соответствуюет ли допустимая роль компонента юзернейму
 
   // т.к. по факту у нас нет ролевой модели, здесь используется обыкновенное сравнение
   // юзернейма-как-роли с ролью компонента
-  if (
-    auth.token &&
-    auth.token.length > 0 &&
-    (role === auth.username ||
-      role.includes(auth.username as "admin" | "poteryashki"))
-  )
+  if (isAdmin)
     return <>{children}</>;
   return null;
 };
