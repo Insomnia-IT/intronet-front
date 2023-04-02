@@ -53,7 +53,7 @@ export class LocationSearch extends React.PureComponent<{
               />
             )}
             {this.state.query && (
-              <SvgIcon id="#cancel" onClick={() => (this.query = "")}/>
+              <SvgIcon id="#x" onClick={() => (this.query = "")}/>
             )}
           <div className={styles.close} onClick={() => (this.opened = false)}>
             <SvgIcon id="#close" />

@@ -59,20 +59,9 @@
   overflow-x: scroll;
 }
 
-.buttons{
-  display: flex;
-  position: absolute;
-  right: 5px;
-  pointer-events: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-}
-.buttons > button{
-  pointer-events: initial;
+:global(button).mapButton{
+  width: 56px;
+  height: 64px;
 }
 
 .chip {

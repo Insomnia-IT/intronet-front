@@ -54,7 +54,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
                   <Button onClick={() =>
                       addSchedule(props.schedules, props.day, props.auditory)
                     }>
-                    <SvgIcon id="#add"/>Добавить
+                    <SvgIcon id="#plus"/>Добавить
                   </Button>
                 </RequireAuth>
                 {menu && (

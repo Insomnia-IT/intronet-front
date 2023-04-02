@@ -1,6 +1,6 @@
 import { cell } from "@cmmn/cell/lib";
 import React from "preact/compat";
-import {Button} from "@components";
+import {Button, ButtonsBar, CloseButton} from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
@@ -113,17 +113,34 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
             }
           }}
         />
-        <LocationSearch onSelect={this.selectLocation} />
-        <div className={styles.buttons}>
-          <LayersIcon
-            style={{cursor: 'pointer'}}
-            onClick={() => {
-              this.isMap = !this.isMap;
-              this.isEditing = false;
-              this.localChanges.clear();
-            }}
-            aria-label="Change view"/>
+        <CloseButton/>
+        <ButtonsBar at="bottom">
+          <Button type="blue">
+            <SvgIcon id="#search" size='14px'/>
+          </Button>
+          <Button type="blue">
+            <SvgIcon id="#bookmark" size='14px'/>
+            мои места
+          </Button>
+        </ButtonsBar>
 
+        <ButtonsBar at="right">
+          <Button type="frame" className={styles.mapButton}>
+            <SvgIcon id="#plus" size='14px' />
+          </Button>
+          <Button type="frame" className={styles.mapButton}>
+            <SvgIcon id="#minus" size='14px' />
+          </Button>
+        </ButtonsBar>
+        {/*<LocationSearch onSelect={this.selectLocation} />*/}
+        <ButtonsBar at="left">
+          <Button type="frame" onClick={() => {
+            this.isMap = !this.isMap;
+            this.isEditing = false;
+            this.localChanges.clear();
+          }} className={styles.mapButton}>
+            <SvgIcon id="#magic" size='24px'/>
+          </Button>
 
           <RequireAuth>
             <Button aria-label="Start edit" onClick={() => {
@@ -136,10 +153,10 @@ export class MapPage extends React.PureComponent<{ locationId? }> {
             </Button>
             <Button onClick={this.handleAddIconButtonClick}
                      aria-label="Add location">
-              <SvgIcon id="#add"/>
+              <SvgIcon id="#plus"/>
             </Button>
           </RequireAuth>
-        </div>
+        </ButtonsBar>
         {this.state.selected ? (
           <MapToolbar
             id={this.state.selected.id}

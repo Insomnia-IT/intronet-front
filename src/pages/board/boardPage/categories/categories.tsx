@@ -46,7 +46,7 @@ export default class Categories extends React.PureComponent<ICategoriesProps, {}
             <Button
               aria-label="Add category"
               onClick={this.props.onAddCategory}
-            ><SvgIcon id="#add"/></Button>
+            ><SvgIcon id="#plus"/></Button>
           </RequireAuth>
         </div>
       </div>

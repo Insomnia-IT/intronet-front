@@ -1,32 +1,89 @@
 .button{
-  background: var(--blue);
-  border-radius: 100%;
+  padding: 16px;
+  font-size: 12px;
+  border-radius: 24px;
+  line-height: 14px;
+  text-transform: uppercase;
   border: none;
-  aspect-ratio: 1;
-  box-shadow: 0 0 8px 2px var(--deep-blue);
-  font-size: inherit;
+  color: var(--white);
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-flow: row nowrap;
-  padding: .5em;
-  --color: #808080;
-  color: var(--color);
+  cursor: pointer;
+  gap: 8px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 }
+
 .button:hover{
-  box-shadow: 0 0 8px 4px var(--deep-blue);
-
-}
-.button:active{
-  box-shadow: 0 0 18px 2px var(--deep-blue);
-}
-
-.button:focus{
-  box-shadow: 0 0 4px 6px var(--deep-blue);
   outline: none;
 }
-
+.button:active{
+  outline: none;
+}
+.button:focus{
+  outline: none;
+}
 .selected{
-  box-shadow: 0 0 18px 2px var(--deep-blue);
-  --color: var(--deep-blue)
+}
+
+.blue{
+  background: var(--electric-blues);
+  color: var(--white);
+}
+.disco{
+  background: var(--cyber-disco);
+}
+.frame{
+  background: var(--white);
+  color: var(--medium-blue);
+  border: solid var(--medium-blue);
+}
+.vivid{
+  background: var(--vivid-gradient);
+}
+
+
+.buttonsBar {
+  background: transparent;
+  display: flex;
+  position: absolute;
+  pointer-events: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+}
+.buttonsBar > * {
+  pointer-events: initial;
+}
+
+.close{
+  composes: frame;
+  composes: button;
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  top: 16px;
+}
+
+.left{
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+.right{
+  right: 16px;
+  top: 0;
+  bottom: 0;
+  flex-direction: column;
+}
+.bottom{
+  flex-flow: row nowrap;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  gap: 1em;
 }
