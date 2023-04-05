@@ -1,4 +1,16 @@
 .time{
-    composes: h1 from "../../styles.css";
-    color: var(--new-blue);
+    color: var(--medium-blue);
+}
+
+.header{
+    font-style: normal;
+    font-weight: 590;
+    font-size: 24px;
+    line-height: 29px;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: space-between;
+    width: 100%;
 }

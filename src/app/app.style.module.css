@@ -1,7 +1,7 @@
 .main {
   composes: colors from "../styles.css";
-  width: 100vw;
   height: 100%;
+  width: 100%;
 }
 
 .loader{
@@ -12,4 +12,18 @@
   z-index: 100;
   --percent: 0;
   width: calc(var(--percent) * 1vw);
+}
+
+.page{
+  padding: 0 16px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 441px){
+  .page {
+    padding-left: 48px;
+    width: 440px;
+  }
 }

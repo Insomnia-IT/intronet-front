@@ -1,24 +1,24 @@
 import React, { useEffect, useMemo, useState } from "preact/compat";
-import { Cell }  from "@cmmn/cell/lib";
+import { Cell } from "@cmmn/cell/lib";
 
 export function useCellState<T>(
   getter: (() => T) | T,
   deps: any[] = []
 ): [T, (value: T) => void, Cell<T>] {
-  const cell = useMemo(() => new Cell(getter), [getter, ...deps]);
+  const cell = useMemo(() => new Cell(getter), deps);
   const [value, setter] = useState(cell.get());
   useEffect(() => {
     const listener = (e) => {
       setter(e.value);
     };
-    cell.on('change', listener);
+    cell.on("change", listener);
     return () => {
       cell.dispose();
     };
   }, [cell]);
   useEffect(() => {
     setter(cell.get());
-  }, deps)
+  }, deps);
   return [value, (v) => cell.set(v), cell];
 }
 
@@ -41,7 +41,7 @@ export function cellState<TState>(
   const origUnmount = component.componentWillUnmount;
   component.componentDidMount = function () {
     for (let [key, cell] of cells) {
-      cell.on('change', (ev) => {
+      cell.on("change", (ev) => {
         component.setState({
           [key]: ev.value,
         });
@@ -71,4 +71,4 @@ export type ComponentLike = {
   componentDidMount?(): void;
   componentWillUnmount?(): void;
   setState(state: any);
-}
+};

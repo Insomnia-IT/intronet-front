@@ -5,4 +5,5 @@
     align-items: flex-start;
     padding: 24px 16px;
     gap: 16px;
+    border-radius: 24px;
 }

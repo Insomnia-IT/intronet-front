@@ -23,21 +23,3 @@
   background: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
-
-.h1{
-    font-family: 'Unbounded';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 30px;
-    color: #FFFFFF;
-}
-
-.h2{
-    font-family: 'SF Pro Text';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #FFFFFF;
-}

@@ -1,29 +1,27 @@
 import { DateTime } from "luxon";
 import React, { FC, useState } from "preact/compat";
 import styles from "../../../components/schedule/schedule.module.css";
-import {locationsStore, moviesStore} from "@stores";
+import { locationsStore, moviesStore } from "@stores";
 import { useCellState } from "@helpers/cell-state";
-import {AnimationBlock} from "@components/cards/animation-block";
+import { AnimationBlock } from "@components/cards/animation-block";
+import style from "../../../app/app.style.module.css";
 
 export type TimetableProps = {
-  list?: TimetableSlot[];
+  screens: InsomniaLocationFull[];
+  screen: string;
+  setScreen(screen: string): void;
+  blocks: MovieBlock[];
 };
 
-export const Timetable: FC<TimetableProps> = ({ list }) => {
-  const [screens] = useCellState(() => locationsStore.FullLocations.filter(x => x.directionId == 'screen'));
-  const [screen, setScreen] = useState(() => screens[0]?._id);
-  const [blocks] = useCellState(() => {
-    return moviesStore.Movies.filter(x => x.locationId === screen)
-  }, [screen]);
-  console.log('timetable', screen, screens?.[0]?._id)
-  React.useEffect(() => {
-    if (screen) return;
-    console.log(screen, screens?.[0]?._id)
-    setScreen(screens?.[0]?._id);
-  }, [screen, screens?.[0]]);
-
+export const Timetable: FC<TimetableProps> = ({
+  screens,
+  screen,
+  blocks,
+  setScreen,
+}) => {
   return (
-    <div className="flex column">
+    <div class={style.page}>
+      <h1>анимация</h1>
       <div className={styles.tags}>
         {screens.map((location) => (
           <div
@@ -39,7 +37,9 @@ export const Timetable: FC<TimetableProps> = ({ list }) => {
           </div>
         ))}
       </div>
-      {blocks.map(x => <AnimationBlock block={x} key={x._id}/>)}
+      {blocks.map((x) => (
+        <AnimationBlock block={x} key={x._id} />
+      ))}
     </div>
   );
 };

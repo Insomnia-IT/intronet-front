@@ -1,0 +1,14 @@
+.container{
+    max-width: 440px;
+    background: var(--ins-night);
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.mainPage{
+    height: auto;
+    color: var(--cold-white);
+}

@@ -117,7 +117,8 @@ export class MapComponent extends React.PureComponent<MapProps> {
 
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
-    if (rect.width == 0 || rect.height == 0){
+    console.log(rect);
+    if (rect.width == 0 || rect.height == 0) {
       rect.width = window.innerWidth;
       rect.height = window.innerHeight;
     }
