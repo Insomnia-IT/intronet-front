@@ -19,7 +19,7 @@ export const AnimationBlock: FC<AnimationBlockProps> = (props) => {
             <AgeStrict age={props.block.info.MinAge} />
           )}
         </div>
-        {props.block.info.SubTitle}
+        <div class={Styles.subHeader}>{props.block.info.SubTitle}</div>
       </ActivityCard>
     </div>
   );

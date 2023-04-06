@@ -1,117 +1,125 @@
 /// <reference lib="WebWorker" />
-import {ServiceWorkerAction} from "./actions";
+import { ServiceWorkerAction } from "./actions";
 
 declare var self: ServiceWorkerGlobalScope;
 import assets from "./assets.json";
 
-const versionUrl = '/public/root.version';
+const versionUrl = "/public/root.version";
 
 export class SwStorage {
   resolve: () => void;
-  loading = new Promise<void>(resolve => this.resolve = resolve);
+  loading = new Promise<void>((resolve) => (this.resolve = resolve));
   cache: Cache;
+  isIOS = false;
 
-  constructor(protected name, protected version: string | undefined = undefined) {
-    if (self.origin.includes('local')) {
-      this.clear().then(() => this.load())
-    }else {
-      this.load();
+  constructor(
+    protected name,
+    protected version: string | undefined = undefined
+  ) {
+    if (self.origin.includes("local")) {
+      this.clear();
     }
   }
 
-
-  clear(){
+  clear() {
     return caches.delete(this.name);
   }
 
   private isUpdating = false;
-  async checkUpdate(force = false){
+  async checkUpdate(force = false) {
     console.log(`check ${versionUrl} for update`);
     try {
       const version = await this.getVersion();
       if (version === this.version && !force) {
-        console.log(`check ${versionUrl} for update: same version found, ${version}`);
+        console.log(
+          `check ${versionUrl} for update: same version found, ${version}`
+        );
         return;
       }
       this.isUpdating = true;
       console.log(`start update to version ${version}`);
-      const newStorage = new SwStorage('tmp', version);
-      newStorage.load(false).then(async newCache => {
-        for (let key of await newCache.keys()) {
-          await this.cache.delete(key);
-          await this.cache.put(key, await newCache.match(key));
-        }
-        await newStorage.clear();
-        await this.sendAll({action: 'new-version' as ServiceWorkerAction})
-        console.log(`updated to version ${version}`);
-      }).catch(e => {
-        console.log('failed update');
-      }).finally(() => {
-        this.isUpdating = false;
-      })
-    }catch (e){
+      const newStorage = new SwStorage("tmp", version);
+      newStorage.isIOS = this.isIOS;
+      newStorage
+        .load(false)
+        .then(async (newCache) => {
+          for (let key of await newCache.keys()) {
+            await this.cache.delete(key);
+            await this.cache.put(key, await newCache.match(key));
+          }
+          await newStorage.clear();
+          await this.sendAll({ action: "new-version" as ServiceWorkerAction });
+          console.log(`updated to version ${version}`);
+        })
+        .catch((e) => {
+          console.log("failed update");
+        })
+        .finally(() => {
+          this.isUpdating = false;
+        });
+    } catch (e) {
       console.error(e);
     }
   }
 
-  async sendAll(data){
+  async sendAll(data) {
     const clients = await self.clients.matchAll({
-      includeUncontrolled: true
+      includeUncontrolled: true,
     });
-    for (let client of clients){
+    for (let client of clients) {
       client.postMessage(data);
     }
   }
 
-  private getVersion(){
-    return fetch(versionUrl).then(x => x.ok ? x.text() : Promise.reject(`Failed load version`));
+  private getVersion() {
+    return fetch(versionUrl).then((x) =>
+      x.ok ? x.text() : Promise.reject(`Failed load version`)
+    );
   }
 
-  async load(ignoreErrors = true){
+  async load(ignoreErrors = true) {
     this.version ??= await this.getVersion();
     this.cache = await caches.open(this.name);
     await Promise.all(
-      assets.map(a => this.getFromCacheOrFetch(new Request(a)).catch(e => {
-        if (ignoreErrors)
-          console.error(e);
-        else
-          throw e;
-      }))
-    )
+      assets.map((a) =>
+        this.getFromCacheOrFetch(new Request(a)).catch((e) => {
+          if (ignoreErrors) console.error(e);
+          else throw e;
+        })
+      )
+    );
     this.resolve();
     return this.cache;
   }
 
-  async getFromCacheOrFetch(request: Request){
-    return (await this.cache.match(request)) ?? this.fetchAndPut(request)
+  async getFromCacheOrFetch(request: Request) {
+    return (await this.cache.match(request)) ?? this.fetchAndPut(request);
   }
 
-  async fetchAndPut(request: Request){
+  async fetchAndPut(request: Request) {
     const res = await fetch(new Request(request.url + `?hash=${+new Date()}`));
-    if (!res.ok){
-      throw new Error(`Failed load `+ request.url + ', status: ' + res.status)
+    if (!res.ok) {
+      throw new Error(`Failed load ` + request.url + ", status: " + res.status);
     }
     const clone = res.clone();
-    const blob = await clone.blob()
+    const blob = await clone.blob();
     await this.sendAll({
-      action: 'loading' as ServiceWorkerAction,
+      action: "loading" as ServiceWorkerAction,
       size: blob.size,
       cache: this.name,
-      url: request.url
+      url: request.url,
     });
     await this.cache.put(request, res);
     return res;
   }
 
-  async getResponse(request: Request){
+  async getResponse(request: Request) {
     if (new URL(request.url).pathname.match(/^\/(api|db|webapi)/))
       return fetch(request);
     await this.loading;
     // routes with extensions: .js, .css, .json...
-    if (request.url.match(/\.\w+$/))
-      return this.getFromCacheOrFetch(request);
+    if (request.url.match(/\.\w+$/)) return this.getFromCacheOrFetch(request);
     // routes without extension: /, /map, /info, ...
-    return this.getFromCacheOrFetch(new Request('/'));
+    return this.getFromCacheOrFetch(new Request("/"));
   }
 }
-

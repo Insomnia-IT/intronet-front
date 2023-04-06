@@ -1,47 +1,49 @@
 "use strict";
-import {ServiceWorkerAction} from "./actions";
+import { ServiceWorkerAction } from "./actions";
 
 // @ts-ignore
-const sw = process.env.NODE_ENV == 'production' ? "/sw.min.js" : "/sw.js";
-if (navigator.serviceWorker && !location.href.includes('localhost')) {
-
-  const handle = globalThis.ServiceWorkerHandle = {
+const sw = process.env.NODE_ENV == "production" ? "/sw.min.js" : "/sw.js";
+if (navigator.serviceWorker && !location.href.includes("localhost")) {
+  const handle = (globalThis.ServiceWorkerHandle = {
     event: null as BeforeInstallPromptEvent,
     worker: navigator.serviceWorker.controller,
     size: 0,
-    get percent(){
+    get percent() {
       return this.size / 2209895;
     },
-    reload(){
+    reload() {
       this.worker.postMessage({
-        action: 'reload' as ServiceWorkerAction,
+        action: "reload" as ServiceWorkerAction,
       });
     },
-    check(force : boolean){
+    check(force: boolean) {
       this.worker.postMessage({
-        action: 'check' as ServiceWorkerAction,
-        force
+        action: "check" as ServiceWorkerAction,
+        force,
       });
-    }
-  }
+    },
+  });
 
   const isFirstInstall = !(
     navigator.serviceWorker.controller instanceof ServiceWorker
   ); // при первой установке на клиенте еще нет sw
 
-  if (location.pathname.match(/\.reload/)){
-    navigator.serviceWorker.getRegistration()
-      .then(x => x?.unregister())
+  if (location.pathname.match(/\.reload/)) {
+    navigator.serviceWorker
+      .getRegistration()
+      .then((x) => x?.unregister())
       .catch()
-      .then(x => location.pathname = '/');
+      .then((x) => (location.pathname = "/"));
   }
   if (navigator.serviceWorker.controller) {
+    const isIOS = CSS.supports("-webkit-touch-callout", "none");
     navigator.serviceWorker.controller.postMessage({
-      action: 'init'
+      action: "init",
+      isIOS: isIOS,
     });
-  }else {
-    navigator.serviceWorker.register(sw, {scope: "/"}).then(reg => {
-      reg.addEventListener('updatefound', () => {
+  } else {
+    navigator.serviceWorker.register(sw, { scope: "/" }).then((reg) => {
+      reg.addEventListener("updatefound", () => {
         // A wild service worker has appeared in reg.installing!
         const newWorker = reg.installing;
 
@@ -52,32 +54,31 @@ if (navigator.serviceWorker && !location.href.includes('localhost')) {
         // "redundant"  - discarded. Either failed install, or it's been
         //                replaced by a newer version
 
-        newWorker.addEventListener('statechange', () => {
-
-          if(newWorker.state === "activated"){
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "activated") {
             handle.worker = newWorker;
             newWorker.postMessage({
-              action: 'init'
+              action: "init",
             });
           }
           // newWorker.state has changed
         });
       });
-    })
+    });
   }
 
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    console.log(navigator.serviceWorker.controller)
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    console.log(navigator.serviceWorker.controller);
     // This fires when the service worker controlling this page
     // changes, eg a new worker has skipped waiting and become
     // the new active worker.
   });
 
   navigator.serviceWorker.addEventListener("message", ({ data }) => {
-    switch (data.action){
+    switch (data.action) {
       case "loading":
         handle.size += data.size;
-        console.log(`${data.cache}: +${data.size} (${data.url})`)
+        console.log(`${data.cache}: +${data.size} (${data.url})`);
         animateLoading(handle.percent);
         break;
 
@@ -85,58 +86,65 @@ if (navigator.serviceWorker && !location.href.includes('localhost')) {
         init().catch(console.error);
         break;
       case "new-version":
-        console.log('app has new version');
-        navigator.serviceWorker.getRegistration()
-          .then(x => x?.unregister())
-          .then(x => location.reload());
+        console.log("app has new version");
+        navigator.serviceWorker
+          .getRegistration()
+          .then((x) => x?.unregister())
+          .then((x) => location.reload());
         break;
     }
   });
   navigator.serviceWorker.addEventListener<any>("activate", ({ data }) => {
     console.log(data);
   });
-  window.addEventListener('beforeinstallprompt', (e: BeforeInstallPromptEvent) => {
-    handle.event = e;
-  })
-
-
-}else{
+  window.addEventListener(
+    "beforeinstallprompt",
+    (e: BeforeInstallPromptEvent) => {
+      handle.event = e;
+    }
+  );
+} else {
   init().catch(console.error);
 }
 
-function animateLoading(percent: number){
-  const div: HTMLDivElement = document.querySelector('#start')
-    || document.querySelector('#loader');
-  div && div.style.setProperty('--percent', Math.round(percent * 100).toString());
+function animateLoading(percent: number) {
+  const div: HTMLDivElement =
+    document.querySelector("#start") || document.querySelector("#loader");
+  div &&
+    div.style.setProperty("--percent", Math.round(percent * 100).toString());
 }
 
-async function init(){
+async function init() {
   const elements: HTMLElement[] = [];
   for (let asset of globalThis.assets) {
-    if (asset.endsWith('css')){
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/' + asset;
+    if (asset.endsWith("css")) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/" + asset;
       elements.push(link);
     }
-    if (asset.endsWith('js')){
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.src = '/' + asset;
+    if (asset.endsWith("js")) {
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src = "/" + asset;
       elements.push(script);
     }
   }
-  await Promise.all(elements.map(x => new Promise(resolve => {
-    document.head.appendChild(x);
-    x.addEventListener('load', resolve);
-  })));
+  await Promise.all(
+    elements.map(
+      (x) =>
+        new Promise((resolve) => {
+          document.head.appendChild(x);
+          x.addEventListener("load", resolve);
+        })
+    )
+  );
   animateLoading(0);
-  window.dispatchEvent(new CustomEvent('init'))
-  console.log('init')
+  window.dispatchEvent(new CustomEvent("init"));
+  console.log("init");
 }
 
 type BeforeInstallPromptEvent = Event & {
-
   /**
    * Returns an array of DOMString items containing the platforms on which the event was dispatched.
    * This is provided for user agents that want to present a choice of versions to the user such as,
@@ -149,8 +157,8 @@ type BeforeInstallPromptEvent = Event & {
    * Returns a Promise that resolves to a DOMString containing either "accepted" or "dismissed".
    */
   readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed',
-    platform: string
+    outcome: "accepted" | "dismissed";
+    platform: string;
   }>;
 
   /**
@@ -158,4 +166,4 @@ type BeforeInstallPromptEvent = Event & {
    * This method returns a Promise.
    */
   prompt(): Promise<void>;
-}
+};

@@ -50,19 +50,51 @@ body, html {
   flex-direction: column;
 }
 
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  body {
+    font-family: 'SF Pro';
+  }
+
+  @font-face {
+    font-family: 'SF Pro';
+    src: local('SF Pro Text Regular'), local('SFProText-Regular');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  /* CSS for other than iOS devices */
+  body {
+    font-family: 'Exo2';
+  }
+
+  @font-face {
+    font-family: 'Exo2';
+    src: local('Exo2'), url('/public/fonts/Exo2.woff2') format('woff2');
+    /*font-weight: 400 510 590 860;*/
+  }
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  src: local('Unbounded'), url('/public/fonts/Unbounded.woff2') format('woff2');
+}
+
 h1{
   font-family: 'Unbounded';
   font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
+  font-weight: 900;
+  font-variation-settings: "wght" 600;
+  font-size: 28px;
+  line-height: 35px;
   text-transform: uppercase;
 }
 
 h2{
-  font-family: 'SF Pro Text';
   font-style: normal;
-  font-weight: 400;
+  font-variation-settings: "wght" 400;
   font-size: 16px;
   line-height: 19px;
 }
