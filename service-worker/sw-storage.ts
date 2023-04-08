@@ -3,6 +3,8 @@ import { ServiceWorkerAction } from "./actions";
 
 declare var self: ServiceWorkerGlobalScope;
 import assets from "./assets.json";
+import assetsAndroid from "./assets.android.json";
+import assetsIOS from "./assets.ios.json";
 
 const versionUrl = "/public/root.version";
 
@@ -81,7 +83,7 @@ export class SwStorage {
     this.version ??= await this.getVersion();
     this.cache = await caches.open(this.name);
     await Promise.all(
-      assets.map((a) =>
+      (this.isIOS ? assets.concat(assetsIOS) : assets.concat(assetsAndroid)).map((a) =>
         this.getFromCacheOrFetch(new Request(a)).catch((e) => {
           if (ignoreErrors) console.error(e);
           else throw e;
