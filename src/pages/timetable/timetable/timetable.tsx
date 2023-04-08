@@ -35,7 +35,7 @@ export const Timetable: FunctionalComponent<TimetableProps> = ({
         ))}
       </div>
       {blocks.map((x) => (
-        <AnimationBlock block={x} key={x._id} />
+        <AnimationBlock id={x._id} key={x._id} />
       ))}
     </div>
   );

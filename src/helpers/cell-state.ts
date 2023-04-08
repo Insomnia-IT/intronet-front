@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "preact/hooks";
+import {useEffect, useMemo, useReducer, useState} from "preact/hooks";
 import { Cell, BaseCell, compare } from "@cmmn/cell/lib";
 
 export function useCell<T>(
@@ -11,7 +11,7 @@ export function useCell<T>(
     () => getter instanceof BaseCell ? getter : new Cell(getter, {compare}),
     deps
   );
-  const [, dispatch] = React.useReducer(x => ({}), {});
+  const [, dispatch] = useReducer(x => ({}), {});
   useEffect(() => {
     return cell.on('change', dispatch);
   }, [cell])

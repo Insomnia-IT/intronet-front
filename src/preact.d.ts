@@ -6,6 +6,7 @@ module "preact" {
         flex?: boolean;
         column?: boolean;
         gap?: boolean | number | string;
+        center?: boolean;
     }
   }
 

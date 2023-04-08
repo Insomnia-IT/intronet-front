@@ -5,7 +5,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   solid?: boolean;
   selected?: boolean;
-  type?: 'frame'|'blue'|'disco'|'vivid';
+  type?: 'frame'|'blue'|'disco'|'vivid'|'text';
 } & React.JSX.HTMLAttributes<HTMLButtonElement>
 export const Button: FunctionalComponent<ButtonProps> = ({className, type, ...props}) => {
   const classNames = [Styles.button, className].filter(x => x);

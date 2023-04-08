@@ -87,3 +87,19 @@
   right: 0;
   gap: 1em;
 }
+
+.text{
+  border: none;
+  width: 100%;
+  background: none;
+  color: var(--medium-blue);
+  /* Button */
+
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-transform: uppercase;
+}
