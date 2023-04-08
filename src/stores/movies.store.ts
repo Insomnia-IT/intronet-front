@@ -29,8 +29,8 @@ export class MovieBlockStore {
 
   get duplicate(){
     const duplicate = moviesStore.Movies.find(x => x !== this.block
-      && x.info.Title.trim() === this.block.info.Title.trim()
-      && x.info.SubTitle.trim() === this.block.info.SubTitle.trim()
+      && x.info.Title?.trim() === this.block.info.Title?.trim()
+      && x.info.SubTitle?.trim() === this.block.info.SubTitle?.trim()
       && x.info.Part === this.block.info.Part
     );
     if (!duplicate) return undefined;

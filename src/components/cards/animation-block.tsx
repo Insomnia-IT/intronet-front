@@ -15,7 +15,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (props) 
   const store = useMemo(() => new
 MovieBlockStore(props.id), [props.id])
   const { block, duplicate } = useCell(store.state);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
       <div className={Styles.time}>
