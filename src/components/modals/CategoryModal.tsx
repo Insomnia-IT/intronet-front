@@ -1,12 +1,12 @@
 import { Modal } from "@components/modal";
-import React, { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { CategoryForm } from "../forms";
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять тэги
  */
-export const CategoryModal: FC<
+export const CategoryModal: FunctionalComponent<
   ModalProps<Partial<{ category: ICategory }>>
 > = ({ category, ...modalProps }) => {
   return (

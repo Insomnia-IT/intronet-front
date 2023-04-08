@@ -42,12 +42,21 @@ body, html {
   scroll-behavior: smooth;
 }
 
-.flex {
+[flex] {
   display: flex;
 }
+[gap] { gap: 4px; }
+[gap='2'] { gap: 8px; }
+[gap='3'] { gap: 12px; }
+[gap='4'] { gap: 16px; }
+[gap='5'] { gap: 20px; }
+[gap='6'] { gap: 24px; }
 
-.column {
+[column] {
   flex-direction: column;
+}
+[center]{
+  align-items: center;
 }
 
 @supports (-webkit-touch-callout: none) {

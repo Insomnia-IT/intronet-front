@@ -1,6 +1,6 @@
-import React, { useState } from "preact/compat";
+import {useState} from "preact/hooks"
 import styles from "./map-element.module.css";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { directionsStore } from "@stores";
 import {MapIcon} from "./icons/map-icons";
 
@@ -39,10 +39,10 @@ export function MapElement(props: {
 
 // временно, для дебага иконок направлений
 export function DirectionsPage() {
-  const [directions] = useCellState(() => directionsStore.Directions.toArray());
+  const directions = useCell(() => directionsStore.Directions.toArray());
   const [selected, setSelected] = useState<string | null>(null);
   return (
-    <div className="flex column">
+    <div flex column>
       {directions.map((x) => (
         <svg
           className={

@@ -1,13 +1,13 @@
-import React, { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { Chip } from "@components/chip/chip";
 import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
 import { useAppContext } from "@helpers/AppProvider";
 import styles from "./styles.module.css";
 import { LocationScheduleProps } from "./types";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
-export const LocationSchedule: FC<LocationScheduleProps> = ({
+export const LocationSchedule: FunctionalComponent<LocationScheduleProps> = ({
   locationId,
   schedules,
   day,
@@ -22,7 +22,7 @@ export const LocationSchedule: FC<LocationScheduleProps> = ({
   onSelectedElementChange,
 }) => {
   const app = useAppContext();
-  const [isAdmin] = useCellState(() => authStore.isAdmin);
+  const isAdmin = useCell(() => authStore.isAdmin);
   const show =
     isAdmin ||
     (schedules &&

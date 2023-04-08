@@ -1,8 +1,5 @@
-import { DateTime } from "luxon";
-import React, { FC, useState } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import styles from "../../../components/schedule/schedule.module.css";
-import { locationsStore, moviesStore } from "@stores";
-import { useCellState } from "@helpers/cell-state";
 import { AnimationBlock } from "@components/cards/animation-block";
 import style from "../../../app/app.style.module.css";
 
@@ -13,7 +10,7 @@ export type TimetableProps = {
   blocks: MovieBlock[];
 };
 
-export const Timetable: FC<TimetableProps> = ({
+export const Timetable: FunctionalComponent<TimetableProps> = ({
   screens,
   screen,
   blocks,
@@ -38,7 +35,7 @@ export const Timetable: FC<TimetableProps> = ({
         ))}
       </div>
       {blocks.map((x) => (
-        <AnimationBlock block={x} key={x._id} />
+        <AnimationBlock id={x._id} key={x._id} />
       ))}
     </div>
   );
@@ -52,6 +49,6 @@ const screenNames = {
 export type TimetableSlot = {
   id: string | number;
   Title: string;
-  Start: DateTime;
-  End: DateTime;
+  Start: Date;
+  End: Date;
 };

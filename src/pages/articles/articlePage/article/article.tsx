@@ -1,14 +1,12 @@
-import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import * as React from "preact/compat";
-import ReactMarkdown from "react-markdown";
-import { articleTheme } from "../../../../theme/articleTheme/articleTheme";
+import {FunctionalComponent} from "preact";
 
 type TArticleProps = {
   md: string;
 };
 
-export const Article: React.FC<TArticleProps> = ({ md }) => {
+export const Article: FunctionalComponent<TArticleProps> = ({ md }) => {
   return (
-    <ReactMarkdown components={ChakraUIRenderer(articleTheme)} children={md} />
+    <></>
+    // <ReactMarkdown components={ChakraUIRenderer(articleTheme)} children={md} />
   );
 };

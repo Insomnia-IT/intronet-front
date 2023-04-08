@@ -1,3 +1,4 @@
+import { JSX } from "preact/jsx-runtime";
 import { LocationScheduleInfoProps } from "./LocationScheduleInfo";
 
 export type LocationScheduleProps = {

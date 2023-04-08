@@ -1,9 +1,10 @@
-import React, { FC, useEffect } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { directionsStore } from "@stores";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { toast} from "@components";
 import {Modal} from "@components/modal";
+import {useEffect} from "preact/hooks";
 
 const center = {
   lat: 54.68008397222222,
@@ -17,7 +18,7 @@ const centerXY = {
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
  */
-export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
+export const LocationModal: FunctionalComponent<ModalProps<InsomniaLocation>> = ({
   _id,
   name,
   description,
@@ -45,7 +46,7 @@ export const LocationModal: FC<ModalProps<InsomniaLocation>> = ({
     })();
   }, [toast]);
 
-  const [direcitons] = useCellState(() => directionsStore.Directions.toArray());
+  const direcitons = useCell(() => directionsStore.Directions.toArray());
 
   return (
     <Modal

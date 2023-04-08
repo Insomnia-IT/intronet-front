@@ -1,4 +1,3 @@
-import * as React from "preact/compat";
 import { LoginButton } from "@components/loginButton/loginButton";
 import { CardList } from "./cardList/cardList";
 import { getRandomItem } from "@helpers/getRandomItem";

@@ -19,6 +19,8 @@
   padding-top: 50px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  height: 100vh;
 }
 
 @media (min-width: 441px){
@@ -40,4 +42,12 @@
   font-variation-settings: "wght" 400;
   font-size: 14px;
   line-height: 17px;
+  color: #646995;
+}
+.text{
+  font-style: normal;
+  font-variation-settings: "wght" 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #763AFF;
 }

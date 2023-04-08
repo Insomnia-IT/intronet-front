@@ -1,4 +1,5 @@
-import React from "preact/compat";
+import { useEffect, useRef } from "preact/hooks";
+import {FunctionalComponent, JSX} from "preact";
 
 const svgDocument = (async function getIcons(){
   const svg = await fetch('/public/icons/icons.svg').then(x => x.text());
@@ -7,9 +8,9 @@ const svgDocument = (async function getIcons(){
   return div;
 })();
 
-export const SvgIcon: React.FC<SvgIconProps> = ({id, g, size, ...props}) => {
-  const ref = React.useRef<SVGGElement & SVGSVGElement>();
-  React.useEffect(() => {
+export const SvgIcon: FunctionalComponent<SvgIconProps> = ({id, g, size, ...props}) => {
+  const ref = useRef<SVGGElement & SVGSVGElement>();
+  useEffect(() => {
     if (!ref.current) return;
     svgDocument.then(div => {
       const icon = div.querySelector(id)?.firstElementChild as SVGGElement;
@@ -31,4 +32,4 @@ export const SvgIcon: React.FC<SvgIconProps> = ({id, g, size, ...props}) => {
               width={size ?? 24} height={size ?? 24} {...props} />;
 }
 
-export type SvgIconProps = ({id: string, g?: boolean, size?: string | number;} & Omit<React.JSX.SVGAttributes<SVGSVGElement>, "size">);
+export type SvgIconProps = ({id: string, g?: boolean, size?: string | number;} & Omit<JSX.SVGAttributes<SVGSVGElement>, "size">);

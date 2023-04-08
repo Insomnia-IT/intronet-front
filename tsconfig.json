@@ -20,7 +20,11 @@
       "@api": ["./src/api"],
       "@stores": ["./src/stores"],
       "@stores/*": ["./src/stores/*"]
-    }
+    },
+    "types": [
+      "preact",
+      "node"
+    ]
   },
   "include": [
     "service-worker/*.ts",

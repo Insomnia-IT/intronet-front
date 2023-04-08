@@ -1,6 +1,5 @@
-import React from "preact/compat";
-import { FC, PropsWithChildren } from "preact/compat";
-import {useCellState} from "@helpers/cell-state";
+import { FunctionalComponent } from "preact";
+import {useCell} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
 export type RequireAuthProps = {
@@ -13,11 +12,11 @@ export type RequireAuthProps = {
 /**
  * Компонент, который отрисовывает children только в том случае, если у пользователя есть токен
  */
-export const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({
+export const RequireAuth: FunctionalComponent<RequireAuthProps> = ({
   children,
   role = "admin",
 }) => {
-  const [isAdmin] = useCellState(() => authStore.isAdmin);
+  const isAdmin = useCell(() => authStore.isAdmin);
   // проверяем, есть ли токен в провайдере
   // не пустой ли он
   // проверяем, соответствуюет ли допустимая роль компонента юзернейму

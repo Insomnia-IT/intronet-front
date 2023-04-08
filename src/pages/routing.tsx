@@ -1,9 +1,9 @@
-import React, { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
 import {Cell} from "@cmmn/cell/lib";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {MainPage} from "./main/mainPage";
 
 export const routes = {
@@ -53,7 +53,7 @@ if (location.pathname === '/'){
 }
 
 export function useRouter(){
-  const [route] = useCellState(() => routeCell.get());
+  const route = useCell(routeCell);
 
   return {
     back: history.back.bind(history),

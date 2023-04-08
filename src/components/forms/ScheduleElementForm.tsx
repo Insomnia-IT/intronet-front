@@ -1,24 +1,12 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  HStack,
-  Input,
-  Switch,
-  Textarea,
-  VStack,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "preact/compat";
+
+import { FunctionalComponent } from "preact";
 
 export type ScheduleElementFormProps = {
   onSubmit?: (schedule: Partial<AuditoryElement>) => void;
   onCancel?: () => void;
 } & { auditoryElement?: Partial<AuditoryElement> };
 
-export const ScheduleElementForm: FC<ScheduleElementFormProps> = ({
+export const ScheduleElementForm: FunctionalComponent<ScheduleElementFormProps> = ({
   auditoryElement,
   onSubmit,
   onCancel,

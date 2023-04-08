@@ -1,10 +1,9 @@
 import {Modal} from "@components/modal";
-import * as React from "preact/compat";
-import { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { ModalProps } from "@components/modals";
 import {Button} from "@components";
 
-export const LogoutModal: FC<ModalProps<Partial<User>>> = ({
+export const LogoutModal: FunctionalComponent<ModalProps<Partial<User>>> = ({
   token,
   ticketId,
   ...modalProps

@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import {Component, createRef} from "preact";
 import { cellState } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { cell } from "@cmmn/cell/lib";
@@ -9,7 +9,7 @@ import { ObservableList } from "@cmmn/cell/lib";
 import { scheduleStore } from '@stores';
 import {MapIcon} from "./icons/map-icons";
 
-export class LocationSearch extends React.PureComponent<{
+export class LocationSearch extends Component<{
   onSelect(location: InsomniaLocationFull);
 }> {
   @cell
@@ -34,7 +34,7 @@ export class LocationSearch extends React.PureComponent<{
       ).filter(filterLocations(this.query)),
   });
 
-  root = React.createRef<HTMLDivElement>();
+  root = createRef<HTMLDivElement>();
 
   render() {
     return (
@@ -42,7 +42,7 @@ export class LocationSearch extends React.PureComponent<{
         ref={this.root}
         className={this.state.opened ? styles.searchOpened : styles.search}
       >
-        <div className="flex">
+        <div flex>
             <SvgIcon id="#search"/>
             {this.state.opened && (
               <input
@@ -81,9 +81,9 @@ export class LocationSearch extends React.PureComponent<{
                 );
               })}
             </div>
-            <div className="flex column">
+            <div flex column>
               {this.state.locations.map((x) => (
-                <div className="flex"
+                <div flex
                   key={x._id}
                   onClick={() => {
                     this.props.onSelect(x);

@@ -18,3 +18,20 @@
 .subHeader{
     composes: textSmall from "../../app/app.style.module.css";
 }
+
+.duplicate{
+  composes: text from "../../app/app.style.module.css";
+}
+.duplicate:empty{
+  display: none;
+}
+
+.movieTitle{
+  composes: text from "../../app/app.style.module.css";
+  color: var(--medium-blue);
+}
+
+.movieInfo{
+  composes: textSmall from "../../app/app.style.module.css";
+  color: #646995;
+}

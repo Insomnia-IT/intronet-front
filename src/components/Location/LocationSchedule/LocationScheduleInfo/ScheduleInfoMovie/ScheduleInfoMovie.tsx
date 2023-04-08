@@ -1,7 +1,7 @@
-import React, { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { ScheduleInfoMovieProps } from "./types";
 
-export const ScheduleInfoMovie: FC<ScheduleInfoMovieProps> = ({ movie }) => (
+export const ScheduleInfoMovie: FunctionalComponent<ScheduleInfoMovieProps> = ({ movie }) => (
   <>
     <span style={{ gridColumn: 1 }}>
       {movie.name}

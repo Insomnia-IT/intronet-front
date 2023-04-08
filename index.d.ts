@@ -167,12 +167,3 @@ type User = {
   token: string;
 };
 
-
-namespace JSX {
-  interface IntrinsicElements {
-    div: {
-      flex?: boolean;
-      column?: boolean;
-    } & JSX.IntrinsicElements['div'];
-  }
-}

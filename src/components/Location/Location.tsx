@@ -1,4 +1,4 @@
-import React, { FC } from "preact/compat";
+import { FunctionalComponent } from "preact";
 import { LocationProps } from "./types";
 import styles from "./styles.module.css";
 import { RequireAuth } from "../RequireAuth";
@@ -10,13 +10,13 @@ import {
   // useEditLocation,
 } from "@hooks";
 import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { ConnectedLocationSchedule } from "./LocationSchedule";
 import {SvgIcon} from "@icons";
 import {Button} from "@components";
 
-export const Location: FC<LocationProps> = ({ location, expanded }) => {
+export const Location: FunctionalComponent<LocationProps> = ({ location, expanded }) => {
   const editSchedule = (...args) => void 0;//useEditSchedule();
 
   const addSchedule = (...args) => void 0;//useAddSchedule(location._id);
@@ -25,7 +25,7 @@ export const Location: FC<LocationProps> = ({ location, expanded }) => {
 
   const editLocation = (...args) => void 0// useEditLocation(location);
 
-  const [menu] = useCellState(
+  const menu = useCell(
     () => locationsStore.db.get(location._id)?.menu
   );
 

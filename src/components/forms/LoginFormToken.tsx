@@ -1,11 +1,11 @@
-import React, {FC, useState} from "preact/compat";
-import {cell, Cell} from "@cmmn/cell/lib";
+import {FunctionalComponent} from "preact";
+import {useCallback, useState} from "preact/hooks";
 
 export type LoginFormTokenProps = {
   onSubmit?: (token: User["token"]) => void; onCancel?: () => void;
 } & { token?: User["token"] };
 
-export const LoginFormToken: FC<LoginFormTokenProps> = ({
+export const LoginFormToken: FunctionalComponent<LoginFormTokenProps> = ({
                                                           token, onSubmit,
                                                         }) => {
   const [state, setField] = useForm({
@@ -33,8 +33,8 @@ export const LoginFormToken: FC<LoginFormTokenProps> = ({
 export function useForm<T>(initial: Partial<T>):[
   Partial<T>, SetField<T>
 ] {
-  const [state, setState] = React.useState(initial);
-  const setField = React.useCallback((field, value) => setState(state => ({
+  const [state, setState] = useState(initial);
+  const setField = useCallback((field, value) => setState(state => ({
     ...state, [field]: value
   })), [])
   return [state, setField];
