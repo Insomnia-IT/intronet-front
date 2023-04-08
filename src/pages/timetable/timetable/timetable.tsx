@@ -2,20 +2,30 @@ import { FunctionalComponent } from "preact";
 import styles from "../../../components/schedule/schedule.module.css";
 import { AnimationBlock } from "@components/cards/animation-block";
 import style from "../../../app/app.style.module.css";
+import {locationsStore, moviesStore} from "@stores";
+import {useEffect, useState} from "preact/hooks";
+import {useCell} from "@helpers/cell-state";
+import {getCurrentDay, getDayText} from "@helpers/getDayText";
 
 export type TimetableProps = {
-  screens: InsomniaLocationFull[];
-  screen: string;
-  setScreen(screen: string): void;
-  blocks: MovieBlock[];
 };
 
-export const Timetable: FunctionalComponent<TimetableProps> = ({
-  screens,
-  screen,
-  blocks,
-  setScreen,
-}) => {
+export const Timetable: FunctionalComponent<TimetableProps> = () => {
+  const screens = useCell(() =>
+    locationsStore.FullLocations.filter((x) => x.directionId == "screen")
+  );
+  const [screen, setScreen] = useState(() => screens[0]?._id);
+  const [day, setDay] = useState(getCurrentDay());
+  const blocks = useCell(() => {
+    return moviesStore.Movies.filter((x) => x.locationId === screen && x.day == day);
+  }, [screen, day]);
+  console.log("timetable", screen, screens?.[0]?._id);
+  useEffect(() => {
+    if (screen) return;
+    console.log(screen, screens?.[0]?._id);
+    setScreen(screens?.[0]?._id);
+  }, [screen, screens?.[0]]);
+
   return (
     <div class={style.page}>
       <h1>анимация</h1>
@@ -30,7 +40,15 @@ export const Timetable: FunctionalComponent<TimetableProps> = ({
               setScreen(location._id);
             }}
           >
-            {location.name ?? screenNames[location._id]}
+            {locationsStore.getName(location._id)}
+          </div>
+        ))}
+      </div>
+      <div class={styles.tags}>
+        {[0,1,2,3,4].map((d) => (
+          <div className={d === day ? styles.auditoryActive : styles.auditory}
+            key={d} onClick={() => setDay(d)}>
+            {getDayText(d)}
           </div>
         ))}
       </div>
@@ -39,11 +57,6 @@ export const Timetable: FunctionalComponent<TimetableProps> = ({
       ))}
     </div>
   );
-};
-
-const screenNames = {
-  1: "Полевой экран",
-  2: "Речной экран",
 };
 
 export type TimetableSlot = {

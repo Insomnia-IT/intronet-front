@@ -1,5 +1,7 @@
 import { Fn, cell, Cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
+import {locationsStore} from "@stores/locations.store";
+import {getCurrentDay, getDayText} from "@helpers/getDayText";
 
 class MoviesStore {
   @cell
@@ -34,11 +36,12 @@ export class MovieBlockStore {
       && x.info.Part === this.block.info.Part
     );
     if (!duplicate) return undefined;
-    const isAfter = duplicate.day > this.block.day;
+    const isAfter = duplicate.day >= getCurrentDay();
+    const screen = locationsStore.getName(duplicate.locationId).toLowerCase().replace('ой', 'ом') + 'е';
     if (isAfter){
-      return `Покажем этот блок ещё раз в ${duplicate.day} в ${duplicate.info.Start} на ${duplicate.locationId}`;
+      return `Покажем этот блок ещё раз ${getDayText(duplicate.day)} в ${duplicate.info.Start} на ${screen}`;
     }
-    return `Этот блок шёл в ${duplicate.day} в ${duplicate.info.Start} на ${duplicate.locationId}`;
+    return `Этот блок шёл ${getDayText(duplicate.day)} в ${duplicate.info.Start} на ${screen}`;
   }
 
   public state = new Cell(() => ({

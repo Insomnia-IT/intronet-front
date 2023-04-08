@@ -15,18 +15,19 @@
 }
 
 .page{
-  padding: 0 16px;
+  margin: 0 16px;
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: visible;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 @media (min-width: 441px){
   .page {
-    padding-left: 48px;
-    width: 440px;
+    margin-left: 48px;
   }
 }
 

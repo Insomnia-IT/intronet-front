@@ -60,25 +60,26 @@ test('import-movies', async ()=> {
   for (let i = 0; i < moviesJSON.length; i++) {
     const dayInfo = moviesJSON[i];
     const location = locations.find(x => x.name === dayInfo.Screen);
+    console.log(location)
     let locationId = '';
     if (!location) {
-      locationId = Fn.ulid();
-      await locationsDb.addOrUpdate({
-        name: dayInfo.Screen,
-        ...center,
-        ...centerXY,
-        directionId: 'screen',
-        description: 'Экран',
-        tags: [],
-        _id: locationId,
-        menu: undefined,
-        image: '',
-        version: Fn.ulid(),
-      });
+      // locationId = Fn.ulid();
+      // await locationsDb.addOrUpdate({
+      //   name: dayInfo.Screen,
+      //   ...center,
+      //   ...centerXY,
+      //   directionId: 'screen',
+      //   description: 'Экран',
+      //   tags: [],
+      //   _id: locationId,
+      //   menu: undefined,
+      //   image: '',
+      //   version: Fn.ulid(),
+      // });
     } else {
       locationId = location._id;
     }
-    dayInfo.Screen
+
     const movies = dayInfo.Blocks.map(block => ({
       _id: Fn.ulid(),
       day: dayInfo.Day,
