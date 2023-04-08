@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { Chip } from "@components/chip/chip";
 import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
 import { useAppContext } from "@helpers/AppProvider";

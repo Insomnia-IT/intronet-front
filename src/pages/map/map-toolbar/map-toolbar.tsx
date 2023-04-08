@@ -1,4 +1,4 @@
-import React, { useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { Expander } from "@components";
 import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";

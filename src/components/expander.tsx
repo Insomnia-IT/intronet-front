@@ -1,5 +1,3 @@
-import React from "preact";
-
 export function Expander() {
   return (
     <svg

@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { Card } from "./card/card";
 import { cardContentList } from "./cardContentList";
 

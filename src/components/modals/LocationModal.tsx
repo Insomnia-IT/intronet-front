@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { directionsStore } from "@stores";
 import { useCellState } from "@helpers/cell-state";

@@ -1,5 +1,5 @@
 
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { useCellState } from "@helpers/cell-state";
 import { categoriesStore } from "@stores";
 import { RequireAuth } from "../RequireAuth";

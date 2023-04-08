@@ -7,6 +7,7 @@ import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
 import { MapElement } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
+import {TargetedEvent} from "preact/compat";
 
 export class MapComponent extends Component<MapProps> {
   @cell
@@ -175,7 +176,7 @@ export class MapComponent extends Component<MapProps> {
     this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
 
-  onClick = (event: React.TargetedEvent<HTMLDivElement, MouseEvent>) => {
+  onClick = (event: TargetedEvent<HTMLDivElement, MouseEvent>) => {
     const rect = this.root.getBoundingClientRect();
     const p = {
       X: event.pageX - rect.left,

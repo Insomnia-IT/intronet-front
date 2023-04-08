@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 
 export type LoginFormTicketProps = {
   onSubmit?: (ticketId: User["ticketId"]) => void;

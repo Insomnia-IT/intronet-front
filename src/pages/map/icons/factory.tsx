@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 import {JSXInternal} from "preact/src/jsx";
 
 export function factory(

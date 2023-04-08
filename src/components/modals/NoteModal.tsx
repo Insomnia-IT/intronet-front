@@ -1,5 +1,5 @@
 import { Modal } from "@components/modal";
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { NoteForm } from "../forms";
 

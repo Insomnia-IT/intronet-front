@@ -1,4 +1,3 @@
-import React from "preact";
 import {SvgIcon} from "@icons";
 import Styles from "./button.module.css";
 import { Button } from "./button";

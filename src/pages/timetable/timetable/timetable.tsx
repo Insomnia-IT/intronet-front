@@ -1,5 +1,4 @@
-import { DateTime } from "luxon";
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import styles from "../../../components/schedule/schedule.module.css";
 import { AnimationBlock } from "@components/cards/animation-block";
 import style from "../../../app/app.style.module.css";
@@ -50,6 +49,6 @@ const screenNames = {
 export type TimetableSlot = {
   id: string | number;
   Title: string;
-  Start: DateTime;
-  End: DateTime;
+  Start: Date;
+  End: Date;
 };

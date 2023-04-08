@@ -1,9 +1,9 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "preact";
-import { cellState } from "../../../helpers/cell-state";
-import { Account, account } from "../../../stores";
+import { cellState } from "@helpers/cell-state";
+import { Account, account } from "@stores";
 import { QRReader } from "../qr/qr-reader";
 import {Button} from "@components";
+import {Component} from "preact";
 
 function AccountInfo(acc: Account) {
   const deleteAcc = () => account.Remove(acc);
@@ -17,7 +17,7 @@ function AccountInfo(acc: Account) {
   );
 }
 
-export class UserLogin extends React.Component<any, any> {
+export class UserLogin extends Component<any, any> {
   @cell
   isAdding = false;
 

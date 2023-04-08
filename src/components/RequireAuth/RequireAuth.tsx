@@ -1,4 +1,3 @@
-import React from "preact";
 import { FunctionalComponent } from "preact";
 import {useCellState} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";

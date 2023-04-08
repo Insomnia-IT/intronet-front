@@ -1,4 +1,4 @@
-import React, { useState } from "preact/hooks";
+import {useEffect, useState} from "preact/hooks";
 import { Timetable } from "./timetable/timetable";
 import { useCellState } from "@helpers/cell-state";
 import { locationsStore, moviesStore } from "@stores";
@@ -13,7 +13,7 @@ export function TimetablePage() {
     return moviesStore.Movies.filter((x) => x.locationId === screen);
   }, [screen]);
   console.log("timetable", screen, screens?.[0]?._id);
-  React.useEffect(() => {
+  useEffect(() => {
     if (screen) return;
     console.log(screen, screens?.[0]?._id);
     setScreen(screens?.[0]?._id);

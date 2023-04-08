@@ -1,5 +1,4 @@
 import {Modal} from "@components/modal";
-import * as React from "preact";
 import { FunctionalComponent } from "preact";
 import { ModalProps } from "@components/modals";
 import {Button} from "@components";

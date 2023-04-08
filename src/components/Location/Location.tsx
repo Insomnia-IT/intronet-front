@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { LocationProps } from "./types";
 import styles from "./styles.module.css";
 import { RequireAuth } from "../RequireAuth";

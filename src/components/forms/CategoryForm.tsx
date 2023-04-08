@@ -1,5 +1,5 @@
 
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 
 export type CategoryFormProps = {
   onSubmit?: (category: ICategory) => void;

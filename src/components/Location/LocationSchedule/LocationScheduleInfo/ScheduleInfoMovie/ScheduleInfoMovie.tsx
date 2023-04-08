@@ -1,4 +1,4 @@
-import React, { FunctionalComponent } from "preact";
+import { FunctionalComponent } from "preact";
 import { ScheduleInfoMovieProps } from "./types";
 
 export const ScheduleInfoMovie: FunctionalComponent<ScheduleInfoMovieProps> = ({ movie }) => (

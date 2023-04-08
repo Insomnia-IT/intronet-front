@@ -1,6 +1,6 @@
 import { ResolvablePromise } from "@cmmn/cell/lib";
 import { ModalProps } from "@components/modals";
-import React, { JSX } from "preact";
+import {FunctionalComponent, JSX} from "preact";
 import {Modal as BaseModal} from "./modal";
 import {Cell} from "@cmmn/cell/lib";
 import {useCellState} from "@helpers/cell-state";
@@ -12,7 +12,7 @@ const parts = {
   Footer: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
   Header: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
   Overlay: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
-  async show<T>(factory: React.FunctionalComponent<ModalProps<T>>): Promise<T>{
+  async show<T>(factory: FunctionalComponent<ModalProps<T>>): Promise<T>{
     const result = new ResolvablePromise<T>();
     const props: ModalProps = {
       show: true,
@@ -32,9 +32,9 @@ const parts = {
   }
 }
 
-const currentModal = new Cell<React.JSX.Element>(null);
+const currentModal = new Cell<JSX.Element>(null);
 
-export const ModalSlot: React.FunctionalComponent = () => {
+export const ModalSlot: FunctionalComponent = () => {
   const [current] = useCellState(() => currentModal.get());
   return current;
 }

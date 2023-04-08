@@ -1,4 +1,3 @@
-import React from "preact";
 import { FunctionalComponent } from "preact";
 import {useRouter} from "../../../routing";
 

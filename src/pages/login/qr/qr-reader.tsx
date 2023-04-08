@@ -1,11 +1,11 @@
 import QrScanner from "qr-scanner";
-import React from "preact";
 import style from "./qr.module.css";
 import { pdf2png } from "./pdf2png";
 import {TargetedEvent} from "preact/compat";
 import {SvgIcon} from "@icons";
+import {Component, createRef} from "preact";
 
-export class QRReader extends React.Component<
+export class QRReader extends Component<
   {
     fps?: number;
     qrbox?;
@@ -35,7 +35,7 @@ export class QRReader extends React.Component<
     value: "",
   };
 
-  videoRef = React.createRef<HTMLVideoElement>();
+  videoRef = createRef<HTMLVideoElement>();
 
   render() {
     return (

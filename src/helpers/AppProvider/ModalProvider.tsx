@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   JSX,
 } from "preact";
