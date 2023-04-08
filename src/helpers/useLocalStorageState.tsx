@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "preact/compat";
+import { useCallback, useEffect, useState } from "preact/hooks";
 
 export const useLocalStorageState = <T,>(key: string, initialValue?: T) => {
   const [value, setValue] = useState(initialValue);

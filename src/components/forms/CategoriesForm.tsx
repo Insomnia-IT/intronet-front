@@ -1,21 +1,11 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  VStack,
-} from "@chakra-ui/react";
-import { Field, FieldArray, Form, Formik } from "formik";
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 
 export type CategoriesFormProps = {
   onSubmit?: (categories: ICategory[]) => void;
   onCancel?: () => void;
 } & { categories?: ICategory[] };
 
-export const CategoriesForm: FC<CategoriesFormProps> = ({
+export const CategoriesForm: FunctionalComponent<CategoriesFormProps> = ({
   categories,
   onSubmit,
   onCancel,

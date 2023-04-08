@@ -1,5 +1,5 @@
 import { Modal } from "@components/modal";
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { NoteForm } from "../forms";
 
@@ -8,7 +8,7 @@ import { NoteForm } from "../forms";
  * @param title Название объявления
  * @param text Содержимое объявления
  */
-export const NoteModal: FC<
+export const NoteModal: FunctionalComponent<
   ModalProps<Omit<Omit<INote, "createdDate">, "createdBy">>
 > = ({ _id, title, text, categoryId, ...modalProps }) => {
   return (

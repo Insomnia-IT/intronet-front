@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "preact/compat";
+import  {useEffect, useRef, useState } from "preact/hooks";
+import { JSX } from "preact";
 
 const visibleElements = new EventTarget();
 // <Map<Element, IntersectionObserverEntry>>(

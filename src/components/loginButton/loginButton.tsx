@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import React from "preact";
 import { LogoutModal } from "../modals/LogoutModal";
 import { LoginModal } from "../modals/LoginModal";
 import {Button, ButtonProps, toast} from "@components";
@@ -6,7 +6,7 @@ import {Modal} from "@components/modal";
 import {authStore} from "@stores/auth.store";
 import {useCellState} from "@helpers/cell-state";
 
-export const LoginButton: React.FC<ButtonProps> = (props) => {
+export const LoginButton: React.FunctionalComponent<ButtonProps> = (props) => {
 
   const handleLogin = async () => {
     try {

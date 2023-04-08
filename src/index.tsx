@@ -1,5 +1,5 @@
 import "./polyfill";
-import React, {render} from "preact/compat";
+import React, {render} from "preact";
 import { App } from "./app/app";
 window.addEventListener('init', () => {
   const container = document.getElementById("root");

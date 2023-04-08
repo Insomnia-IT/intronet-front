@@ -1,4 +1,4 @@
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { LocationProps } from "./types";
 import styles from "./styles.module.css";
 import { RequireAuth } from "../RequireAuth";
@@ -16,7 +16,7 @@ import { ConnectedLocationSchedule } from "./LocationSchedule";
 import {SvgIcon} from "@icons";
 import {Button} from "@components";
 
-export const Location: FC<LocationProps> = ({ location, expanded }) => {
+export const Location: FunctionalComponent<LocationProps> = ({ location, expanded }) => {
   const editSchedule = (...args) => void 0;//useEditSchedule();
 
   const addSchedule = (...args) => void 0;//useAddSchedule(location._id);

@@ -1,8 +1,8 @@
-import React from "preact/compat";
-import { FC } from "preact/compat";
+import React from "preact";
+import { FunctionalComponent } from "preact";
 import {useRouter} from "../../../routing";
 
-export const Card: FC<TMainPageCard> = ({ img, title, link }) => {
+export const Card: FunctionalComponent<TMainPageCard> = ({ img, title, link }) => {
   const {goTo} = useRouter();
   return (
     <div>

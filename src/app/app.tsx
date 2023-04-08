@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import React from "preact";
 import { Navbar, Toast } from "@components";
 import { AppProvider, Modals } from "@helpers/AppProvider";
 import styles from "./app.style.module.css";

@@ -1,4 +1,4 @@
-import React, { useState } from "preact/compat";
+import React, { useState } from "preact/hooks";
 import { Timetable } from "./timetable/timetable";
 import { useCellState } from "@helpers/cell-state";
 import { locationsStore, moviesStore } from "@stores";

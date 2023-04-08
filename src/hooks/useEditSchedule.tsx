@@ -1,8 +1,8 @@
-import React, { useCallback } from "preact/compat";
 import { ScheduleElementModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { scheduleStore } from "@stores/schedule.store";
 import {toast} from "@components";
+import { useCallback } from "preact/hooks";
 
 /**
  * Хук для редактирования элемента расписания

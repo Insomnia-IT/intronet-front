@@ -44,6 +44,7 @@ body, html {
 
 .flex {
   display: flex;
+  gap: calc(attr(gap) * 4px);
 }
 
 .column {

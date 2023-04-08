@@ -1,13 +1,11 @@
 import { cell } from "@cmmn/cell/lib";
-import React from "preact/compat";
+import {Component} from "preact";
 import {Button, ButtonsBar, CloseButton} from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
 import { mapStore } from "@stores/map.store";
 import { cellState } from "@helpers/cell-state";
-import { LayersIcon } from "./icons/LayersIcon";
-import { LocationSearch } from "./location-search";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
@@ -22,7 +20,7 @@ export function MapPageWithRouting() {
   return <MapPage locationId={route[1]} />;
 }
 
-export class MapPage extends React.PureComponent<{ locationId? }> {
+export class MapPage extends Component<{ locationId? }> {
   @cell
   isMap = true;
   @cell

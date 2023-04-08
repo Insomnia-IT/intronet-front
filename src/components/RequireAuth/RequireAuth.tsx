@@ -1,5 +1,5 @@
-import React from "preact/compat";
-import { FC, PropsWithChildren } from "preact/compat";
+import React from "preact";
+import { FunctionalComponent } from "preact";
 import {useCellState} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
@@ -13,7 +13,7 @@ export type RequireAuthProps = {
 /**
  * Компонент, который отрисовывает children только в том случае, если у пользователя есть токен
  */
-export const RequireAuth: FC<PropsWithChildren<RequireAuthProps>> = ({
+export const RequireAuth: FunctionalComponent<RequireAuthProps> = ({
   children,
   role = "admin",
 }) => {

@@ -1,4 +1,4 @@
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { Chip } from "@components/chip/chip";
 import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
 import { useAppContext } from "@helpers/AppProvider";
@@ -7,7 +7,7 @@ import { LocationScheduleProps } from "./types";
 import {useCellState} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
-export const LocationSchedule: FC<LocationScheduleProps> = ({
+export const LocationSchedule: FunctionalComponent<LocationScheduleProps> = ({
   locationId,
   schedules,
   day,

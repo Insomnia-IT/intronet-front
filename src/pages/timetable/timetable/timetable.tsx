@@ -1,8 +1,6 @@
 import { DateTime } from "luxon";
-import React, { FC, useState } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import styles from "../../../components/schedule/schedule.module.css";
-import { locationsStore, moviesStore } from "@stores";
-import { useCellState } from "@helpers/cell-state";
 import { AnimationBlock } from "@components/cards/animation-block";
 import style from "../../../app/app.style.module.css";
 
@@ -13,7 +11,7 @@ export type TimetableProps = {
   blocks: MovieBlock[];
 };
 
-export const Timetable: FC<TimetableProps> = ({
+export const Timetable: FunctionalComponent<TimetableProps> = ({
   screens,
   screen,
   blocks,

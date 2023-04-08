@@ -1,23 +1,11 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 
 export type LoginFormTicketProps = {
   onSubmit?: (ticketId: User["ticketId"]) => void;
   onCancel?: () => void;
 } & { ticketId?: User["ticketId"] };
 
-export const LoginFormTicket: FC<LoginFormTicketProps> = ({
+export const LoginFormTicket: FunctionalComponent<LoginFormTicketProps> = ({
   ticketId,
   onSubmit,
 }) => {

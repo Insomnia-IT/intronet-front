@@ -1,8 +1,8 @@
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { Card } from "./card/card";
 import { cardContentList } from "./cardContentList";
 
-export const CardList: FC = () => {
+export const CardList: FunctionalComponent = () => {
   return (
     <div>
       {cardContentList.map((cardObj, index) => (

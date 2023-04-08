@@ -1,20 +1,19 @@
-import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
-import { Button, Editable, Flex } from "@chakra-ui/react";
 import { cell } from "@cmmn/cell/lib";
-import React from "preact/compat";
+import React from "preact";
 import { cellState } from "../../../helpers/cell-state";
 import { Account, account } from "../../../stores";
 import { QRReader } from "../qr/qr-reader";
+import {Button} from "@components";
 
 function AccountInfo(acc: Account) {
   const deleteAcc = () => account.Remove(acc);
   return (
-    <Flex key={acc._id}>
-      <Editable>{acc.name ?? acc.qr}</Editable>
+    <div key={acc._id}>
+      <div>{acc.name ?? acc.qr}</div>
       <button>
-        <DeleteIcon onClick={deleteAcc} />
+        <div onClick={deleteAcc} />
       </button>
-    </Flex>
+    </div>
   );
 }
 
@@ -34,15 +33,11 @@ export class UserLogin extends React.Component<any, any> {
 
   render() {
     return (
-      <Flex direction="column" flex={1} margin="1em" minHeight="0">
+      <div >
         {this.state.isAdding && (
-          <CloseIcon
-            position="absolute"
-            zIndex="1"
-            right="1em"
-            top="1em"
+          <div
             onClick={() => (this.isAdding = false)}
-          ></CloseIcon>
+          ></div>
         )}
         {this.shouldShowReader && (
           <QRReader onSuccess={this.onQRScanned} onError={console.log} />
@@ -53,7 +48,7 @@ export class UserLogin extends React.Component<any, any> {
             Добавить аккаунт
           </Button>
         )}
-      </Flex>
+      </div>
     );
   }
 

@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import React from "preact";
 import {Button} from "../../../components";
 
 export const LayersIcon = (props: React.JSX.HTMLAttributes<SVGSVGElement>) => (

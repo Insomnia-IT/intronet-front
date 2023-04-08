@@ -1,14 +1,15 @@
 import {Modal} from "@components/modal";
-import React, { FC, useState } from "preact/compat";
 import { ModalProps } from ".";
-import { LoginFormToken } from "../forms/LoginFormToken";
+import { LoginFormToken } from "@components/forms";
 import {Button} from "@components";
 import {SvgIcon} from "@icons";
+import {FunctionalComponent} from "preact";
+import {useState} from "preact/hooks";
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
  */
-export const LoginModal: FC<ModalProps<Partial<User>>> = ({
+export const LoginModal: FunctionalComponent<ModalProps<Partial<User>>> = ({
   token,
   ticketId,
   ...modalProps

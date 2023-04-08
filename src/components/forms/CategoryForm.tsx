@@ -1,15 +1,5 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  Tag,
-  VStack,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "preact/compat";
+
+import React, { FunctionalComponent } from "preact";
 
 export type CategoryFormProps = {
   onSubmit?: (category: ICategory) => void;
@@ -25,7 +15,7 @@ const colors = [
   { color: "#e57287", name: "Розовенький" },
 ];
 
-export const CategoryForm: FC<CategoryFormProps> = ({
+export const CategoryForm: FunctionalComponent<CategoryFormProps> = ({
   category,
   onSubmit,
   onCancel,

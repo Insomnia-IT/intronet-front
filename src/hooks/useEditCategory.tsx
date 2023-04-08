@@ -1,8 +1,8 @@
-import React, { useCallback } from "preact/compat";
 import { CategoryModal } from "@components/modals";
 import { useAppContext } from "@helpers/AppProvider";
 import { categoriesStore } from "@stores";
 import {toast} from "@components";
+import { useCallback } from "preact/hooks";
 
 /**
  * Хук для редактирования категории

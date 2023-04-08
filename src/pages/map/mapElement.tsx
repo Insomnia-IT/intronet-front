@@ -1,4 +1,4 @@
-import React, { useState } from "preact/compat";
+import {useState} from "preact/hooks"
 import styles from "./map-element.module.css";
 import { useCellState } from "@helpers/cell-state";
 import { directionsStore } from "@stores";

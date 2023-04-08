@@ -1,9 +1,9 @@
 import QrScanner from "qr-scanner";
-import React, {ChangeEvent} from "preact/compat";
+import React from "preact";
 import style from "./qr.module.css";
-import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { pdf2png } from "./pdf2png";
-import { AddIcon, CheckIcon } from "@chakra-ui/icons";
+import {TargetedEvent} from "preact/compat";
+import {SvgIcon} from "@icons";
 
 export class QRReader extends React.Component<
   {
@@ -40,9 +40,9 @@ export class QRReader extends React.Component<
   render() {
     return (
       <div className={style.container}>
-        <FormControl>
-          <FormLabel>Войти по номеру билета</FormLabel>
-          <Input
+        <div>
+          <label>Войти по номеру билета</label>
+          <input
             type="number"
             placeholder={"17 цифр"}
             onChange={this.OnInput}
@@ -53,39 +53,27 @@ export class QRReader extends React.Component<
               className={style.button}
               onClick={() => this.props.onSuccess(this.state.value)}
             >
-              <CheckIcon />
             </button>
           )}
-        </FormControl>
-        <Flex
-          visibility={this.state.camera ? "visible" : "hidden"}
-          flex="1"
-          order={[1, null, 3]}
-          justifyContent="center"
-          minHeight="0"
-        >
+        </div>
+        <div>
           <video ref={this.videoRef} />
-        </Flex>
-        <Box
-          order={2}
-          display="flex"
-          justifyContent="space-between"
-          style={{ gap: "1em" }}
-        >
+        </div>
+        <div style={{ gap: "1em" }}>
           <label onClick={this.StopCamera} className={style.fileButton}>
-            <AddIcon />
+            <SvgIcon id="#add" />
             <span>Войти по билету</span>
             <input type="file" onChange={this.ScanFile} />
           </label>
           <button className={style.button} onClick={this.ToggleCamera}>
             {this.state.camera ? "Отключить камеру" : "Сканировать QR-код"}
           </button>
-        </Box>
+        </div>
       </div>
     );
   }
 
-  ScanFile = async (e: ChangeEvent<HTMLInputElement>) => {
+  ScanFile = async (e: TargetedEvent<HTMLInputElement>) => {
     try {
       const file = e.currentTarget.files[0];
       console.log(file.name);

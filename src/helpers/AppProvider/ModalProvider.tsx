@@ -1,11 +1,9 @@
 import React, {
   createContext,
-  PropsWithChildren,
-  useCallback,
-  useContext,
-  useState,
-} from "preact/compat";
+  JSX,
+} from "preact";
 import { ModalProps } from "@components/modals";
+import {useCallback, useContext, useState} from "preact/hooks";
 
 export const ModalContext = createContext<{
   modal: JSX.Element;
@@ -19,11 +17,12 @@ export const ModalContext = createContext<{
   show: async () => null,
 });
 
-export type ModalProviderProps = {};
+export type ModalProviderProps = JSX.ElementChildrenAttribute & {
+};
 
 export const ModalProvider = ({
   children,
-}: PropsWithChildren<ModalProviderProps>) => {
+}: ModalProviderProps) => {
   const [modal, setModal] = useState<JSX.Element>(null);
 
   const [isActive, setIsActive] = useState(false);

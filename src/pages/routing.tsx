@@ -1,4 +1,4 @@
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";

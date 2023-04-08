@@ -1,6 +1,6 @@
 import { EventEmitter } from "@cmmn/cell/lib";
 import { mapStore } from "../../stores/map.store";
-import React from "preact/compat";
+import React, { JSX } from "preact";
 
 export class UserMapItem extends EventEmitter<{
   change: void;

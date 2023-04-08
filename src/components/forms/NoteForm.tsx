@@ -1,15 +1,5 @@
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  Stack,
-  Tag,
-  Textarea,
-} from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
-import React, { FC } from "preact/compat";
+
+import React, { FunctionalComponent } from "preact";
 import { useCellState } from "@helpers/cell-state";
 import { categoriesStore } from "@stores";
 import { RequireAuth } from "../RequireAuth";
@@ -19,7 +9,7 @@ export type NoteFormProps = {
   onCancel?: () => void;
 } & { note?: Omit<INote, "createdDate" | "createdBy"> };
 
-export const NoteForm: FC<NoteFormProps> = ({ note, onSubmit }) => {
+export const NoteForm: FunctionalComponent<NoteFormProps> = ({ note, onSubmit }) => {
   const [categories] = useCellState(categoriesStore);
   return (
     <div></div>

@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import React from "preact";
 import type {TimetableSlot} from "./timetable";
 
 export function Slot(props: {slot: TimetableSlot}){

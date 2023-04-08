@@ -1,10 +1,10 @@
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { LocationScheduleInfoProps } from "./types";
 import styles from "./styles.module.css";
 import { ScheduleInfoMovie } from "./ScheduleInfoMovie";
 import { SvgIcon} from "@icons";
 
-export const LocationScheduleInfo: FC<LocationScheduleInfoProps> = (props) => {
+export const LocationScheduleInfo: FunctionalComponent<LocationScheduleInfoProps> = (props) => {
   const x = props.auditoryElement;
   return (
     <div className={styles.schedule} onClick={props.switchSelection}>

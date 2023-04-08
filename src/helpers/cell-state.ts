@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "preact/compat";
+import React, { useEffect, useMemo, useState } from "preact/hooks";
 import { Cell } from "@cmmn/cell/lib";
 
 export function useCellState<T>(

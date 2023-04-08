@@ -1,4 +1,4 @@
-import * as React from "preact/compat";
+import * as React from "preact";
 import { LoginButton } from "@components/loginButton/loginButton";
 import { CardList } from "./cardList/cardList";
 import { getRandomItem } from "@helpers/getRandomItem";

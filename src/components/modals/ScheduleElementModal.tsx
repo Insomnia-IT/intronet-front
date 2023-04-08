@@ -1,12 +1,12 @@
 import { Modal } from "@components/modal";
-import React, { FC } from "preact/compat";
+import React, { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { ScheduleElementForm } from "../forms";
 
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять объявление
  */
-export const ScheduleElementModal: FC<ModalProps<Partial<AuditoryElement>>> = ({
+export const ScheduleElementModal: FunctionalComponent<ModalProps<Partial<AuditoryElement>>> = ({
   _id,
   name,
   description,

@@ -1,7 +1,6 @@
-import React, { PropsWithChildren } from "preact/compat";
 import { ModalProvider } from "./ModalProvider";
 
-export const AppProvider = ({ children }: PropsWithChildren<{}>) => (
+export const AppProvider = ({ children }: {children: any}) => (
   <ModalProvider>
     {children}
   </ModalProvider>
