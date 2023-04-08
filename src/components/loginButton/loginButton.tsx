@@ -3,7 +3,7 @@ import { LoginModal } from "@components/modals";
 import {Button, ButtonProps, toast} from "@components";
 import {Modal} from "@components/modal";
 import {authStore} from "@stores/auth.store";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {FunctionalComponent} from "preact";
 
 export const LoginButton: FunctionalComponent<ButtonProps> = (props) => {
@@ -34,7 +34,7 @@ export const LoginButton: FunctionalComponent<ButtonProps> = (props) => {
       }
     } catch (error) {}
   };
-  const [isAdmin] = useCellState(() => authStore.isAdmin);
+  const isAdmin = useCell(() => authStore.isAdmin);
   const handleLogout = async () => {
     try {
       const answer = await Modal.show<Partial<User>>((props) => (

@@ -4,7 +4,7 @@ import { AUDITORY_NAMES, DAY_NAMES, DAYS } from "@constants";
 import { useAppContext } from "@helpers/AppProvider";
 import styles from "./styles.module.css";
 import { LocationScheduleProps } from "./types";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
 export const LocationSchedule: FunctionalComponent<LocationScheduleProps> = ({
@@ -22,7 +22,7 @@ export const LocationSchedule: FunctionalComponent<LocationScheduleProps> = ({
   onSelectedElementChange,
 }) => {
   const app = useAppContext();
-  const [isAdmin] = useCellState(() => authStore.isAdmin);
+  const isAdmin = useCell(() => authStore.isAdmin);
   const show =
     isAdmin ||
     (schedules &&

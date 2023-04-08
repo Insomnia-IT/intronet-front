@@ -42,12 +42,15 @@ body, html {
   scroll-behavior: smooth;
 }
 
-.flex {
+[flex] {
   display: flex;
-  gap: calc(attr(gap) * 4px);
 }
+[gap] { gap: 4px; }
+[gap='2'] { gap: 8px; }
+[gap='3'] { gap: 12px; }
+[gap='4'] { gap: 16px; }
 
-.column {
+[column] {
   flex-direction: column;
 }
 

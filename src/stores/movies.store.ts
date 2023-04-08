@@ -14,3 +14,24 @@ class MoviesStore {
 }
 
 export const moviesStore = new MoviesStore();
+
+export class MovieBlockStore {
+  constructor(public id: string) {
+  }
+
+  get block(){
+    return moviesStore.Movies.find(x => x._id == this.id)
+  }
+
+  get changes(){
+    return [];
+  }
+
+  get duplicate(){
+    return moviesStore.Movies.filter(x => x !== this.block
+      && x.info.Title.trim() === this.block.info.Title.trim()
+      && x.info.Part === this.block.info.Part
+    )
+  }
+
+}

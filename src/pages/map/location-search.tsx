@@ -42,7 +42,7 @@ export class LocationSearch extends Component<{
         ref={this.root}
         className={this.state.opened ? styles.searchOpened : styles.search}
       >
-        <div className="flex">
+        <div flex>
             <SvgIcon id="#search"/>
             {this.state.opened && (
               <input
@@ -81,9 +81,9 @@ export class LocationSearch extends Component<{
                 );
               })}
             </div>
-            <div className="flex column">
+            <div flex column>
               {this.state.locations.map((x) => (
-                <div className="flex"
+                <div flex
                   key={x._id}
                   onClick={() => {
                     this.props.onSelect(x);

@@ -3,7 +3,7 @@ import { ModalProps } from "@components/modals";
 import {FunctionalComponent, JSX} from "preact";
 import {Modal as BaseModal} from "./modal";
 import {Cell} from "@cmmn/cell/lib";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 
 const parts = {
   Body: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
@@ -35,7 +35,7 @@ const parts = {
 const currentModal = new Cell<JSX.Element>(null);
 
 export const ModalSlot: FunctionalComponent = () => {
-  const [current] = useCellState(() => currentModal.get());
+  const current = useCell(() => currentModal.get());
   return current;
 }
 

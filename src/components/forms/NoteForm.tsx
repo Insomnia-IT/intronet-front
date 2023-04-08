@@ -1,6 +1,6 @@
 
 import { FunctionalComponent } from "preact";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { categoriesStore } from "@stores";
 import { RequireAuth } from "../RequireAuth";
 
@@ -10,7 +10,7 @@ export type NoteFormProps = {
 } & { note?: Omit<INote, "createdDate" | "createdBy"> };
 
 export const NoteForm: FunctionalComponent<NoteFormProps> = ({ note, onSubmit }) => {
-  const [categories] = useCellState(categoriesStore);
+  const categories = useCell(() => categoriesStore.allCategory);
   return (
     <div></div>
     // <Formik initialValues={{ ...note, categoryId: '2' }} onSubmit={onSubmit}>

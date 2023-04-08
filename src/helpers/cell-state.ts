@@ -1,27 +1,22 @@
 import React, { useEffect, useMemo, useState } from "preact/hooks";
-import { Cell } from "@cmmn/cell/lib";
+import { Cell, BaseCell, compare } from "@cmmn/cell/lib";
 
-export function useCellState<T>(
-  getter: (() => T) | T,
+export function useCell<T>(
+  getter: (() => T) | BaseCell<T> | undefined,
   deps: any[] = []
-): [T, (value: T) => void, Cell<T>] {
-  const cell = useMemo(() => new Cell(getter), deps);
-  const [value, setter] = useState(cell.get());
+): T {
+  if (!getter || getter instanceof BaseCell)
+    deps.push(getter);
+  const cell = useMemo<BaseCell>(
+    () => getter instanceof BaseCell ? getter : new Cell(getter, {compare}),
+    deps
+  );
+  const [, dispatch] = React.useReducer(x => ({}), {});
   useEffect(() => {
-    const listener = (e) => {
-      setter(e.value);
-    };
-    cell.on("change", listener);
-    return () => {
-      cell.dispose();
-    };
-  }, [cell]);
-  useEffect(() => {
-    setter(cell.get());
-  }, deps);
-  return [value, (v) => cell.set(v), cell];
+    return cell.on('change', dispatch);
+  }, [cell])
+  return cell.get();
 }
-
 export function cellState<TState>(
   component: ComponentLike,
   state: StateOfGetters<TState>

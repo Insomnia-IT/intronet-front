@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { directionsStore } from "@stores";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { toast} from "@components";
 import {Modal} from "@components/modal";
 import {useEffect} from "preact/hooks";
@@ -46,7 +46,7 @@ export const LocationModal: FunctionalComponent<ModalProps<InsomniaLocation>> = 
     })();
   }, [toast]);
 
-  const [direcitons] = useCellState(() => directionsStore.Directions.toArray());
+  const direcitons = useCell(() => directionsStore.Directions.toArray());
 
   return (
     <Modal

@@ -1,5 +1,5 @@
 import {Cell} from "@cmmn/cell/lib";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 export function toast(config: ToastInfo){
   cell.set(config);
 }
@@ -7,7 +7,7 @@ export function toast(config: ToastInfo){
 const cell = new Cell<ToastInfo | null>(null)
 
 export function Toast(){
-  const [current] = useCellState(() => cell.get());
+  const current = useCell(() => cell.get());
   return current && <div>
     {current.title}
     {current.description}

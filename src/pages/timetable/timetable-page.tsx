@@ -1,15 +1,15 @@
 import {useEffect, useState} from "preact/hooks";
 import { Timetable } from "./timetable/timetable";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { locationsStore, moviesStore } from "@stores";
 import { CloseButton } from "@components";
 
 export function TimetablePage() {
-  const [screens] = useCellState(() =>
+  const screens = useCell(() =>
     locationsStore.FullLocations.filter((x) => x.directionId == "screen")
   );
   const [screen, setScreen] = useState(() => screens[0]?._id);
-  const [blocks] = useCellState(() => {
+  const blocks = useCell(() => {
     return moviesStore.Movies.filter((x) => x.locationId === screen);
   }, [screen]);
   console.log("timetable", screen, screens?.[0]?._id);

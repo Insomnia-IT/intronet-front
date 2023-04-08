@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import {useCellState} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {authStore} from "@stores/auth.store";
 
 export type RequireAuthProps = {
@@ -16,7 +16,7 @@ export const RequireAuth: FunctionalComponent<RequireAuthProps> = ({
   children,
   role = "admin",
 }) => {
-  const [isAdmin] = useCellState(() => authStore.isAdmin);
+  const isAdmin = useCell(() => authStore.isAdmin);
   // проверяем, есть ли токен в провайдере
   // не пустой ли он
   // проверяем, соответствуюет ли допустимая роль компонента юзернейму

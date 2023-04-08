@@ -10,7 +10,7 @@ import {
   // useEditLocation,
 } from "@hooks";
 import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
-import { useCellState } from "@helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { ConnectedLocationSchedule } from "./LocationSchedule";
 import {SvgIcon} from "@icons";
@@ -25,7 +25,7 @@ export const Location: FunctionalComponent<LocationProps> = ({ location, expande
 
   const editLocation = (...args) => void 0// useEditLocation(location);
 
-  const [menu] = useCellState(
+  const menu = useCell(
     () => locationsStore.db.get(location._id)?.menu
   );
 
