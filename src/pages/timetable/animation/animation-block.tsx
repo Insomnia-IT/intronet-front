@@ -22,7 +22,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       <div className={Styles.time}>
         {block.info.Start} - {block.info.End}
       </div>
-      <ActivityCard>
+      <ActivityCard background="Purple">
         <div flex column gap>
           <div class={Styles.header}>
             {block.info.Title}

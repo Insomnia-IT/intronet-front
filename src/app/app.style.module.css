@@ -38,6 +38,18 @@
   line-height: 29px;
 }
 
+.sh3{
+  /* SH 3 */
+  font-style: normal;
+  font-variation-settings: "wght" 510;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.colorPink{
+  color: var(--pink);
+}
+
 .textSmall{
   font-style: normal;
   font-variation-settings: "wght" 400;

@@ -4,6 +4,7 @@ import { TimetablePage } from "./timetable/timetable-page";
 import { Cell } from "@cmmn/cell/lib";
 import { useCell } from "@helpers/cell-state";
 import { MainPage } from "./main/mainPage";
+import { compare } from "@cmmn/cell/lib";
 
 export const routes = {
   main: {
@@ -36,12 +37,26 @@ export const routes = {
     title: "Направления",
     Component: null,
   },
+  voting: {
+    name: "voting",
+    title: "Голосование",
+    Component: null,
+  },
 };
 
 export type RoutePath = [keyof typeof routes, ...Array<string | number>];
 const routeCell = new Cell<RoutePath>(
-  location.pathname.split("/").slice(1) as RoutePath
+  location.pathname.split("/").slice(1) as RoutePath,
+  {
+    compare,
+    onExternal: setTitle,
+  }
 );
+
+function setTitle() {
+  document.title = "Insomnia: " + routes[routeCell.get()[0]]?.title;
+}
+setTitle();
 const goTo = (path: RoutePath, replace: boolean = false) => {
   routeCell.set(path.filter((x) => x !== null) as RoutePath);
   const url = "/" + path.filter((x) => x !== null).join("/");

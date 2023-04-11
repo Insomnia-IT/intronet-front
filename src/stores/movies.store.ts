@@ -75,7 +75,10 @@ export class MovieStore {
     );
   }
 
-  public state = new Cell(() => ({
+  public state = new Cell<{
+    movie: MovieInfo;
+    blocks: MovieBlock[];
+  }>(() => ({
     movie: this.movie,
     blocks: this.blocks,
   }));

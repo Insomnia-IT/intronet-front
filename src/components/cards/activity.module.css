@@ -1,5 +1,4 @@
 .activity{
-    background: var(--purple-gradient);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -8,3 +7,35 @@
     border-radius: 24px;
     max-width: 408px;
 }
+
+.bgPurple{
+    background: var(--purple-gradient);
+}
+.bgWhite{
+    background: white;
+}
+
+.border{
+    --borderWidth: 2px;
+    border: solid var(--borderWidth) transparent;
+    background-clip: padding-box !important;
+}
+.borderBlue{
+    composes: border;
+    border-color: var(--medium-blue);
+}
+.borderVivid{
+    composes: border;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.borderVivid:before {
+     content: '';
+     position: absolute;
+     top: 0; right: 0; bottom: 0; left: 0;
+     z-index: -1;
+     margin: calc(-1*var(--borderWidth));
+     border-radius: inherit; /* !importanté */
+     background: var(--vivid-gradient)
+ }
