@@ -52,3 +52,19 @@
   line-height: 24px;
   color: #763AFF;
 }
+
+.link{
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* Electric Blues */
+  color: #536BF3;
+
+}
+.link:after{
+  content: ' →';
+}

@@ -18,9 +18,7 @@ export const App = () => {
         <Navbar />
         <Toast />
         <ModalSlot />
-        <div id="loader" class={styles.loader}>
-          {uid}
-        </div>
+        <div id="loader" class={styles.loader} />
       </div>
     </AppProvider>
   );

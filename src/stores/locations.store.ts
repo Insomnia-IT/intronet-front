@@ -3,11 +3,10 @@ import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
 
 class LocationsStore {
-
   @cell
   db = new ObservableDB<InsomniaLocation>("locations");
 
-  IsLoaded = this.db.isLoaded;
+  Loading = this.db.isLoaded;
   @cell
   Tags = new ObservableDB<Tag>("tags");
 
@@ -23,9 +22,7 @@ class LocationsStore {
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.FullLocations.filter(
-      (x) =>
-        directionsStore.DirectionToDirection(x.directionId) ===
-        Directions.screen
+      (x) => x.directionId === Directions[Directions.screen]
     );
   }
 
@@ -38,12 +35,12 @@ class LocationsStore {
   }
 
   async addLocation(location: InsomniaLocation) {
-    await this.IsLoaded;
+    await this.Loading;
     await this.db.addOrUpdate(location);
   }
 
- async updateLocation(x: InsomniaLocationFull) {
-    await this.IsLoaded;
+  async updateLocation(x: InsomniaLocationFull) {
+    await this.Loading;
     await this.db.addOrUpdate({
       ...x,
       // @ts-ignore
@@ -52,19 +49,21 @@ class LocationsStore {
   }
 
   async deleteLocation(location: InsomniaLocationFull | InsomniaLocation) {
-    await this.IsLoaded;
+    await this.Loading;
     await this.db.remove(location._id);
   }
 
-  public getName(locationId: string){
+  public getName(locationId: string) {
     const location = this.db.get(locationId);
-    if (!location)
-      return undefined;
-    if (location.directionId == Directions[Directions.screen]){
-      switch (location.name){
-        case "ЦУЭ 1": return "Полевой экран";
-        case "ЦУЭ 2": return "Речной экран";
-        default: return "Детская поляна";
+    if (!location) return undefined;
+    if (location.directionId == Directions[Directions.screen]) {
+      switch (location.name) {
+        case "ЦУЭ 1":
+          return "Полевой экран";
+        case "ЦУЭ 2":
+          return "Речной экран";
+        default:
+          return "Детская поляна";
       }
     }
     return location.name;
@@ -72,7 +71,6 @@ class LocationsStore {
 }
 
 export const locationsStore = new LocationsStore();
-
 
 export enum Directions {
   fair = 2,

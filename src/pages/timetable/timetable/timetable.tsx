@@ -1,14 +1,12 @@
 import { FunctionalComponent } from "preact";
 import styles from "../../../components/schedule/schedule.module.css";
-import { AnimationBlock } from "@components/cards/animation-block";
-import style from "../../../app/app.style.module.css";
-import {locationsStore, moviesStore} from "@stores";
-import {useEffect, useState} from "preact/hooks";
-import {useCell} from "@helpers/cell-state";
-import {getCurrentDay, getDayText} from "@helpers/getDayText";
+import { AnimationBlock } from "../animation/animation-block";
+import { locationsStore, moviesStore } from "@stores";
+import { useEffect, useState } from "preact/hooks";
+import { useCell } from "@helpers/cell-state";
+import { getCurrentDay, getDayText } from "@helpers/getDayText";
 
-export type TimetableProps = {
-};
+export type TimetableProps = {};
 
 export const Timetable: FunctionalComponent<TimetableProps> = () => {
   const screens = useCell(() =>
@@ -17,7 +15,9 @@ export const Timetable: FunctionalComponent<TimetableProps> = () => {
   const [screen, setScreen] = useState(() => screens[0]?._id);
   const [day, setDay] = useState(getCurrentDay());
   const blocks = useCell(() => {
-    return moviesStore.Movies.filter((x) => x.locationId === screen && x.day == day);
+    return moviesStore.Movies.filter(
+      (x) => x.locationId === screen && x.day == day
+    );
   }, [screen, day]);
   console.log("timetable", screen, screens?.[0]?._id);
   useEffect(() => {
@@ -27,7 +27,7 @@ export const Timetable: FunctionalComponent<TimetableProps> = () => {
   }, [screen, screens?.[0]]);
 
   return (
-    <div class={style.page}>
+    <>
       <h1>анимация</h1>
       <div className={styles.tags}>
         {screens.map((location) => (
@@ -45,17 +45,20 @@ export const Timetable: FunctionalComponent<TimetableProps> = () => {
         ))}
       </div>
       <div class={styles.tags}>
-        {[0,1,2,3,4].map((d) => (
-          <div className={d === day ? styles.auditoryActive : styles.auditory}
-            key={d} onClick={() => setDay(d)}>
-            {getDayText(d)}
+        {[0, 1, 2, 3, 4].map((d) => (
+          <div
+            className={d === day ? styles.auditoryActive : styles.auditory}
+            key={d}
+            onClick={() => setDay(d)}
+          >
+            {getDayText(d, "short")}
           </div>
         ))}
       </div>
       {blocks.map((x) => (
         <AnimationBlock id={x._id} key={x._id} />
       ))}
-    </div>
+    </>
   );
 };
 

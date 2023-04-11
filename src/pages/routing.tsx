@@ -1,64 +1,66 @@
-import { FunctionalComponent } from "preact";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
-import {Cell} from "@cmmn/cell/lib";
-import {useCell} from "@helpers/cell-state";
-import {MainPage} from "./main/mainPage";
+import { Cell } from "@cmmn/cell/lib";
+import { useCell } from "@helpers/cell-state";
+import { MainPage } from "./main/mainPage";
 
 export const routes = {
   main: {
-    name: 'main',
+    name: "main",
     title: "Главная",
     Component: MainPage,
   },
   board: {
-    name: 'board',
+    name: "board",
     title: "Объявления",
     Component: null,
   },
   map: {
-    name: 'map',
+    name: "map",
     title: "Карта 2",
     Component: MapPageWithRouting,
   },
   article: {
-    name: 'article',
+    name: "article",
     title: "Статья",
     Component: null,
   },
   timetable: {
-    name: 'timetable',
+    name: "timetable",
     title: "Расписание",
     Component: TimetablePage,
   },
   directions: {
-    name: 'directions',
+    name: "directions",
     title: "Направления",
     Component: null,
-  }
+  },
 };
 
-const routeCell = new Cell<Array<string |number>>(location.pathname.split('/').slice(1))
-const goTo = (path: (string | null | number)[], replace: boolean = false) => {
-  routeCell.set(path.filter(x => x !== null));
-  const url = '/'+path.filter(x => x !== null).join('/');
-  history[replace ? 'replaceState' : 'pushState'](null, null, url)
+export type RoutePath = [keyof typeof routes, ...Array<string | number>];
+const routeCell = new Cell<RoutePath>(
+  location.pathname.split("/").slice(1) as RoutePath
+);
+const goTo = (path: RoutePath, replace: boolean = false) => {
+  routeCell.set(path.filter((x) => x !== null) as RoutePath);
+  const url = "/" + path.filter((x) => x !== null).join("/");
+  history[replace ? "replaceState" : "pushState"](null, null, url);
 };
-window.addEventListener('popstate',  () => {
-  routeCell.set(location.pathname.split('/').slice(1));
+window.addEventListener("popstate", () => {
+  routeCell.set(location.pathname.split("/").slice(1) as RoutePath);
 });
-if (location.pathname === '/'){
-  goTo(['map'], true);
+if (location.pathname === "/") {
+  goTo(["map"], true);
 }
 
-export function useRouter(){
-  const route = useCell(routeCell);
+export function useRouter() {
+  const route: RoutePath = useCell(routeCell);
 
   return {
     back: history.back.bind(history),
     route,
     active: routes[route[0]] ?? routes.map,
-    goTo
-  }
+    goTo,
+  };
 }

@@ -1,13 +1,25 @@
-import {SvgIcon} from "@icons";
+import { SvgIcon } from "@icons";
 import Styles from "./button.module.css";
 import { Button } from "./button";
-import {useRouter} from "../../pages/routing";
-import {useCallback} from "preact/hooks";
+import { useRouter } from "../../pages/routing";
+import { useCallback } from "preact/hooks";
+import { FunctionalComponent } from "preact";
 
-export const CloseButton = () => {
-    const router = useRouter();
-    const goToMain = useCallback(() => router.goTo(['main']), []);
-    return <Button className={Styles.close} onClick={goToMain}>
-        <SvgIcon id="#x" size={14}/>
+export type CloseButtonProps = {
+  back?: boolean;
+};
+export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
+  const router = useRouter();
+  const onClick = useCallback(() => {
+    if (props.back) {
+      router.back();
+    } else {
+      router.goTo(["main"]);
+    }
+  }, [props]);
+  return (
+    <Button className={Styles.close} onClick={onClick}>
+      <SvgIcon id="#x" size={14} />
     </Button>
-}
+  );
+};

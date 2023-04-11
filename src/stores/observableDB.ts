@@ -1,19 +1,19 @@
 import { EventEmitter, Fn, AsyncQueue } from "@cmmn/cell/lib";
-import indexeddbWrapper from 'indexeddb-wrapper'
+import indexeddbWrapper from "indexeddb-wrapper";
 
-const api = `https://intro.cherepusick.keenetic.name/webapi`
-export class ObservableDB<
-  T extends { _id: string }
-> extends EventEmitter<{
+const api = `https://intro.cherepusick.keenetic.name/webapi`;
+export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
-  change: {type: "init"; value: T[]; } | (
-    {type: "addOrUpdate"; key: string | number; value: T;} |
-    {type: "delete"; key: string | number;}
-    ) & {fromReplication?: boolean;}
+  change:
+    | { type: "init"; value: T[] }
+    | ((
+        | { type: "addOrUpdate"; key: string | number; value: T }
+        | { type: "delete"; key: string | number }
+      ) & { fromReplication?: boolean });
 }> {
-  private db: Store<T & {version: string;}> = createStore(this.name);
+  private db: Store<T & { version: string }> = createStore(this.name);
 
-  protected items = new Map<string, T & {version: string;}>();
+  protected items = new Map<string, T & { version: string }>();
 
   public isLoaded: Promise<void> = this.onceAsync("loaded");
 
@@ -24,7 +24,7 @@ export class ObservableDB<
   }
 
   async init() {
-    await this.loadItems().then(x => this.emit('loaded'));
+    await this.loadItems().then((x) => this.emit("loaded"));
     await this.sync();
     setInterval(() => this.sync(), 3000);
   }
@@ -41,13 +41,13 @@ export class ObservableDB<
   async clear() {
     await this.db.purge();
     this.items.clear();
-    this.emit('change',{
-      type: 'delete',
-      key: undefined
-    })
+    this.emit("change", {
+      type: "delete",
+      key: undefined,
+    });
   }
 
-  async set(value: T & {version: string;}) {
+  async set(value: T & { version: string }) {
     await this.db.set(value._id, value);
     this.items.set(value._id, value);
   }
@@ -56,12 +56,12 @@ export class ObservableDB<
     const valueWithVersion = {
       ...value,
       version: Fn.ulid(),
-    }
+    };
     await this.set(valueWithVersion);
     if (!skipChange) {
       await VersionsDB.Instance.set({
         _id: this.name,
-        version: valueWithVersion.version
+        version: valueWithVersion.version,
       });
       this.emit("change", {
         type: "addOrUpdate",
@@ -91,7 +91,7 @@ export class ObservableDB<
     return this.items.values();
   }
 
-  async loadItems(){
+  async loadItems() {
     const keys = await this.db.keys();
     this.items = new Map();
     for (let key of keys) {
@@ -99,7 +99,7 @@ export class ObservableDB<
     }
     this.emit("change", {
       type: "init",
-      value: Array.from(this.values())
+      value: Array.from(this.values()),
     });
   }
 
@@ -114,88 +114,88 @@ export class ObservableDB<
       } else if (this.localVersion > this.remoteVersion) {
         await this.saveToServer();
       }
-    }finally {
+    } finally {
       this.syncLock = false;
     }
   }
 
-  async saveToServer(){
+  async saveToServer() {
     for (let item of this.items.values()) {
       if (item.version <= this.remoteVersion) continue;
       console.log(this.name, item.version, this.remoteVersion);
       await fetch(`${api}/data/${this.name}`, {
-        method: 'POST',
-        body: JSON.stringify(item)
+        method: "POST",
+        body: JSON.stringify(item),
       }).catch();
     }
   }
 
-  async loadFromServer(){
-    const newItems = await fetch(`${api}/data/${this.name}?since=${this.localVersion}`).then(x => x.json()) as (T & {version: string})[];
+  async loadFromServer() {
+    const newItems = (await fetch(
+      `${api}/data/${this.name}?since=${this.localVersion}`
+    ).then((x) => x.json())) as (T & { version: string })[];
     for (let newItem of newItems) {
       await this.set(newItem);
     }
-    this.emit('change', {
-      type: 'init',
+    this.emit("change", {
+      type: "init",
       value: Array.from(this.items.values()),
     });
     await VersionsDB.Instance.set({
       _id: this.name,
-      version: VersionsDB.Instance.remote[this.name]
+      version: VersionsDB.Instance.remote[this.name],
     });
   }
 
-  get remoteVersion(){
-    return VersionsDB.Instance.remote[this.name]
+  get remoteVersion() {
+    return VersionsDB.Instance.remote[this.name];
   }
 
-  get localVersion(){
-    return VersionsDB.Instance.get(this.name)?.version ?? '';
+  get localVersion() {
+    return VersionsDB.Instance.get(this.name)?.version ?? "";
   }
 }
 
-
-class VersionsDB extends ObservableDB<{version: string; _id: string;}> {
-
+class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
   private static _instance: VersionsDB | undefined;
-  public static get Instance(){
+  public static get Instance() {
     return (this._instance ??= new VersionsDB());
   }
 
   constructor() {
-    super('versions');
-    setInterval(() => this.loadFromServer(), 3000)
+    super("versions");
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
   public remote: Record<string, string> = {};
 
-  async init(){
+  async init() {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
   }
 
-  public get local(): Record<string, string>{
-    return Object.fromEntries(Array.from(this.values()).map(x => [x._id, x.version]));
+  public get local(): Record<string, string> {
+    return Object.fromEntries(
+      Array.from(this.values()).map((x) => [x._id, x.version])
+    );
   }
 
-  async loadFromServer(){
+  async loadFromServer() {
     try {
-      this.remote = await fetch(`${api}/versions`).then(x => x.json());
-    }catch (e){
-      console.log('disconnected');
+      this.remote = await fetch(`${api}/versions`).then((x) => x.json());
+    } catch (e) {
+      console.log("disconnected");
     }
   }
-
-
 }
 
-function createStore(name: string){
+function createStore(name: string) {
   // @ts-ignore
   return indexeddbWrapper.default({
     stores: [name],
     databaseName: name,
-    version: 1
+    version: 1,
   }).stores[name];
 }
 

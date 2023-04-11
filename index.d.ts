@@ -82,17 +82,17 @@ type MovieBlock = {
   day: number;
   locationId: string;
   info: {
-    "Title": string;
-    "SubTitle": string;
-    "TitleEn": string;
-    "SubTitleEn": string;
-    "MinAge": number;
-    "Part": number;
-    "Start": string;
-    "End": string;
+    Title: string;
+    SubTitle: string;
+    TitleEn: string;
+    SubTitleEn: string;
+    MinAge: number;
+    Part: number;
+    Start: string;
+    End: string;
   };
   movies: MovieInfo[];
-}
+};
 
 interface INote {
   _id: string;
@@ -137,7 +137,9 @@ interface AuditoryElement {
 }
 
 type MovieInfo = {
+  id: string;
   name: string;
+  description: string;
   country: string;
   year;
   duration: string;
@@ -167,3 +169,11 @@ type User = {
   token: string;
 };
 
+namespace JSX {
+  interface IntrinsicElements {
+    div: {
+      flex?: boolean;
+      column?: boolean;
+    } & JSX.IntrinsicElements['div'];
+  }
+}
