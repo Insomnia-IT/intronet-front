@@ -9,7 +9,7 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
     worker: navigator.serviceWorker.controller,
     size: 0,
     get percent() {
-      return this.size / 2209895;
+      return this.size / 2371434;
     },
     reload() {
       this.worker.postMessage({
