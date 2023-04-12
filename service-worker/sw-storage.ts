@@ -46,6 +46,7 @@ export class SwStorage {
         .load(false)
         .then(async (newCache) => {
           for (let key of await newCache.keys()) {
+            this.cache ??= await caches.open(this.name);
             await this.cache.delete(key);
             await this.cache.put(key, await newCache.match(key));
           }
@@ -55,6 +56,7 @@ export class SwStorage {
         })
         .catch((e) => {
           console.log("failed update");
+          this.clear();
         })
         .finally(() => {
           this.isUpdating = false;
@@ -80,10 +82,13 @@ export class SwStorage {
   }
 
   async load(ignoreErrors = true) {
-    this.version ??= await this.getVersion();
+    this.version ??= await this.getVersion().catch();
     this.cache = await caches.open(this.name);
     await Promise.all(
-      (this.isIOS ? assets.concat(assetsIOS) : assets.concat(assetsAndroid)).map((a) =>
+      (this.isIOS
+        ? assets.concat(assetsIOS)
+        : assets.concat(assetsAndroid)
+      ).map((a) =>
         this.getFromCacheOrFetch(new Request(a)).catch((e) => {
           if (ignoreErrors) console.error(e);
           else throw e;
