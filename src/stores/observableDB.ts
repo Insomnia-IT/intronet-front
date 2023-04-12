@@ -17,7 +17,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
 
   public isLoaded: Promise<void> = this.onceAsync("loaded");
 
-  constructor(public name: string) {
+  constructor(public name: string, public localOnly: boolean = false) {
     super();
     globalThis[name] = this;
     this.init();
@@ -25,8 +25,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
 
   async init() {
     await this.loadItems().then((x) => this.emit("loaded"));
-    await this.sync();
-    setInterval(() => this.sync(), 3000);
+    if (!this.localOnly) {
+      await this.sync();
+      setInterval(() => this.sync(), 3000);
+    }
   }
 
   async remove(key: string) {
@@ -120,6 +122,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async saveToServer() {
+    if (this.localOnly) return;
     for (let item of this.items.values()) {
       if (item.version <= this.remoteVersion) continue;
       console.log(this.name, item.version, this.remoteVersion);
@@ -131,6 +134,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async loadFromServer() {
+    if (this.localOnly) return;
     const newItems = (await fetch(
       `${api}/data/${this.name}?since=${this.localVersion}`
     ).then((x) => x.json())) as (T & { version: string })[];

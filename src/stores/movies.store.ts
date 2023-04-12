@@ -2,6 +2,7 @@ import { Fn, cell, Cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 import { locationsStore } from "@stores/locations.store";
 import { getCurrentDay, getDayText } from "@helpers/getDayText";
+import { bookmarksStore } from "@stores/bookmarks.store";
 
 class MoviesStore {
   @cell
@@ -16,7 +17,7 @@ class MoviesStore {
 
   @cell
   public get Movies(): MovieInfo[] {
-    return this.MovieBlocks.flatMap((x) => x.movies).distinct((x) => x.name);
+    return this.MovieBlocks.flatMap((x) => x.movies);
   }
 }
 
@@ -46,7 +47,7 @@ export class MovieBlockStore {
     const screen =
       locationsStore
         .getName(duplicate.locationId)
-        .toLowerCase()
+        ?.toLowerCase()
         .replace("ой", "ом") + "е";
     if (isAfter) {
       return `Покажем этот блок ещё раз ${getDayText(duplicate.day, "at")} в ${
@@ -84,8 +85,10 @@ export class MovieStore {
   public state = new Cell<{
     movie: MovieInfo;
     blocks: MovieBlock[];
+    hasBookmark: boolean;
   }>(() => ({
     movie: this.movie,
     blocks: this.blocks,
+    hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
   }));
 }

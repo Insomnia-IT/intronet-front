@@ -12,9 +12,6 @@
     width: 100%;
 }
 
-.subHeader{
-    composes: textSmall from "../../../app/app.style.module.css";
-}
 
 .duplicate{
   composes: text from "../../../app/app.style.module.css";
@@ -29,6 +26,5 @@
 }
 
 .movieInfo{
-  composes: textSmall from "../../../app/app.style.module.css";
   color: #646995;
 }

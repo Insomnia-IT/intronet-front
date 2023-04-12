@@ -1,4 +1,4 @@
-import { Timetable } from "./timetable/timetable";
+import { Timetable, TimetableAll } from "./timetable";
 import { Button, ButtonsBar, CloseButton } from "@components";
 import { routes, useRouter } from "../routing";
 import { Movie } from "./movie/movie";
@@ -11,21 +11,21 @@ export function TimetablePage() {
   switch (router.movieId) {
     case "search":
       return (
-        <div class={style.page}>
+        <div class="page">
           <MovieSearch />
           <CloseButton back />
         </div>
       );
     case undefined:
       return (
-        <div class={style.page}>
-          <Timetable />
+        <div class="page">
+          <TimetableAll />
           <CloseButton />
           <ButtonsBar at="bottom">
             <Button type="vivid" goTo="/timetable/search">
               <SvgIcon id="#search" size={15} />
             </Button>
-            <Button type="vivid" goTo="/bookmarks">
+            <Button type="vivid" goTo="/bookmarks/movie">
               <SvgIcon id="#bookmark" size="14px" />
               Избранное
             </Button>
@@ -34,7 +34,7 @@ export function TimetablePage() {
       );
     default:
       return (
-        <div class={style.page}>
+        <div class="page">
           <Movie id={router.movieId} />
           <CloseButton back />
         </div>

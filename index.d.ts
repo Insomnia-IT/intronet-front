@@ -169,11 +169,8 @@ type User = {
   token: string;
 };
 
-namespace JSX {
-  interface IntrinsicElements {
-    div: {
-      flex?: boolean;
-      column?: boolean;
-    } & JSX.IntrinsicElements['div'];
-  }
-}
+type Bookmark = {
+  _id: string;
+  type: "movie" | "event" | "note";
+  itemId: string;
+};

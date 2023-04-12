@@ -7,6 +7,8 @@ import { MovieBlockStore, moviesStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { Button } from "@components";
 import { useTimetableRouter } from "../timetable-page";
+import { SvgIcon } from "@icons";
+import { bookmarksStore } from "@stores/bookmarks.store";
 
 export type AnimationBlockProps = {
   id: string;
@@ -28,7 +30,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
             {block.info.Title}
             {block.info.MinAge && <AgeStrict age={block.info.MinAge} />}
           </div>
-          <div class={Styles.subHeader}>{block.info.SubTitle}</div>
+          <div class="textSmall">{block.info.SubTitle}</div>
           <div class={Styles.duplicate}>{duplicate}</div>
           {isOpen && <MovieList movies={block.movies} />}
           <Button type="text" onClick={() => setIsOpen((x) => !x)}>
@@ -55,13 +57,29 @@ export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
 }) => {
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
+  const hasBookmark = useCell(
+    () => !!bookmarksStore.getBookmark("movie", movie.id),
+    [movie.id]
+  );
   return (
     <div flex column gap onClick={() => router.gotToMovie(movie.id)}>
-      <div class={Styles.movieTitle}>«{movie.name}»</div>
+      <div flex center>
+        <div flex-grow class={Styles.movieTitle}>
+          «{movie.name}»
+        </div>
+        {hasBookmark && (
+          <SvgIcon
+            id="#bookmark"
+            class="colorPink"
+            size={17}
+            style={{ flexShrink: 0 }}
+          />
+        )}
+      </div>
       <div class={Styles.movieInfo}>
         {movie.author}, {movie.country}, {movie.year}
       </div>
-      <div class={Styles.movieInfo}>
+      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
         {minutes} мин {seconds} сек
       </div>
     </div>

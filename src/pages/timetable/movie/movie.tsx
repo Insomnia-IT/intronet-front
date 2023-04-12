@@ -7,6 +7,10 @@ import Styles from "../animation/animation.module.css";
 import { getDayText } from "@helpers/getDayText";
 import { useTimetableRouter } from "../timetable-page";
 import { ActivityCard } from "@components/cards";
+import { Button, ButtonsBar } from "@components";
+import { SvgIcon } from "@icons";
+import { bookmarksStore } from "@stores/bookmarks.store";
+import { Link } from "@components/link/link";
 
 export type MovieProps = {
   id: string;
@@ -36,9 +40,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         <div class={[style.sh3, style.colorPink].join(" ")}>
           Приз зрительских симпатий
         </div>
-        <div class={style.link} onClick={() => router.goTo(["voting"])}>
-          Голосование
-        </div>
+        <Link goTo="/voting">Голосование</Link>
         <div>Голосовать можно только онлайн</div>
         <div>Для голосования потребуется номер билета</div>
       </ActivityCard>
@@ -47,12 +49,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
           <div> {getDayText(block.day, "full")}</div>
           <ActivityCard border="Blue" background="None">
             <div> {locationsStore.getName(block.locationId)}</div>
-            <div
-              class={style.link}
-              onClick={() => router.goTo(["map", block.locationId])}
-            >
-              Локация на карте
-            </div>
+            <Link goTo={["map", block.locationId]}>Локация на карте</Link>
             <div>{block.info.Title}</div>
             <div>{block.info.SubTitle}</div>
             <div>
@@ -61,6 +58,17 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
           </ActivityCard>
         </div>
       ))}
+      <ButtonsBar at="bottom">
+        <Button
+          type="vivid"
+          onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
+        >
+          <SvgIcon id="#bookmark" size={14} />
+          {state.hasBookmark
+            ? "Удалить из избранного"
+            : "сохранить в избранное"}
+        </Button>
+      </ButtonsBar>
     </div>
   );
 };

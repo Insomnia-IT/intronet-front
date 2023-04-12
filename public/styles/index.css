@@ -45,6 +45,9 @@ body, html {
 [flex] {
   display: flex;
 }
+[flex-grow]{
+  flex-grow: 1;
+}
 [gap] { gap: 4px; }
 [gap='2'] { gap: 8px; }
 [gap='3'] { gap: 12px; }
