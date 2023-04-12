@@ -12,30 +12,38 @@ self.addEventListener("activate", (event) => {
 });
 setInterval(() => storage.checkUpdate(), 60 * 1000);
 self.addEventListener("fetch", async (event) => {
-  if (event.request.url.match(".reload")) {
-    await storage.clear();
+  try {
+    if (event.request.url.match(".reload")) {
+      await storage.clear();
+    }
+    event.respondWith(storage.getResponse(event.request));
+  } catch (e) {
+    console.error(e);
   }
-  event.respondWith(storage.getResponse(event.request));
 });
 
 self.addEventListener("message", (event) => {
-  switch (event.data?.action as ServiceWorkerAction) {
-    case "reload":
-      storage.clear().then((x) => storage.load());
-      break;
-    case "check":
-      storage.checkUpdate(event.data.force);
-      break;
-    case "init":
-      storage.isIOS = event.data.isIOS;
-      storage
-        .load()
-        .then(() => self.clients.claim())
-        .then(() => {
-          event.source.postMessage({
-            action: "init" as ServiceWorkerAction,
+  try {
+    switch (event.data?.action as ServiceWorkerAction) {
+      case "reload":
+        storage.clear().then((x) => storage.load());
+        break;
+      case "check":
+        storage.checkUpdate(event.data.force);
+        break;
+      case "init":
+        storage.isIOS = event.data.isIOS;
+        storage
+          .load()
+          .then(() => self.clients.claim())
+          .then(() => {
+            event.source.postMessage({
+              action: "init" as ServiceWorkerAction,
+            });
           });
-        });
-      break;
+        break;
+    }
+  } catch (e) {
+    console.error(e);
   }
 });
