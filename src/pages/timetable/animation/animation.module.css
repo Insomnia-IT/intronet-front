@@ -1,12 +1,9 @@
 .time{
     color: var(--medium-blue);
-    /* SH 1 */
-    composes: sh1 from "../../../app/app.style.module.css";
     margin-bottom: 9px;
 }
 
 .header{
-    composes: sh1 from "../../../app/app.style.module.css";
     align-items: flex-start;
     display: flex;
     flex-direction: row;

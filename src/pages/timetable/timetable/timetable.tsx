@@ -15,7 +15,7 @@ export const Timetable: FunctionalComponent<TimetableProps> = () => {
   const [screen, setScreen] = useState(() => screens[0]?._id);
   const [day, setDay] = useState(getCurrentDay());
   const blocks = useCell(() => {
-    return moviesStore.Movies.filter(
+    return moviesStore.MovieBlocks.filter(
       (x) => x.locationId === screen && x.day == day
     );
   }, [screen, day]);

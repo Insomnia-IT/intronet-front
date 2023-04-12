@@ -31,21 +31,6 @@
   }
 }
 
-.sh1{
-  font-style: normal;
-  font-variation-settings: "wght" 690;
-  font-size: 24px;
-  line-height: 29px;
-}
-
-.sh3{
-  /* SH 3 */
-  font-style: normal;
-  font-variation-settings: "wght" 510;
-  font-size: 16px;
-  line-height: 19px;
-}
-
 .colorPink{
   color: var(--pink);
 }
@@ -62,7 +47,7 @@
   font-variation-settings: "wght" 400;
   font-size: 20px;
   line-height: 24px;
-  color: #763AFF;
+  color: var(--medium-blue);
 }
 
 .link{

@@ -91,15 +91,6 @@ body, html {
   src: local('Unbounded'), url('/public/fonts/Unbounded.woff2') format('woff2');
 }
 
-h1{
-  font-family: 'Unbounded';
-  font-style: normal;
-  font-weight: 900;
-  font-variation-settings: "wght" 600;
-  font-size: 28px;
-  line-height: 35px;
-  text-transform: uppercase;
-}
 
 h2{
   font-style: normal;

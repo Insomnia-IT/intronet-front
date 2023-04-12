@@ -9,18 +9,24 @@ class MoviesStore {
 
   IsLoaded = this.db.isLoaded;
 
-  public get Movies(): MovieBlock[] {
+  @cell
+  public get MovieBlocks(): MovieBlock[] {
     return this.db.toArray();
+  }
+
+  @cell
+  public get Movies(): MovieInfo[] {
+    return this.MovieBlocks.flatMap((x) => x.movies).distinct((x) => x.name);
   }
 }
 
 export const moviesStore = new MoviesStore();
-
+globalThis["moviesStore"] = moviesStore;
 export class MovieBlockStore {
   constructor(public id: string) {}
 
   get block() {
-    return moviesStore.Movies.find((x) => x._id == this.id);
+    return moviesStore.MovieBlocks.find((x) => x._id == this.id);
   }
 
   get changes() {
@@ -28,7 +34,7 @@ export class MovieBlockStore {
   }
 
   get duplicate() {
-    const duplicate = moviesStore.Movies.find(
+    const duplicate = moviesStore.MovieBlocks.find(
       (x) =>
         x !== this.block &&
         x.info.Title?.trim() === this.block.info.Title?.trim() &&
@@ -63,14 +69,14 @@ export class MovieStore {
 
   @cell
   get movie(): MovieInfo {
-    return moviesStore.Movies.flatMap((x) => x.movies).find(
+    return moviesStore.MovieBlocks.flatMap((x) => x.movies).find(
       (x) => x.id == this.id
     );
   }
 
   @cell
   get blocks(): MovieBlock[] {
-    return moviesStore.Movies.filter((x) =>
+    return moviesStore.MovieBlocks.filter((x) =>
       x.movies.some((x) => x.name == this.movie.name)
     );
   }

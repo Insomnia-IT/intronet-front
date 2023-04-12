@@ -23,11 +23,23 @@
   background: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
-:global(.color-pink){
+:global(.colorPink){
     color: var(--pink);
 }
 
+:global(h1){
+    color: var(--medium-blue);
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-weight: 900;
+    font-variation-settings: "wght" 600;
+    font-size: 28px;
+    line-height: 35px;
+    text-transform: uppercase;
+}
+
 :global(.sh1){
+    color: var(--medium-blue);
     font-style: normal;
     font-variation-settings: "wght" 690;
     font-size: 24px;

@@ -42,9 +42,17 @@ export const routes = {
     title: "Голосование",
     Component: null,
   },
+  bookmarks: {
+    name: "bookmarks",
+    title: "Избранное",
+    Component: null,
+  },
 };
 
 export type RoutePath = [keyof typeof routes, ...Array<string | number>];
+export type RoutePathString =
+  | `/${keyof typeof routes}/${string}`
+  | `/${keyof typeof routes}`;
 const routeCell = new Cell<RoutePath>(
   location.pathname.split("/").slice(1) as RoutePath,
   {
@@ -57,7 +65,8 @@ function setTitle() {
   document.title = "Insomnia: " + routes[routeCell.get()[0]]?.title;
 }
 setTitle();
-const goTo = (path: RoutePath, replace: boolean = false) => {
+const goTo = (path: RoutePath | RoutePathString, replace: boolean = false) => {
+  if (typeof path === "string") path = path.split("/").slice(1) as RoutePath;
   routeCell.set(path.filter((x) => x !== null) as RoutePath);
   const url = "/" + path.filter((x) => x !== null).join("/");
   history[replace ? "replaceState" : "pushState"](null, null, url);

@@ -19,24 +19,18 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div className={Styles.time}>
+      <div className={[Styles.time, "sh1"].join(" ")}>
         {block.info.Start} - {block.info.End}
       </div>
       <ActivityCard background="Purple">
         <div flex column gap>
-          <div class={Styles.header}>
+          <div class={[Styles.header, "sh1"].join(" ")}>
             {block.info.Title}
             {block.info.MinAge && <AgeStrict age={block.info.MinAge} />}
           </div>
           <div class={Styles.subHeader}>{block.info.SubTitle}</div>
           <div class={Styles.duplicate}>{duplicate}</div>
-          {isOpen && (
-            <div flex column gap="6">
-              {block.movies.map((m, i) => (
-                <Movie movie={m} key={i} />
-              ))}
-            </div>
-          )}
+          {isOpen && <MovieList movies={block.movies} />}
           <Button type="text" onClick={() => setIsOpen((x) => !x)}>
             {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
@@ -46,7 +40,19 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   );
 };
 
-const Movie: FunctionalComponent<{ movie: MovieInfo }> = ({ movie }) => {
+export const MovieList: FunctionalComponent<{ movies: MovieInfo[] }> = (
+  props
+) => (
+  <div flex column gap="6">
+    {props.movies.map((m) => (
+      <MovieSmall movie={m} key={m.id} />
+    ))}
+  </div>
+);
+
+export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
+  movie,
+}) => {
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   return (
