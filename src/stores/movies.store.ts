@@ -24,7 +24,11 @@ class MoviesStore {
 export const moviesStore = new MoviesStore();
 globalThis["moviesStore"] = moviesStore;
 export class MovieBlockStore {
-  constructor(public id: string) {}
+  constructor(
+    public id: string,
+    public day: number,
+    public locationId: string
+  ) {}
 
   get block() {
     return moviesStore.MovieBlocks.find((x) => x._id == this.id);
@@ -35,12 +39,8 @@ export class MovieBlockStore {
   }
 
   get duplicate() {
-    const duplicate = moviesStore.MovieBlocks.find(
-      (x) =>
-        x !== this.block &&
-        x.info.Title?.trim() === this.block.info.Title?.trim() &&
-        x.info.SubTitle?.trim() === this.block.info.SubTitle?.trim() &&
-        x.info.Part === this.block.info.Part
+    const duplicate = this.block.views.find(
+      (x) => x.day !== this.day || x.locationId !== this.locationId
     );
     if (!duplicate) return undefined;
     const isAfter = duplicate.day >= getCurrentDay();
@@ -51,17 +51,20 @@ export class MovieBlockStore {
         .replace("ой", "ом") + "е";
     if (isAfter) {
       return `Покажем этот блок ещё раз ${getDayText(duplicate.day, "at")} в ${
-        duplicate.info.Start
+        duplicate.start
       } на ${screen}`;
     }
     return `Этот блок шёл ${getDayText(duplicate.day, "at")} в ${
-      duplicate.info.Start
+      duplicate.start
     } на ${screen}`;
   }
 
   public state = new Cell(() => ({
     block: this.block,
     duplicate: this.duplicate,
+    view: this.block.views.find(
+      (x) => x.day == this.day && x.locationId == this.locationId
+    ),
   }));
 }
 
@@ -76,19 +79,19 @@ export class MovieStore {
   }
 
   @cell
-  get blocks(): MovieBlock[] {
-    return moviesStore.MovieBlocks.filter((x) =>
+  get block(): MovieBlock {
+    return moviesStore.MovieBlocks.find((x) =>
       x.movies.some((x) => x.name == this.movie.name)
     );
   }
 
   public state = new Cell<{
     movie: MovieInfo;
-    blocks: MovieBlock[];
+    block: MovieBlock;
     hasBookmark: boolean;
   }>(() => ({
     movie: this.movie,
-    blocks: this.blocks,
+    block: this.block,
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
   }));
 }

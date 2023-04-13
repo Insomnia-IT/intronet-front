@@ -12,17 +12,22 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 
 export type AnimationBlockProps = {
   id: string;
+  day: number;
+  locationId: string;
 };
 export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   props
 ) => {
-  const store = useMemo(() => new MovieBlockStore(props.id), [props.id]);
-  const { block, duplicate } = useCell(store.state);
+  const store = useMemo(
+    () => new MovieBlockStore(props.id, props.day, props.locationId),
+    [props.id, props.day, props.locationId]
+  );
+  const { block, duplicate, view } = useCell(store.state);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
       <div className={[Styles.time, "sh1"].join(" ")}>
-        {block.info.Start} - {block.info.End}
+        {view.start} - {view.end}
       </div>
       <ActivityCard background="Purple">
         <div flex column gap>

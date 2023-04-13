@@ -79,8 +79,13 @@ type Movie = {
 
 type MovieBlock = {
   _id: string;
-  day: number;
-  locationId: string;
+  views: {
+    day: number;
+    locationId: string;
+    start: string;
+    end: string;
+  }[];
+
   info: {
     Title: string;
     SubTitle: string;
@@ -88,8 +93,6 @@ type MovieBlock = {
     SubTitleEn: string;
     MinAge: number;
     Part: number;
-    Start: string;
-    End: string;
   };
   movies: MovieInfo[];
 };

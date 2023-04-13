@@ -44,16 +44,16 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         <div>Голосовать можно только онлайн</div>
         <div>Для голосования потребуется номер билета</div>
       </ActivityCard>
-      {state.blocks.map((block) => (
-        <div key={block._id}>
-          <div> {getDayText(block.day, "full")}</div>
+      {state.block.views.map((view) => (
+        <div key={view.day + view.locationId}>
+          <div> {getDayText(view.day, "full")}</div>
           <ActivityCard border="Blue" background="None">
-            <div> {locationsStore.getName(block.locationId)}</div>
-            <Link goTo={["map", block.locationId]}>Локация на карте</Link>
-            <div>{block.info.Title}</div>
-            <div>{block.info.SubTitle}</div>
+            <div> {locationsStore.getName(view.locationId)}</div>
+            <Link goTo={["map", view.locationId]}>Локация на карте</Link>
+            <div>{state.block.info.Title}</div>
+            <div>{state.block.info.SubTitle}</div>
             <div>
-              {block.info.Start} - {block.info.End}
+              {view.start} - {view.end}
             </div>
           </ActivityCard>
         </div>

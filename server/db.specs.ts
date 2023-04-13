@@ -59,61 +59,51 @@ test("import-movies", async () => {
   if (movies.length != 0) {
     return;
   }
-  for (let i = 0; i < moviesJSON.length; i++) {
-    const dayInfo = moviesJSON[i];
-    const location = locations.find((x) => x.name === dayInfo.Screen);
-    console.log(location);
-    let locationId = "";
-    if (!location) {
-      // locationId = Fn.ulid();
-      // await locationsDb.addOrUpdate({
-      //   name: dayInfo.Screen,
-      //   ...center,
-      //   ...centerXY,
-      //   directionId: 'screen',
-      //   description: 'Экран',
-      //   tags: [],
-      //   _id: locationId,
-      //   menu: undefined,
-      //   image: '',
-      //   version: Fn.ulid(),
-      // });
-    } else {
-      locationId = location._id;
-    }
-
-    const movies = dayInfo.Blocks.map(
-      (block) =>
-        ({
-          _id: Fn.ulid(),
-          day: dayInfo.Day,
-          info: {
-            Title: block.Title,
-            SubTitle: block.SubTitle,
-            TitleEn: block.TitleEn,
-            SubTitleEn: block.SubTitleEn,
-            MinAge: block.MinAge,
-            Part: block.Part,
-            Start: block.Start,
-            End: block.End,
-          },
-          movies: block.Movies.map((x) => ({
-            name: x.Name,
-            author: x.Author,
-            country: x.Country,
-            year: x.Year,
-            duration: x.Duration,
-            id: Fn.ulid(),
-          })),
-          locationId: locationId,
-        } as MovieBlock)
-    );
-    for (let movie of movies) {
-      await moviesDB.addOrUpdate({
-        ...movie,
-        version: Fn.ulid(),
-      });
-    }
+  const blocks = Array.from(
+    moviesJSON
+      .flatMap((x) =>
+        x.Blocks.map((b) => ({
+          block: b,
+          day: x.Day,
+          locationId: locations.find((y) => y.name == x.Screen)._id,
+        }))
+      )
+      .groupBy((x) => `${x.block.Title}.${x.block.SubTitle}.${x.block.Part}`)
+      .entries()
+  ).map(
+    ([key, blocks]) =>
+      ({
+        _id: Fn.ulid(),
+        views: blocks.map((x) => ({
+          day: x.day,
+          start: x.block.Start,
+          end: x.block.End,
+          locationId: x.locationId,
+        })),
+        info: {
+          Title: blocks[0].block.Title,
+          SubTitle: blocks[0].block.SubTitle,
+          TitleEn: blocks[0].block.TitleEn,
+          SubTitleEn: blocks[0].block.SubTitleEn,
+          MinAge: blocks[0].block.MinAge,
+          Part: blocks[0].block.Part,
+        },
+        movies: blocks[0].block.Movies.map((x) => ({
+          name: x.Name,
+          description: "",
+          author: x.Author,
+          country: x.Country,
+          year: x.Year,
+          duration: x.Duration,
+          id: Fn.ulid(),
+        })),
+      } as MovieBlock)
+  );
+  for (let movie of blocks) {
+    await moviesDB.addOrUpdate({
+      ...movie,
+      version: Fn.ulid(),
+    });
   }
 }, 60000);
 

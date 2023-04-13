@@ -10,14 +10,21 @@ export type TimetableProps = {
 
 export const Timetable: FunctionalComponent<TimetableProps> = (props) => {
   const blocks = useCell(() => {
-    return moviesStore.MovieBlocks.filter(
-      (x) => x.locationId === props.locationId && x.day == props.day
+    return moviesStore.MovieBlocks.filter((x) =>
+      x.views.some(
+        (y) => y.locationId === props.locationId && y.day == props.day
+      )
     );
   }, [props.locationId, props.day]);
   return (
     <>
       {blocks.map((x) => (
-        <AnimationBlock id={x._id} key={x._id} />
+        <AnimationBlock
+          id={x._id}
+          key={x._id}
+          day={props.day}
+          locationId={props.locationId}
+        />
       ))}
     </>
   );
