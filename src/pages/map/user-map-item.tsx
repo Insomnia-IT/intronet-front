@@ -2,9 +2,12 @@ import { EventEmitter } from "@cmmn/cell/lib";
 import { mapStore } from "../../stores/map.store";
 import { JSX } from "preact";
 
-export class UserMapItem extends EventEmitter<{
-  change: void;
-}> implements MapItem {
+export class UserMapItem
+  extends EventEmitter<{
+    change: void;
+  }>
+  implements MapItem
+{
   get icon(): JSX.Element {
     if (this.radius > 150) {
       return <></>;
@@ -28,18 +31,18 @@ export class UserMapItem extends EventEmitter<{
 
   constructor() {
     super();
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition((e) => {
-        this.isAccurate = e.coords.accuracy < 50;
-        this.radius = Math.max(50, e.coords.accuracy);
-        this.point = mapStore.Map2GeoConverter.fromGeo({
-          lat: e.coords.latitude,
-          lon: e.coords.longitude,
-        });
-        this.isLoaded = true;
-        this.emit("change");
-      });
-    } else {
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.watchPosition((e) => {
+    //     this.isAccurate = e.coords.accuracy < 50;
+    //     this.radius = Math.max(50, e.coords.accuracy);
+    //     this.point = mapStore.Map2GeoConverter.fromGeo({
+    //       lat: e.coords.latitude,
+    //       lon: e.coords.longitude,
+    //     });
+    //     this.isLoaded = true;
+    //     this.emit("change");
+    //   });
+    // } else {
+    // }
   }
 }
