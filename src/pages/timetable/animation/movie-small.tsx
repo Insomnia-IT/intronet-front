@@ -39,7 +39,7 @@ export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
       gap
       class={shift == 0 ? "transition" : ""}
       onClick={() => router.gotToMovie(movie.id)}
-      style={{ transform }}
+      style={{ transform, background: "transparent" }}
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>
