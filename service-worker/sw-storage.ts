@@ -21,6 +21,7 @@ export class SwStorage {
     if (self.origin.includes("local")) {
       this.clear();
     }
+    globalThis["storage" + name] = this;
   }
 
   clear() {
@@ -43,7 +44,7 @@ export class SwStorage {
       const newStorage = new SwStorage("tmp", version);
       newStorage.isIOS = this.isIOS;
       newStorage
-        .load(false)
+        .load()
         .then(async (newCache) => {
           for (let key of await newCache.keys()) {
             this.cache ??= await caches.open(this.name);
@@ -52,6 +53,7 @@ export class SwStorage {
           }
           await newStorage.clear();
           await this.sendAll({ action: "new-version" as ServiceWorkerAction });
+          this.version = version;
           console.log(`updated to version ${version}`);
         })
         .catch((e) => {
@@ -123,7 +125,6 @@ export class SwStorage {
   async getResponse(request: Request) {
     if (new URL(request.url).pathname.match(/^\/(api|db|webapi)/))
       return fetch(request);
-    await this.loading;
     // routes with extensions: .js, .css, .json...
     if (request.url.match(/\.\w+$/)) return this.getFromCacheOrFetch(request);
     // routes without extension: /, /map, /info, ...

@@ -3,7 +3,6 @@ import { ServiceWorkerAction } from "./actions";
 declare var self: ServiceWorkerGlobalScope;
 
 const storage = new SwStorage("root");
-
 self.addEventListener("install", (event) => {
   // event.waitUntil(caches.delete('root').catch())
 });
