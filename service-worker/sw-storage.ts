@@ -13,6 +13,7 @@ export class SwStorage {
   loading = new Promise<void>((resolve) => (this.resolve = resolve));
   cache: Cache;
   isIOS = false;
+  cacheOpen = caches.open(this.name).then((x) => (this.cache = x));
 
   constructor(
     protected name,
@@ -85,7 +86,7 @@ export class SwStorage {
 
   async load(ignoreErrors = true) {
     this.version ??= await this.getVersion().catch();
-    this.cache = await caches.open(this.name);
+    await this.cacheOpen;
     await Promise.all(
       (this.isIOS
         ? assets.concat(assetsIOS)
