@@ -1,9 +1,9 @@
 import { useRouter } from "../../pages/routing";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { useCell } from "@helpers/cell-state";
-import { MovieSmall } from "../../pages/timetable/animation/animation-block";
 import { useEffect } from "preact/hooks";
 import { CloseButton } from "@components";
+import { MovieSmall } from "../../pages/timetable/animation/movie-small";
 
 export const BookmarksPage = () => {
   const router = useRouter();

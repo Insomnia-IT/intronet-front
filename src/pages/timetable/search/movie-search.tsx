@@ -2,7 +2,8 @@ import { Input } from "@components/input";
 import { useMemo, useState } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { moviesStore } from "@stores";
-import { MovieList, MovieSmall } from "../animation/animation-block";
+import { MovieList } from "../animation/animation-block";
+import { MovieSmall } from "../animation/movie-small";
 
 export const MovieSearch = () => {
   const [query, setQuery] = useState<string | undefined>(undefined);

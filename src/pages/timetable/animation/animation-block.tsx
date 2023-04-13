@@ -3,12 +3,10 @@ import { ActivityCard } from "@components/cards/activity";
 import Styles from "./animation.module.css";
 import { AgeStrict } from "@components/age-strict";
 import { useMemo, useState } from "preact/hooks";
-import { MovieBlockStore, moviesStore } from "@stores";
+import { MovieBlockStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { Button } from "@components";
-import { useTimetableRouter } from "../timetable-page";
-import { SvgIcon } from "@icons";
-import { bookmarksStore } from "@stores/bookmarks.store";
+import { MovieSmall } from "./movie-small";
 
 export type AnimationBlockProps = {
   id: string;
@@ -56,37 +54,3 @@ export const MovieList: FunctionalComponent<{ movies: MovieInfo[] }> = (
     ))}
   </div>
 );
-
-export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
-  movie,
-}) => {
-  const router = useTimetableRouter();
-  const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
-  const hasBookmark = useCell(
-    () => !!bookmarksStore.getBookmark("movie", movie.id),
-    [movie.id]
-  );
-  return (
-    <div flex column gap onClick={() => router.gotToMovie(movie.id)}>
-      <div flex center>
-        <div flex-grow class={Styles.movieTitle}>
-          «{movie.name}»
-        </div>
-        {hasBookmark && (
-          <SvgIcon
-            id="#bookmark"
-            class="colorPink"
-            size={17}
-            style={{ flexShrink: 0 }}
-          />
-        )}
-      </div>
-      <div class={Styles.movieInfo}>
-        {movie.author}, {movie.country}, {movie.year}
-      </div>
-      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-        {minutes} мин {seconds} сек
-      </div>
-    </div>
-  );
-};

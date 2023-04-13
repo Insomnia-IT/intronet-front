@@ -65,3 +65,7 @@
 :global(.link):after{
   content: ' →';
 }
+
+:global(.transition){
+  transition: .2s ease;
+}
