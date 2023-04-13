@@ -103,6 +103,7 @@ export class SwStorage {
   }
 
   async getFromCacheOrFetch(request: Request) {
+    await this.cacheOpen;
     return (await this.cache.match(request)) ?? this.fetchAndPut(request);
   }
 
