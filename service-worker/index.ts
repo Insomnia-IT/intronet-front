@@ -34,6 +34,7 @@ self.addEventListener("message", (event) => {
         storage.isIOS = event.data.isIOS;
         storage
           .load()
+          .catch()
           .then(() => self.clients.claim())
           .then(() => {
             event.source.postMessage({

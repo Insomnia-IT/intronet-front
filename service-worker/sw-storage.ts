@@ -85,7 +85,7 @@ export class SwStorage {
   }
 
   async load(ignoreErrors = true) {
-    this.version ??= await this.getVersion().catch();
+    this.version ??= await this.getVersion().catch((e) => null);
     await this.cacheOpen;
     await Promise.all(
       (this.isIOS
