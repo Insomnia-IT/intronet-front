@@ -6,6 +6,7 @@ import Styles from "./animation.module.css";
 import { SvgIcon } from "@icons";
 import { Gesture } from "./gesture";
 import { useEffect, useRef, useState } from "preact/hooks";
+import { votingStore } from "@stores/votingStore";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
@@ -15,7 +16,6 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
   removeTimeout,
 }) => {
-  const gesture = useCell(Gesture);
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const hasBookmark = useCell(
@@ -23,6 +23,50 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     [movie.id]
   );
   const ref = useRef();
+  const { transform, iconTransform, iconOpacity, classNames, transition } =
+    useGestures(ref, hasBookmark, removeTimeout, movie);
+  return (
+    <div
+      ref={ref}
+      flex
+      column
+      gap
+      class={classNames.join(" ")}
+      onClick={() => router.gotToMovie(movie.id)}
+      style={{
+        transform,
+        background: "transparent",
+        transition,
+      }}
+    >
+      <div flex center>
+        <div flex-grow class={Styles.movieTitle}>
+          «{movie.name}»
+        </div>
+        <SvgIcon
+          id="#bookmark"
+          class={[...classNames, "colorPink"].join(" ")}
+          size={17}
+          style={{
+            flexShrink: 0,
+            opacity: iconOpacity,
+            transform: iconTransform,
+          }}
+        />
+      </div>
+      <div class={Styles.movieInfo}>
+        {movie.author}, {movie.country}, {movie.year}
+      </div>
+      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
+        {minutes} мин {seconds} сек
+      </div>
+    </div>
+  );
+};
+
+function useGestures(ref, hasBookmark, removeTimeout, movie: MovieInfo) {
+  const gesture = useCell(Gesture);
+
   const [timeoutId, setTimeoutId] = useState<undefined | number>(undefined);
   const realHasBookmark = hasBookmark && !timeoutId;
   const shift =
@@ -34,6 +78,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   const iconOpacity = realHasBookmark
     ? 1 - Math.abs(shift) / 100
     : Math.abs(shift) / 100;
+
   useEffect(() => {
     if (Math.abs(shift) < 100) return;
     if (hasBookmark) {
@@ -52,43 +97,16 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
       bookmarksStore.addBookmark("movie", movie.id);
     }
   }, [shift, realHasBookmark, timeoutId, removeTimeout]);
-  return (
-    <div
-      ref={ref}
-      flex
-      column
-      gap
-      class={[shift == 0 ? "transition" : "", timeoutId ? "removing" : ""].join(
-        " "
-      )}
-      onClick={() => router.gotToMovie(movie.id)}
-      style={{
-        transform,
-        background: "transparent",
-        transition: timeoutId ? `opacity ${removeTimeout}ms ease` : undefined,
-      }}
-    >
-      <div flex center>
-        <div flex-grow class={Styles.movieTitle}>
-          «{movie.name}»
-        </div>
-        <SvgIcon
-          id="#bookmark"
-          class={[shift == 0 ? "transition" : "", "colorPink"].join(" ")}
-          size={17}
-          style={{
-            flexShrink: 0,
-            opacity: iconOpacity,
-            transform: iconTransform,
-          }}
-        />
-      </div>
-      <div class={Styles.movieInfo}>
-        {movie.author}, {movie.country}, {movie.year}
-      </div>
-      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-        {minutes} мин {seconds} сек
-      </div>
-    </div>
-  );
-};
+  const classNames = [
+    shift == 0 ? "transition" : "",
+    timeoutId ? "removing" : "",
+  ];
+  const transition = timeoutId ? `opacity ${removeTimeout}ms ease` : undefined;
+  return {
+    transform,
+    iconTransform,
+    iconOpacity,
+    classNames,
+    transition,
+  };
+}
