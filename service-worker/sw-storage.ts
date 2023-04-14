@@ -17,7 +17,7 @@ export class SwStorage {
 
   constructor(
     protected name,
-    protected version: string | undefined = undefined
+    protected version: string | undefined = localStorage.getItem('version')
   ) {
     if (self.origin.includes("local")) {
       this.clear();
@@ -55,6 +55,7 @@ export class SwStorage {
           await newStorage.clear();
           await this.sendAll({ action: "new-version" as ServiceWorkerAction });
           this.version = version;
+          localStorage.setItem('version', version);
           console.log(`updated to version ${version}`);
         })
         .catch((e) => {
@@ -85,7 +86,9 @@ export class SwStorage {
   }
 
   async load(ignoreErrors = true) {
-    this.version ??= await this.getVersion().catch((e) => null);
+    this.version ??= await this.getVersion()
+      .then(version => localStorage.setItem('version', version))
+      .catch((e) => null);
     await this.cacheOpen;
     await Promise.all(
       (this.isIOS
