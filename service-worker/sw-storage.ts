@@ -78,15 +78,13 @@ export class SwStorage {
     }
   }
 
-  private getVersion() {
+  private async getVersion() {
     return fetch(versionUrl).then((x) =>
       x.ok ? x.text() : Promise.reject(`Failed load version`)
     );
   }
 
   async load(ignoreErrors = true) {
-    this.version ??= await this.getVersion()
-      .catch((e) => null);
     await this.cacheOpen;
     await Promise.all(
       (this.isIOS
@@ -99,16 +97,17 @@ export class SwStorage {
         })
       )
     );
+    this.version ??= await this.cache.match(versionUrl).then(x => x.text());
     this.resolve();
     return this.cache;
   }
 
-  async getFromCacheOrFetch(request: Request) {
+  async getFromCacheOrFetch(request: Request, notify = true) {
     await this.cacheOpen;
-    return (await this.cache.match(request)) ?? this.fetchAndPut(request);
+    return (await this.cache.match(request)) ?? await this.fetchAndPut(request, notify);
   }
 
-  async fetchAndPut(request: Request) {
+  async fetchAndPut(request: Request, notify = true) {
     const res = await fetch(new Request(request.url + `?hash=${+new Date()}`));
     if (!res.ok) {
       throw new Error(`Failed load ` + request.url + ", status: " + res.status);
