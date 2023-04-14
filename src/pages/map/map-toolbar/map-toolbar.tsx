@@ -2,8 +2,9 @@ import { useState } from "preact/hooks";
 import { Expander } from "@components";
 import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";
-import {Location} from "@components/Location";
-import {SvgIcon} from "@icons";
+import { Location } from "@components/Location";
+import { SvgIcon } from "@icons";
+import { useHistoryState } from "../../routing";
 
 export type MapToolbarProps = {
   id: string;
@@ -11,14 +12,20 @@ export type MapToolbarProps = {
 };
 
 export function MapToolbar(props: MapToolbarProps) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useHistoryState("mapToolbarExapnded", false);
 
   const location = locationsStore.db.get(props.id);
 
   return (
     <>
       <div className={expanded ? styles.expandedToolbar : styles.toolbar}>
-        <div className={styles.close} onClick={props.onClose}>
+        <div
+          className={styles.close}
+          onClick={() => {
+            setExpanded(false);
+            props.onClose();
+          }}
+        >
           <SvgIcon id="#close" />
         </div>
         <div

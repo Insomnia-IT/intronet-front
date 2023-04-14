@@ -7,6 +7,7 @@ import { MainPage } from "./main/mainPage";
 import { compare } from "@cmmn/cell/lib";
 import { BookmarksPage } from "@components/bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
+import { StateUpdater, useCallback, useMemo, useState } from "preact/hooks";
 
 export const routes = {
   main: {
@@ -90,13 +91,14 @@ const goTo = (
   let url = "/" + path.filter((x) => x !== null).join("/");
   const search = new URLSearchParams(query).toString();
   if (search) url += "?" + search;
-  history[replace ? "replaceState" : "pushState"](null, null, url);
+  history[replace ? "replaceState" : "pushState"]({}, null, url);
 };
 window.addEventListener("popstate", () => {
   routeCell.set(location.pathname.split("/").slice(1) as RoutePath);
   queryCell.set(
     Object.fromEntries(new URL(location.href).searchParams.entries())
   );
+  historyStateCell.set(history.state);
 });
 if (location.pathname === "/") {
   goTo(["map"], {}, true);
@@ -113,4 +115,30 @@ export function useRouter<TQuery extends Record<string, string> = {}>() {
     active: routes[route[0]] ?? routes.map,
     goTo,
   };
+}
+history.scrollRestoration = "auto";
+export const historyStateCell = new Cell<Record<string, any>>(
+  {},
+  {
+    tap: (v) => {
+      console.log(v);
+      history.replaceState(v, "", location.href);
+    },
+  }
+);
+export function useHistoryState<S>(
+  name: string,
+  initial: S
+): [S, StateUpdater<S>] {
+  const state = useCell(() => historyStateCell.get()[name] ?? initial) as S;
+  useState();
+  const setState = useCallback<StateUpdater<S>>((v) => {
+    const curent = historyStateCell.get();
+    if (typeof v === "function") v = (v as Function)(curent[name]) as S;
+    historyStateCell.set({
+      ...curent,
+      [name]: v,
+    });
+  }, []);
+  return [state, setState];
 }

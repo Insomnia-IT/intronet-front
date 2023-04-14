@@ -50,7 +50,7 @@
 .buttonsBar {
   background: transparent;
   display: flex;
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   flex-direction: column;
   justify-content: center;
@@ -65,7 +65,7 @@
 .close{
   composes: frame;
   composes: button;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   right: 16px;
   top: 16px;

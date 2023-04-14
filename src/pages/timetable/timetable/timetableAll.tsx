@@ -18,16 +18,24 @@ export const TimetableAll: FunctionalComponent = () => {
   );
   const screen = router.query.screen ?? screens[0]?._id;
   const setScreen = (screen: string) =>
-    router.goTo(router.route, {
-      day: day.toString(),
-      screen: screen,
-    });
+    router.goTo(
+      router.route,
+      {
+        day: day.toString(),
+        screen: screen,
+      },
+      true
+    );
   const day = router.query.day ? +router.query.day : getCurrentDay();
   const setDay = (day: number) =>
-    router.goTo(router.route, {
-      day: day.toString(),
-      screen: screen,
-    });
+    router.goTo(
+      router.route,
+      {
+        day: day.toString(),
+        screen: screen,
+      },
+      true
+    );
 
   useEffect(() => {
     if (screen) return;

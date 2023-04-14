@@ -5,13 +5,11 @@ import { useRouter } from "../../pages/routing";
 import { useCallback } from "preact/hooks";
 import { FunctionalComponent } from "preact";
 
-export type CloseButtonProps = {
-  back?: boolean;
-};
+export type CloseButtonProps = {};
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
   const onClick = useCallback(() => {
-    if (props.back && history.length > 0) {
+    if (history.length > 0) {
       router.back();
     } else {
       router.goTo(["main"]);

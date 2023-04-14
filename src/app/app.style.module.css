@@ -17,11 +17,9 @@
 :global(.page){
   margin: 0 16px;
   padding-top: 50px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: visible;
-  height: 100vh;
   box-sizing: border-box;
 }
 

@@ -14,7 +14,7 @@ export const VotingPage = () => {
     case "ticket":
       return (
         <div class="page">
-          <CloseButton back />
+          <CloseButton />
           <h1>голосовать</h1>
           <VotingTicket />
         </div>
@@ -22,7 +22,7 @@ export const VotingPage = () => {
     case undefined:
       return (
         <div class="page">
-          <CloseButton back />
+          <CloseButton />
           <h1>голосовать</h1>
           <VotingMain />
         </div>
