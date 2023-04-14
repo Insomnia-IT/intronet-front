@@ -1,12 +1,12 @@
 import { FunctionalComponent } from "preact";
-import { ActivityCard } from "@components/cards/activity";
+import { Card } from "@components/cards/activity";
 import Styles from "./animation.module.css";
 import { AgeStrict } from "@components/age-strict";
 import { useMemo, useState } from "preact/hooks";
 import { MovieBlockStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { Button } from "@components";
-import { MovieSmall } from "./movie-small";
+import { MovieSmall, MovieSmallProps } from "./movie-small";
 
 export type AnimationBlockProps = {
   id: string;
@@ -27,7 +27,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       <div className={[Styles.time, "sh1"].join(" ")}>
         {view.start} - {view.end}
       </div>
-      <ActivityCard background="Purple">
+      <Card background="Purple">
         <div flex column gap>
           <div class={[Styles.header, "sh1"].join(" ")}>
             {block.info.Title}
@@ -40,17 +40,17 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
             {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
         </div>
-      </ActivityCard>
+      </Card>
     </div>
   );
 };
 
-export const MovieList: FunctionalComponent<{ movies: MovieInfo[] }> = (
-  props
-) => (
+export const MovieList: FunctionalComponent<
+  { movies: MovieInfo[] } & Partial<Omit<MovieSmallProps, "movie">>
+> = ({ movies, ...props }) => (
   <div flex column gap="6">
-    {props.movies.map((m) => (
-      <MovieSmall movie={m} key={m.id} />
+    {movies.map((m) => (
+      <MovieSmall movie={m} key={m.id} {...props} />
     ))}
   </div>
 );

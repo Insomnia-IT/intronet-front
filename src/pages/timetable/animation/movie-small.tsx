@@ -5,10 +5,15 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import Styles from "./animation.module.css";
 import { SvgIcon } from "@icons";
 import { Gesture } from "./gesture";
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
-export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
+export type MovieSmallProps = {
+  movie: MovieInfo;
+  removeTimeout?: number;
+};
+export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
+  removeTimeout,
 }) => {
   const gesture = useCell(Gesture);
   const router = useTimetableRouter();
@@ -18,28 +23,50 @@ export const MovieSmall: FunctionalComponent<{ movie: MovieInfo }> = ({
     [movie.id]
   );
   const ref = useRef();
+  const [timeoutId, setTimeoutId] = useState<undefined | number>(undefined);
+  const realHasBookmark = hasBookmark && !timeoutId;
   const shift =
-    gesture?.path.includes(ref.current) && gesture.shift > 0 === hasBookmark
+    gesture?.path.includes(ref.current) && gesture.shift > 0 === realHasBookmark
       ? Math.sign(gesture.shift) * Math.min(Math.abs(gesture.shift), 100)
       : 0;
   const transform = `translateX(${shift}px)`;
-  const iconTransform = `translateX(${hasBookmark ? -shift : 100}px)`;
-  const iconOpacity = hasBookmark
+  const iconTransform = `translateX(${realHasBookmark ? -shift : 100}px)`;
+  const iconOpacity = realHasBookmark
     ? 1 - Math.abs(shift) / 100
     : Math.abs(shift) / 100;
   useEffect(() => {
     if (Math.abs(shift) < 100) return;
-    bookmarksStore.switchBookmark("movie", movie.id);
-  }, [shift, hasBookmark]);
+    if (hasBookmark) {
+      if (timeoutId) {
+        clearInterval(timeoutId);
+        setTimeoutId(undefined);
+      } else if (removeTimeout) {
+        const timeoutId = setTimeout(() => {
+          bookmarksStore.removeBookmark("movie", movie.id);
+        }, removeTimeout);
+        setTimeoutId(timeoutId as any);
+      } else {
+        bookmarksStore.removeBookmark("movie", movie.id);
+      }
+    } else {
+      bookmarksStore.addBookmark("movie", movie.id);
+    }
+  }, [shift, realHasBookmark, timeoutId, removeTimeout]);
   return (
     <div
       ref={ref}
       flex
       column
       gap
-      class={shift == 0 ? "transition" : ""}
+      class={[shift == 0 ? "transition" : "", timeoutId ? "removing" : ""].join(
+        " "
+      )}
       onClick={() => router.gotToMovie(movie.id)}
-      style={{ transform, background: "transparent" }}
+      style={{
+        transform,
+        background: "transparent",
+        transition: timeoutId ? `opacity ${removeTimeout}ms ease` : undefined,
+      }}
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>

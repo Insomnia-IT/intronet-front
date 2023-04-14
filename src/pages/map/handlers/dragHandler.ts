@@ -2,9 +2,9 @@ import { TransformMatrix } from "../transform/transform.matrix";
 import { EventEmitter } from "@cmmn/cell/lib";
 
 export class DragHandler extends EventEmitter<{
-  transform: TransformMatrix
+  transform: TransformMatrix;
 }> {
-  constructor(private root: HTMLDivElement) {
+  constructor(private root: HTMLElement) {
     super();
     this.root.style.touchAction = "none";
     this.root.addEventListener("pointerdown", this.onDown, { passive: true });

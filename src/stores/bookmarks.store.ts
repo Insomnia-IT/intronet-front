@@ -14,7 +14,14 @@ class BookmarksStore {
       .map((m) => moviesStore.Movies.find((x) => x.id == m.itemId))
       .filter((x) => x);
   }
-
+  public async removeBookmark(type: Bookmark["type"], id: string) {
+    const exist = await this.getBookmark(type, id);
+    if (exist) {
+      this.db.remove(exist._id);
+    } else {
+      throw new Error(`Bookmark has not been added`);
+    }
+  }
   public async switchBookmark(type: Bookmark["type"], id: string) {
     const exist = await this.getBookmark(type, id);
     if (exist) {

@@ -6,6 +6,7 @@ import { useCell } from "@helpers/cell-state";
 import { MainPage } from "./main/mainPage";
 import { compare } from "@cmmn/cell/lib";
 import { BookmarksPage } from "@components/bookmarks/bookmarks-page";
+import { VotingPage } from "./voting/voting-page";
 
 export const routes = {
   main: {
@@ -41,7 +42,7 @@ export const routes = {
   voting: {
     name: "voting",
     title: "Голосование",
-    Component: null,
+    Component: VotingPage,
   },
   bookmarks: {
     name: "bookmarks",

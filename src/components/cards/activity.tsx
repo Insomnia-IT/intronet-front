@@ -7,7 +7,7 @@ export type ActivityCardProps = {
   border?: "Blue" | "Vivid";
   background?: "Purple" | "None" | "White";
 };
-export const ActivityCard: FunctionalComponent<ActivityCardProps> = (props) => {
+export const Card: FunctionalComponent<ActivityCardProps> = (props) => {
   return (
     <div
       className={[

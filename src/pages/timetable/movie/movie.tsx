@@ -6,7 +6,7 @@ import style from "../../../app/app.style.module.css";
 import Styles from "../animation/animation.module.css";
 import { getDayText } from "@helpers/getDayText";
 import { useTimetableRouter } from "../timetable-page";
-import { ActivityCard } from "@components/cards";
+import { Card } from "@components/cards";
 import { Button, ButtonsBar } from "@components";
 import { SvgIcon } from "@icons";
 import { bookmarksStore } from "@stores/bookmarks.store";
@@ -33,7 +33,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class={Styles.movieInfo}>
         {minutes} мин {seconds} сек
       </div>
-      <ActivityCard border="Vivid" background="White">
+      <Card border="Vivid" background="White">
         <div class={[style.sh1, style.colorPink].join(" ")}>
           Международный конкурс анимации
         </div>
@@ -43,11 +43,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         <Link goTo="/voting">Голосование</Link>
         <div>Голосовать можно только онлайн</div>
         <div>Для голосования потребуется номер билета</div>
-      </ActivityCard>
+      </Card>
       {state.block.views.map((view) => (
         <div key={view.day + view.locationId}>
           <div> {getDayText(view.day, "full")}</div>
-          <ActivityCard border="Blue" background="None">
+          <Card border="Blue" background="None">
             <div> {locationsStore.getName(view.locationId)}</div>
             <Link goTo={["map", view.locationId]}>Локация на карте</Link>
             <div>{state.block.info.Title}</div>
@@ -55,7 +55,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
             <div>
               {view.start} - {view.end}
             </div>
-          </ActivityCard>
+          </Card>
         </div>
       ))}
       <ButtonsBar at="bottom">

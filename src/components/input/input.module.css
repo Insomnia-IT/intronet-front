@@ -14,3 +14,6 @@
     border-color: var(--chineese-cafe);
     outline: none;
 }
+.input:invalid{
+    border-color: var(--new-pink);
+}

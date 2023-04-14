@@ -11,7 +11,7 @@ export type CloseButtonProps = {
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
   const onClick = useCallback(() => {
-    if (props.back) {
+    if (props.back && history.length > 0) {
       router.back();
     } else {
       router.goTo(["main"]);

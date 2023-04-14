@@ -1,9 +1,10 @@
 import { useRouter } from "../../pages/routing";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { useCell } from "@helpers/cell-state";
-import { useEffect } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { CloseButton } from "@components";
 import { MovieSmall } from "../../pages/timetable/animation/movie-small";
+import { MovieList } from "../../pages/timetable/animation/animation-block";
 
 export const BookmarksPage = () => {
   const router = useRouter();
@@ -24,11 +25,5 @@ export const BookmarksPage = () => {
 
 export const BookmarkMovies = () => {
   const items = useCell(() => bookmarksStore.Movies);
-  return (
-    <>
-      {items.map((x) => (
-        <MovieSmall movie={x} />
-      ))}
-    </>
-  );
+  return <MovieList movies={items} removeTimeout={5000} />;
 };

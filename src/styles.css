@@ -38,6 +38,17 @@
     text-transform: uppercase;
 }
 
+:global(h2){
+    color: var(--medium-blue);
+    font-family: 'Unbounded';
+    font-style: normal;
+    font-variation-settings: "wght" 900;
+    font-size: 20px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+
 :global(.sh1){
     color: var(--medium-blue);
     font-style: normal;
