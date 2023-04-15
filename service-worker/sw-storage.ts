@@ -47,8 +47,8 @@ export class SwStorage {
       newStorage
         .load()
         .then(async (newCache) => {
+          await this.cacheOpen;
           for (let key of await newCache.keys()) {
-            this.cache ??= await caches.open(this.name);
             await this.cache.delete(key);
             await this.cache.put(key, await newCache.match(key));
           }
