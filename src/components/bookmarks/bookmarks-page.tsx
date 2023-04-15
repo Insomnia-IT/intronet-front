@@ -18,7 +18,7 @@ export const BookmarksPage = () => {
     <div class="page">
       <h1>избранное</h1>
       {type == "movie" && <BookmarkMovies />}
-      <CloseButton back />
+      <CloseButton />
     </div>
   );
 };

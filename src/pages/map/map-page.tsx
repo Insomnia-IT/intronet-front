@@ -1,6 +1,6 @@
 import { cell } from "@cmmn/cell/lib";
-import {Component} from "preact";
-import {Button, ButtonsBar, CloseButton} from "@components";
+import { Component } from "preact";
+import { Button, ButtonsBar, CloseButton } from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
@@ -11,8 +11,8 @@ import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
 import mapElementStyles from "./map-element.module.css";
 import { UserMapItem } from "./user-map-item";
-import {useRouter} from "../routing";
-import {SvgIcon} from "@icons";
+import { historyStateCell, useRouter } from "../routing";
+import { SvgIcon } from "@icons";
 import { MapIcon } from "./icons/map-icons";
 
 export function MapPageWithRouting() {
@@ -23,14 +23,24 @@ export function MapPageWithRouting() {
 export class MapPage extends Component<{ locationId? }> {
   @cell
   isMap = true;
-  @cell
-  selected: string;
+
+  get selected(): string {
+    return historyStateCell.get()["selectedMapElement"];
+  }
+  set selected(value: string) {
+    console.log(value);
+    historyStateCell.set({
+      ...historyStateCell.get(),
+      selectedMapElement: value,
+    });
+  }
+
   @cell
   isEditing = false;
   static contextType = ModalContext;
 
   componentDidMount() {
-    this.selected = this.props.locationId;
+    this.selected ??= this.props.locationId;
   }
 
   @cell
@@ -56,7 +66,7 @@ export class MapPage extends Component<{ locationId? }> {
         ? mapStore.Map2GeoConverter.fromGeo(x)
         : { X: x.x, Y: x.y },
       icon: this.isMap ? (
-        <MapIcon id={x.directionId}/>
+        <MapIcon id={x.directionId} />
       ) : this.isEditing ? (
         <>
           <circle
@@ -111,47 +121,56 @@ export class MapPage extends Component<{ locationId? }> {
             }
           }}
         />
-        <CloseButton/>
+        <CloseButton />
         <ButtonsBar at="bottom">
           <Button type="blue">
-            <SvgIcon id="#search" size='14px'/>
+            <SvgIcon id="#search" size="14px" />
           </Button>
           <Button type="blue">
-            <SvgIcon id="#bookmark" size='14px'/>
+            <SvgIcon id="#bookmark" size="14px" />
             мои места
           </Button>
         </ButtonsBar>
 
         <ButtonsBar at="right">
           <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#plus" size='14px' />
+            <SvgIcon id="#plus" size="14px" />
           </Button>
           <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#minus" size='14px' />
+            <SvgIcon id="#minus" size="14px" />
           </Button>
         </ButtonsBar>
         {/*<LocationSearch onSelect={this.selectLocation} />*/}
         <ButtonsBar at="left">
-          <Button type="frame" onClick={() => {
-            this.isMap = !this.isMap;
-            this.isEditing = false;
-            this.localChanges.clear();
-          }} className={styles.mapButton}>
-            <SvgIcon id="#magic" size='24px'/>
+          <Button
+            type="frame"
+            onClick={() => {
+              this.isMap = !this.isMap;
+              this.isEditing = false;
+              this.localChanges.clear();
+            }}
+            className={styles.mapButton}
+          >
+            <SvgIcon id="#magic" size="24px" />
           </Button>
 
           <RequireAuth>
-            <Button aria-label="Start edit" onClick={() => {
-              if (this.isEditing) {
-                this.saveLocations();
-              }
-              this.isEditing = !this.isEditing;
-            }}>
-              {this.isEditing ? <SvgIcon id="#ok" /> : <SvgIcon id="#edit"/>}
+            <Button
+              aria-label="Start edit"
+              onClick={() => {
+                if (this.isEditing) {
+                  this.saveLocations();
+                }
+                this.isEditing = !this.isEditing;
+              }}
+            >
+              {this.isEditing ? <SvgIcon id="#ok" /> : <SvgIcon id="#edit" />}
             </Button>
-            <Button onClick={this.handleAddIconButtonClick}
-                     aria-label="Add location">
-              <SvgIcon id="#plus"/>
+            <Button
+              onClick={this.handleAddIconButtonClick}
+              aria-label="Add location"
+            >
+              <SvgIcon id="#plus" />
             </Button>
           </RequireAuth>
         </ButtonsBar>

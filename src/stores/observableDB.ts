@@ -1,5 +1,6 @@
 import { EventEmitter, Fn, AsyncQueue } from "@cmmn/cell/lib";
 import indexeddbWrapper from "indexeddb-wrapper";
+import { IsConnected } from "@stores/connection";
 
 const api = `https://intro.cherepusick.keenetic.name/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
@@ -188,8 +189,9 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
   async loadFromServer() {
     try {
       this.remote = await fetch(`${api}/versions`).then((x) => x.json());
+      IsConnected.set(true);
     } catch (e) {
-      console.log("disconnected");
+      IsConnected.set(false);
     }
   }
 }

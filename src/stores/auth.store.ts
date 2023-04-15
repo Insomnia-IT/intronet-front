@@ -1,7 +1,7 @@
 import { cell, Fn } from "@cmmn/cell/lib";
-import { CookieStore } from "@stores/cookie.store";
+import { LocalStore } from "@stores/localStore";
 
-class AuthStore extends CookieStore<{
+class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
@@ -9,7 +9,7 @@ class AuthStore extends CookieStore<{
   constructor() {
     super();
     if (!this.uid) {
-      this.patchCookies({
+      this.patch({
         uid: Fn.ulid(),
       });
     }
@@ -17,15 +17,15 @@ class AuthStore extends CookieStore<{
 
   @cell
   public get token(): string {
-    return this.cookie.token;
+    return this.values.token;
   }
   @cell
   public get userName(): string {
-    return this.cookie.username;
+    return this.values.username;
   }
   @cell
   public get uid(): string {
-    return this.cookie.uid;
+    return this.values.uid;
   }
   @cell
   public get isAdmin(): boolean {
@@ -33,7 +33,7 @@ class AuthStore extends CookieStore<{
   }
 
   public auth(user: string, token: string) {
-    this.patchCookies({
+    this.patch({
       username: user,
       token: token,
     });

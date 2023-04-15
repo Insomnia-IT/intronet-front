@@ -11,6 +11,7 @@ import { Button, ButtonsBar } from "@components";
 import { SvgIcon } from "@icons";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { Link } from "@components/link/link";
+import { votingStore } from "@stores/votingStore";
 
 export type MovieProps = {
   id: string;
@@ -22,6 +23,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const movie = state.movie ?? ({} as MovieInfo);
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
+  const { ticket, isOnline } = useCell(votingStore.state);
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
@@ -40,10 +42,31 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         <div class={[style.sh3, style.colorPink].join(" ")}>
           Приз зрительских симпатий
         </div>
-        <Link goTo="/voting">Голосование</Link>
-        <div>Голосовать можно только онлайн</div>
-        <div>Для голосования потребуется номер билета</div>
+        {ticket ? (
+          <>
+            <Button
+              class="w-full"
+              type="vivid"
+              disabled={!isOnline}
+              goTo={["voting", movie.id]}
+            >
+              Голосую за этот мульт
+            </Button>
+          </>
+        ) : (
+          <>
+            <Link goTo="/voting">Голосование</Link>
+            <div>Голосовать можно только онлайн</div>
+            <div>Для голосования потребуется номер билета</div>
+          </>
+        )}
       </Card>
+
+      {ticket && !isOnline && (
+        <div class="colorPink">
+          Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
+        </div>
+      )}
       {state.block.views.map((view) => (
         <div key={view.day + view.locationId}>
           <div> {getDayText(view.day, "full")}</div>

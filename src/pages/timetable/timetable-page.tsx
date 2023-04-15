@@ -13,7 +13,7 @@ export function TimetablePage() {
       return (
         <div class="page">
           <MovieSearch />
-          <CloseButton back />
+          <CloseButton />
         </div>
       );
     case undefined:
@@ -36,7 +36,7 @@ export function TimetablePage() {
       return (
         <div class="page">
           <Movie id={router.movieId} />
-          <CloseButton back />
+          <CloseButton />
         </div>
       );
   }

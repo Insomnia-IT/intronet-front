@@ -7,6 +7,7 @@ import { MovieBlockStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { Button } from "@components";
 import { MovieSmall, MovieSmallProps } from "./movie-small";
+import { useHistoryState } from "../../routing";
 
 export type AnimationBlockProps = {
   id: string;
@@ -21,7 +22,10 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
     [props.id, props.day, props.locationId]
   );
   const { block, duplicate, view } = useCell(store.state);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useHistoryState<boolean>(
+    `${props.id}.${props.day}.${props.locationId}`,
+    false
+  );
   return (
     <div>
       <div className={[Styles.time, "sh1"].join(" ")}>
