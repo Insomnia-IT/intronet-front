@@ -29,11 +29,7 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
   ); // при первой установке на клиенте еще нет sw
 
   if (location.pathname.match(/\.reload/)) {
-    indexedDB
-      .databases()
-      .then((dbs) => dbs.removeAll((x) => true))
-      .catch()
-      .then(() => navigator.serviceWorker.getRegistration())
+    navigator.serviceWorker.getRegistration()
       .then((x) => x?.unregister())
       .catch()
       .then((x) => (location.pathname = "/"));

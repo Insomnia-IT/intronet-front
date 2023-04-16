@@ -21,6 +21,9 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   constructor(public name: string, public localOnly: boolean = false) {
     super();
     globalThis[name] = this;
+    if (location.pathname.match(/\.reload/)) {
+      this.clear();
+    }
     this.init();
   }
 
