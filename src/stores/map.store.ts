@@ -5,7 +5,7 @@ class MapStore {
   constructor() {
     try {
       this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
-      this.load("/public/images/map_17_78306_41656_78314_41663.png").then(
+      this.load("/public/images/map-min.webp").then(
         (x) => (this.Map2 = x)
       );
     }catch (e){
