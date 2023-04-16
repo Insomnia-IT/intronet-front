@@ -1,3 +1,4 @@
+
 .time{
     color: var(--medium-blue);
     margin-bottom: 9px;
@@ -20,6 +21,18 @@
   display: none;
 }
 
+.movieSmall{
+  user-select: none;
+  background: transparent;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  will-change: transform;
+  position: relative;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
 .movieTitle{
   composes: text from "../../../app/app.style.module.css";
   color: var(--medium-blue);
@@ -29,3 +42,62 @@
   color: #646995;
 }
 
+
+.bookmarkAdd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --width: 0;
+  width: var(--width);
+  right: calc(-1*var(--width) - 16px);
+  top:0;
+  position: absolute;
+  height: 100%;
+  color: white;
+  background: transparent;
+  transition: background .3s ease-out;
+}
+
+.bookmarkAddGesture{
+  composes: bookmarkAdd;
+  background: var(--gray);
+}
+
+.bookmarkAddDeleting{
+  composes: bookmarkAdd;
+  background: var(--chineese-cafe);
+}
+
+.bookmarkAddAdding{
+  composes: bookmarkAdd;
+  background: var(--bonfire-light);
+}
+
+.bookmarkDemo:nth-child(3){
+  animation: bookmarkDemo infinite 5s;
+  transition: transform;
+}
+.bookmarkDemo:nth-child(3) .bookmarkAdd{
+  background: var(--gray);
+  --width: 54px !important;
+}
+
+@keyframes bookmarkDemo {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0);
+  }
+
+  60% {
+    transform: translateX(-54px);
+  }
+
+  90% {
+    transform: translateX(-54px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

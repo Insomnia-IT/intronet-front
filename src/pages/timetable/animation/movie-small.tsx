@@ -6,7 +6,7 @@ import Styles from "./animation.module.css";
 import { SvgIcon } from "@icons";
 import { Gesture } from "./gesture";
 import { useEffect, useRef, useState } from "preact/hooks";
-import { votingStore } from "@stores/votingStore";
+import {useLocalStorageState} from "@helpers/useLocalStorageState";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
@@ -23,21 +23,21 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     [movie.id]
   );
   const ref = useRef();
-  const { transform, iconTransform, iconOpacity, classNames, transition } =
+  const { transform, iconOpacity, classNames, transition, state } =
     useGestures(ref, hasBookmark, removeTimeout, movie);
+  const [userUsedGesture, setUserUsedGesture] = useLocalStorageState("userUsedGesture", false);
+  // const hasBookmarks = useCell(() => bookmarksStore.Movies.length > 0);
+  useEffect(() => {
+    if (userUsedGesture) return;
+    if (!state)return;
+    setUserUsedGesture(true);
+  }, [userUsedGesture, state]);
   return (
     <div
       ref={ref}
-      flex
-      column
-      gap
-      class={classNames.join(" ")}
-      onClick={() => router.gotToMovie(movie.id)}
-      style={{
-        transform,
-        background: "transparent",
-        transition,
-      }}
+      class={classNames.concat([Styles.movieSmall, (userUsedGesture || state) ? '' : Styles.bookmarkDemo]).join(" ")}
+      onClick={e => e.defaultPrevented || router.gotToMovie(movie.id)}
+      style={{transform,transition}}
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>
@@ -46,11 +46,15 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
         <SvgIcon
           id="#bookmark"
           class={[...classNames, "colorPink"].join(" ")}
+          onClick={e => {
+            if (!hasBookmark) return;
+            e.preventDefault()
+            bookmarksStore.switchBookmark('movie', movie.id)
+          }}
           size={17}
           style={{
             flexShrink: 0,
             opacity: iconOpacity,
-            transform: iconTransform,
           }}
         />
       </div>
@@ -60,9 +64,17 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
       <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
         {minutes} мин {seconds} сек
       </div>
+
+      <div class={Styles['bookmarkAdd' + state]} style={{
+        '--width': gestureLength+'px',
+      }}>
+        <SvgIcon id="#bookmark" class={(state == "Deleting" || (!hasBookmark && state !== "Adding")) ? 'strokeOnly' : undefined}/>
+      </div>
     </div>
   );
 };
+
+const gestureLength = window.innerWidth / 4;
 
 function useGestures(ref, hasBookmark, removeTimeout, movie: MovieInfo) {
   const gesture = useCell(Gesture);
@@ -70,43 +82,52 @@ function useGestures(ref, hasBookmark, removeTimeout, movie: MovieInfo) {
   const [timeoutId, setTimeoutId] = useState<undefined | number>(undefined);
   const realHasBookmark = hasBookmark && !timeoutId;
   const shift =
-    gesture?.path.includes(ref.current) && gesture.shift > 0 === realHasBookmark
-      ? Math.sign(gesture.shift) * Math.min(Math.abs(gesture.shift), 100)
+    gesture?.path.includes(ref.current) && gesture.shift < 0
+      ? Math.max(gesture.shift, -gestureLength)
       : 0;
   const transform = `translateX(${shift}px)`;
-  const iconTransform = `translateX(${realHasBookmark ? -shift : 100}px)`;
   const iconOpacity = realHasBookmark
-    ? 1 - Math.abs(shift) / 100
-    : Math.abs(shift) / 100;
+    ? 1 - Math.abs(shift) / gestureLength
+    : Math.abs(shift) / gestureLength;
+  const [gestureEnd, setGestureEnd] = useState(false);
 
   useEffect(() => {
-    if (Math.abs(shift) < 100) return;
-    if (hasBookmark) {
-      if (timeoutId) {
-        clearInterval(timeoutId);
-        setTimeoutId(undefined);
-      } else if (removeTimeout) {
-        const timeoutId = setTimeout(() => {
-          bookmarksStore.removeBookmark("movie", movie.id);
-        }, removeTimeout);
-        setTimeoutId(timeoutId as any);
-      } else {
-        bookmarksStore.removeBookmark("movie", movie.id);
-      }
-    } else {
-      bookmarksStore.addBookmark("movie", movie.id);
+    if (Math.abs(shift) < gestureLength*0.9){
+      setGestureEnd(false);
+    }else{
+      setGestureEnd(true);
     }
-  }, [shift, realHasBookmark, timeoutId, removeTimeout]);
+    if (!gestureEnd || gesture)
+      return;
+    setGestureEnd(false);
+    bookmarksStore.switchBookmark("movie", movie.id);
+
+    // if (hasBookmark) {
+    //   if (timeoutId) {
+    //     clearInterval(timeoutId);
+    //     setTimeoutId(undefined);
+    //   } else if (removeTimeout) {
+    //     const timeoutId = setTimeout(() => {
+    //       bookmarksStore.removeBookmark("movie", movie.id);
+    //     }, removeTimeout);
+    //     setTimeoutId(timeoutId as any);
+    //   } else {
+    //     bookmarksStore.removeBookmark("movie", movie.id);
+    //   }
+    // } else {
+    //   bookmarksStore.addBookmark("movie", movie.id);
+    // }
+  }, [gesture, shift, realHasBookmark, timeoutId, removeTimeout, gestureEnd]);
   const classNames = [
-    shift == 0 ? "transition" : "",
+    shift == 0 ? "transitionOut" : "",
     timeoutId ? "removing" : "",
   ];
   const transition = timeoutId ? `opacity ${removeTimeout}ms ease` : undefined;
   return {
     transform,
-    iconTransform,
     iconOpacity,
     classNames,
     transition,
+    state: gestureEnd ? (hasBookmark ? 'Deleting' : 'Adding') : !!shift ? 'Gesture' : '',
   };
 }

@@ -65,10 +65,16 @@
 }
 
 :global(.transition){
-  transition: .2s ease;
+  transition: .3s ease;
+}
+:global(.transitionOut){
+  transition: .3s ease-out;
 }
 
 :global(.removing){
   filter: grayscale(1);
   opacity: 0;
+}
+:global(.strokeOnly) *{
+  fill: none !important;
 }

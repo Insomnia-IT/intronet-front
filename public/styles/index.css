@@ -6,6 +6,7 @@ body, html {
 }
 * {
   touch-action: pan-y;
+  overscroll-behavior-x: none;
 }
 
 .button-clear {
@@ -51,12 +52,12 @@ body, html {
 @supports (-webkit-touch-callout: none) {
   /* CSS specific to iOS devices */
   body {
-    font-family: 'SF Pro';
+    font-family: 'SF Pro', 'ui-sans-serif';
   }
 
   @font-face {
     font-family: 'SF Pro';
-    src: local('SF Pro Text Regular'), local('SFProText-Regular');
+    src: local('SF Pro Text Regular'), local('SFProText-Regular'), local("SF Pro");
     font-weight: normal;
     font-style: normal;
   }
@@ -65,7 +66,7 @@ body, html {
 @supports not (-webkit-touch-callout: none) {
   /* CSS for other than iOS devices */
   body {
-    font-family: 'Exo2';
+    font-family: 'Exo2', 'ui-sans-serif', 'Roboto', 'sans-serif';
   }
 
   @font-face {
