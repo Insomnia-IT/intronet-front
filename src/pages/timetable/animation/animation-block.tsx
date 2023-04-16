@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { Card } from "@components/cards/activity";
+import { Card } from "@components/cards";
 import Styles from "./animation.module.css";
 import { AgeStrict } from "@components/age-strict";
 import { useMemo, useState } from "preact/hooks";

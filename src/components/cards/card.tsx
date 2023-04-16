@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import Style from "./activity.module.css";
+import Style from "./card.module.css";
 import { ComponentChildren } from "preact";
 
 export type ActivityCardProps = {
@@ -11,7 +11,7 @@ export const Card: FunctionalComponent<ActivityCardProps> = (props) => {
   return (
     <div
       className={[
-        Style.activity,
+        Style.card,
         Style["border" + props.border],
         Style["bg" + props.background],
       ]
