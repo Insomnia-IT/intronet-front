@@ -1,24 +1,30 @@
 import { FunctionalComponent } from "preact";
 import Style from "./card.module.css";
 import { ComponentChildren } from "preact";
+import { JSXInternal } from "preact/src/jsx";
 
 export type ActivityCardProps = {
   children: ComponentChildren;
   border?: "Blue" | "Vivid";
   background?: "Purple" | "None" | "White";
-};
-export const Card: FunctionalComponent<ActivityCardProps> = (props) => {
+} & JSXInternal.HTMLAttributes<HTMLDivElement>;
+export const Card: FunctionalComponent<ActivityCardProps> = ({
+  border,
+  background,
+  className,
+  ...props
+}) => {
   return (
     <div
       className={[
         Style.card,
-        Style["border" + props.border],
-        Style["bg" + props.background],
+        Style["border" + border],
+        Style["bg" + background],
+        className,
       ]
         .filter((x) => x)
         .join(" ")}
-    >
-      {props.children}
-    </div>
+      {...props}
+    ></div>
   );
 };

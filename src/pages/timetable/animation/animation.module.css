@@ -15,9 +15,12 @@
 
 
 .duplicate{
+  margin-top: 12px;
+  margin-bottom: 10px;
   composes: text from "../../../app/app.style.module.css";
 }
 .duplicate:empty{
+  margin: 0;
   display: none;
 }
 
@@ -29,10 +32,12 @@
   gap: 4px;
   will-change: transform;
   position: relative;
-  padding: 10px 0;
+  padding: 12px 0;
   box-sizing: border-box;
 }
-
+.movieSmall:last-child{
+  padding-bottom: 6px;
+}
 .movieTitle{
   composes: text from "../../../app/app.style.module.css";
   color: var(--medium-blue);
