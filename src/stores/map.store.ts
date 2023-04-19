@@ -5,18 +5,14 @@ class MapStore {
   constructor() {
     try {
       this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
-      this.load("/public/images/map-min.webp").then(
-        (x) => (this.Map2 = x)
-      );
-    }catch (e){
-
-    }
+      this.load("/public/images/map-min.webp").then((x) => (this.Map2 = x));
+    } catch (e) {}
     // this.load("/images/map2.webp").then((x) => (this.Map2 = x));
   }
 
   load(
     url,
-    type: "jpg" | "png" | "webp" = url.split(".").at(-1)
+    type: "jpg" | "png" | "webp" = url.split(".").pop()
   ): Promise<ImageInfo> {
     return fetch(url)
       .then((x) => x.arrayBuffer())

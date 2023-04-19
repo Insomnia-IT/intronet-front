@@ -83,7 +83,7 @@ const goTo = (
     path = url.pathname.split("/").slice(1) as RoutePath;
     query = Object.fromEntries(url.searchParams.entries());
   }
-  if (typeof path.at(-1) === "object") {
+  if (typeof path[path.length - 1] === "object") {
     query = path.pop() as Record<string, string>;
   }
   routeCell.set(path.filter((x) => x !== null) as RoutePath);
