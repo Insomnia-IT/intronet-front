@@ -42,7 +42,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
             {duplicate}
           </div>
           {isOpen && <MovieList movies={block.movies} />}
-          <Button style={} type="text" onClick={() => setIsOpen((x) => !x)}>
+          <Button type="text" onClick={() => setIsOpen((x) => !x)}>
             {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
         </div>
