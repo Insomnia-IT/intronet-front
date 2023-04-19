@@ -1,30 +1,21 @@
 export class IndexedDatabase<T> {
   private db = new Promise<IDBDatabase>((resolve, reject) => {
-    var request = (
-      window.indexedDB ||
-      // @ts-ignore
-      window.mozIndexedDB ||
-      // @ts-ignore
-      window.webkitIndexedDB
-    ).open(this.name, "1");
-    let succRes = undefined;
-    request.onsuccess = function (e) {
-      resolve(e.target.result);
-    };
-    request.onerror = function (e) {
-      reject(e);
-    };
-    request.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      // stores.forEach(function (store) {
-      if (!db.objectStoreNames.contains(this.name)) {
-        db.createObjectStore(this.name);
-      }
-      // });
-    };
-    request.onblocked = function (e) {
-      reject(e);
-    };
+    const request = window.indexedDB.open(this.name, 1);
+    request.addEventListener("success", (e: any) => resolve(e.target.result), {
+      once: true,
+    });
+    request.addEventListener("error", reject, { once: true });
+    request.addEventListener("blocked", reject, { once: true });
+    request.addEventListener(
+      "upgradeneeded",
+      (e: any) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(this.name)) {
+          db.createObjectStore(this.name);
+        }
+      },
+      { once: true }
+    );
   });
   constructor(private name: string) {}
 
@@ -33,7 +24,7 @@ export class IndexedDatabase<T> {
   ): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       this.db.then((db) => {
-        var transaction = db.transaction([this.name], "readwrite");
+        const transaction = db.transaction([this.name], "readwrite");
         transaction.onabort = reject;
         const store = transaction.objectStore(this.name);
         const request = req(store);
