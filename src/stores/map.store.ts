@@ -19,6 +19,7 @@ class MapStore {
       .then(async (x) => {
         const blob = new Blob([x], { type: `image/${type}` });
         const ib = await createImageBitmap(blob);
+
         return {
           url: URL.createObjectURL(blob),
           width: ib.width,
@@ -57,3 +58,16 @@ export type ImageInfo = {
   width: number;
   height: number;
 };
+
+const createImageBitmap: (
+  blob: Blob
+) => Promise<{ width: number; height: number }> =
+  window.createImageBitmap ??
+  ((blob: Blob) =>
+    new Promise((resolve) => {
+      let img = document.createElement("img");
+      img.addEventListener("load", function () {
+        resolve(img);
+      });
+      img.src = URL.createObjectURL(blob);
+    }));
