@@ -1,6 +1,6 @@
-import { EventEmitter, Fn, AsyncQueue } from "@cmmn/cell/lib";
-import indexeddbWrapper from "indexeddb-wrapper";
+import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
+import { IndexedDatabase } from "@stores/indexedDatabase";
 
 const api = `https://intro.cherepusick.keenetic.name/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
@@ -12,7 +12,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
         | { type: "delete"; key: string | number }
       ) & { fromReplication?: boolean });
 }> {
-  private db: Store<T & { version: string }> = createStore(this.name);
+  private db = new IndexedDatabase(this.name);
 
   protected items = new Map<string, T & { version: string }>();
 
@@ -101,7 +101,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
     const keys = await this.db.keys();
     this.items = new Map();
     for (let key of keys) {
-      this.items.set(key, await this.db.get(key));
+      this.items.set(key as string, await this.db.get(key as string));
     }
     this.emit("change", {
       type: "init",
@@ -197,22 +197,4 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
       IsConnected.set(false);
     }
   }
-}
-
-function createStore(name: string) {
-  // @ts-ignore
-  return indexeddbWrapper.default({
-    stores: [name],
-    databaseName: name,
-    version: 1,
-  }).stores[name];
-}
-
-interface Store<T = any> {
-  get: (key: string) => Promise<T>;
-  keys: () => Promise<string[]>;
-  set: (key: string, value: T) => Promise<void>;
-  purge: () => Promise<void>;
-  remove: (key: string) => Promise<void>;
-  destroy: () => Promise<void>;
 }

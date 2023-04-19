@@ -24,7 +24,6 @@
     "@types/pouchdb-upsert": "^2.2.6",
     "fastify": "^4.15.0",
     "get-browser-fingerprint": "^3.0.0",
-    "indexeddb-wrapper": "^0.1.2",
     "pouchdb": "^8.0.1",
     "pouchdb-find": "^8.0.1",
     "pouchdb-node": "^8.0.1",
