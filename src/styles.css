@@ -26,11 +26,17 @@
 }
 
 :global(.colorPink){
-    color: var(--pink);
+    color: var(--pink) !important;
 }
 
 :global(.colorPurple){
-    color: var(--purple);
+    color: var(--purple) !important;
+}
+:global(.colorWhite){
+    color: var(--cold-white) !important;
+}
+:global(.colorElBlue){
+    color: var(--electric-blues) !important;
 }
 
 :global(h1){

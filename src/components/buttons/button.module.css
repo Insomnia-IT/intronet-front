@@ -6,6 +6,7 @@
   text-transform: uppercase;
   border: none;
   color: var(--white);
+  background-color: grey;
   display: flex;
   flex-flow: row nowrap;
   cursor: pointer;

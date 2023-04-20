@@ -21,7 +21,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
     () => (goTo ? () => !props.disabled && router.goTo(goTo) : undefined),
     [goTo, props.disabled]
   );
-  const classNames = [Styles.button, className].filter((x) => x);
+  const classNames = [Styles.button, className, props.class].filter((x) => x);
   if (props.selected) classNames.push(Styles.selected);
   if (type) classNames.push(Styles[type]);
   return (

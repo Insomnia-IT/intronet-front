@@ -26,6 +26,7 @@
 
 .movieSmall{
   user-select: none;
+  -webkit-user-select: none;
   background: transparent;
   display: flex;
   flex-flow: column nowrap;
@@ -104,5 +105,29 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+.snack{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 16px;
+  background-color: var(--ins-night);
+  border-radius: 24px;
+  height: 48px;
+  box-sizing: border-box;
+  color: var(--electric-blues);
+  margin: 21px 0;
+  animation: fadeOut ease-out 5s both;
+}
+@keyframes fadeOut {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: .3;
   }
 }

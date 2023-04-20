@@ -7,15 +7,20 @@ import { SvgIcon } from "@icons";
 import { Gesture } from "./gesture";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useLocalStorageState } from "@helpers/useLocalStorageState";
+import { Button } from "@components";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
-  removeTimeout?: number;
+  switchBookmark?(movie: MovieInfo): void;
+  showDeleted?: boolean;
 };
 export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
-  removeTimeout,
+  switchBookmark,
+  showDeleted,
 }) => {
+  switchBookmark ??= (movie) =>
+    bookmarksStore.switchBookmark("movie", movie.id);
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const hasBookmark = useCell(
@@ -23,10 +28,10 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     [movie.id]
   );
   const ref = useRef();
-  const { transform, iconOpacity, classNames, transition, state } = useGestures(
+  const { transform, iconOpacity, classNames, state } = useGestures(
     ref,
     hasBookmark,
-    removeTimeout,
+    switchBookmark,
     movie
   );
   const [userUsedGesture, setUserUsedGesture] = useLocalStorageState(
@@ -39,6 +44,25 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     if (!state) return;
     setUserUsedGesture(true);
   }, [userUsedGesture, state]);
+  if (showDeleted && !hasBookmark) {
+    return (
+      <div class={Styles.snack}>
+        <div class="textSmall w-full colorWhite" flex-grow>
+          Удалено
+        </div>
+        <Button
+          type="text"
+          class="colorElBlue"
+          onClick={(e) => {
+            e.preventDefault();
+            switchBookmark?.(movie);
+          }}
+        >
+          Отменить
+        </Button>
+      </div>
+    );
+  }
   return (
     <div
       ref={ref}
@@ -49,7 +73,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
         ])
         .join(" ")}
       onClick={(e) => e.defaultPrevented || router.gotToMovie(movie.id)}
-      style={{ transform, transition }}
+      style={{ transform }}
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>
@@ -98,17 +122,20 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
 
 const gestureLength = window.innerWidth / 4;
 
-function useGestures(ref, hasBookmark, removeTimeout, movie: MovieInfo) {
+function useGestures(
+  ref,
+  hasBookmark,
+  switchBookmark: (movie: MovieInfo) => void,
+  movie: MovieInfo
+) {
   const gesture = useCell(Gesture);
 
-  const [timeoutId, setTimeoutId] = useState<undefined | number>(undefined);
-  const realHasBookmark = hasBookmark && !timeoutId;
   const shift =
     gesture?.path.includes(ref.current) && gesture.shift < 0
       ? Math.max(gesture.shift, -gestureLength)
       : 0;
   const transform = `translateX(${shift}px)`;
-  const iconOpacity = realHasBookmark
+  const iconOpacity = hasBookmark
     ? 1 - Math.abs(shift) / gestureLength
     : Math.abs(shift) / gestureLength;
   const [gestureEnd, setGestureEnd] = useState(false);
@@ -121,34 +148,13 @@ function useGestures(ref, hasBookmark, removeTimeout, movie: MovieInfo) {
     }
     if (!gestureEnd || gesture) return;
     setGestureEnd(false);
-    bookmarksStore.switchBookmark("movie", movie.id);
-
-    // if (hasBookmark) {
-    //   if (timeoutId) {
-    //     clearInterval(timeoutId);
-    //     setTimeoutId(undefined);
-    //   } else if (removeTimeout) {
-    //     const timeoutId = setTimeout(() => {
-    //       bookmarksStore.removeBookmark("movie", movie.id);
-    //     }, removeTimeout);
-    //     setTimeoutId(timeoutId as any);
-    //   } else {
-    //     bookmarksStore.removeBookmark("movie", movie.id);
-    //   }
-    // } else {
-    //   bookmarksStore.addBookmark("movie", movie.id);
-    // }
-  }, [gesture, shift, realHasBookmark, timeoutId, removeTimeout, gestureEnd]);
-  const classNames = [
-    shift == 0 ? "transitionOut" : "",
-    timeoutId ? "removing" : "",
-  ];
-  const transition = timeoutId ? `opacity ${removeTimeout}ms ease` : undefined;
+    switchBookmark(movie);
+  }, [gesture, shift, hasBookmark, switchBookmark, gestureEnd]);
+  const classNames = [shift == 0 ? "transitionOut" : ""];
   return {
     transform,
     iconOpacity,
     classNames,
-    transition,
     state: gestureEnd
       ? hasBookmark
         ? "Deleting"

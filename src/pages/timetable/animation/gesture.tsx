@@ -18,7 +18,6 @@ export class GestureCell extends Cell<
   private onDown = (e: PointerEvent) => {
     this.shift = { x: 0, y: 0 };
     this.path = e.composedPath();
-    document.body.setPointerCapture(e.pointerId);
     document.body.addEventListener("pointermove", this.onMove, {
       passive: true,
     });
@@ -27,6 +26,9 @@ export class GestureCell extends Cell<
     if (!this.shift) return;
     this.shift.x += e.movementX;
     this.shift.y += e.movementY;
+    if (Math.abs(this.shift.x) > 2 || Math.abs(this.shift.y) > 2) {
+      document.body.setPointerCapture(e.pointerId);
+    }
     const current = this.get();
     if (
       current?.direction == "y" ||
