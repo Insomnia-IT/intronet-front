@@ -28,6 +28,12 @@
 :global(.colorPink){
     color: var(--pink) !important;
 }
+:global(.colorGray){
+    color: var(--gray) !important;
+}
+:global(.colorMediumBlue){
+    color: var(--medium-blue) !important;
+}
 
 :global(.colorPurple){
     color: var(--purple) !important;
@@ -38,7 +44,9 @@
 :global(.colorElBlue){
     color: var(--electric-blues) !important;
 }
-
+:global(.unbounded){
+    font-family: 'Unbounded';
+}
 :global(h1){
     color: var(--medium-blue);
     font-family: 'Unbounded';
@@ -48,6 +56,8 @@
     font-size: 28px;
     line-height: 35px;
     text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 8px;
 }
 
 :global(h2){
@@ -69,16 +79,28 @@
     line-height: 29px;
 }
 
-:global(.sh3){
-    /* SH 3 */
-
-    font-family: 'SF Pro';
+:global(.sh2){
     font-style: normal;
-    font-weight: 510;
+    font-variation-settings: "wght" 590;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: flex-end;
+}
+:global(.sh3){
+    font-style: normal;
+    font-variation-settings: "wght" 510;
     font-size: 16px;
     line-height: 19px;
     /* identical to box height */
-
+    display: flex;
+    align-items: flex-end;
+}
+:global(.tags){
+    font-style: normal;
+    font-weight: 510;
+    font-size: 14px;
+    line-height: 17px;
     display: flex;
     align-items: flex-end;
 }

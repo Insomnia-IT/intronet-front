@@ -14,6 +14,7 @@ export const MovieSearch = () => {
     <>
       <h1>поиск</h1>
       <Input
+        style={{ margin: "20px 0" }}
         placeholder="Название мультфильма"
         value={query}
         onInput={(e) => setQuery(e.currentTarget.value)}
@@ -21,10 +22,12 @@ export const MovieSearch = () => {
       {filtered.length > 0 ? (
         <MovieList movies={filtered} />
       ) : (
-        <>
-          <div>Ничего не нашли</div>
-          <div>Попробуйте искать по другому запросу</div>
-        </>
+        <div flex column gap={4}>
+          <div class="sh1 colorMediumBlue">Ничего не нашли</div>
+          <div class="text colorMediumBlue">
+            Попробуйте искать по другому запросу
+          </div>
+        </div>
       )}
     </>
   );

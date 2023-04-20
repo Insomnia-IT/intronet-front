@@ -27,60 +27,83 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
-      <header className={style.sh1}>«{movie?.name}»</header>
-      <div className={style.sh1}>{movie?.description}</div>
-      <div class={Styles.movieInfo}>
+      <header className="sh1">«{movie?.name}»</header>
+      {movie.description && <div className="sh1">{movie?.description}</div>}
+      <div class="colorGray">
         {movie.author}, {movie.country}, {movie.year}
       </div>
-      <div class={Styles.movieInfo}>
+      <div class="colorGray">
         {minutes} мин {seconds} сек
       </div>
-      <Card border="Vivid" background="White">
-        <div class={[style.sh1, style.colorPink].join(" ")}>
-          Международный конкурс анимации
-        </div>
-        <div class={[style.sh3, style.colorPink].join(" ")}>
-          Приз зрительских симпатий
-        </div>
-        {ticket ? (
-          <>
-            <Button
-              class="w-full"
-              type="vivid"
-              disabled={!isOnline}
-              goTo={["voting", movie.id]}
-            >
-              Голосую за этот мульт
-            </Button>
-          </>
-        ) : (
-          <>
-            <Link goTo="/voting">Голосование</Link>
-            <div>Голосовать можно только онлайн</div>
-            <div>Для голосования потребуется номер билета</div>
-          </>
-        )}
-      </Card>
-
-      {ticket && !isOnline && (
-        <div class="colorPink">
-          Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
-        </div>
-      )}
-      {state.block.views.map((view) => (
-        <div key={view.day + view.locationId}>
-          <div> {getDayText(view.day, "full")}</div>
-          <Card border="Blue" background="None">
-            <div> {locationsStore.getName(view.locationId)}</div>
-            <Link goTo={["map", view.locationId]}>Локация на карте</Link>
-            <div>{state.block.info.Title}</div>
-            <div>{state.block.info.SubTitle}</div>
-            <div>
-              {view.start} - {view.end}
+      <div style={{ marginBottom: 24 }}>
+        <Card border="Vivid" background="White">
+          <div flex column gap="2">
+            <div class="sh2 colorPink">Международный конкурс анимации</div>
+            <div class="sh3 colorPink">Приз зрительских симпатий</div>
+          </div>
+          {ticket ? (
+            <>
+              <Button
+                class="w-full unbounded"
+                style={{
+                  fontSize: 14,
+                }}
+                type="vivid"
+                disabled={!isOnline}
+                goTo={["voting", movie.id]}
+              >
+                Голосую за этот мульт
+              </Button>
+            </>
+          ) : (
+            <div flex column gap="2">
+              <Link goTo="/voting">Голосование</Link>
+              <div class="textSmall colorGray">
+                Голосовать можно только онлайн
+                <br />
+                Для голосования потребуется номер билета
+              </div>
             </div>
-          </Card>
-        </div>
-      ))}
+          )}
+        </Card>
+
+        {ticket && !isOnline && (
+          <div class="colorPink">
+            Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
+          </div>
+        )}
+      </div>
+      <div flex column gap={6}>
+        <div className="sh1">Расписание показов:</div>
+        {state.block.views.map((view) => (
+          <div flex column gap={3} key={view.day + view.locationId}>
+            <div class="tags colorMediumBlue">
+              {getDayText(view.day, "full")}
+            </div>
+            <Card border="Blue" background="None">
+              <div flex center class="sh1" gap={2}>
+                <SvgIcon id="#eye" style={{ color: "var(--electric-blues)" }} />
+                {locationsStore.getName(view.locationId)}
+              </div>
+              <Link
+                goTo={["map", view.locationId]}
+                style={{ marginBottom: 18 }}
+              >
+                Локация на карте
+              </Link>
+              <div flex column gap={1}>
+                <div class="tags colorMediumBlue" flex gap={2}>
+                  <div>{state.block.info.Title}</div>
+                  <div>{state.block.info.SubTitle}</div>
+                </div>
+                <div class="sh1">
+                  {view.start} - {view.end}
+                </div>
+              </div>
+            </Card>
+          </div>
+        ))}
+      </div>
       <ButtonsBar at="bottom">
         <Button
           type="vivid"

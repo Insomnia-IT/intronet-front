@@ -31,13 +31,16 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       <div className={[Styles.time, "sh1"].join(" ")}>
         {view.start} - {view.end}
       </div>
-      <Card background="Purple" style={{ marginBottom: 30, paddingBottom: 8 }}>
+      <Card
+        background="Purple"
+        style={{ marginBottom: 30, paddingBottom: 8, paddingTop: 24 }}
+      >
         <div flex column gap>
           <div class={[Styles.header, "sh1"].join(" ")}>
             {block.info.Title}
             {block.info.MinAge && <AgeStrict age={block.info.MinAge} />}
           </div>
-          <div class="textSmall">{block.info.SubTitle}</div>
+          <div class="textSmall colorGray">{block.info.SubTitle}</div>
           <div class={[Styles.duplicate, "colorPurple"].join(" ")}>
             {duplicate}
           </div>

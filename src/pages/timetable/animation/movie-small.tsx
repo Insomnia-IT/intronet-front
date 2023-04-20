@@ -120,7 +120,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   );
 };
 
-const gestureLength = window.innerWidth / 4;
+const gestureLength = Math.min(window.innerWidth / 4, 300);
 
 function useGestures(
   ref,

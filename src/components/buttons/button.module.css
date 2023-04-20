@@ -41,7 +41,7 @@
 .frame{
   background: var(--white);
   color: var(--medium-blue);
-  border: solid var(--medium-blue);
+  border: 2px solid var(--medium-blue);
 }
 .vivid{
   background: var(--vivid-gradient);
@@ -69,7 +69,8 @@
   position: fixed;
   z-index: 2;
   right: 16px;
-  top: 16px;
+  top: 48px;
+  padding: 11px;
 }
 
 .left{
