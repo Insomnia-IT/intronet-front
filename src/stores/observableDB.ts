@@ -2,8 +2,8 @@ import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 
-// const api = `https://intro.cherepusick.keenetic.name/webapi`;
-const api = `/webapi`;
+const api = `https://intro.cherepusick.keenetic.name/webapi`;
+// const api = `/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
   change:
