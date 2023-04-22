@@ -7,26 +7,26 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
   const handle = (globalThis.ServiceWorkerHandle = {
     event: null as BeforeInstallPromptEvent,
     worker: navigator.serviceWorker.controller,
-    size: 0,
-    get percent() {
-      return this.size / 1372629;
-    },
-    reload() {
-      this.worker.postMessage({
-        action: "reload" as ServiceWorkerAction,
-      });
-    },
-    check(force: boolean) {
-      this.worker.postMessage({
-        action: "check" as ServiceWorkerAction,
-        force,
-      });
-    },
+    // size: 0,
+    // get percent() {
+    //   return this.size / 1372629;
+    // },
+    // reload() {
+    //   this.worker.postMessage({
+    //     action: "reload" as ServiceWorkerAction,
+    //   });
+    // },
+    // check(force: boolean) {
+    //   this.worker.postMessage({
+    //     action: "check" as ServiceWorkerAction,
+    //     force,
+    //   });
+    // },
   });
 
-  const isFirstInstall = !(
-    navigator.serviceWorker.controller instanceof ServiceWorker
-  ); // при первой установке на клиенте еще нет sw
+  // const isFirstInstall = !(
+  //   navigator.serviceWorker.controller instanceof ServiceWorker
+  // ); // при первой установке на клиенте еще нет sw
 
   if (location.pathname.match(/\.reload/)) {
     navigator.serviceWorker.getRegistration()
@@ -75,11 +75,10 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
 
   navigator.serviceWorker.addEventListener("message", ({ data }) => {
     switch (data.action) {
-      case "loading":
-        handle.size += data.size;
-        console.log(`${data.cache}: +${data.size} (${data.url})`);
-        animateLoading(handle.percent);
-        break;
+      // case "loading":
+        // handle.size += data.size;
+        // console.log(`${data.cache}: +${data.size} (${data.url})`);
+        // break;
 
       case "init":
         init().catch(console.error);
@@ -93,9 +92,6 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
         break;
     }
   });
-  navigator.serviceWorker.addEventListener<any>("activate", ({ data }) => {
-    console.log(data);
-  });
   window.addEventListener(
     "beforeinstallprompt",
     (e: BeforeInstallPromptEvent) => {
@@ -105,14 +101,6 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
 } else {
   init().catch(console.error);
 }
-
-function animateLoading(percent: number) {
-  const div: HTMLDivElement =
-    document.querySelector("#start") || document.querySelector("#loader");
-  div &&
-    div.style.setProperty("--percent", Math.round(percent * 100).toString());
-}
-
 async function init() {
   const elements: HTMLElement[] = [];
   for (let asset of globalThis.assets) {
@@ -138,7 +126,7 @@ async function init() {
         })
     )
   );
-  animateLoading(0);
+  // animateLoading(0);
   window.dispatchEvent(new CustomEvent("init"));
   console.log("init");
 }
