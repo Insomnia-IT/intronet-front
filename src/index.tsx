@@ -3,7 +3,7 @@ import {render} from "preact";
 import { App } from "./app/app";
 window.addEventListener('init', () => {
   const container = document.getElementById("root");
-  render(<App />, document.querySelector('#root'));
+  render(<App />, container);
   document.getElementById("start").remove();
 });
 
