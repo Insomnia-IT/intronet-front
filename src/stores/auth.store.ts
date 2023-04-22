@@ -6,6 +6,11 @@ class AuthStore extends LocalStore<{
   token: string;
   username: string;
 }> {
+  get headers() {
+    return {
+      Authorization: `Bearer ${this.token}`,
+    };
+  }
   constructor() {
     super();
     if (!this.uid) {
@@ -16,13 +21,12 @@ class AuthStore extends LocalStore<{
     const url = new URL(location.href);
     const token = url.searchParams.get("token");
     if (token) {
+      this.patch({ token });
       fetch("/webapi/auth", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: this.headers,
       }).then((x) => {
-        if (x.ok) {
-          this.patch({ token });
+        if (!x.ok) {
+          this.patch({ token: null });
         }
       });
     }

@@ -23,7 +23,7 @@ fastify.get<{
 fastify.post<{ Params: { name: string } }>(
   "/data/:name",
   async function (request, reply) {
-    await authCtrl.check(request.headers.cookie);
+    await authCtrl.check(request.headers.authorization);
     return await dbCtrl.addOrUpdate(
       request.params.name,
       JSON.parse(request.body as string)

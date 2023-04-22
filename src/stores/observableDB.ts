@@ -1,6 +1,7 @@
 import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
+import { authStore } from "@stores/auth.store";
 
 const api = `https://intro.cherepusick.keenetic.name/webapi`;
 // const api = `/webapi`;
@@ -133,6 +134,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
       console.log(this.name, item.version, this.remoteVersion);
       await fetch(`${api}/data/${this.name}`, {
         method: "POST",
+        headers: authStore.headers,
         body: JSON.stringify(item),
       }).catch();
     }

@@ -3,10 +3,9 @@ import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { useEffect, useState } from "preact/hooks";
 import { getCurrentDay, getDayText } from "@helpers/getDayText";
-import styles from "../../../components/schedule/schedule.module.css";
 import { Timetable } from "./timetable";
-import { useTimetableRouter } from "../timetable-page";
 import { useRouter } from "../../routing";
+import { Tag, Tags } from "@components/tag";
 
 export const TimetableAll: FunctionalComponent = () => {
   const router = useRouter<{
@@ -46,31 +45,27 @@ export const TimetableAll: FunctionalComponent = () => {
   return (
     <>
       <h1>анимация</h1>
-      <div className={styles.tags}>
-        {screens.map((location) => (
-          <div
-            className={
-              screen === location._id ? styles.auditoryActive : styles.auditory
-            }
-            key={location._id}
-            onClick={() => {
-              setScreen(location._id);
-            }}
-          >
-            {locationsStore.getName(location._id)}
-          </div>
-        ))}
-      </div>
-      <div class={styles.tags}>
-        {[0, 1, 2, 3, 4].map((d) => (
-          <div
-            className={d === day ? styles.auditoryActive : styles.auditory}
-            key={d}
-            onClick={() => setDay(d)}
-          >
-            {getDayText(d, "short")}
-          </div>
-        ))}
+      <div flex column gap={2} style={{ margin: "16px 0 20px 0" }}>
+        <Tags value={day}>
+          {[0, 1, 2, 3, 4].map((d) => (
+            <Tag selected={d == day} key={d} onClick={() => setDay(d)}>
+              {getDayText(d, "short").toUpperCase()}
+            </Tag>
+          ))}
+        </Tags>
+        <Tags>
+          {screens.map((location) => (
+            <Tag
+              selected={screen === location._id}
+              key={location._id}
+              onClick={() => {
+                setScreen(location._id);
+              }}
+            >
+              {locationsStore.getName(location._id)}
+            </Tag>
+          ))}
+        </Tags>
       </div>
       <Timetable day={day} locationId={screen} />
     </>
