@@ -5,8 +5,9 @@
   "scripts": {
     "server": "nodemon ./dist/esm"
   },
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "@cmmn/tools": "1.7.12",
     "@types/node": "17.x.x",
     "@types/pouchdb": "^6.4.0",
     "@types/pouchdb-upsert": "^2.2.6",

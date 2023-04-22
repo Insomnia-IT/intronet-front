@@ -13,6 +13,19 @@ class AuthStore extends LocalStore<{
         uid: Fn.ulid(),
       });
     }
+    const url = new URL(location.href);
+    const token = url.searchParams.get("token");
+    if (token) {
+      fetch("/webapi/auth", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((x) => {
+        if (x.ok) {
+          this.patch({ token });
+        }
+      });
+    }
   }
 
   @cell
@@ -29,7 +42,7 @@ class AuthStore extends LocalStore<{
   }
   @cell
   public get isAdmin(): boolean {
-    return !!this.token && !!this.userName;
+    return !!this.token;
   }
 
   public auth(user: string, token: string) {
