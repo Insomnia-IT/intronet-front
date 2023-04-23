@@ -2,9 +2,9 @@
   "start_url": ".",
   "display": "standalone",
   "name": "Insomnia Fest",
-  "short_name": "Insomnia",
-  "theme_color": "#fff",
-  "background_color": "#000",
+  "short_name": "Insight",
+  "theme_color": "#FE4BA9",
+  "background_color": "#0C1035",
   "icons": [
     {
       "src": "favicon.ico",
