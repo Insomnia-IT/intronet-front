@@ -1,15 +1,18 @@
 import { Cell } from "@cmmn/cell/lib";
 
-export class GestureCell extends Cell<
+export type Gesture =
   | {
       path: EventTarget[];
       direction: "x" | "y";
       shift: number;
     }
-  | undefined
-> {
-  constructor() {
+  | undefined;
+
+export class GestureCell extends Cell<Gesture> {
+  constructor(private root: HTMLElement) {
     super(undefined);
+    root.style.touchAction = "pan-y";
+    root.style.overscrollBehaviorX = "none";
   }
 
   private shift: { x: number; y: number } = undefined;
@@ -18,7 +21,7 @@ export class GestureCell extends Cell<
   private onDown = (e: PointerEvent) => {
     this.shift = { x: 0, y: 0 };
     this.path = e.composedPath();
-    document.body.addEventListener("pointermove", this.onMove, {
+    this.root.addEventListener("pointermove", this.onMove, {
       passive: true,
     });
   };
@@ -27,7 +30,7 @@ export class GestureCell extends Cell<
     this.shift.x += e.movementX;
     this.shift.y += e.movementY;
     if (Math.abs(this.shift.x) > 2 || Math.abs(this.shift.y) > 2) {
-      document.body.setPointerCapture(e.pointerId);
+      this.root.setPointerCapture(e.pointerId);
     }
     const current = this.get();
     if (
@@ -54,25 +57,24 @@ export class GestureCell extends Cell<
   };
   private onUp = (e: PointerEvent) => {
     this.shift = undefined;
-    document.body.releasePointerCapture(e.pointerId);
-    document.body.removeEventListener("pointermove", this.onMove);
+    this.root.releasePointerCapture(e.pointerId);
+    this.root.removeEventListener("pointermove", this.onMove);
     this.set(undefined);
   };
 
   active() {
     super.active();
-    document.body.addEventListener("pointerdown", this.onDown, {
+    this.root.addEventListener("pointerdown", this.onDown, {
       capture: true,
     });
-    document.body.addEventListener("pointerup", this.onUp);
+    this.root.addEventListener("pointerup", this.onUp);
   }
 
   disactive() {
     super.disactive();
-    document.body.removeEventListener("pointerdown", this.onDown, {
+    this.root.removeEventListener("pointerdown", this.onDown, {
       capture: true,
     });
-    document.body.removeEventListener("pointerup", this.onUp);
+    this.root.removeEventListener("pointerup", this.onUp);
   }
 }
-export const Gesture = new GestureCell();

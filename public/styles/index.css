@@ -4,10 +4,6 @@ body, html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-* {
-  touch-action: pan-y;
-  overscroll-behavior-x: none;
-}
 
 .button-clear {
   margin: 0;

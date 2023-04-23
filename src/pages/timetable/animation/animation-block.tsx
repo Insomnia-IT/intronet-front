@@ -2,12 +2,13 @@ import { FunctionalComponent } from "preact";
 import { Card } from "@components/cards";
 import Styles from "./animation.module.css";
 import { AgeStrict } from "@components/age-strict";
-import { useMemo, useState } from "preact/hooks";
+import { useCallback, useMemo, useState } from "preact/hooks";
 import { MovieBlockStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { Button } from "@components";
 import { MovieSmall, MovieSmallProps } from "./movie-small";
 import { useHistoryState } from "../../routing";
+import { GestureCell } from "./gesture";
 
 export type AnimationBlockProps = {
   id: string;
@@ -56,10 +57,22 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
 
 export const MovieList: FunctionalComponent<
   { movies: MovieInfo[] } & Partial<Omit<MovieSmallProps, "movie">>
-> = ({ movies, ...props }) => (
-  <div flex column>
-    {movies.map((m) => (
-      <MovieSmall movie={m} key={m.id} {...props} />
-    ))}
-  </div>
-);
+> = ({ movies, ...props }) => {
+  const [gestureCell, setGestureCell] = useState<GestureCell | undefined>(
+    undefined
+  );
+  const setRef = useCallback((div: HTMLDivElement | undefined) => {
+    if (div) {
+      const gestureCell = new GestureCell(div);
+      setGestureCell(gestureCell);
+    }
+  }, []);
+  const gesture = useCell(gestureCell);
+  return (
+    <div flex column ref={setRef}>
+      {movies.map((m) => (
+        <MovieSmall movie={m} key={m.id} {...props} gesture={gesture} />
+      ))}
+    </div>
+  );
+};

@@ -13,11 +13,13 @@ export type MovieSmallProps = {
   movie: MovieInfo;
   switchBookmark?(movie: MovieInfo): void;
   showDeleted?: boolean;
+  gesture?: Gesture;
 };
 export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
   switchBookmark,
   showDeleted,
+  gesture,
 }) => {
   switchBookmark ??= (movie) =>
     bookmarksStore.switchBookmark("movie", movie.id);
@@ -32,7 +34,8 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     ref,
     hasBookmark,
     switchBookmark,
-    movie
+    movie,
+    gesture
   );
   const [userUsedGesture, setUserUsedGesture] = useLocalStorageState(
     "userUsedGesture",
@@ -126,10 +129,9 @@ function useGestures(
   ref,
   hasBookmark,
   switchBookmark: (movie: MovieInfo) => void,
-  movie: MovieInfo
+  movie: MovieInfo,
+  gesture: Gesture
 ) {
-  const gesture = useCell(Gesture);
-
   const shift =
     gesture?.path.includes(ref.current) && gesture.shift < 0
       ? Math.max(gesture.shift, -gestureLength)

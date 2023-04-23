@@ -4,6 +4,8 @@
     overflow-x: auto;
     justify-content: flex-start;
     gap: 4px;
+    overscroll-behavior-x: auto;
+    touch-action: pan-x;
 }
 
 .tag{
