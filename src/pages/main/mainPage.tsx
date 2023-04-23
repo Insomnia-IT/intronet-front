@@ -24,5 +24,5 @@ export const MainPage = () => {
 };
 
 export const LogoContainer: {
-  logo?: SVGSVGElement
+  logo?: Element
 } = {};
