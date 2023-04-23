@@ -3,8 +3,12 @@
   "display": "standalone",
   "name": "Insomnia Fest",
   "short_name": "Insight",
-  "theme_color": "#FE4BA9",
+  "theme_color": "#536BF3",
   "background_color": "#0C1035",
+  "navigationColor": "#0C1035",
+  "navigationColorDark": "#0C1035",
+  "navigationDividerColor": "#0C1035",
+  "navigationDividerColorDark": "#0C1035",
   "icons": [
     {
       "src": "favicon.ico",
