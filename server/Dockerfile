@@ -11,7 +11,7 @@ COPY package.json yarn.lock ./
 RUN yarn --production=false --frozen-lockfile
 
 COPY ./ ./
-RUN npx tsc
+RUN npx cmmn compile
 
 EXPOSE 80
 

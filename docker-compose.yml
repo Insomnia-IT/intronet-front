@@ -41,6 +41,8 @@ services:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
     restart: always
+    ports:
+      - "5984:5984"
     networks:
       apps:
     volumes:
