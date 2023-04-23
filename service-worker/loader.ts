@@ -31,8 +31,7 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
   if (location.pathname.match(/\.reload/)) {
     navigator.serviceWorker.getRegistration()
       .then((x) => x?.unregister())
-      .catch()
-      .then((x) => (location.pathname = "/"));
+      .catch();
   }
   if (navigator.serviceWorker.controller) {
     const isIOS = CSS.supports("-webkit-touch-callout", "none");

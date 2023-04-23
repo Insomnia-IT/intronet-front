@@ -112,7 +112,7 @@ export function useRouter<TQuery extends Record<string, string> = {}>() {
     back: history.back.bind(history),
     route,
     query,
-    active: routes[route[0]] ?? routes.map,
+    active: routes[route[0]] ?? routes.main,
     goTo,
   };
 }
