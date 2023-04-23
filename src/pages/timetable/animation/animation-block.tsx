@@ -61,12 +61,18 @@ export const MovieList: FunctionalComponent<
   const [gestureCell, setGestureCell] = useState<GestureCell | undefined>(
     undefined
   );
-  const setRef = useCallback((div: HTMLDivElement | undefined) => {
-    if (div) {
-      const gestureCell = new GestureCell(div);
-      setGestureCell(gestureCell);
-    }
-  }, []);
+  const setRef = useCallback(
+    (div: HTMLDivElement | undefined) => {
+      if (div) {
+        const gestureCell = new GestureCell(div);
+        setGestureCell(gestureCell);
+        /*}*/
+      } else {
+        setGestureCell(undefined);
+      }
+    },
+    [gestureCell]
+  );
   const gesture = useCell(gestureCell);
   return (
     <div flex column ref={setRef}>
