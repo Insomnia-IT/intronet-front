@@ -1,7 +1,10 @@
 import "./polyfill";
 import {render} from "preact";
 import { App } from "./app/app";
+import {LogoContainer} from "./pages/main/mainPage";
+
 window.addEventListener('init', () => {
+  LogoContainer.logo = document.getElementById('logo') as any as SVGSVGElement;
   const container = document.getElementById("root");
   render(<App />, container);
   document.getElementById("start").remove();

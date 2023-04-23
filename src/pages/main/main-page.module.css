@@ -12,3 +12,7 @@
     height: auto;
     color: var(--cold-white);
 }
+
+.mainPage :global(#logo){
+  margin: 54px calc(50% - 89px) 20px;
+}

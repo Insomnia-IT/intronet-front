@@ -101,7 +101,7 @@ window.addEventListener("popstate", () => {
   historyStateCell.set(history.state);
 });
 if (location.pathname === "/") {
-  goTo(["map"], {}, true);
+  goTo(["main"], {}, true);
 }
 
 export function useRouter<TQuery extends Record<string, string> = {}>() {

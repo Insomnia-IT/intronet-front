@@ -103,7 +103,7 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
 }
 async function init() {
   const elements: HTMLElement[] = [];
-  for (let asset of globalThis.assets) {
+  for (let asset of globalThis.assets.concat('public/styles/index.css')) {
     if (asset.endsWith("css")) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
