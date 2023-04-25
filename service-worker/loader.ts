@@ -127,7 +127,6 @@ async function init() {
   );
   // animateLoading(0);
   window.dispatchEvent(new CustomEvent("init"));
-  console.log("init");
 }
 
 type BeforeInstallPromptEvent = Event & {
