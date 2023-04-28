@@ -25,18 +25,13 @@ export const routes = {
     title: "Карта 2",
     Component: MapPageWithRouting,
   },
-  article: {
-    name: "article",
-    title: "Статья",
-    Component: null,
-  },
   timetable: {
     name: "timetable",
     title: "Расписание",
     Component: TimetablePage,
   },
-  directions: {
-    name: "directions",
+  locations: {
+    name: "locations",
     title: "Направления",
     Component: null,
   },

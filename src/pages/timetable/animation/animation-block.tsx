@@ -71,7 +71,7 @@ export const MovieList: FunctionalComponent<
         setGestureCell(undefined);
       }
     },
-    [gestureCell]
+    []
   );
   const gesture = useCell(gestureCell);
   return (

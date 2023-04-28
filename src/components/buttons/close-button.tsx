@@ -5,7 +5,9 @@ import { useRouter } from "../../pages/routing";
 import { useCallback } from "preact/hooks";
 import { FunctionalComponent } from "preact";
 
-export type CloseButtonProps = {};
+export type CloseButtonProps = {
+  onClick?(): void;
+};
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
   const onClick = useCallback(() => {
@@ -16,7 +18,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
     }
   }, [props]);
   return (
-    <Button className={Styles.close} onClick={onClick}>
+    <Button className={Styles.close} onClick={props.onClick ?? onClick}>
       <SvgIcon id="#x" size={14} />
     </Button>
   );

@@ -1,4 +1,4 @@
-import { Navbar, Toast } from "@components";
+import { Toast } from "@components";
 import { AppProvider, Modals } from "@helpers/AppProvider";
 import styles from "./app.style.module.css";
 import { useRouter } from "../pages/routing";
@@ -12,7 +12,6 @@ export const App = () => {
     <AppProvider>
       <div className={styles.main}>
         {Component && <Component />}
-        <Navbar />
         <Toast />
         <ModalSlot />
       </div>

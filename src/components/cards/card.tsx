@@ -6,7 +6,7 @@ import { JSXInternal } from "preact/src/jsx";
 export type ActivityCardProps = {
   children: ComponentChildren;
   border?: "Blue" | "Vivid";
-  background?: "Purple" | "None" | "White";
+  background?: "Purple" | "None" | "White" | "Vivid";
 } & JSXInternal.HTMLAttributes<HTMLDivElement>;
 export const Card: FunctionalComponent<ActivityCardProps> = ({
   border,

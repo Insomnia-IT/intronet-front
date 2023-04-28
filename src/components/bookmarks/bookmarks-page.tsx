@@ -11,7 +11,7 @@ export const BookmarksPage = () => {
   const type = router.route[1] as Bookmark["type"];
   const goTo = (type: Bookmark["type"]) => router.goTo(["bookmarks", type]);
   useEffect(() => {
-    if (!type) router.goTo(["bookmarks", "movie"]);
+    if (!type) router.goTo(["bookmarks", "movie"], {}, true);
   }, [type]);
   console.log(type);
   return (

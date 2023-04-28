@@ -5,7 +5,7 @@ import {LogoContainer} from "./pages/main/mainPage";
 import {EventListener} from "@cmmn/cell/lib";
 
 window.addEventListener('init', async () => {
-  await waitEyeAnimation();
+  // await waitEyeAnimation();
   LogoContainer.logo = document.getElementById('logo');
   const container = document.getElementById("root");
   render(<App />, container);

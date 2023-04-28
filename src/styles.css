@@ -61,13 +61,14 @@
 }
 
 :global(h2){
-    color: var(--medium-blue);
+    /*color: var(--medium-blue);*/
     font-family: 'Unbounded';
     font-style: normal;
     font-variation-settings: "wght" 900;
     font-size: 20px;
     line-height: 25px;
     text-transform: uppercase;
+    margin: 0;
 }
 
 

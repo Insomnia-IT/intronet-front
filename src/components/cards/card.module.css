@@ -16,6 +16,10 @@
     background: white;
 }
 
+.bgVivid{
+  background: var(--vivid-gradient);
+}
+
 .border{
     --borderWidth: 2px;
     border: solid var(--borderWidth) transparent;
