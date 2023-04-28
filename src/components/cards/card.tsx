@@ -16,15 +16,16 @@ export const Card: FunctionalComponent<ActivityCardProps> = ({
 }) => {
   return (
     <div
+      {...props}
       className={[
         Style.card,
         Style["border" + border],
         Style["bg" + background],
         className,
+        props.class
       ]
         .filter((x) => x)
         .join(" ")}
-      {...props}
     ></div>
   );
 };

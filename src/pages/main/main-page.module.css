@@ -44,3 +44,8 @@
   bottom: 0;
   opacity: 1;
 }
+
+.mainCard {
+  height: 30vw;
+  max-height: 200px;
+}
