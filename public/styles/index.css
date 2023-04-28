@@ -24,6 +24,9 @@ body, html {
 .w-full{
   width: 100%;
 }
+.h-full{
+  height: 100%;
+}
 [flex] {
   display: flex;
 }
@@ -36,6 +39,8 @@ body, html {
 [gap='4'] { gap: 16px; }
 [gap='5'] { gap: 20px; }
 [gap='6'] { gap: 24px; }
+[gap='8'] { gap: 32px; }
+[gap='10'] { gap: 40px; }
 
 [column] {
   flex-direction: column;

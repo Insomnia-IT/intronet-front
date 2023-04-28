@@ -1,0 +1,23 @@
+.page{
+  height: 100%;
+  width: 100%;
+  background: var(--ins-night);
+  color: var(--white);
+  padding: 102px 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.fireboy{
+  margin-top: 73px;
+  align-self: center;
+}
+
+.menuText{
+  background: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

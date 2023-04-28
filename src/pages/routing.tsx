@@ -8,6 +8,7 @@ import { compare } from "@cmmn/cell/lib";
 import { BookmarksPage } from "@components/bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
 import { StateUpdater, useCallback, useMemo, useState } from "preact/hooks";
+import {OnboardPage} from "./onboard/onboard-page";
 
 export const routes = {
   main: {
@@ -45,6 +46,11 @@ export const routes = {
     title: "Избранное",
     Component: BookmarksPage,
   },
+  onboard: {
+    name: "onboard",
+    title: 'Onboarding',
+    Component: OnboardPage
+  }
 };
 
 export type RoutePath =
@@ -96,7 +102,7 @@ window.addEventListener("popstate", () => {
   historyStateCell.set(history.state);
 });
 if (location.pathname === "/") {
-  goTo(["main"], {}, true);
+  goTo(["onboard"], {}, true);
 }
 
 export function useRouter<TQuery extends Record<string, string> = {}>() {

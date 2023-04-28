@@ -20,8 +20,7 @@
 
 .menuBtn{
   padding: 16px 32px !important;
-  /* MenuGradient */
-  background: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);
+  background: var(--menu-gradient);
   /* Pink Shadow */
   box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14), -4px -4px 12px rgba(248, 192, 194, 0.14), 0px 4px 12px rgba(248, 192, 194, 0.14);
 }

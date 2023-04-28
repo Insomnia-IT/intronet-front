@@ -21,7 +21,7 @@ export class LocalStore<TCookie extends Record<string, string>> {
       ...patch,
     };
     for (let key in patch) {
-      if ((patch[key] = null)) localStorage.removeItem(key);
+      if ((patch[key] === null)) localStorage.removeItem(key);
       else localStorage.setItem(key, patch[key]);
     }
   }

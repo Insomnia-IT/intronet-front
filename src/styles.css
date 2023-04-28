@@ -14,6 +14,7 @@
     --gray: #646995;
     --vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     --purple-gradient: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    --menu-gradient: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);
 }
 
 .pinkShadow{
@@ -24,9 +25,14 @@
 .softGradient{
   background: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
-
+:global(.bgInsNight){
+  background: var(--ins-night);
+}
 :global(.colorPink){
     color: var(--pink) !important;
+}
+:global(.colorDisco){
+  color: var(--cyber-disco) !important;
 }
 :global(.colorGray){
     color: var(--gray) !important;
@@ -34,7 +40,9 @@
 :global(.colorMediumBlue){
     color: var(--medium-blue) !important;
 }
-
+:global(.colorMenu){
+  color: var(--menu-gradient);
+}
 :global(.colorPurple){
     color: var(--purple) !important;
 }
@@ -48,7 +56,6 @@
     font-family: 'Unbounded';
 }
 :global(h1){
-    color: var(--medium-blue);
     font-family: 'Unbounded';
     font-style: normal;
     font-weight: 900;
