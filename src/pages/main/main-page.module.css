@@ -12,10 +12,12 @@
     height: auto;
     min-height: 100%;
     color: var(--cold-white);
+    padding: 54px 8px;
+    box-sizing: border-box;
 }
 
 .mainPage :global(#logo){
-  margin: 54px calc(50% - 93px) 20px;
+  margin: 0px calc(50% - 93px) 20px;
 }
 
 .menuBtn{
@@ -26,7 +28,7 @@
 }
 
 .menu{
-  position: absolute;
+  position: fixed;
   height: 100%;
   background: var(--ins-night);
   bottom: -100vh;

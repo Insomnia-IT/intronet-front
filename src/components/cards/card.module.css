@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 24px 16px;
+    padding: 16px;
     gap: 16px;
     border-radius: 24px;
     max-width: 440px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .bgPurple{
@@ -23,23 +24,26 @@
 .border{
     --borderWidth: 2px;
     border: solid var(--borderWidth) transparent;
-    background-clip: padding-box !important;
 }
 .borderBlue{
     composes: border;
     border-color: var(--medium-blue);
 }
 .borderVivid{
-    composes: border;
+    border: none;
     position: relative;
+    background: var(--vivid-gradient)
+}
+.borderVivid > *{
+  z-index: 1;
 }
 
 .borderVivid:before {
      content: '';
      position: absolute;
      top: 0; right: 0; bottom: 0; left: 0;
-     z-index: -1;
-     margin: calc(-1*var(--borderWidth));
-     border-radius: inherit; /* !importanté */
-     background: var(--vivid-gradient)
+     z-index: 0;
+     margin: 2px;
+     border-radius: 22px;
+     background: var(--cold-white)
  }

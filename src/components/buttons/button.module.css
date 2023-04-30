@@ -39,7 +39,8 @@
   background: var(--cyber-disco);
 }
 .frame{
-  background: var(--white);
+  background: transparent;
+  /*background: var(--white);*/
   color: var(--medium-blue);
   border: 2px solid var(--medium-blue);
 }
@@ -66,7 +67,7 @@
 .close{
   composes: frame;
   composes: button;
-  position: fixed;
+  position: absolute;
   z-index: 2;
   right: 16px;
   top: 48px;

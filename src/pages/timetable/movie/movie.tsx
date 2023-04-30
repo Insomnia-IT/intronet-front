@@ -24,6 +24,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { ticket, isOnline } = useCell(votingStore.state);
+  console.log(isOnline)
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
@@ -68,7 +69,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         </Card>
 
         {ticket && !isOnline && (
-          <div class="colorPink">
+          <div class="colorPink textSmall">
             Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
           </div>
         )}

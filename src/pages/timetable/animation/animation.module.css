@@ -33,8 +33,12 @@
   gap: 4px;
   will-change: transform;
   position: relative;
-  padding: 12px 0;
+  padding: 12px 16px;
   box-sizing: border-box;
+  margin: 0 -16px;
+}
+.movieSmall:active{
+  background: rgba(83, 107, 243, 0.1);
 }
 .movieSmall:last-child{
   padding-bottom: 6px;
@@ -55,7 +59,7 @@
   align-items: center;
   --width: 0;
   width: var(--width);
-  right: calc(-1*var(--width) - 16px);
+  right: calc(-1*var(--width));
   top:0;
   position: absolute;
   height: 100%;

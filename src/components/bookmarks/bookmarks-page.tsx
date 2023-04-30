@@ -5,18 +5,26 @@ import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { CloseButton } from "@components";
 import { MovieList } from "../../pages/timetable/animation/animation-block";
 import { Cell } from "@cmmn/cell/lib";
+import {Tag, Tags} from "../tag";
 
 export const BookmarksPage = () => {
   const router = useRouter();
   const type = router.route[1] as Bookmark["type"];
   const goTo = (type: Bookmark["type"]) => router.goTo(["bookmarks", type]);
   useEffect(() => {
-    if (!type) router.goTo(["bookmarks", "movie"], {}, true);
+    if (!type) router.goTo(["bookmarks", "movie" as BookmarkSection], {}, true);
   }, [type]);
   console.log(type);
   return (
     <div class="page">
       <h1>избранное</h1>
+      <Tags style={{margin: '16px 0 20px 0'}}>
+        {Sections.map(x => (
+        <Tag key={x} value={x}
+             onClick={() => goTo(x)}
+             selected={x === router.route[1]}>{SectionNames[x]}</Tag>
+        ))}
+      </Tags>
       {type == "movie" && <BookmarkMovies />}
       <CloseButton />
     </div>
@@ -58,3 +66,10 @@ export const BookmarkMovies = () => {
     />
   );
 };
+
+const Sections = ["movie", "activity", "bayka"] as Array<BookmarkSection>;
+const SectionNames = {
+  movie: 'Анимация',
+  activity: 'неАнимация',
+  bayka: 'Лагерь БАЙКА'
+} as Record<BookmarkSection, string>

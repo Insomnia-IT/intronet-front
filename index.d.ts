@@ -174,6 +174,7 @@ type User = {
 
 type Bookmark = {
   _id: string;
-  type: "movie" | "event" | "note";
+  type: BookmarkSection;
   itemId: string;
 };
+type BookmarkSection = "movie" | "activity" | "bayka";

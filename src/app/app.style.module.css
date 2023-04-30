@@ -5,13 +5,16 @@
 }
 
 :global(.page){
-  margin: 0 16px;
-  padding-top: 50px;
-  padding-bottom: 100px;
+  padding: 50px 16px 100px 16px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow-x: hidden;
+  background: var(--cold-white);
+  min-height: 100%;
+}
+:global(.page) > :global(h1){
+  color: var(--medium-blue);
 }
 
 @media (min-width: 441px){

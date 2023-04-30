@@ -6,6 +6,7 @@
   justify-content: center;
   gap: 4px;
   align-items: center;
+  background: transparent;
   color: #808080;
   cursor: pointer;
   white-space: nowrap;

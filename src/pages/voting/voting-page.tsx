@@ -13,7 +13,7 @@ export const VotingPage = () => {
   const { route, goTo } = useRouter();
   const state = useCell(votingStore.state);
   useEffect(() => {
-    if (!route[1] && state.ticket) goTo("/voting/success");
+    if (!route[1] && state.ticket) goTo("/voting/success", {}, true);
   }, [route[1], state.ticket]);
   switch (route[1] as Section) {
     case "ticket":
