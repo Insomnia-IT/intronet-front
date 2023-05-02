@@ -113,7 +113,7 @@ interface ICategory {
   color: string; // Цвет категории, для раскрашивания её карточки
 }
 
-type Day = "Thursday" | "Friday" | "Saturday" | "Sunday" | "Monday";
+type Day = 0|1|2|3|4; // Четверг, Пятница, Суббота, Вс, Пн
 
 interface Schedule {
   _id: string;

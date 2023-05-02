@@ -1,3 +1,4 @@
+import * as console from "console";
 import PouchDB from "pouchdb";
 import upsertPlugin from "pouchdb-upsert";
 import findPlugin from "pouchdb-find";
@@ -23,6 +24,7 @@ export class Database<T extends { _id: string }> {
 
   async addOrUpdate(value: T & { version: string }) {
     await this.db.upsert(value._id, () => value);
+    console.log('insert', value._id, this.name)
   }
 
   async getSince(revision: string = undefined): Promise<T[]> {

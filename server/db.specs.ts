@@ -1,8 +1,9 @@
 import { test } from "@jest/globals";
 import locationsJSON from "./locations.json";
+import schedulesJSON from "./schedules.json";
+import moviesJSON from "./movies.json";
 import { getRandomItem } from "@helpers/getRandomItem";
 import { Fn } from "@cmmn/cell/lib";
-import moviesJSON from "./movies.json";
 import { Database } from "./database";
 import { TileConverter } from "@helpers/tile.converter";
 
@@ -104,6 +105,52 @@ test("import-movies", async () => {
       ...movie,
       version: Fn.ulid(),
     });
+  }
+}, 60000);
+test("import-schedules", async () => {
+  const locationDB = new Database<InsomniaLocation>("locations");
+  const locations = await locationDB.getSince();
+  const db = new Database<Schedule>("schedules");
+  const schedules = await db.getSince();
+  console.log(schedules, locations)
+  if (schedules.length > 0) return;
+  const names = [
+    'Основы медитации',
+    'Фестиваль Бессонница как игра...',
+    'Тренировка для собак',
+    'Физика и химия для детей',
+    'Слушаем ГрОб'
+  ];
+  const descrs = [
+    'Почему нам так нравится на «Бессоннице»? В чем психологический смысл переодеваний и просмотра необычных мультиков? Приглашаем вас в совместное путешествие по игровому пространству фестиваля.'
+  ];
+  const authors =[
+    'Курмелева Анастасия. Психолог, выпускник МГУ, учёный. Основные направления — психологическое консультирование и управление персоналом',
+    'Иван Максимов. Режиссёр и художник мультфильмов. Лауреат международных...',
+    'Соболева Анастасия. Инструктор хатха-йоги, мастер мягких мануальных техник...',
+    'Мария Суркова, специалист по поведению собак'
+  ]
+  for (let location of locations) {
+    for (let day = 0; day < 5; day++) {
+      await db.addOrUpdate({
+        _id: Fn.ulid(),
+        locationId: location._id,
+        version: Fn.ulid(),
+        day: day as Day,
+        audiences: new Array(Math.floor(Math.random()*2)).fill(0).map((_, i) => ({
+          number: i + 1,
+          elements: new Array(Math.floor(Math.random()*15)).fill(0).map(() => ({
+            _id: Fn.ulid(),
+            name: names[Math.floor(Math.random()*names.length)],
+            description: descrs[Math.floor(Math.random()*descrs.length)],
+            speaker: authors[Math.floor(Math.random()*authors.length)],
+            age: 12,
+            type: 'lecture',
+            time: Math.floor(Math.random()*10+12)+':'+Math.floor(Math.random()*15)*4,
+          } as AuditoryElement))
+        })) as any
+      })
+    }
   }
 }, 60000);
 
