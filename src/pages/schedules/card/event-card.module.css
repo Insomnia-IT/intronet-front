@@ -1,0 +1,25 @@
+.eventContainer {
+  width: 100%;
+}
+
+.eventDescription {
+  max-height: 34px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventTimePlace {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.eventPlace {
+  max-width: 178px;
+}
+
+.eventTime {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

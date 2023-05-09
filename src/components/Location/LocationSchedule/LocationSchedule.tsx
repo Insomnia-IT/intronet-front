@@ -31,24 +31,24 @@ export const LocationSchedule: FunctionalComponent<LocationScheduleProps> = ({
   return (
     <div className={styles.content}>
       {show && <header className={styles.header}>Расписание</header>}
-      {show && (
-        <div className={styles.chips}>
-          {DAYS.map((d) => {
-            return (
-              <Chip
-                key={d}
-                onClick={() => {
-                  onDayChange(d);
-                  onAuditoryChange(1);
-                }}
-                active={day === d}
-              >
-                {DAY_NAMES[d]}
-              </Chip>
-            );
-          })}
-        </div>
-      )}
+      {/*{show && (*/}
+      {/*  <div className={styles.chips}>*/}
+      {/*    {DAYS.map((d) => {*/}
+      {/*      return (*/}
+      {/*        <Chip*/}
+      {/*          key={d}*/}
+      {/*          onClick={() => {*/}
+      {/*            onDayChange(d);*/}
+      {/*            onAuditoryChange(1);*/}
+      {/*          }}*/}
+      {/*          active={day === d}*/}
+      {/*        >*/}
+      {/*          {DAY_NAMES[d]}*/}
+      {/*        </Chip>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/*  </div>*/}
+      {/*)}*/}
       {showAuditories && (
         <div className={styles.tags}>
           {(isAdmin ? ([1, 2] as (1 | 2)[]) : auditories).map((a) => {

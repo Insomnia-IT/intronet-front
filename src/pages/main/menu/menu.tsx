@@ -40,7 +40,7 @@ const items: Array<{
   {title: 'Главная', href: 'main'},
   {title: 'Карта', href: 'map'},
   {title: 'Анимация', href: 'timetable', descr: 'Расписание мультфильмов'},
-  {title: 'неАнимация', href: 'locations', descr: 'Дневные активности'},
+  {title: 'неАнимация', href: 'schedules', descr: 'Дневные активности'},
   {title: 'Объявления', href: 'board'},
   {title: 'Избранное', href: 'bookmarks', descr: 'Сохранённые мультфильмы, мероприятия и объявления'},
 ]

@@ -25,6 +25,33 @@ export function getCurrentDay(): Day {
   return day as Day;
 }
 
+export function getCurrentHour() {
+  const hour = new Date().getHours();
+  switch (true) {
+    case hour < 13:
+      return 9;
+    case hour < 17:
+      return 13;
+    case hour < 24:
+      return 17;
+  }
+}
+
+export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
+  switch (filter) {
+    case 9:
+      return hour < 13;
+    case 13:
+      return hour >= 13 &&  hour < 17;
+    case 17:
+      return hour >= 17 &&  hour < 24;
+  }
+}
+
+export const coerceHour = (hour: unknown): hour is 9 | 13 | 17 => {
+  return hour === 9 || hour === 13 || hour === 17;
+}
+
 const namesShort = ["чт 13", "пт 14", "сб 15", "вс 16", "пн 17"];
 const namesFull = [
   "Четверг, 13 июля",

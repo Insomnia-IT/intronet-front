@@ -1,11 +1,10 @@
 import { cell } from "@cmmn/cell/lib";
-import {getCurrentDay} from "@helpers/getDayText";
 import {Component} from "preact";
 import { cellState } from "@helpers/cell-state";
 import { locationsStore, scheduleStore } from "@stores";
 import { LocationSchedule } from "./LocationSchedule";
 import { LocationScheduleProps } from "./types";
-import { DAYS } from "@constants";
+import { getCurrentDay } from "@helpers/getDayText";
 
 export class ConnectedLocationSchedule extends Component<Pick<
   LocationScheduleProps,
@@ -28,11 +27,11 @@ export class ConnectedLocationSchedule extends Component<Pick<
         this.auditory
       ),
     auditories: () =>
-      scheduleStore.getAuditorieNumbers(this.locationId, this.day),
+      scheduleStore.getAuditoryNumbers(this.locationId, this.day),
     auditory: () => this.auditory,
     day: () => this.day,
     selectedElement: () => this.selectedElement,
-    schedules: () => scheduleStore.getSchedules(),
+    schedules: () => scheduleStore.Schedules,
     menu: () => locationsStore.db.get(this.locationId)?.menu,
   });
 

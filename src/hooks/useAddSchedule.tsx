@@ -14,7 +14,7 @@ export const useAddSchedule = (locationId: Schedule["locationId"]) => {
   return useCallback(
     async (
       schedules?: Schedule[],
-      day?: Day,
+      day?: number,
       auditory?: Auditory["number"]
     ) => {
       try {

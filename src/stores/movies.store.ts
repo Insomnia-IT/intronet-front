@@ -6,7 +6,7 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 
 class MoviesStore {
   @cell
-  db = new ObservableDB<MovieBlock>("movies");
+  public db = new ObservableDB<MovieBlock>("movies");
 
   IsLoaded = this.db.isLoaded;
 

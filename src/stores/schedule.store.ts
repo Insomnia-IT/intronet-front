@@ -1,12 +1,30 @@
 import { ObservableDB } from "./observableDB";
-import { cell } from "@cmmn/cell/lib";
+import { cell, Cell } from "@cmmn/cell/lib";
+import { bookmarksStore } from "@stores/bookmarks.store";
 
 class ScheduleStore {
-
   @cell
   public db = new ObservableDB<Schedule>("schedules");
 
-  private getAuditories(locationId: string, day: Day): Auditory[] {
+  @cell
+  public get Schedules(): Schedule[] {
+    return this.db.toArray();
+  }
+
+  @cell
+  public get auditories(): AuditoryElementExpand[] {
+    return this.db.toArray().reduce<AuditoryElementExpand[]>((audiences, event) => {
+      const currentAudiences = event.audiences.flatMap((audience) => audience.elements);
+
+      return [ ...audiences, ...currentAudiences.map((audience) => ({
+        ...audience,
+        day: event.day,
+        locationId: event.locationId
+      })) ]
+    }, []);
+  }
+
+  private getAuditories(locationId: string, day: number): Auditory[] {
     return (
       this.db
         .toArray()
@@ -15,7 +33,7 @@ class ScheduleStore {
     );
   }
 
-  getAuditorieNumbers(locationId: string, day: Day): (1 | 2)[] {
+  getAuditoryNumbers(locationId: string, day: number): (1 | 2)[] {
     return Array.from(
       new Set(this.getAuditories(locationId, day).map((x) => x.number))
     );
@@ -31,7 +49,7 @@ class ScheduleStore {
 
   getAuditoryElements(
     locationId: string,
-    day: Day,
+    day: number,
     auditory: 1 | 2
   ): AuditoryElement[] {
     const auditories = this.getAuditories(locationId, day);
@@ -41,15 +59,28 @@ class ScheduleStore {
     return result?.elements || [];
   }
 
-  getSchedules(): Schedule[] {
-    return this.db.toArray();
-  }
-
-  getSchedule(locationId: string, day: Day) {
-    return this.getSchedules().find(
+  getSchedule(locationId: string, day: number) {
+    return this.Schedules.find(
       (x) => x.locationId === locationId && x.day === day
     );
   }
 }
 
 export const scheduleStore = new ScheduleStore();
+
+export class EventStore {
+  constructor(private id: string) {}
+
+  @cell
+  get auditory(): AuditoryElementExpand {
+    return scheduleStore.auditories.find((auditory) => auditory._id === this.id);
+  }
+
+  public state = new Cell<{
+    auditory: AuditoryElementExpand;
+    hasBookmark: boolean;
+  }>(() => ({
+    auditory: this.auditory,
+    hasBookmark: !!bookmarksStore.getBookmark('events', this.auditory?._id),
+  }))
+}

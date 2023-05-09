@@ -107,6 +107,12 @@
     display: flex;
     align-items: flex-end;
 }
+:global(.text){
+  font-style: normal;
+  font-variation-settings: "wght" 400;
+  font-size: 20px;
+  line-height: 24px;
+}
 :global(.tags){
     font-style: normal;
     font-weight: 510;
