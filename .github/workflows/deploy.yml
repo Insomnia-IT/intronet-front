@@ -13,11 +13,15 @@ jobs:
       IMAGE_NAME_SERVER: intronet-server
     steps:
       - uses: actions/checkout@v3
-      - name: Build and run docker
-        run: |
-          docker build . --tag $IMAGE_NAME:$GITHUB_SHA
-          docker build server --tag $IMAGE_NAME_SERVER:$GITHUB_SHA
-          docker compose down
-          docker compose up -d --no-build
-          docker container prune --filter "until=24h" -f
-          docker image prune -a -f --filter "until=24h"
+      - name: Build the Docker image
+        run: docker build . --tag $IMAGE_NAME:$GITHUB_SHA
+      - name: Build the Docker image
+        run: docker build server --tag $IMAGE_NAME_SERVER:$GITHUB_SHA
+      - name: stop container
+        run: docker-compose down
+      - name: run image
+        run: DOCKER_BUILDKIT=1 docker-compose up -d
+      - name: cleanup docker containers
+        run: docker container prune --filter "until=24h" -f
+      - name: cleanup docker images
+        run: docker image prune -a -f --filter "until=24h"
