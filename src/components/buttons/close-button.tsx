@@ -7,6 +7,7 @@ import { FunctionalComponent } from "preact";
 
 export type CloseButtonProps = {
   onClick?(): void;
+  white?: boolean;
 };
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
@@ -18,7 +19,10 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
     }
   }, [props]);
   return (
-    <Button className={Styles.close} onClick={props.onClick ?? onClick}>
+    <Button
+      className={props.white ? Styles.closeWhite : Styles.close}
+      onClick={props.onClick ?? onClick}
+    >
       <SvgIcon id="#x" size={14} />
     </Button>
   );

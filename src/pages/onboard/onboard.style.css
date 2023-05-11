@@ -21,3 +21,7 @@
   background-clip: text;
   text-fill-color: transparent;
 }
+
+.menuBtn{
+  composes: menuBtn from "../main/main-page.module.css";
+}

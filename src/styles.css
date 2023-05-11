@@ -58,8 +58,8 @@
 :global(h1){
     font-family: 'Unbounded';
     font-style: normal;
-    font-weight: 900;
-    font-variation-settings: "wght" 600;
+    font-weight: initial;
+    font-variation-settings: "wght" 900;
     font-size: 28px;
     line-height: 35px;
     text-transform: uppercase;
@@ -71,6 +71,7 @@
     /*color: var(--medium-blue);*/
     font-family: 'Unbounded';
     font-style: normal;
+    font-weight: initial;
     font-variation-settings: "wght" 900;
     font-size: 20px;
     line-height: 25px;
