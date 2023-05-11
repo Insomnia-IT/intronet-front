@@ -20,7 +20,7 @@ jobs:
       - name: stop container
         run: docker-compose down
       - name: run image
-        run: DOCKER_BUILDKIT=1 docker-compose up -d
+        run: docker-compose up -d
       - name: cleanup docker containers
         run: docker container prune --filter "until=24h" -f
       - name: cleanup docker images
