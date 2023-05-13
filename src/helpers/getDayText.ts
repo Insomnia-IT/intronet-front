@@ -18,11 +18,11 @@ export function getDayText(day: number, type?: "at" | "short" | "full") {
   }
 }
 
-export function getCurrentDay() {
+export function getCurrentDay(): Day {
   const day = new Date().getDay() - 4; // четверг = 0
   if (day === -3) return 4;
   if (day < 0) return 0;
-  return day;
+  return day as Day;
 }
 
 const namesShort = ["чт 13", "пт 14", "сб 15", "вс 16", "пн 17"];

@@ -1,4 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
+import {getCurrentDay} from "@helpers/getDayText";
 import {Component} from "preact";
 import { cellState } from "@helpers/cell-state";
 import { locationsStore, scheduleStore } from "@stores";
@@ -15,7 +16,7 @@ export class ConnectedLocationSchedule extends Component<Pick<
   @cell
   auditory: 1 | 2 = 1;
   @cell
-  day: Day = DAYS[new Date().getDate() - 14];
+  day: Day = getCurrentDay();
   @cell
   selectedElement: AuditoryElement;
 

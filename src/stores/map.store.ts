@@ -5,7 +5,7 @@ class MapStore {
   constructor() {
     try {
       this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
-      this.load("/public/images/map-min.webp").then((x) => (this.Map2 = x));
+      this.load("/public/images/map_18_156598_83304_156635_83327.webp").then((x) => (this.Map2 = x));
     } catch (e) {}
     // this.load("/images/map2.webp").then((x) => (this.Map2 = x));
   }
@@ -44,10 +44,10 @@ class MapStore {
   // );
   public Map2GeoConverter = new TileConverter(
     {
-      x: 78306,
-      y: 41656,
+      x: 156598,
+      y: 83304,
     },
-    17,
+    18,
     256
   );
 }

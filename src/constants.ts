@@ -1,9 +1,5 @@
 export const DAYS: Day[] = [
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-  "Monday",
+  0, 1, 2, 3, 4
 ];
 
 export const DAY_NAMES = {
