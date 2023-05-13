@@ -3,13 +3,14 @@
   width: 100%;
   background: var(--ins-night);
   color: var(--white);
-  padding: 102px 16px;
+  padding: 70px 16px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
 .fireboy{
+  width: 100%;
   margin-top: 73px;
   align-self: center;
 }

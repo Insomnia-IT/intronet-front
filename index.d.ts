@@ -177,4 +177,4 @@ type Bookmark = {
   type: BookmarkSection;
   itemId: string;
 };
-type BookmarkSection = "movie" | "activity" | "bayka";
+type BookmarkSection = "movie" | "activity" | "locations" | "notes";

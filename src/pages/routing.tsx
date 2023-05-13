@@ -117,7 +117,7 @@ export function useRouter<TQuery extends Record<string, string> = {}>() {
     goTo,
   };
 }
-history.scrollRestoration = "auto";
+// history.scrollRestoration = "auto";
 export const historyStateCell = new Cell<Record<string, any>>(
   {},
   {

@@ -36,7 +36,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class="colorGray">
         {minutes} мин {seconds} сек
       </div>
-      <div style={{ marginBottom: 24 }}>
+      <div style={{ marginBottom: 24, marginTop: 24 }}>
         <Card border="Vivid" background="White">
           <div flex column gap="2">
             <div class="sh2 colorPink">Международный конкурс анимации</div>
@@ -81,7 +81,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
             <div class="tags colorMediumBlue">
               {getDayText(view.day, "full")}
             </div>
-            <Card border="Blue" background="None">
+            <Card border="Blue" background="None" onClick={() => router.goTo(["map", view.locationId])}>
               <div flex center class="sh1" gap={2}>
                 <SvgIcon id="#eye" style={{ color: "var(--electric-blues)" }} />
                 {locationsStore.getName(view.locationId)}

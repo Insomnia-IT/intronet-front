@@ -27,7 +27,7 @@ export const Menu: FunctionalComponent = () => {
         <h2>{x.title}</h2>
         {x.descr && <div class="text-small">{x.descr}</div>}
       </div>)}
-      <CloseButton onClick={switchOpen}/>
+      <CloseButton onClick={switchOpen} white/>
     </div>
   </>;
 }

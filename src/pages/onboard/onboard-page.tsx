@@ -46,7 +46,7 @@ const OnboardStage2 = () => {
     <div flex column gap="10">
       <h1>Как это работает?</h1>
       <div>
-        <h2 class={styles.menuText} style={{ marginTop: 40 }}>
+        <h2 class={styles.menuText}>
           локально на поле
         </h2>
         <div class="text">

@@ -10,9 +10,9 @@ import {Tag, Tags} from "../tag";
 export const BookmarksPage = () => {
   const router = useRouter();
   const type = router.route[1] as Bookmark["type"];
-  const goTo = (type: Bookmark["type"]) => router.goTo(["bookmarks", type]);
+  const goTo = (type: Bookmark["type"]) => router.goTo(["bookmarks", type], {}, true);
   useEffect(() => {
-    if (!type) router.goTo(["bookmarks", "movie" as BookmarkSection], {}, true);
+    if (!type) goTo("movie");
   }, [type]);
   console.log(type);
   return (
@@ -67,9 +67,10 @@ export const BookmarkMovies = () => {
   );
 };
 
-const Sections = ["movie", "activity", "bayka"] as Array<BookmarkSection>;
+const Sections = ["movie", "activity", "locations", "notes"] as Array<BookmarkSection>;
 const SectionNames = {
   movie: 'Анимация',
   activity: 'неАнимация',
-  bayka: 'Лагерь БАЙКА'
+  locations: 'Локации',
+  notes: 'Объявления'
 } as Record<BookmarkSection, string>

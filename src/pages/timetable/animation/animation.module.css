@@ -84,7 +84,7 @@
 }
 
 .bookmarkDemo:nth-child(3){
-  animation: bookmarkDemo infinite 5s;
+  animation: bookmarkDemo 5s;
   transition: transform;
 }
 .bookmarkDemo:nth-child(3) .bookmarkAdd{

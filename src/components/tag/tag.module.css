@@ -6,6 +6,8 @@
     gap: 4px;
     overscroll-behavior-x: auto;
     touch-action: pan-x;
+    margin-right: -16px;
+    padding-right: 16px;
 }
 
 .tag{

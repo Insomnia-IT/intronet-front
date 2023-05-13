@@ -1,8 +1,6 @@
 .button{
   padding: 16px;
-  font-size: 12px;
   border-radius: 24px;
-  line-height: 14px;
   text-transform: uppercase;
   border: none;
   color: var(--white);
@@ -14,13 +12,22 @@
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  transition: .3s ease-out;
+
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .button:hover{
   outline: none;
 }
 .button:active{
-  outline: none;
+  box-shadow: 0 0 8px rgba(21, 37, 106, 0.6);
 }
 .button:focus{
   outline: none;
@@ -65,17 +72,20 @@
 }
 
 .close{
+  font-size: 12px;
+  line-height: 14px;
   composes: frame;
   composes: button;
   position: absolute;
   z-index: 2;
   right: 16px;
-  top: 48px;
+  top: 14px;
   padding: 11px;
 }
 .closeWhite{
   composes: close;
   color: var(--cold-white);
+  border-color: var(--cold-white);
 }
 
 .left{

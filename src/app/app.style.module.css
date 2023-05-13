@@ -5,13 +5,14 @@
 }
 
 :global(.page){
-  padding: 50px 16px 100px 16px;
+  padding: 16px 16px 100px 16px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow-x: hidden;
   background: var(--cold-white);
   min-height: 100%;
+  position: relative;
 }
 :global(.page) > :global(h1){
   color: var(--medium-blue);

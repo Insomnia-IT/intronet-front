@@ -1,12 +1,14 @@
 import "./polyfill";
+import {SvgContainer} from "@icons";
 import {render} from "preact";
 import { App } from "./app/app";
-import {LogoContainer} from "./pages/main/mainPage";
 import {EventListener} from "@cmmn/cell/lib";
 
 window.addEventListener('init', async () => {
-  // await waitEyeAnimation();
-  LogoContainer.logo = document.getElementById('logo');
+  SvgContainer.logo = document.getElementById('logo').cloneNode(true) as SVGElement;
+  SvgContainer.eye = document.getElementById('eye').cloneNode(true) as SVGElement;
+  if (!location.href.includes('localhost'))
+    await waitEyeAnimation();
   const container = document.getElementById("root");
   render(<App />, container);
   document.getElementById("start").remove();

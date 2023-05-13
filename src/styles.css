@@ -64,7 +64,7 @@
     line-height: 35px;
     text-transform: uppercase;
     margin: 0;
-    margin-bottom: 8px;
+    /*margin-bottom: 8px;*/
 }
 
 :global(h2){

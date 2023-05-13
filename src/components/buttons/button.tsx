@@ -1,5 +1,6 @@
+import {EyeLoading} from "@icons";
 import Styles from "./button.module.css";
-import { FunctionalComponent } from "preact";
+import {FunctionalComponent, JSX} from "preact";
 import { RoutePath, RoutePathString, useRouter } from "../../pages/routing";
 import { useCallback, useMemo } from "preact/hooks";
 
@@ -9,11 +10,13 @@ export type ButtonProps = {
   selected?: boolean;
   type?: "frame" | "blue" | "disco" | "vivid" | "text";
   goTo?: RoutePath | RoutePathString;
-} & React.JSX.HTMLAttributes<HTMLButtonElement>;
+} & JSX.HTMLAttributes<HTMLButtonElement>;
 export const Button: FunctionalComponent<ButtonProps> = ({
   className,
   type,
   goTo,
+  isLoading,
+  children,
   ...props
 }) => {
   const router = useRouter();
@@ -25,6 +28,11 @@ export const Button: FunctionalComponent<ButtonProps> = ({
   if (props.selected) classNames.push(Styles.selected);
   if (type) classNames.push(Styles[type]);
   return (
-    <button onClick={onClick} {...props} className={classNames.join(" ")} />
+    <button onClick={onClick} {...props}
+            className={classNames.join(" ")}
+            children={isLoading ? <div style={{margin: '-8px 0', height: '1.5em'}}>
+              <EyeLoading size="1.5em"/>
+            </div>: children}
+    />
   );
 };
