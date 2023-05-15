@@ -110,7 +110,7 @@ export function useRouter<TQuery extends Record<string, string> = {}>() {
   const query = useCell(queryCell) as TQuery;
   useEffect(() => {
     if (!routes[route[0]]){
-      goTo(['main']);
+      goTo(['onboard']);
     }
   }, [route[0]]);
   return {
