@@ -11,19 +11,13 @@ class UserStore extends LocalStore<{
   }
 
   set StatusBarColor(color: string){
-    this.getOrCreateMeta('theme-color').setAttribute('content', color);
-    this.getOrCreateMeta('apple-mobile-web-app-status-bar-style').setAttribute('content', color);
+    for (let meta of Array.from(
+      document.head.querySelectorAll(`meta[name=theme-color],meta[name=apple-mobile-web-app-status-bar-style]`)
+    )) {
+      meta.setAttribute('content', color);
+    }
   }
 
-  private getOrCreateMeta(name: string){
-    return document.head.querySelector(`meta[name=${name}]`) ?? this.createMeta(name)
-  }
-  private createMeta(name: string){
-    const meta = document.createElement('meta');
-    meta.setAttribute('name', name);
-    document.head.appendChild(meta)
-    return meta;
-  }
 
   onboardingNext = () => this.OnboardingPhase++;
   onboardingFinish = () => this.OnboardingPhase = 5;

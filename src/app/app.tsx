@@ -21,7 +21,7 @@ export const App = () => {
         userStore.StatusBarColor = '#F7FCFF';
         break;
     }
-  }, [route])
+  }, [route[0]])
   return (
     <AppProvider>
       <div className={styles.main}>
