@@ -58,6 +58,8 @@ type MapItem = {
   radius;
   id;
   title?: string;
+  minZoom?: number;
+  maxZoom?: number;
 };
 
 type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {

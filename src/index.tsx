@@ -7,8 +7,8 @@ import {EventListener} from "@cmmn/cell/lib";
 window.addEventListener('init', async () => {
   SvgContainer.logo = document.getElementById('logo').cloneNode(true) as SVGElement;
   SvgContainer.eye = document.getElementById('eye').cloneNode(true) as SVGElement;
-  if (!location.href.includes('localhost'))
-    await waitEyeAnimation();
+  // if (!location.href.includes('localhost'))
+  //   await waitEyeAnimation();
   const container = document.getElementById("root");
   render(<App />, container);
   document.getElementById("start").remove();

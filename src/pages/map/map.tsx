@@ -47,10 +47,9 @@ export class MapComponent extends Component<MapProps> {
         />
         <svg className={styles.svg}>
           {this.props.items
-            .filter(
-              // @ts-ignore
-              (x) => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y)
-            )
+            .filter(x => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y))
+            .filter(x => !x.minZoom || x.minZoom < this.state.scale / this.minScale)
+            .filter(x => !x.maxZoom || x.maxZoom >= this.state.scale / this.minScale)
             .map((x) => (
               <MapElement
                 item={x}
@@ -108,7 +107,7 @@ export class MapComponent extends Component<MapProps> {
 
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
-    if (scale > 2 || scale < this.minScale) {
+    if (scale > 2.2 || scale < this.minScale * 0.98) {
       return;
     }
     this.Transform = transform;

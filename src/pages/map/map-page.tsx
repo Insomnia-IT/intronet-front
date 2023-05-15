@@ -81,7 +81,7 @@ export class MapPage extends Component<{ locationId? }> {
       title: x.name,
       id: x._id,
       radius: 10,
-    } as unknown as MapItem;
+    } as MapItem;
   }
 
   @cell
