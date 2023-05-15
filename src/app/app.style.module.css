@@ -45,8 +45,7 @@
   line-height: 17px;
   text-transform: uppercase;
   cursor: pointer;
-  /* Electric Blues */
-  color: #536BF3;
+  color: var(--electric-blues)
 
 }
 :global(.link):after{
