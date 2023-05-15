@@ -7,7 +7,7 @@ import { MainPage } from "./main/mainPage";
 import { compare } from "@cmmn/cell/lib";
 import { BookmarksPage } from "@components/bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
-import { StateUpdater, useCallback, useMemo, useState } from "preact/hooks";
+import {StateUpdater, useCallback, useEffect, useMemo, useState} from "preact/hooks";
 import {OnboardPage} from "./onboard/onboard-page";
 
 export const routes = {
@@ -108,7 +108,11 @@ if (location.pathname === "/") {
 export function useRouter<TQuery extends Record<string, string> = {}>() {
   const route: RoutePath = useCell(routeCell);
   const query = useCell(queryCell) as TQuery;
-
+  useEffect(() => {
+    if (!routes[route[0]]){
+      goTo(['main']);
+    }
+  }, [route[0]]);
   return {
     back: history.back.bind(history),
     route,
