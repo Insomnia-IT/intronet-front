@@ -31,7 +31,9 @@ const OnboardStage1 = () => {
         Это insight
       </h1>
       <div class="text">— локальный портал Бессонницы</div>
+      <div class={styles.fireboyWrap}>
       <img class={styles.fireboy} src="/public/images/fire_boy.webp" />
+      </div>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
           ОГО!

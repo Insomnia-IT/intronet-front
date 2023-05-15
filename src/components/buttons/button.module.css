@@ -102,7 +102,7 @@
 }
 .bottom{
   flex-flow: row nowrap;
-  bottom: 40px;
+  bottom: 20px;
   left: 0;
   right: 0;
   gap: 1em;
