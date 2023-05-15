@@ -77,11 +77,11 @@ const OnboardStage3 = () => {
   return (
     <div flex column gap="10">
       <h1>insight это </h1>
-      <div class={styles.menuText} flex column gap="8">
-        <h2>Карта фестиваля</h2>
-        <h2>Расписание ночных показов</h2>
-        <h2>расписание дневных мероприятий</h2>
-        <h2>онлайн доска объявлений</h2>
+      <div flex column gap="8">
+        <h2 class={styles.menuText}>Карта фестиваля</h2>
+        <h2 class={styles.menuText}>Расписание ночных показов</h2>
+        <h2 class={styles.menuText}>расписание дневных мероприятий</h2>
+        <h2 class={styles.menuText}>онлайн доска объявлений</h2>
       </div>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
