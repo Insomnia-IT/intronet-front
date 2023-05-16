@@ -59,6 +59,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
     await this.db.set(value._id, value);
     this.items.set(value._id, value);
   }
+
   async addOrUpdate(value: T, skipChange = false) {
     await this.isLoaded;
     const valueWithVersion = {

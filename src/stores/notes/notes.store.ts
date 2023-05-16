@@ -1,11 +1,10 @@
-import { cell } from "@cmmn/cell/lib";
+import { Fn, cell } from "@cmmn/cell/lib";
 import { GenericRequest } from "@api";
 import { ObservableDB } from "../observableDB";
 
 class NotesStore {
-
   @cell
-  Notes = new ObservableDB<INote>("notes");
+  private db = new ObservableDB<INote>("notes");
 
   @cell
   IsLoading: boolean = false;
@@ -19,39 +18,59 @@ class NotesStore {
   };
 
   /**
-   * Добавляет запись
+   * Добавляет объявление
    */
-  public addNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.addOrUpdate(request.body);
+  public addNote = async (newNote: INoteLocal) => {
+    await this.db.addOrUpdate(this.createNoteEntity(newNote));
+  };
+
+  /*
+   * Обновляет объявление, но оно обязательно
+   * должно уже существовать.
+   */
+  public updateNote = async ({
+    id,
+    updatedNote,
+  }: {
+    id: string;
+    updatedNote: INoteUpdated;
+  }) => {
+    const note = this.getNote(id);
+
+    if (!note) {
+      throw new Error("Объявления не существует!");
+    }
+
+    await this.db.addOrUpdate({
+      ...note,
+      ...updatedNote,
+      updatedAt: Date.now(),
+    });
   };
 
   /**
-   * Изменяет запись по id
-   * @param {INote} body Тело реквеста
+   * Удаляет объявление по id
    */
-  public editNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.addOrUpdate(request.body);
-  };
-
-  /**
-   * Удаляет запись по id
-   */
-  public removeNote = async (
-    request: GenericRequest<{ id: string }, null, null>
-  ) => {
-    this.IsLoading = true;
-    // await this.api.deleteNote(request.path.id);
-    this.Notes.remove(request.path.id);
-    this.IsLoading = false;
+  public removeNote = async (id: string) => {
+    this.db.remove(id);
   };
 
   // Отдаёт стор с объявлениями
   get notes() {
-    return this.Notes.toArray().sort((a, b) => b._id > a._id ? 1 : (b._id == a._id ? 0 : -1));
+    // TODO: сделать сортировку по времени добавления и изменения
+    return this.db.toArray();
   }
 
   getNote(id: string) {
-    return this.notes.find((note) => note._id === id);
+    return this.db.get(id);
+  }
+
+  private createNoteEntity(localNote: INoteLocal): INote {
+    return {
+      ...localNote,
+      _id: Fn.ulid(),
+      createdAt: Date.now(),
+    };
   }
 }
 

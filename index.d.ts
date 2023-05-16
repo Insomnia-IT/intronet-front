@@ -97,14 +97,22 @@ type MovieBlock = {
   movies: MovieInfo[];
 };
 
-interface INote {
+type INote = {
   _id: string;
   title: string;
   text: string;
   categoryId: string;
-  createdDate: string;
-  createdBy: "admin" | null;
-}
+  author: string;
+  isFavourites: boolean;
+  createdAt: number;
+  updatedAt?: number;
+};
+
+type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt">;
+
+type INoteUpdated = Partial<
+  Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
+>;
 
 interface ICategory {
   _id: string; // Id категории
@@ -113,7 +121,7 @@ interface ICategory {
   color: string; // Цвет категории, для раскрашивания её карточки
 }
 
-type Day = 0|1|2|3|4; // Четверг, Пятница, Суббота, Вс, Пн
+type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 
 interface Schedule {
   _id: string;
