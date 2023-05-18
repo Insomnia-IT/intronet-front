@@ -58,7 +58,9 @@ class NotesStore {
   // Отдаёт стор с объявлениями
   get notes() {
     // TODO: сделать сортировку по времени добавления и изменения
-    return this.db.toArray();
+    return this.db.toArray().sort((a, b) => {
+      return this.getLatestNoteDate(a) - this.getLatestNoteDate(b);
+    });
   }
 
   getNote(id: string) {
@@ -71,6 +73,10 @@ class NotesStore {
       _id: Fn.ulid(),
       createdAt: Date.now(),
     };
+  }
+
+  getLatestNoteDate(note: INote): number {
+    return note.updatedAt || note.createdAt;
   }
 }
 
