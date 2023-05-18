@@ -114,12 +114,14 @@ type INoteUpdated = Partial<
   Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
 >;
 
-interface ICategory {
+type ICategory = {
   _id: string; // Id категории
-  name: string; //название категории
-  count: number; //количество элементов которым присвоена данная категория
+  name: string; // название категории
+  count: number; // количество элементов которым присвоена данная категория
   color: string; // Цвет категории, для раскрашивания её карточки
-}
+};
+
+type ICategoryLocal = Omit<ICategory, "_id">;
 
 type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 

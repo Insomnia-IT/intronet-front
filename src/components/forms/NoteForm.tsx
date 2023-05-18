@@ -1,4 +1,3 @@
-
 import { FunctionalComponent } from "preact";
 import { useCell } from "@helpers/cell-state";
 import { categoriesStore } from "@stores";
@@ -9,8 +8,10 @@ export type NoteFormProps = {
   onCancel?: () => void;
 } & { note?: Omit<INote, "createdDate" | "createdBy"> };
 
-export const NoteForm: FunctionalComponent<NoteFormProps> = ({ note, onSubmit }) => {
-  const categories = useCell(() => categoriesStore.allCategory);
+export const NoteForm: FunctionalComponent<NoteFormProps> = ({
+  note,
+  onSubmit,
+}) => {
   return (
     <div></div>
     // <Formik initialValues={{ ...note, categoryId: '2' }} onSubmit={onSubmit}>
