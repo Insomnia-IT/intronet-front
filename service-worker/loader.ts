@@ -23,13 +23,21 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
     //   });
     // },
   });
+  setInterval(
+    () =>
+      handle.worker?.postMessage({
+        action: "check",
+      }),
+    5 * 1000
+  );
 
   // const isFirstInstall = !(
   //   navigator.serviceWorker.controller instanceof ServiceWorker
   // ); // при первой установке на клиенте еще нет sw
 
   if (location.pathname.match(/\.reload/)) {
-    navigator.serviceWorker.getRegistration()
+    navigator.serviceWorker
+      .getRegistration()
       .then((x) => x?.unregister())
       .catch();
   }
@@ -75,9 +83,9 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
   navigator.serviceWorker.addEventListener("message", ({ data }) => {
     switch (data.action) {
       // case "loading":
-        // handle.size += data.size;
-        // console.log(`${data.cache}: +${data.size} (${data.url})`);
-        // break;
+      // handle.size += data.size;
+      // console.log(`${data.cache}: +${data.size} (${data.url})`);
+      // break;
 
       case "init":
         init().catch(console.error);
@@ -102,7 +110,7 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
 }
 async function init() {
   const elements: HTMLElement[] = [];
-  for (let asset of globalThis.assets.concat('public/styles/index.css')) {
+  for (let asset of globalThis.assets.concat("public/styles/index.css")) {
     if (asset.endsWith("css")) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
