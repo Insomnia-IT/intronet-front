@@ -57,7 +57,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>
-          «{movie.name}»
+          {movie.name}
         </div>
         <SvgIcon
           id="#bookmark"

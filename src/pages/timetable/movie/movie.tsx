@@ -24,11 +24,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { ticket, isOnline } = useCell(votingStore.state);
-  console.log(isOnline)
+  console.log(isOnline);
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
-      <header className="sh1">«{movie?.name}»</header>
+      <header className="sh1">{movie?.name}</header>
       {movie.description && <div className="sh1">{movie?.description}</div>}
       <div class="colorGray">
         {movie.author}, {movie.country}, {movie.year}
@@ -81,7 +81,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
             <div class="tags colorMediumBlue">
               {getDayText(view.day, "full")}
             </div>
-            <Card border="Blue" background="None" onClick={() => router.goTo(["map", view.locationId])}>
+            <Card
+              border="Blue"
+              background="None"
+              onClick={() => router.goTo(["map", view.locationId])}
+            >
               <div flex center class="sh1" gap={2}>
                 <SvgIcon id="#eye" style={{ color: "var(--electric-blues)" }} />
                 {locationsStore.getName(view.locationId)}
