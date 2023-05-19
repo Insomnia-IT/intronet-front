@@ -3,7 +3,7 @@ export function highlight(text: string, query: string | undefined) {
   if (!text.toLowerCase().includes(query.toLowerCase())) {
     return text;
   }
-  const r = new RegExp("[^\\s]*" + query + "[^\\s]*", "gi");
+  const r = new RegExp("[^\\s]*" + query.trim() + "[^\\s]*", "gi");
   const split = text.split(r);
   const matches = text.match(r);
   console.log(split, matches);
