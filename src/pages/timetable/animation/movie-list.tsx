@@ -4,9 +4,10 @@ import { useCallback, useState } from "preact/hooks";
 import { GestureCell } from "./gesture";
 import { useCell } from "@helpers/cell-state";
 
-export const MovieList: FunctionalComponent<{ movies: MovieInfo[] }> = ({
-  movies,
-}) => {
+export const MovieList: FunctionalComponent<{
+  movies: MovieInfo[];
+  searchQuery?: string;
+}> = ({ movies, searchQuery }) => {
   const [gestureCell, setGestureCell] = useState<GestureCell | undefined>(
     undefined
   );
@@ -23,7 +24,12 @@ export const MovieList: FunctionalComponent<{ movies: MovieInfo[] }> = ({
   return (
     <div flex column ref={setRef}>
       {movies.map((m) => (
-        <MovieSmall movie={m} key={m.id} gesture={gesture} />
+        <MovieSmall
+          movie={m}
+          key={m.id}
+          gesture={gesture}
+          searchQuery={searchQuery}
+        />
       ))}
     </div>
   );

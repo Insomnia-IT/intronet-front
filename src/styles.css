@@ -115,3 +115,8 @@
     display: flex;
     align-items: flex-end;
 }
+
+:global(mark){
+    background: initial;
+    color: var(--cyber-disco);
+}
