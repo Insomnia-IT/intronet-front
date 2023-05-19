@@ -2,7 +2,8 @@ import { FunctionalComponent } from "preact";
 import { useCell } from "@helpers/cell-state";
 import { moviesStore } from "@stores";
 import { useHistoryState } from "../routing";
-import { MovieList } from "../timetable/animation/animation-block";
+
+import { MovieList } from "../timetable/animation/movie-list";
 export const VotingMain: FunctionalComponent = () => {
   const blocks = useCell(() => moviesStore.MovieBlocks);
   return (
