@@ -2,12 +2,12 @@ import { Button, ButtonsBar, CloseButton } from "@components";
 import { routes, useRouter } from "../routing";
 import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
-import { EventAll } from "./events/eventAll";
-import { Event } from "./event/event";
+import { ActivitiesAll } from "./activities/activitiesAll";
+import { Activity } from "./activity/activity";
 
-export function SchedulesPage() {
-  const router = useSchedulesRouter();
-  switch (router.eventId) {
+export function ActivitiesPage() {
+  const router = useActivitiesRouter();
+  switch (router.activityId) {
     case "search":
       return (
         <div class="page">
@@ -18,7 +18,7 @@ export function SchedulesPage() {
     case undefined:
       return (
         <div class="page">
-          <EventAll />
+          <ActivitiesAll />
           <CloseButton />
           <ButtonsBar at="bottom">
             <Button type="vivid" goTo="/timetable/search">
@@ -34,20 +34,20 @@ export function SchedulesPage() {
     default:
       return (
         <div class="page">
-          <Event id={router.eventId} />
+          <Activity id={router.activityId} />
           <CloseButton />
         </div>
       );
   }
 }
 
-const baseRoute = "schedules" as keyof typeof routes;
-export function useSchedulesRouter() {
+const baseRoute = "activities" as keyof typeof routes;
+export function useActivitiesRouter() {
   const router = useRouter();
   return {
     ...router,
-    eventId: router.route[1] as string | undefined,
-    goToEvent(id: string) {
+    activityId: router.route[1] as string | undefined,
+    goToActivity(id: string) {
       router.goTo([baseRoute, id]);
     },
   };

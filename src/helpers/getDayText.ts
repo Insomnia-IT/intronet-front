@@ -1,3 +1,5 @@
+import * as stream from "stream";
+
 export function getDayText(day: number, type?: "at" | "short" | "full") {
   if (day < 0) day = 0;
   if (!type) return names[day];
@@ -46,6 +48,15 @@ export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
     case 17:
       return hour >= 17 &&  hour < 24;
   }
+}
+
+export const coerceTime = (date: Date | string): string => {
+  const time = new Date(date);
+  return `${prepareTime(time.getHours())}:${prepareTime(time.getMinutes())}`
+}
+
+const prepareTime = (value: number): string => {
+  return value < 10 ? `0${value}` : `${value}`
 }
 
 export const coerceHour = (hour: unknown): hour is 9 | 13 | 17 => {

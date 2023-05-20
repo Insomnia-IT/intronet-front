@@ -15,7 +15,7 @@ import {
   useState,
 } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
-import { SchedulesPage } from "./schedules/schedules-page";
+import { ActivitiesPage } from "./activities/activities-page";
 
 export const routes = {
   main: {
@@ -33,10 +33,10 @@ export const routes = {
     title: "Карта 2",
     Component: MapPageWithRouting,
   },
-  schedules: {
-    name: "schedules",
+  activities: {
+    name: "activities",
     title: "НеАнимация",
-    Component: SchedulesPage,
+    Component: ActivitiesPage,
   },
   timetable: {
     name: "timetable",

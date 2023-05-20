@@ -117,6 +117,20 @@ interface ICategory {
 
 type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 
+interface Activity {
+  _id: string;
+  locationId: string;
+  title: string;
+  description: string;
+  day: number;
+  start: Date | string;
+  end: Date;
+  author: string;
+  age?: number;
+  changes?: string;
+  isCanceled?: boolean;
+}
+
 interface Schedule {
   _id: string;
   locationId: string;

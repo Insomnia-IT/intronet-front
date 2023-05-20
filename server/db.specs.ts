@@ -62,7 +62,7 @@ test("import-movies", async () => {
   if (locations.length == 0) return;
   const moviesDB = new Database<MovieBlock>("movies");
   const movies = await moviesDB.getSince();
-  console.log(movies);
+  // console.log(movies);
   if (movies.length != 0) {
     return;
   }
@@ -166,6 +166,54 @@ test("import-schedules", async () => {
           })) as any,
       });
     }
+  }
+}, 60000);
+
+test("import-activities", async () => {
+  const locationDB = new Database<InsomniaLocation>("locations");
+  const locations = await locationDB.getSince();
+  if (locations.length == 0) return;
+  const db = new Database<Activity>("activities");
+  const activities = await db.getSince();
+  // console.log('_____', activities)
+  if (activities.length > 0) return;
+  const names = [
+    'Основы медитации',
+    'Фестиваль Бессонница как игра...',
+    'Тренировка для собак',
+    'Физика и химия для детей',
+    'Слушаем ГрОб'
+  ];
+  const descrs = [
+    'Почему нам так нравится на «Бессоннице»? В чем психологический смысл переодеваний и просмотра необычных мультиков? Приглашаем вас в совместное путешествие по игровому пространству фестиваля.'
+  ];
+  const authors =[
+    'Курмелева Анастасия. Психолог, выпускник МГУ, учёный. Основные направления — психологическое консультирование и управление персоналом',
+    'Иван Максимов. Режиссёр и художник мультфильмов. Лауреат международных...',
+    'Соболева Анастасия. Инструктор хатха-йоги, мастер мягких мануальных техник...',
+    'Мария Суркова, специалист по поведению собак'
+  ]
+
+  const start = new Date();
+  start.setHours(Math.floor(Math.random() * 22));
+  start.setMinutes(0);
+  const end = new Date();
+  end.setHours(start.getHours() + 1);
+  end.setMinutes(Math.floor(Math.random() * 60));
+
+  for (let location of locations) {
+    await db.addOrUpdate({
+      _id: Fn.ulid(),
+      locationId: location._id,
+      version: Fn.ulid(),
+      day: Math.floor(Math.random() * 5) as Day,
+      title: names[Math.floor(Math.random() * names.length)],
+      description: descrs[Math.floor(Math.random() * descrs.length)],
+      author: authors[Math.floor(Math.random() * authors.length)],
+      start,
+      end,
+      isCanceled: !!(Math.floor(Math.random() * 5) % 2)
+    })
   }
 }, 60000);
 

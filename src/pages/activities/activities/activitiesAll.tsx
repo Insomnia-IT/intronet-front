@@ -1,13 +1,13 @@
 import { FunctionalComponent } from "preact";
-import { useCell } from "@helpers/cell-state";
-import { locationsStore } from "@stores";
-import { getCurrentDay, getCurrentHour, getDayText } from "@helpers/getDayText";
-import { useRouter } from "../../routing";
-import { Tag, Tags } from "@components/tag";
-import { EventList } from "./eventList";
 import { useEffect } from "preact/hooks";
+import { Tag, Tags } from "@components/tag";
+import { useCell } from "@helpers/cell-state";
+import { getCurrentDay, getCurrentHour, getDayText } from "@helpers/getDayText";
+import { locationsStore } from "@stores";
+import { useRouter } from "../../routing";
+import { ActivityList } from "./activityList";
 
-export const EventAll: FunctionalComponent = () => {
+export const ActivitiesAll: FunctionalComponent = () => {
   const router = useRouter<{
     filter: string;
     day: string;
@@ -120,7 +120,7 @@ export const EventAll: FunctionalComponent = () => {
           ))}
         </Tags>}
       </div>
-      <EventList filter={currentFilter} day={day} time={+currentTime} locationId={currentPlace}/>
+      <ActivityList filter={currentFilter} day={day} time={+currentTime} locationId={currentPlace}/>
     </>
   );
 };
