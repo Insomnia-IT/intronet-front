@@ -40,6 +40,14 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
       .getRegistration()
       .then((x) => x?.unregister())
       .catch();
+    indexedDB
+      .databases()
+      .then((x) => {
+        for (let db of x) {
+          indexedDB.deleteDatabase(db.name);
+        }
+      })
+      .catch();
   }
   if (navigator.serviceWorker.controller) {
     const isIOS = CSS.supports("-webkit-touch-callout", "none");
