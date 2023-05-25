@@ -84,9 +84,10 @@ export class MapPage extends Component<{ locationId? }> {
 
   @cell
   get mapItems() {
-    const items = locationsStore.FullLocations.map((x) =>
-      this.locationToMapItem(x)
-    );
+    const items = locationsStore.FullLocations
+      // TODO: support polygones
+      .filter((x) => !Array.isArray(x.figure))
+      .map((x) => this.locationToMapItem(x));
     if (this.isMap && this.user.isLoaded) {
       return items.concat([this.user]);
     }
