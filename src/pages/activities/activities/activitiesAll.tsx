@@ -6,6 +6,7 @@ import { getCurrentDay, getCurrentHour, getDayText } from "@helpers/getDayText";
 import { locationsStore } from "@stores";
 import { useRouter } from "../../routing";
 import { ActivityList } from "./activityList";
+import { activitiesStore } from "@stores/activities.store";
 
 export const ActivitiesAll: FunctionalComponent = () => {
   const router = useRouter<{
@@ -26,21 +27,6 @@ export const ActivitiesAll: FunctionalComponent = () => {
     true
   );
 
-  const places = useCell(() =>
-    locationsStore.FullLocations
-  );
-  let currentPlace = router.query.place ?? places[0]?._id;
-  const setPlace = (place: string) =>
-    router.goTo(
-      router.route,
-      {
-        filter: currentFilter,
-        day: day.toString(),
-        place,
-      },
-      true
-    );
-
   const day = router.query.day ? +router.query.day : getCurrentDay();
   const setDay = (day: number) =>
     router.goTo(
@@ -53,6 +39,26 @@ export const ActivitiesAll: FunctionalComponent = () => {
       },
       true
     );
+
+  const locationsIDs = Array.from(new Set(activitiesStore.Activities
+    .filter((activity) => activity.day === day)
+    .map((activity) => activity.locationId)));
+
+  let currentPlace = router.query.place && locationsIDs.some((locationId)=> locationId === router.query.place)
+    ? router.query.place
+    : locationsIDs[0];
+  const setPlace = (place: string) =>
+    router.goTo(
+      router.route,
+      {
+        filter: currentFilter,
+        day: day.toString(),
+        place,
+      },
+      true
+    );
+
+  console.log(locationsIDs)
 
   const times = [
     {key: 9, value: '9:00-13:00'},
@@ -106,16 +112,16 @@ export const ActivitiesAll: FunctionalComponent = () => {
             </Tag>
           ))}
         </Tags> : <Tags style={'flex-wrap: wrap;'}>
-          {places.map((location) => (
+          {locationsIDs.map((locationId) => (
             <Tag
               style={'padding: 8px 16px;'}
-              selected={currentPlace === location._id}
-              key={location._id}
+              selected={currentPlace === locationId}
+              key={locationId}
               onClick={() => {
-                setPlace(location._id);
+                setPlace(locationId);
               }}
             >
-              {locationsStore.getName(location._id)}
+              {locationsStore.getName(locationId)}
             </Tag>
           ))}
         </Tags>}

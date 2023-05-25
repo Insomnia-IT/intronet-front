@@ -26,17 +26,17 @@ test("import-locations", async () => {
   }
   const data = Object.entries(locationsJSON)
     // .filter((x) => x.geometry.type == "Point")
-    .flatMap(([type, collection], i) => {
+    .flatMap(([ type, collection ], i) => {
       return collection.features.map((x) => {
         const figure: Geo | Geo[][] =
           x.geometry.type == "Point"
             ? {
-                lat: x.geometry.coordinates[1] as number,
-                lon: x.geometry.coordinates[0] as number,
-              }
+              lat: x.geometry.coordinates[1] as number,
+              lon: x.geometry.coordinates[0] as number,
+            }
             : ((x.geometry.coordinates as number[][][]).map((arr) =>
-                arr.map((x) => ({ lat: x[1], lon: x[0] }))
-              ) as Array<Array<Geo>>);
+              arr.map((x) => ({lat: x[1], lon: x[0]}))
+            ) as Array<Array<Geo>>);
         return {
           _id: Fn.ulid(),
           tags: [],
@@ -52,7 +52,7 @@ test("import-locations", async () => {
       });
     });
   for (let loc of data) {
-    await db.addOrUpdate({ ...loc, version: Fn.ulid() });
+    await db.addOrUpdate({...loc, version: Fn.ulid()});
   }
 }, 600000);
 
@@ -75,10 +75,10 @@ test("import-movies", async () => {
           locationId: locations.find((y) => y.name == x.Screen)._id,
         }))
       )
-      .groupBy((x) => `${x.block.Title}.${x.block.SubTitle}.${x.block.Part}`)
+      .groupBy((x) => `${ x.block.Title }.${ x.block.SubTitle }.${ x.block.Part }`)
       .entries()
   ).map(
-    ([key, blocks]) =>
+    ([ key, blocks ]) =>
       ({
         _id: Fn.ulid(),
         views: blocks.map((x) => ({
@@ -187,21 +187,27 @@ test("import-activities", async () => {
   const descrs = [
     'Почему нам так нравится на «Бессоннице»? В чем психологический смысл переодеваний и просмотра необычных мультиков? Приглашаем вас в совместное путешествие по игровому пространству фестиваля.'
   ];
-  const authors =[
+  const authors = [
     'Курмелева Анастасия. Психолог, выпускник МГУ, учёный. Основные направления — психологическое консультирование и управление персоналом',
     'Иван Максимов. Режиссёр и художник мультфильмов. Лауреат международных...',
     'Соболева Анастасия. Инструктор хатха-йоги, мастер мягких мануальных техник...',
     'Мария Суркова, специалист по поведению собак'
   ]
 
-  const start = new Date();
-  start.setHours(Math.floor(Math.random() * 22));
-  start.setMinutes(0);
-  const end = new Date();
-  end.setHours(start.getHours() + 1);
-  end.setMinutes(Math.floor(Math.random() * 60));
+  for (let location of locations.filter(
+    (location) =>
+      location.directionId === 'lectures'
+      || location.directionId === 'masterClass'
+      || location.directionId === 'fair'
+      || location.directionId === 'playground'
+  )) {
+    const start = new Date();
+    start.setHours(Math.floor(Math.random() * 22));
+    start.setMinutes(0);
+    const end = new Date();
+    end.setHours(start.getHours() + 1);
+    end.setMinutes(Math.floor(Math.random() * 60));
 
-  for (let location of locations) {
     await db.addOrUpdate({
       _id: Fn.ulid(),
       locationId: location._id,
@@ -247,4 +253,5 @@ export enum Directions {
   bathhouse = 90,
   lab = 95,
 }
+
 const directionIds = Object.keys(Directions).filter((x) => Number.isNaN(+x));
