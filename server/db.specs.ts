@@ -25,25 +25,32 @@ test("import-locations", async () => {
   if (existed.length != 0) {
     return;
   }
-  const data = locationsJSON.features
-    .filter((x) => x.geometry.type == "Point")
-    .map((x, i) => {
-      const geo = {
-        lat: x.geometry.coordinates[1] as number,
-        lon: x.geometry.coordinates[0] as number,
-      };
-      const point = converter.fromGeo(geo);
-      return {
-        _id: Fn.ulid(),
-        tags: [],
-        directionId: getRandomItem(directionIds),
-        name: x.properties.Name,
-        image: "camping",
-        description: x.properties.description,
-        ...geo,
-        x: point.X,
-        y: point.Y,
-      } as InsomniaLocation;
+  const data = Object.entries(locationsJSON)
+    // .filter((x) => x.geometry.type == "Point")
+    .flatMap(([type, collection], i) => {
+      return collection.features.map((x) => {
+        const figure: Geo | Geo[][] =
+          x.geometry.type == "Point"
+            ? {
+                lat: x.geometry.coordinates[1] as number,
+                lon: x.geometry.coordinates[0] as number,
+              }
+            : ((x.geometry.coordinates as number[][][]).map((arr) =>
+                arr.map((x) => ({ lat: x[1], lon: x[0] }))
+              ) as Array<Array<Geo>>);
+        return {
+          _id: Fn.ulid(),
+          tags: [],
+          directionId: getRandomItem(directionIds),
+          name: x.properties.name,
+          image: "camping",
+          description: x.properties.description,
+          figure,
+          // ...geo,
+          // x: point.X,
+          // y: point.Y,
+        } as InsomniaLocation;
+      });
     });
   for (let loc of data) {
     await db.addOrUpdate({ ...loc, version: Fn.ulid() });
@@ -112,24 +119,24 @@ test("import-schedules", async () => {
   const locations = await locationDB.getSince();
   const db = new Database<Schedule>("schedules");
   const schedules = await db.getSince();
-  console.log(schedules, locations)
+  console.log(schedules, locations);
   if (schedules.length > 0) return;
   const names = [
-    'Основы медитации',
-    'Фестиваль Бессонница как игра...',
-    'Тренировка для собак',
-    'Физика и химия для детей',
-    'Слушаем ГрОб'
+    "Основы медитации",
+    "Фестиваль Бессонница как игра...",
+    "Тренировка для собак",
+    "Физика и химия для детей",
+    "Слушаем ГрОб",
   ];
   const descrs = [
-    'Почему нам так нравится на «Бессоннице»? В чем психологический смысл переодеваний и просмотра необычных мультиков? Приглашаем вас в совместное путешествие по игровому пространству фестиваля.'
+    "Почему нам так нравится на «Бессоннице»? В чем психологический смысл переодеваний и просмотра необычных мультиков? Приглашаем вас в совместное путешествие по игровому пространству фестиваля.",
   ];
-  const authors =[
-    'Курмелева Анастасия. Психолог, выпускник МГУ, учёный. Основные направления — психологическое консультирование и управление персоналом',
-    'Иван Максимов. Режиссёр и художник мультфильмов. Лауреат международных...',
-    'Соболева Анастасия. Инструктор хатха-йоги, мастер мягких мануальных техник...',
-    'Мария Суркова, специалист по поведению собак'
-  ]
+  const authors = [
+    "Курмелева Анастасия. Психолог, выпускник МГУ, учёный. Основные направления — психологическое консультирование и управление персоналом",
+    "Иван Максимов. Режиссёр и художник мультфильмов. Лауреат международных...",
+    "Соболева Анастасия. Инструктор хатха-йоги, мастер мягких мануальных техник...",
+    "Мария Суркова, специалист по поведению собак",
+  ];
   for (let location of locations) {
     for (let day = 0; day < 5; day++) {
       await db.addOrUpdate({
@@ -137,19 +144,28 @@ test("import-schedules", async () => {
         locationId: location._id,
         version: Fn.ulid(),
         day: day as Day,
-        audiences: new Array(Math.floor(Math.random()*2)).fill(0).map((_, i) => ({
-          number: i + 1,
-          elements: new Array(Math.floor(Math.random()*15)).fill(0).map(() => ({
-            _id: Fn.ulid(),
-            name: names[Math.floor(Math.random()*names.length)],
-            description: descrs[Math.floor(Math.random()*descrs.length)],
-            speaker: authors[Math.floor(Math.random()*authors.length)],
-            age: 12,
-            type: 'lecture',
-            time: Math.floor(Math.random()*10+12)+':'+Math.floor(Math.random()*15)*4,
-          } as AuditoryElement))
-        })) as any
-      })
+        audiences: new Array(Math.floor(Math.random() * 2))
+          .fill(0)
+          .map((_, i) => ({
+            number: i + 1,
+            elements: new Array(Math.floor(Math.random() * 15)).fill(0).map(
+              () =>
+                ({
+                  _id: Fn.ulid(),
+                  name: names[Math.floor(Math.random() * names.length)],
+                  description:
+                    descrs[Math.floor(Math.random() * descrs.length)],
+                  speaker: authors[Math.floor(Math.random() * authors.length)],
+                  age: 12,
+                  type: "lecture",
+                  time:
+                    Math.floor(Math.random() * 10 + 12) +
+                    ":" +
+                    Math.floor(Math.random() * 15) * 4,
+                } as AuditoryElement)
+            ),
+          })) as any,
+      });
     }
   }
 }, 60000);

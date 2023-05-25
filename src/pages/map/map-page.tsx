@@ -62,9 +62,7 @@ export class MapPage extends Component<{ locationId? }> {
 
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
-      point: this.isMap
-        ? mapStore.Map2GeoConverter.fromGeo(x)
-        : { X: x.x, Y: x.y },
+      figure: mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
       icon: this.isMap ? (
         <MapIcon id={x.directionId} />
       ) : this.isEditing ? (

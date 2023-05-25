@@ -23,7 +23,7 @@ export class UserMapItem
     );
   }
   id = -1;
-  point: { X; Y };
+  figure: Point;
   radius = 0;
   title: string = "";
   isLoaded = false;

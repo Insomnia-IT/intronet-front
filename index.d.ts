@@ -43,17 +43,17 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
-  x: number;
-  y: number;
-  lat: number;
-  lon: number;
+  figure: GeoPoint | Array<Array<GeoPoint>>;
   tags: string[];
   image: string;
   menu?: string;
 };
 
+type Geo = { lat: number; lon: number };
+type Point = { X: number; Y: number };
+
 type MapItem = {
-  point: { X; Y };
+  figure: Point;
   icon: JSX.Element;
   radius;
   id;
@@ -115,7 +115,7 @@ interface ICategory {
   color: string; // Цвет категории, для раскрашивания её карточки
 }
 
-type Day = 0|1|2|3|4; // Четверг, Пятница, Суббота, Вс, Пн
+type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 
 interface Schedule {
   _id: string;

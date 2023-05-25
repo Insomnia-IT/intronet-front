@@ -2,9 +2,9 @@ import { FunctionalComponent } from "preact";
 import { ModalProps } from ".";
 import { directionsStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
-import { toast} from "@components";
-import {Modal} from "@components/modal";
-import {useEffect} from "preact/hooks";
+import { toast } from "@components";
+import { Modal } from "@components/modal";
+import { useEffect } from "preact/hooks";
 
 const center = {
   lat: 54.68008397222222,
@@ -18,16 +18,15 @@ const centerXY = {
 /**
  * Модальное окно, которое позволяет добавлять/редактировать/удалять локации
  */
-export const LocationModal: FunctionalComponent<ModalProps<InsomniaLocation>> = ({
+export const LocationModal: FunctionalComponent<
+  ModalProps<InsomniaLocation>
+> = ({
   _id,
   name,
   description,
   directionId,
   tags,
-  x = centerXY.x, // середина карты
-  y = centerXY.y,
-  lat = center.lat,
-  lon = center.lon,
+  figure: center,
   ...modalProps
 }) => {
   useEffect(() => {
@@ -198,8 +197,8 @@ export const LocationModal: FunctionalComponent<ModalProps<InsomniaLocation>> = 
         {/*          </div>*/}
         {/*        </div>*/}
         {/*      </Modal.Footer>*/}
-            {/*</Form>*/}
-          {/*)}*/}
+        {/*</Form>*/}
+        {/*)}*/}
         {/*</Formik>*/}
       </Modal.Content>
     </Modal>

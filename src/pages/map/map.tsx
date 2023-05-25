@@ -1,5 +1,5 @@
 import { cell } from "@cmmn/cell/lib";
-import {Component} from "preact";
+import { Component } from "preact";
 import { cellState } from "@helpers/cell-state";
 import { ImageInfo } from "@stores/map.store";
 import { DragHandler } from "./handlers/dragHandler";
@@ -7,7 +7,7 @@ import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
 import { MapElement } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
-import {TargetedEvent} from "preact/compat";
+import { TargetedEvent } from "preact/compat";
 
 export class MapComponent extends Component<MapProps> {
   @cell
@@ -47,9 +47,15 @@ export class MapComponent extends Component<MapProps> {
         />
         <svg className={styles.svg}>
           {this.props.items
-            .filter(x => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y))
-            .filter(x => !x.minZoom || x.minZoom < this.state.scale / this.minScale)
-            .filter(x => !x.maxZoom || x.maxZoom >= this.state.scale / this.minScale)
+            .filter(
+              (x) => Number.isFinite(x.figure.X) && Number.isFinite(x.figure.Y)
+            )
+            .filter(
+              (x) => !x.minZoom || x.minZoom < this.state.scale / this.minScale
+            )
+            .filter(
+              (x) => !x.maxZoom || x.maxZoom >= this.state.scale / this.minScale
+            )
             .map((x) => (
               <MapElement
                 item={x}
@@ -61,7 +67,7 @@ export class MapComponent extends Component<MapProps> {
                 }}
                 transform={new TransformMatrix()
                   .Apply(this.state.transform)
-                  .Translate(x.point)
+                  .Translate(x.figure)
                   .Scale(1 / this.state.scale)
                   .ToString("svg")}
               />
@@ -88,11 +94,11 @@ export class MapComponent extends Component<MapProps> {
       dragHandler.on("transform", (e) => {
         const { selected } = this.props;
         if (this.props.isMovingEnabled && selected) {
-          selected.point = new TransformMatrix()
+          selected.figure = new TransformMatrix()
             .Apply(this.Transform.Inverse())
             .Apply(e)
             .Apply(this.Transform)
-            .Invoke(selected.point);
+            .Invoke(selected.figure);
           this.forceUpdate();
           this.props.onChange(selected);
         } else {
@@ -159,7 +165,7 @@ export class MapComponent extends Component<MapProps> {
 
   scrollTo(x: MapItem) {
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(x.point);
+    const view = this.Transform.Invoke(x.figure);
     if (
       view.X > rect.left + rect.width / 10 &&
       view.X < rect.right - rect.width / 10 &&
