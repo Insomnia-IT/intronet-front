@@ -21,7 +21,6 @@ const converter = new TileConverter(
 test("import-locations", async () => {
   const db = new Database<InsomniaLocation>("locations");
   const existed = await db.getSince();
-  console.log(existed);
   if (existed.length != 0) {
     return;
   }
@@ -55,7 +54,7 @@ test("import-locations", async () => {
   for (let loc of data) {
     await db.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
-}, 60000);
+}, 600000);
 
 test("import-movies", async () => {
   const locationsDb = new Database<InsomniaLocation>("locations");
@@ -113,7 +112,7 @@ test("import-movies", async () => {
       version: Fn.ulid(),
     });
   }
-}, 60000);
+}, 600000);
 test("import-schedules", async () => {
   const locationDB = new Database<InsomniaLocation>("locations");
   const locations = await locationDB.getSince();

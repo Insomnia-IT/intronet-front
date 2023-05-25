@@ -1,7 +1,7 @@
 [
   {
     "Day": 0,
-    "Screen": "ЦУЭ 1",
+    "Screen": "Экран \"Полевой\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -280,7 +280,7 @@
   },
   {
     "Day": 1,
-    "Screen": "ЦУЭ 1",
+    "Screen": "Экран \"Полевой\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -610,7 +610,7 @@
   },
   {
     "Day": 2,
-    "Screen": "ЦУЭ 1",
+    "Screen": "Экран \"Полевой\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -968,7 +968,7 @@
   },
   {
     "Day": 3,
-    "Screen": "ЦУЭ 1",
+    "Screen": "Экран \"Полевой\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -1246,7 +1246,7 @@
   },
   {
     "Day": 0,
-    "Screen": "ЦУЭ 2",
+    "Screen": "Экран \"Речной\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -1576,7 +1576,7 @@
   },
   {
     "Day": 1,
-    "Screen": "ЦУЭ 2",
+    "Screen": "Экран \"Речной\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -1934,7 +1934,7 @@
   },
   {
     "Day": 2,
-    "Screen": "ЦУЭ 2",
+    "Screen": "Экран \"Речной\"",
     "LocationId": 0,
     "Blocks": [
       {
@@ -2205,7 +2205,7 @@
   },
   {
     "Day": 3,
-    "Screen": "ЦУЭ 2",
+    "Screen": "Экран \"Речной\"",
     "LocationId": 0,
     "Blocks": []
   }

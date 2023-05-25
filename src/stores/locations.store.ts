@@ -56,16 +56,6 @@ class LocationsStore {
   public getName(locationId: string) {
     const location = this.db.get(locationId);
     if (!location) return undefined;
-    if (location.directionId == Directions[Directions.screen]) {
-      switch (location.name) {
-        case "ЦУЭ 1":
-          return "Полевой экран";
-        case "ЦУЭ 2":
-          return "Речной экран";
-        default:
-          return "Детская поляна";
-      }
-    }
     return location.name;
   }
 }
