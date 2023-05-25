@@ -48,6 +48,8 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
         }
       })
       .catch();
+    localStorage.clear();
+    document.cookie = "";
   }
   if (navigator.serviceWorker.controller) {
     const isIOS = CSS.supports("-webkit-touch-callout", "none");
