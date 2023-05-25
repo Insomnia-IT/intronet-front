@@ -36,20 +36,20 @@ if (navigator.serviceWorker && !location.href.includes("localhost")) {
   // ); // при первой установке на клиенте еще нет sw
 
   if (location.pathname.match(/\.reload/)) {
+    localStorage.clear();
+    document.cookie = "";
     navigator.serviceWorker
       .getRegistration()
       .then((x) => x?.unregister())
-      .catch();
-    indexedDB
-      .databases()
+      .catch()
+      .then((x) => indexedDB.databases())
       .then((x) => {
         for (let db of x) {
           indexedDB.deleteDatabase(db.name);
         }
       })
-      .catch();
-    localStorage.clear();
-    document.cookie = "";
+      .catch()
+      .then(() => (location.pathname = "/"));
   }
   if (navigator.serviceWorker.controller) {
     const isIOS = CSS.supports("-webkit-touch-callout", "none");
