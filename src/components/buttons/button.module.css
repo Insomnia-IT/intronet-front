@@ -123,3 +123,22 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+
+.borderDashVivid{
+  border: none;
+  position: relative;
+  background: var(--vivid-gradient);
+  color: var(--ins-night);
+}
+
+.borderDashVivid:before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: 2px;
+  border-radius: 22px;
+  background: var(--cold-white);
+  outline: dashed var(--cold-white) 6px;
+}
