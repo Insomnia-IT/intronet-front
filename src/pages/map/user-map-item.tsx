@@ -23,6 +23,7 @@ export class UserMapItem
     );
   }
   id = -1;
+  directionId: "user";
   figure: Point;
   radius = 0;
   title: string = "";

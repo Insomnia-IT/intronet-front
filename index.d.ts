@@ -53,8 +53,8 @@ type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
 
 type MapItem = {
-  figure: Point;
-  icon: JSX.Element;
+  figure: Point | Array<Array<Point>>;
+  directionId: string;
   radius;
   id;
   title?: string;

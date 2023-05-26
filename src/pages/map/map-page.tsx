@@ -14,6 +14,7 @@ import { UserMapItem } from "./user-map-item";
 import { historyStateCell, useRouter } from "../routing";
 import { SvgIcon } from "@icons";
 import { MapIcon } from "./icons/map-icons";
+import { compare } from "@cmmn/cell/lib";
 
 export function MapPageWithRouting() {
   const { route } = useRouter();
@@ -62,31 +63,19 @@ export class MapPage extends Component<{ locationId? }> {
 
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
-      figure: mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
-      icon: this.isMap ? (
-        <MapIcon id={x.directionId} />
-      ) : this.isEditing ? (
-        <>
-          <circle
-            r={15}
-            className={mapElementStyles.hoverCircle}
-            strokeWidth="2"
-            fill="transparent"
-            stroke="red"
-          ></circle>
-        </>
-      ) : null,
+      figure: mapStore.Map2GeoConverter.fromGeo(x.figure),
+      directionId: x.directionId,
       title: x.name,
       id: x._id,
       radius: 10,
     } as MapItem;
   }
 
-  @cell
+  @cell({ compare })
   get mapItems() {
     const items = locationsStore.FullLocations
       // TODO: support polygones
-      .filter((x) => !Array.isArray(x.figure))
+      // .filter((x) => !Array.isArray(x.figure))
       .map((x) => this.locationToMapItem(x));
     if (this.isMap && this.user.isLoaded) {
       return items.concat([this.user]);
@@ -122,36 +111,36 @@ export class MapPage extends Component<{ locationId? }> {
         />
         <CloseButton />
         <ButtonsBar at="bottom">
-          <Button type="blue">
+          <Button type="vivid">
             <SvgIcon id="#search" size="14px" />
           </Button>
-          <Button type="blue">
+          <Button type="vivid">
             <SvgIcon id="#bookmark" size="14px" />
             мои места
           </Button>
         </ButtonsBar>
 
-        <ButtonsBar at="right">
-          <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#plus" size="14px" />
-          </Button>
-          <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#minus" size="14px" />
-          </Button>
-        </ButtonsBar>
+        {/*<ButtonsBar at="right">*/}
+        {/*  <Button type="frame" className={styles.mapButton}>*/}
+        {/*    <SvgIcon id="#plus" size="14px" />*/}
+        {/*  </Button>*/}
+        {/*  <Button type="frame" className={styles.mapButton}>*/}
+        {/*    <SvgIcon id="#minus" size="14px" />*/}
+        {/*  </Button>*/}
+        {/*</ButtonsBar>*/}
         {/*<LocationSearch onSelect={this.selectLocation} />*/}
         <ButtonsBar at="left">
-          <Button
-            type="frame"
-            onClick={() => {
-              this.isMap = !this.isMap;
-              this.isEditing = false;
-              this.localChanges.clear();
-            }}
-            className={styles.mapButton}
-          >
-            <SvgIcon id="#magic" size="24px" />
-          </Button>
+          {/*<Button*/}
+          {/*  type="frame"*/}
+          {/*  onClick={() => {*/}
+          {/*    this.isMap = !this.isMap;*/}
+          {/*    this.isEditing = false;*/}
+          {/*    this.localChanges.clear();*/}
+          {/*  }}*/}
+          {/*  className={styles.mapButton}*/}
+          {/*>*/}
+          {/*  <SvgIcon id="#magic" size="24px" />*/}
+          {/*</Button>*/}
 
           <RequireAuth>
             <Button
