@@ -1,0 +1,17 @@
+.page {
+  position: relative;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.filters {
+  margin-bottom: 24px;
+}
+
+.addNoteBtn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}

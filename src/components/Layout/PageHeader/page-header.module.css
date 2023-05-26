@@ -1,0 +1,9 @@
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pageHeaderTitle {
+  color: var(--medium-blue);
+}

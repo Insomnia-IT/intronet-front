@@ -1,9 +1,19 @@
-import { FunctionalComponent } from "preact";
+import { FunctionalComponent, VNode } from "preact";
 import Styles from "./tag.module.css";
 import { JSXInternal } from "preact/src/jsx";
+import classNames from "classnames";
 
-export type TagsProps<TKey extends string | number = string | number> =
-  {} & Omit<JSXInternal.HTMLAttributes<HTMLDivElement>, "className">;
-export const Tags: FunctionalComponent<TagsProps> = (props) => {
-  return <div {...props} class={[Styles.tags, props.class].filter(x => x).join(' ')}>{props.children}</div>;
+export type TagsProps<ITags extends Array<any> = any[]> = {
+  tagsList: ITags;
+  children: (tag: ITags[number]) => VNode | null;
+} & Omit<JSXInternal.HTMLAttributes<HTMLDivElement>, "className">;
+
+export const Tags = <ITags extends Array<any> = any[]>(
+  props: TagsProps<ITags>
+) => {
+  return (
+    <div {...props} class={classNames(Styles.tags, props.class as string)}>
+      {props.tagsList.map(props.children)}
+    </div>
+  );
 };

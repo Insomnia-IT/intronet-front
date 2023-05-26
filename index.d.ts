@@ -117,7 +117,6 @@ type INoteUpdated = Partial<
 type ICategory = {
   _id: string; // Id категории
   name: string; // название категории
-  count: number; // количество элементов которым присвоена данная категория
   color: string; // Цвет категории, для раскрашивания её карточки
 };
 

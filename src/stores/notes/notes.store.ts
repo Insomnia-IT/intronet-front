@@ -1,5 +1,4 @@
 import { Fn, cell } from "@cmmn/cell/lib";
-import { GenericRequest } from "@api";
 import { ObservableDB } from "../observableDB";
 
 class NotesStore {
@@ -24,7 +23,7 @@ class NotesStore {
     await this.db.addOrUpdate(this.createNoteEntity(newNote));
   };
 
-  /*
+  /**
    * Обновляет объявление, но оно обязательно
    * должно уже существовать.
    */
@@ -56,14 +55,20 @@ class NotesStore {
   };
 
   // Отдаёт стор с объявлениями
+  @cell
   get notes() {
-    // TODO: сделать сортировку по времени добавления и изменения
     return this.db.toArray().sort((a, b) => {
       return this.getLatestNoteDate(a) - this.getLatestNoteDate(b);
     });
   }
 
-  getNote(id: string) {
+  public getNotesByFilterId(categoryId: string): INote[] | [] {
+    return this.notes.filter((note) => {
+      return note.categoryId === categoryId;
+    });
+  }
+
+  public getNote(id: string) {
     return this.db.get(id);
   }
 
@@ -75,9 +80,30 @@ class NotesStore {
     };
   }
 
-  getLatestNoteDate(note: INote): number {
+  public getLatestNoteDate(note: INote): number {
     return note.updatedAt || note.createdAt;
   }
 }
 
 export const notesStore = new NotesStore();
+
+const mocks: INoteLocal[] = [
+  {
+    title: "Ищу попутчика!",
+    text: "Привет! Кто подбросит двух девушек в субботу вечером до Калуги? Вещей немного, заплатим денег, если надо.",
+    author: "Юля Петрова",
+    categoryId: "blablacar",
+    isFavourites: false,
+  },
+  {
+    title: "Ищу попутчика!",
+    text: "Привет! Кто подбросит двух девушек в субботу вечером до Калуги? Вещей немного, заплатим денег, если надо.",
+    author: "Юля Петрова",
+    categoryId: "blablacar",
+    isFavourites: true,
+  },
+];
+
+// mocks.forEach((mock) => {
+//   notesStore.addNote(mock);
+// });

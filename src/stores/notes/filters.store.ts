@@ -1,59 +1,63 @@
-import { cell } from "@cmmn/cell";
+import { Cell, cell } from "@cmmn/cell/lib";
 import { categoriesStore } from "./categories.store";
 import { notesStore } from "./notes.store";
 
-/**
- * Через геттер filteredNotes возвращает отфильтрованные объявления.
- * Виды фильтра: категория, избранные.
- */
 class FiltersStore {
+  @cell
   get filters(): IFilterEntity[] {
     return [
       {
         type: "all",
+        id: "all",
+        name: "Все",
       },
       {
         type: "favorites",
+        id: "favorites",
+        name: "Избранные",
+        icon: "bookmark",
       },
-      ...categoriesStore.allCategories.map(({ _id }): IFilterEntity => {
+      ...categoriesStore.categories.map(({ _id, name }): IFilterEntity => {
         return {
           type: "category",
           id: _id,
+          name: name,
         };
       }),
     ];
   }
+}
 
-  @cell
-  private ActiveFilter: IFilterEntity = this.filters[0];
+export const filtersStore = new FiltersStore();
 
-  set activeFilter(filterEntity: IFilterEntity) {
-    this.ActiveFilter = filterEntity;
+export class FilteredNotesStore {
+  private activeFilter: IFilterEntity;
+
+  constructor(private filterId: string) {
+    this.activeFilter = filtersStore.filters.find((filter) => {
+      return filter.id === this.filterId;
+    });
   }
 
-  get activeFilter() {
-    return this.ActiveFilter;
-  }
-
-  @cell
   get filteredNotes() {
-    const activeFilter = this.ActiveFilter;
+    console.debug("filteredNotes", this.activeFilter);
+    if (!this.activeFilter || !Object.keys(this.activeFilter).length) {
+      return notesStore.notes;
+    }
 
-    switch (activeFilter.type) {
+    switch (this.activeFilter.type) {
       case "all": {
         return notesStore.notes;
       }
 
       case "category": {
-        const { id: categoryId } = activeFilter;
+        const { id: categoryId } = this.activeFilter;
 
         if (!categoryId) {
           return notesStore.notes;
         }
 
-        notesStore.notes.filter((note) => {
-          return note.categoryId === categoryId;
-        });
+        return notesStore.getNotesByFilterId(categoryId);
       }
 
       case "favorites": {
@@ -67,13 +71,17 @@ class FiltersStore {
       }
     }
   }
-}
 
-export const filtersStore = new FiltersStore();
+  public state = new Cell(() => ({
+    filteredNotes: this.filteredNotes,
+  }));
+}
 
 type IFilterType = "all" | "favorites" | "category";
 
 type IFilterEntity = {
   type: IFilterType;
-  id?: string;
+  name: string;
+  id: string;
+  icon?: string;
 };

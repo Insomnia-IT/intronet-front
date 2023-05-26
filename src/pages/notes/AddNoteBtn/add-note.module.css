@@ -1,0 +1,12 @@
+.btn {
+  background: transparent;
+  color: var(--electric-blues);
+  font-size: 14px;
+  border: none;
+  position: relative;
+  border: 2px dashed var(--pink);
+}
+
+.content {
+  min-width: 303px;
+}
