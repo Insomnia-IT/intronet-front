@@ -1,4 +1,4 @@
-import { bind, cell, compare } from "@cmmn/cell/lib";
+import { bind, Cell, cell, compare } from "@cmmn/cell/lib";
 import { Component } from "preact";
 import { cellState } from "@helpers/cell-state";
 import { ImageInfo } from "@stores/map.store";
@@ -18,6 +18,7 @@ export class MapComponent extends Component<MapProps> {
     return this.Transform.Matrix.GetScaleFactor();
   }
 
+  propsCell = new Cell(this.props);
   state = cellState(this, {
     transform: () => this.Transform,
     scale: () => this.scale,
@@ -26,11 +27,10 @@ export class MapComponent extends Component<MapProps> {
 
   @cell({ compare })
   get visibleItems() {
-    return this.props.items
-      .filter((x) => !x.minZoom || x.minZoom < this.state.scale / this.minScale)
-      .filter(
-        (x) => !x.maxZoom || x.maxZoom >= this.state.scale / this.minScale
-      );
+    return this.propsCell
+      .get()
+      .items.filter((x) => !x.minZoom || x.minZoom < this.scale / this.minScale)
+      .filter((x) => !x.maxZoom || x.maxZoom >= this.scale / this.minScale);
   }
 
   render() {
@@ -184,7 +184,9 @@ export class MapComponent extends Component<MapProps> {
     if (this.props.selected && prevProps.selected !== this.props.selected) {
       this.scrollTo(this.props.selected);
     }
+    this.propsCell.set(this.props);
   }
+
   componentDidMount() {
     if (this.props.selected) {
       this.scrollTo(this.props.selected);

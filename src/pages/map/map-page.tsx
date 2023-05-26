@@ -22,9 +22,6 @@ export function MapPageWithRouting() {
 }
 
 export class MapPage extends Component<{ locationId? }> {
-  @cell
-  isMap = true;
-
   get selected(): string {
     return historyStateCell.get()["selectedMapElement"];
   }
@@ -77,14 +74,11 @@ export class MapPage extends Component<{ locationId? }> {
       // TODO: support polygones
       // .filter((x) => !Array.isArray(x.figure))
       .map((x) => this.locationToMapItem(x));
-    if (this.isMap && this.user.isLoaded) {
-      return items.concat([this.user]);
-    }
     return items;
   }
 
   state = cellState(this, {
-    image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
+    image: () => mapStore.Map2,
     items: () => this.mapItems,
     isEditing: () => this.isEditing,
     selected: () => this.mapItems.find((x) => x.id === this.selected),
@@ -186,12 +180,12 @@ export class MapPage extends Component<{ locationId? }> {
     const location = {
       ...(this.localChanges.get(x.id) ?? locationsStore.db.get(x.id)),
     };
-    if (this.isMap) {
-      // @ts-ignore
-      Object.assign(location, mapStore.Map2GeoConverter.toGeo(x.point));
+    if (Array.isArray(x.figure)) {
+      location.figure = x.figure.map((line) =>
+        line.map(mapStore.Map2GeoConverter.toGeo)
+      );
     } else {
-      // @ts-ignore
-      Object.assign(location, { x: x.point.X, y: x.point.Y });
+      location.figure = mapStore.Map2GeoConverter.toGeo(x.figure);
     }
     this.localChanges.set(location._id, location);
   };

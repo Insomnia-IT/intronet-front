@@ -1,3 +1,5 @@
+import { bind } from "@cmmn/cell/lib";
+
 function latToY(lat) {
   const phi = (lat * Math.PI) / 180;
   return (1 - Math.log(Math.tan(phi) + 1 / Math.cos(phi)) / Math.PI) / 2;
@@ -23,6 +25,7 @@ export class TileConverter {
     private scale: number = 1
   ) {}
 
+  @bind
   public toGeo(point: Point) {
     return {
       lon: x2lng((point.X / this.scale + this.offset.x) / 2 ** this.zoom),
