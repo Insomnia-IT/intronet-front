@@ -4,6 +4,7 @@ import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
+import { ActivitySearch } from "./search/activity-search";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
@@ -11,7 +12,7 @@ export function ActivitiesPage() {
     case "search":
       return (
         <div class="page">
-          {/*<MovieSearch />*/}
+          <ActivitySearch />
           <CloseButton />
         </div>
       );
@@ -21,7 +22,7 @@ export function ActivitiesPage() {
           <ActivitiesAll />
           <CloseButton />
           <ButtonsBar at="bottom">
-            <Button type="vivid" goTo="/timetable/search">
+            <Button type="vivid" goTo="/activities/search">
               <SvgIcon id="#search" size={15} />
             </Button>
             <Button type="vivid" goTo="/bookmarks/movie">

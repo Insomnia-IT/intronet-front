@@ -9,6 +9,7 @@ import {
 import { ObservableDB } from "@stores/observableDB";
 import { moviesStore } from "@stores/movies.store";
 import { TimerCell } from "@stores/timer";
+import { activitiesStore } from "@stores/activities.store";
 
 class BookmarksStore {
   @cell
@@ -43,6 +44,16 @@ class BookmarksStore {
       .map((m) => moviesStore.Movies.find((x) => x.id == m.itemId))
       .filter((x) => x);
   }
+
+  @cell
+  public get Activities() {
+    return this.db
+      .toArray()
+      .filter((x) => x.type == "activity")
+      .map((m) => activitiesStore.Activities.find((x) => x._id == m.itemId))
+      .filter((x) => x);
+  }
+
   public async removeBookmark(
     type: Bookmark["type"],
     id: string,
@@ -61,6 +72,7 @@ class BookmarksStore {
       });
     this.db.remove(exist._id);
   }
+
   public async switchBookmark(
     type: Bookmark["type"],
     id: string,

@@ -1,45 +1,72 @@
 import { FunctionalComponent } from "preact";
-import { scheduleStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { ActivityBlock } from "../card/activity-block";
 import { coerceHour, isInTimePeriod } from "@helpers/getDayText";
-import { activitiesStore } from "@stores/activities.store";
+import { useCallback, useState } from "preact/hooks";
+import { GestureCell } from "../../timetable/animation/gesture";
+import { ActivityFilter } from "./activitiesAll";
 
 export type ActivityListProps = {
-  filter: string;
-  day: number;
+  filter?: ActivityFilter;
+  day?: number;
   locationId?: string;
   time?: number;
+  activities?: Activity[];
+  searchQuery?: string;
 };
 
-export const ActivityList: FunctionalComponent<ActivityListProps> = (props) => {
+export const ActivityList: FunctionalComponent<ActivityListProps> = ({
+                                                                       filter,
+                                                                       day,
+                                                                       locationId,
+                                                                       time,
+                                                                       activities,
+                                                                       searchQuery
+                                                                     }) => {
+  const [gestureCell, setGestureCell] = useState<GestureCell | undefined>(
+    undefined
+  );
+  const setRef = useCallback((div: HTMLDivElement | undefined) => {
+    if (div) {
+      const gestureCell = new GestureCell(div);
+      setGestureCell(gestureCell);
+      /*}*/
+    } else {
+      setGestureCell(undefined);
+    }
+  }, []);
+  const gesture = useCell(gestureCell);
+
   const cards = useCell(() => {
-    const events = scheduleStore.auditories.filter((auditory) => auditory.day === props.day);
-    const activities = activitiesStore.Activities.filter((activity) => activity.day === props.day);
+    switch (filter) {
+      case 'place':
+        return activities.filter((activity) => !locationId || activity.locationId === locationId);
+      case 'time':
+        return activities.filter((activity) => {
+          const date = new Date(activity.start);
 
-    console.log(activities)
-    return props.filter === 'time'
-      ? activities.filter((activity) => {
-        const date = new Date(activity.start);
-
-        return coerceHour(props.time) ? isInTimePeriod((new Date(activity.start)).getHours(), props.time) : true;
-      })
-      : activities.filter((event) => event.locationId === props.locationId)
-  }, [ props.filter, props.day, props.time, props.locationId ]).map((activity) => ({
+          return coerceHour(time) ? isInTimePeriod((new Date(activity.start)).getHours(), time) : true;
+        })
+      default:
+        return activities
+    }
+  }, [ activities, filter, day, time, locationId ]).map((activity) => ({
     ...activity,
     start: new Date(activity.start)
   })).sort((prev, next) => prev.start.getTime() - next.start.getTime());
 
   return (
-    <>
+    <div flex column ref={setRef}>
       { cards.map((x) => (
         <ActivityBlock
           id={ x._id }
           key={ x._id }
-          day={ props.day }
-          locationId={ props.locationId }
+          day={ day }
+          locationId={ locationId }
+          gesture={gesture}
+          searchQuery={searchQuery}
         />
       )) }
-    </>
+    </div>
   );
 };

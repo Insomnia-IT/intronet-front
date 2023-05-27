@@ -101,7 +101,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
 
   async loadItems() {
     const keys = await this.db.keys();
-    console.log(this.name, this.items)
+
     this.items = new Map();
     for (let key of keys) {
       this.items.set(key as string, await this.db.get(key as string));
@@ -132,7 +132,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
     if (this.localOnly) return;
     for (let item of this.items.values()) {
       if (item.version <= this.remoteVersion) continue;
-      console.log('!!!!', this.name, item.version, this.remoteVersion);
+
       await fetch(`${api}/data/${this.name}`, {
         method: "POST",
         headers: authStore.headers,

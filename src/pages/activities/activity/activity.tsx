@@ -10,7 +10,8 @@ import { Card } from "@components/cards";
 import { Link } from "@components/link/link";
 import { SvgIcon } from "@icons";
 import { useActivitiesRouter } from "../activities-page";
-import Styles from "../animation/animation.module.css";
+import { Badge } from "@components/badges/badge";
+import Styles from "./activity.module.css";
 
 export type ActivityProps = {
   id: string;
@@ -44,15 +45,16 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
           Локация на карте
         </Link>
         <div flex column gap={ 1 }>
-          <div class="sh1">
-            { coerceTime(activity.start) } - { coerceTime(activity.end) }
+          { activity?.isCanceled && <Badge badgeType={ 'Change' }>{ 'Отменилось :(' }</Badge> }
+          <div class={["sh1", activity?.isCanceled ? Styles.canceled : 'default'].join(' ')}>
+            { coerceTime(activity?.start) } - { coerceTime(activity?.end) }
           </div>
         </div>
       </Card>
       <ButtonsBar at="bottom">
         <Button
           type="vivid"
-          onClick={ () => bookmarksStore.switchBookmark("events", activity._id) }
+          onClick={ () => bookmarksStore.switchBookmark("activity", activity._id) }
         >
           <SvgIcon id="#bookmark" size={ 14 }/>
           { hasBookmark

@@ -11,6 +11,7 @@
     --black: #000;
     --purple: #763AFF;
     --gray: #646995;
+    --inactive-grey: #a0a5d1;
     --vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     --purple-gradient: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     --menu-gradient: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);

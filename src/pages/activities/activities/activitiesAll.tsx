@@ -1,22 +1,28 @@
 import { FunctionalComponent } from "preact";
 import { useEffect } from "preact/hooks";
 import { Tag, Tags } from "@components/tag";
-import { useCell } from "@helpers/cell-state";
 import { getCurrentDay, getCurrentHour, getDayText } from "@helpers/getDayText";
 import { locationsStore } from "@stores";
 import { useRouter } from "../../routing";
 import { ActivityList } from "./activityList";
 import { activitiesStore } from "@stores/activities.store";
+import { useCell } from "@helpers/cell-state";
+
+export type ActivityFilter = 'time' | 'place'
+export interface IActivityFilter {
+  key: ActivityFilter;
+  value: string;
+}
 
 export const ActivitiesAll: FunctionalComponent = () => {
   const router = useRouter<{
-    filter: string;
+    filter: ActivityFilter;
     day: string;
     place: string;
     time: string;
   }>();
 
-  const filters = [{key: 'time', value: 'По времени'}, {key: 'place', value: 'По площадке'}];
+  const filters: IActivityFilter[] = [ {key: 'time', value: 'По времени'}, {key: 'place', value: 'По площадке'} ];
   const currentFilter = router.query.filter ? router.query.filter : filters[0].key;
   const setFilter = (filter: string) => router.goTo(
     router.route,
@@ -44,7 +50,7 @@ export const ActivitiesAll: FunctionalComponent = () => {
     .filter((activity) => activity.day === day)
     .map((activity) => activity.locationId)));
 
-  let currentPlace = router.query.place && locationsIDs.some((locationId)=> locationId === router.query.place)
+  let currentPlace = router.query.place && locationsIDs.some((locationId) => locationId === router.query.place)
     ? router.query.place
     : locationsIDs[0];
   const setPlace = (place: string) =>
@@ -57,8 +63,6 @@ export const ActivitiesAll: FunctionalComponent = () => {
       },
       true
     );
-
-  console.log(locationsIDs)
 
   const times = [
     {key: 9, value: '9:00-13:00'},
@@ -79,54 +83,56 @@ export const ActivitiesAll: FunctionalComponent = () => {
   useEffect(() => {
     if (currentFilter) return;
     setFilter(filters?.[0]?.key);
-  }, [currentFilter, filters?.[0]]);
+  }, [ currentFilter, filters?.[0] ]);
+
+  const activities = useCell(() => activitiesStore.Activities.filter((activity) => activity.day === day));
 
   return (
     <>
       <h1>неанимация</h1>
-      <div flex column gap={2} style={{ margin: "16px 0 20px 0" }}>
-        <Tags value={day}>
-          {filters.map(({key, value}) => (
-            <Tag selected={key == currentFilter} key={key} onClick={() => setFilter(key)}>
-              {value}
+      <div flex column gap={ 2 } style={ {margin: "25px 0 20px 0"} }>
+        <Tags value={ day }>
+          { filters.map(({key, value}) => (
+            <Tag selected={ key == currentFilter } style={ {flexGrow: "1", textAlign: "center"} } key={ key }
+                 onClick={ () => setFilter(key) }>
+              { value }
             </Tag>
-          ))}
+          )) }
         </Tags>
-        <Tags value={day}>
-          {[0, 1, 2, 3, 4].map((d) => (
-            <Tag selected={d == day} key={d} onClick={() => setDay(d)}>
-              {getDayText(d, "short").toUpperCase()}
+        <Tags value={ day }>
+          { [ 0, 1, 2, 3, 4 ].map((d) => (
+            <Tag selected={ d == day } key={ d } onClick={ () => setDay(d) }>
+              { getDayText(d, "short").toUpperCase() }
             </Tag>
-          ))}
+          )) }
         </Tags>
-        {currentFilter === 'time' ? <Tags>
-          {times.map((time) => (
-            <Tag
-              selected={time.key == currentTime}
-              key={time.key}
-              onClick={() => {
-                setTime(time.key);
-              }}
-            >
-              {time.value}
-            </Tag>
-          ))}
-        </Tags> : <Tags style={'flex-wrap: wrap;'}>
-          {locationsIDs.map((locationId) => (
-            <Tag
-              style={'padding: 8px 16px;'}
-              selected={currentPlace === locationId}
-              key={locationId}
-              onClick={() => {
-                setPlace(locationId);
-              }}
-            >
-              {locationsStore.getName(locationId)}
-            </Tag>
-          ))}
-        </Tags>}
+        { currentFilter === 'time'
+          ? <Tags>
+            { times.map((time) => (
+              <Tag
+                selected={ time.key == currentTime }
+                key={ time.key }
+                onClick={ () => {setTime(time.key);} }>
+                { time.value }
+              </Tag>
+            )) }
+          </Tags>
+          : <Tags style={ 'flex-wrap: wrap;' }>
+            { locationsIDs.map((locationId) => (
+              <Tag
+                style={ 'padding: 8px 16px;' }
+                selected={ currentPlace === locationId }
+                key={ locationId }
+                onClick={ () => {
+                  setPlace(locationId);
+                } }
+              >
+                { locationsStore.getName(locationId) }
+              </Tag>
+            )) }
+          </Tags> }
       </div>
-      <ActivityList filter={currentFilter} day={day} time={+currentTime} locationId={currentPlace}/>
+      <ActivityList activities={activities} filter={ currentFilter } day={ day } time={ +currentTime } locationId={ currentPlace }/>
     </>
   );
 };

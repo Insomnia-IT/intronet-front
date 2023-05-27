@@ -81,6 +81,6 @@ export class EventStore {
     hasBookmark: boolean;
   }>(() => ({
     auditory: this.auditory,
-    hasBookmark: !!bookmarksStore.getBookmark('events', this.auditory?._id),
+    hasBookmark: !!bookmarksStore.getBookmark('activity', this.auditory?._id),
   }))
 }

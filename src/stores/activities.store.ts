@@ -32,6 +32,6 @@ export class ActivityStore {
     hasBookmark: boolean;
   }>(() => ({
     activity: this.activity,
-    hasBookmark: !!bookmarksStore.getBookmark('events', this.activity?._id),
+    hasBookmark: !!bookmarksStore.getBookmark('activity', this.activity?._id),
   }))
 }
