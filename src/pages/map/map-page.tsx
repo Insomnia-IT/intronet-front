@@ -14,6 +14,7 @@ import { UserMapItem } from "./user-map-item";
 import { historyStateCell, useRouter } from "../routing";
 import { SvgIcon } from "@icons";
 import { MapIcon } from "./icons/map-icons";
+import { compare } from "@cmmn/cell/lib";
 
 export function MapPageWithRouting() {
   const { route } = useRouter();
@@ -21,9 +22,6 @@ export function MapPageWithRouting() {
 }
 
 export class MapPage extends Component<{ locationId? }> {
-  @cell
-  isMap = true;
-
   get selected(): string {
     return historyStateCell.get()["selectedMapElement"];
   }
@@ -62,41 +60,25 @@ export class MapPage extends Component<{ locationId? }> {
 
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
-      point: this.isMap
-        ? mapStore.Map2GeoConverter.fromGeo(x)
-        : { X: x.x, Y: x.y },
-      icon: this.isMap ? (
-        <MapIcon id={x.directionId} />
-      ) : this.isEditing ? (
-        <>
-          <circle
-            r={15}
-            className={mapElementStyles.hoverCircle}
-            strokeWidth="2"
-            fill="transparent"
-            stroke="red"
-          ></circle>
-        </>
-      ) : null,
+      figure: mapStore.Map2GeoConverter.fromGeo(x.figure),
+      directionId: x.directionId,
       title: x.name,
       id: x._id,
       radius: 10,
-    } as unknown as MapItem;
+    } as MapItem;
   }
 
-  @cell
+  @cell({ compare })
   get mapItems() {
-    const items = locationsStore.FullLocations.map((x) =>
-      this.locationToMapItem(x)
-    );
-    if (this.isMap && this.user.isLoaded) {
-      return items.concat([this.user]);
-    }
+    const items = locationsStore.FullLocations
+      // TODO: support polygones
+      // .filter((x) => !Array.isArray(x.figure))
+      .map((x) => this.locationToMapItem(x));
     return items;
   }
 
   state = cellState(this, {
-    image: () => (this.isMap ? mapStore.Map2 : mapStore.Schema),
+    image: () => mapStore.Map2,
     items: () => this.mapItems,
     isEditing: () => this.isEditing,
     selected: () => this.mapItems.find((x) => x.id === this.selected),
@@ -123,36 +105,36 @@ export class MapPage extends Component<{ locationId? }> {
         />
         <CloseButton />
         <ButtonsBar at="bottom">
-          <Button type="blue">
+          <Button type="vivid">
             <SvgIcon id="#search" size="14px" />
           </Button>
-          <Button type="blue">
+          <Button type="vivid">
             <SvgIcon id="#bookmark" size="14px" />
             мои места
           </Button>
         </ButtonsBar>
 
-        <ButtonsBar at="right">
-          <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#plus" size="14px" />
-          </Button>
-          <Button type="frame" className={styles.mapButton}>
-            <SvgIcon id="#minus" size="14px" />
-          </Button>
-        </ButtonsBar>
+        {/*<ButtonsBar at="right">*/}
+        {/*  <Button type="frame" className={styles.mapButton}>*/}
+        {/*    <SvgIcon id="#plus" size="14px" />*/}
+        {/*  </Button>*/}
+        {/*  <Button type="frame" className={styles.mapButton}>*/}
+        {/*    <SvgIcon id="#minus" size="14px" />*/}
+        {/*  </Button>*/}
+        {/*</ButtonsBar>*/}
         {/*<LocationSearch onSelect={this.selectLocation} />*/}
         <ButtonsBar at="left">
-          <Button
-            type="frame"
-            onClick={() => {
-              this.isMap = !this.isMap;
-              this.isEditing = false;
-              this.localChanges.clear();
-            }}
-            className={styles.mapButton}
-          >
-            <SvgIcon id="#magic" size="24px" />
-          </Button>
+          {/*<Button*/}
+          {/*  type="frame"*/}
+          {/*  onClick={() => {*/}
+          {/*    this.isMap = !this.isMap;*/}
+          {/*    this.isEditing = false;*/}
+          {/*    this.localChanges.clear();*/}
+          {/*  }}*/}
+          {/*  className={styles.mapButton}*/}
+          {/*>*/}
+          {/*  <SvgIcon id="#magic" size="24px" />*/}
+          {/*</Button>*/}
 
           <RequireAuth>
             <Button
@@ -198,12 +180,12 @@ export class MapPage extends Component<{ locationId? }> {
     const location = {
       ...(this.localChanges.get(x.id) ?? locationsStore.db.get(x.id)),
     };
-    if (this.isMap) {
-      // @ts-ignore
-      Object.assign(location, mapStore.Map2GeoConverter.toGeo(x.point));
+    if (Array.isArray(x.figure)) {
+      location.figure = x.figure.map((line) =>
+        line.map(mapStore.Map2GeoConverter.toGeo)
+      );
     } else {
-      // @ts-ignore
-      Object.assign(location, { x: x.point.X, y: x.point.Y });
+      location.figure = mapStore.Map2GeoConverter.toGeo(x.figure);
     }
     this.localChanges.set(location._id, location);
   };

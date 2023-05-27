@@ -1,13 +1,13 @@
-import { cell } from "@cmmn/cell/lib";
-import {Component} from "preact";
+import { bind, Cell, cell, compare } from "@cmmn/cell/lib";
+import { Component } from "preact";
 import { cellState } from "@helpers/cell-state";
 import { ImageInfo } from "@stores/map.store";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
-import { MapElement } from "./mapElement";
+import { MapElement, MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
-import {TargetedEvent} from "preact/compat";
+import { TargetedEvent } from "preact/compat";
 
 export class MapComponent extends Component<MapProps> {
   @cell
@@ -18,10 +18,20 @@ export class MapComponent extends Component<MapProps> {
     return this.Transform.Matrix.GetScaleFactor();
   }
 
+  propsCell = new Cell(this.props);
   state = cellState(this, {
     transform: () => this.Transform,
     scale: () => this.scale,
+    visibleItems: () => this.visibleItems,
   });
+
+  @cell({ compare })
+  get visibleItems() {
+    return this.propsCell
+      .get()
+      .items.filter((x) => !x.minZoom || x.minZoom < this.scale / this.minScale)
+      .filter((x) => !x.maxZoom || x.maxZoom >= this.scale / this.minScale);
+  }
 
   render() {
     return (
@@ -46,30 +56,47 @@ export class MapComponent extends Component<MapProps> {
           }}
         />
         <svg className={styles.svg}>
-          {this.props.items
-            .filter(
-              // @ts-ignore
-              (x) => Number.isFinite(x.point.X) && Number.isFinite(x.point.Y)
-            )
-            .map((x) => (
-              <MapElement
-                item={x}
-                key={x.id}
-                selected={this.props.selected?.id === x.id}
-                onSelect={(item) => {
-                  this.setState({ selected: item });
-                  this.props.onSelect(item);
-                }}
-                transform={new TransformMatrix()
-                  .Apply(this.state.transform)
-                  .Translate(x.point)
-                  .Scale(1 / this.state.scale)
-                  .ToString("svg")}
-              />
-            ))}
+          <defs>
+            <filter x="0" y="0" width="1" height="1" id="solid">
+              <feFlood flood-color="var(--cold-white)" result="bg" />
+              <feMerge>
+                <feMergeNode in="bg" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g
+            transform={this.state.transform.ToString("svg")}
+            font-size={1 / this.state.scale}
+          >
+            <MapElements
+              items={this.state.visibleItems}
+              selected={this.props.selected}
+              onSelect={this.onSelect}
+            />
+          </g>
         </svg>
       </div>
     );
+  }
+
+  @bind
+  private onSelect(item: MapItem) {
+    this.setState({ selected: item });
+    this.props.onSelect(item);
+  }
+  @bind
+  private arrayToPath(figure: Array<Array<Point>>, map: (p: Point) => Point) {
+    return figure
+      .map(
+        (line) =>
+          "M" +
+          line
+            .map(map)
+            .map((p) => `${p.X} ${p.Y}`)
+            .join("L")
+      )
+      .join(" ");
   }
 
   //region Handlers
@@ -89,11 +116,17 @@ export class MapComponent extends Component<MapProps> {
       dragHandler.on("transform", (e) => {
         const { selected } = this.props;
         if (this.props.isMovingEnabled && selected) {
-          selected.point = new TransformMatrix()
+          const transform = new TransformMatrix()
             .Apply(this.Transform.Inverse())
             .Apply(e)
-            .Apply(this.Transform)
-            .Invoke(selected.point);
+            .Apply(this.Transform);
+          if (Array.isArray(selected.figure)) {
+            selected.figure = selected.figure.map((line) =>
+              line.map(transform.Invoke)
+            );
+          } else {
+            selected.figure = transform.Invoke(selected.figure);
+          }
           this.forceUpdate();
           this.props.onChange(selected);
         } else {
@@ -108,7 +141,7 @@ export class MapComponent extends Component<MapProps> {
 
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
-    if (scale > 2 || scale < this.minScale) {
+    if (scale > 2.2 || scale < this.minScale * 0.98) {
       return;
     }
     this.Transform = transform;
@@ -151,7 +184,9 @@ export class MapComponent extends Component<MapProps> {
     if (this.props.selected && prevProps.selected !== this.props.selected) {
       this.scrollTo(this.props.selected);
     }
+    this.propsCell.set(this.props);
   }
+
   componentDidMount() {
     if (this.props.selected) {
       this.scrollTo(this.props.selected);
@@ -160,7 +195,17 @@ export class MapComponent extends Component<MapProps> {
 
   scrollTo(x: MapItem) {
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(x.point);
+    const view = this.Transform.Invoke(
+      Array.isArray(x.figure)
+        ? x.figure.flat().reduce(
+            (x, y) => ({
+              X: x.X + y.X,
+              Y: x.Y + y.Y,
+            }),
+            { X: 0, Y: 0 }
+          )
+        : x.figure
+    );
     if (
       view.X > rect.left + rect.width / 10 &&
       view.X < rect.right - rect.width / 10 &&

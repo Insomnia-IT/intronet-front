@@ -10,15 +10,14 @@
 }
 
 .mainPage {
-    height: auto;
-    min-height: 100%;
     color: var(--cold-white);
-    padding: 54px 8px;
+    padding: 54px 8px 84px;
     box-sizing: border-box;
+    flex: 1;
 }
 
 .mainPage :global(#logo) {
-    margin: 0px calc(50% - 93px) 20px;
+    margin: 0 calc(50% - 93px);
 }
 
 .menuBtn {
@@ -60,4 +59,17 @@
 .mainCard {
     height: 30vw;
     max-height: 200px;
+    color: var(--ins-night);
 }
+
+.mainCard > header{
+    font-style: normal;
+    font-weight: 860;
+    font-size: 18px;
+    line-height: 21px;
+}
+.mainCardColor {
+    composes: mainCard;
+    color: var(--cold-white);
+}
+

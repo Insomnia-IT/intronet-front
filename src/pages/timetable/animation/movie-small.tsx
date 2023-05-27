@@ -7,21 +7,19 @@ import { SvgIcon } from "@icons";
 import { Gesture } from "./gesture";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useLocalStorageState } from "@helpers/useLocalStorageState";
-import { Button } from "@components";
+import { highlight } from "@components/highlight";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
-  switchBookmark?(movie: MovieInfo): void;
-  showDeleted?: boolean;
   gesture?: Gesture;
+  searchQuery?: string;
 };
 export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
-  switchBookmark,
-  showDeleted,
   gesture,
+  searchQuery,
 }) => {
-  switchBookmark ??= (movie) =>
+  const switchBookmark = (movie) =>
     bookmarksStore.switchBookmark("movie", movie.id);
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
@@ -47,25 +45,6 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     if (!state) return;
     setUserUsedGesture(true);
   }, [userUsedGesture, state]);
-  if (showDeleted && !hasBookmark) {
-    return (
-      <div class={Styles.snack}>
-        <div class="textSmall w-full colorWhite" flex-grow>
-          Удалено
-        </div>
-        <Button
-          type="text"
-          class="colorElBlue"
-          onClick={(e) => {
-            e.preventDefault();
-            switchBookmark?.(movie);
-          }}
-        >
-          Отменить
-        </Button>
-      </div>
-    );
-  }
   return (
     <div
       ref={ref}
@@ -80,7 +59,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     >
       <div flex center>
         <div flex-grow class={Styles.movieTitle}>
-          «{movie.name}»
+          {highlight(movie.name, searchQuery)}
         </div>
         <SvgIcon
           id="#bookmark"
@@ -98,7 +77,8 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
         />
       </div>
       <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-        {movie.author}, {movie.country}, {movie.year}
+        {highlight(movie.author, searchQuery)},{" "}
+        {highlight(movie.country, searchQuery)}, {movie.year}
       </div>
       <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
         {minutes} мин {seconds} сек

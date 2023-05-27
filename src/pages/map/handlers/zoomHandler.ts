@@ -2,7 +2,7 @@ import { EventEmitter } from "@cmmn/cell/lib";
 import { TransformMatrix } from "../transform/transform.matrix";
 
 export class ZoomHandler extends EventEmitter<{
-  transform: TransformMatrix
+  transform: TransformMatrix;
 }> {
   constructor(private root: HTMLDivElement) {
     super();
@@ -93,11 +93,12 @@ export class ZoomHandler extends EventEmitter<{
     );
   }
 
+  private rect: DOMRect;
   eventToPoint(event: MouseEvent | WheelEvent | Touch) {
-    const rect = this.root.getBoundingClientRect();
+    this.rect ??= this.root.getBoundingClientRect();
     return {
-      X: event.pageX - rect.left,
-      Y: event.pageY - rect.top,
+      X: event.pageX - this.rect.left,
+      Y: event.pageY - this.rect.top,
     };
   }
 

@@ -1,11 +1,12 @@
-import { useRouter } from "../../pages/routing";
+import { useRouter } from "../routing";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { useCell } from "@helpers/cell-state";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import { CloseButton } from "@components";
-import { MovieList } from "../../pages/timetable/animation/animation-block";
 import { Cell } from "@cmmn/cell/lib";
-import { Tag, Tags } from "../tag";
+import { Tag, Tags } from "@components/tag";
+import { MovieList } from "../timetable/animation/movie-list";
+import { Snackbar } from "./snackbar/snackbar";
 
 export const BookmarksPage = () => {
   const router = useRouter();
@@ -19,8 +20,8 @@ export const BookmarksPage = () => {
   return (
     <div class="page">
       <h1>избранное</h1>
-      <Tags style={{ margin: "16px 0 20px 0" }} tagsList={Sections}>
-        {(x) => (
+      <Tags style={{ margin: "16px 0 20px 0" }}>
+        {Sections.map((x) => (
           <Tag
             key={x}
             value={x}
@@ -29,7 +30,7 @@ export const BookmarksPage = () => {
           >
             {SectionNames[x]}
           </Tag>
-        )}
+        ))}
       </Tags>
       {type == "movie" && <BookmarkMovies />}
       <CloseButton />
@@ -37,40 +38,9 @@ export const BookmarksPage = () => {
   );
 };
 
-const removedItems = new Cell(
-  new Map<string, { movie: MovieInfo; timeoutId: number }>()
-);
 export const BookmarkMovies = () => {
   const items = useCell(() => bookmarksStore.Movies);
-  const removed = useCell(() =>
-    Array.from(removedItems.get().values()).map((x) => x.movie)
-  );
-  const switchBookmark = useCallback((movie: MovieInfo) => {
-    const map = removedItems.get();
-    const exist = map.get(movie.id);
-    if (exist) {
-      map.delete(movie.id);
-      clearTimeout(exist.timeoutId);
-    } else {
-      map.set(movie.id, {
-        movie,
-        timeoutId: setTimeout(() => {
-          const current = removedItems.get();
-          current.delete(movie.id);
-          removedItems.set(new Map(current));
-        }, 5000) as any,
-      });
-    }
-    removedItems.set(new Map(map));
-    bookmarksStore.switchBookmark("movie", movie.id);
-  }, []);
-  return (
-    <MovieList
-      movies={items.concat(...removed).orderBy((x) => x.name)}
-      showDeleted
-      switchBookmark={switchBookmark}
-    />
-  );
+  return <MovieList movies={items.orderBy((x) => x.name)} />;
 };
 
 const Sections = [

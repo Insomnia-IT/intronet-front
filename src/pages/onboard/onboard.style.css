@@ -9,10 +9,18 @@
   box-sizing: border-box;
 }
 
+.fireboyWrap{
+  flex: 1;
+  height: calc(100% - 260px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0;
+}
 .fireboy{
-  width: 100%;
-  margin-top: 73px;
-  align-self: center;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .menuText{

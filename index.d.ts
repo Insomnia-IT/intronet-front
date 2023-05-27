@@ -43,21 +43,23 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
-  x: number;
-  y: number;
-  lat: number;
-  lon: number;
+  figure: GeoPoint | Array<Array<GeoPoint>>;
   tags: string[];
   image: string;
   menu?: string;
 };
 
+type Geo = { lat: number; lon: number };
+type Point = { X: number; Y: number };
+
 type MapItem = {
-  point: { X; Y };
-  icon: JSX.Element;
+  figure: Point | Array<Array<Point>>;
+  directionId: string;
   radius;
   id;
   title?: string;
+  minZoom?: number;
+  maxZoom?: number;
 };
 
 type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {

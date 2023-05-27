@@ -8,7 +8,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   solid?: boolean;
   selected?: boolean;
-  type?: "frame" | "blue" | "disco" | "vivid" | "text";
+  type?: "frame" | "blue" | "disco" | "vivid" | "text" | "borderDashVivid";
   goTo?: RoutePath | RoutePathString;
 } & JSX.HTMLAttributes<HTMLButtonElement>;
 

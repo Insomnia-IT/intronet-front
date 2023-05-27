@@ -11,6 +11,15 @@
   display: initial;
 }
 
+.element  text{
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12em;
+  line-height: 12em;
+  text-anchor: middle;
+}
+
 .selected {
   transform: scale(1.4);
 }
@@ -29,4 +38,13 @@
 
 .selected .hoverCircle {
   fill: #A226;
+}
+
+
+.zone {
+  fill:  rgba(255, 75, 22, 0.25);
+  stroke: #FF4B16;
+  stroke-width: 3;
+  stroke-dasharray: 8;
+  vector-effect: non-scaling-stroke;
 }

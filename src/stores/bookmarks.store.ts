@@ -1,10 +1,39 @@
-import { cell, Fn } from "@cmmn/cell/lib";
+import {
+  cell,
+  Fn,
+  ObservableList,
+  Cell,
+  compare,
+  debounced,
+} from "@cmmn/cell/lib";
 import { ObservableDB } from "@stores/observableDB";
 import { moviesStore } from "@stores/movies.store";
+import { TimerCell } from "@stores/timer";
 
 class BookmarksStore {
   @cell
   private db = new ObservableDB<Bookmark>("bookmarks", true);
+
+  addHistory(item: HistoryItem) {
+    const last = this.history.get(this.history.length - 1);
+    console.log(last);
+    if (last?.action !== item.action || last?.type !== item.type) {
+      this.history.clear();
+    }
+    this.history.push(item);
+    this.clearHistory();
+  }
+
+  @debounced(3000)
+  clearHistory() {
+    this.history.clear();
+  }
+  @cell
+  public history = new ObservableList<HistoryItem>();
+
+  public lastHistory = new Cell(() => this.history.toArray().slice(), {
+    compare,
+  });
 
   @cell
   public get Movies() {
@@ -14,19 +43,47 @@ class BookmarksStore {
       .map((m) => moviesStore.Movies.find((x) => x.id == m.itemId))
       .filter((x) => x);
   }
-  public async removeBookmark(type: Bookmark["type"], id: string) {
+  public async removeBookmark(
+    type: Bookmark["type"],
+    id: string,
+    skipHistory = false
+  ) {
     const exist = await this.getBookmark(type, id);
-    if (exist) {
-      this.db.remove(exist._id);
-    } else {
+    if (!exist) {
       throw new Error(`Bookmark has not been added`);
     }
+    !skipHistory &&
+      this.addHistory({
+        type,
+        action: "delete",
+        time: new Date(),
+        id,
+      });
+    this.db.remove(exist._id);
   }
-  public async switchBookmark(type: Bookmark["type"], id: string) {
+  public async switchBookmark(
+    type: Bookmark["type"],
+    id: string,
+    skipHistory = false
+  ) {
     const exist = await this.getBookmark(type, id);
     if (exist) {
+      !skipHistory &&
+        this.addHistory({
+          type,
+          action: "delete",
+          time: new Date(),
+          id,
+        });
       this.db.remove(exist._id);
     } else {
+      !skipHistory &&
+        this.addHistory({
+          type,
+          action: "add",
+          time: new Date(),
+          id,
+        });
       this.db.addOrUpdate({
         _id: Fn.ulid(),
         type,
@@ -34,10 +91,17 @@ class BookmarksStore {
       });
     }
   }
-  public addBookmark(type: Bookmark["type"], id: string) {
+  public addBookmark(type: Bookmark["type"], id: string, skipHistory = false) {
     if (this.getBookmark(type, id)) {
       throw new Error(`Bookmark already has been added`);
     }
+    !skipHistory &&
+      this.addHistory({
+        type,
+        action: "add",
+        time: new Date(),
+        id,
+      });
     return this.db.addOrUpdate({
       _id: Fn.ulid(),
       type,
@@ -50,3 +114,9 @@ class BookmarksStore {
   }
 }
 export const bookmarksStore = new BookmarksStore();
+export type HistoryItem = {
+  time: Date;
+  action: "add" | "delete";
+  type: Bookmark["type"];
+  id: string;
+};

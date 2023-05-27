@@ -79,7 +79,7 @@ export class SwStorage {
   }
 
   private async getVersion() {
-    return fetch(versionUrl).then((x) =>
+    return fetch(versionUrl + "?" + +new Date()).then((x) =>
       x.ok ? x.text() : Promise.reject(`Failed load version`)
     );
   }
@@ -97,14 +97,17 @@ export class SwStorage {
         })
       )
     );
-    this.version ??= await this.cache.match(versionUrl).then(x => x.text());
+    this.version ??= await this.cache.match(versionUrl).then((x) => x.text());
     this.resolve();
     return this.cache;
   }
 
   async getFromCacheOrFetch(request: Request, notify = true) {
     await this.cacheOpen;
-    return (await this.cache.match(request)) ?? await this.fetchAndPut(request, notify);
+    return (
+      (await this.cache.match(request)) ??
+      (await this.fetchAndPut(request, notify))
+    );
   }
 
   async fetchAndPut(request: Request, notify = true) {

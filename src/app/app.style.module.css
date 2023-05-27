@@ -14,8 +14,12 @@
   min-height: 100%;
   position: relative;
 }
-:global(.page) > :global(h1){
+:global(.page) :global(h1),
+:global(.page) :global(header){
   color: var(--medium-blue);
+  max-width: calc(100% - 46px);
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 @media (min-width: 441px){
@@ -45,8 +49,7 @@
   line-height: 17px;
   text-transform: uppercase;
   cursor: pointer;
-  /* Electric Blues */
-  color: #536BF3;
+  color: var(--electric-blues)
 
 }
 :global(.link):after{

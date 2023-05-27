@@ -5,8 +5,7 @@
     --ins-night: #0C1035;
     --medium-blue: #1C2573;
     --cyber-disco: #FE4BA9;
-    --pink: #F2888C;
-    --new-pink: #FF6E76;
+    --pink: #FF6E76;
     --cold-white: #F7FCFF;
     --white: #FFF;
     --black: #000;
@@ -84,6 +83,7 @@
     color: var(--medium-blue);
     font-style: normal;
     font-variation-settings: "wght" 690;
+    font-weight: 690;
     font-size: 24px;
     line-height: 29px;
 }
@@ -91,6 +91,7 @@
 :global(.sh2){
     font-style: normal;
     font-variation-settings: "wght" 590;
+    font-weight: 590;
     font-size: 20px;
     line-height: 24px;
     display: flex;
@@ -99,6 +100,7 @@
 :global(.sh3){
     font-style: normal;
     font-variation-settings: "wght" 510;
+    font-weight: 510;
     font-size: 16px;
     line-height: 19px;
     /* identical to box height */
@@ -112,4 +114,9 @@
     line-height: 17px;
     display: flex;
     align-items: flex-end;
+}
+
+:global(mark){
+    background: initial;
+    color: var(--cyber-disco);
 }

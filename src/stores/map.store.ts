@@ -4,15 +4,15 @@ import { TileConverter } from "@helpers/tile.converter";
 class MapStore {
   constructor() {
     try {
-      this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
-      this.load("/public/images/map_18_156598_83304_156635_83327.webp").then((x) => (this.Map2 = x));
+      // this.load("/public/images/schema4.webp").then((x) => (this.Schema = x));
+      // this.load("/public/images/map.svg").then((x) => (this.Map2 = x));
     } catch (e) {}
     // this.load("/images/map2.webp").then((x) => (this.Map2 = x));
   }
 
   load(
     url,
-    type: "jpg" | "png" | "webp" = url.split(".").pop()
+    type: "jpg" | "png" | "webp" | "svg" = url.split(".").pop()
   ): Promise<ImageInfo> {
     return fetch(url)
       .then((x) => x.arrayBuffer())
@@ -28,13 +28,17 @@ class MapStore {
       });
   }
 
-  @cell
-  public Schema: ImageInfo = null;
+  // @cell
+  // public Schema: ImageInfo = null;
 
   // @cell
   // public Map: ImageInfo = null;
   @cell
-  public Map2: ImageInfo = null;
+  public Map2: ImageInfo = {
+    url: "/public/images/map.svg",
+    width: 9728,
+    height: 6144,
+  };
   //
   // public Map2GeoConverter = new GeoConverter(
   //   [54 + 40 / 60 + 29.1 / 3600, 54 + 41 / 60 + 7.5046 / 3600],
