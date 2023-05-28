@@ -32,7 +32,7 @@ export class IndexedDatabase<T> {
         request.onsuccess = function () {
           resolve(this.result);
         };
-        transaction.commit();
+        transaction.commit?.();
       });
     });
   }
