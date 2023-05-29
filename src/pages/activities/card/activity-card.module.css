@@ -1,0 +1,52 @@
+.activityContainer {
+  width: 100%;
+}
+
+.activityDescription {
+  max-height: 34px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activityTimePlace {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.activityPlace {
+  max-width: 178px;
+  color: var(--medium-blue);
+}
+
+.activityPlaceCanceled {
+  composes: activityPlace;
+  color: var(--inactive-grey);
+}
+
+.activityTime {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--medium-blue);
+}
+
+.activityTimeCanceled {
+  composes: activityTime;
+  color: var(--inactive-grey);
+}
+
+.headerContainer {
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+}
+
+.headerCanceled {
+  composes: header;
+  color: var(--gray);
+}

@@ -17,10 +17,15 @@
     background: white;
 }
 
+.bgColdWhite{
+  background: var(--cold-white);;
+}
+
 .bgVivid{
   background: var(--vivid-gradient);
 }
 
+.borderNone,
 .border{
     --borderWidth: 2px;
     border: solid var(--borderWidth) transparent;
@@ -47,3 +52,9 @@
      border-radius: 22px;
      background: var(--cold-white)
  }
+
+.borderInactiveGrey{
+  composes: border;
+  border-color: var(--inactive-grey);
+  border-width: 1px;
+}
