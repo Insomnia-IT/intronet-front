@@ -1,6 +1,5 @@
 import { test } from "@jest/globals";
 import locationsJSON from "./locations.json";
-import schedulesJSON from "./schedules.json";
 import moviesJSON from "./movies.json";
 import { getRandomItem } from "@helpers/getRandomItem";
 import { Fn } from "@cmmn/cell/lib";
