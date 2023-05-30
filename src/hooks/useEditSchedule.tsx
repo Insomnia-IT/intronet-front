@@ -16,7 +16,7 @@ export const useEditSchedule = () => {
     async (
       schedules?: Schedule[],
       auditoryElement?: AuditoryElement,
-      day?: Day,
+      day?: number,
       auditory?: Auditory["number"],
       auditoryElementIndex?: number
     ) => {

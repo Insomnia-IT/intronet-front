@@ -1,0 +1,29 @@
+.badge {
+  padding: 4px 14px;
+  width: fit-content;
+  border-radius: 24px;
+  text-align: center;
+  background: transparent;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.badgeAge {
+  composes: badge;
+  padding: 4px 10px 3px 8px;
+}
+
+.badgeAdv {
+  composes: badge;
+}
+
+.badgeChange {
+  composes: badge;
+  line-height: 24px;
+  padding: 0 15px;
+  background: #FF4B16;
+}

@@ -17,18 +17,24 @@
   background: white;
 }
 
-.bgVivid {
-  background: var(--vivid-gradient);
-}
-
 .bgSoft {
   background: var(--soft-gradient);
 }
 
-.border {
-  --borderWidth: 2px;
-  border: solid var(--borderWidth) transparent;
+.bgColdWhite {
+  background: var(--cold-white);;
 }
+
+.bgVivid{
+  background: var(--vivid-gradient);
+}
+
+.borderNone,
+.border{
+    --borderWidth: 2px;
+    border: solid var(--borderWidth) transparent;
+}
+
 .borderBlue {
   composes: border;
   border-color: var(--medium-blue);
@@ -42,19 +48,22 @@
   z-index: 1;
 }
 
+.borderLeftCloud {
+  border-bottom-left-radius: 0;
+}
+
 .borderVivid:before {
-  content: "";
+  content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
   z-index: 0;
   margin: 2px;
   border-radius: 22px;
-  background: var(--cold-white);
-}
+  background: var(--cold-white)
+ }
 
-.borderLeftCloud {
-  border-bottom-left-radius: 0;
+.borderInactiveGrey{
+  composes: border;
+  border-color: var(--inactive-grey);
+  border-width: 1px;
 }

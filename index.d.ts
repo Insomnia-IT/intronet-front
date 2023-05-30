@@ -126,6 +126,20 @@ type ICategoryLocal = Omit<ICategory, "_id">;
 
 type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 
+interface Activity {
+  _id: string;
+  locationId: string;
+  title: string;
+  description: string;
+  day: number;
+  start: Date | string;
+  end: Date;
+  author: string;
+  age?: number;
+  changes?: string;
+  isCanceled?: boolean;
+}
+
 interface Schedule {
   _id: string;
   locationId: string;
@@ -137,6 +151,7 @@ interface Auditory {
   number: 1 | 2;
   elements: AuditoryElement[];
 }
+
 interface AuditoryElement {
   _id: string;
   type: "animation" | "lecture";
@@ -148,6 +163,11 @@ interface AuditoryElement {
   changes?: string; //Изменения в расписании по данному пункту.
   age?: number;
   movies?: MovieInfo[];
+}
+
+interface AuditoryElementExpand extends AuditoryElement {
+  locationId: string;
+  day: number;
 }
 
 type MovieInfo = {
@@ -188,4 +208,4 @@ type Bookmark = {
   type: BookmarkSection;
   itemId: string;
 };
-type BookmarkSection = "movie" | "activity" | "locations" | "notes";
+type BookmarkSection = "movie" | "activity" | "locations" | "notes" ;

@@ -1,0 +1,4 @@
+.canceled {
+  color: var(--inactive-grey);
+  text-decoration: line-through;
+}

@@ -12,7 +12,7 @@ export const useDeleteSchedule = (locationId: Schedule["locationId"]) => {
     async (
       schedules?: Schedule[],
       auditoryElement?: AuditoryElement,
-      day?: Day,
+      day?: number,
       auditory?: Auditory["number"],
       auditoryElementIndex?: number
     ) => {

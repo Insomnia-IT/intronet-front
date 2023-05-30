@@ -10,6 +10,7 @@ import { VotingPage } from "./voting/voting-page";
 import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
 import { NotesPage } from "./notes/NotesPage";
+import { ActivitiesPage } from "./activities/activities-page";
 
 export const routes = {
   main: {
@@ -26,6 +27,11 @@ export const routes = {
     name: "map",
     title: "Карта 2",
     Component: MapPageWithRouting,
+  },
+  activities: {
+    name: "activities",
+    title: "НеАнимация",
+    Component: ActivitiesPage,
   },
   timetable: {
     name: "timetable",

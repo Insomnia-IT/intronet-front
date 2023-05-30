@@ -5,6 +5,8 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { useEffect } from "preact/hooks";
 import { useRouter } from "../routing";
 import { MovieList } from "../timetable/animation/movie-list";
+import { Snackbar } from "./snackbar/snackbar";
+import { ActivityList } from "../activities/activities/activityList";
 
 export const BookmarksPage = () => {
   const router = useRouter();
@@ -31,6 +33,7 @@ export const BookmarksPage = () => {
         )}
       </Tags>
       {type == "movie" && <BookmarkMovies />}
+      {type == "activity" && <Activities />}
       <CloseButton />
     </div>
   );
@@ -39,6 +42,11 @@ export const BookmarksPage = () => {
 export const BookmarkMovies = () => {
   const items = useCell(() => bookmarksStore.Movies);
   return <MovieList movies={items.orderBy((x) => x.name)} />;
+};
+
+export const Activities = () => {
+  const items = useCell(() => bookmarksStore.Activities);
+  return <ActivityList activities={items}></ActivityList>;
 };
 
 const Sections = [

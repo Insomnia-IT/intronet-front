@@ -146,6 +146,12 @@
   display: flex;
   align-items: flex-end;
 }
+:global(.text){
+  font-style: normal;
+  font-variation-settings: "wght" 400;
+  font-size: 20px;
+  line-height: 24px;
+}
 
 :global(.textSmall) {
   color: var(--medium-blue);
@@ -168,6 +174,7 @@
   background: initial;
   color: var(--cyber-disco);
 }
+
 
 :global(ul) {
   list-style: none;

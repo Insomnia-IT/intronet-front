@@ -11,7 +11,7 @@
 
 .mainPage {
     color: var(--cold-white);
-    padding: 54px 8px 84px;
+    padding: 24px 8px 84px;
     box-sizing: border-box;
     flex: 1;
 }
