@@ -1,0 +1,37 @@
+.badge {
+  border-radius: 24px;
+  padding: 4px 8px;
+
+  background: var(--inactive-grey);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.badgeLocation {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: var(--electric-blues);
+  border-radius: 50%;
+}
+
+.badgeAge {
+  /* padding-left: 8px;
+  padding-right: 10px; */
+  color: var(--medium-blue);
+}
+
+.badgeAge12 {
+  composes: badgeAge;
+  background: var(--lavand);
+}
+
+.badgeAge18 {
+  composes: badgeAge;
+  background: var(--light-orange);
+}
