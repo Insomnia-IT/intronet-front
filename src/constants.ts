@@ -19,4 +19,6 @@ export const COLORS = {
   electricBlues: "#536BF3",
   cuberDisco: "#FE4BA9",
   inactiveGray: "#A0A5D1",
+  lightOrange: "#FAC5C0",
+  lavand: "#CFBAFF",
 };

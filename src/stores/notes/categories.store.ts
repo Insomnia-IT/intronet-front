@@ -37,7 +37,7 @@ class CategoriesStore {
   }
 
   getCategoryColor(id: ICategory["_id"]): null | string {
-    return this.getCategory(id)?.color || "brand.300";
+    return this.getCategory(id)?.color || COLORS.inactiveGray;
   }
 
   // async addCategory(newCategory: ICategoryLocal) {

@@ -26,6 +26,10 @@ class FiltersStore {
       }),
     ];
   }
+
+  get filterAll() {
+    return this.filters[0];
+  }
 }
 
 export const filtersStore = new FiltersStore();

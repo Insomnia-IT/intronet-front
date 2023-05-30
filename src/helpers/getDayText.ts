@@ -1,6 +1,10 @@
-export function getDayText(day: number, type?: "at" | "short" | "full") {
+export function getDayText(
+  day: number,
+  type?: "at" | "short" | "full" | "shortWD"
+) {
   if (day < 0) day = 0;
   if (!type) return names[day];
+
   switch (type) {
     case "short":
       return namesShort[day];
@@ -13,15 +17,24 @@ export function getDayText(day: number, type?: "at" | "short" | "full") {
       if (day == today + 1) return `завтра`;
       return namesAt[day];
     }
+    case "shortWD": {
+      return namesShort[day].slice(0, 2);
+    }
     default:
       return names[day];
   }
 }
 
 export function getCurrentDay(): Day {
-  const day = new Date().getDay() - 4; // четверг = 0
+  return getDay(Date.now());
+}
+
+export function getDay(utc: number): Day {
+  const day = new Date(utc).getDay() - 4; // четверг = 0
+
   if (day === -3) return 4;
   if (day < 0) return 0;
+
   return day as Day;
 }
 

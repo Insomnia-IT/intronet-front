@@ -1,9 +1,12 @@
 import { FunctionalComponent } from "preact";
+import classNames from "classnames";
 import { useNotesRouter } from "../hooks/useNotesRouter";
 import { useEffect, useMemo } from "preact/hooks";
 import { FilteredNotesStore } from "@stores/notes/filters.store";
 import { useCell } from "@helpers/cell-state";
-import { Card } from "@components/cards";
+import { NoteCard } from "./NoteCard/NoteCard";
+import { categoriesStore } from "@stores";
+import styles from "./styles.module.css";
 
 export const NotesList: FunctionalComponent = () => {
   const notesRouter = useNotesRouter();
@@ -16,15 +19,23 @@ export const NotesList: FunctionalComponent = () => {
   }, [filteredNotes]);
 
   return (
-    <div>
+    <ul className={classNames("textSmall", styles.list)}>
       {filteredNotes.map((note) => {
+        const noteCategory = {
+          name: categoriesStore.getCategory(note.categoryId).name,
+          color: categoriesStore.getCategoryColor(note.categoryId),
+        };
+
         return (
-          <Card background="Vivid">
-            <h3>{note.title}</h3>
-            <span>{note.text}</span>
-          </Card>
+          <li key={note._id}>
+            <NoteCard
+              {...note}
+              categoryName={noteCategory.name}
+              categoryColor={noteCategory.color}
+            />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

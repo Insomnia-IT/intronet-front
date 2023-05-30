@@ -1,122 +1,176 @@
 .colors {
-    --electric-blues: #536BF3;
-    --chineese-cafe: #FF4B16;
-    --bonfire-light: #FDA631;
-    --ins-night: #0C1035;
-    --medium-blue: #1C2573;
-    --cyber-disco: #FE4BA9;
-    --pink: #FF6E76;
-    --cold-white: #F7FCFF;
-    --white: #FFF;
-    --black: #000;
-    --purple: #763AFF;
-    --gray: #646995;
-    --vivid-gradient: radial-gradient(87.66% 151.93% at 19.01% 12.34%, #FF6D76 32.81%, #4B6BF8 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-    --purple-gradient: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-    --menu-gradient: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);
+  --electric-blues: #536bf3;
+  --chineese-cafe: #ff4b16;
+  --bonfire-light: #fda631;
+  --ins-night: #0c1035;
+  --medium-blue: #1c2573;
+  --cyber-disco: #fe4ba9;
+  --pink: #ff6e76;
+  --cold-white: #f7fcff;
+  --white: #fff;
+  --black: #000;
+  --purple: #763aff;
+  --gray: #646995;
+  --inactive-grey: #a0a5d1;
+  --light-orange: #fac5c0;
+  --lavand: #cfbaff;
+  --vivid-gradient: radial-gradient(
+      87.66% 151.93% at 19.01% 12.34%,
+      #ff6d76 32.81%,
+      #4b6bf8 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  --purple-gradient: radial-gradient(
+      100% 613.64% at 4.04% 0%,
+      #d8eef4 0%,
+      rgba(211, 184, 255, 0.46) 93.3%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  --menu-gradient: linear-gradient(
+    253.29deg,
+    #fe4ba9 38.17%,
+    #ff6e76 62.03%,
+    #ffc576 89.64%
+  );
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+  --soft-gradient: radial-gradient(
+    100% 613.64% at 4.04% 0%,
+    #fffbe9 0%,
+    rgba(249, 184, 255, 0.46) 93.3%
+  );
 }
 
-.pinkShadow{
-    background: #D9D9D9;
-    box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14), -4px -4px 12px rgba(248, 192, 194, 0.14), 0px 4px 12px rgba(248, 192, 194, 0.14);
+.pinkShadow {
+  background: #d9d9d9;
+  box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14),
+    -4px -4px 12px rgba(248, 192, 194, 0.14),
+    0px 4px 12px rgba(248, 192, 194, 0.14);
 }
 
-.softGradient{
-  background: radial-gradient(100% 613.64% at 4.04% 0%, #D8EEF4 0%, rgba(211, 184, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+.softGradient {
+  background: radial-gradient(
+      100% 613.64% at 4.04% 0%,
+      #d8eef4 0%,
+      rgba(211, 184, 255, 0.46) 93.3%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
-:global(.bgInsNight){
+:global(.bgInsNight) {
   background: var(--ins-night);
 }
-:global(.colorPink){
-    color: var(--pink) !important;
+:global(.colorPink) {
+  color: var(--pink) !important;
 }
-:global(.colorDisco){
+:global(.colorDisco) {
   color: var(--cyber-disco) !important;
 }
-:global(.colorGray){
-    color: var(--gray) !important;
+:global(.colorGray) {
+  color: var(--gray) !important;
 }
-:global(.colorMediumBlue){
-    color: var(--medium-blue) !important;
+:global(.colorMediumBlue) {
+  color: var(--medium-blue) !important;
 }
-:global(.colorMenu){
+:global(.colorMenu) {
   color: var(--menu-gradient);
 }
-:global(.colorPurple){
-    color: var(--purple) !important;
+:global(.colorPurple) {
+  color: var(--purple) !important;
 }
-:global(.colorWhite){
-    color: var(--cold-white) !important;
+:global(.colorWhite) {
+  color: var(--cold-white) !important;
 }
-:global(.colorElBlue){
-    color: var(--electric-blues) !important;
+:global(.colorElBlue) {
+  color: var(--electric-blues) !important;
 }
-:global(.unbounded){
-    font-family: 'Unbounded';
+:global(.unbounded) {
+  font-family: "Unbounded";
 }
-:global(h1){
-    font-family: 'Unbounded';
-    font-style: normal;
-    font-weight: initial;
-    font-variation-settings: "wght" 900;
-    font-size: 28px;
-    line-height: 35px;
-    text-transform: uppercase;
-    margin: 0;
-    /*margin-bottom: 8px;*/
-}
-
-:global(h2){
-    /*color: var(--medium-blue);*/
-    font-family: 'Unbounded';
-    font-style: normal;
-    font-weight: initial;
-    font-variation-settings: "wght" 900;
-    font-size: 20px;
-    line-height: 25px;
-    text-transform: uppercase;
-    margin: 0;
+:global(h1) {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: initial;
+  font-variation-settings: "wght" 900;
+  font-size: 28px;
+  line-height: 35px;
+  text-transform: uppercase;
+  margin: 0;
+  /*margin-bottom: 8px;*/
 }
 
-
-:global(.sh1){
-    color: var(--medium-blue);
-    font-style: normal;
-    font-variation-settings: "wght" 690;
-    font-weight: 690;
-    font-size: 24px;
-    line-height: 29px;
+:global(h2) {
+  /*color: var(--medium-blue);*/
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: initial;
+  font-variation-settings: "wght" 900;
+  font-size: 20px;
+  line-height: 25px;
+  text-transform: uppercase;
+  margin: 0;
 }
 
-:global(.sh2){
-    font-style: normal;
-    font-variation-settings: "wght" 590;
-    font-weight: 590;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: flex-end;
-}
-:global(.sh3){
-    font-style: normal;
-    font-variation-settings: "wght" 510;
-    font-weight: 510;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    display: flex;
-    align-items: flex-end;
-}
-:global(.tags){
-    font-style: normal;
-    font-weight: 510;
-    font-size: 14px;
-    line-height: 17px;
-    display: flex;
-    align-items: flex-end;
+:global(h3) {
+  margin: 0;
+  color: var(--medium-blue);
+  font-style: normal;
+  font-weight: 860;
+  font-size: 18px;
+  line-height: 21px;
 }
 
-:global(mark){
-    background: initial;
-    color: var(--cyber-disco);
+:global(.sh1) {
+  color: var(--medium-blue);
+  font-style: normal;
+  font-variation-settings: "wght" 590;
+  font-weight: 590;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+:global(.sh2) {
+  font-style: normal;
+  font-variation-settings: "wght" 590;
+  font-weight: 590;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: flex-end;
+}
+:global(.sh3) {
+  font-style: normal;
+  font-variation-settings: "wght" 510;
+  font-weight: 510;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  display: flex;
+  align-items: flex-end;
+}
+
+:global(.textSmall) {
+  color: var(--medium-blue);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.7px;
+}
+
+:global(.tags) {
+  font-style: normal;
+  font-weight: 510;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: flex-end;
+}
+
+:global(mark) {
+  background: initial;
+  color: var(--cyber-disco);
+}
+
+:global(ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

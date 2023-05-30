@@ -1,14 +1,13 @@
 import {
-  cell,
+  Cell,
   Fn,
   ObservableList,
-  Cell,
+  cell,
   compare,
   debounced,
 } from "@cmmn/cell/lib";
-import { ObservableDB } from "@stores/observableDB";
 import { moviesStore } from "@stores/movies.store";
-import { TimerCell } from "@stores/timer";
+import { ObservableDB } from "@stores/observableDB";
 
 class BookmarksStore {
   @cell

@@ -8,10 +8,11 @@ export type IBadgeProps = {
   type: "Age12" | "Age18" | "Adv" | "Location";
   background?: string | keyof typeof COLORS;
   content?: string | number;
+  className?: string;
 };
 
 export const Badge: FunctionalComponent<IBadgeProps> = (props) => {
-  const { type = "Adv", background, content = null } = props;
+  const { type = "Adv", background, content = null, className } = props;
   const maybeColorStyle = background
     ? {
         background,
@@ -20,7 +21,7 @@ export const Badge: FunctionalComponent<IBadgeProps> = (props) => {
 
   return (
     <div
-      className={classNames(styles.badge, styles["badge" + type])}
+      className={classNames(styles.badge, styles["badge" + type], className)}
       style={maybeColorStyle}
     >
       {type === "Location" && <SvgIcon id={"location"} size={16} />}
