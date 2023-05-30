@@ -46,15 +46,15 @@ export const TimetableAll: FunctionalComponent = () => {
     <>
       <h1>анимация</h1>
       <div flex column gap={2} style={{ margin: "16px 0 20px 0" }}>
-        <Tags value={day}>
-          {[0, 1, 2, 3, 4].map((d) => (
+        <Tags value={day} tagsList={[0, 1, 2, 3, 4]}>
+          {(d) => (
             <Tag selected={d == day} key={d} onClick={() => setDay(d)}>
               {getDayText(d, "short").toUpperCase()}
             </Tag>
-          ))}
+          )}
         </Tags>
-        <Tags>
-          {screens.map((location) => (
+        <Tags tagsList={screens}>
+          {(location) => (
             <Tag
               selected={screen === location._id}
               key={location._id}
@@ -64,7 +64,7 @@ export const TimetableAll: FunctionalComponent = () => {
             >
               {locationsStore.getName(location._id)}
             </Tag>
-          ))}
+          )}
         </Tags>
       </div>
       <Timetable day={day} locationId={screen} />

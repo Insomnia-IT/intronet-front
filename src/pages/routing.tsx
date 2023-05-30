@@ -7,14 +7,9 @@ import { MainPage } from "./main/mainPage";
 import { compare } from "@cmmn/cell/lib";
 import { BookmarksPage } from "./bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
-import {
-  StateUpdater,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "preact/hooks";
+import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
+import { NotesPage } from "./notes/NotesPage";
 import { ActivitiesPage } from "./activities/activities-page";
 
 export const routes = {
@@ -23,10 +18,10 @@ export const routes = {
     title: "Главная",
     Component: MainPage,
   },
-  board: {
-    name: "board",
+  notes: {
+    name: "notes",
     title: "Объявления",
-    Component: null,
+    Component: NotesPage,
   },
   map: {
     name: "map",

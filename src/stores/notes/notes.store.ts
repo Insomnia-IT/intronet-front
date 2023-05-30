@@ -1,11 +1,9 @@
-import { cell } from "@cmmn/cell/lib";
-import { GenericRequest } from "@api";
+import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "../observableDB";
 
 class NotesStore {
-
   @cell
-  Notes = new ObservableDB<INote>("notes");
+  private db = new ObservableDB<INote>("notes");
 
   @cell
   IsLoading: boolean = false;
@@ -19,40 +17,93 @@ class NotesStore {
   };
 
   /**
-   * Добавляет запись
+   * Добавляет объявление
    */
-  public addNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.addOrUpdate(request.body);
+  public addNote = async (newNote: INoteLocal) => {
+    await this.db.addOrUpdate(this.createNoteEntity(newNote));
   };
 
   /**
-   * Изменяет запись по id
-   * @param {INote} body Тело реквеста
+   * Обновляет объявление, но оно обязательно
+   * должно уже существовать.
    */
-  public editNote = async (request: GenericRequest<null, null, INote>) => {
-    await this.Notes.addOrUpdate(request.body);
+  public updateNote = async ({
+    id,
+    updatedNote,
+  }: {
+    id: string;
+    updatedNote: INoteUpdated;
+  }) => {
+    const note = this.getNote(id);
+
+    if (!note) {
+      throw new Error("Объявления не существует!");
+    }
+
+    await this.db.addOrUpdate({
+      ...note,
+      ...updatedNote,
+      updatedAt: Date.now(),
+    });
   };
 
   /**
-   * Удаляет запись по id
+   * Удаляет объявление по id
    */
-  public removeNote = async (
-    request: GenericRequest<{ id: string }, null, null>
-  ) => {
-    this.IsLoading = true;
-    // await this.api.deleteNote(request.path.id);
-    this.Notes.remove(request.path.id);
-    this.IsLoading = false;
+  public removeNote = async (id: string) => {
+    this.db.remove(id);
   };
 
   // Отдаёт стор с объявлениями
+  @cell
   get notes() {
-    return this.Notes.toArray().sort((a, b) => b._id > a._id ? 1 : (b._id == a._id ? 0 : -1));
+    return this.db.toArray().sort((a, b) => {
+      return this.getLatestNoteDate(a) - this.getLatestNoteDate(b);
+    });
   }
 
-  getNote(id: string) {
-    return this.notes.find((note) => note._id === id);
+  public getNotesByFilterId(categoryId: string): INote[] | [] {
+    return this.notes.filter((note) => {
+      return note.categoryId === categoryId;
+    });
+  }
+
+  public getNote(id: string) {
+    return this.db.get(id);
+  }
+
+  private createNoteEntity(localNote: INoteLocal): INote {
+    return {
+      ...localNote,
+      _id: Fn.ulid(),
+      createdAt: Date.now(),
+    };
+  }
+
+  public getLatestNoteDate(note: INote): number {
+    return note.updatedAt || note.createdAt;
   }
 }
 
 export const notesStore = new NotesStore();
+
+const mocks: INoteLocal[] = [
+  {
+    title: "Ищу попутчика!",
+    text: "Привет! Кто подбросит двух девушек в субботу вечером до Калуги? Вещей немного, заплатим денег, если надо.",
+    author: "Юля Петрова",
+    categoryId: "blablacar",
+    isFavourites: false,
+  },
+  {
+    title: "Ищу попутчика!",
+    text: "Привет! Кто подбросит двух девушек в субботу вечером до Калуги? Вещей немного, заплатим денег, если надо.",
+    author: "Юля Петрова",
+    categoryId: "blablacar",
+    isFavourites: true,
+  },
+];
+
+// mocks.forEach((mock) => {
+//   notesStore.addNote(mock);
+// });

@@ -21,6 +21,8 @@
       "@stores": ["./src/stores"],
       "@stores/*": ["./src/stores/*"]
     },
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "types": [
       "preact",
       "node"

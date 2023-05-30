@@ -1,11 +1,9 @@
 import { FunctionalComponent } from "preact";
 import style from "./age.module.css";
+import { Badge } from "@components/badge/badge";
+
 export const AgeStrict: FunctionalComponent<{
-  age: number;
+  age: 12 | 18;
 }> = ({ age }) => {
-  return (
-    <div class={[style.age, style["age" + age]].filter((x) => x).join(" ")}>
-      {age}+
-    </div>
-  );
+  return <Badge type={`Age${age}`} />;
 };

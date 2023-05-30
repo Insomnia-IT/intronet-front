@@ -99,21 +99,30 @@ type MovieBlock = {
   movies: MovieInfo[];
 };
 
-interface INote {
+type INote = {
   _id: string;
   title: string;
   text: string;
   categoryId: string;
-  createdDate: string;
-  createdBy: "admin" | null;
-}
+  author: string;
+  isFavourites: boolean;
+  createdAt: number;
+  updatedAt?: number;
+};
 
-interface ICategory {
+type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt">;
+
+type INoteUpdated = Partial<
+  Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
+>;
+
+type ICategory = {
   _id: string; // Id категории
-  name: string; //название категории
-  count: number; //количество элементов которым присвоена данная категория
+  name: string; // название категории
   color: string; // Цвет категории, для раскрашивания её карточки
-}
+};
+
+type ICategoryLocal = Omit<ICategory, "_id">;
 
 type Day = 0 | 1 | 2 | 3 | 4; // Четверг, Пятница, Суббота, Вс, Пн
 

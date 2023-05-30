@@ -11,6 +11,7 @@ export type ButtonProps = {
   type?: "frame" | "blue" | "disco" | "vivid" | "text" | "borderDashVivid";
   goTo?: RoutePath | RoutePathString;
 } & JSX.HTMLAttributes<HTMLButtonElement>;
+
 export const Button: FunctionalComponent<ButtonProps> = ({
   className,
   type,
@@ -27,6 +28,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
   const classNames = [Styles.button, className, props.class].filter((x) => x);
   if (props.selected) classNames.push(Styles.selected);
   if (type) classNames.push(Styles[type]);
+
   return (
     <button
       onClick={onClick}

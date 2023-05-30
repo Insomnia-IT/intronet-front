@@ -1,4 +1,4 @@
-.button{
+.button {
   padding: 16px;
   border-radius: 24px;
   text-transform: uppercase;
@@ -12,9 +12,9 @@
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
 
-  font-family: 'Unbounded';
+  font-family: "Unbounded";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -23,38 +23,36 @@
   text-transform: uppercase;
 }
 
-.button:hover{
+.button:hover {
   outline: none;
 }
-.button:active{
+.button:active {
   box-shadow: 0 0 8px rgba(21, 37, 106, 0.6);
 }
-.button:focus{
+.button:focus {
   outline: none;
 }
-.button:disabled{
+.button:disabled {
   filter: opacity(0.3);
 }
-.selected{
+.selected {
 }
 
-.blue{
+.blue {
   background: var(--electric-blues);
   color: var(--white);
 }
-.disco{
+.disco {
   background: var(--cyber-disco);
 }
-.frame{
+.frame {
   background: transparent;
-  /*background: var(--white);*/
   color: var(--medium-blue);
   border: 2px solid var(--medium-blue);
 }
-.vivid{
+.vivid {
   background: var(--vivid-gradient);
 }
-
 
 .buttonsBar {
   background: transparent;
@@ -71,7 +69,7 @@
   pointer-events: initial;
 }
 
-.close{
+.close {
   font-size: 12px;
   line-height: 14px;
   composes: frame;
@@ -82,25 +80,30 @@
   top: 14px;
   padding: 11px;
 }
-.closeWhite{
+
+.closeWhite {
   composes: close;
   color: var(--cold-white);
   border-color: var(--cold-white);
 }
 
-.left{
+.closeStatic {
+  position: static;
+}
+
+.left {
   left: 16px;
   top: 0;
   bottom: 0;
   flex-direction: column;
 }
-.right{
+.right {
   right: 16px;
   top: 0;
   bottom: 0;
   flex-direction: column;
 }
-.bottom{
+.bottom {
   flex-flow: row nowrap;
   bottom: 20px;
   left: 0;
@@ -108,14 +111,14 @@
   gap: 1em;
 }
 
-.text{
+.text {
   border: none;
   width: 100%;
   background: none;
   color: var(--medium-blue);
   /* Button */
 
-  font-family: 'Unbounded';
+  font-family: "Unbounded";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

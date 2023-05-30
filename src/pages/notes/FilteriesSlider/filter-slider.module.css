@@ -1,0 +1,10 @@
+.tags {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

@@ -1,0 +1,14 @@
+.pageContainer {
+  padding-top: 16px;
+  background-color: var(--cold-white);
+  height: 100%;
+}
+
+.pageSection {
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.pageSection_dark {
+  background-color: var(--ins-night);
+}

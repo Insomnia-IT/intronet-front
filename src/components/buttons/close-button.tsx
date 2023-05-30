@@ -4,11 +4,15 @@ import { Button } from "./button";
 import { useRouter } from "../../pages/routing";
 import { useCallback } from "preact/hooks";
 import { FunctionalComponent } from "preact";
+import classNames from "classnames";
 
 export type CloseButtonProps = {
   onClick?(): void;
   white?: boolean;
+  className?: string;
+  position?: "absolute" | "static";
 };
+
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
   const onClick = useCallback(() => {
@@ -18,9 +22,17 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
       router.goTo(["main"]);
     }
   }, [props]);
+
   return (
     <Button
-      className={props.white ? Styles.closeWhite : Styles.close}
+      className={classNames(
+        {
+          [Styles.closeWhite]: props.white,
+          [Styles.close]: !props.white,
+          [Styles.closeStatic]: props.position === "static",
+        },
+        props.className
+      )}
       onClick={props.onClick ?? onClick}
     >
       <SvgIcon id="#x" size={14} />
