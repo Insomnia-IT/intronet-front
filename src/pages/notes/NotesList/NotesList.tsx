@@ -14,10 +14,6 @@ export const NotesList: FunctionalComponent = () => {
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
   const { filteredNotes } = useCell(store.state);
 
-  useEffect(() => {
-    console.debug("NotesList", filteredNotes);
-  }, [filteredNotes]);
-
   return (
     <ul className={classNames("textSmall", styles.list)}>
       {filteredNotes.map((note) => {

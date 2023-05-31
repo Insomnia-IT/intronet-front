@@ -26,7 +26,7 @@ export const useNotesRouter = <TQuery extends Record<string, string>>() => {
         }
       }
 
-      router.goTo([baseRoute], filterQuery);
+      router.goTo([baseRoute], filterQuery, true);
     },
   };
 };

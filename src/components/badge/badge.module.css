@@ -6,7 +6,7 @@
   color: var(--white);
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
+  line-height: 16.7px;
 }
 
 .badgeLocation {
@@ -34,4 +34,13 @@
 .badgeAge18 {
   composes: badgeAge;
   background: var(--light-orange);
+}
+
+.badgeAdv {
+  padding: 4px 14px 5px;
+}
+
+.badgeChange {
+  composes: badgeAdv;
+  background: #ff4b16;
 }
