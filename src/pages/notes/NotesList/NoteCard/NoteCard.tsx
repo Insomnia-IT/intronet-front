@@ -27,7 +27,9 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         <h3 className={"sh1"}>{title}</h3>
         <span>{text}</span>
       </div>
-      <Badge content={categoryName} type={"Adv"} background={categoryColor} />
+      <Badge type={"Adv"} background={categoryColor}>
+        {categoryName}
+      </Badge>
       <div className={classNames("sh3", "colorGray")}>
         {author}, {getNoteDate(updatedAt || createdAt)}
       </div>

@@ -42,9 +42,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
           Локация на карте
         </Link>
         <div flex column gap={1}>
-          {activity?.isCanceled && (
-            <Badge type={"Change"}>{"Отменилось :("}</Badge>
-          )}
+          {activity?.isCanceled && <Badge type={"Change"}>Отменилось =(</Badge>}
           <div
             class={[
               "sh1",
