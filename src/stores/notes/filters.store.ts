@@ -44,7 +44,6 @@ export class FilteredNotesStore {
   }
 
   get filteredNotes() {
-    console.debug("filteredNotes", this.activeFilter);
     if (!this.activeFilter || !Object.keys(this.activeFilter).length) {
       return notesStore.notes;
     }
