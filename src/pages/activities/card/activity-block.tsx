@@ -66,7 +66,7 @@ export const ActivityBlock: FunctionalComponent<ActivityBlockProps> = ({
     >
       <div className={Styles.activityContainer} flex column gap>
         <div flex class={Styles.headerContainer}>
-          <div flex column style={"gap: 8px"}>
+          <div flex column style={{ gap: "8px", alignItems: "flex-start" }}>
             {activity.isCanceled && (
               <Badge type={"Change"}>{"Отменилось =("}</Badge>
             )}
