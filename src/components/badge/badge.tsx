@@ -5,7 +5,7 @@ import styles from "./badge.module.css";
 import { SvgIcon } from "@icons";
 
 export type IBadgeProps = {
-  type: "Age12" | "Age18" | "Adv" | "Location";
+  type: "Age12" | "Age18" | "Adv" | "Location" | "Change";
   background?: string | keyof typeof COLORS;
   content?: string | number;
   className?: string;
