@@ -1,12 +1,17 @@
 .badge {
   border-radius: 24px;
   padding: 4px 8px;
+  width: fit-content;
+  align-self: flex-start;
 
   background: var(--inactive-grey);
   color: var(--white);
   font-size: 14px;
   font-weight: 500;
   line-height: 16.7px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
 .badgeLocation {
