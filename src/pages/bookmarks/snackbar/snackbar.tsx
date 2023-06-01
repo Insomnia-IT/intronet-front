@@ -31,7 +31,7 @@ export const Snackbar: FunctionalComponent<SnackbarProps> = () => {
           onClick={async (e) => {
             e.preventDefault();
             for (const x of lastHistory) {
-              await bookmarksStore.switchBookmark(x.type, x.id, true);
+              bookmarksStore.switchBookmark(x.type, x.id, true);
             }
             bookmarksStore.history.clear();
           }}

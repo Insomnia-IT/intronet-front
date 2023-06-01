@@ -7,11 +7,15 @@
   font-style: normal;
   font-weight: 510;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 16.71px;
   overscroll-behavior-x: auto;
   touch-action: pan-x;
   margin-right: -16px;
   padding-right: 16px;
+}
+
+.tags::-webkit-scrollbar {
+  width: 0;
 }
 
 .tag {
@@ -22,7 +26,7 @@
   color: var(--medium-blue);
   border: 1px solid var(--medium-blue);
   border-radius: 24px;
-  transition: background .3s cubic-bezier(0.35, 0, 0.25, 1);
+  transition: background 0.3s cubic-bezier(0.35, 0, 0.25, 1);
 }
 
 .selectedTag {

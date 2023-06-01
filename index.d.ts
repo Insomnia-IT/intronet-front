@@ -105,7 +105,6 @@ type INote = {
   text: string;
   categoryId: string;
   author: string;
-  isFavourites: boolean;
   createdAt: number;
   updatedAt?: number;
 };
@@ -208,4 +207,4 @@ type Bookmark = {
   type: BookmarkSection;
   itemId: string;
 };
-type BookmarkSection = "movie" | "activity" | "locations" | "notes" ;
+type BookmarkSection = "movie" | "activity" | "locations" | "note";

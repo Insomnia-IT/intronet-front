@@ -8,14 +8,16 @@ import { NoteCard } from "./NoteCard/NoteCard";
 import { categoriesStore } from "@stores";
 import styles from "./styles.module.css";
 
-export const NotesList: FunctionalComponent = () => {
+export const NotesList: FunctionalComponent<{
+  className?: string;
+}> = ({ className }) => {
   const notesRouter = useNotesRouter();
   const { filterId } = notesRouter;
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
   const { filteredNotes } = useCell(store.state);
 
   return (
-    <ul className={classNames("textSmall", styles.list)}>
+    <ul className={classNames("textSmall", styles.list, className)}>
       {filteredNotes.map((note) => {
         const noteCategory = {
           name: categoriesStore.getCategory(note.categoryId).name,

@@ -59,5 +59,5 @@ const SectionNames = {
   movie: "Анимация",
   activity: "неАнимация",
   locations: "Локации",
-  notes: "Объявления",
+  note: "Объявления",
 } as Record<BookmarkSection, string>;

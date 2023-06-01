@@ -35,7 +35,7 @@ export const NotesPage: FunctionalComponent = () => {
               <div className={styles.addNoteBtn}>
                 <AddNoteBtn />
               </div>
-              <NotesList />
+              <NotesList className={styles.notesList} />
             </PageSection>
           </div>
         </PageContainer>
