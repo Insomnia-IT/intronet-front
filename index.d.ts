@@ -105,7 +105,6 @@ type INote = {
   text: string;
   categoryId: string;
   author: string;
-  isFavourites: boolean;
   createdAt: number;
   updatedAt?: number;
 };

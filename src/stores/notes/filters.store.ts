@@ -1,6 +1,7 @@
 import { Cell, cell } from "@cmmn/cell/lib";
 import { categoriesStore } from "./categories.store";
 import { notesStore } from "./notes.store";
+import { bookmarksStore } from "@stores/bookmarks.store";
 
 class FiltersStore {
   @cell
@@ -65,7 +66,7 @@ export class FilteredNotesStore {
 
       case "favorites": {
         return notesStore.notes.filter((note) => {
-          return note.isFavourites;
+          return Boolean(bookmarksStore.getBookmark("note", note._id));
         });
       }
 
