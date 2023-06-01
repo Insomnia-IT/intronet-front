@@ -29,13 +29,12 @@ export const FilteriesSlider: FunctionalComponent = () => {
             onClick={() => {
               goToNotes({ filterId: id });
             }}
+            className={styles.tag}
           >
-            <span className={styles.tag}>
-              {icon && (
-                <SvgIcon id={`#${icon}`} size={14} style={{ paddingLeft: 4 }} />
-              )}
-              {name}
-            </span>
+            {icon && (
+              <SvgIcon id={`#${icon}`} size={14} style={{ paddingLeft: 4 }} />
+            )}
+            {name}
           </Tag>
         );
       }}

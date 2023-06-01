@@ -8,3 +8,7 @@
   align-items: center;
   gap: 12px;
 }
+
+.tag:last-child {
+  margin-right: 16px;
+}
