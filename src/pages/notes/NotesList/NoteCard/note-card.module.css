@@ -1,5 +1,18 @@
+.card {
+  position: relative;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.bookmarkIcon {
+  position: absolute;
+  width: 14px;
+  height: 16px;
+  top: 22px;
+  right: 22px;
+  color: var(--pink);
 }

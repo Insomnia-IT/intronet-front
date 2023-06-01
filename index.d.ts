@@ -208,4 +208,4 @@ type Bookmark = {
   type: BookmarkSection;
   itemId: string;
 };
-type BookmarkSection = "movie" | "activity" | "locations" | "notes" ;
+type BookmarkSection = "movie" | "activity" | "locations" | "note";

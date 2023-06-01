@@ -73,12 +73,12 @@ class BookmarksStore {
     this.db.remove(exist._id);
   }
 
-  public async switchBookmark(
+  public switchBookmark(
     type: Bookmark["type"],
     id: string,
     skipHistory = false
   ) {
-    const exist = await this.getBookmark(type, id);
+    const exist = this.getBookmark(type, id);
     if (exist) {
       !skipHistory &&
         this.addHistory({
