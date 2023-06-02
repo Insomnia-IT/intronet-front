@@ -1,28 +1,27 @@
 import { useMemo, useState } from "preact/hooks";
 import styles from "./map-element.module.css";
 import { useCell } from "@helpers/cell-state";
-import { directionsStore } from "@stores";
+import {directionsStore, locationsStore} from "@stores";
 import { MapIcon } from "./icons/map-icons";
 
-let cache;
 export function MapElements(props: {
-  items: MapItem[];
-  selected: MapItem | undefined;
+  selected: string | undefined;
   onSelect(x: MapItem);
 }) {
+  const items = useCell(() => locationsStore.MapItems);
   const children = useMemo(
     () =>
-      props.items
+      items
         .orderBy((x) => (Array.isArray(x.figure) ? -1 : 1))
         .map((x) => (
           <MapElement
             item={x}
             key={x.id}
-            selected={props.selected?.id === x.id}
+            selected={props.selected === x.id}
             onSelect={props.onSelect}
           />
         )),
-    [props.items, props.onSelect, props.selected]
+    [items, props.onSelect, props.selected]
   );
   return <>{children}</>;
 }

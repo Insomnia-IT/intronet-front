@@ -1,4 +1,6 @@
-import { Fn, cell } from "@cmmn/cell/lib";
+import { Fn, cell, ObservableList } from "@cmmn/cell/lib";
+import {TransformMatrix} from "../pages/map/transform/transform.matrix";
+import {mapStore} from "./map.store";
 import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
 
@@ -9,6 +11,9 @@ class LocationsStore {
   Loading = this.db.isLoaded;
   @cell
   Tags = new ObservableDB<Tag>("tags");
+
+  @cell
+  private locationPatches = new ObservableList<[id: string, figure: Figure]>();
 
   @cell
   public get FullLocations(): ReadonlyArray<InsomniaLocationFull> {
@@ -34,6 +39,19 @@ class LocationsStore {
     );
   }
 
+  public get MapItems(): MapItem[]{
+    const patches = new Map(this.locationPatches.toArray());
+    return  this.FullLocations
+      .orderBy((x) => (Array.isArray(x.figure) ? -1 : 1))
+      .map(x => ({
+        figure: patches.get(x._id) ?? mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
+        directionId: x.directionId,
+        title: x.name,
+        id: x._id,
+        radius: 10,
+      }))
+  }
+
   async addLocation(location: InsomniaLocation) {
     await this.Loading;
     await this.db.addOrUpdate(location);
@@ -57,6 +75,28 @@ class LocationsStore {
     const location = this.db.get(locationId);
     if (!location) return undefined;
     return location.name;
+  }
+
+  public moveLocation(id: string, transform: TransformMatrix){
+    const selected = this.MapItems.find(x => x.id === id);
+    const moved = Array.isArray(selected.figure)
+      ? selected.figure.map((line) =>line.map(transform.Invoke))
+      : transform.Invoke(selected.figure);
+    this.locationPatches.push([
+      selected.id,
+      moved
+    ]);
+  }
+
+  async applyChanges() {
+    const patches = new Map(this.locationPatches.toArray());
+    this.locationPatches.clear();
+    for (let [id, figure] of patches) {
+      await this.db.addOrUpdate({
+        ...this.db.get(id),
+        figure: mapStore.Map2GeoConverter.toGeo(figure) as GeoFigure
+      });
+    }
   }
 }
 

@@ -26,16 +26,19 @@ export class TileConverter {
   ) {}
 
   @bind
-  public toGeo(point: Point) {
+  public toGeo(figure: Figure): GeoFigure {
+    if (Array.isArray(figure)){
+      return figure.map(line => line.map(p => this.toGeo(p) as Geo));
+    }
     return {
-      lon: x2lng((point.X / this.scale + this.offset.x) / 2 ** this.zoom),
-      lat: yToLat((point.Y / this.scale + this.offset.y) / 2 ** this.zoom),
+      lon: x2lng((figure.X / this.scale + this.offset.x) / 2 ** this.zoom),
+      lat: yToLat((figure.Y / this.scale + this.offset.y) / 2 ** this.zoom),
     };
   }
 
   public fromGeo(geo: Geo[][]): Array<Array<Point>>;
   public fromGeo(geo: Geo): Point;
-  public fromGeo(geo: Geo | Array<Array<Geo>>): Point | Array<Array<Point>> {
+  public fromGeo(geo: GeoFigure): Figure {
     if (Array.isArray(geo)) {
       return geo.map((arr) => arr.map((x) => this.fromGeo(x)));
     }

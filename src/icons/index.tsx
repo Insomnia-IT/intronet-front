@@ -12,12 +12,13 @@ export const SvgIcon: FunctionalComponent<SvgIconProps> = ({id, g, size, ...prop
   const ref = useRef<SVGGElement & SVGSVGElement>();
   useEffect(() => {
     if (!ref.current) return;
+    Array.from(ref.current.children).forEach(x => x.remove());
     svgDocument.then(div => {
       const icon = div.querySelector(id)?.firstElementChild as SVGGElement;
       if (!icon)
         return console.warn(`not found icon: `, id);
       icon.setAttribute('vector-effect', 'non-scaling-stroke')
-      icon && ref.current.appendChild(icon.cloneNode(true));
+      icon && ref.current?.appendChild(icon.cloneNode(true));
     });
   }, [ref, id]);
   if (g) {

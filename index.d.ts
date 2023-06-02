@@ -43,17 +43,21 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
-  figure: GeoPoint | Array<Array<GeoPoint>>;
+  figure: Geo | Geo[][];
   tags: string[];
   image: string;
   menu?: string;
+  minZoom?: number;
+  maxZoom?: number;
 };
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
+type GeoFigure = Geo | Array<Array<Geo>>;
+type Figure = Point | Array<Array<Point>>;
 
 type MapItem = {
-  figure: Point | Array<Array<Point>>;
+  figure: Figure;
   directionId: string;
   radius;
   id;
