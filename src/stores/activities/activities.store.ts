@@ -1,4 +1,4 @@
-import { ObservableDB } from "./observableDB";
+import { ObservableDB } from "../observableDB";
 import { cell, Cell } from "@cmmn/cell/lib";
 import { bookmarksStore } from "@stores/bookmarks.store";
 

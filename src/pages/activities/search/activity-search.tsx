@@ -1,7 +1,7 @@
 import { Input } from "@components/input";
 import { useMemo, useState } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
-import { activitiesStore } from "@stores/activities.store";
+import { activitiesStore } from "@stores/activities/activities.store";
 import { ActivityList } from "../activities/activityList";
 
 export const ActivitySearch = () => {

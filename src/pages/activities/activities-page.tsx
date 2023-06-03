@@ -1,10 +1,10 @@
 import { Button, ButtonsBar, CloseButton } from "@components";
-import { routes, useRouter } from "../routing";
 import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
 import { ActivitySearch } from "./search/activity-search";
+import { useActivitiesRouter } from "./hooks/useActivitiesRouter";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
@@ -25,7 +25,7 @@ export function ActivitiesPage() {
             <Button type="vivid" goTo="/activities/search">
               <SvgIcon id="#search" size={15} />
             </Button>
-            <Button type="vivid" goTo="/bookmarks/movie">
+            <Button type="vivid" goTo="/bookmarks/activity">
               <SvgIcon id="#bookmark" size="14px" />
               Избранное
             </Button>
@@ -40,16 +40,4 @@ export function ActivitiesPage() {
         </div>
       );
   }
-}
-
-const baseRoute = "activities" as keyof typeof routes;
-export function useActivitiesRouter() {
-  const router = useRouter();
-  return {
-    ...router,
-    activityId: router.route[1] as string | undefined,
-    goToActivity(id: string) {
-      router.goTo([baseRoute, id]);
-    },
-  };
 }

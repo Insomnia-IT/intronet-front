@@ -9,7 +9,7 @@ import {
 import { moviesStore } from "@stores/movies.store";
 import { ObservableDB } from "@stores/observableDB";
 import { TimerCell } from "@stores/timer";
-import { activitiesStore } from "@stores/activities.store";
+import { activitiesStore } from "@stores/activities/activities.store";
 
 class BookmarksStore {
   @cell
