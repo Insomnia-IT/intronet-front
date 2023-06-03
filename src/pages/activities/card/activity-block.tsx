@@ -3,9 +3,8 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { Card } from "@components/cards";
 import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
-import { useActivitiesRouter } from "../activities-page";
 import Styles from "./activity-card.module.css";
-import { ActivityStore } from "@stores/activities.store";
+import { ActivityStore } from "@stores/activities/activities.store";
 import { coerceTime } from "@helpers/getDayText";
 import { SvgIcon } from "@icons";
 import { bookmarksStore } from "@stores/bookmarks.store";
@@ -13,18 +12,15 @@ import { Gesture } from "../../timetable/animation/gesture";
 import { Badge } from "@components/badge/badge";
 import { highlight } from "@components/highlight";
 import { useLocalStorageState } from "@helpers/useLocalStorageState";
+import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 
 export type ActivityBlockProps = {
   id: string;
-  day: number;
-  locationId: string;
   gesture?: Gesture;
   searchQuery?: string;
 };
 export const ActivityBlock: FunctionalComponent<ActivityBlockProps> = ({
   id,
-  day,
-  locationId,
   gesture,
   searchQuery,
 }) => {
