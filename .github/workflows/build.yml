@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: run image
         run: |
-          echo dckr_pat_kldQql7KodyN7mpA0jqaJPRvEA0 | docker login -u fransuane --password-stdin \
-          docker build . -t $IMAGE_NAME \
-          docker push $IMAGE_NAME \
-          docker build server -t $IMAGE_NAME_SERVER \
+          echo dckr_pat_kldQql7KodyN7mpA0jqaJPRvEA0 | docker login -u fransuane --password-stdin
+          docker build . -t $IMAGE_NAME
+          docker push $IMAGE_NAME
+          docker build server -t $IMAGE_NAME_SERVER
           docker push $IMAGE_NAME_SERVER
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
