@@ -3,6 +3,7 @@ import { useMemo, useState } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { moviesStore } from "@stores";
 import { MovieList } from "../animation/movie-list";
+import { SearchPlug } from "@components/plugs/search/SearchPlug";
 
 export const MovieSearch = () => {
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -21,12 +22,9 @@ export const MovieSearch = () => {
       {filtered.length > 0 ? (
         <MovieList movies={filtered} searchQuery={query} />
       ) : (
-        <div flex column gap={4}>
-          <div class="sh1 colorMediumBlue">Ничего не нашли</div>
-          <div class="text colorMediumBlue">
-            Попробуйте искать по другому запросу
-          </div>
-        </div>
+        <SearchPlug
+          title={'Поиск по анимации'}
+          text={'Попробуйте найти мультфильм по названию или по автору'}></SearchPlug>
       )}
     </>
   );
