@@ -2,7 +2,10 @@ import {LocalStore} from "@stores/localStore";
 import {authStore} from "./auth.store";
 import {votingStore} from "./votingStore";
 
-const api = `https://intro.cherepusick.keenetic.name/webapi/log`;
+
+const api = process.env.NODE_ENV === 'production'
+  ? `/log`
+  : `https://intro.cherepusick.keenetic.name/log`;
 
 class UserStore extends LocalStore<{
   onboardingPhase: string;
