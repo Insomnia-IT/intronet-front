@@ -663,7 +663,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@notionhq/client@^2.2.5":
+"@notionhq/client@2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@notionhq/client/-/client-2.2.5.tgz#8c5152016ea769f2d885327fef45d0ef834f89b2"
   integrity sha512-NobSaeSK0DMuxAIy2pg53Iv850tGFxXYEYacFBQgO634L1uwQv7WQCAdeFQpD3kJiEycQfSYv6RGC5VENEXjiQ==
@@ -1019,7 +1019,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.13.tgz#f64277c341150c979e42b00e4ac289290c9df469"
   integrity sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==
 
-"@types/node@17.x.x":
+"@types/node@17.0.45":
   version "17.0.45"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.45.tgz#2c0fafd78705e7a18b7906b5201a522719dc5190"
   integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
@@ -1159,14 +1159,14 @@
     "@types/pouchdb-core" "*"
     "@types/pouchdb-find" "*"
 
-"@types/pouchdb-upsert@^2.2.6":
+"@types/pouchdb-upsert@2.2.6":
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/@types/pouchdb-upsert/-/pouchdb-upsert-2.2.6.tgz#f3a745cc049825a6ed08c47a4cac519b5dad26e7"
   integrity sha512-twSau/vlyPM14Fboss0fv81ombRLtN0A7/1dQi6btLjRfF/Gw0kEBTZOg+Jttjr/9366JYhlK6HAzjybDIxN/A==
   dependencies:
     "@types/pouchdb-core" "*"
 
-"@types/pouchdb@^6.4.0":
+"@types/pouchdb@6.4.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@types/pouchdb/-/pouchdb-6.4.0.tgz#f9c41ca64b23029f9bf2eb4bf6956e6431cb79f8"
   integrity sha512-eGCpX+NXhd5VLJuJMzwe3L79fa9+IDTrAG3CPaf4s/31PD56hOrhDJTSmRELSXuiqXr6+OHzzP0PldSaWsFt7w==
@@ -3080,7 +3080,7 @@ fast-uri@^2.0.0, fast-uri@^2.1.0:
   resolved "https://registry.yarnpkg.com/fast-uri/-/fast-uri-2.2.0.tgz#519a0f849bef714aad10e9753d69d8f758f7445a"
   integrity sha512-cIusKBIt/R/oI6z/1nyfe2FvGKVTohVRfvkOhvx0nCEW+xf5NoCXjAHcWp93uOUBchzYcsvPlrapAdX1uW+YGg==
 
-fastify@^4.15.0:
+fastify@4.15.0:
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-4.15.0.tgz#4ebadaea706217467a332341f9cfa632072d51f2"
   integrity sha512-m/CaRN8nf5uyYdrDe2qqq+0z3oGyE+A++qlKQoLJTI4WI0nWK9D6R3FxXQ3MVwt/md977GMR4F43pE9oqrS2zw==
@@ -4781,12 +4781,12 @@ lodash@^4.15.0, lodash@^4.17.14, lodash@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-log4js-logstash-tcp@^2.0.5:
+log4js-logstash-tcp@2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/log4js-logstash-tcp/-/log4js-logstash-tcp-2.0.5.tgz#21bcbe3c047aa2e8f9a28127081164d33e357c4f"
   integrity sha512-New4tHUvUKWynq0Luvm8C+yD4zVTTnfphVNkBZhQHTd6c288dGhvFMPvciBPlstZfU3SvEHuTCzGppbr0ReWLg==
 
-log4js@^6.9.1:
+log4js@6.9.1:
   version "6.9.1"
   resolved "https://registry.yarnpkg.com/log4js/-/log4js-6.9.1.tgz#aba5a3ff4e7872ae34f8b4c533706753709e38b6"
   integrity sha512-1somDdy9sChrr9/f4UlzhdaGfDR2c/SaD2a4T7qEkG4jTS57/B3qmnjLYePwQ8cqWnUHZI0iAKxMBpCZICiZ2g==
@@ -6085,7 +6085,7 @@ pouchdb-fetch@8.0.1:
     fetch-cookie "0.11.0"
     node-fetch "2.6.7"
 
-pouchdb-find@^8.0.1:
+pouchdb-find@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/pouchdb-find/-/pouchdb-find-8.0.1.tgz#aa96efce482add3a9258e64531a807d082b7848c"
   integrity sha512-i5criYXMOXlbeRrCrXonqaOY+xiMiOyTLybqvtX/NkUsiD4BxJxkq5AxdSlHdJ9703nWJ0k6S+5C8VrpEj8tsQ==
@@ -6114,7 +6114,7 @@ pouchdb-md5@8.0.1:
     pouchdb-binary-utils "8.0.1"
     spark-md5 "3.0.2"
 
-pouchdb-node@^8.0.1:
+pouchdb-node@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/pouchdb-node/-/pouchdb-node-8.0.1.tgz#3620ec4302593ff1fcf6f6ad1b2b2a62ec76a463"
   integrity sha512-xYvVmBB/nEZltBYkslE0RKciL7l359BFbG27gyGJlpPHeMUhtVlYHoEiI2gb2x2pEn7hG9B7Odo8keuq4/ot1w==
@@ -6151,7 +6151,7 @@ pouchdb-selector-core@8.0.1:
     pouchdb-collate "8.0.1"
     pouchdb-utils "8.0.1"
 
-pouchdb-upsert@^2.2.0:
+pouchdb-upsert@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/pouchdb-upsert/-/pouchdb-upsert-2.2.0.tgz#42b15e420848f3b294c35060589fdb51cf7f7f5f"
   integrity sha512-hZceBqSnBLodlHtsJJdGJP9ZN+OHj3IXj8+YCBoHUPpzgLw04wfIOp+PLYROqyL6BODeYF00VFdiX8iIGcCtUw==
@@ -6170,7 +6170,7 @@ pouchdb-utils@8.0.1:
     pouchdb-md5 "8.0.1"
     uuid "8.3.2"
 
-pouchdb@^8.0.1:
+pouchdb@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/pouchdb/-/pouchdb-8.0.1.tgz#78aef57b0d58abe5e4a4581a3332c0c220e20dbd"
   integrity sha512-xp5S83JOQn2NAL0ZQ5CU+DI26V9/YrYuVtkXnbGEIDrYiFfj5A8gAcfbxefXb/9O+Qn4n5RaT/19+8UBSZ42sw==
