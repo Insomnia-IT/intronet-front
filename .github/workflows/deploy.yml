@@ -6,7 +6,7 @@ on:
       - 'master'
 
 jobs:
-  build:
+  deploy:
     runs-on: [self-hosted, acsrv]
     env:
       IMAGE_NAME: intronet-front

@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    runs-on: [ubuntu-latest]
     env:
       IMAGE_NAME: fransuane/insomnia-front
       IMAGE_NAME_SERVER: fransuane/intronet-server
