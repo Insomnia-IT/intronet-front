@@ -68,8 +68,6 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-    networks:
-      - elastic
 
   logstash:
     image: logstash:7.16.1
@@ -83,7 +81,6 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - elastic
       - apps
     command: logstash -f /usr/share/logstash/pipeline/logstash-nginx.config
 
@@ -98,7 +95,6 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      - elastic
       - apps
 
 volumes:
@@ -106,7 +102,5 @@ volumes:
   elastic_data:
 
 networks:
-  elastic:
-    driver: bridge
   apps:
     external: true
