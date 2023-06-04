@@ -16,7 +16,9 @@ RUN npx cmmn compile
 
 FROM node:18-alpine
 
-COPY --from=builder /app /app
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/package.json /app/package.json
+COPY --from=builder /app/dist /app/dist
 
 EXPOSE 80
 WORKDIR /app
