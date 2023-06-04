@@ -29,5 +29,3 @@ EXPOSE 80
 WORKDIR /app
 
 COPY --from=builder /app/dist/bundle /app
-
-COPY nginx.conf /etc/nginx/conf.d/default.conf
