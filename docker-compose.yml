@@ -94,6 +94,7 @@ services:
       - elasticsearch
     networks:
       - elastic
+      - apps
 
 volumes:
   couchdb_data:
