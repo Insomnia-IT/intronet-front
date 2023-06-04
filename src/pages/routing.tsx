@@ -1,3 +1,4 @@
+import {userStore} from "@stores/user.store";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
@@ -70,17 +71,20 @@ const routeCell = new Cell<RoutePath>(
   location.pathname.split("/").slice(1) as RoutePath,
   {
     compare,
-    onExternal: setTitle,
+    onExternal: onRoutingChange,
   }
 );
 const queryCell = new Cell<Record<string, string>>(
   Object.fromEntries(new URL(location.href).searchParams.entries())
 );
 
-function setTitle() {
+function onRoutingChange() {
   document.title = "Insomnia: " + routes[routeCell.get()[0]]?.title;
+  userStore.log({
+    action: 'navigate'
+  }).catch();
 }
-setTitle();
+onRoutingChange();
 const goTo = (
   path: RoutePath | RoutePathString,
   query: Record<string, string> = {},
