@@ -37,7 +37,6 @@ services:
       - logstash
     networks:
       apps:
-      elastic:
 
   db:
     container_name: insomnia_couchdb
@@ -60,6 +59,8 @@ services:
     environment:
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data:rw
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -77,9 +78,9 @@ services:
     environment:
       discovery.seed_hosts: logstash
       LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ELASTIC_PASSWORD: ELASTIC_PASSWORD
     volumes:
-      - ./.deploy/logstash.config:/usr/share/logstash/pipeline/logstash-nginx.config
-      - ./.deploy/nginx.log:/home/nginx.log
+      - ./.deploy/logstash.config:/usr/share/logstash/pipeline/logstash-nginx.config:ro
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
@@ -89,10 +90,22 @@ services:
       - elasticsearch
     networks:
       - elastic
+      - apps
     command: logstash -f /usr/share/logstash/pipeline/logstash-nginx.config
+
+  kibana:
+    image: kibana:7.16.1
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastic
 
 volumes:
   couchdb_data:
+  elastic_data:
 
 networks:
   elastic:

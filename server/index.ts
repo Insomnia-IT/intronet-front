@@ -1,6 +1,8 @@
+import * as console from "console";
 import { authCtrl } from "./auth.ctrl";
 import Fastify from "fastify";
 import { dbCtrl } from "./db-ctrl";
+import {logCtrl} from "./log.ctrl";
 const fastify = Fastify({
   logger: true,
 });
@@ -11,6 +13,10 @@ fastify.get("/versions", async function (request, reply) {
 });
 fastify.get("/auth", async function (request, reply) {
   return await authCtrl.check(request.headers.authorization);
+});
+fastify.post("/log", async function (request, reply) {
+  console.log(request.body)
+  await logCtrl.log(JSON.parse(request.body as any));
 });
 fastify.get<{
   Params: { name: string };
