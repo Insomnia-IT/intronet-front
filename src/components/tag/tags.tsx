@@ -1,4 +1,4 @@
-import { FunctionalComponent, VNode } from "preact";
+import { VNode } from "preact";
 import Styles from "./tag.module.css";
 import { JSXInternal } from "preact/src/jsx";
 import classNames from "classnames";
