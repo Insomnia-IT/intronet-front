@@ -1,4 +1,5 @@
 import { bind, Cell, cell, compare } from "@cmmn/cell/lib";
+import {locationsStore} from "@stores";
 import { Component } from "preact";
 import { cellState } from "@helpers/cell-state";
 import { ImageInfo } from "@stores/map.store";
@@ -22,16 +23,7 @@ export class MapComponent extends Component<MapProps> {
   state = cellState(this, {
     transform: () => this.Transform,
     scale: () => this.scale,
-    visibleItems: () => this.visibleItems,
   });
-
-  @cell({ compare })
-  get visibleItems() {
-    return this.propsCell
-      .get()
-      .items.filter((x) => !x.minZoom || x.minZoom < this.scale / this.minScale)
-      .filter((x) => !x.maxZoom || x.maxZoom >= this.scale / this.minScale);
-  }
 
   render() {
     return (
@@ -70,7 +62,6 @@ export class MapComponent extends Component<MapProps> {
             font-size={1 / this.state.scale}
           >
             <MapElements
-              items={this.state.visibleItems}
               selected={this.props.selected}
               onSelect={this.onSelect}
             />
@@ -120,15 +111,7 @@ export class MapComponent extends Component<MapProps> {
             .Apply(this.Transform.Inverse())
             .Apply(e)
             .Apply(this.Transform);
-          if (Array.isArray(selected.figure)) {
-            selected.figure = selected.figure.map((line) =>
-              line.map(transform.Invoke)
-            );
-          } else {
-            selected.figure = transform.Invoke(selected.figure);
-          }
-          this.forceUpdate();
-          this.props.onChange(selected);
+          locationsStore.moveLocation(selected, transform);
         } else {
           const newTransform = e.Apply(this.Transform) as TransformMatrix;
           this.setTransform(newTransform);
@@ -193,7 +176,8 @@ export class MapComponent extends Component<MapProps> {
     }
   }
 
-  scrollTo(x: MapItem) {
+  scrollTo(id: string) {
+    const x = locationsStore.MapItems.find(x => x.id === id);
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(
       Array.isArray(x.figure)
@@ -233,12 +217,10 @@ export class MapComponent extends Component<MapProps> {
 }
 
 export type MapProps = {
-  items: MapItem[];
-  selected: MapItem;
+  selected: string;
   image: ImageInfo;
   location?: boolean;
   isMovingEnabled: boolean;
   onSelect(item);
-  onChange(item);
   onClick(p: { X; Y });
 };

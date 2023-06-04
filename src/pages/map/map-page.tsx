@@ -60,7 +60,7 @@ export class MapPage extends Component<{ locationId? }> {
 
   private locationToMapItem(x: InsomniaLocationFull) {
     return {
-      figure: mapStore.Map2GeoConverter.fromGeo(x.figure),
+      figure: mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
       directionId: x.directionId,
       title: x.name,
       id: x._id,
@@ -81,7 +81,7 @@ export class MapPage extends Component<{ locationId? }> {
     image: () => mapStore.Map2,
     items: () => this.mapItems,
     isEditing: () => this.isEditing,
-    selected: () => this.mapItems.find((x) => x.id === this.selected),
+    selected: () => this.selected,
   });
 
   render() {
@@ -89,12 +89,10 @@ export class MapPage extends Component<{ locationId? }> {
     return (
       <div className={styles.container}>
         <MapComponent
-          items={this.state.items}
           isMovingEnabled={this.state.isEditing}
           selected={this.state.selected}
           image={this.state.image}
           onClick={() => {}}
-          onChange={this.updateLocation}
           onSelect={(x: MapItem) => {
             if (x === this.user) {
               this.selected = null;
@@ -146,7 +144,7 @@ export class MapPage extends Component<{ locationId? }> {
                 this.isEditing = !this.isEditing;
               }}
             >
-              {this.isEditing ? <SvgIcon id="#ok" /> : <SvgIcon id="#edit" />}
+              {this.state.isEditing ? <SvgIcon id="#ok-circle" /> : <SvgIcon id="#edit" />}
             </Button>
             <Button
               onClick={this.handleAddIconButtonClick}
@@ -158,7 +156,7 @@ export class MapPage extends Component<{ locationId? }> {
         </ButtonsBar>
         {this.state.selected ? (
           <MapToolbar
-            id={this.state.selected.id}
+            id={this.state.selected}
             onClose={() => (this.selected = null)}
           />
         ) : null}
@@ -167,34 +165,15 @@ export class MapPage extends Component<{ locationId? }> {
   }
 
   componentWillUnmount() {
-    this.localChanges.clear();
+    locationsStore.applyChanges();
   }
 
   selectLocation = (location: InsomniaLocationFull) => {
     this.selected = location._id;
   };
 
-  private localChanges = new Map<string, InsomniaLocation>();
-
-  updateLocation = (x: MapItem) => {
-    const location = {
-      ...(this.localChanges.get(x.id) ?? locationsStore.db.get(x.id)),
-    };
-    if (Array.isArray(x.figure)) {
-      location.figure = x.figure.map((line) =>
-        line.map(mapStore.Map2GeoConverter.toGeo)
-      );
-    } else {
-      location.figure = mapStore.Map2GeoConverter.toGeo(x.figure);
-    }
-    this.localChanges.set(location._id, location);
-  };
 
   saveLocations() {
-    const toUpdate = Array.from(this.localChanges.values());
-    this.localChanges.clear();
-    for (let location of toUpdate) {
-      locationsStore.db.addOrUpdate(location);
-    }
+    locationsStore.applyChanges();
   }
 }
