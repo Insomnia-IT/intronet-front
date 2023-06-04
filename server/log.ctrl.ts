@@ -4,7 +4,7 @@ log4js.configure({
   appenders: {
     logstash: {
       "type": "log4js-logstash-tcp",
-      "host": "localhost",
+      "host": "logstash",
       "port": 5000,
       "fields": {
         "environment": "development"
