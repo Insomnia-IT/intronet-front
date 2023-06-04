@@ -3,6 +3,8 @@ import { useMemo, useState } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { activitiesStore } from "@stores/activities/activities.store";
 import { ActivityList } from "../activities/activityList";
+import { SvgIcon } from "@icons";
+import { SearchPlug } from "@components/plugs/search/SearchPlug";
 
 export const ActivitySearch = () => {
   const [query, setQuery] = useState<string | undefined>(undefined);
@@ -10,7 +12,7 @@ export const ActivitySearch = () => {
   const check = useMemo(() => checkActivity(query), [query]);
 
   const filtered = useMemo(() => activities.filter(check), [activities, check]);
-  console.log(filtered)
+
   return (
     <>
       <h1>поиск</h1>
@@ -23,12 +25,9 @@ export const ActivitySearch = () => {
       {filtered.length > 0 ? (
         <ActivityList activities={filtered} searchQuery={query} />
       ) : (
-        <div flex column gap={4}>
-          <div class="sh1 colorMediumBlue">Ничего не нашли</div>
-          <div class="text colorMediumBlue">
-            Попробуйте искать по другому запросу
-          </div>
-        </div>
+        <SearchPlug
+          title={'Поиск по неанимации'}
+          text={'Попробуйте найти мероприятие по названию или по ведущему'}></SearchPlug>
       )}
     </>
   );
