@@ -1,4 +1,11 @@
 import {LocalStore} from "@stores/localStore";
+import {authStore} from "./auth.store";
+import {votingStore} from "./votingStore";
+
+
+const api = process.env.NODE_ENV === 'production'
+  ? `/webapi/log`
+  : `https://redmine.cb27.ru:17443/webapi/log`;
 
 class UserStore extends LocalStore<{
   onboardingPhase: string;
@@ -21,6 +28,21 @@ class UserStore extends LocalStore<{
 
   onboardingNext = () => this.OnboardingPhase++;
   onboardingFinish = () => this.OnboardingPhase = 5;
+
+  public log(data: Record<string, string>){
+    return fetch(api, {
+      method: 'POST',
+      body: JSON.stringify({
+        hostname: location.hostname,
+        path: location.pathname,
+        uid: authStore.uid,
+        user: authStore.userName,
+        isAdmin: authStore.isAdmin,
+        ticket: votingStore.ticket,
+        ...data
+      })
+    })
+  }
 }
 
 export const userStore = new UserStore();

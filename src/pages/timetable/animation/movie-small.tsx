@@ -13,11 +13,13 @@ export type MovieSmallProps = {
   movie: MovieInfo;
   gesture?: Gesture;
   searchQuery?: string;
+  disabled?: boolean;
 };
 export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
   gesture,
   searchQuery,
+  disabled
 }) => {
   const switchBookmark = (movie) =>
     bookmarksStore.switchBookmark("movie", movie.id);
@@ -54,7 +56,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
           userUsedGesture || state ? "" : Styles.bookmarkDemo,
         ])
         .join(" ")}
-      onClick={(e) => e.defaultPrevented || router.gotToMovie(movie.id)}
+      onClick={disabled ? undefined : (e) => e.defaultPrevented || router.goToMovie(movie.id)}
       style={{ transform }}
     >
       <div flex center>

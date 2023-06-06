@@ -1,3 +1,4 @@
+import {userStore} from "@stores/user.store";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
@@ -70,20 +71,23 @@ const routeCell = new Cell<RoutePath>(
   location.pathname.split("/").slice(1) as RoutePath,
   {
     compare,
-    onExternal: setTitle,
+    onExternal: onRoutingChange,
   }
 );
 const queryCell = new Cell<Record<string, string>>(
   Object.fromEntries(new URL(location.href).searchParams.entries())
 );
 
-function setTitle() {
+function onRoutingChange() {
   document.title = "Insomnia: " + routes[routeCell.get()[0]]?.title;
+  userStore.log({
+    action: 'navigate'
+  }).catch();
 }
-setTitle();
+onRoutingChange();
 const goTo = (
   path: RoutePath | RoutePathString,
-  query: Record<string, string> = {},
+  query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
 ) => {
   if (typeof path === "string") {
@@ -95,9 +99,9 @@ const goTo = (
     query = path.pop() as Record<string, string>;
   }
   routeCell.set(path.filter((x) => x !== null) as RoutePath);
-  queryCell.set(query);
+  query && queryCell.set(query);
   let url = "/" + path.filter((x) => x !== null).join("/");
-  const search = new URLSearchParams(query).toString();
+  const search = new URLSearchParams(query ?? queryCell.get()).toString();
   if (search) url += "?" + search;
   history[replace ? "replaceState" : "pushState"]({}, null, url);
 };

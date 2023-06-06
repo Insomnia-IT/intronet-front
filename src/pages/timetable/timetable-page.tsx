@@ -1,44 +1,46 @@
-import { Timetable, TimetableAll } from "./timetable";
-import { Button, ButtonsBar, CloseButton } from "@components";
+import {useMemo} from "preact/hooks";
+import { TimetableAll } from "./timetable";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
 import { routes, useRouter } from "../routing";
 import { Movie } from "./movie/movie";
-import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
 import { MovieSearch } from "./search/movie-search";
 
 export function TimetablePage() {
-  const router = useTimetableRouter();
-  switch (router.movieId) {
+    const router = useTimetableRouter();
+    const sheets = useMemo(() => getTimetableSheets(router.movieId), [router.movieId]);
+    return (
+      <div class="page">
+        <TimetableAll />
+        <CloseButton />
+        <ButtonsBar at="bottom">
+          <Button type="vivid" goTo="/timetable/search">
+            <SvgIcon id="#search" size={15} />
+          </Button>
+          <Button type="vivid" goTo="/bookmarks/movie">
+            <SvgIcon id="#bookmark" size="14px" />
+            Избранное
+          </Button>
+        </ButtonsBar>
+        <Sheet children={sheets} onClose={() => router.goTo([baseRoute])}/>
+      </div>
+    );
+}
+
+function getTimetableSheets(movieId: string){
+  switch (movieId) {
     case "search":
-      return (
-        <div class="page">
-          <MovieSearch />
-          <CloseButton />
-        </div>
-      );
+      return <>
+        <MovieSearch />
+        <CloseButton/>
+      </>;
     case undefined:
-      return (
-        <div class="page">
-          <TimetableAll />
-          <CloseButton />
-          <ButtonsBar at="bottom">
-            <Button type="vivid" goTo="/timetable/search">
-              <SvgIcon id="#search" size={15} />
-            </Button>
-            <Button type="vivid" goTo="/bookmarks/movie">
-              <SvgIcon id="#bookmark" size="14px" />
-              Избранное
-            </Button>
-          </ButtonsBar>
-        </div>
-      );
+      return null;
     default:
-      return (
-        <div class="page">
-          <Movie id={router.movieId} />
-          <CloseButton />
-        </div>
-      );
+      return <>
+        <Movie id={movieId} />
+        <CloseButton/>
+      </>;
   }
 }
 
@@ -48,8 +50,8 @@ export function useTimetableRouter() {
   return {
     ...router,
     movieId: router.route[1] as string | undefined,
-    gotToMovie(id: string) {
-      router.goTo([baseRoute, id]);
+    goToMovie(id: string | undefined) {
+      router.goTo(id ? [baseRoute, id] : [baseRoute]);
     },
   };
 }

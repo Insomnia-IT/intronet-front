@@ -34,7 +34,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
 
   return (
     <div className={styles.content}>
-      <div className={styles.header}>{location.name}</div>
+      <div class='sh1'>{location.name}</div>
       <div
         className={expanded ? styles.descriptionExpanded : styles.description}
       >

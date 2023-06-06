@@ -7,7 +7,7 @@ import { Database } from "./database";
 import { TileConverter } from "@helpers/tile.converter";
 
 process.env.DATABASE =
-  "https://admin:password@intro.cherepusick.keenetic.name/db";
+  "https://admin:password@redmine.cb27.ru:17443/db";
 const converter = new TileConverter(
   {
     x: 78306,

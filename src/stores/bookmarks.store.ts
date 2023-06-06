@@ -9,7 +9,8 @@ import {
 import { moviesStore } from "@stores/movies.store";
 import { ObservableDB } from "@stores/observableDB";
 import { TimerCell } from "@stores/timer";
-import { activitiesStore } from "@stores/activities.store";
+import { activitiesStore } from "@stores/activities/activities.store";
+import { locationsStore } from "@stores/locations.store";
 
 class BookmarksStore {
   @cell
@@ -51,6 +52,15 @@ class BookmarksStore {
       .toArray()
       .filter((x) => x.type == "activity")
       .map((m) => activitiesStore.Activities.find((x) => x._id == m.itemId))
+      .filter((x) => x);
+  }
+
+  @cell
+  public get Locations() {
+    return this.db
+      .toArray()
+      .filter((x) => x.type == "locations")
+      .map((m) => locationsStore.FullLocations.find((x) => x._id == m.itemId))
       .filter((x) => x);
   }
 

@@ -1,11 +1,9 @@
-import { CloseButton } from "@components";
+import {Button, ButtonsBar, CloseButton} from "@components";
 import { useRouter } from "../routing";
 import { useEffect } from "preact/hooks";
 import { votingStore } from "@stores/votingStore";
 import { useCell } from "@helpers/cell-state";
-import { VotingTicket } from "./voting-ticket";
 import { VotingIntro } from "./voting-intro";
-import { VotingMain } from "./voting-main";
 import { Vote } from "./vote";
 
 type Section = undefined | "ticket" | "check" | "success" | "error";
@@ -16,20 +14,19 @@ export const VotingPage = () => {
     if (!route[1] && state.ticket) goTo("/voting/success", {}, true);
   }, [route[1], state.ticket]);
   switch (route[1] as Section) {
-    case "ticket":
-      return (
-        <div class="page">
-          <CloseButton />
-          <h1>голосовать</h1>
-          <VotingTicket />
-        </div>
-      );
+
     case "success":
       return (
         <div class="page">
           <CloseButton />
-          <h1>голосовать</h1>
-          <VotingMain />
+          <h1>Готово!</h1>
+          <div class="text colorMediumBlue" style={{marginTop: 37}}>
+            Ваш голос учтён.<br/><br/>
+            Спасибо за участие в голосовании!
+          </div>
+          <ButtonsBar at="bottom">
+            <Button goTo="/main" type="vivid" class="w-full">на главную</Button>
+          </ButtonsBar>
         </div>
       );
     case undefined:
@@ -44,7 +41,7 @@ export const VotingPage = () => {
       return (
         <div class="page">
           <CloseButton />
-          <h1>готово</h1>
+          <h1>Голосовать</h1>
           <Vote id={route[1] as string} />
         </div>
       );

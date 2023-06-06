@@ -1,0 +1,30 @@
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    env:
+      IMAGE_NAME: fransuane/insomnia-front
+      IMAGE_NAME_SERVER: fransuane/intronet-server
+    steps:
+      - uses: actions/checkout@v3
+      - name: build image
+        run: |
+          docker build . -t $IMAGE_NAME
+          docker build server -t $IMAGE_NAME_SERVER
+        env:
+          COMPOSE_DOCKER_CLI_BUILD: 1
+          DOCKER_BUILDKIT: 1
+
+      - name: login
+        run: echo dckr_pat_kldQql7KodyN7mpA0jqaJPRvEA0 | docker login -u fransuane --password-stdin
+
+      - name: push images
+        run: |
+          docker push $IMAGE_NAME
+          docker push $IMAGE_NAME_SERVER

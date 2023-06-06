@@ -17,7 +17,7 @@ export const TimetableAll: FunctionalComponent = () => {
   );
   const screen = router.query.screen ?? screens[0]?._id;
   const setScreen = (screen: string) =>
-    router.goTo(
+    screen && router.goTo(
       router.route,
       {
         day: day.toString(),
