@@ -5,7 +5,7 @@ import { authStore } from "@stores/auth.store";
 
 const api = process.env.NODE_ENV === 'production'
   ? `/webapi`
-  : `https://intro.cherepusick.keenetic.name/webapi`;
+  : `https://redmine.cb27.ru:17443/webapi`;
 // const api = `/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;

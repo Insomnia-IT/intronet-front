@@ -5,7 +5,7 @@ import {votingStore} from "./votingStore";
 
 const api = process.env.NODE_ENV === 'production'
   ? `/webapi/log`
-  : `https://intro.cherepusick.keenetic.name/webapi/log`;
+  : `https://redmine.cb27.ru:17443/webapi/log`;
 
 class UserStore extends LocalStore<{
   onboardingPhase: string;

@@ -4,7 +4,7 @@ Web framework for building fast web application with business logic dedicated in
 
 [WIP]
 
-prod: https://intro.cherepusick.keenetic.name
+prod: https://redmine.cb27.ru:17443
 
 build: 
   `npm run ci`

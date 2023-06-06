@@ -84,6 +84,6 @@
     "background"
   ],
   "host_permissions": [
-    "https://intro.cherepusick.keenetic.name"
+    "https://redmine.cb27.ru:17443"
   ]
 }

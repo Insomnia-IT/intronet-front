@@ -48,7 +48,7 @@
   },
   "author": "",
   "license": "ISC",
-  "proxy": "https://intro.cherepusick.keenetic.name",
+  "proxy": "https://redmine.cb27.ru:17443",
   "cmmn": {
     "main": {
       "input": "dist/esm/src/index.js",
