@@ -87,7 +87,7 @@ function onRoutingChange() {
 onRoutingChange();
 const goTo = (
   path: RoutePath | RoutePathString,
-  query: Record<string, string> = {},
+  query: Record<string, string> = queryCell.get(),
   replace: boolean = false
 ) => {
   if (typeof path === "string") {

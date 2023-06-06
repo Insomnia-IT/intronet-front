@@ -54,7 +54,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
           userUsedGesture || state ? "" : Styles.bookmarkDemo,
         ])
         .join(" ")}
-      onClick={(e) => e.defaultPrevented || router.gotToMovie(movie.id)}
+      onClick={(e) => e.defaultPrevented || router.goToMovie(movie.id)}
       style={{ transform }}
     >
       <div flex center>
