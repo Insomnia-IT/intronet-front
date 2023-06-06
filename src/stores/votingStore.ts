@@ -2,6 +2,7 @@ import { Cell, cell, Fn } from "@cmmn/cell/lib";
 import { LocalStore } from "@stores/localStore";
 import { IsConnected } from "@stores/connection";
 import { moviesStore } from "@stores/movies.store";
+import {userStore} from "./user.store";
 
 class TicketStore extends LocalStore<{
   ticket?: string;
@@ -35,6 +36,10 @@ class TicketStore extends LocalStore<{
     this.patch({
       movie: id,
     });
+    userStore.log({
+      action: "vote",
+      movieId: id
+    }).catch()
   }
 }
 

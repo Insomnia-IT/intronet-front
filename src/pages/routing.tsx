@@ -87,7 +87,7 @@ function onRoutingChange() {
 onRoutingChange();
 const goTo = (
   path: RoutePath | RoutePathString,
-  query: Record<string, string> = {},
+  query: Record<string, string> | undefined = {},
   replace: boolean = false
 ) => {
   if (typeof path === "string") {
@@ -99,9 +99,9 @@ const goTo = (
     query = path.pop() as Record<string, string>;
   }
   routeCell.set(path.filter((x) => x !== null) as RoutePath);
-  queryCell.set(query);
+  query && queryCell.set(query);
   let url = "/" + path.filter((x) => x !== null).join("/");
-  const search = new URLSearchParams(query).toString();
+  const search = new URLSearchParams(query ?? queryCell.get()).toString();
   if (search) url += "?" + search;
   history[replace ? "replaceState" : "pushState"]({}, null, url);
 };
