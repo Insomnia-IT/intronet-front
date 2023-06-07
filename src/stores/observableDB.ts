@@ -3,9 +3,10 @@ import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
 
-const api = process.env.NODE_ENV === 'production'
-  ? `/webapi`
-  : `https://redmine.cb27.ru:17443/webapi`;
+const api =
+  process.env.NODE_ENV === "production"
+    ? `/webapi`
+    : `https://redmine.cb27.ru:17443/webapi`;
 // const api = `/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
@@ -163,7 +164,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   get remoteVersion() {
-    return VersionsDB.Instance.remote[this.name];
+    return VersionsDB.Instance.remote[this.name] ?? "";
   }
 
   get localVersion() {
