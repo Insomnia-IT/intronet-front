@@ -20,7 +20,7 @@ export const NotesList: FunctionalComponent<{
     <ul className={classNames("textSmall", styles.list, className)}>
       {filteredNotes.map((note) => {
         const noteCategory = {
-          name: categoriesStore.getCategory(note.categoryId).name,
+          name: categoriesStore.getCategory(note.categoryId)?.name,
           color: categoriesStore.getCategoryColor(note.categoryId),
         };
 
