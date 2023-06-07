@@ -16,15 +16,16 @@ export class Database<T extends { _id: string }> {
   constructor(public name: string) {}
 
   async remove(key: string) {
+    const rev = await this.db.get(key).then((x) => x._rev);
     await this.db.remove({
       _id: key.toString(),
-      _rev: null,
+      _rev: rev ?? null,
     });
   }
 
   async addOrUpdate(value: T & { version: string }) {
     await this.db.upsert(value._id, () => value);
-    console.log('insert', value._id, this.name)
+    console.log("insert", value._id, this.name);
   }
 
   async getSince(revision: string = undefined): Promise<T[]> {

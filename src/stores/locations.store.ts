@@ -1,6 +1,6 @@
 import { Fn, cell, ObservableList } from "@cmmn/cell/lib";
-import {TransformMatrix} from "../pages/map/transform/transform.matrix";
-import {mapStore} from "./map.store";
+import { TransformMatrix } from "../pages/map/transform/transform.matrix";
+import { mapStore } from "./map.store";
 import { ObservableDB } from "./observableDB";
 import { directionsStore } from "./directions.store";
 
@@ -27,7 +27,7 @@ class LocationsStore {
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocationFull> {
     return this.FullLocations.filter(
-      (x) => x.directionId === Directions[Directions.screen]
+      (x) => x.directionId === Directions.screen
     );
   }
 
@@ -39,17 +39,19 @@ class LocationsStore {
     );
   }
 
-  public get MapItems(): MapItem[]{
+  public get MapItems(): MapItem[] {
     const patches = new Map(this.locationPatches.toArray());
-    return  this.FullLocations
-      .orderBy((x) => (Array.isArray(x.figure) ? -1 : 1))
-      .map(x => ({
-        figure: patches.get(x._id) ?? mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
-        directionId: x.directionId,
-        title: x.name,
-        id: x._id,
-        radius: 10,
-      }))
+    return this.FullLocations.orderBy((x) =>
+      Array.isArray(x.figure) ? -1 : 1
+    ).map((x) => ({
+      figure:
+        patches.get(x._id) ??
+        mapStore.Map2GeoConverter.fromGeo(x.figure as Geo),
+      directionId: x.directionId,
+      title: x.name,
+      id: x._id,
+      radius: 10,
+    }));
   }
 
   async addLocation(location: InsomniaLocation) {
@@ -77,15 +79,12 @@ class LocationsStore {
     return location.name;
   }
 
-  public moveLocation(id: string, transform: TransformMatrix){
-    const selected = this.MapItems.find(x => x.id === id);
+  public moveLocation(id: string, transform: TransformMatrix) {
+    const selected = this.MapItems.find((x) => x.id === id);
     const moved = Array.isArray(selected.figure)
-      ? selected.figure.map((line) =>line.map(transform.Invoke))
+      ? selected.figure.map((line) => line.map(transform.Invoke))
       : transform.Invoke(selected.figure);
-    this.locationPatches.push([
-      selected.id,
-      moved
-    ]);
+    this.locationPatches.push([selected.id, moved]);
   }
 
   async applyChanges() {
@@ -94,7 +93,7 @@ class LocationsStore {
     for (let [id, figure] of patches) {
       await this.db.addOrUpdate({
         ...this.db.get(id),
-        figure: mapStore.Map2GeoConverter.toGeo(figure) as GeoFigure
+        figure: mapStore.Map2GeoConverter.toGeo(figure) as GeoFigure,
       });
     }
   }
@@ -111,8 +110,8 @@ export enum Directions {
   meeting = 11,
   cafe = 12,
   tentRent = 13,
-  info = 15,
-  screen = 16,
+  info = "Инфоцентр",
+  screen = "Экран",
   music = 20,
   staffCamp = 21,
   checkpoint = 22,
