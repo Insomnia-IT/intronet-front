@@ -85,6 +85,9 @@
 :global(.unbounded) {
   font-family: "Unbounded";
 }
+:global(.sfPro) {
+  font-family: "SF Pro", sans-serif;
+}
 :global(h1) {
   font-family: "Unbounded";
   font-style: normal;
@@ -146,7 +149,7 @@
   display: flex;
   align-items: flex-end;
 }
-:global(.text){
+:global(.text) {
   font-style: normal;
   font-variation-settings: "wght" 400;
   font-size: 20px;
@@ -175,9 +178,20 @@
   color: var(--cyber-disco);
 }
 
+:global(.colorChineeseCaffe) {
+  color: var(--chineese-cafe);
+}
+
+:global(p) {
+  margin: 0;
+}
 
 :global(ul) {
-  list-style: none;
   margin: 0;
+  padding-left: 32px;
+}
+
+:global(ul:not(.styledList)) {
+  list-style: none;
   padding: 0;
 }

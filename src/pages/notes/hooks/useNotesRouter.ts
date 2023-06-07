@@ -1,6 +1,7 @@
 import { routes, useRouter } from "../../routing";
 
 const baseRoute = "notes" as keyof typeof routes;
+
 export const useNotesRouter = <TQuery extends Record<string, string>>() => {
   const router = useRouter<{
     filter: string;
@@ -9,6 +10,7 @@ export const useNotesRouter = <TQuery extends Record<string, string>>() => {
   return {
     ...router,
     section: router.route[1] as string | undefined,
+    subSection: router.route[2] as string | undefined,
     filterId: router.query.filter,
 
     goToNote(id: string) {
@@ -28,6 +30,10 @@ export const useNotesRouter = <TQuery extends Record<string, string>>() => {
 
       router.goTo([baseRoute], filterQuery, true);
     },
+
+    goToNew(section?: INewNoteSections) {
+      router.goTo([baseRoute, "new", section || "rules"], {}, true);
+    },
   };
 };
 
@@ -36,3 +42,5 @@ type IGoToNotes = {
 };
 
 type IFilter = string;
+
+export type INewNoteSections = "rules" | "editor" | "success" | "error";
