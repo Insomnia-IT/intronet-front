@@ -1,3 +1,4 @@
+import * as console from "console";
 import fs from "fs";
 import {Buffer} from "node:buffer";
 import {createCipheriv, createDecipheriv, randomBytes} from "crypto";
@@ -28,12 +29,13 @@ function decrypt(text: string) {
 
 function getOrCreateKey(file: string, size: number){
   try {
-      const result = fs.readFileSync(file);
+      const result = fs.readFileSync(file, "utf-8");
+      console.log(result)
       if (!result.length) throw new Error('Empty file');
-      return  result;
+      return Buffer.from(result, "hex");
   }catch (e){
       const buffer = randomBytes(size);
-      fs.writeFileSync(file, buffer);
+      fs.writeFileSync(file, buffer.toString("hex"), "utf-8");
       return  buffer;
   }
 }
