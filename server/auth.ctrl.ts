@@ -1,4 +1,3 @@
-import { Fn } from "@cmmn/cell/lib";
 import * as console from "console";
 import {randomBytes} from "crypto";
 import {decrypt, encrypt} from "./cryptor";
@@ -26,7 +25,7 @@ export const authCtrl = new (class {
     await this.db.addOrUpdate({
       _id: id,
       encrypted,
-      version: Fn.ulid()
+      version: id
     });
     return id;
   }

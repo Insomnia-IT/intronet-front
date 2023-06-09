@@ -1,9 +1,5 @@
 FROM node:18-alpine as builder
 
-ENV NODE_ENV=production
-ENV YARN_CACHE_FOLDER=/root/.yarn
-ENV NODE_ENV=production
-
 WORKDIR /app
 
 COPY package.json yarn.lock ./
@@ -21,6 +17,7 @@ RUN yarn --production=true --frozen-lockfile
 
 FROM node:18-alpine
 
+ENV NODE_ENV=production
 WORKDIR /app
 COPY package.json yarn.lock ./
 
