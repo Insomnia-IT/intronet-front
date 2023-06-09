@@ -28,7 +28,9 @@ function decrypt(text: string) {
 
 function getOrCreateKey(file: string, size: number){
   try {
-      return fs.readFileSync(file);
+      const result = fs.readFileSync(file);
+      if (!result) throw new Error('Empty file');
+      return  result;
   }catch (e){
       const buffer = randomBytes(size);
       fs.writeFileSync(file, buffer);
