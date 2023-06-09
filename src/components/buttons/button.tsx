@@ -8,7 +8,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   solid?: boolean;
   selected?: boolean;
-  type?: "frame" | "blue" | "disco" | "vivid" | "text" | "borderDashVivid";
+  type?: "frame" | "blue" | "disco" | "vivid" | "text" | "borderVivid";
   goTo?: RoutePath | RoutePathString;
 } & JSX.HTMLAttributes<HTMLButtonElement>;
 
@@ -40,7 +40,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
             <EyeLoading size="1.5em" />
           </div>
         ) : (
-          children
+          <span>{children}</span>
         )
       }
     />

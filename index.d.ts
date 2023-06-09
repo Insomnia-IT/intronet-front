@@ -226,3 +226,15 @@ type MainPageCard = {
   colSpan?: number;
   rowSpan?: number;
 };
+
+/**
+ * Новости добавляемые админами на главную страницу
+ */
+type NewsItem = {
+  _id: string;
+  title: string;
+  text: string;
+  link: string | undefined;
+  linkText: string | undefined;
+  time: string;
+}
