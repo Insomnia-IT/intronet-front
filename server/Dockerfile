@@ -16,11 +16,12 @@ RUN npx cmmn compile
 
 FROM node:18-alpine
 
-COPY --from=builder /app/node_modules /app/node_modules
-COPY --from=builder /app/package.json /app/package.json
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn --production=true --frozen-lockfile
+
 COPY --from=builder /app/dist /app/dist
 
 EXPOSE 80
-WORKDIR /app
 
 CMD ["node", "/app/dist/esm/index.js"]
