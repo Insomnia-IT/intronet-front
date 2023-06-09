@@ -4,7 +4,7 @@ import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
 
 const api =
-  process.env.NODE_ENV === "production" || true
+  process.env.NODE_ENV === "production"
     ? `/webapi`
     : `https://redmine.cb27.ru:17443/webapi`;
 // const api = `/webapi`;

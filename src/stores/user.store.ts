@@ -2,8 +2,7 @@ import {LocalStore} from "@stores/localStore";
 import {authStore} from "./auth.store";
 import {votingStore} from "./votingStore";
 
-
-const api = process.env.NODE_ENV === 'production' || true
+const api = process.env.NODE_ENV === 'production'
   ? `/webapi/log`
   : `https://redmine.cb27.ru:17443/webapi/log`;
 
