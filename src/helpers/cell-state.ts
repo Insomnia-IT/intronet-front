@@ -13,6 +13,7 @@ export function useCell<T>(
   );
   const [, dispatch] = useReducer(x => ({}), {});
   useEffect(() => {
+    dispatch('change');
     return cell.on('change', dispatch);
   }, [cell])
   return cell.get();

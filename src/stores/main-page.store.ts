@@ -5,7 +5,16 @@ class MainPageStore {
   @cell
   private db = new ObservableDB<MainPageCard>("main");
 
-  public State = new Cell(() => {
+  public State = new Cell<{
+    sections: {
+      section: MainPageCard["section"],
+      title: string;
+      rows: {
+        row: number;
+        cards: MainPageCard[];
+      }[]
+    }[]
+  }>(() => {
     const items = this.db.toArray();
     return ({
       sections: Sections.map(s => ({

@@ -33,7 +33,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async init() {
-    await this.loadItems().then((x) => this.emit("loaded"));
+    await this.loadItems().then((x) => {
+      this.emit("loaded");
+      this.emit("change");
+    } );
     if (!this.localOnly) {
       await this.sync().catch(console.error);
       setInterval(() => this.sync().catch(console.error), 3000);

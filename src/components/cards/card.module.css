@@ -40,27 +40,12 @@
   border-color: var(--medium-blue);
 }
 .borderVivid {
-  border: none;
-  position: relative;
-  background: var(--vivid-gradient);
-}
-.borderVivid > * {
-  z-index: 1;
+  composes: borderVivid from "../buttons/button.module.css";
 }
 
 .borderLeftCloud {
   border-bottom-left-radius: 0;
 }
-
-.borderVivid:before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  z-index: 0;
-  margin: 2px;
-  border-radius: 22px;
-  background: var(--cold-white)
- }
 
 .borderInactiveGrey{
   composes: border;
