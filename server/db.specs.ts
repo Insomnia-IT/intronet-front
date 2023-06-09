@@ -179,7 +179,7 @@ test("import-activities", async () => {
 
   for (let location of locations.filter(
     (location) =>
-      location.directionId === "lectures" ||
+      location.directionId === "Ветви Дерева" ||
       location.directionId === "masterClass" ||
       location.directionId === "fair" ||
       location.directionId === "playground"
