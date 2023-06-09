@@ -8,6 +8,14 @@
   gap: 8px;
 }
 
+.noteText {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .bookmarkIcon {
   position: absolute;
   width: 14px;

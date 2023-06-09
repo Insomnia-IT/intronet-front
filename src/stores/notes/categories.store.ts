@@ -1,6 +1,3 @@
-import { Fn, cell } from "@cmmn/cell/lib";
-import { notesStore } from "@stores";
-import { ObservableDB } from "../observableDB";
 import { COLORS } from "@constants";
 
 class CategoriesStore {
@@ -32,8 +29,8 @@ class CategoriesStore {
     ];
   }
 
-  getCategory(id: ICategory["_id"]) {
-    return this.categories.find((category) => category._id === id);
+  getCategory(id: ICategory["_id"]): ICategory | null {
+    return this.categories.find((category) => category._id === id) || null;
   }
 
   getCategoryColor(id: ICategory["_id"]): null | string {
