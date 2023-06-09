@@ -1,25 +1,17 @@
 import { test } from "@jest/globals";
 import locationsJSON from "./locations.json";
 import moviesJSON from "./movies.json";
-import { getRandomItem } from "@helpers/getRandomItem";
+import mainPageJSON from "./main-page.json";
 import { Fn } from "@cmmn/cell/lib";
-import { Database } from "./database";
-import { TileConverter } from "@helpers/tile.converter";
+import { Database } from "../database";
 import fetch from "node-fetch";
 
 process.env.DATABASE = "https://admin:password@redmine.cb27.ru:17443/db";
-const converter = new TileConverter(
-  {
-    x: 78306,
-    y: 41656,
-  },
-  17,
-  256
-);
+// process.env.DATABASE = "http://admin:password@localhost:5984";
 
-const regexOnlyWord = /[^a-zA-Zа-яА-Я]/g;
 
 test("import-locations", async () => {
+  const regexOnlyWord = /[^a-zA-Zа-яА-Я]/g;
   const notionLocaitons: Array<{
     uuid: string;
     name: string;
@@ -206,35 +198,23 @@ test("import-activities", async () => {
   }
 }, 60000);
 
-const center = {
-  lat: 54.68008397222222,
-  lon: 35.08622484722222,
-};
-const centerXY = {
-  x: 5512 / 2,
-  y: 3892 / 2,
-};
 
-export enum Directions {
-  fair = 2,
-  lectures = 4,
-  masterClass = 6,
-  playground = 8,
-  artObject = 10,
-  meeting = 11,
-  cafe = 12,
-  tentRent = 13,
-  info = 15,
-  screen = 16,
-  music = 20,
-  staffCamp = 21,
-  checkpoint = 22,
-  camping = 81,
-  bath = 83,
-  wc = 85,
-  fire = 86,
-  bathhouse = 90,
-  lab = 95,
-}
+test("import-main-page", async () => {
 
-const directionIds = Object.keys(Directions).filter((x) => Number.isNaN(+x));
+  const db = new Database<MainPageCard>("main");
+  const cards = await db.getSince();
+  if (true) {
+    for (let card of cards) {
+      await db.remove(card._id);
+    }
+    cards.length = 0;
+  }
+  // console.log('_____', activities)
+  if (cards.length > 0) return;
+  for (let card of mainPageJSON as Array<MainPageCard>){
+    await db.addOrUpdate({
+      ...card,
+      version: Fn.ulid()
+    });
+  }
+}, 300000);

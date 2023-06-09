@@ -211,4 +211,18 @@ type Bookmark = {
   type: BookmarkSection;
   itemId: string;
 };
+
 type BookmarkSection = "movie" | "activity" | "locations" | "note";
+type MainPageSection = "about" | "activity" | "warning" | "other";
+
+type MainPageCard = {
+  _id: string;
+  title: string;
+  descr?: string;
+  color: boolean;
+  section: MainPageSection;
+  row: number;
+  col: number;
+  colSpan?: number;
+  rowSpan?: number;
+};

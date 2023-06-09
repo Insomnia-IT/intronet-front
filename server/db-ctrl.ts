@@ -34,5 +34,6 @@ const databasesList = [
   'schedules',
   'activities',
   'tags',
+  'main'
 ];
 const databases = new Map<string, Database<any>>(databasesList.map(x => [x, new Database<any>(x)]));
