@@ -8,7 +8,10 @@ class AuthStore extends LocalStore<{
 }> {
   get headers() {
     return {
-      Authorization: `Bearer ${this.token}`,
+      ...(this.token ? {
+        Authorization: `Bearer ${this.token}`,
+      } : {}),
+      uid: this.uid
     };
   }
   constructor() {
@@ -55,5 +58,13 @@ class AuthStore extends LocalStore<{
       token: token,
     });
   }
+  public createToken(role: 'admin'|'superadmin'|'tochka', username: string){
+    return fetch('/webapi/auth/token', {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({role, username})
+    })
+  }
+
 }
-export const authStore = new AuthStore();
+export const authStore = globalThis['authStore'] = new AuthStore();

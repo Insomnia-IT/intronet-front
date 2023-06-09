@@ -24,7 +24,7 @@ export const dbCtrl = new class {
   }
 }
 
-const databasesList = [
+export const databasesList = [
   'accounts',
   'categories',
   'directions',

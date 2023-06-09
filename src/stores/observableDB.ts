@@ -4,7 +4,7 @@ import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
 
 const api =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === "production" || true
     ? `/webapi`
     : `https://redmine.cb27.ru:17443/webapi`;
 // const api = `/webapi`;
@@ -183,7 +183,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
 
   constructor() {
     super("versions");
-    setInterval(() => this.loadFromServer(), 3000);
+    // setInterval(() => this.loadFromServer(), 3000);
   }
 
   public remote: Record<string, string> = {};

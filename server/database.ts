@@ -86,4 +86,8 @@ export class Database<T extends { _id: string }> {
       console.error(e);
     }
   }
+
+  get(value: string) {
+    return this.db.get(value);
+  }
 }

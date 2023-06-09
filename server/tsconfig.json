@@ -4,7 +4,8 @@
     "baseUrl": "./",
     "lib": [
       "ESNext"
-    ]
+    ],
+    "types": ["node"]
   },
   "include": [
     "*.json",
