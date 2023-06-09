@@ -5,6 +5,7 @@ class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
+  role: 'admin' | 'superadmin' | 'tochka';
 }> {
   get headers() {
     return {
@@ -27,9 +28,12 @@ class AuthStore extends LocalStore<{
       this.patch({ token });
       fetch("/webapi/auth", {
         headers: this.headers,
-      }).then((x) => {
+      }).then(async (x) => {
         if (!x.ok) {
           this.patch({ token: null });
+        }else {
+          const role = await x.text() as any;
+          this.patch({role})
         }
       });
     }
@@ -50,6 +54,10 @@ class AuthStore extends LocalStore<{
   @cell
   public get isAdmin(): boolean {
     return !!this.token;
+  }
+  @cell
+  public get role() {
+    return this.values.role;
   }
 
   public auth(user: string, token: string) {
