@@ -16,8 +16,8 @@ function encrypt(text) {
 }
 
 function decrypt(text: string) {
-  let iv = Buffer.from(text.substring(0, 16), 'hex');
-  let encryptedText = Buffer.from(text.substring(16), 'hex');
+  let iv = Buffer.from(text.substring(0, 32), 'hex');
+  let encryptedText = Buffer.from(text.substring(32), 'hex');
 
   let decipher = createDecipheriv(algorithm, Buffer.from(key), iv);
 
@@ -30,7 +30,6 @@ function decrypt(text: string) {
 function getOrCreateKey(file: string, size: number){
   try {
       const result = fs.readFileSync(file, "utf-8");
-      console.log(result)
       if (!result.length) throw new Error('Empty file');
       return Buffer.from(result, "hex");
   }catch (e){
@@ -41,3 +40,5 @@ function getOrCreateKey(file: string, size: number){
 }
 
 export {encrypt, decrypt};
+
+
