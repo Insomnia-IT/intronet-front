@@ -9,20 +9,6 @@
   box-sizing: border-box;
 }
 
-.fireboyWrap{
-  flex: 1;
-  height: calc(100% - 260px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 32px 0;
-}
-.fireboy{
-  max-height: 100%;
-  max-width: 100%;
-}
-
 .menuText{
   background: linear-gradient(253.29deg, #FE4BA9 38.17%, #FF6E76 62.03%, #FFC576 89.64%);
   -webkit-background-clip: text;
@@ -33,4 +19,19 @@
 
 .menuBtn{
   composes: menuBtn from "../main/main-page.module.css";
+}
+
+.star{
+  position: absolute;
+  right: 0;
+  bottom: 20%;
+}
+
+.img1{
+  position: absolute;
+  width: 173.53px;
+  height: 221.55px;
+  left: 0;
+  top: -10px;
+  transform: rotate(2deg);
 }

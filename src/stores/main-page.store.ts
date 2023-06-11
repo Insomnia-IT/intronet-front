@@ -23,7 +23,8 @@ class MainPageStore {
           items.filter(x => x.section === s.section)
             .groupBy(x => x.row)
             .entries()
-        ).map(([row, cards]) => ({row, cards})),
+        ).map(([row, cards]) => ({row, cards: cards.orderBy(x => x.col)}))
+          .orderBy(x => x.row),
       })),
 
     });

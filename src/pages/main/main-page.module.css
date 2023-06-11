@@ -57,9 +57,10 @@
 }
 
 .mainCard {
-    height: 30vw;
-    max-height: 200px;
     color: var(--ins-night);
+    gap: 0;
+    justify-content: space-between;
+    height: 120px;
 }
 
 .mainCard > header{

@@ -25,15 +25,20 @@ export const OnboardPage = () => {
 const OnboardStage1 = () => {
   return (
     <>
-      <h1>
-        Привет!
-        <br />
-        Это insight
-      </h1>
-      <div class="text">— локальный портал Бессонницы</div>
-      <div class={styles.fireboyWrap}>
-      <img class={styles.fireboy} src="/public/images/fire_boy.webp" />
+      <img className={styles.img1} src="/public/images/onboard1.png"/>
+      <div style={{margin: 'auto'}}>
+        <h1>
+          Привет!
+          <br />
+          Это insight
+        </h1>
+        <div class="text">— локальный портал Бессонницы</div>
       </div>
+      <svg width="46" height="67" viewBox="0 0 46 67" fill="none"
+           class={styles.star}
+           xmlns="http://www.w3.org/2000/svg">
+        <path d="M33.541 66.9922C32.4942 57.9025 31.452 48.8127 30.3923 39.5975L17.2032 49.9598L17.0909 49.8472L27.6368 36.8316L0.00878906 33.6805V33.5463L27.6368 30.3909L17.1686 17.2887L17.2941 17.1458L30.4049 27.6294C31.469 18.3145 32.5116 9.15551 33.5541 -0.0078125H33.6927L36.8372 27.6207L49.8404 17.0723L49.9658 17.1848L39.6058 30.3822L67.0086 33.5376V33.6718L39.61 36.823L49.8661 49.7087L49.7364 49.8516L36.8545 39.5888C35.7948 48.8084 34.7525 57.8938 33.71 66.9835L33.541 66.9922Z" fill="#FDA631"/>
+      </svg>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
           ОГО!
