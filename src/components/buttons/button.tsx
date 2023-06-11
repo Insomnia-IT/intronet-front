@@ -39,9 +39,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
           <div style={{ margin: "-8px 0", height: "1.5em" }}>
             <EyeLoading size="1.5em" />
           </div>
-        ) : (
-          <span>{children}</span>
-        )
+        ) : type === "borderVivid" ? <span>{children}</span> : children
       }
     />
   );

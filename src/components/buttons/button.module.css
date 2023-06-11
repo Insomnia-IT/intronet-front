@@ -71,7 +71,6 @@
 
 .close {
   font-size: 12px;
-  line-height: 14px;
   composes: frame;
   composes: button;
   position: absolute;

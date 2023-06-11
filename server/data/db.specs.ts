@@ -1,4 +1,5 @@
 import { test } from "@jest/globals";
+import {readFileSync} from "fs";
 import locationsJSON from "./locations.json";
 import moviesJSON from "./movies.json";
 import mainPageJSON from "./main-page.json";
@@ -6,13 +7,12 @@ import { Fn } from "@cmmn/cell/lib";
 import { Database } from "../database";
 import fetch from "node-fetch";
 
-process.env.DATABASE = "https://admin:password@redmine.cb27.ru:17443/db";
+process.env.DATABASE = "https://admin:ins0mni0p0ssw0rdSoStrong@redmine.cb27.ru:17443/db";
 // process.env.DATABASE = "http://admin:password@localhost:5984";
-
 
 test("import-locations", async () => {
   const regexOnlyWord = /[^a-zA-Zа-яА-Я]/g;
-  const notionLocaitons: Array<{
+  const notionLocations: Array<{
     uuid: string;
     name: string;
     map_name: string;
@@ -26,22 +26,26 @@ test("import-locations", async () => {
       Authorization: "Basic YWRtaW46YWRtaW4=",
     },
   }).then((x) => x.json());
+  const locationsMapping = readFileSync("/home/fransua/dev/insomnia/intronet-front/server/data/locations.tsv", "utf-8")
+    .split('\n')
+    .slice(1)
+    .map(x => x.split('\t'))
+    .map(([i, gmaps, group, notionName, comment, map, cafe, grant, game])=>({i, gmaps, group, notionName, comment, map, cafe, grant, game}));
+
   const map = new Map(
-    notionLocaitons.map((x) => [
-      (x.map_name || x.name).replace(regexOnlyWord, ""),
+    notionLocations.map((x) => [
+      (x.map_name || x.name),
       x,
     ])
   );
   const db = new Database<InsomniaLocation>("locations");
   const existed = await db.getSince();
+
   if (existed.length != 0) {
     return;
   }
   const notMatched = [];
-  const data = Object.entries(locationsJSON)
-    // .filter((x) => x.geometry.type == "Point")
-    .flatMap(([type, collection], i) => {
-      return collection.features.flatMap((x) => {
+  const data = locationsJSON.features.flatMap((x) => {
         const figure: Geo | Geo[][] =
           x.geometry.type == "Point"
             ? {
@@ -51,17 +55,19 @@ test("import-locations", async () => {
             : ((x.geometry.coordinates as number[][][]).map((arr) =>
                 arr.map((x) => ({ lat: x[1], lon: x[0] }))
               ) as Array<Array<Geo>>);
-        const notionLoc = map.get(x.properties.name.replace(regexOnlyWord, ""));
-        // if (!notionLoc) {
-        //   notMatched.push(x.properties.name);
-        //   return [];
-        // }
+        const mapping = locationsMapping.find(m => m.gmaps === x.properties.name);
+        const notionLoc = notionLocations.find(n =>
+          (n.name === mapping?.notionName ?? x.properties.name) ||
+          (n.map_name && (n.map_name === mapping?.notionName ?? x.properties.name)));
+        if (!notionLoc) {
+          notMatched.push(x.properties.name);
+          return [];
+        }
         return [
           {
             _id: Fn.ulid(),
             directionId: notionLoc?.direction,
             name: notionLoc?.name ?? x.properties.name,
-            image: "camping",
             tags: notionLoc?.tags ?? [],
             description: notionLoc?.description ?? x.properties.description,
             figure,
@@ -72,11 +78,10 @@ test("import-locations", async () => {
           } as InsomniaLocation,
         ];
       });
-    });
   console.log(
     notMatched.join("\n"),
     "\n-------------------\n",
-    notionLocaitons
+    notionLocations
       .filter((x) => !data.some((y) => y.name === x.name))
       .map((x) => x.map_name || x.name)
       .join("\n")

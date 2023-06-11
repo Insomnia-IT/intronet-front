@@ -45,7 +45,6 @@ type InsomniaLocation = {
   directionId: string;
   figure: Geo | Geo[][];
   tags: string[];
-  image: string;
   menu?: string;
   minZoom?: number;
   maxZoom?: number;

@@ -18,7 +18,7 @@ export function getDayText(
       return namesAt[day];
     }
     case "shortWD": {
-      return namesShort[day].slice(0, 2);
+      return namesShort[day]?.slice(0, 2) ?? '-';
     }
     default:
       return names[day];
