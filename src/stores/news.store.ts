@@ -1,7 +1,6 @@
 import {cell, Cell, Fn} from "@cmmn/cell/lib";
 import {getDay, getDayText} from "@helpers/getDayText";
 import {fromUTC, utc} from "@helpers/utc";
-import {h} from "preact";
 import {ObservableDB} from "./observableDB";
 
 class NewsStore {

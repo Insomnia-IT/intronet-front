@@ -6,7 +6,7 @@ export function useForm<T>(cell: Cell<Partial<T>>){
   const ref = useRef<HTMLFormElement>();
   const onChange = useCallback((ev: ChangeEvent) => {
     const formData = new FormData(ref.current);
-    const result = cell.get() ?? {} as Partial<T>;
+    const result = {...cell.get() ?? {}} as Partial<T>;
     formData.forEach((value,key) => {
       result[key] = value;
     })
