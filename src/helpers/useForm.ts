@@ -26,7 +26,6 @@ export function useForm<T>(cell: Cell<Partial<T>>){
 }
 
 function setValues(value: object, form: HTMLFormElement){
-  console.log(value, form);
   for (let element of Array.from(form.elements) as HTMLInputElement[]) {
     const name = element.getAttribute('name');
     if (element.value !== value[name] && value[name]){
