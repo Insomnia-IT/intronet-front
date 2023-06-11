@@ -285,8 +285,15 @@
       </g>
     </g>
     <g transform="translate(72, 48)">
+
     </g>
-    <g transform="translate(96, 48)">
+    <g id='trash' transform="translate(96, 48)">
+      <g transform="translate(3, 1)">
+        <path d="M10.4999 0V2H16.139C17.3749 2 18.315 3.10973 18.1118 4.3288L17.9999 5H0.999926L0.888059 4.3288C0.684881 3.10973 1.62497 2 2.86085 2H8.49993V0H10.4999Z"
+              fill="currentColor"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4999 7H2.49993L3.80847 19.2131C3.91736 20.2293 4.77499 21 5.79709 21H13.2028C14.2249 21 15.0825 20.2293 15.1914 19.2131L16.4999 7ZM6.99993 11H8.49993V17H6.99993V11ZM10.4999 11H11.9999V17H10.4999V11Z"
+              fill="currentColor"/>
+      </g>
     </g>
   </g>
   <g class="navbar" transform="translate(-16, 212)">

@@ -2,12 +2,8 @@ import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
+import {api} from "./api";
 
-const api =
-  process.env.NODE_ENV === "production"
-    ? `/webapi`
-    : `https://redmine.cb27.ru:17443/webapi`;
-// const api = `/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
   change:

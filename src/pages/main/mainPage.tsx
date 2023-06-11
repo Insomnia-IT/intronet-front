@@ -9,6 +9,7 @@ import { MainCard } from "./card/main-card";
 import { Menu } from "./menu/menu";
 import {AddNews} from "./news/add-news";
 import {AllNews} from "./news/all-news";
+import {EditNews} from "./news/edit-news";
 import {News} from "./news/news";
 
 export const MainPage = () => {
@@ -48,7 +49,7 @@ function getSheetItems(route: RoutePath){
     case "news": switch (route[2]){
       case "add": return <AddNews/>;
       case undefined: return <AllNews/>;
-      default: return <AddNews/>;
+      default: return <EditNews/>;
     }
 
   }

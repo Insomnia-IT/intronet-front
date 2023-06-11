@@ -1,5 +1,6 @@
 import { cell, Fn } from "@cmmn/cell/lib";
 import { LocalStore } from "@stores/localStore";
+import {api} from "./api";
 
 class AuthStore extends LocalStore<{
   uid: string;
@@ -26,7 +27,7 @@ class AuthStore extends LocalStore<{
     const token = url.searchParams.get("token");
     if (token) {
       this.patch({ token });
-      fetch("/webapi/auth", {
+      fetch(api+'/auth', {
         headers: this.headers,
       }).then(async (x) => {
         if (!x.ok) {

@@ -54,6 +54,9 @@
 .vivid {
   background: var(--vivid-gradient);
 }
+.orange{
+  background: var(--chineese-cafe);
+}
 
 .buttonsBar {
   background: transparent;

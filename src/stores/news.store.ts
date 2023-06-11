@@ -22,8 +22,9 @@ class NewsStore {
     const utc = new Date(iso);
     const local = fromUTC(utc);
     const hour = local.getHours();
+    const minutes = local.getMinutes();
     const day = getDayText(getDay(+local));
-    return `${day} ${hour}:00`;
+    return `${day} ${hour}:${minutes}`;
   }
 
   public async add(){
@@ -42,6 +43,18 @@ class NewsStore {
   public get isAddNewsValid(){
     const item = this.addNewsCell.get() as NewsItem;
     return !!(item.text && item.title)
+  }
+
+  remove(_id: string) {
+    return this.db.remove(_id)
+  }
+
+  get(id: any) {
+    return this.db.get(id);
+  }
+
+  async update(newItem: NewsItem) {
+    await this.db.addOrUpdate(newItem);
   }
 }
 
