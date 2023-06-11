@@ -21,6 +21,7 @@
   line-height: 17px;
   text-align: center;
   text-transform: uppercase;
+  user-select: none;
 }
 
 .button:hover {
