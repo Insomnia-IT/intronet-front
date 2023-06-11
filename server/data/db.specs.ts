@@ -42,7 +42,7 @@ test("import-locations", async () => {
   const existed = await db.getSince();
 
   if (existed.length != 0) {
-    return;
+    // return;
   }
   const notMatched = [];
   const data = locationsJSON.features.flatMap((x) => {
@@ -87,7 +87,7 @@ test("import-locations", async () => {
       .join("\n")
   );
   for (let loc of data) {
-    await db.addOrUpdate({ ...loc, version: Fn.ulid() });
+    // await db.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
 }, 600000);
 

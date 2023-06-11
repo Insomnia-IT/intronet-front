@@ -19,7 +19,7 @@ export const Menu: FunctionalComponent = () => {
       <ButtonsBar at="bottom" onClick={switchOpen}>
         <Button class={styles.menuBtn}>МЕНЮ</Button>
       </ButtonsBar>
-      <div class={isOpen ? styles.menuOpen : styles.menu}>
+      <div class={isOpen ? styles.menuOpen : styles.menu} style={{userSelect: 'none'}}>
         {items.map((x) => (
           <div
             key={x.href}
