@@ -22,7 +22,7 @@ class NewsStore {
     const local = fromUTC(utc);
     const hour = local.getHours();
     const minutes = local.getMinutes();
-    const day = getDayText(getDay(+local));
+    const day = getDayText(getDay(+local), "short").toUpperCase();
     return `${day} ${hour}:${minutes}`;
   }
 

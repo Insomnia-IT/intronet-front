@@ -18,9 +18,9 @@ export const News = () => {
     return <>
       <Button type="borderVivid" goTo="/main/news/add">+ добавить новость</Button>
     </>;
-  return <Card border="Vivid" flex column gap={2} center>
-    <div>{state.news[0].time}</div>
-    <div>{state.news[0].title}</div>
-    <Link goTo="/main/news">{state.news.length > 1 ? 'все новости' : 'подробнее'}</Link>
+  return <Card border="Vivid" flex column center gap={0}>
+      <div class="textSmall colorWhite">{state.news[0].time}</div>
+      <div class="text colorWhite">{state.news[0].title}</div>
+      <Link style={{marginTop: 16}} goTo="/main/news">{state.news.length > 1 ? 'все новости' : 'подробнее'}</Link>
   </Card>
 }
