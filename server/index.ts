@@ -41,10 +41,12 @@ fastify.get<{
 fastify.post<{ Params: { name: string } }>(
   "/data/:name",
   async function (request, reply) {
-    const user = await authCtrl.parse(request.headers.authorization);
-    if (!checkAccess(user, request.params.name)){
-      reply.status(401);
-      return `User have not enough permissions to modify db`;
+    if (request.params.name !=='notes') {
+      const user = await authCtrl.parse(request.headers.authorization);
+      if (!checkAccess(user, request.params.name)) {
+        reply.status(401);
+        return `User have not enough permissions to modify db`;
+      }
     }
     return await dbCtrl.addOrUpdate(
       request.params.name,
