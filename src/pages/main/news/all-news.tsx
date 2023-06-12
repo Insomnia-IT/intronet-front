@@ -1,4 +1,4 @@
-import {Button, CloseButton} from "@components";
+import {Button, ButtonsBar, CloseButton} from "@components";
 import {Link} from "@components/link/link";
 import {useCell} from "@helpers/cell-state";
 import {SvgIcon} from "@icons";
@@ -11,11 +11,11 @@ export const AllNews = () => {
   return <>
     <div class="sh1">Важные новости</div>
     <CloseButton/>
-    <div flex column gap={10}  style={{margin: '27px 0'}}>
-    {state.news.map(x => <div key={x._id} flex column gap={1}>
-      <span class="sh3">{x.time}</span>
-      <span class="text">{x.text}</span>
-      {x.link && <Link goTo={x.link as any}>{x.linkText}</Link>}
+    <div flex column gap={6}  style={{margin: '27px 0'}}>
+    {state.news.map(x => <div key={x._id} flex column gap={2}>
+      <span class="sh3 colorGray">{x.time}</span>
+      <span class="text colorMediumBlue">{x.text}</span>
+      {x.link && <Link style={{marginTop: 8}} goTo={x.link as any}>{x.linkText || x.link}</Link>}
       {isAdmin && <div flex gap={5}>
         <Button type="frame" goTo={["main", "news", x._id]}>
           <SvgIcon id="#edit"/>
@@ -27,6 +27,10 @@ export const AllNews = () => {
       </div>}
     </div>)}
     </div>
-    {isAdmin && <Button type="blue" goTo={["main", "news", "add"]}>Добавить новость</Button>}
+    <ButtonsBar at="bottom">
+    {isAdmin
+      ? <Button type="blue" goTo={["main", "news", "add"]}>Добавить новость</Button>
+      : <Button type="vivid" class="w-full" goTo={["main"]}>Понятно</Button>}
+    </ButtonsBar>
   </>
 }
