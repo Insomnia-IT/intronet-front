@@ -74,7 +74,7 @@ export const coerceHour = (hour: unknown): hour is 9 | 13 | 17 => {
   return hour === 9 || hour === 13 || hour === 17;
 };
 
-const namesShort = ["чт 13", "пт 14", "сб 15", "вс 16", "пн 17"];
+export const namesShort = ["чт 13", "пт 14", "сб 15", "вс 16", "пн 17"];
 const namesFull = [
   "Четверг, 13 июля",
   "Пятница, 14 июля",

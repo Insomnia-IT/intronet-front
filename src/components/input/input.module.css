@@ -1,34 +1,41 @@
-.input{
-    composes: text from "../../app/app.style.module.css";
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 20px 16px;
-    gap: 8px;
-    color: var(--medium-blue);
-    border: 1px solid var(--medium-blue);
-    border-radius: 24px;
-    background: transparent;
+.input {
+  composes: text from "../../app/app.style.module.css";
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px 16px;
+  gap: 8px;
+  color: var(--medium-blue);
+  border: 1px solid var(--medium-blue);
+  border-radius: 24px;
+  background: transparent;
 }
 .input:focus-visible,
-.input:focus{
-    /*border-color: var(--chineese-cafe);*/
-    outline: none;
+.input:focus {
+  /*border-color: var(--chineese-cafe);*/
+  outline: none;
 }
-.input:invalid{
-    border-color: var(--pink);
-}
-
-.input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--gray);
-    opacity: 1; /* Firefox */
+.input:invalid {
+  border-color: var(--pink);
 }
 
-.input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--gray);
+.input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--gray);
+  opacity: 1; /* Firefox */
 }
 
-.input::-ms-input-placeholder { /* Microsoft Edge */
-    color: var(--gray);
+.input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--gray);
+}
+
+.input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--gray);
+}
+
+.textarea {
+  resize: none;
 }

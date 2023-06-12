@@ -7,6 +7,7 @@ import { RulesPage } from "./Rules/RulesPage/RulesPage";
 import { PageContainer } from "@components/Layout/PageContainer/PageContainer";
 import newStyles from "./new.module.css";
 import noteStyles from "../notes.module.css";
+import { EditorPage } from "./Editor/EditorPage";
 
 export const NewNoteSwitch: FunctionalComponent = () => {
   const { subSection, goToNew } = useNotesRouter();
@@ -22,9 +23,13 @@ export const NewNoteSwitch: FunctionalComponent = () => {
       case "rules": {
         return <RulesPage />;
       }
+
+      case "editor": {
+        return <EditorPage />;
+      }
     }
   };
-
+  console.debug("new switch");
   return (
     <PageContainer>
       <div className={noteStyles.page}>

@@ -4,19 +4,13 @@ import { Tag, Tags } from "@components/tag";
 import classNames from "classnames";
 import { FunctionalComponent, JSX } from "preact";
 import { useMemo } from "preact/hooks";
+import styles from "./field.module.css";
 
 export type IFieldProps = {
-  type: "Input" | "Textarea" | "Tags";
-  name: string;
-  value: string;
   onChange: (props: { name: string; value: string }) => void;
-  lable?: string;
-  placeholder?: string;
-  description?: string;
   className?: string;
   inputClassName?: string;
-  tags?: ITag[];
-};
+} & IField;
 
 export const Field: FunctionalComponent<IFieldProps> = ({
   type,
@@ -29,6 +23,8 @@ export const Field: FunctionalComponent<IFieldProps> = ({
   className,
   inputClassName,
   tags,
+  maxLength,
+  key,
 }) => {
   const id = useMemo(() => Fn.ulid(), []);
   const handleChange = (newValue: string) => {
@@ -40,9 +36,10 @@ export const Field: FunctionalComponent<IFieldProps> = ({
   const handleInput = (e: JSX.TargetedEvent<HTMLInputElement, Event>) => {
     handleChange(e.currentTarget.value);
   };
-  const getHandleTagSelect = (tagId: string) => {
+
+  const getHandleTagSelect = (tagName: string) => {
     return () => {
-      handleChange(tagId);
+      handleChange(tagName);
     };
   };
 
@@ -53,11 +50,12 @@ export const Field: FunctionalComponent<IFieldProps> = ({
         return (
           <Input
             placeholder={placeholder}
-            className={inputClassName}
+            className={classNames(inputClassName, styles.input)}
             textarea={type === "Textarea"}
             value={value}
             id={id}
             onInput={handleInput}
+            maxLength={maxLength}
           />
         );
       }
@@ -65,13 +63,17 @@ export const Field: FunctionalComponent<IFieldProps> = ({
       case "Tags": {
         return (
           tags.length && (
-            <Tags tagsList={tags} class={className} id={id}>
-              {({ value: tagValue, id: tagID }) => {
+            <Tags
+              tagsList={tags}
+              class={classNames(inputClassName, styles.input)}
+              id={id}
+            >
+              {({ value: tagValue, name: tagName }) => {
                 return (
                   <Tag
-                    selected={tagID === value}
-                    onClick={getHandleTagSelect(tagID)}
-                    key={tagID}
+                    selected={tagName === value}
+                    onClick={getHandleTagSelect(tagName)}
+                    key={tagName}
                   >
                     {tagValue}
                   </Tag>
@@ -85,15 +87,37 @@ export const Field: FunctionalComponent<IFieldProps> = ({
   };
 
   return (
-    <div className={classNames(className)}>
-      {lable && <label htmlFor={id}>{lable}</label>}
+    <div className={classNames(className, styles.field)} key={key}>
+      {lable && (
+        <label
+          className={classNames(styles.lable, "sh1", "sfPro")}
+          htmlFor={id}
+        >
+          {lable}
+        </label>
+      )}
       {getInput()}
-      {description && <span>{description}</span>}
+      {description && (
+        <span className={classNames(styles.description, "textSmall")}>
+          {description}
+        </span>
+      )}
     </div>
   );
 };
 
+export type IField = {
+  type: "Input" | "Textarea" | "Tags";
+  name: string;
+  value: string;
+  lable?: string;
+  placeholder?: string;
+  description?: string;
+  tags?: ITag[];
+  maxLength?: number;
+};
+
 type ITag = {
-  value: string | number;
-  id: string;
+  value: string;
+  name: string;
 };

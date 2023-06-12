@@ -16,7 +16,9 @@ export const Input: FunctionalComponent<InputProps> = ({
   ...inputProps
 }) => {
   const props = {
-    className: classNames(style.input, c as string, className as string),
+    className: classNames(style.input, c as string, className as string, {
+      [style.textarea]: textarea,
+    }),
     ...inputProps,
   };
 

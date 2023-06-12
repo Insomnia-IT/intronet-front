@@ -3,14 +3,16 @@ import { useMemo, useState } from "preact/hooks";
 
 export type IFormProps = {
   initialFields: IFormField[];
-  onSubmit: (fields: IFormField[]) => void;
+  onSubmit: (fields) => void;
   children: (props: IFormChildern) => JSX.Element;
+  className?: string;
 };
 
 export const Form: FunctionalComponent<IFormProps> = ({
   initialFields,
   onSubmit,
   children,
+  className,
 }) => {
   const [state, setState] = useState(
     initialFields.reduce((accum, { name, value }) => {
@@ -19,40 +21,48 @@ export const Form: FunctionalComponent<IFormProps> = ({
     }, {})
   );
 
-  const onFieldChange = ({ name, value }: IFormField) => {
-    setState({
-      ...state,
-      name: value,
-    });
-  };
-
-  const submit = () => {
-    onSubmit(
-      Object.keys(state).map((name: string) => {
-        return {
-          name,
-          value: state[name],
-        };
-      })
-    );
-  };
-
   const allReqFieldIsFill = useMemo<boolean>(() => {
-    for (const { name, require } of initialFields) {
+    for (const field of initialFields) {
+      const { require, name } = field;
       if (require && state[name] === "") {
         return false;
       }
-
-      return false;
     }
+
+    return true;
   }, [state, initialFields]);
 
+  const onFieldChange = ({ name, value }: IFormField) => {
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
+
+  const submit = (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+    e.preventDefault();
+
+    if (!allReqFieldIsFill) {
+      return;
+    }
+
+    onSubmit(
+      Object.keys(state).reduce((accum, name) => {
+        accum[name] = state[name].trim();
+
+        return accum;
+      }, {})
+    );
+  };
+
   return (
-    <form>{children({ state, onFieldChange, submit, allReqFieldIsFill })}</form>
+    <form className={className}>
+      {children({ state, onFieldChange, submit, allReqFieldIsFill })}
+    </form>
   );
 };
 
-type IFormField = {
+export type IFormField = {
   name: string;
   value: string;
   require?: boolean;
@@ -61,6 +71,6 @@ type IFormField = {
 type IFormChildern = {
   state: {};
   onFieldChange: (field: IFormField) => void;
-  submit: () => void;
+  submit: (e: JSX.TargetedEvent<HTMLElement, Event>) => void;
   allReqFieldIsFill: boolean;
 };
