@@ -65,7 +65,9 @@ class NotesStore {
 
   public getNotesByFilterId(categoryId: string): INote[] | [] {
     return this.notes.filter((note) => {
-      return note.categoryId === categoryId;
+      // В рантайме почему то после полной очистке может быть
+      // undefined
+      return note?.categoryId === categoryId;
     });
   }
 

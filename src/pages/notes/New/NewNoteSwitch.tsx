@@ -29,7 +29,7 @@ export const NewNoteSwitch: FunctionalComponent = () => {
       }
     }
   };
-  console.debug("new switch");
+
   return (
     <PageContainer>
       <div className={noteStyles.page}>
