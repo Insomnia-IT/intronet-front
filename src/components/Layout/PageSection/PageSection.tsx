@@ -1,9 +1,10 @@
 import { FunctionalComponent, JSX } from "preact";
 import styles from "../layout.module.css";
+import classNames from "classnames";
 
 export const PageSection: FunctionalComponent<
   IPageSectionProps & JSX.ElementChildrenAttribute
-> = ({ children, theme = "light" }) => {
+> = ({ children, theme = "light", className }) => {
   let themeClassName = "";
 
   switch (theme) {
@@ -16,10 +17,13 @@ export const PageSection: FunctionalComponent<
   }
 
   return (
-    <div className={styles.pageSection + " " + themeClassName}>{children}</div>
+    <div className={classNames(styles.pageSection, themeClassName, className)}>
+      {children}
+    </div>
   );
 };
 
 type IPageSectionProps = {
   theme?: "light" | "dark";
+  className?: string;
 };

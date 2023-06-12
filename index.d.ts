@@ -107,12 +107,20 @@ type INote = {
   title: string;
   text: string;
   categoryId: string;
-  author: string;
+  author: {
+    name: string;
+    id: string;
+  };
   createdAt: number;
   updatedAt?: number;
+  TTL: 13 | 14 | 15 | 16 | 17;
 };
 
-type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt">;
+type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt" | "author"> & {
+  author: {
+    name: string;
+  };
+};
 
 type INoteUpdated = Partial<
   Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
@@ -161,7 +169,7 @@ interface AuditoryElement {
   description?: string; //Описание мастер-класса или лекции. (ЕСЛИ ЧЕСТНО, БУДЕТ РЕДКО КЕМ НАПИСАНО. Возможно, суну сюда генерируемое что-нить аля доп поля)
   time: string; //Время начала.
   speaker?: string; //Лектор или ведущий мастер класса, или учёный, или вообще кто угодно.
-  isCanceled?: bool; //Если = true, значит отменено.
+  isCanceled?: boolean; //Если = true, значит отменено.
   changes?: string; //Изменения в расписании по данному пункту.
   age?: number;
   movies?: MovieInfo[];

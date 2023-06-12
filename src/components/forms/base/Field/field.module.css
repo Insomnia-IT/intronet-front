@@ -1,0 +1,27 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.lable {
+  margin-bottom: 16px;
+  color: var(--medium-blue);
+}
+
+.input {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.input:last-child {
+  margin-bottom: 0;
+}
+
+.description {
+  color: var(--gray);
+}
+
+.tags {
+  overflow: scroll;
+}
