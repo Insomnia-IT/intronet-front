@@ -128,7 +128,7 @@ export class SwStorage {
   }
 
   async getResponse(request: Request) {
-    if (new URL(request.url).pathname.match(/^\/(api|db|webapi|kibana)/))
+    if (new URL(request.url).pathname.match(/^\/(api|db|webapi|kibana|grafana)/))
       return fetch(request);
     // routes with extensions: .js, .css, .json...
     if (request.url.match(/\.\w+$/)) return this.getFromCacheOrFetch(request);
