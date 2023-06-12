@@ -3,7 +3,7 @@ import Styles from "./tag.module.css";
 import { JSXInternal } from "preact/src/jsx";
 import classNames from "classnames";
 
-export type TagsProps<ITags extends Array<any> = any[]> = {
+export type TagsProps<ITags extends ReadonlyArray<any> = ReadonlyArray<any>> = {
   tagsList: ITags;
   children: (tag: ITags[number]) => VNode | null;
 } & Omit<JSXInternal.HTMLAttributes<HTMLDivElement>, "className">;

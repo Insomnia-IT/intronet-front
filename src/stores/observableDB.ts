@@ -2,12 +2,8 @@ import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
+import {api} from "./api";
 
-const api =
-  process.env.NODE_ENV === "production"
-    ? `/webapi`
-    : `https://redmine.cb27.ru:17443/webapi`;
-// const api = `/webapi`;
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
   change:
@@ -33,7 +29,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async init() {
-    await this.loadItems().then((x) => this.emit("loaded"));
+    await this.loadItems().then((x) => {
+      this.emit("loaded");
+      this.emit("change");
+    } );
     if (!this.localOnly) {
       await this.sync().catch(console.error);
       setInterval(() => this.sync().catch(console.error), 3000);
@@ -180,7 +179,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
 
   constructor() {
     super("versions");
-    setInterval(() => this.loadFromServer(), 3000);
+    // setInterval(() => this.loadFromServer(), 3000);
   }
 
   public remote: Record<string, string> = {};

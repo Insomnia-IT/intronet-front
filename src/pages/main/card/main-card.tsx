@@ -1,10 +1,9 @@
 import { FunctionalComponent } from "preact";
 import { Card } from "@components/cards";
-import { CardInfo } from "../card-list";
 import styles from "../main-page.module.css";
 
 export type MainCard = {
-  info: CardInfo;
+  info: MainPageCard;
 };
 export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
   return (
@@ -14,7 +13,7 @@ export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
       class={info.color ? styles.mainCardColor : styles.mainCard}
     >
       <header>{info.title}</header>
-      <div class="textSmall">{info.descr}</div>
+      <div class="textSmall colorInsNight">{info.descr}</div>
     </Card>
   );
 };

@@ -22,6 +22,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const state = useCell(store.state);
   const movie = state.movie ?? ({} as MovieInfo);
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
+  console.log(screenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { votedMovie, isOnline } = useCell(votingStore.state);
   if (!screenLocations.length) return <></>;
@@ -35,31 +36,34 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class="colorGray">
         {minutes} мин {seconds} сек
       </div>
-      {!votedMovie && <div flex column gap={2} style={{ marginBottom: 24, marginTop: 24 }}>
-        <Card border="Vivid" background="White">
-          <div flex column gap="2">
-            <div class="sh2 colorPink">Международный конкурс анимации</div>
-            <div class="sh3 colorPink">Приз зрительских симпатий</div>
-          </div>
-          <Button
-            class="w-full unbounded"
-            style={{
-              fontSize: 14,
-            }}
-            type="vivid"
-            disabled={!isOnline}
-            goTo={["voting", movie.id]}
-          >
-            Голосую за эту работу!
-          </Button>
-        </Card>
+      {!votedMovie && (
+        <div flex column gap={2} style={{ marginBottom: 24, marginTop: 24 }}>
+          <Card border="Vivid" background="White">
+            <div flex column gap="2">
+              <div class="sh2 colorPink">Международный конкурс анимации</div>
+              <div class="sh3 colorPink">Приз зрительских симпатий</div>
+            </div>
+            <Button
+              class="w-full unbounded"
+              style={{
+                fontSize: 14,
+              }}
+              type="vivid"
+              disabled={!isOnline}
+              goTo={["voting", movie.id]}
+            >
+              Голосую за эту работу!
+            </Button>
+          </Card>
 
-        {!isOnline && (
-          <div class="colorPink textSmall">
-            Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
-          </div>
-        )}
-      </div>}
+          {!isOnline && (
+            <div class="colorPink textSmall">
+              Нет подключения к сети, вернитесь к точке WIFI, чтобы
+              проголосовать
+            </div>
+          )}
+        </div>
+      )}
       <div flex column gap={6}>
         <div className="sh1">Расписание показов:</div>
         {state.block.views.map((view) => (

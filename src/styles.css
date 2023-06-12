@@ -58,6 +58,9 @@
 :global(.bgInsNight) {
   background: var(--ins-night);
 }
+:global(.colorInsNight) {
+  color: var(--ins-night) !important;
+}
 :global(.colorPink) {
   color: var(--pink) !important;
 }

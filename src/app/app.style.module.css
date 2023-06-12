@@ -49,8 +49,8 @@
   line-height: 17px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--electric-blues)
-
+  color: var(--electric-blues);
+  user-select: none;
 }
 :global(.link):after{
   content: ' →';

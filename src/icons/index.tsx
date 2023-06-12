@@ -44,7 +44,7 @@ export const SvgContainer: {
 export function Logo(){
   const setRef = useCallback((div: HTMLDivElement | undefined) => {
     if (div){
-      div.replaceWith(SvgContainer.logo.cloneNode(true))
+      div.appendChild(SvgContainer.logo.cloneNode(true))
     }
   }, []);
   return <div ref={setRef}/>;

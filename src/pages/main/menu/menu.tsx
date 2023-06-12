@@ -1,5 +1,4 @@
 import { FunctionalComponent } from "preact";
-import { CardInfo } from "../card-list";
 import { RoutePath, RoutePathString, useRouter } from "../../routing";
 import styles from "../main-page.module.css";
 import { Button, ButtonsBar, CloseButton } from "@components";
@@ -10,7 +9,7 @@ export const IsMenuOpen = new Cell(false);
 const switchOpen = () => IsMenuOpen.set(!IsMenuOpen.get());
 
 export type MainCard = {
-  info: CardInfo;
+  info: MainPageCard;
 };
 export const Menu: FunctionalComponent = () => {
   const router = useRouter();
@@ -20,7 +19,7 @@ export const Menu: FunctionalComponent = () => {
       <ButtonsBar at="bottom" onClick={switchOpen}>
         <Button class={styles.menuBtn}>МЕНЮ</Button>
       </ButtonsBar>
-      <div class={isOpen ? styles.menuOpen : styles.menu}>
+      <div class={isOpen ? styles.menuOpen : styles.menu} style={{userSelect: 'none'}}>
         {items.map((x) => (
           <div
             key={x.href}

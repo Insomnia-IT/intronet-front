@@ -1,3 +1,4 @@
+import * as console from "console";
 import log4js from "log4js";
 
 log4js.configure({
@@ -18,7 +19,7 @@ log4js.configure({
 
 export const logCtrl = new class {
   logger = log4js.getLogger();
-  log(data: any){
+  log = (data: any) => {
     this.logger.log('INFO', {
       '@tags': ['nodejs', 'test'],
       '@timestamp': new Date().getTime(),

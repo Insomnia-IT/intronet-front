@@ -1,220 +1,192 @@
-export const CardList: Array<CardInfo> = [
+export const CardList: Array<MainPageCard> = [
   {
-    id: "house",
+    _id: "house",
     title: "Жилье",
     color: true,
-    section: Section.about,
+    section: 'about',
     row: 1,
     col: 1,
   },
   {
-    id: "food",
+    _id: "food",
     title: "Еда",
     color: false,
-    section: Section.about,
+    section: 'about',
     row: 1,
     col: 2,
   },
   {
-    id: "water",
+    _id: "water",
     title: "Вода",
     color: false,
-    section: Section.about,
+    section: 'about',
     row: 1,
     col: 3,
   },
 
   {
-    id: "phone",
+    _id: "phone",
     title: "Зарядить телефон",
     color: false,
-    section: Section.about,
+    section: 'about',
     row: 2,
     col: 1,
   },
   {
-    id: "insight",
+    _id: "insight",
     title: "Intronet Insomnia",
     color: true,
-    section: Section.about,
+    section: 'about',
     row: 2,
     col: 2,
   },
 
   {
-    id: "child",
+    _id: "child",
     title: "Я с ребёнком",
     descr:
       "Где поселиться, правила безопасности, игровые площадки и активности",
     color: true,
-    section: Section.about,
+    section: 'about',
     row: 3,
     col: 1,
   },
 
   {
-    id: "wc",
+    _id: "wc",
     title: "Туалеты и\nдуши",
     color: false,
-    section: Section.about,
+    section: 'about',
     row: 4,
     col: 1,
   },
 
   {
-    id: "gc",
+    _id: "gc",
     title: "Мусор",
     color: false,
-    section: Section.about,
+    section: 'about',
     row: 4,
     col: 2,
   },
 
   {
-    id: "animation",
+    _id: "animation",
     title: "Анимация",
     color: true,
     descr: "Расписание показов, все про мультфильмы в лесу",
-    section: Section.activity,
+    section: 'activity',
     row: 1,
     col: 1,
   },
 
   {
-    id: "music",
+    _id: "music",
     title: "Музыка",
     color: false,
-    section: Section.activity,
+    section: 'activity',
     row: 2,
     col: 1,
   },
 
   {
-    id: "voting",
+    _id: "voting",
     title: "Голосование",
     color: true,
-    section: Section.activity,
+    section: 'activity',
     row: 2,
     col: 2,
   },
 
   {
-    id: "carnaval",
+    _id: "carnaval",
     title: "Карнавал",
     color: false,
-    section: Section.activity,
+    section: 'activity',
     row: 3,
     col: 1,
   },
 
   {
-    id: "friends",
+    _id: "friends",
     title: "Найти друзей",
     color: false,
-    section: Section.activity,
+    section: 'activity',
     row: 3,
     col: 2,
   },
 
   {
-    id: "nonanimation",
+    _id: "nonanimation",
     title: "неАнимация",
     descr: "Дневные развлечения на фестивале",
     color: true,
-    section: Section.activity,
+    section: 'activity',
     row: 4,
     col: 1,
   },
 
   {
-    id: "lostChild",
+    _id: "lostChild",
     title: "Я потерял ребёнка!",
     descr: "Что делать, куда бежать, где искать...",
     color: true,
-    section: Section.warning,
+    section: 'warning',
     row: 1,
     col: 1,
   },
 
   {
-    id: "lostStuff",
+    _id: "lostStuff",
     title: "Потерял вещи",
     color: true,
-    section: Section.warning,
+    section: 'warning',
     row: 2,
     col: 1,
   },
 
   {
-    id: "ants",
+    _id: "ants",
     title: "Клещи",
     color: false,
-    section: Section.warning,
+    section: 'warning',
     row: 2,
     col: 1,
   },
 
   {
-    id: "medical",
+    _id: "medical",
     title: "Я поранился",
     descr: "Как добраться до медиков, что делать, чтобы помочь раненому",
     color: false,
-    section: Section.warning,
+    section: 'warning',
     row: 3,
     col: 1,
   },
   {
-    id: "dogs",
+    _id: "dogs",
     title: "Про собак",
     color: false,
-    section: Section.other,
+    section: 'other',
     row: 2,
     col: 1,
   },
   {
-    id: "leave",
+    _id: "leave",
     title: "Как уехать",
     color: true,
-    section: Section.other,
+    section: 'other',
     row: 2,
     col: 1,
   },
 ];
 
-export type CardInfo = {
-  id: string;
-  title: string;
-  descr?: string;
-  color: boolean;
-  section: Section;
-  row: number;
-  col: number;
-  colSpan?: number;
-  rowSpan?: number;
-};
 
-export const enum Section {
+
+
+const enum Section {
   about,
   activity,
   warning,
   other,
 }
-
-export const Sections = [
-  {
-    section: Section.about,
-    title: "О фестивале",
-  },
-  {
-    section: Section.activity,
-    title: "как тусим",
-  },
-  {
-    section: Section.warning,
-    title: "если чп",
-  },
-  {
-    section: Section.other,
-    title: "Тоже важное",
-  },
-];

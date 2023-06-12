@@ -17,7 +17,7 @@ const fields: INewNoteFormFields = [
   {
     name: "title",
     value: "",
-    type: "Input",
+    type: "input",
     require: true,
     description: "Максимум 35 символов",
     placeholder: "Привет, друзья!",
@@ -32,7 +32,7 @@ const fields: INewNoteFormFields = [
     description:
       "Тут уже можно разойтись, но помните, что краткость — сестра таланта (А.П. Чехов)",
     require: true,
-    type: "Textarea",
+    type: "textarea",
     lable: "Текст",
     maxLength: 300,
   },
@@ -43,7 +43,7 @@ const fields: INewNoteFormFields = [
     placeholder: "Александр Пушкин",
     require: true,
     lable: "Автор",
-    type: "Input",
+    type: "input",
     maxLength: 30,
   },
 
@@ -51,7 +51,7 @@ const fields: INewNoteFormFields = [
     name: "category",
     value: "",
     lable: "Категория",
-    type: "Tags",
+    type: "tags",
   },
 
   {
@@ -59,7 +59,7 @@ const fields: INewNoteFormFields = [
     value: "",
     lable: "Актуально до",
     description: "В 00:00 выбранного дня удалим объявление",
-    type: "Tags",
+    type: "tags",
     tags: dayTags,
     require: true,
   },

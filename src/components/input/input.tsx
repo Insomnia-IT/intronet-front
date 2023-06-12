@@ -2,27 +2,30 @@ import { FunctionalComponent, JSX } from "preact";
 import style from "./input.module.css";
 import classNames from "classnames";
 
-export type InputProps = {
-  textarea?: boolean;
-} & (
-  | JSX.HTMLAttributes<HTMLInputElement>
-  | JSX.HTMLAttributes<HTMLTextAreaElement>
-);
+export type InputProps =
+  | ({
+      inputType?: undefined | "input";
+    } & JSX.HTMLAttributes<HTMLInputElement>)
+  | ({
+      inputType: "textarea";
+    } & JSX.HTMLAttributes<HTMLTextAreaElement>);
 
 export const Input: FunctionalComponent<InputProps> = ({
   class: c,
   className,
-  textarea = false,
+  inputType,
   ...inputProps
 }) => {
+  const isTextarea = inputType === "textarea";
+
   const props = {
     className: classNames(style.input, c as string, className as string, {
-      [style.textarea]: textarea,
+      [style.textarea]: isTextarea,
     }),
     ...inputProps,
   };
 
-  return textarea ? (
+  return isTextarea ? (
     <textarea {...(props as JSX.HTMLAttributes<HTMLTextAreaElement>)} />
   ) : (
     <input {...(props as JSX.HTMLAttributes<HTMLInputElement>)} />

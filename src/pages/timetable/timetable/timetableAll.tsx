@@ -12,12 +12,11 @@ export const TimetableAll: FunctionalComponent = () => {
     screen: string;
     day: string;
   }>();
-  const screens = useCell(() =>
-    locationsStore.FullLocations.filter((x) => x.directionId == "screen")
-  );
+  const screens = useCell(() => locationsStore.ScreenLocations);
   const screen = router.query.screen ?? screens[0]?._id;
   const setScreen = (screen: string) =>
-    screen && router.goTo(
+    screen &&
+    router.goTo(
       router.route,
       {
         day: day.toString(),
@@ -53,7 +52,7 @@ export const TimetableAll: FunctionalComponent = () => {
             </Tag>
           )}
         </Tags>
-        <Tags tagsList={screens}>
+        <Tags tagsList={screens.slice()}>
           {(location) => (
             <Tag
               selected={screen === location._id}

@@ -33,7 +33,11 @@ export const Field: FunctionalComponent<IFieldProps> = ({
       value: newValue,
     });
   };
-  const handleInput = (e: JSX.TargetedEvent<HTMLInputElement, Event>) => {
+  const handleInput = (
+    e:
+      | JSX.TargetedEvent<HTMLInputElement, Event>
+      | JSX.TargetedEvent<HTMLTextAreaElement, Event>
+  ) => {
     handleChange(e.currentTarget.value);
   };
 
@@ -45,13 +49,13 @@ export const Field: FunctionalComponent<IFieldProps> = ({
 
   const getInput = () => {
     switch (type) {
-      case "Input":
-      case "Textarea": {
+      case "input":
+      case "textarea": {
         return (
           <Input
             placeholder={placeholder}
             className={classNames(inputClassName, styles.input)}
-            textarea={type === "Textarea"}
+            inputType={type}
             value={value}
             id={id}
             onInput={handleInput}
@@ -60,7 +64,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
         );
       }
 
-      case "Tags": {
+      case "tags": {
         return (
           tags.length && (
             <Tags
@@ -107,7 +111,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
 };
 
 export type IField = {
-  type: "Input" | "Textarea" | "Tags";
+  type: "input" | "textarea" | "tags";
   name: string;
   value: string;
   lable?: string;

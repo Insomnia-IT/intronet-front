@@ -24,7 +24,7 @@ export const dbCtrl = new class {
   }
 }
 
-const databasesList = [
+export const databasesList = [
   'accounts',
   'categories',
   'directions',
@@ -34,5 +34,7 @@ const databasesList = [
   'schedules',
   'activities',
   'tags',
+  'main',
+  'news'
 ];
 const databases = new Map<string, Database<any>>(databasesList.map(x => [x, new Database<any>(x)]));

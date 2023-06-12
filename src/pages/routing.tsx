@@ -69,22 +69,25 @@ export type RoutePathString =
   | `/${keyof typeof routes}`;
 const routeCell = new Cell<RoutePath>(
   location.pathname.split("/").slice(1) as RoutePath,
-  {
-    compare,
-    onExternal: onRoutingChange,
-  }
+  { compare }
 );
 const queryCell = new Cell<Record<string, string>>(
   Object.fromEntries(new URL(location.href).searchParams.entries())
 );
 
-function onRoutingChange() {
-  document.title = "Insomnia: " + routes[routeCell.get()[0]]?.title;
+function onRoutingChange(e: {oldValue: RoutePath, value: RoutePath} ){
+  document.title = "Insomnia: " + routes[e.value[0]]?.title;
   userStore.log({
-    action: 'navigate'
+    action: 'navigate',
+    from: e.oldValue.join('/')
   }).catch();
 }
-onRoutingChange();
+routeCell.on('change', onRoutingChange)
+
+onRoutingChange({
+  value: routeCell.get(),
+  oldValue: [] as any
+});
 const goTo = (
   path: RoutePath | RoutePathString,
   query: Record<string, string> | undefined = queryCell.get(),

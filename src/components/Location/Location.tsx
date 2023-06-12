@@ -44,7 +44,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
       </RequireAuth>
       {expanded && (
         <>
-          {location.directionId == Directions[Directions.screen] && (
+          {location.directionId == Directions.screen && (
             <>
               <div flex center>
                 <div flex-grow className="sh1">

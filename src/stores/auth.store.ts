@@ -1,14 +1,19 @@
 import { cell, Fn } from "@cmmn/cell/lib";
 import { LocalStore } from "@stores/localStore";
+import {api} from "./api";
 
 class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
+  role: 'admin' | 'superadmin' | 'tochka';
 }> {
   get headers() {
     return {
-      Authorization: `Bearer ${this.token}`,
+      ...(this.token ? {
+        Authorization: `Bearer ${this.token}`,
+      } : {}),
+      uid: this.uid
     };
   }
   constructor() {
@@ -22,11 +27,14 @@ class AuthStore extends LocalStore<{
     const token = url.searchParams.get("token");
     if (token) {
       this.patch({ token });
-      fetch("/webapi/auth", {
+      fetch(api+'/auth', {
         headers: this.headers,
-      }).then((x) => {
+      }).then(async (x) => {
         if (!x.ok) {
           this.patch({ token: null });
+        }else {
+          const role = await x.text() as any;
+          this.patch({role})
         }
       });
     }
@@ -48,6 +56,10 @@ class AuthStore extends LocalStore<{
   public get isAdmin(): boolean {
     return !!this.token;
   }
+  @cell
+  public get role() {
+    return this.values.role;
+  }
 
   public auth(user: string, token: string) {
     this.patch({
@@ -55,5 +67,13 @@ class AuthStore extends LocalStore<{
       token: token,
     });
   }
+  public createToken(role: 'admin'|'superadmin'|'tochka', username: string){
+    return fetch('/webapi/auth/token', {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({role, username})
+    })
+  }
+
 }
-export const authStore = new AuthStore();
+export const authStore = globalThis['authStore'] = new AuthStore();

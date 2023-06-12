@@ -24,6 +24,15 @@
   transform: scale(1.4);
 }
 
+
+:global(.notSelectedOnly) {
+  display: initial;
+}
+
+.selected :global(.notSelectedOnly)  {
+  display: none;
+}
+
 :global(.selectedOnly) {
   display: none;
 }
