@@ -61,6 +61,7 @@
     gap: 0;
     justify-content: space-between;
     height: 120px;
+    flex: 1 0 0;
 }
 
 .mainCard > header{

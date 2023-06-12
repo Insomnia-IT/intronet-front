@@ -27,7 +27,7 @@ export const MainPage = () => {
             <h2 class="colorWhite">{x.title}</h2>
             <div flex column gap="1">
               {x.rows.map(({row, cards}) => (
-                <div flex gap="1">
+                <div gap="1" flex>
                   {cards.map((c) => (
                     <MainCard info={c} key={c} />
                   ))}

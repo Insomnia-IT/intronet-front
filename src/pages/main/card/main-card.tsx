@@ -13,7 +13,7 @@ export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
       class={info.color ? styles.mainCardColor : styles.mainCard}
     >
       <header>{info.title}</header>
-      <div class="textSmall">{info.descr}</div>
+      <div class="textSmall colorInsNight">{info.descr}</div>
     </Card>
   );
 };
