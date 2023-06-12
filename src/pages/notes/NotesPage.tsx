@@ -8,6 +8,7 @@ import { NotesList } from "./NotesList/NotesList";
 import { AddNoteBtn } from "./AddNoteBtn/AddNoteBtn";
 
 import styles from "./notes.module.css";
+import { NewNoteSwitch } from "./New/NewNoteSwitch";
 
 export const NotesPage: FunctionalComponent = () => {
   const router = useNotesRouter();
@@ -17,7 +18,7 @@ export const NotesPage: FunctionalComponent = () => {
       return <div>Notes search</div>;
 
     case "new":
-      return <div>New note</div>;
+      return <NewNoteSwitch />;
 
     case undefined:
       return (

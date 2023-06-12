@@ -3,11 +3,6 @@ import { LocationProps } from "./types";
 import styles from "./styles.module.css";
 import { RequireAuth } from "../RequireAuth";
 import { LocationMenu } from "./LocationMenu";
-import // useEditSchedule,
-// useAddSchedule,
-// useDeleteSchedule,
-// useEditLocation,
-"@hooks";
 import { LocationScheduleInfo } from "./LocationSchedule/LocationScheduleInfo";
 import { useCell } from "@helpers/cell-state";
 import { Directions, locationsStore } from "@stores";
@@ -22,11 +17,11 @@ export const Location: FunctionalComponent<LocationProps> = ({
   location,
   expanded,
 }) => {
-  const editSchedule = (...args) => void 0; //useEditSchedule();
+  const editSchedule = (...args) => void 0;
 
-  const addSchedule = (...args) => void 0; //useAddSchedule(location._id);
+  const addSchedule = (...args) => void 0;
 
-  const deleteSchedule = (...args) => void 0; //useDeleteSchedule(location._id);
+  const deleteSchedule = (...args) => void 0;
 
   const editLocation = (...args) => void 0; // useEditLocation(location);
 

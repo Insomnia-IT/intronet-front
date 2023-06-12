@@ -1,0 +1,26 @@
+.rulesHeader {
+  margin-bottom: 32px;
+}
+
+.rulesPage {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.rulesSecion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rulesSectionTitle {
+  font-family: "SF Pro", sans-serif;
+  text-transform: none;
+}
+
+.rulesNextBtn {
+  margin-top: auto;
+  padding-bottom: 40px;
+}
