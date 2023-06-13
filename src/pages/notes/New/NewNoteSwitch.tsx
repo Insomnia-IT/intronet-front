@@ -8,6 +8,7 @@ import { PageContainer } from "@components/Layout/PageContainer/PageContainer";
 import newStyles from "./new.module.css";
 import noteStyles from "../notes.module.css";
 import { EditorPage } from "./Editor/EditorPage";
+import { SuccessPage } from "./Result/SuccessPage/SuccessPage";
 
 export const NewNoteSwitch: FunctionalComponent = () => {
   const { subSection, goToNew } = useNotesRouter();
@@ -30,14 +31,22 @@ export const NewNoteSwitch: FunctionalComponent = () => {
     }
   };
 
-  return (
-    <PageContainer>
-      <div className={noteStyles.page}>
-        <PageSection className={newStyles.rulesHeader}>
-          <PageHeader pageTitleText="Написать объявление" />
-        </PageSection>
-        {getPage()}
-      </div>
-    </PageContainer>
-  );
+  switch (subSection as INewNoteSections) {
+    case "success": {
+      return <SuccessPage />;
+    }
+
+    default: {
+      return (
+        <PageContainer>
+          <div className={noteStyles.page}>
+            <PageSection className={newStyles.notesHeader}>
+              <PageHeader pageTitleText="Написать объявление" />
+            </PageSection>
+            {getPage()}
+          </div>
+        </PageContainer>
+      );
+    }
+  }
 };
