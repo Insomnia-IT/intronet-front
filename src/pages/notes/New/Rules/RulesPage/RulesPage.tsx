@@ -18,7 +18,9 @@ export const RulesPage: FunctionalComponent = () => {
         <h2 className={classNames("sh1", newStyles.rulesSectionTitle)}>
           Объявления можно отправить только онлайн
         </h2>
-        <p className={"text colorMediumBlue"}>Интернет есть на Инфоцентре</p>
+        <p className={"text colorMediumBlue"}>
+          Точки доступа: Инфоцентр, Полевой экран, Речной экран
+        </p>
       </div>
 
       <div className={classNames(newStyles.rulesSecion)}>
@@ -26,19 +28,28 @@ export const RulesPage: FunctionalComponent = () => {
           Модерация
         </h2>
         <p className={"text colorMediumBlue"}>
-          Мы проверяем все тексты, так что после отправки пройдёт некоторое
-          время, прежде чем объявление будет опубликовано. Примерно 30 минут
-          днём.
+          Мы&nbsp;проверяем все тексты, так что после отправки пройдёт некоторое
+          время, прежде чем объявление будет опубликовано. Примерно
+          30&nbsp;минут днём.
+          <br />
+          <br />
+          Ночью модераторы могут отдыхать и&nbsp;опубликуют ваше объявление
+          утром.
         </p>
       </div>
 
       <div className={classNames(newStyles.rulesSecion)}>
         <h2 className={classNames("sh1", newStyles.rulesSectionTitle)}>
-          Правила публикации
+          Такое не&nbsp;опубликуем:
         </h2>
         {/* TODO: стилизовать по фигме */}
         <ul className={"text colorMediumBlue styledList "}>
-          {["Не ругаться", "Не флудить", "Не постить нюдсы"].map((rule) => {
+          {[
+            "Оскорбления",
+            "Спам и реклама",
+            "Политические дискуссии",
+            "Всё, что запрещено законом РФ",
+          ].map((rule) => {
             return <li>{rule}</li>;
           })}
         </ul>

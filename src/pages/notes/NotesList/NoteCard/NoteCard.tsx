@@ -42,7 +42,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         </Badge>
       )}
       <div className={classNames("sh3", "colorGray")}>
-        {author}, {getNoteDate(updatedAt || createdAt)}
+        {author.name}, {getNoteDate(updatedAt || createdAt)}
       </div>
     </Card>
   );
