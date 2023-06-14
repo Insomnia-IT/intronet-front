@@ -114,7 +114,7 @@ export const ActivityBlock: FunctionalComponent<ActivityBlockProps> = ({
                 : Styles.activityTime
             }
           >
-            {coerceTime(activity.start)} - {coerceTime(activity.end)}
+            {(activity.start)} - {(activity.end)}
           </span>
         </div>
       </div>

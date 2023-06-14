@@ -145,7 +145,7 @@ interface Activity {
   description: string;
   day: number;
   start: Date | string;
-  end: Date;
+  end: Date | string;
   author: string;
   age?: number;
   changes?: string;
