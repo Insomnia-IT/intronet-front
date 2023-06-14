@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { categoriesStore, notesStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { NextButton } from "../../NextButton/NextButton";
+import { FunctionalComponent } from "preact";
 
 const dayTags = daysShortNames.map((day) => {
   return {
@@ -75,7 +76,13 @@ const initialFormFields: IFormField[] = fields.map(
   }
 );
 
-export const NewNoteForm = () => {
+export type INewNoteFormProps = {
+  onAddNote: (success: boolean) => void;
+};
+
+export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
+  onAddNote,
+}) => {
   const categories = useCell(() => categoriesStore.categories);
   const categoriesTags = categories.map(({ name, _id }) => {
     return {
@@ -102,7 +109,7 @@ export const NewNoteForm = () => {
           | 17,
       })
       .then(() => {
-        console.debug("done");
+        onAddNote(true);
       });
   };
 
