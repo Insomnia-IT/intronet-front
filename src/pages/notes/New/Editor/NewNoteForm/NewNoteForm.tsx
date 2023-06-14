@@ -129,8 +129,8 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
                   {...field}
                   value={state[name]}
                   onChange={onFieldChange}
-                  className={classNames("sfPro", styles.field)}
-                  inputClassName={classNames("sfPro", {
+                  className={styles.field}
+                  inputClassName={classNames({
                     [styles.textField]: name === "text",
                     [styles.tags]: name === "TTL",
                   })}

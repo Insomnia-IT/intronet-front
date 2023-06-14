@@ -93,10 +93,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
   return (
     <div className={classNames(className, styles.field)} key={key}>
       {lable && (
-        <label
-          className={classNames(styles.lable, "sh1", "sfPro")}
-          htmlFor={id}
-        >
+        <label className={classNames(styles.lable, "sh1")} htmlFor={id}>
           {lable}
         </label>
       )}
