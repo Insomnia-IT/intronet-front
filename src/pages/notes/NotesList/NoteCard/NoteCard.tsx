@@ -33,7 +33,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     <Card background="Soft" borderType="LeftCloud" className={styles.card}>
       {isBookmark && <SvgIcon id="#bookmark" className={styles.bookmarkIcon} />}
       <div className={styles.content}>
-        <h3 className={"sh1"}>{title}</h3>
+        <h3 className={classNames("sh1", styles.noteTitle)}>{title}</h3>
         <span className={styles.noteText}>{text}</span>
       </div>
       {categoryName && (
@@ -41,7 +41,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
           {categoryName}
         </Badge>
       )}
-      <div className={classNames("sh3", "colorGray")}>
+      <div className={classNames("sh3", "colorGray", styles.footer)}>
         {author.name}, {getNoteDate(updatedAt || createdAt)}
       </div>
     </Card>
