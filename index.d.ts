@@ -40,6 +40,8 @@ declare module "*.html" {
 
 type InsomniaLocation = {
   _id: string;
+  // Неуникальный, но постоянный
+  notionId: string;
   name: string;
   description: string;
   directionId: string;
