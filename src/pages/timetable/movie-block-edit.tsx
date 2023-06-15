@@ -18,7 +18,10 @@ export const MovieBlockEdit = () => {
   return <div flex column gap={4} style={{marginTop: 50}}>
     <div class="sh1">{movieBlock.info.Title} {movieBlock.info.SubTitle}</div>
     {views.map((x, i) => <EditMovieBlockView index={i} block={movieBlock}/>)}
-    <CloseButton onClick={() => changesStore.clearChanges()}/>
+    <CloseButton onClick={() => {
+      changesStore.clearChanges();
+      router.back();
+    }}/>
   </div>;
 }
 
@@ -28,7 +31,6 @@ const EditMovieBlockView = (props: {
 }) => {
   const router = useRouter();
   const view = props.block.views[props.index];
-  console.log(view)
   if (!view) return <></>
   return <>
     <div className="sh3">День {props.index == 0 ? 'первого' : 'второго'} показа</div>

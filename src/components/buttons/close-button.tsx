@@ -13,10 +13,9 @@ export type CloseButtonProps = {
   position?: "absolute" | "static";
 };
 
-export const CloseButton: FunctionalComponent<CloseButtonProps> = ({onClick, ...props}) => {
+export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
-  const onClickInternal = useCallback(() => {
-    onClick?.();
+  const onClick = useCallback(() => {
     if (history.length > 0) {
       router.back();
     } else {
@@ -34,7 +33,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = ({onClick, ...
         },
         props.className
       )}
-      onClick={onClickInternal}
+      onClick={props.onClick ?? onClick}
     >
       <SvgIcon id="#x" size={14} />
     </Button>
