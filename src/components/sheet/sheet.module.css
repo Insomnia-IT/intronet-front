@@ -47,6 +47,5 @@
 }
 
 .containerClose .sheet{
-  height: 0;
   bottom: -100%;
 }

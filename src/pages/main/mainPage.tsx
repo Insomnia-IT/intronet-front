@@ -37,7 +37,9 @@ export const MainPage = () => {
           </div>
         ))}
         <Menu />
-        <Sheet children={sheetItems} onClose={() => router.goTo(["main"])}/>
+        <Sheet children={sheetItems}
+               height="auto"
+               onClose={() => router.goTo(["main"])}/>
       </div>
     </div>
   );

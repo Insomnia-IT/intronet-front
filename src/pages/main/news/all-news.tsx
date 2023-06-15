@@ -27,10 +27,8 @@ export const AllNews = () => {
       </div>}
     </div>)}
     </div>
-    <ButtonsBar at="bottom">
     {isAdmin
       ? <Button type="blue" goTo={["main", "news", "add"]}>Добавить новость</Button>
       : <Button type="vivid" class="w-full" goTo={["main"]}>Понятно</Button>}
-    </ButtonsBar>
   </>
 }
