@@ -1,3 +1,4 @@
+import {RequireAuth} from "@components/RequireAuth";
 import { FunctionalComponent } from "preact";
 import { Card } from "@components/cards";
 import Styles from "./animation.module.css";
@@ -28,6 +29,9 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   );
   return (
     <div>
+      <RequireAuth>
+        <Button class="w-full" goTo={["timetable", "edit", props.id]} type="frame">изменить время</Button>
+      </RequireAuth>
       <div className={[Styles.time, "sh1"].join(" ")}>
         {view.start} - {view.end}
       </div>

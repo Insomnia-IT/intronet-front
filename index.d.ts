@@ -247,3 +247,11 @@ type NewsItem = {
   linkText: string | undefined;
   time: string;
 }
+
+type Change = {
+  _id: string;
+  day?: number;
+  start?: string;
+  end?: string;
+  other?: string;
+}

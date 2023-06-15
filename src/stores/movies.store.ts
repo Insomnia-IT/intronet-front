@@ -1,4 +1,5 @@
-import { Fn, cell, Cell } from "@cmmn/cell/lib";
+import { Fn, cell, Cell, DeepPartial } from "@cmmn/cell/lib";
+import {changesStore} from "./changes.store";
 import { ObservableDB } from "./observableDB";
 import { locationsStore } from "@stores/locations.store";
 import { getCurrentDay, getDayText } from "@helpers/getDayText";
@@ -12,7 +13,10 @@ class MoviesStore {
 
   @cell
   public get MovieBlocks(): MovieBlock[] {
-    return this.db.toArray();
+    return this.db.toArray().map(b => ({
+      ...b,
+      views: b.views.map((view, index) => changesStore.withChanges(view, `${b._id}.${index}`))
+    }));
   }
 
   @cell
