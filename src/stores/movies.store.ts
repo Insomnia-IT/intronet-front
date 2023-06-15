@@ -90,7 +90,10 @@ export class MovieStore {
     block: MovieBlock;
     hasBookmark: boolean;
   }>(() => ({
-    movie: this.movie,
+    movie: {
+      ...this.movie,
+      description: `Future. A spaceliner from Earth arrives in orbit on an undiscovered planet. A group of hunters, thrill-seekers, disembark from the ship. Life is discovered on the planet’s surface: animals and plants that are caricatures of their Earth counterparts. The frivolous extermination of the local fauna and flora by the earthlings begins.`
+    },
     block: this.block,
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
   }));

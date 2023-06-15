@@ -26,7 +26,7 @@ export const ActivitySearch = () => {
         <ActivityList activities={filtered} searchQuery={query} />
       ) : (
         <SearchPlug
-          title={'Поиск по неанимации'}
+          title={'Ничего не найдено'}
           text={'Попробуйте найти мероприятие по названию или по ведущему'}></SearchPlug>
       )}
     </>

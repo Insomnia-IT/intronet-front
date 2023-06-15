@@ -2,8 +2,6 @@ import { FunctionalComponent } from "preact";
 import { locationsStore, moviesStore, MovieStore } from "@stores";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
-import style from "../../../app/app.style.module.css";
-import Styles from "../animation/animation.module.css";
 import { getDayText } from "@helpers/getDayText";
 import { useTimetableRouter } from "../timetable-page";
 import { Card } from "@components/cards";
@@ -28,8 +26,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
-      <header className="sh1">{movie?.name}</header>
-      {movie.description && <div className="sh1">{movie?.description}</div>}
+      <header className="sh1" style={{marginBottom: 16}}>{movie?.name}</header>
+      {movie.description && <div style={{
+        marginRight: 7,
+        marginBottom: 8
+      }} className="text colorMediumBlue">{movie?.description}</div>}
       <div class="colorGray">
         {movie.author}, {movie.country}, {movie.year}
       </div>
@@ -76,8 +77,8 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               background="None"
               onClick={() => router.goTo(["map", view.locationId])}
             >
-              <div flex center class="sh1" gap={2}>
-                <SvgIcon id="#eye" style={{ color: "var(--electric-blues)" }} />
+              <div flex class="sh1" gap={2}>
+                <SvgIcon id="#eye" size={32} style={{ color: "var(--electric-blues)" }} />
                 {locationsStore.getName(view.locationId)}
               </div>
               <Link
@@ -86,10 +87,9 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               >
                 Локация на карте
               </Link>
-              <div flex column gap={1}>
-                <div class="tags colorMediumBlue" flex gap={2}>
-                  <div>{state.block.info.Title}</div>
-                  <div>{state.block.info.SubTitle}</div>
+              <div flex column gap={2}>
+                <div class="tags colorMediumBlue">
+                  {state.block.info.Title} {state.block.info.SubTitle}
                 </div>
                 <div class="sh1">
                   {view.start} - {view.end}

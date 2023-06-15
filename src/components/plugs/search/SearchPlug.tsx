@@ -13,7 +13,6 @@ export const SearchPlug: FunctionalComponent<SearchPlugProps> = ({
                                                                  }) => {
   return (
     <div className={Styles.container}>
-      <SvgIcon id="#eye-plug" size={ 90 } style={ 'margin-bottom: 16px' }/>
       <div className="sh1 colorMediumBlue">{title}</div>
       <div className="text colorMediumBlue" style={ 'text-align: center' }>
         {text}
