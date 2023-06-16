@@ -1,9 +1,9 @@
-import {SvgIcon} from "@icons";
+import { SvgIcon } from "@icons";
 import { useMemo } from "preact/hooks";
 import styles from "./map-element.module.css";
 import { useCell } from "@helpers/cell-state";
-import {locationsStore} from "@stores";
-import {TransformMatrix} from "./transform/transform.matrix";
+import { locationsStore } from "@stores";
+import { TransformMatrix } from "./transform/transform.matrix";
 import { Cell } from "@cmmn/cell/lib";
 
 export function MapElements(props: {
@@ -15,7 +15,9 @@ export function MapElements(props: {
   const children = useMemo(
     () =>
       items
-        .orderBy((x) => (Array.isArray(x.figure) ? -1 : 1))
+        .orderBy((x) =>
+          Array.isArray(x.figure) ? -10 : -directionsToOrder.get(x.directionId)
+        )
         .map((x) => (
           <MapElement
             item={x}
@@ -36,62 +38,70 @@ export function MapElement(props: {
   selected: boolean;
   onSelect(x: MapItem);
 }) {
-  const type = directionsToIcon.get(props.item.directionId);
-  const scale = useCell(() => props.transformCell.get().Matrix.GetScaleFactor(), [props.transformCell]);
+  const type = directionsToOrder.get(props.item.directionId);
+  const scale = useCell(
+    () => props.transformCell.get().Matrix.GetScaleFactor(),
+    [props.transformCell]
+  );
   const color = (() => {
-    switch (type){
-      case IconsTypes.Info:
-        return '#1C2973';
-      case IconsTypes.Screens:
-        return '#536BF3';
-      case IconsTypes.Cafe:
-        return '#60D67A';
-      case IconsTypes.WC:
-        return '#45D2F1';
-      case IconsTypes.Other:
-        return '#FE4BA9';
+    switch (type) {
+      case OrderType.Info:
+        return "#1C2973";
+      case OrderType.Screens:
+        return "#536BF3";
+      case OrderType.Cafe:
+        return "#60D67A";
+      case OrderType.WC:
+        return "#45D2F1";
+      case OrderType.Other:
+        return "#FE4BA9";
       default:
-        return 'black'
+        return "black";
     }
   })();
   const form = (() => {
-    switch (type){
-      case IconsTypes.Info:
-      case IconsTypes.Screens:
-        return 'star';
+    switch (type) {
+      case OrderType.Info:
+      case OrderType.Screens:
+        return "star";
       default:
-        return 'circle';
+        return "circle";
     }
   })();
   const size = (() => {
-    switch (type){
-
-      case IconsTypes.MainZone:
-      case IconsTypes.Main:
-      case IconsTypes.Screens:
-      case IconsTypes.Info:
-        return '20em';
+    switch (type) {
+      case OrderType.MainZone:
+      case OrderType.Main:
+      case OrderType.Screens:
+      case OrderType.Info:
+        return "20em";
       default:
-        return scale > .6 ? '20em' : '4em';
+        return scale > 0.006 ? "20em" : "4em";
     }
   })();
   const showText = (() => {
-    switch (type){
-      case IconsTypes.MainZone:
-      case IconsTypes.Main:
-      case IconsTypes.Screens:
-      case IconsTypes.Info:
+    switch (type) {
+      case OrderType.MainZone:
+      case OrderType.Main:
+      case OrderType.Screens:
+      case OrderType.Info:
         return true;
       default:
-        return scale > .6;
+        return true; //scale > 0.6;
     }
   })();
-  console.log(scale)
-  const icon = <SvgIcon id={".map #" + form} style={{
-    '--color': color,
-    'transition': '.3s ease'
-  }}
-                        size={size} overflow="visible" />;
+  const shape = (
+    <SvgIcon
+      id={".map #" + form}
+      style={{
+        "--color": color,
+        transition: ".3s ease",
+      }}
+      size={size}
+      overflow="visible"
+    />
+  );
+  const iconId = "#" + directionsToIconId.get(props.item.directionId);
   const classNames = [styles.element];
   if (props.selected) {
     classNames.push(styles.selected);
@@ -115,51 +125,98 @@ export function MapElement(props: {
           props.onSelect(props.item);
         }}
       >
-        {icon}
-        {showText && <text y="2.5em" filter="url(#solid)">
-          {props.item.directionId && props.item.title}
-        </text>}
+        {shape}
+        {showText && (
+          <>
+            <SvgIcon
+              size={size}
+              id={iconId}
+              fill="none"
+              viewBox="8 8 24 24"
+              overflow="visible"
+              style={{ color: "var(--cold-white)" }}
+            />
+            {/*<text y="2.5em" filter="url(#solid)">*/}
+            {/*  {props.item.directionId && props.item.title}*/}
+            {/*</text>*/}
+          </>
+        )}
       </g>
     </g>
   );
 }
 
-
-enum IconsTypes {
-  MainZone = "MainZone",
-  Main = "Main",
-  Screens = "Screens",
-  Info = "Info",
-  Cafe = "Cafe",
-  WC = "WC",
-  Other = "Other",
-  Unknown = "Unknown",
+const enum OrderType {
+  MainZone = 0,
+  Main = 1,
+  Screens = 2,
+  Info = 3,
+  Cafe = 4,
+  WC = 5,
+  Other = 6,
+  Unknown = 7,
 }
 
-const directionsToIcon = new Map([
-  ["Медпункт (Медицинская Служба)", IconsTypes.Info],
-  ["КПП", IconsTypes.Main],
-  ["Баня", IconsTypes.WC],
+const directionsToOrder = new Map([
+  ["Медпункт (Медицинская Служба)", OrderType.Info],
+  ["КПП", OrderType.Main],
+  ["Баня", OrderType.WC],
   [
     "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
-    IconsTypes.Info,
+    OrderType.Info,
   ],
-  ["Детская Площадка", IconsTypes.Other],
-  ["", IconsTypes.Other],
-  ["Мастер-Классы", IconsTypes.Other],
-  ["Туалет", IconsTypes.WC],
-  ["Ярмарка", IconsTypes.Other],
-  ["Автолагерь", IconsTypes.MainZone],
-  ["Лекторий", IconsTypes.Other],
-  ["Фудкорт", IconsTypes.Cafe],
-  ["Кафе", IconsTypes.Cafe],
-  ["КАФЕ", IconsTypes.Cafe],
-  ["Ветви Дерева", IconsTypes.Other],
-  ["Спортплощадка", IconsTypes.Other],
-  ["Души", IconsTypes.WC],
-  ["Музыкальная Сцена", IconsTypes.Other],
-  ["Театральная Сцена", IconsTypes.Other],
-  ["Гостевые Кемпинги", IconsTypes.MainZone],
-  ["Экран", IconsTypes.Screens],
-  ["Инфоцентр", IconsTypes.Info],
+  ["Детская Площадка", OrderType.Other],
+  ["", OrderType.Other],
+  ["Мастер-Классы", OrderType.Other],
+  ["Туалет", OrderType.WC],
+  ["Ярмарка", OrderType.Other],
+  ["Автолагерь", OrderType.MainZone],
+  ["Лекторий", OrderType.Other],
+  ["Фудкорт", OrderType.Cafe],
+  ["Кафе", OrderType.Cafe],
+  ["КАФЕ", OrderType.Cafe],
+  ["Ветви Дерева", OrderType.Other],
+  ["Спортплощадка", OrderType.Other],
+  ["Души", OrderType.WC],
+  ["Музыкальная Сцена", OrderType.Other],
+  ["Театральная Сцена", OrderType.Other],
+  ["Гостевые Кемпинги", OrderType.MainZone],
+  ["Экран", OrderType.Screens],
+  ["Инфоцентр", OrderType.Info],
 ]);
+
+const directionsToIconId = new Map<string, MapIconId>([
+  ["Медпункт (Медицинская Служба)", "sign"],
+  ["КПП", "kpp"],
+  ["Баня", "wc"],
+  ["Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде", "sign"],
+  ["Детская Площадка", "art"],
+  ["", "art"],
+  ["Мастер-Классы", "lecture"],
+  ["Туалет", "wc"],
+  ["Ярмарка", "shop"],
+  ["Автолагерь", ""],
+  ["Лекторий", "lecture"],
+  ["Фудкорт", "cafe"],
+  ["Кафе", "cafe"],
+  ["КАФЕ", "cafe"],
+  ["Ветви Дерева", "art"],
+  ["Спортплощадка", "art"],
+  ["Души", "wc"],
+  ["Музыкальная Сцена", "eye"],
+  ["Театральная Сцена", "eye"],
+  ["Гостевые Кемпинги", ""],
+  ["Экран", "eye"],
+  ["Инфоцентр", "sign"],
+]);
+
+export type MapIconId =
+  | "sign"
+  | "eye"
+  | ""
+  | "wc"
+  | "art"
+  | "lecture"
+  | "cafe"
+  | "kpp"
+  | "shop";
