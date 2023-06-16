@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { CloseButton, Expander } from "@components";
+import {CloseButton, Expander, Sheet} from "@components";
 import { locationsStore } from "@stores/locations.store";
 import styles from "./map-toolbar.module.css";
 import { Location } from "@components/Location";
@@ -14,25 +14,15 @@ export type MapToolbarProps = {
 export function MapToolbar(props: MapToolbarProps) {
   const [ expanded, setExpanded ] = useHistoryState("mapToolbarExapnded", false);
 
-  const location = locationsStore.db.get(props.id);
-
+  const location = props.id && locationsStore.db.get(props.id);
+  if (!location)
+    return null;
   return (
     <>
-      <div className={ expanded ? styles.expandedToolbar : styles.toolbar }>
-        <CloseButton
-          onClick={ () => {
-            setExpanded(false);
-            props.onClose();
-          } }/>
-
-        <div
-          className={ expanded ? styles.down : styles.up }
-          onClick={ () => setExpanded((x) => !x) }
-        >
-          <Expander/>
-        </div>
+      <Sheet height="50%" noShadow>
         <Location location={ location } expanded={ expanded }/>
-      </div>
+        <CloseButton onClick={props.onClose}/>
+      </Sheet>
     </>
   );
 }

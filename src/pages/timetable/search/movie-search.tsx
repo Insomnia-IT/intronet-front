@@ -11,11 +11,11 @@ export const MovieSearch = () => {
   const check = useMemo(() => checkMovie(query), [query]);
   const filtered = useMemo(() => movies.filter(check), [movies, check]);
   return (
-    <>
+    <div flex column gap={5} class="h-full">
       <h1>поиск</h1>
       <Input
-        style={{ margin: "20px 0" }}
         placeholder="Название мультфильма"
+        autofocus
         value={query}
         onInput={(e) => setQuery(e.currentTarget.value)}
       />
@@ -23,10 +23,10 @@ export const MovieSearch = () => {
         <MovieList movies={filtered} searchQuery={query} />
       ) : (
         <SearchPlug
-          title={'Поиск по анимации'}
+          title={'Ничего не найдено'}
           text={'Попробуйте найти мультфильм по названию или по автору'}></SearchPlug>
       )}
-    </>
+    </div>
   );
 };
 

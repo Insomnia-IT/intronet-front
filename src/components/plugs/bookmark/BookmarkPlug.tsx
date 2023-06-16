@@ -25,8 +25,7 @@ export const BookmarkPlug: FunctionalComponent<BookmarkPlugProps> = ({
 
       <ButtonsBar at="bottom">
         <Button
-          type="vivid"
-          style={'width: 100%; margin: 0 15px 20px'}
+          type="vivid" class="w-full"
           goTo={route}>
           { buttonTitle }
         </Button>

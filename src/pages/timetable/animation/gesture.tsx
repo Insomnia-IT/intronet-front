@@ -19,16 +19,21 @@ export class GestureCell extends Cell<Gesture> {
   private path: EventTarget[] | undefined;
 
   private onDown = (e: PointerEvent) => {
+    console.log('down',e);
     this.shift = { x: 0, y: 0 };
+    this.lastTouch = e;
     this.path = e.composedPath();
     this.root.addEventListener("pointermove", this.onMove, {
       passive: true,
     });
   };
+  private lastTouch: PointerEvent|undefined = undefined;
   private onMove = (e: PointerEvent) => {
     if (!this.shift) return;
-    this.shift.x += e.movementX;
-    this.shift.y += e.movementY;
+    this.shift.x += (e.screenX - this.lastTouch.screenX);
+    this.shift.y += (e.screenY - this.lastTouch.screenY);
+    this.lastTouch = e;
+    console.log('shift', this.shift, e, e.screenX);
     if (Math.abs(this.shift.x) > 2 || Math.abs(this.shift.y) > 2) {
       this.root.setPointerCapture(e.pointerId);
     }
@@ -68,6 +73,7 @@ export class GestureCell extends Cell<Gesture> {
       capture: true,
     });
     this.root.addEventListener("pointerup", this.onUp);
+    this.root.addEventListener("pointerleave", this.onUp);
   }
 
   disactive() {

@@ -7,7 +7,6 @@ import styles from "./map-page.module.css";
 import { Chip } from "@components/chip/chip";
 import { ObservableList } from "@cmmn/cell/lib";
 import { scheduleStore } from '@stores';
-import {MapIcon} from "./icons/map-icons";
 
 export class LocationSearch extends Component<{
   onSelect(location: InsomniaLocationFull);
@@ -95,7 +94,6 @@ export class LocationSearch extends Component<{
                     style={{ width: 30, height: 30 }}
                     viewBox="-20 -20 40 40"
                   >
-                    <MapIcon id={x.directionId}/>
                   </svg>
                   <div>{x.name}</div>
                 </div>

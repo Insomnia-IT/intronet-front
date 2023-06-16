@@ -24,7 +24,7 @@ export class DragHandler extends EventEmitter<{
 
   onDown = (event: PointerEvent) => {
     if (!event.isPrimary) return;
-    this.root.setPointerCapture(event.pointerId);
+    if (event.defaultPrevented) return;
     this.lastPoint = event;
     this.root.addEventListener("pointermove", this.onMove, { passive: true });
   };
@@ -36,6 +36,9 @@ export class DragHandler extends EventEmitter<{
   private lastPoint: { x; y };
   onMove = (event: PointerEvent) => {
     if (this.touchCount > 1) return;
+    if (event.x != this.lastPoint.x || event.y != this.lastPoint.y) {
+      this.root.setPointerCapture(event.pointerId);
+    }
     this.emit(
       "transform",
       TransformMatrix.Translate({

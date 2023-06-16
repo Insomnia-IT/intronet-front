@@ -142,6 +142,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
         body: JSON.stringify(item),
       }).catch();
     }
+    await VersionsDB.Instance.loadFromServer();
   }
 
   async loadFromServer() {

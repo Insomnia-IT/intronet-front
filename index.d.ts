@@ -40,6 +40,8 @@ declare module "*.html" {
 
 type InsomniaLocation = {
   _id: string;
+  // Неуникальный, но постоянный
+  notionId: string;
   name: string;
   description: string;
   directionId: string;
@@ -143,7 +145,7 @@ interface Activity {
   description: string;
   day: number;
   start: Date | string;
-  end: Date;
+  end: Date | string;
   author: string;
   age?: number;
   changes?: string;
@@ -244,4 +246,12 @@ type NewsItem = {
   link: string | undefined;
   linkText: string | undefined;
   time: string;
+}
+
+type Change = {
+  _id: string;
+  day?: number;
+  start?: string;
+  end?: string;
+  other?: string;
 }

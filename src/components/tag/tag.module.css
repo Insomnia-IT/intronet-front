@@ -20,7 +20,8 @@
 
 .tag {
   flex-shrink: 0;
-  padding: 15.5px 16px;
+  padding: 15px 16px;
+  line-height: 16px;
   gap: 8px;
   background: transparent;
   color: var(--medium-blue);
