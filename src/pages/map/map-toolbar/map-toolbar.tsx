@@ -14,13 +14,14 @@ export type MapToolbarProps = {
 export function MapToolbar(props: MapToolbarProps) {
   const [ expanded, setExpanded ] = useHistoryState("mapToolbarExapnded", false);
 
-  const location = locationsStore.db.get(props.id);
-
+  const location = props.id && locationsStore.db.get(props.id);
+  if (!location)
+    return null;
   return (
     <>
       <Sheet height="50%" noShadow>
         <Location location={ location } expanded={ expanded }/>
-        <CloseButton/>
+        <CloseButton onClick={props.onClose}/>
       </Sheet>
     </>
   );

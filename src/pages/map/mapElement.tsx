@@ -50,7 +50,7 @@ export function MapElement(props: {
     <g transform={`translate(${props.item.figure.X} ${props.item.figure.Y})`}>
       <g
         className={classNames.join(" ")}
-        onPointerDown={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           props.onSelect(props.item);
         }}

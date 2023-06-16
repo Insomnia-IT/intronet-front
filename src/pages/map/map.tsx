@@ -7,7 +7,6 @@ import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
 import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
-import { TargetedEvent } from "preact/compat";
 
 export class MapComponent extends Component<MapProps> {
   constructor() {
@@ -40,8 +39,8 @@ export class MapComponent extends Component<MapProps> {
     return (
       <div
         ref={this.setHandler}
-        onPointerUp={this.onClick}
-        onPointerDown={(e) => {
+        // onPointerUp={this.onClick}
+        onClick={(e) => {
           if (!e.defaultPrevented) {
             this.props.onSelect(null);
           }
@@ -219,15 +218,15 @@ export class MapComponent extends Component<MapProps> {
     this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
 
-  onClick = (event: TargetedEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = this.root.getBoundingClientRect();
-    const p = {
-      X: event.pageX - rect.left,
-      Y: event.pageY - rect.top,
-    };
-    const point = this.Transform.Inverse().Invoke(p);
-    this.props.onClick(point);
-  };
+  // onClick = (event: TargetedEvent<HTMLDivElement, MouseEvent>) => {
+  //   const rect = this.root.getBoundingClientRect();
+  //   const p = {
+  //     X: event.pageX - rect.left,
+  //     Y: event.pageY - rect.top,
+  //   };
+  //   const point = this.Transform.Inverse().Invoke(p);
+  //   this.props.onClick(point);
+  // };
 }
 
 export type MapProps = {
@@ -235,5 +234,5 @@ export type MapProps = {
   location?: boolean;
   isMovingEnabled: boolean;
   onSelect(item);
-  onClick(p: { X; Y });
+  // onClick(p: { X; Y });
 };

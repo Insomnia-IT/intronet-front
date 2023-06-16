@@ -2,8 +2,37 @@ import { SvgIcon } from "@icons";
 import { FunctionalComponent } from "preact";
 
 export const MapIcon: FunctionalComponent<{ id: string }> = ({ id }) => {
-  const name = directionsToIcon.get(id);
-  return <SvgIcon id={".map #" + name} size="20em" overflow="visible" />;
+  const type = directionsToIcon.get(id);
+  const color = (() => {
+    switch (type){
+      case IconsTypes.Info:
+        return '#1C2973';
+      case IconsTypes.Screens:
+        return '#536BF3';
+      case IconsTypes.Cafe:
+        return '#60D67A';
+      case IconsTypes.WC:
+        return '#45D2F1';
+      case IconsTypes.Other:
+        return '#FE4BA9';
+      default:
+        return 'black'
+    }
+  })();
+  const form = (() => {
+    switch (type){
+      case IconsTypes.Info:
+      case IconsTypes.Screens:
+        return 'start';
+      default:
+        return 'circle';
+    }
+  })();
+
+  if(color === "black") {
+    console.log(id, type, color, form);
+  }
+  return <SvgIcon id={".map #" + form} style={{ '--color': color }} size="20em" overflow="visible" />;
 };
 
 enum IconsTypes {
@@ -34,9 +63,10 @@ const directionsToIcon = new Map([
   ["Лекторий", IconsTypes.Other],
   ["Фудкорт", IconsTypes.Cafe],
   ["Кафе", IconsTypes.Cafe],
-  ["Ветви Дерева", IconsTypes.Unknown],
+  ["КАФЕ", IconsTypes.Cafe],
+  ["Ветви Дерева", IconsTypes.Other],
   ["Спортплощадка", IconsTypes.Other],
-  ["Душевная Команда", IconsTypes.WC],
+  ["Души", IconsTypes.WC],
   ["Музыкальная Сцена", IconsTypes.Other],
   ["Театральная Сцена", IconsTypes.Other],
   ["Гостевые Кемпинги", IconsTypes.MainZone],
