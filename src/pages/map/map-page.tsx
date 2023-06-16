@@ -2,20 +2,14 @@ import { cell } from "@cmmn/cell/lib";
 import { Component } from "preact";
 import { Button, ButtonsBar, CloseButton } from "@components";
 import { RequireAuth } from "@components/RequireAuth";
-import { ModalContext } from "@helpers/AppProvider";
 import { locationsStore } from "@stores/locations.store";
-import { mapStore } from "@stores/map.store";
-import {cellState, useCell} from "@helpers/cell-state";
+import {useCell} from "@helpers/cell-state";
 import {useState} from "preact/hooks";
-import {MapComponent, MapProps} from "./map";
+import {MapComponent} from "./map";
 import styles from "./map-page.module.css";
 import { MapToolbar } from "./map-toolbar/map-toolbar";
-import mapElementStyles from "./map-element.module.css";
-import { UserMapItem } from "./user-map-item";
-import {historyStateCell, RoutePath, routes, useRouter} from "../routing";
+import {RoutePath, useRouter} from "../routing";
 import { SvgIcon } from "@icons";
-import { MapIcon } from "./icons/map-icons";
-import { compare } from "@cmmn/cell/lib";
 
 export function MapPageWithRouting() {
   const { route, query, goTo } = useRouter<{name: string}>();

@@ -1,4 +1,5 @@
 import { bind, Cell, cell } from "@cmmn/cell/lib";
+import {cellState} from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import fetch from "node-fetch";
 import { Component } from "preact";
@@ -20,8 +21,7 @@ export class MapComponent extends Component<MapProps> {
   private updTransform() {
     if (this.transformElement) {
       const transform = this.Transform.ToString("svg");
-      const fontSize =
-        (1 / this.Transform.Matrix.GetScaleFactor()).toString() + "px";
+      const fontSize = (1 / this.Scale).toString() + "px";
       if (this.transformCache !== transform)
         this.transformElement.style.transform = (this.transformCache = transform);
       if (this.fontSizeCache !== fontSize)
@@ -30,10 +30,22 @@ export class MapComponent extends Component<MapProps> {
     requestAnimationFrame(this.updTransform);
   }
 
-  @cell
-  Transform = new TransformMatrix();
+  TransformCell = new Cell(new TransformMatrix());
+  get Transform(){
+    return this.TransformCell.get();
+  }
+  set Transform(value: TransformMatrix){
+    this.TransformCell.set(value);
+  }
+
+  get Scale(){
+    return this.Transform.Matrix.GetScaleFactor();
+  }
 
   propsCell = new Cell(this.props);
+  state = cellState(this, {
+    scale: this.Scale
+  });
 
   render() {
     return (
@@ -69,6 +81,7 @@ export class MapComponent extends Component<MapProps> {
             transition: `transform .1s ease`
           }}>
             <MapElements
+              transformCell={this.TransformCell}
               selected={this.props.selected}
               onSelect={this.onSelect}
             />
