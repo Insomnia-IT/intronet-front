@@ -6,14 +6,16 @@
   top: 0;
   bottom: 0;
   overflow: auto;
+  pointer-events: none;
 }
 
 .containerClose{
   composes: container;
   pointer-events: none;
 }
-
-.container:before{
+.shadow{
+}
+.shadow:before{
   content: '';
   position: absolute;
   width: 100%;
@@ -39,6 +41,8 @@
   color: var(--ins-night);
   bottom: 0;
   height: 100%;
+  pointer-events: auto;
+
 }
 
 .containerOpen .sheet{

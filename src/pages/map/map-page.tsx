@@ -78,20 +78,17 @@ export class MapPage extends Component<{ locationId? }> {
   }
 
   state = cellState(this, {
-    image: () => mapStore.Map2,
     items: () => this.mapItems,
     isEditing: () => this.isEditing,
     selected: () => this.selected,
   });
 
   render() {
-    if (!this.state.image) return <></>;
     return (
       <div className={styles.container}>
         <MapComponent
           isMovingEnabled={this.state.isEditing}
           selected={this.state.selected}
-          image={this.state.image}
           onClick={() => {}}
           onSelect={(x: MapItem) => {
             if (x === this.user) {

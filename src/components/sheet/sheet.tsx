@@ -4,11 +4,15 @@ import style from "./sheet.module.css";
 export type SheetProps = {
   onClose?(): void;
   height?: string;
+  noShadow?: boolean;
 }
 export const Sheet: FunctionalComponent<SheetProps> = props => {
   const isOpen = !!props.children;
 
-  return <div class={isOpen ? style.container : style.containerClose}
+  return <div class={[
+    isOpen ? style.container : style.containerClose,
+    props.noShadow ? '' : style.shadow
+  ].filter(x => x).join(' ')}
               onClick={props.onClose ? e => !e.defaultPrevented && props.onClose() : undefined}>
     <div class={style.sheet} onScroll={console.log}
          style={{

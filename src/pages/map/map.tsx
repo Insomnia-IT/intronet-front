@@ -1,12 +1,11 @@
 import { bind, Cell, cell } from "@cmmn/cell/lib";
 import { locationsStore } from "@stores";
+import fetch from "node-fetch";
 import { Component } from "preact";
-import { cellState } from "@helpers/cell-state";
-import { ImageInfo } from "@stores/map.store";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
-import { MapElement, MapElements } from "./mapElement";
+import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { TargetedEvent } from "preact/compat";
 
@@ -20,18 +19,15 @@ export class MapComponent extends Component<MapProps> {
   private fontSizeCache: string;
   @bind
   private updTransform() {
-    const transform = this.Transform.ToString("css");
-    const fontSize =
-      (1 / this.Transform.Matrix.GetScaleFactor()).toString() + "px";
-    if (this.transformCache !== transform)
-      this.transformElements.forEach((x: HTMLElement) => {
-        // x.setAttribute("transform", (this.transformCache = transform));
-        x.style.transform = this.transformCache = transform;
-      });
-    if (this.fontSizeCache !== fontSize)
-      this.transformElements.forEach((x: HTMLElement) => {
-        x.setAttribute("font-size", (this.fontSizeCache = fontSize));
-      });
+    if (this.transformElement) {
+      const transform = this.Transform.ToString("svg");
+      const fontSize =
+        (1 / this.Transform.Matrix.GetScaleFactor()).toString() + "px";
+      if (this.transformCache !== transform)
+        this.transformElement.style.transform = (this.transformCache = transform);
+      if (this.fontSizeCache !== fontSize)
+        this.transformElement.setAttribute("font-size", (this.fontSizeCache = fontSize));
+    }
     requestAnimationFrame(this.updTransform);
   }
 
@@ -52,14 +48,14 @@ export class MapComponent extends Component<MapProps> {
         }}
         className={styles.container}
       >
-        <object
-          data={this.props.image.url}
-          aria-label="transform"
-          alt="Карта"
-          className={styles.img}
-          width={this.props.image.width}
-          height={this.props.image.height}
-        />
+        {/*<object*/}
+        {/*  data={this.props.image.url}*/}
+        {/*  aria-label="transform"*/}
+        {/*  alt="Карта"*/}
+        {/*  className={styles.img}*/}
+        {/*  width={this.props.image.width}*/}
+        {/*  height={this.props.image.height}*/}
+        {/*/>*/}
         <svg className={styles.svg}>
           <defs>
             <filter x="0" y="0" width="1" height="1" id="solid">
@@ -70,7 +66,9 @@ export class MapComponent extends Component<MapProps> {
               </feMerge>
             </filter>
           </defs>
-          <g aria-label="transform">
+          <g aria-label="transform" style={{
+            transition: `transform .1s ease`
+          }}>
             <MapElements
               selected={this.props.selected}
               onSelect={this.onSelect}
@@ -103,14 +101,20 @@ export class MapComponent extends Component<MapProps> {
   //region Handlers
   private root: HTMLDivElement;
   private handlers: (DragHandler | ZoomHandler)[];
-  private transformElements: HTMLElement[] = [];
+  private transformElement: SVGGElement;
   setHandler = (element: HTMLDivElement) => {
     this.root = element;
-    this.transformElements = Array.from(
-      this.root?.querySelectorAll('[aria-label="transform"]')
-    );
+    this.transformElement = this.root?.querySelector('[aria-label="transform"]') as SVGGElement;
+    fetch('/public/images/map.svg').then(x => x.text()).then(text => {
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.innerHTML = text;
+      this.transformElement.prepend(g);
+    })
     if (element) {
-      this.initTransform(this.props.image, element);
+      this.initTransform({
+        width: 9728,
+        height: 6144,
+      }, element);
       const dragHandler = new DragHandler(element);
       const zoomHandler = new ZoomHandler(element);
       this.handlers = [dragHandler, zoomHandler];
@@ -148,7 +152,6 @@ export class MapComponent extends Component<MapProps> {
 
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
-    console.log(rect);
     if (rect.width == 0 || rect.height == 0) {
       rect.width = window.innerWidth;
       rect.height = window.innerHeight;
@@ -175,9 +178,6 @@ export class MapComponent extends Component<MapProps> {
     prevState: Readonly<{}>,
     snapshot?: any
   ) {
-    if (prevProps.image !== this.props.image && this.root) {
-      this.initTransform(this.props.image, this.root);
-    }
     if (this.props.selected && prevProps.selected !== this.props.selected) {
       this.scrollTo(this.props.selected);
     }
@@ -204,17 +204,17 @@ export class MapComponent extends Component<MapProps> {
           )
         : x.figure
     );
-    if (
-      view.X > rect.left + rect.width / 10 &&
-      view.X < rect.right - rect.width / 10 &&
-      view.Y > rect.top + rect.height / 10 &&
-      view.Y < rect.bottom + rect.height / 10
-    ) {
-      return;
-    }
+    // if (
+    //   view.X > rect.left + rect.width / 100 &&
+    //   view.X < rect.right - rect.width / 100 &&
+    //   view.Y > rect.top + rect.height / 100 &&
+    //   view.Y < rect.bottom + rect.height / 100
+    // ) {
+    //   return;
+    // }
     const shift = {
       X: (rect.left + rect.right) / 2 - view.X,
-      Y: (rect.top + rect.bottom) / 2 - view.Y,
+      Y: (rect.top * 3 + rect.bottom) / 4 - view.Y,
     };
     this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
@@ -232,7 +232,6 @@ export class MapComponent extends Component<MapProps> {
 
 export type MapProps = {
   selected: string;
-  image: ImageInfo;
   location?: boolean;
   isMovingEnabled: boolean;
   onSelect(item);
