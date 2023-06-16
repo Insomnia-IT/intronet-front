@@ -1,5 +1,5 @@
-import { bind, Cell, cell, compare } from "@cmmn/cell/lib";
-import {locationsStore} from "@stores";
+import { bind, Cell, cell } from "@cmmn/cell/lib";
+import { locationsStore } from "@stores";
 import { Component } from "preact";
 import { cellState } from "@helpers/cell-state";
 import { ImageInfo } from "@stores/map.store";
@@ -11,19 +11,34 @@ import { TransformMatrix } from "./transform/transform.matrix";
 import { TargetedEvent } from "preact/compat";
 
 export class MapComponent extends Component<MapProps> {
+  constructor() {
+    super();
+    this.updTransform();
+  }
+
+  private transformCache: string;
+  private fontSizeCache: string;
+  @bind
+  private updTransform() {
+    const transform = this.Transform.ToString("css");
+    const fontSize =
+      (1 / this.Transform.Matrix.GetScaleFactor()).toString() + "px";
+    if (this.transformCache !== transform)
+      this.transformElements.forEach((x: HTMLElement) => {
+        // x.setAttribute("transform", (this.transformCache = transform));
+        x.style.transform = this.transformCache = transform;
+      });
+    if (this.fontSizeCache !== fontSize)
+      this.transformElements.forEach((x: HTMLElement) => {
+        x.setAttribute("font-size", (this.fontSizeCache = fontSize));
+      });
+    requestAnimationFrame(this.updTransform);
+  }
+
   @cell
   Transform = new TransformMatrix();
 
-  @cell
-  get scale() {
-    return this.Transform.Matrix.GetScaleFactor();
-  }
-
   propsCell = new Cell(this.props);
-  state = cellState(this, {
-    transform: () => this.Transform,
-    scale: () => this.scale,
-  });
 
   render() {
     return (
@@ -37,15 +52,13 @@ export class MapComponent extends Component<MapProps> {
         }}
         className={styles.container}
       >
-        <img
-          src={this.props.image.url}
+        <object
+          data={this.props.image.url}
+          aria-label="transform"
           alt="Карта"
           className={styles.img}
-          style={{
-            transform: this.state.transform.ToString("css"),
-            width: this.props.image.width,
-            height: this.props.image.height,
-          }}
+          width={this.props.image.width}
+          height={this.props.image.height}
         />
         <svg className={styles.svg}>
           <defs>
@@ -57,10 +70,7 @@ export class MapComponent extends Component<MapProps> {
               </feMerge>
             </filter>
           </defs>
-          <g
-            transform={this.state.transform.ToString("svg")}
-            font-size={1 / this.state.scale}
-          >
+          <g aria-label="transform">
             <MapElements
               selected={this.props.selected}
               onSelect={this.onSelect}
@@ -93,8 +103,12 @@ export class MapComponent extends Component<MapProps> {
   //region Handlers
   private root: HTMLDivElement;
   private handlers: (DragHandler | ZoomHandler)[];
+  private transformElements: HTMLElement[] = [];
   setHandler = (element: HTMLDivElement) => {
     this.root = element;
+    this.transformElements = Array.from(
+      this.root?.querySelectorAll('[aria-label="transform"]')
+    );
     if (element) {
       this.initTransform(this.props.image, element);
       const dragHandler = new DragHandler(element);
@@ -177,7 +191,7 @@ export class MapComponent extends Component<MapProps> {
   }
 
   scrollTo(id: string) {
-    const x = locationsStore.MapItems.find(x => x.id === id);
+    const x = locationsStore.MapItems.find((x) => x.id === id);
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(
       Array.isArray(x.figure)
