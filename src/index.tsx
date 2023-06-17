@@ -7,8 +7,8 @@ import {EventListener} from "@cmmn/cell/lib";
 window.addEventListener('init', async () => {
   SvgContainer.logo = document.getElementById('logo').cloneNode(true) as SVGElement;
   SvgContainer.eye = document.getElementById('eye').cloneNode(true) as SVGElement;
-  // if (!location.href.includes('localhost'))
-  //   await waitEyeAnimation();
+  if (!location.href.includes('localhost'))
+    await waitEyeAnimation();
   const container = document.getElementById("root");
   render(<App />, container);
   document.getElementById("start").remove();
@@ -21,7 +21,12 @@ window.addEventListener('init', async () => {
 async function waitEyeAnimation(){
   const svgEye = document.getElementById('eye');
   const anim = svgEye.querySelector('animate');
-  await new EventListener<{repeatEvent: void;}>(anim).onceAsync('repeatEvent');
+  if (!document.fonts.check('10px SF Pro')) {
+    await new  Promise(resolve => {
+      setTimeout(resolve, 4000);
+      anim.addEventListener('repeatEvent', resolve);
+    })
+  }
   svgEye.querySelectorAll('animate').forEach(x => x.setAttribute('repeatCount', '1'));
   const eyeChild = Array.from(svgEye.children);
   const glaz3 = await fetch('/public/images/glaz3.svg').then(x => x.text());

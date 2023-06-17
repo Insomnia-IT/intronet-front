@@ -21,7 +21,7 @@ export const BookmarksPage = () => {
   return (
     <div class="page">
       <h1>избранное</h1>
-      <Tags style={ {margin: "16px 0 20px 0"} } tagsList={ Sections }>
+      <Tags style={ {marginTop: 16, marginBottom: 20}} tagsList={ Sections }>
         { (x) => (
           <Tag
             key={ x }

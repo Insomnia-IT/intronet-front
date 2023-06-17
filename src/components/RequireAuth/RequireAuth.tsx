@@ -6,7 +6,7 @@ export type RequireAuthProps = {
   // на бессоннице есть админы, а есть поисково-спасательный отряд, которым
   // тоже нужны права админов, но чтобы те не похерили что-нибудь случайно
   // нужно сделать такое разделение
-  role?: "admin" | "poteryashki" | ("admin" | "poteryashki")[];
+  role?: "admin" | "tochka";
 };
 
 /**
@@ -14,15 +14,9 @@ export type RequireAuthProps = {
  */
 export const RequireAuth: FunctionalComponent<RequireAuthProps> = ({
   children,
-  role = "admin",
+  role,
 }) => {
-  const isAdmin = useCell(() => authStore.isAdmin);
-  // проверяем, есть ли токен в провайдере
-  // не пустой ли он
-  // проверяем, соответствуюет ли допустимая роль компонента юзернейму
-
-  // т.к. по факту у нас нет ролевой модели, здесь используется обыкновенное сравнение
-  // юзернейма-как-роли с ролью компонента
+  const isAdmin = useCell(() => role ? authStore.role === role : authStore.isAdmin);
   if (isAdmin)
     return <>{children}</>;
   return null;

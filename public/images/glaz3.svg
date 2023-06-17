@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" width="300" height="300"
-     viewBox="0 0 300 300" style="width:100%;height:100%" fill="black">
+     viewBox="-300 -300 900 900" style="width:100%;height:100%" fill="black">
   <path transform="translate(159.5, 137.5) scale(1.14361, 1.14361) translate(-150, -150)">
     <animate repeatCount="0.9" dur="2.8s" begin="0s" fill="freeze" attributeName="opacity" from="0" to="0"
              keyTimes="0;0.09291022727272726;0.09291159090909093;1;1;1" values="0;0;1;1;0;0"/>

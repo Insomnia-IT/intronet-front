@@ -51,7 +51,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
               activity?.isCanceled ? Styles.canceled : "default",
             ].join(" ")}
           >
-            {coerceTime(activity?.start)} - {coerceTime(activity?.end)}
+            {(activity?.start)} - {(activity?.end)}
           </div>
         </div>
       </Card>

@@ -35,6 +35,7 @@ export const databasesList = [
   'activities',
   'tags',
   'main',
-  'news'
+  'news',
+  'changes'
 ];
 const databases = new Map<string, Database<any>>(databasesList.map(x => [x, new Database<any>(x)]));
