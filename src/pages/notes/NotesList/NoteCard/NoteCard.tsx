@@ -7,10 +7,12 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { SvgIcon } from "@icons";
 import styles from "./note-card.module.css";
 import classNames from "classnames";
+import { useIsBookmarkCell } from "../../hooks/useIsBookmarkCell";
 
 export type INoteCardProps = INote & {
   categoryColor: string;
   categoryName: string;
+  onClick?: (id: string) => void;
 };
 
 export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
@@ -23,14 +25,21 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     text,
     updatedAt,
     _id: id,
+    onClick,
   } = props;
-  const isBookmark = useCell(
-    () => Boolean(bookmarksStore.getBookmark("note", id)),
-    [id]
-  );
+  const isBookmark = useIsBookmarkCell(id);
+  const onCardClick = () => {
+    onClick && onClick(id);
+  };
+  console.debug(author)
 
   return (
-    <Card background="Soft" borderType="LeftCloud" className={styles.card}>
+    <Card
+      background="Soft"
+      borderType="LeftCloud"
+      className={styles.card}
+      onClick={onCardClick}
+    >
       {isBookmark && <SvgIcon id="#bookmark" className={styles.bookmarkIcon} />}
       <div className={styles.content}>
         <h3 className={classNames("sh1", styles.noteTitle)}>{title}</h3>
@@ -42,7 +51,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         </Badge>
       )}
       <div className={classNames("sh3", "colorGray", styles.footer)}>
-        {author.name}, {getNoteDate(updatedAt || createdAt)}
+        {typeof author === 'string' ? author : author && author.name}, {getNoteDate(updatedAt || createdAt)}
       </div>
     </Card>
   );

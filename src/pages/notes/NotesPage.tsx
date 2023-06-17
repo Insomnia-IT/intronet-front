@@ -9,9 +9,17 @@ import { AddNoteBtn } from "./AddNoteBtn/AddNoteBtn";
 
 import styles from "./notes.module.css";
 import { NewNoteSwitch } from "./New/NewNoteSwitch";
+import { useState } from "preact/hooks";
+import { NoteSheet } from "./NoteSheet/NoteSheet";
+import { CloseButton, Sheet } from "@components";
 
 export const NotesPage: FunctionalComponent = () => {
   const router = useNotesRouter();
+  const [activeNoteId, setActiveNoteId] = useState(null);
+  const resetActiveNoteId = () => {
+    setActiveNoteId(null);
+  };
+  console.debug(activeNoteId);
 
   switch (router.section) {
     case "search":
@@ -36,8 +44,21 @@ export const NotesPage: FunctionalComponent = () => {
               <div className={styles.addNoteBtn}>
                 <AddNoteBtn />
               </div>
-              <NotesList className={styles.notesList} />
+              <NotesList
+                className={styles.notesList}
+                onNoteClick={setActiveNoteId}
+              />
             </PageSection>
+            <Sheet onClose={resetActiveNoteId}>
+              {activeNoteId && (
+                <>
+                  <NoteSheet
+                    activeNoteId={activeNoteId}
+                  />
+                  <CloseButton onClick={resetActiveNoteId} />
+                </>
+              )}
+            </Sheet>
           </div>
         </PageContainer>
       );
