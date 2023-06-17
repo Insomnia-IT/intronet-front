@@ -61,6 +61,9 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
           onClick={() =>
             bookmarksStore.switchBookmark("activity", activity._id)
           }
+          style={{
+            width: "100%",
+          }}
         >
           <SvgIcon id="#bookmark" size={14} />
           {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}

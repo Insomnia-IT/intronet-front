@@ -8,9 +8,15 @@ import { NoteCard } from "./NoteCard/NoteCard";
 import { categoriesStore } from "@stores";
 import styles from "./styles.module.css";
 
-export const NotesList: FunctionalComponent<{
+export type INotesListProps = {
   className?: string;
-}> = ({ className }) => {
+  onNoteClick?: (noteId: string) => void;
+};
+
+export const NotesList: FunctionalComponent<INotesListProps> = ({
+  className,
+  onNoteClick,
+}) => {
   const notesRouter = useNotesRouter();
   const { filterId } = notesRouter;
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
@@ -30,6 +36,7 @@ export const NotesList: FunctionalComponent<{
               {...note}
               categoryName={noteCategory.name}
               categoryColor={noteCategory.color}
+              onClick={onNoteClick}
             />
           </li>
         );
