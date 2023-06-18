@@ -144,8 +144,8 @@ interface Activity {
   title: string;
   description: string;
   day: number;
-  start: Date | string;
-  end: Date | string;
+  start: string;
+  end: string;
   author: string;
   age?: number;
   changes?: string;

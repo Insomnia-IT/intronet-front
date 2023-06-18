@@ -1,3 +1,9 @@
+.activityCard{
+  will-change: transform;
+  position: relative;
+  user-select: none;
+}
+
 .activityContainer {
   width: 100%;
 }

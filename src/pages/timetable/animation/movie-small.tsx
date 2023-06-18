@@ -30,6 +30,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     [movie.id]
   );
   const ref = useRef();
+
   const { transform, iconOpacity, classNames, state } = useGestures(
     ref,
     hasBookmark,

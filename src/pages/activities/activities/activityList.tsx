@@ -44,7 +44,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
       case 'place':
         return activities.filter((activity) => !place || activity.locationId === place);
       case 'time':
-        return activities.filter((activity) => coerceHour(numberTime) ? isInTimePeriod((new Date(activity.start)).getHours(), numberTime) : true);
+        return activities.filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true);
       default:
         return activities
     }
