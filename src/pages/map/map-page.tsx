@@ -35,7 +35,7 @@ export function MapPageWithRouting() {
         selected={ selected }
         onSelect={ (x: MapItem) => setSelected(x?.id) }
       />
-      <CloseButton/>
+      <CloseButton onClick={() => router.goTo(['main'])}/>
       <ButtonsBar at="bottom">
         <Button type="vivid" goTo="/map/search">
           <SvgIcon id="#search" size="14px"/>
