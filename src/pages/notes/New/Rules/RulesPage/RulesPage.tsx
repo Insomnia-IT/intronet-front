@@ -4,6 +4,7 @@ import newStyles from "../../new.module.css";
 import classNames from "classnames";
 import { NextButton } from "../../NextButton/NextButton";
 import { useNotesRouter } from "../../../hooks/useNotesRouter";
+import { ButtonsBar } from "@components";
 
 export const RulesPage: FunctionalComponent = () => {
   const { goToNew } = useNotesRouter();
@@ -54,9 +55,11 @@ export const RulesPage: FunctionalComponent = () => {
         </ul>
       </div>
 
-      <NextButton onClick={onNextClick} className={newStyles.rulesNextBtn}>
-        Написать объявление
-      </NextButton>
+      <ButtonsBar fill>
+        <NextButton onClick={onNextClick} className={newStyles.rulesNextBtn}>
+          Написать объявление
+        </NextButton>
+      </ButtonsBar>
     </PageSection>
   );
 };

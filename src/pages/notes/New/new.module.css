@@ -7,6 +7,8 @@
   flex-direction: column;
   gap: 24px;
   height: 100%;
+  /* Отступ для абсолютно спозиц. кнопки */
+  padding-bottom: 152px;
 }
 
 .rulesSecion {

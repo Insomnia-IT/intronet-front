@@ -19,7 +19,6 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
   const activeNote = useCell(() => {
     return notesStore.getNote(activeNoteId);
   }, [activeNoteId]);
-  console.debug(activeNote);
 
   if (!activeNote) {
     return null;

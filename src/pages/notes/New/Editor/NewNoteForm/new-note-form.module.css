@@ -1,7 +1,10 @@
 .form {
+  --marign-bottom: 20px;
+
   display: flex;
   gap: 24px;
   flex-direction: column;
+  margin-bottom: calc(var(--marign-bottom) * -1);
 }
 
 .field:nth-last-child(2) {
@@ -15,8 +18,8 @@
 .submitContainer {
   position: sticky;
   bottom: 0px;
-  padding: 8px 0 40px;
-  background: var(--white);
+  padding: 8px 0 var(--marign-bottom);
+  background: var(--cold-white);
 }
 
 .tags {

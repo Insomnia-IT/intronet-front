@@ -31,7 +31,6 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
   const onCardClick = () => {
     onClick && onClick(id);
   };
-  console.debug(author)
 
   return (
     <Card
