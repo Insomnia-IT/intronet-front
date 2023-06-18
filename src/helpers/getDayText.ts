@@ -61,13 +61,9 @@ export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
   }
 };
 
-export const coerceTime = (date: Date | string): string => {
-  const time = new Date(date);
-  return `${prepareTime(time.getHours())}:${prepareTime(time.getMinutes())}`;
-};
-
-const prepareTime = (value: number): string => {
-  return value < 10 ? `0${value}` : `${value}`;
+export const parseTime = (time: string): string => {
+  const [hours, minutes] = [...time.matchAll(/\d{2}/gm)];
+  return `${hours}:${minutes}`;
 };
 
 export const coerceHour = (hour: unknown): hour is 9 | 13 | 17 => {

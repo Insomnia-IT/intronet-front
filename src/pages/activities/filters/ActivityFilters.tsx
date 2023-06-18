@@ -23,7 +23,7 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
                                                                            type
                                                                          }: ActivityFilterProp) => {
   const activitiesRouter = useActivitiesRouter();
-  const {filter, day, time, place, goToActivities} = activitiesRouter;
+  const {activityId, filter, day, time, place, goToActivities} = activitiesRouter;
 
   const current = activitiesRouter[type] ?? (() => {
     switch (type) {
@@ -37,7 +37,7 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   })();
 
   useEffect(() => {
-    if (!filter) {
+    if (!filter && activityId !== 'search') {
       goToActivities({
         filter: `${ activityFiltersStore.filters[0].key }`,
         day: getCurrentDay().toString(),

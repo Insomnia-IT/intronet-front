@@ -4,7 +4,7 @@ import { locationsStore } from "@stores";
 import { ActivityStore } from "@stores/activities/activities.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { useCell } from "@helpers/cell-state";
-import { coerceTime, getDayText } from "@helpers/getDayText";
+import { getDayText } from "@helpers/getDayText";
 import { Button, ButtonsBar } from "@components";
 import { Card } from "@components/cards";
 import { Link } from "@components/link/link";
@@ -36,11 +36,14 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
         background="None"
         onClick={() => router.goTo(["map", activity?.locationId])}
       >
-        <div flex center class="sh1" gap={2}>
-          <SvgIcon id="#eye" style={{ color: "var(--electric-blues)" }} />
+        <div flex class="sh1" gap={2}>
+          <SvgIcon id="#location2" size={32} style={{ color: "var(--electric-blues)" }} />
           {locationsStore.getName(activity?.locationId)}
         </div>
-        <Link goTo={["map", activity?.locationId]} style={{ marginBottom: 18 }}>
+        <Link
+          goTo={["map", activity?.locationId]}
+          style={{ marginBottom: 18 }}
+        >
           Локация на карте
         </Link>
         <div flex column gap={1} style={{ alignItems: "flex-start" }}>
