@@ -1,8 +1,8 @@
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { locationsStore } from "@stores";
-import { ActivityStore } from "@stores/activities/activities.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
+import { ActivityStore } from "@stores/activities/activities.store";
 import { useCell } from "@helpers/cell-state";
 import { getDayText } from "@helpers/getDayText";
 import { Button, ButtonsBar } from "@components";
@@ -10,8 +10,8 @@ import { Card } from "@components/cards";
 import { Link } from "@components/link/link";
 import { SvgIcon } from "@icons";
 import { Badge } from "@components/badge/badge";
-import Styles from "./activity.module.css";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
+import Styles from "./activity.module.css";
 
 export type ActivityProps = {
   id: string;

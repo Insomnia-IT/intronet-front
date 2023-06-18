@@ -25,8 +25,7 @@ export const activitiesStore = new ActivitiesStore();
 globalThis["activitiesStore"] = activitiesStore;
 
 export class ActivityStore {
-  constructor(private id: string) {
-  }
+  constructor(private id: string) {}
 
   @cell
   get activity(): Activity {
@@ -39,5 +38,5 @@ export class ActivityStore {
   }>(() => ({
     activity: this.activity,
     hasBookmark: !!bookmarksStore.getBookmark('activity', this.activity?._id),
-  }))
+  }));
 }
