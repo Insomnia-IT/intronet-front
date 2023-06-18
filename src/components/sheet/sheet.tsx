@@ -5,6 +5,7 @@ export type SheetProps = {
   onClose?(): void;
   height?: string;
   noShadow?: boolean;
+  shadowType?: 'globalShadow' | 'localShadow'
 }
 export const Sheet: FunctionalComponent<SheetProps> = props => {
   const isOpen = !!props.children;
@@ -16,16 +17,16 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
     <div
       class={[
         isOpen ? style.container : style.containerClose,
-        props.noShadow ? '' : style.shadow
+        props.noShadow ? '' : style.shadow,
       ].filter(x => x).join(' ')}
       onClick={onClick}
     >
       <div
-        class={style.sheet}
+        class={[style.sheet, props.shadowType ? style[props.shadowType] : ''].filter(x => x).join(' ')}
         onScroll={console.log}
         style={{
           height: props.height,
-          paddingBottom: props.height === 'auto' ? 16 : undefined
+          paddingBottom: props.height === 'auto' ? 16 : undefined,
         }}
 
         onClick={(e) => {

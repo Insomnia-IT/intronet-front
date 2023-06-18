@@ -37,7 +37,7 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   })();
 
   useEffect(() => {
-    if (!filter && activityId !== 'search') {
+    if (!filter && !activityId) {
       goToActivities({
         filter: `${ activityFiltersStore.filters[0].key }`,
         day: getCurrentDay().toString(),

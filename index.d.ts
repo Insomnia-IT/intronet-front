@@ -50,7 +50,13 @@ type InsomniaLocation = {
   menu?: string;
   minZoom?: number;
   maxZoom?: number;
+  contentBlocks?: ContentBlock[];
 };
+
+type ContentBlock = {
+  blockType: 'link' | 'text';
+  content: string;
+}
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
