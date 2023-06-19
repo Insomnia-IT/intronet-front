@@ -19,7 +19,6 @@ export const NotesPage: FunctionalComponent = () => {
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };
-  console.debug(activeNoteId);
 
   switch (router.section) {
     case "search":
