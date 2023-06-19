@@ -7,7 +7,7 @@ import { SvgIcon } from "@icons";
 import { RoutePath } from "../routing";
 import { MapComponent } from "./map";
 import { LocationSearch } from "./search/location-search";
-import { Location } from "./location/Location";
+import { Location } from "./location/location";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import styles from "./map-page.module.css";
 
