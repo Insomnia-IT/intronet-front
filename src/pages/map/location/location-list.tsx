@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact";
 import { useCallback, useState } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
-import { GestureCell } from "../../timetable/animation/gesture";
+import { GestureCell } from "@helpers/Gestures";
 import { LocationSmall } from "./location-small";
 
 export const LocationList: FunctionalComponent<{
