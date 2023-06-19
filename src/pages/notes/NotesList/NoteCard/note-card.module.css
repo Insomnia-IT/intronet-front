@@ -8,6 +8,14 @@
   gap: 8px;
 }
 
+.noteTitle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .noteText {
   display: -webkit-box;
   overflow: hidden;
@@ -23,4 +31,9 @@
   top: 22px;
   right: 22px;
   color: var(--pink);
+}
+
+.content,
+.footer {
+  max-width: 100%;
 }

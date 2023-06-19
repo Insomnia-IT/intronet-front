@@ -72,7 +72,7 @@ class NotesStore {
   }
 
   public getNote(id: string) {
-    return this.db.get(id);
+    return this.db.get(id) || null;
   }
 
   private createNoteEntity(localNote: INoteLocal): INote {

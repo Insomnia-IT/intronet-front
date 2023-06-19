@@ -5,7 +5,6 @@ import classNames from "classnames";
 import { NextButton } from "../../NextButton/NextButton";
 import { useNotesRouter } from "../../../hooks/useNotesRouter";
 
-// TODO: не хватает шрифта SF Pro
 export const RulesPage: FunctionalComponent = () => {
   const { goToNew } = useNotesRouter();
   const onNextClick = () => {

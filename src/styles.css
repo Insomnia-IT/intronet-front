@@ -88,9 +88,6 @@
 :global(.unbounded) {
   font-family: "Unbounded";
 }
-:global(.sfPro) {
-  font-family: "SF Pro", sans-serif;
-}
 :global(h1) {
   font-family: "Unbounded";
   font-style: normal;

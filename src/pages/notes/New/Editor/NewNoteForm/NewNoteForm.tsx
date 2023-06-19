@@ -96,7 +96,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
     notesStore
       .addNote({
         author: {
-          name: formFields["title"] as string,
+          name: formFields["author"] as string,
         },
         categoryId: formFields["category"]?.slice("tag+".length) || "",
         text: formFields["text"] as string,
@@ -122,15 +122,15 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
       {({ allReqFieldIsFill, state, onFieldChange, submit }) => {
         return (
           <>
-            {fields.slice(0).map((field) => {
+            {fields.map((field) => {
               const { name } = field;
               return (
                 <Field
                   {...field}
                   value={state[name]}
                   onChange={onFieldChange}
-                  className={classNames("sfPro", styles.field)}
-                  inputClassName={classNames("sfPro", {
+                  className={styles.field}
+                  inputClassName={classNames({
                     [styles.textField]: name === "text",
                     [styles.tags]: name === "TTL",
                   })}

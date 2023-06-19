@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { MovieSmall, MovieSmallProps } from "./movie-small";
+import { MovieSmall } from "./movie-small";
 import { useCallback, useState } from "preact/hooks";
 import { GestureCell } from "./gesture";
 import { useCell } from "@helpers/cell-state";

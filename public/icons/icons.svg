@@ -152,6 +152,12 @@
               fill="#F7FCFF"/>
       </g>
     </g>
+    <g id="location2">
+      <g transform="scale(0.75)">
+        <rect width="32" height="32" rx="16" fill="#536BF3"/>
+        <path d="M16 18V10M16 22.4H16.008" stroke="#F7FCFF" stroke-width="3.6" stroke-linecap="round"/>
+      </g>
+    </g>
     <g id="ok-circle" transform="translate(24, 48)">
       <path fill-rule="evenodd"
             clip-rule="evenodd"
@@ -175,9 +181,11 @@
     </g>
     <g id='trash' transform="translate(96, 48)">
       <g transform="translate(3, 1)">
-        <path d="M10.4999 0V2H16.139C17.3749 2 18.315 3.10973 18.1118 4.3288L17.9999 5H0.999926L0.888059 4.3288C0.684881 3.10973 1.62497 2 2.86085 2H8.49993V0H10.4999Z"
-              fill="currentColor"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4999 7H2.49993L3.80847 19.2131C3.91736 20.2293 4.77499 21 5.79709 21H13.2028C14.2249 21 15.0825 20.2293 15.1914 19.2131L16.4999 7ZM6.99993 11H8.49993V17H6.99993V11ZM10.4999 11H11.9999V17H10.4999V11Z"
+        <path
+          d="M10.4999 0V2H16.139C17.3749 2 18.315 3.10973 18.1118 4.3288L17.9999 5H0.999926L0.888059 4.3288C0.684881 3.10973 1.62497 2 2.86085 2H8.49993V0H10.4999Z"
+          fill="currentColor"/>
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M16.4999 7H2.49993L3.80847 19.2131C3.91736 20.2293 4.77499 21 5.79709 21H13.2028C14.2249 21 15.0825 20.2293 15.1914 19.2131L16.4999 7ZM6.99993 11H8.49993V17H6.99993V11ZM10.4999 11H11.9999V17H10.4999V11Z"
               fill="currentColor"/>
       </g>
     </g>
