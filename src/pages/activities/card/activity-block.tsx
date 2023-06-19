@@ -5,7 +5,6 @@ import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import Styles from "./activity-card.module.css";
 import { ActivityStore } from "@stores/activities/activities.store";
-import { coerceTime } from "@helpers/getDayText";
 import { SvgIcon } from "@icons";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { Gesture } from "@helpers/Gestures";
@@ -26,13 +25,13 @@ export const ActivityBlock: FunctionalComponent<ActivityBlockProps> = ({
 }) => {
   const store = useMemo(() => new ActivityStore(id), [id]);
   const { activity } = useCell(store.state);
+  const router = useActivitiesRouter();
   const hasBookmark = useCell(
     () => !!bookmarksStore.getBookmark("activity", activity._id),
     [activity._id]
   );
   const switchBookmark = (activity) =>
     bookmarksStore.switchBookmark("activity", activity._id);
-  const router = useActivitiesRouter();
   const ref = useRef();
   const { transform, iconOpacity, classNames, state } = useGestures(
     ref,
@@ -55,9 +54,15 @@ export const ActivityBlock: FunctionalComponent<ActivityBlockProps> = ({
   return (
     <Card
       ref={ref}
+      class={classNames
+        .concat([
+          Styles.activityCard,
+          userUsedGesture || state ? "" : Styles.bookmarkDemo,
+        ])
+        .join(" ")}
       background={activity.isCanceled ? "White" : "Purple"}
       border={activity.isCanceled ? "InactiveGrey" : "None"}
-      style={{ marginBottom: 8, padding: 16, paddingBottom: 18 }}
+      style={{ transform, marginBottom: 8, padding: 16, paddingBottom: 18 }}
       onClick={(e) => e.defaultPrevented || router.goToActivity(id)}
     >
       <div className={Styles.activityContainer} flex column gap>

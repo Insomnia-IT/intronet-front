@@ -1,0 +1,63 @@
+.content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  flex-direction: column;
+}
+
+.locationHeader {
+  width: calc(100% - 48px);
+}
+
+.locationSmallContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.locationSmallIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+
+.locationSmallHeader {
+  display: flex;
+  width: 100%;
+}
+
+.bookmarkAdd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --width: 0;
+  width: var(--width);
+  right: calc(-1*var(--width));
+  top:0;
+  position: absolute;
+  height: 100%;
+  color: white;
+  background: transparent;
+  transition: background .3s ease-out;
+}
+
+.bookmarkAddGesture{
+  composes: bookmarkAdd;
+  background: var(--gray);
+}
+
+.bookmarkAddDeleting{
+  composes: bookmarkAdd;
+  background: var(--chineese-cafe);
+}
+
+.bookmarkAddAdding{
+  composes: bookmarkAdd;
+  background: var(--bonfire-light);
+}

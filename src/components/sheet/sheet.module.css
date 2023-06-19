@@ -25,6 +25,14 @@
   transition: opacity .3s ease-out;
 }
 
+.globalShadow {
+  composes: shadow;
+}
+
+.localShadow {
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+}
+
 .containerClose:before{
   opacity: 0;
 }
@@ -42,7 +50,7 @@
   bottom: 0;
   height: 100%;
   pointer-events: auto;
-
+  border-radius: 24px 24px 0 0;
 }
 
 .containerOpen .sheet{

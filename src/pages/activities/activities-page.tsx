@@ -1,43 +1,50 @@
-import { Button, ButtonsBar, CloseButton } from "@components";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
 import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
 import { ActivitySearch } from "./search/activity-search";
 import { useActivitiesRouter } from "./hooks/useActivitiesRouter";
+import { useMemo } from "preact/hooks";
+import { routes } from "../routing";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
-  switch (router.activityId) {
+  const sheets = useMemo(() => getActivitiesSheets(router.activityId), [router.activityId]);
+
+  return (
+    <div class="page">
+      <ActivitiesAll />
+      <CloseButton onClick={() => router.goTo(['main'])}/>
+      <ButtonsBar at="bottom">
+        <Button type="vivid" goTo="/activities/search">
+          <SvgIcon id="#search" size={15} />
+        </Button>
+        <Button type="vivid" goTo="/bookmarks/activity">
+          <SvgIcon id="#bookmark" size="14px" />
+          Избранное
+        </Button>
+      </ButtonsBar>
+      <Sheet children={sheets} onClose={() => router.goTo([baseRoute])}/>
+    </div>
+  );
+}
+
+const baseRoute = "activities" as keyof typeof routes;
+
+function getActivitiesSheets(activityId: string){
+  switch (activityId) {
     case "search":
-      return (
-        <div class="page">
-          <ActivitySearch />
-          <CloseButton />
-        </div>
-      );
+      return <>
+        <ActivitySearch />
+        <CloseButton/>
+      </>;
     case undefined:
-      return (
-        <div class="page">
-          <ActivitiesAll />
-          <CloseButton />
-          <ButtonsBar at="bottom">
-            <Button type="vivid" goTo="/activities/search">
-              <SvgIcon id="#search" size={15} />
-            </Button>
-            <Button type="vivid" goTo="/bookmarks/activity">
-              <SvgIcon id="#bookmark" size="14px" />
-              Избранное
-            </Button>
-          </ButtonsBar>
-        </div>
-      );
+      return null;
     default:
-      return (
-        <div class="page">
-          <Activity id={router.activityId} />
-          <CloseButton />
-        </div>
-      );
+      return <>
+        <Activity id={activityId} />
+        <CloseButton/>
+      </>;
   }
 }

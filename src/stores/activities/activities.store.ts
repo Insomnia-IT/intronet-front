@@ -1,6 +1,7 @@
 import { ObservableDB } from "../observableDB";
 import { cell, Cell } from "@cmmn/cell/lib";
 import { bookmarksStore } from "@stores/bookmarks.store";
+import { parseTime } from "@helpers/getDayText";
 
 class ActivitiesStore {
   @cell
@@ -8,7 +9,11 @@ class ActivitiesStore {
 
   @cell
   public get Activities(): Activity[] {
-    return this.db.toArray();
+    return this.db.toArray().map((activity) => ({
+      ...activity,
+      start: parseTime(activity.start),
+      end: parseTime(activity.end)
+    }));
   }
 
   getActivity(id: string): Activity {
@@ -33,5 +38,5 @@ export class ActivityStore {
   }>(() => ({
     activity: this.activity,
     hasBookmark: !!bookmarksStore.getBookmark('activity', this.activity?._id),
-  }))
+  }));
 }

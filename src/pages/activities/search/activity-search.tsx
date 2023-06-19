@@ -10,11 +10,10 @@ export const ActivitySearch = () => {
   const [query, setQuery] = useState<string | undefined>(undefined);
   const activities = useCell(() => activitiesStore.Activities);
   const check = useMemo(() => checkActivity(query), [query]);
-
   const filtered = useMemo(() => activities.filter(check), [activities, check]);
 
   return (
-    <>
+    <div flex column gap={ 5 } className="h-full">
       <h1>поиск</h1>
       <Input
         style={{ margin: "20px 0" }}
@@ -29,7 +28,7 @@ export const ActivitySearch = () => {
           title={'Ничего не найдено'}
           text={'Попробуйте найти мероприятие по названию или по ведущему'}></SearchPlug>
       )}
-    </>
+    </div>
   );
 };
 

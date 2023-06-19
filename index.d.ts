@@ -50,7 +50,13 @@ type InsomniaLocation = {
   menu?: string;
   minZoom?: number;
   maxZoom?: number;
+  contentBlocks?: ContentBlock[];
 };
+
+type ContentBlock = {
+  blockType: 'link' | 'text';
+  content: string;
+}
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
@@ -144,8 +150,8 @@ interface Activity {
   title: string;
   description: string;
   day: number;
-  start: Date | string;
-  end: Date | string;
+  start: string;
+  end: string;
   author: string;
   age?: number;
   changes?: string;
