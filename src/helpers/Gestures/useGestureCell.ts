@@ -7,7 +7,7 @@ export const useGestureCell = () => {
     undefined
   );
 
-  const setRef = useCallback((div: HTMLDivElement | undefined) => {
+  const setRef = useCallback((div: HTMLElement | undefined) => {
     if (div) {
       const gestureCell = new GestureCell(div);
       setGestureCell(gestureCell);
