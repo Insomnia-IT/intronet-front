@@ -1,13 +1,12 @@
 import { FunctionalComponent } from "preact";
-import { useTimetableRouter } from "../timetable-page";
-import { useCell } from "@helpers/cell-state";
-import { bookmarksStore } from "@stores/bookmarks.store";
-import Styles from "./animation.module.css";
-import { SvgIcon } from "@icons";
-import { Gesture } from "./gesture";
-import { useEffect, useRef, useState } from "preact/hooks";
-import { useLocalStorageState } from "@helpers/useLocalStorageState";
+import { BookmarkGesture } from "@components/BookmarkGesture/BookmarkGesture";
 import { highlight } from "@components/highlight";
+import { Gesture } from "@helpers/Gestures";
+import { useCell } from "@helpers/cell-state";
+import { SvgIcon } from "@icons";
+import { bookmarksStore } from "@stores/bookmarks.store";
+import { useTimetableRouter } from "../timetable-page";
+import Styles from "./animation.module.css";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
@@ -15,13 +14,14 @@ export type MovieSmallProps = {
   searchQuery?: string;
   disabled?: boolean;
 };
+
 export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   movie,
   gesture,
   searchQuery,
-  disabled
+  disabled,
 }) => {
-  const switchBookmark = (movie) =>
+  const switchBookmark = () =>
     bookmarksStore.switchBookmark("movie", movie.id);
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
@@ -29,122 +29,50 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     () => !!bookmarksStore.getBookmark("movie", movie.id),
     [movie.id]
   );
-  const ref = useRef();
-  const { transform, iconOpacity, classNames, state } = useGestures(
-    ref,
-    hasBookmark,
-    switchBookmark,
-    movie,
-    gesture
-  );
-  const [userUsedGesture, setUserUsedGesture] = useLocalStorageState(
-    "userUsedGesture",
-    false
-  );
-  // const hasBookmarks = useCell(() => bookmarksStore.Movies.length > 0);
-  useEffect(() => {
-    if (userUsedGesture) return;
-    if (!state) return;
-    setUserUsedGesture(true);
-  }, [userUsedGesture, state]);
-  return (
-    <div
-      ref={ref}
-      class={classNames
-        .concat([
-          Styles.movieSmall,
-          userUsedGesture || state ? "" : Styles.bookmarkDemo,
-        ])
-        .join(" ")}
-      onClick={disabled ? undefined : (e) => e.defaultPrevented || router.goToMovie(movie.id)}
-      style={{ transform }}
-    >
-      <div flex center>
-        <div flex-grow class={Styles.movieTitle}>
-          {highlight(movie.name, searchQuery)}
-        </div>
-        <SvgIcon
-          id="#bookmark"
-          class={[...classNames, "colorPink"].join(" ")}
-          onClick={(e) => {
-            if (!hasBookmark) return;
-            e.preventDefault();
-            bookmarksStore.switchBookmark("movie", movie.id);
-          }}
-          size={17}
-          style={{
-            flexShrink: 0,
-            opacity: iconOpacity,
-          }}
-        />
-      </div>
-      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-        {highlight(movie.author, searchQuery)},{" "}
-        {highlight(movie.country, searchQuery)}, {movie.year}
-      </div>
-      <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-        {minutes} мин {seconds} сек
-      </div>
 
-      <div
-        class={Styles["bookmarkAdd" + state]}
-        style={{
-          "--width": gestureLength + "px",
-        }}
-      >
-        <SvgIcon
-          id="#bookmark"
-          class={
-            state == "Deleting" || (!hasBookmark && state !== "Adding")
-              ? "strokeOnly"
-              : undefined
-          }
-        />
-      </div>
-    </div>
+  // const hasBookmarks = useCell(() => bookmarksStore.Movies.length > 0);
+  return (
+    <BookmarkGesture
+      className={Styles.movieSmall}
+      onClick={disabled ? undefined : (e) => e.defaultPrevented || router.goToMovie(movie.id)}
+      {...{
+        gesture,
+        hasBookmark,
+        switchBookmark,
+      }}
+    >
+      {({ iconOpacity, classNames }) => {
+        return (
+          <>
+            <div flex center>
+              <div flex-grow class={Styles.movieTitle}>
+                {highlight(movie.name, searchQuery)}
+              </div>
+              <SvgIcon
+                id="#bookmark"
+                class={[...classNames, "colorPink"].join(" ")}
+                onClick={(e) => {
+                  if (!hasBookmark) return;
+                  e.preventDefault();
+                  switchBookmark();
+                }}
+                size={17}
+                style={{
+                  flexShrink: 0,
+                  opacity: iconOpacity,
+                }}
+              />
+            </div>
+            <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
+              {highlight(movie.author, searchQuery)},{" "}
+              {highlight(movie.country, searchQuery)}, {movie.year}
+            </div>
+            <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
+              {minutes} мин {seconds} сек
+            </div>
+          </>
+        )
+      }}
+    </BookmarkGesture>
   );
 };
-
-const gestureLength = Math.min(window.innerWidth / 4, 300);
-
-function useGestures(
-  ref,
-  hasBookmark,
-  switchBookmark: (movie: MovieInfo) => void,
-  movie: MovieInfo,
-  gesture: Gesture
-) {
-  const shift =
-    gesture?.path.includes(ref.current) && gesture.shift < 0
-      ? Math.max(gesture.shift, -gestureLength)
-      : 0;
-  const transform = `translateX(${shift}px)`;
-  const iconOpacity = hasBookmark
-    ? 1 - Math.abs(shift) / gestureLength
-    : Math.abs(shift) / gestureLength;
-  const [gestureEnd, setGestureEnd] = useState(false);
-
-  useEffect(() => {
-    if (Math.abs(shift) < gestureLength * 0.9) {
-      setGestureEnd(false);
-    } else {
-      setGestureEnd(true);
-    }
-    if (!gestureEnd || gesture) return;
-    setGestureEnd(false);
-    switchBookmark(movie);
-  }, [gesture, shift, hasBookmark, switchBookmark, gestureEnd]);
-  const classNames = [shift == 0 ? "transitionOut" : ""];
-  return {
-    transform,
-    iconOpacity,
-    classNames,
-    state: gestureEnd
-      ? hasBookmark
-        ? "Deleting"
-        : "Adding"
-      : !!shift
-      ? "Gesture"
-      : "",
-  };
-}

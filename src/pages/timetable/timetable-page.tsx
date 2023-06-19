@@ -1,12 +1,11 @@
-import {Button, ButtonsBar, CloseButton, Sheet} from "@components";
-import {SvgIcon} from "@icons";
-import {moviesStore} from "@stores";
-import {useMemo} from "preact/hooks";
-import {routes, useRouter} from "../routing";
-import {MovieBlockEdit} from "./movie-block-edit";
-import {Movie} from "./movie/movie";
-import {MovieSearch} from "./search/movie-search";
-import {TimetableAll} from "./timetable";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
+import { SvgIcon } from "@icons";
+import { useMemo } from "preact/hooks";
+import { routes, useRouter } from "../routing";
+import { MovieBlockEdit } from "./movie-block-edit";
+import { Movie } from "./movie/movie";
+import { MovieSearch } from "./search/movie-search";
+import { TimetableAll } from "./timetable";
 
 export function TimetablePage() {
     const router = useTimetableRouter();

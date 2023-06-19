@@ -8,7 +8,7 @@ import { ActivityStore } from "@stores/activities/activities.store";
 import { coerceTime } from "@helpers/getDayText";
 import { SvgIcon } from "@icons";
 import { bookmarksStore } from "@stores/bookmarks.store";
-import { Gesture } from "../../timetable/animation/gesture";
+import { Gesture } from "@helpers/Gestures";
 import { Badge } from "@components/badge/badge";
 import { highlight } from "@components/highlight";
 import { useLocalStorageState } from "@helpers/useLocalStorageState";
@@ -151,7 +151,9 @@ function useGestures(
     setGestureEnd(false);
     switchBookmark(activity);
   }, [gesture, shift, hasBookmark, switchBookmark, gestureEnd]);
+
   const classNames = [shift == 0 ? "transitionOut" : ""];
+
   return {
     transform,
     iconOpacity,

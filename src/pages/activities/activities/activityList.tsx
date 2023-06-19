@@ -3,7 +3,7 @@ import { useCell } from "@helpers/cell-state";
 import { ActivityBlock } from "../card/activity-block";
 import { coerceHour, isInTimePeriod } from "@helpers/getDayText";
 import { useCallback, useState } from "preact/hooks";
-import { GestureCell } from "../../timetable/animation/gesture";
+import { GestureCell } from "@helpers/Gestures";
 import { IActivityQueries, useActivitiesRouter } from "../hooks/useActivitiesRouter";
 
 export type ActivityListProps = {
