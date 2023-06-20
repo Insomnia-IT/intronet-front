@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+  will-change: transform;
+}
+
+.bookmarkAdd{
+  --width: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  right: calc(-1 * var(--width));
+  top: 0;
+  height: 100%;
+  color: white;
+  background: transparent;
+  transition: background .3s ease-out;
+}
+
+.bookmarkAddGesture {
+  composes: bookmarkAdd;
+  background: var(--gray);
+}
+
+.bookmarkAddDeleting {
+  composes: bookmarkAdd;
+  background: var(--chineese-cafe);
+}
+
+.bookmarkAddAdding {
+  composes: bookmarkAdd;
+  background: var(--bonfire-light);
+}
+
+.bookmarkDemo:nth-child(3) {
+  animation: bookmarkDemo 5s;
+  transition: transform;
+}
+
+.bookmarkDemo:nth-child(3) .bookmarkAdd {
+  background: var(--gray);
+  --width: 54px !important;
+}
+
+@keyframes bookmarkDemo {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0);
+  }
+
+  60% {
+    transform: translateX(-54px);
+  }
+
+  90% {
+    transform: translateX(-54px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

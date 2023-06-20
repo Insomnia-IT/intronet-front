@@ -1,8 +1,13 @@
 import { FunctionalComponent, JSX } from "preact";
 import styles from "../layout.module.css";
+import classNames from "classnames";
 
-export const PageContainer: FunctionalComponent<
-  JSX.ElementChildrenAttribute
-> = ({ children }) => {
-  return <div className={styles.pageContainer}>{children}</div>;
+export const PageContainer: FunctionalComponent<JSX.HTMLAttributes> = ({ children, className, ...props }) => {
+  return (
+    <div className={classNames(styles.pageContainer, className as string)} {...props}>
+      <div className={styles.pageContainerContent}>
+        {children}
+      </div>
+    </div>
+  );
 };

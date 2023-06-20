@@ -1,8 +1,14 @@
 .pageContainer {
-  padding-top: 16px;
-  padding-bottom: 40px;
   background-color: var(--cold-white);
   height: 100%;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+
+.pageContainerContent {
+  min-height: 100%;
+  padding-top: 16px;
+  padding-bottom: 20px;
   box-sizing: border-box;
 }
 

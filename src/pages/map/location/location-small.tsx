@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "preact";
 import Styles from './location.module.css'
-import { Gesture } from "../../timetable/animation/gesture";
+import { Gesture } from "@helpers/Gestures";
 import { directionsToIcon, getLocationColor, getLocationIconSrc } from "../helpers/color.helper";
 import { highlight } from "@components/highlight";
 import { SvgIcon } from "@icons";
