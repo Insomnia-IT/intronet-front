@@ -19,6 +19,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
   const store = useMemo(() => new LocationStore(id), [id]);
   const { location, hasBookmark } = useCell(store.state);
   if (!location) return <></>;
+  console.log(location)
   return (
     <div className={Styles.content}>
       <div className={["sh1", Styles.locationHeader].join(" ")}>

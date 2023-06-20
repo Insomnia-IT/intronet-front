@@ -27,6 +27,7 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
         style={{
           height: props.height,
           paddingBottom: props.height === 'auto' ? 16 : undefined,
+          borderRadius: props.height === '100%' ? '0' : undefined
         }}
 
         onClick={(e) => {

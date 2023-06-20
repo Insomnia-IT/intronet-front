@@ -78,7 +78,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               onClick={() => router.goTo(["map", view.locationId])}
             >
               <div flex class="sh1" gap={2}>
-                <SvgIcon id="#eye" size={32} style={{ color: "var(--electric-blues)" }} />
+                <SvgIcon id=".common #eye" size={32} style={{ color: "var(--electric-blues)" }} />
                 {locationsStore.getName(view.locationId)}
               </div>
               <Link

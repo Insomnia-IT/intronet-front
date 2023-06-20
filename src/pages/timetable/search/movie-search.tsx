@@ -32,9 +32,14 @@ export const MovieSearch = () => {
 
 const checkMovie = (query: string | undefined) => {
   if (!query) return () => true;
-  const regex = new RegExp(query, "i");
-  return (movie: MovieInfo) =>
-    regex.test(movie.name) ||
-    regex.test(movie.author) ||
-    regex.test(movie.country);
+  try {
+
+    const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "i");
+    return (movie: MovieInfo) =>
+      regex.test(movie.name) ||
+      regex.test(movie.author) ||
+      regex.test(movie.country);
+  } catch (e){
+     return () => false;
+  }
 };

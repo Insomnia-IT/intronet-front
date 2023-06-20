@@ -18,7 +18,7 @@ export function MapElements(props: {
         .orderBy((x) =>
           Array.isArray(x.figure)
             ? -100
-            : -(directionsToOrder.get(x.directionId) ?? 0)
+            : -(directionsToOrder.get(x.directionId) ?? -10)
         )
         .map((x) => (
           <MapElement
@@ -47,6 +47,7 @@ export function MapElement(props: {
   );
   const color = (() => {
     switch (type) {
+      case OrderType.Main:
       case OrderType.Info:
         return "#1C2973";
       case OrderType.Screens:
@@ -61,6 +62,8 @@ export function MapElement(props: {
         return "black";
     }
   })();
+  if (color === "black")
+    console.log(props.item);
   const form = (() => {
     switch (type) {
       case OrderType.Info:
@@ -176,8 +179,11 @@ const directionsToOrder = new Map([
     "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
     OrderType.Info,
   ],
+  ["Хатифнатты", OrderType.Other],
+  ["Платный лагерь", OrderType.Main],
+  ["Детская Поляна", OrderType.Other],
   ["Детская Площадка", OrderType.Other],
-  ["", OrderType.Other],
+  ["Арт-объект", OrderType.Other],
   ["Мастер-Классы", OrderType.Other],
   ["Туалет", OrderType.WC],
   ["Ярмарка", OrderType.Other],
@@ -205,11 +211,12 @@ export const directionsToIconId = new Map<string, MapIconId>([
     ".map #sign",
   ],
   ["Детская Площадка", ".map #art"],
-  ["", ".map #art"],
+  ["Арт-объект", ".map #art"],
   ["Мастер-Классы", ".map #lecture"],
   ["Туалет", ".map #wc"],
   ["Ярмарка", ".map #shop"],
   ["Автолагерь", ".map #tent"],
+  ["Платный лагерь", ".map #tent"],
   ["Лекторий", ".map #lecture"],
   ["Фудкорт", ".map #cafe"],
   ["Кафе", ".map #cafe"],
@@ -221,6 +228,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Театральная Сцена", ".map #eye"],
   ["Гостевые Кемпинги", ".map #tent"],
   ["Экран", ".map #eye"],
+  ["Хатифнатты", ".map #lecture"],
   ["Инфоцентр", ".map #sign"],
 ]);
 
@@ -228,6 +236,7 @@ export type MapIconId =
   | ".map #sign"
   | ".map #eye"
   | ".map #tent"
+  | ".map #direction"
   | ".map #wc"
   | ".map #art"
   | ".map #lecture"
