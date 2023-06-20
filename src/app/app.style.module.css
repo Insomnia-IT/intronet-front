@@ -52,6 +52,11 @@
   color: var(--electric-blues);
   user-select: none;
 }
+:global(.link.disabled){
+  color: var(--gray);
+  pointer-events: none;
+}
+
 :global(.link):after{
   content: ' →';
 }

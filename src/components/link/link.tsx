@@ -10,6 +10,7 @@ export type LinkProps = {
 export const Link: FunctionalComponent<LinkProps> = ({
   onClick,
   className,
+  disabled,
   ...props
 }) => {
   const router = useRouter();
@@ -25,6 +26,7 @@ export const Link: FunctionalComponent<LinkProps> = ({
   );
   const classNames = ["link"] as Array<string | SignalLike<string>>;
   if (className) classNames.push(className);
+  if (disabled) classNames.push('disabled')
   return (
     <a
       className={classNames.join(" ")}
