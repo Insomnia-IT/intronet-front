@@ -53,7 +53,7 @@
   user-select: none;
 }
 :global(.link.disabled){
-  color: var(--gray);
+  opacity: 0.4;
   pointer-events: none;
 }
 
