@@ -16,7 +16,9 @@ export function MapElements(props: {
     () =>
       items
         .orderBy((x) =>
-          Array.isArray(x.figure) ? -10 : -directionsToOrder.get(x.directionId)
+          Array.isArray(x.figure)
+            ? -100
+            : -(directionsToOrder.get(x.directionId) ?? 0)
         )
         .map((x) => (
           <MapElement
@@ -102,7 +104,7 @@ export function MapElement(props: {
       overflow="visible"
     />
   );
-  const iconId = "#" + directionsToIconId.get(props.item.directionId);
+  const iconId = directionsToIconId.get(props.item.directionId);
   const classNames = [styles.element];
   if (props.selected) {
     classNames.push(styles.selected);
@@ -143,9 +145,6 @@ export function MapElement(props: {
                 fill="none"
                 viewBox="8 8 24 24"
                 overflow="visible"
-                style={{
-                  color: "var(--cold-white)",
-                }}
               />
             </g>
             <text y="2.5em" filter="url(#solid)">
@@ -197,38 +196,41 @@ const directionsToOrder = new Map([
   ["Инфоцентр", OrderType.Info],
 ]);
 
-const directionsToIconId = new Map<string, MapIconId>([
-  ["Медпункт (Медицинская Служба)", "sign"],
-  ["КПП", "kpp"],
-  ["Баня", "wc"],
-  ["Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде", "sign"],
-  ["Детская Площадка", "art"],
-  ["", "art"],
-  ["Мастер-Классы", "lecture"],
-  ["Туалет", "wc"],
-  ["Ярмарка", "shop"],
-  ["Автолагерь", ""],
-  ["Лекторий", "lecture"],
-  ["Фудкорт", "cafe"],
-  ["Кафе", "cafe"],
-  ["КАФЕ", "cafe"],
-  ["Ветви Дерева", "art"],
-  ["Спортплощадка", "art"],
-  ["Души", "wc"],
-  ["Музыкальная Сцена", "eye"],
-  ["Театральная Сцена", "eye"],
-  ["Гостевые Кемпинги", ""],
-  ["Экран", "eye"],
-  ["Инфоцентр", "sign"],
+export const directionsToIconId = new Map<string, MapIconId>([
+  ["Медпункт (Медицинская Служба)", ".map #sign"],
+  ["КПП", ".map #kpp"],
+  ["Баня", ".map #wc"],
+  [
+    "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
+    ".map #sign",
+  ],
+  ["Детская Площадка", ".map #art"],
+  ["", ".map #art"],
+  ["Мастер-Классы", ".map #lecture"],
+  ["Туалет", ".map #wc"],
+  ["Ярмарка", ".map #shop"],
+  ["Автолагерь", ".map #tent"],
+  ["Лекторий", ".map #lecture"],
+  ["Фудкорт", ".map #cafe"],
+  ["Кафе", ".map #cafe"],
+  ["КАФЕ", ".map #cafe"],
+  ["Ветви Дерева", ".map #art"],
+  ["Спортплощадка", ".map #art"],
+  ["Души", ".map #wc"],
+  ["Музыкальная Сцена", ".map #eye"],
+  ["Театральная Сцена", ".map #eye"],
+  ["Гостевые Кемпинги", ".map #tent"],
+  ["Экран", ".map #eye"],
+  ["Инфоцентр", ".map #sign"],
 ]);
 
 export type MapIconId =
-  | "sign"
-  | "eye"
-  | ""
-  | "wc"
-  | "art"
-  | "lecture"
-  | "cafe"
-  | "kpp"
-  | "shop";
+  | ".map #sign"
+  | ".map #eye"
+  | ".map #tent"
+  | ".map #wc"
+  | ".map #art"
+  | ".map #lecture"
+  | ".map #cafe"
+  | ".map #kpp"
+  | ".map #shop";
