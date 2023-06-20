@@ -1,21 +1,40 @@
+.borderRadius {
+  border-top-right-radius: calc(var(--border-radius) * 1px);
+  border-bottom-right-radius: calc(var(--border-radius) * 1px);
+}
+
+.wrapperBordered {
+  --border-radius: 0;
+  composes: borderRadius;
+  overflow: hidden;
+}
+
 .container {
   position: relative;
   will-change: transform;
 }
 
-.bookmarkAdd{
+.contentWrapper {
+  composes: borderRadius;
+  position: relative;
+  background-color: var(--cold-white)
+}
+
+.bookmarkAdd {
   --width: 0;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: var(--width);
+  padding-left: calc(var(--border-radius) * 1px);
   right: calc(-1 * var(--width));
   top: 0;
   height: 100%;
   color: white;
   background: transparent;
   transition: background .3s ease-out;
+  z-index: -1;
 }
 
 .bookmarkAddGesture {
@@ -33,12 +52,12 @@
   background: var(--bonfire-light);
 }
 
-.bookmarkDemo:nth-child(3) {
+.wrapperDemo:nth-child(3) .container {
   animation: bookmarkDemo 5s;
   transition: transform;
 }
 
-.bookmarkDemo:nth-child(3) .bookmarkAdd {
+.wrapperDemo:nth-child(3) .bookmarkAdd {
   background: var(--gray);
   --width: 54px !important;
 }
