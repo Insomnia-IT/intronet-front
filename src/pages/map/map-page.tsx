@@ -1,17 +1,15 @@
-import { cell } from "@cmmn/cell/lib";
-import { Component } from "preact";
-import { Button, ButtonsBar, CloseButton } from "@components";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { locationsStore } from "@stores/locations.store";
 import { useCell } from "@helpers/cell-state";
 import { useMemo, useState } from "preact/hooks";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
-import { MapToolbar } from "./map-toolbar/map-toolbar";
-import { RoutePath, useRouter } from "../routing";
+import { RoutePath } from "../routing";
 import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
-import {LocationSearch} from "./location-search";
+import { LocationSearch } from "./search/location-search";
+import { Location } from "./location/location";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -25,11 +23,15 @@ export function MapPageWithRouting() {
     router.goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
   };
   const [isEditing, setIsEditing] = useState(false);
-  const sheets = useMemo(() => getMapSheets(
-      router.locationId,
-      () => router.goTo([ 'map' ]),
-      () => setSelected(null)
-  ), [ router.locationId ]);
+  const sheets = useMemo(
+    () =>
+      getMapSheets(
+        router.locationId,
+        () => router.goTo(["map"]),
+        () => setSelected(null)
+      ),
+    [router.locationId]
+  );
 
   return (
     <div className={styles.container}>
@@ -69,26 +71,38 @@ export function MapPageWithRouting() {
           </Button>
         </RequireAuth>
       </ButtonsBar>
-      <Sheet height={router.locationId !== 'search' ? '50%' : '100%'} noShadow shadowType={ 'localShadow' } children={ sheets }
-             onClose={ () => router.goTo([ 'map' ]) }/>
+      <Sheet
+        height={router.locationId !== "search" ? "50%" : "100%"}
+        noShadow
+        shadowType={"localShadow"}
+        children={sheets}
+        onClose={() => router.goTo(["map"])}
+      />
     </div>
   );
 }
 
-
-const getMapSheets = (locationId: string, onSearchClose: () => void, onPageClose: () => void) => {
+const getMapSheets = (
+  locationId: string,
+  onSearchClose: () => void,
+  onPageClose: () => void
+) => {
   switch (locationId) {
     case "search":
-      return <>
-        <LocationSearch/>
-        <CloseButton onClick={ onSearchClose }/>
-      </>;
+      return (
+        <>
+          <LocationSearch />
+          <CloseButton onClick={onSearchClose} />
+        </>
+      );
     case undefined:
       return null;
     default:
-      return <>
-        <Location id={ locationId }/>
-        <CloseButton onClick={ onPageClose }/>
-      </>;
+      return (
+        <>
+          <Location id={locationId} />
+          <CloseButton onClick={onPageClose} />
+        </>
+      );
   }
-}
+};

@@ -68,6 +68,7 @@ export function MapElement(props: {
         return "circle";
     }
   })();
+  const scaleThreshold = 0.6;
   const size = (() => {
     switch (type) {
       case OrderType.MainZone:
@@ -76,7 +77,7 @@ export function MapElement(props: {
       case OrderType.Info:
         return "20em";
       default:
-        return scale > 0.006 ? "20em" : "4em";
+        return scale > scaleThreshold || props.selected ? "20em" : "4em";
     }
   })();
   const showText = (() => {
@@ -87,7 +88,7 @@ export function MapElement(props: {
       case OrderType.Info:
         return true;
       default:
-        return true; //scale > 0.6;
+        return scale > scaleThreshold || props.selected;
     }
   })();
   const shape = (
@@ -128,17 +129,28 @@ export function MapElement(props: {
         {shape}
         {showText && (
           <>
-            <SvgIcon
-              size={size}
-              id={iconId}
-              fill="none"
-              viewBox="8 8 24 24"
-              overflow="visible"
-              style={{ color: "var(--cold-white)" }}
-            />
-            {/*<text y="2.5em" filter="url(#solid)">*/}
-            {/*  {props.item.directionId && props.item.title}*/}
-            {/*</text>*/}
+            <g
+              style={{
+                transform:
+                  form == "star" && props.selected
+                    ? `translate(1em, -12em) scale(1.5)`
+                    : undefined,
+              }}
+            >
+              <SvgIcon
+                size={size}
+                id={iconId}
+                fill="none"
+                viewBox="8 8 24 24"
+                overflow="visible"
+                style={{
+                  color: "var(--cold-white)",
+                }}
+              />
+            </g>
+            <text y="2.5em" filter="url(#solid)">
+              {props.item.directionId && props.item.title}
+            </text>
           </>
         )}
       </g>
