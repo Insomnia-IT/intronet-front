@@ -12,8 +12,11 @@ export type IBookmarkGestureProps = {
   switchBookmark: () => void;
   className?: string;
   placeholderClassName?: string;
+  wrapperClassName?: string;
   onClick?: (e?: JSX.TargetedMouseEvent<HTMLElement>) => void;
   children: (props: IBookmarkChildrenProps) => JSX.Element;
+  borderRadius?: number;
+  contentNoOpacity?: boolean;
 }
 
 export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
@@ -21,8 +24,11 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
   hasBookmark,
   switchBookmark,
   children,
+  wrapperClassName,
   placeholderClassName,
   className,
+  borderRadius,
+  contentNoOpacity = false,
   ...props
 }) => {
   const ref = useRef();
@@ -42,28 +48,43 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
 
   return (
     <div
-      ref={ref}
-      className={cx(styles.container, className, classNames, needViewDemo && styles.bookmarkDemo)}
-      style={{ transform }}
-      {...props}
+      className={cx(wrapperClassName, {
+        [styles.wrapperBordered]: Boolean(borderRadius),
+        [styles.wrapperDemo]: needViewDemo,
+      })}
+      style={{
+        "--border-radius": borderRadius || 0,
+      }}
     >
-
-      {children({ iconOpacity, classNames })}
-
       <div
-        className={cx(styles["bookmarkAdd" + state], placeholderClassName)}
-        style={{
-          "--width": gestureLength + "px",
-        }}
+        ref={ref}
+        className={cx(styles.container, className, classNames)}
+        style={{ transform }}
+        {...props}
       >
-        <SvgIcon
-          id="#bookmark"
-          class={
-            state == "Deleting" || (!hasBookmark && state !== "Adding")
-              ? "strokeOnly"
-              : undefined
-          }
-        />
+        {
+          contentNoOpacity ? (
+          <div className={styles.contentWrapper}>
+            {children({ iconOpacity, classNames })}
+          </div>
+          ) : children({ iconOpacity, classNames })
+        }
+
+        <div
+          className={cx(styles["bookmarkAdd" + state], placeholderClassName)}
+          style={{
+            "--width": gestureLength + "px",
+          }}
+        >
+          <SvgIcon
+            id="#bookmark"
+            class={
+              state == "Deleting" || (!hasBookmark && state !== "Adding")
+                ? "strokeOnly"
+                : undefined
+            }
+          />
+        </div>
       </div>
     </div>
   )

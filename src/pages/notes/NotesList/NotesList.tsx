@@ -7,6 +7,7 @@ import { useCell } from "@helpers/cell-state";
 import { NoteCard } from "./NoteCard/NoteCard";
 import { categoriesStore } from "@stores";
 import styles from "./styles.module.css";
+import { useGestureCell } from "@helpers/Gestures";
 
 export type INotesListProps = {
   className?: string;
@@ -18,12 +19,13 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
   onNoteClick,
 }) => {
   const notesRouter = useNotesRouter();
+  const { setRef, gesture } = useGestureCell()
   const { filterId } = notesRouter;
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
   const { filteredNotes } = useCell(store.state);
 
   return (
-    <ul className={classNames("textSmall", styles.list, className)}>
+    <ul className={classNames("textSmall", styles.list, className)} ref={setRef}>
       {filteredNotes.map((note) => {
         const noteCategory = {
           name: categoriesStore.getCategory(note.categoryId)?.name,
@@ -37,6 +39,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
               categoryName={noteCategory.name}
               categoryColor={noteCategory.color}
               onClick={onNoteClick}
+              gesture={gesture}
             />
           </li>
         );
