@@ -1,4 +1,4 @@
-.content {
+.container {
   display: flex;
   flex: 1;
   min-height: 0;
@@ -8,6 +8,13 @@
 
 .locationHeader {
   width: calc(100% - 48px);
+}
+
+.locationContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 27px;
 }
 
 .locationSmallContainer {
