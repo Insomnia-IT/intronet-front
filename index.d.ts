@@ -55,7 +55,13 @@ type InsomniaLocation = {
 
 type ContentBlock = {
   blockType: 'link' | 'text';
-  content: string;
+  content: string | ListItem[];
+}
+
+type ListItem = {
+  tag?: string;
+  title: string;
+  description: string;
 }
 
 type Geo = { lat: number; lon: number };
