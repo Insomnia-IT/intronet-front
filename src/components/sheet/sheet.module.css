@@ -49,6 +49,8 @@
   color: var(--ins-night);
   bottom: 0;
   height: 100%;
+  margin-top: -20px;
+  box-sizing: border-box;
   pointer-events: auto;
   border-radius: 24px 24px 0 0;
 }

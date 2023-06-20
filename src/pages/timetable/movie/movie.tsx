@@ -28,7 +28,6 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
     <div flex column gap={2}>
       <header className="sh1" style={{marginBottom: 16}}>{movie?.name}</header>
       {movie.description && <div style={{
-        marginRight: 7,
         marginBottom: 8
       }} className="text colorMediumBlue">{movie?.description}</div>}
       <div class="colorGray">
@@ -39,22 +38,18 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       {!votedMovie && (
         <div flex column gap={2} style={{ marginBottom: 24, marginTop: 24 }}>
-          <Card border="Vivid" >
+          <Card border="Vivid" gap={0}>
             <div flex column gap="2">
               <div class="sh2 colorPink">Международный конкурс анимации</div>
               <div class="sh3 colorPink">Приз зрительских симпатий</div>
             </div>
-            <Button
-              class="w-full unbounded"
-              style={{
-                fontSize: 14,
-              }}
-              type="vivid"
-              disabled={!isOnline}
-              goTo={["voting", movie.id]}
-            >
+            <Link disabled={!isOnline} goTo={["voting", movie.id]} style={{
+              marginTop: 20,
+              marginBottom: 12
+            }}>
               Голосую за эту работу!
-            </Button>
+            </Link>
+            <div class="textSmall colorGray">Голосовать можно онлайн и только 1 раз</div>
           </Card>
 
           {!isOnline && (
@@ -78,7 +73,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               onClick={() => router.goTo(["map", view.locationId])}
             >
               <div flex class="sh1" gap={2}>
-                <SvgIcon id="#eye" size={32} style={{ color: "var(--electric-blues)" }} />
+                <SvgIcon id=".common #eye" size={32} style={{ color: "var(--electric-blues)" }} />
                 {locationsStore.getName(view.locationId)}
               </div>
               <Link
@@ -101,7 +96,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       <ButtonsBar at="bottom">
         <Button
-          type="vivid"
+          type="vivid" class="w-full"
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >
           <SvgIcon id="#bookmark" size={14} />

@@ -180,7 +180,6 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
 
   constructor() {
     super("versions");
-    // setInterval(() => this.loadFromServer(), 3000);
   }
 
   public remote: Record<string, string> = {};
@@ -189,6 +188,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
   public get local(): Record<string, string> {

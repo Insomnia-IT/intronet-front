@@ -23,7 +23,7 @@ export function TimetablePage() {
             Избранное
           </Button>
         </ButtonsBar>
-        <Sheet children={sheets} onClose={() => router.goTo([baseRoute])}/>
+        <Sheet children={sheets} height="100%" onClose={() => router.goTo([baseRoute])}/>
       </div>
     );
 }
