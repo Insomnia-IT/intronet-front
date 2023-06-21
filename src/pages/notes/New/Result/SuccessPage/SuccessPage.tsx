@@ -5,7 +5,7 @@ import { PageHeader } from "@components/Layout/PageHeader/PageHeader";
 import noteStyles from "../../../notes.module.css";
 import newStyles from "./../../new.module.css";
 import classNames from "classnames";
-import { Button } from "@components";
+import { Button, ButtonsBar } from "@components";
 import styles from "./success-page.module.css";
 import { useNotesRouter } from "../../../hooks/useNotesRouter";
 
@@ -31,9 +31,11 @@ export const SuccessPage: FunctionalComponent = () => {
             отдыхать и&nbsp;опубликуют ваше объявление только утром.
           </span>
 
-          <Button type={"vivid"} className={styles.btn} onClick={onBtnClick}>
-            назад к объявлениям
-          </Button>
+          <ButtonsBar>
+            <Button type={"vivid"} className={styles.btn} onClick={onBtnClick}>
+              назад к объявлениям
+            </Button>
+          </ButtonsBar>
         </PageSection>
       </div>
     </PageContainer>

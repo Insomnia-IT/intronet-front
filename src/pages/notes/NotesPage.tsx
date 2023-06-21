@@ -48,7 +48,7 @@ export const NotesPage: FunctionalComponent = () => {
                 onNoteClick={setActiveNoteId}
               />
             </PageSection>
-            <Sheet onClose={resetActiveNoteId}>
+            <Sheet onClose={resetActiveNoteId} height="auto">
               {activeNoteId && (
                 <>
                   <NoteSheet
