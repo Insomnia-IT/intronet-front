@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  user-select: none;
 }
 
 .content {
