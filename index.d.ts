@@ -38,6 +38,8 @@ declare module "*.html" {
   export default style;
 }
 
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
 type InsomniaLocation = {
   _id: string;
   // Неуникальный, но постоянный

@@ -1,17 +1,18 @@
 import { FunctionalComponent } from "preact";
+import { useState } from "preact/hooks";
 import { PageContainer } from "@components/Layout/PageContainer/PageContainer";
 import { PageHeader } from "@components/Layout/PageHeader/PageHeader";
 import { PageSection } from "@components/Layout/PageSection/PageSection";
+import { AddNoteBtn } from "./AddNoteBtn/AddNoteBtn";
 import { FilteriesSlider } from "./FilteriesSlider/FilteriesSlider";
 import { useNotesRouter } from "./hooks/useNotesRouter";
-import { NotesList } from "./NotesList/NotesList";
-import { AddNoteBtn } from "./AddNoteBtn/AddNoteBtn";
-
-import styles from "./notes.module.css";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
+import { SvgIcon } from "@icons";
+import { MyPage } from "./My/MyPage";
 import { NewNoteSwitch } from "./New/NewNoteSwitch";
-import { useState } from "preact/hooks";
 import { NoteSheet } from "./NoteSheet/NoteSheet";
-import { CloseButton, Sheet } from "@components";
+import { GesturedNotesList } from "./NotesList/GesturedNoteList";
+import styles from "./notes.module.css";
 
 export const NotesPage: FunctionalComponent = () => {
   const router = useNotesRouter();
@@ -26,6 +27,9 @@ export const NotesPage: FunctionalComponent = () => {
 
     case "new":
       return <NewNoteSwitch />;
+
+    case "my":
+      return <MyPage />
 
     case undefined:
       return (
@@ -43,11 +47,19 @@ export const NotesPage: FunctionalComponent = () => {
               <div className={styles.addNoteBtn}>
                 <AddNoteBtn />
               </div>
-              <NotesList
+              <GesturedNotesList
                 className={styles.notesList}
                 onNoteClick={setActiveNoteId}
               />
             </PageSection>
+            <ButtonsBar at="bottom">
+              {/* <Button type="vivid" goTo="/notes/search">
+                <SvgIcon id="#search" size={15} />
+              </Button> */}
+              <Button type="vivid" goTo="/notes/my">
+                Мои объявления
+              </Button>
+            </ButtonsBar>
             <Sheet onClose={resetActiveNoteId} height="auto">
               {activeNoteId && (
                 <>

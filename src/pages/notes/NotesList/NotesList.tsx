@@ -1,31 +1,50 @@
-import { FunctionalComponent } from "preact";
+import { FunctionalComponent, Ref } from "preact";
+import { MutableRef, useMemo } from "preact/hooks";
+import { Gesture, useGestureCell } from "@helpers/Gestures";
+import { useCell } from "@helpers/cell-state";
+import { categoriesStore } from "@stores";
+import { FilteredNotesStore } from "@stores/notes/filters.store";
 import classNames from "classnames";
 import { useNotesRouter } from "../hooks/useNotesRouter";
-import { useEffect, useMemo } from "preact/hooks";
-import { FilteredNotesStore } from "@stores/notes/filters.store";
-import { useCell } from "@helpers/cell-state";
-import { NoteCard } from "./NoteCard/NoteCard";
-import { categoriesStore } from "@stores";
+import { NoteGesturedCard } from "./NoteCard/NoteGesturedCard";
 import styles from "./styles.module.css";
-import { useGestureCell } from "@helpers/Gestures";
+import { NoteCard } from "./NoteCard/NoteCard";
 
 export type INotesListProps = {
   className?: string;
   onNoteClick?: (noteId: string) => void;
+  filterId?: string;
+  notesClassName?: string;
+  notesWithTTL?: boolean;
+  withGesture?: boolean;
+  gesture?: Gesture;
+  setRef?: Ref<HTMLDivElement>;
 };
 
 export const NotesList: FunctionalComponent<INotesListProps> = ({
   className,
+  filterId = 'all',
+  notesClassName,
+  notesWithTTL,
+  withGesture,
+  gesture,
+  setRef,
   onNoteClick,
 }) => {
-  const notesRouter = useNotesRouter();
-  const { setRef, gesture } = useGestureCell()
-  const { filterId } = notesRouter;
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
   const { filteredNotes } = useCell(store.state);
+  const createOnNoteClick = (noteId: string) => {
+    return () => {
+      onNoteClick(noteId)
+    }
+  }
+
+  const NoteCardComponent = withGesture
+    ? NoteGesturedCard
+    : NoteCard;
 
   return (
-    <ul className={classNames("textSmall", styles.list, className)} ref={setRef}>
+    <div className={classNames("textSmall", styles.list, className)} ref={setRef}>
       {filteredNotes.map((note) => {
         const noteCategory = {
           name: categoriesStore.getCategory(note.categoryId)?.name,
@@ -33,15 +52,17 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
         };
 
         return (
-          <NoteCard
+          <NoteCardComponent
             {...note}
             categoryName={noteCategory.name}
             categoryColor={noteCategory.color}
-            onClick={onNoteClick}
-            gesture={gesture}
+            onClick={createOnNoteClick(note._id)}
+            className={notesClassName}
+            withTTL={notesWithTTL}
+            {...(gesture ? {gesture} : {})}
           />
         );
       })}
-    </ul>
+    </div>
   );
 };

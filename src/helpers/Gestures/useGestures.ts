@@ -46,7 +46,6 @@ export const useGestures = (
   }, [gesture, shift, hasBookmark, switchBookmark, gestureEnd]);
 
   useEffect(() => {
-    console.debug(userUsedGesture)
     if (userUsedGesture || !state) return;
     setUserUsedGesture(true);
   }, [userUsedGesture, setUserUsedGesture, state]);
