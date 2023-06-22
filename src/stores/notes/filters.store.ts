@@ -2,6 +2,7 @@ import { Cell, cell } from "@cmmn/cell/lib";
 import { categoriesStore } from "./categories.store";
 import { notesStore } from "./notes.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
+import { authStore } from "@stores/auth.store";
 
 class FiltersStore {
   @cell
@@ -17,6 +18,11 @@ class FiltersStore {
         id: "favorites",
         name: "Избранные",
         icon: "bookmark",
+      },
+      {
+        type: "my",
+        id: "my",
+        name: "Мои",
       },
       ...categoriesStore.categories.map(({ _id, name }): IFilterEntity => {
         return {
@@ -70,6 +76,12 @@ export class FilteredNotesStore {
         });
       }
 
+      case "my": {
+        return notesStore.notes.filter((note) => {
+          return typeof note.author === 'object' && note.author.id === authStore.uid;
+        })
+      }
+
       default: {
         return notesStore.notes;
       }
@@ -81,7 +93,9 @@ export class FilteredNotesStore {
   }));
 }
 
-type IFilterType = "all" | "favorites" | "category";
+export const myNotesStore = new FilteredNotesStore('my');
+
+type IFilterType = "all" | "favorites" | "category" | "my";
 
 type IFilterEntity = {
   type: IFilterType;
