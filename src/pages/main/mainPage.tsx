@@ -38,7 +38,7 @@ export const MainPage = () => {
         ))}
         <Menu />
         <Sheet children={sheetItems}
-               height="auto"
+               height={router.route[2] === undefined ? 'auto' : '100%'}
                onClose={() => router.goTo(["main"])}/>
       </div>
     </div>
