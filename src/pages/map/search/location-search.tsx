@@ -7,7 +7,7 @@ import { LocationList } from "../location/location-list";
 
 export const LocationSearch = () => {
   const [ query, setQuery ] = useState<string | undefined>(undefined);
-  const locations = useCell(() => locationsStore.FullLocations);
+  const locations = useCell(() => locationsStore.Locations);
   const check = useMemo(() => checkLocation(query), [ query ]);
   const filtered = useMemo(() => locations.filter(check), [ locations, check ]);
 
@@ -34,6 +34,6 @@ export const LocationSearch = () => {
 const checkLocation = (query: string | undefined) => {
   if (!query) return () => true;
   const regex = new RegExp(query, "i");
-  return (location: InsomniaLocationFull) =>
+  return (location: InsomniaLocation) =>
     regex.test(location.name);
 };

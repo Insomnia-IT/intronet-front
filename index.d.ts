@@ -79,15 +79,6 @@ type MapItem = {
   maxZoom?: number;
 };
 
-type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
-  tags: Tag[];
-};
-
-type Tag = {
-  _id: string;
-  name: string;
-};
-
 type Movie = {
   _id: string;
   title: string;
@@ -160,7 +151,7 @@ interface Activity {
   end: string;
   author: string;
   age?: number;
-  changes?: string;
+  hasChanges?: boolean;
   isCanceled?: boolean;
 }
 

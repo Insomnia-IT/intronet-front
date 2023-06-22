@@ -75,6 +75,18 @@ const queryCell = new Cell<Record<string, string>>(
   Object.fromEntries(new URL(location.href).searchParams.entries())
 );
 
+export const routerCell = new Cell(() => {
+  const route = routeCell.get();
+  const query = queryCell.get()
+  return {
+    back: history.back.bind(history),
+    route,
+    query,
+    active: routes[route[0]] ?? routes.main,
+    goTo,
+  }
+})
+
 function onRoutingChange(e: {oldValue: RoutePath, value: RoutePath} ){
   document.title = "Insomnia: " + routes[e.value[0]]?.title;
   userStore.log({
@@ -88,7 +100,7 @@ onRoutingChange({
   value: routeCell.get(),
   oldValue: [] as any
 });
-const goTo = (
+export const goTo = (
   path: RoutePath | RoutePathString,
   query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
@@ -120,20 +132,13 @@ if (location.pathname === "/") {
 }
 
 export function useRouter<TQuery extends Record<string, string> = {}>() {
-  const route: RoutePath = useCell(routeCell);
-  const query = useCell(queryCell) as TQuery;
+  const router = useCell(routerCell);
   useEffect(() => {
-    if (!routes[route[0]]) {
+    if (!routes[router.route[0]]) {
       goTo(["onboard"]);
     }
-  }, [route[0]]);
-  return {
-    back: history.back.bind(history),
-    route,
-    query,
-    active: routes[route[0]] ?? routes.main,
-    goTo,
-  };
+  }, [router.route[0]]);
+  return router;
 }
 // history.scrollRestoration = "auto";
 export const historyStateCell = new Cell<Record<string, any>>(

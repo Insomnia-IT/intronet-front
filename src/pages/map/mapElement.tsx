@@ -8,8 +8,6 @@ import { Cell } from "@cmmn/cell/lib";
 
 export function MapElements(props: {
   transformCell: Cell<TransformMatrix>;
-  selected: string | undefined;
-  onSelect(x: MapItem);
 }) {
   const items = useCell(() => locationsStore.MapItems);
   const children = useMemo(
@@ -25,21 +23,19 @@ export function MapElements(props: {
             item={ x }
             key={ x.id }
             transformCell={ props.transformCell }
-            selected={ props.selected === x.id }
-            onSelect={ props.onSelect }
           />
         )),
-    [ items, props.onSelect, props.selected, props.transformCell ]
+    [ items,  props.transformCell ]
   );
   return <>{ children }</>;
 }
+const scaleThreshold = 0.6;
 
 export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
   item: MapItem;
-  selected: boolean;
-  onSelect(x: MapItem);
 }) {
+  const isSelected = useCell(() =>locationsStore.selected?._id == props.item.id);
   const type = directionsToOrder.get(props.item.directionId);
   const scale = useCell(
     () => props.transformCell.get().Matrix.GetScaleFactor(),
@@ -70,21 +66,10 @@ export function MapElement(props: {
       case OrderType.Screens:
         return "star";
       default:
-        return "circle";
+        return scale > scaleThreshold || isSelected ? "circle" : "circleSmall";
     }
   })();
-  const scaleThreshold = 0.6;
-  const size = (() => {
-    switch (type) {
-      case OrderType.MainZone:
-      case OrderType.Main:
-      case OrderType.Screens:
-      case OrderType.Info:
-        return "20em";
-      default:
-        return scale > scaleThreshold || props.selected ? "20em" : "4em";
-    }
-  })();
+  const size = "20em";
   const showText = (() => {
     switch (type) {
       case OrderType.MainZone:
@@ -93,7 +78,7 @@ export function MapElement(props: {
       case OrderType.Info:
         return true;
       default:
-        return scale > scaleThreshold || props.selected;
+        return scale > scaleThreshold || isSelected;
     }
   })();
   const shape = (
@@ -109,7 +94,7 @@ export function MapElement(props: {
   );
   const iconId = directionsToIconId.get(props.item.directionId);
   const classNames = [ styles.element ];
-  if (props.selected) {
+  if (isSelected) {
     classNames.push(styles.selected);
   }
   if (Array.isArray(props.item.figure)) {
@@ -123,12 +108,14 @@ export function MapElement(props: {
     );
   }
   return (
-    <g transform={ `translate(${ props.item.figure.X } ${ props.item.figure.Y })` }>
+    <g transform={ `translate(${ props.item.figure.X } ${ props.item.figure.Y })` } style={{
+      transition: `transform .1s ease`
+    }}>
       <g
         className={ classNames.join(" ") }
         onClick={ (e) => {
           e.preventDefault();
-          props.onSelect(props.item);
+          locationsStore.setSelectedId(props.item.id);
         } }
       >
         { shape }
@@ -137,7 +124,7 @@ export function MapElement(props: {
             <g
               style={ {
                 transform:
-                  form == "star" && props.selected
+                  form == "star" && isSelected
                     ? `translate(1em, -12em) scale(1.5)`
                     : undefined,
               } }

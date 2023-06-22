@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
-import { LocationStore } from "@stores";
+import {locationsStore, LocationStore} from "@stores";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { Button, ButtonsBar } from "@components";
 import { Link } from "@components/link/link";
@@ -20,8 +20,18 @@ export const Location: FunctionalComponent<LocationProps> = ({
                                                              }) => {
   const store = useMemo(() => new LocationStore(id), [ id ]);
   const {location, hasBookmark} = useCell(store.state);
+  const isEdit = useCell(() => locationsStore.isEdit);
+  const isMoving = useCell(() => locationsStore.isMoving);
   if (!location) return <></>;
-
+  if (isMoving) return <div flex column gap="2">
+    <div className={ [ "sh1", Styles.locationHeader ].join(" ") }>
+      { location.name }
+    </div>
+    <Button type="vivid" class="w-full"
+            onClick={() => locationsStore.applyChanges()}>
+      <SvgIcon id="#movePoint"/> Разместить тут
+    </Button>
+  </div>
   return (
     <div className={ Styles.container }>
       <div className={ [ "sh1", Styles.locationHeader ].join(" ") }>
@@ -36,7 +46,15 @@ export const Location: FunctionalComponent<LocationProps> = ({
             : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi assumenda consequuntur dolorem dolores facere, maxime non officiis quam quos tempora.'
         } }/>
       </div>
-      <ButtonsBar at="bottom">
+        {isEdit ? <div flex column gap="2" style={{marginTop: 16}}>
+            <Button type="frame" class="w-full" goTo={['map', 'edit', id]}>
+              <SvgIcon id="#edit" /> Редактировать
+            </Button>
+            <Button type="frame" class="w-full" onClick={() => locationsStore.isMoving = true}>
+              <SvgIcon id="#movePoint"/> переместить точку
+            </Button>
+          </div> :
+          <ButtonsBar at="bottom">
         <Button
           type="vivid"
           onClick={ () =>
@@ -50,6 +68,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           { hasBookmark ? "Удалить из избранного" : "сохранить в избранное" }
         </Button>
       </ButtonsBar>
+        }
     </div>
   );
 };

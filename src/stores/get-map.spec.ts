@@ -2,7 +2,7 @@ import { describe, it, jest } from "@jest/globals";
 //@ts-ignore
 import { createCanvas, loadImage } from "canvas";
 import * as fs from "fs";
-import { TileConverter } from "@helpers/tile.converter";
+import { TileConverter } from "@helpers/geo/tile.converter";
 const lats = [54.6926, 54.6739];
 const lngs = [35.055, 35.1059];
 const converter = new TileConverter();

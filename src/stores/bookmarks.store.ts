@@ -60,7 +60,7 @@ class BookmarksStore {
     return this.db
       .toArray()
       .filter((x) => x.type == "locations")
-      .map((m) => locationsStore.FullLocations.find((x) => x._id == m.itemId))
+      .map((m) => locationsStore.Locations.find((x) => x._id == m.itemId))
       .filter((x) => x);
   }
 
