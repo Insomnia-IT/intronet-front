@@ -265,5 +265,4 @@ type Change = {
   day?: number;
   start?: string;
   end?: string;
-  other?: string;
-}
+} & Record<string, any>;

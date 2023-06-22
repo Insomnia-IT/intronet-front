@@ -44,6 +44,12 @@ export const ActivityEdit = () => {
         })
       }}/>
     </div>
+    <Button type="text" class="colorOrange" onClick={() => {
+      changesStore.addChange({
+        _id: id,
+        isCanceled: !state.activity.isCanceled
+      });
+    }}>отменить {state.activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
     <ButtonsBar at="bottom">
       <Button type="blue" onClick={async () => {
         await changesStore.applyChanges()
