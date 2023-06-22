@@ -33,15 +33,13 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
         };
 
         return (
-          <li key={note._id}>
-            <NoteCard
-              {...note}
-              categoryName={noteCategory.name}
-              categoryColor={noteCategory.color}
-              onClick={onNoteClick}
-              gesture={gesture}
-            />
-          </li>
+          <NoteCard
+            {...note}
+            categoryName={noteCategory.name}
+            categoryColor={noteCategory.color}
+            onClick={onNoteClick}
+            gesture={gesture}
+          />
         );
       })}
     </ul>
