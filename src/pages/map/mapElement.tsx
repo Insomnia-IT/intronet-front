@@ -58,8 +58,8 @@ export function MapElement(props: {
         return "black";
     }
   })();
-  if (color === "black")
-    console.log(props.item);
+  // if (color === "black")
+  //   console.log(props.item);
   const form = (() => {
     switch (type) {
       case OrderType.Info:

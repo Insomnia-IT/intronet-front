@@ -109,24 +109,24 @@ export class MapComponent extends Component {
   setHandler = (element: HTMLDivElement) => {
     this.root = element;
     this.transformElement = this.root?.querySelector('[aria-label="transform"]') as SVGGElement;
+    if (!element) {
+      this.handlers.forEach((x) => x.dispose());
+      return;
+    }
     fetch('/public/images/map.svg').then(x => x.text()).then(text => {
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
       g.innerHTML = text;
       this.transformElement.prepend(g);
     })
-    if (element) {
-      this.initTransform({
-        width: 9728,
-        height: 6144,
-      }, element);
-      const dragHandler = new DragHandler(element);
-      const zoomHandler = new ZoomHandler(element);
-      this.handlers = [dragHandler, zoomHandler];
-      zoomHandler.on("transform", this.onTransform);
-      dragHandler.on("transform", this.onTransform);
-    } else {
-      this.handlers.forEach((x) => x.dispose());
-    }
+    this.initTransform({
+      width: 9728,
+      height: 6144,
+    }, element);
+    const dragHandler = new DragHandler(element);
+    const zoomHandler = new ZoomHandler(element);
+    this.handlers = [dragHandler, zoomHandler];
+    zoomHandler.on("transform", this.onTransform);
+    dragHandler.on("transform", this.onTransform);
   };
 
   setTransform(transform: TransformMatrix) {

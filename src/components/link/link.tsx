@@ -6,11 +6,15 @@ import SignalLike = JSXInternal.SignalLike;
 
 export type LinkProps = {
   goTo: RoutePath | RoutePathString;
+  query?: Record<string, any>;
+  replace?: boolean;
 } & JSX.HTMLAttributes<HTMLAnchorElement>;
 export const Link: FunctionalComponent<LinkProps> = ({
   onClick,
   className,
   disabled,
+  query,
+  replace,
   ...props
 }) => {
   const router = useRouter();
@@ -18,11 +22,11 @@ export const Link: FunctionalComponent<LinkProps> = ({
     () =>
       props.goTo
         ? (e) => {
-            router.goTo(props.goTo);
+            router.goTo(props.goTo, query, !!replace);
             onClick?.(e);
           }
         : undefined,
-    [props.goTo, onClick]
+    [props.goTo, onClick, query, replace]
   );
   const classNames = ["link"] as Array<string | SignalLike<string>>;
   if (className) classNames.push(className);

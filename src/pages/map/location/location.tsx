@@ -1,3 +1,4 @@
+import {getCurrentDay} from "@helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
@@ -19,7 +20,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
                                                                expanded,
                                                              }) => {
   const store = useMemo(() => new LocationStore(id), [ id ]);
-  const {location, hasBookmark} = useCell(store.state);
+  const {location, hasBookmark, currentActivity, timetable} = useCell(store.state);
   const isEdit = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
   if (!location) return <></>;
@@ -39,6 +40,19 @@ export const Location: FunctionalComponent<LocationProps> = ({
       </div>
 
       <div className={ Styles.locationContent }>
+        {!!currentActivity && <div>
+          <div class="textSmall">Сейчас идёт</div>
+          <div class="sh2 ">{currentActivity}</div>
+        </div>}
+        {timetable == 'activity' && <Link goTo={["activities"]} query={{
+          filter: 'place',
+          day: getCurrentDay(),
+          place: id
+        }}>к расписанию</Link>}
+        {timetable == 'animation' && <Link goTo={["timetable"]} query={{
+          day: getCurrentDay(),
+          screen: id
+        }}>к расписанию</Link>}
         <LocationContent location={ {
           ...location,
           description: location.description
