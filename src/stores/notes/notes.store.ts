@@ -59,7 +59,7 @@ class NotesStore {
   @cell
   get notes() {
     return this.db.toArray().sort((a, b) => {
-      return this.getLatestNoteDate(a) - this.getLatestNoteDate(b);
+      return this.getLatestNoteDate(b) - this.getLatestNoteDate(a);
     });
   }
 
