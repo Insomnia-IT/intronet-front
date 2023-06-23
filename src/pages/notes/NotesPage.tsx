@@ -16,7 +16,7 @@ import styles from "./notes.module.css";
 
 export const NotesPage: FunctionalComponent = () => {
   const router = useNotesRouter();
-  const [activeNoteId, setActiveNoteId] = useState(null);
+  const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };

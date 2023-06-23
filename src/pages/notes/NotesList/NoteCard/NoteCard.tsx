@@ -7,19 +7,24 @@ import cx from "classnames";
 import { getNoteDate } from "../../helpers/getNoteDate";
 import styles from "./note-card.module.css";
 
-export type INoteCardProps = INote & {
+export type INoteCardProps = INote & INoteCardStylesProps & {
   categoryColor: string;
   categoryName: string;
+};
+
+export type INoteCardStylesProps = {
   className?: string;
-  onClick?: (e: TargetedEvent) => void;
+  onClick?: (id: string, e: TargetedEvent) => void;
   iconOpacity?: number;
   iconClassNames?: string[];
   onIconClick?: (e: TargetedEvent) => void;
   withTTL?: boolean;
+  withBookmarkIcon?: boolean;
 };
 
 export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
   const {
+    _id,
     author,
     categoryName,
     categoryColor,
@@ -30,12 +35,14 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     iconOpacity,
     iconClassNames,
     withTTL = false,
+    withBookmarkIcon = true,
+
     onClick,
     onIconClick,
     className,
   } = props;
   const onCardClick = (e: TargetedEvent) => {
-    onClick && onClick(e);
+    onClick && onClick(_id, e);
   };
 
   return (
@@ -45,12 +52,14 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
       className={cx(styles.card, className)}
       onClick={onCardClick}
     >
-      <SvgIcon
-        id="#bookmark"
-        className={cx(styles.bookmarkIcon, iconClassNames)}
-        onClick={onIconClick}
-        style={{ opacity: iconOpacity }}
-      />
+      {withBookmarkIcon && (
+        <SvgIcon
+          id="#bookmark"
+          className={cx(styles.bookmarkIcon, iconClassNames)}
+          onClick={onIconClick}
+          style={{ opacity: iconOpacity }}
+        />
+      )}
       <div className={styles.content}>
         <h3 className={cx("sh1", styles.noteTitle)}>{title}</h3>
         <span className={styles.noteText}>{text}</span>

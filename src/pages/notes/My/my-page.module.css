@@ -5,3 +5,17 @@
 .newNoteBtn {
   width: 100%;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 118px;
+}
+
+.section {
+}
+
+.sectionName {
+  margin-bottom: 16px;
+}

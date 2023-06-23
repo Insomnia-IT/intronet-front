@@ -42,24 +42,43 @@ class FiltersStore {
 export const filtersStore = new FiltersStore();
 
 export class FilteredNotesStore {
-  private activeFilter: IFilterEntity;
+  private activeFilters: IFilterEntity[] = [];
 
-  constructor(private filterId: string) {
-    this.activeFilter = filtersStore.filters.find((filter) => {
-      return filter.id === this.filterId;
+  constructor(private filterId: string | string[]) {
+    this.activeFilters = filtersStore.filters.filter((filter) => {
+      if (Array.isArray(filterId)) {
+        return filterId.includes(filter.id);
+      } else {
+        return filter.id === this.filterId;
+      }
     });
   }
 
+  get activeFilteresTypesList() {
+    return this.activeFilters.map((filter) => {
+      return filter.type;
+    }) || []
+  }
+
   get filteredNotes() {
-    if (!this.activeFilter || !Object.keys(this.activeFilter).length) {
+    if (!this.activeFilters.length || this.activeFilters.length === 1 && this.activeFilters[0].type === 'all') {
       return notesStore.notes;
     }
 
-    switch (this.activeFilter.type) {
-      case "all": {
-        return notesStore.notes;
-      }
+    const filteresTypes = this.activeFilteresTypesList;
 
+    return notesStore.notes.filter((note) => {
+      let valid = true;
+
+      filteresTypes.forEach((filterType) => {
+        
+      })
+
+      return valid;
+    })
+
+
+    switch (this.activeFilter.type) {
       case "category": {
         const { id: categoryId } = this.activeFilter;
 
@@ -78,6 +97,8 @@ export class FilteredNotesStore {
 
       case "my": {
         return notesStore.notes.filter((note) => {
+          console.debug(note.author)
+          console.debug(authStore.uid)
           return typeof note.author === 'object' && note.author.id === authStore.uid;
         })
       }

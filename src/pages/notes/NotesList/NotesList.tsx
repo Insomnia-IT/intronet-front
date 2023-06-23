@@ -1,21 +1,19 @@
 import { FunctionalComponent, Ref } from "preact";
-import { MutableRef, useMemo } from "preact/hooks";
-import { Gesture, useGestureCell } from "@helpers/Gestures";
+import { useMemo } from "preact/hooks";
+import { Gesture } from "@helpers/Gestures";
 import { useCell } from "@helpers/cell-state";
 import { categoriesStore } from "@stores";
 import { FilteredNotesStore } from "@stores/notes/filters.store";
 import classNames from "classnames";
-import { useNotesRouter } from "../hooks/useNotesRouter";
 import { NoteGesturedCard } from "./NoteCard/NoteGesturedCard";
 import styles from "./styles.module.css";
-import { NoteCard } from "./NoteCard/NoteCard";
+import { INoteCardStylesProps, NoteCard } from "./NoteCard/NoteCard";
 
 export type INotesListProps = {
   className?: string;
   onNoteClick?: (noteId: string) => void;
   filterId?: string;
-  notesClassName?: string;
-  notesWithTTL?: boolean;
+  notesProps?: INoteCardStylesProps;
   withGesture?: boolean;
   gesture?: Gesture;
   setRef?: Ref<HTMLDivElement>;
@@ -24,20 +22,13 @@ export type INotesListProps = {
 export const NotesList: FunctionalComponent<INotesListProps> = ({
   className,
   filterId = 'all',
-  notesClassName,
-  notesWithTTL,
   withGesture,
   gesture,
   setRef,
-  onNoteClick,
+  notesProps,
 }) => {
   const store = useMemo(() => new FilteredNotesStore(filterId), [filterId]);
   const { filteredNotes } = useCell(store.state);
-  const createOnNoteClick = (noteId: string) => {
-    return () => {
-      onNoteClick(noteId)
-    }
-  }
 
   const NoteCardComponent = withGesture
     ? NoteGesturedCard
@@ -56,9 +47,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
             {...note}
             categoryName={noteCategory.name}
             categoryColor={noteCategory.color}
-            onClick={createOnNoteClick(note._id)}
-            className={notesClassName}
-            withTTL={notesWithTTL}
+            {...notesProps}
             {...(gesture ? {gesture} : {})}
           />
         );
