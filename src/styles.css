@@ -198,3 +198,8 @@
   list-style: none;
   padding: 0;
 }
+
+
+:global(b){
+  font-variation-settings: "wght" 640;
+}

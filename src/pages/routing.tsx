@@ -1,4 +1,5 @@
 import {userStore} from "@stores/user.store";
+import {ArticlePage} from "./articles/articlePage/articlePage";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
@@ -58,6 +59,11 @@ export const routes = {
     name: "onboard",
     title: "Onboarding",
     Component: OnboardPage,
+  },
+  articles: {
+    name: "articles",
+    title: "Статьи",
+    Component: ArticlePage,
   },
 };
 

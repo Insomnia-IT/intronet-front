@@ -29,7 +29,7 @@ export const MainPage = () => {
               {x.rows.map(({row, cards}) => (
                 <div gap="1" flex>
                   {cards.map((c) => (
-                    <MainCard info={c} key={c} />
+                    <MainCard info={c} key={c}/>
                   ))}
                 </div>
               ))}

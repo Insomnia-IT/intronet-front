@@ -1,9 +1,8 @@
 import { FunctionalComponent } from "preact";
-import {useCallback} from "preact/hooks";
+import {useEffect, useRef} from "preact/hooks";
 import Styles from "./tag.module.css";
 import { JSXInternal } from "preact/src/jsx";
 import classNames from "classnames";
-import TargetedMouseEvent = JSXInternal.TargetedMouseEvent;
 
 export type TagProps = {
   selected: boolean;
@@ -15,21 +14,24 @@ export const Tag: FunctionalComponent<TagProps> = ({
   onClick,
   ...props
 }) => {
-  const onClickInternal = useCallback((e: TargetedMouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    if (rect.left < 0 || rect.right > window.innerWidth){
-      const parent = e.currentTarget.parentElement as HTMLDivElement;
-      parent.scrollTo({
-        left: rect.left,
-        behavior: "smooth"
-      });
+  const ref = useRef<HTMLDivElement>();
+  useEffect(() => {
+    if (ref.current && selected) {
+      const rect = ref.current.getBoundingClientRect();
+      if (rect.left < 0 || rect.right > window.innerWidth) {
+        const parent = ref.current.parentElement as HTMLDivElement;
+        parent.scrollTo({
+          left: rect.left,
+          behavior: "smooth"
+        });
+      }
     }
-    onClick?.(e);
-  }, [onClick]);
+  }, [selected, ref.current]);
   return (
     <div
       {...props}
-      onClick={onClickInternal}
+      ref={ref}
+      onClick={onClick}
       className={classNames(
         {
           [Styles.selectedTag]: selected,

@@ -237,6 +237,8 @@ type MainPageCard = {
   col: number;
   colSpan?: number;
   rowSpan?: number;
+  article?: string;
+  link?: string;
 };
 
 /**
