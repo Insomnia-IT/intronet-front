@@ -119,6 +119,8 @@ type INote = {
   createdAt: number;
   updatedAt?: number;
   TTL: 13 | 14 | 15 | 16 | 17;
+  // on moderation
+  restricted: boolean;
 };
 
 type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt" | "author"> & {
