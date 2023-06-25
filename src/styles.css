@@ -199,6 +199,20 @@
   padding: 0;
 }
 
+:global(ul.disc) {
+  list-style: none;
+  padding-left: 12px;
+}
+:global(ul.disc li){
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+:global(ul.disc li:before){
+  content: '•';
+  font-size: 20px;
+}
 
 :global(b){
   font-variation-settings: "wght" 640;
