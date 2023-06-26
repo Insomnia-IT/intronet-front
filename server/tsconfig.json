@@ -2,6 +2,7 @@
   "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "resolveJsonModule": true,
     "lib": [
       "ESNext"
     ]

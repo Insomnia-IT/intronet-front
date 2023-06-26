@@ -2,6 +2,7 @@ import * as console from "console";
 import {checkWriteAccess} from "./auth";
 import {authCtrl, UserInfo} from "./auth.ctrl";
 import Fastify from "fastify";
+import {importActivities, importLocations, importMainPage, importMovies} from "./data/import";
 import { dbCtrl } from "./db-ctrl";
 import {logCtrl} from "./log.ctrl";
 const fastify = Fastify({
@@ -66,6 +67,22 @@ fastify.post("/batch", async function (request, reply) {
     await dbCtrl.addOrUpdate(item.db, item.value);
   }
 });
+fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
+  "/seed/:name",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin") {
+      reply.status(401);
+      return `User have not enough permissions to modify db`;
+    }
+    switch (request.params.name){
+      case "locations": return importLocations(request.query.force);
+      case "movies": return importMovies(request.query.force);
+      case "activities": return importActivities(request.query.force);
+      case "main": return importMainPage(request.query.force);
+    }
+  }
+);
 
 // Run the server!
 fastify.listen(
