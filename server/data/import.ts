@@ -27,7 +27,7 @@ export async function importLocations(force = false){
     },
   }).then((x) => x.json());
 
-  const db = new Database<InsomniaLocation>("locations");
+  const db = new Database("locations");
   const existed = await db.getSince();
 
   if (existed.length != 0) {
@@ -38,15 +38,14 @@ export async function importLocations(force = false){
   }
   const notMatched = [];
   const data = locationsJSON.features.flatMap((x) => {
-        const figure: Geo | Geo[][] =
-          x.geometry.type == "Point"
+        const figure = x.geometry.type == "Point"
             ? {
                 lat: x.geometry.coordinates[1] as number,
                 lon: x.geometry.coordinates[0] as number,
               }
             : ((x.geometry.coordinates as number[][][]).map((arr) =>
                 arr.map((x) => ({ lat: x[1], lon: x[0] }))
-              ) as Array<Array<Geo>>);
+              ));
         // const mapping = locationsMapping.find(m =>
         //   m.gmaps.replace(regexOnlyWord, '') === x.properties.name.replace(regexOnlyWord, ''));
         const name =  escape(x.properties.name);
@@ -71,7 +70,7 @@ export async function importLocations(force = false){
             // ...geo,
             // x: point.X,
             // y: point.Y,
-          } as InsomniaLocation,
+          } ,
         ];
       });
   console.log(
@@ -88,10 +87,10 @@ export async function importLocations(force = false){
 }
 
 export async function importMovies(force = false){
-  const locationsDb = new Database<InsomniaLocation>("locations");
+  const locationsDb = new Database<any>("locations");
   const locations = await locationsDb.getSince();
   if (locations.length == 0) return;
-  const moviesDB = new Database<MovieBlock>("movies");
+  const moviesDB = new Database<any>("movies");
   const movies = await moviesDB.getSince();
   // console.log(movies);
   if (movies.length != 0) {
@@ -138,7 +137,7 @@ export async function importMovies(force = false){
           duration: x.Duration,
           id: Fn.ulid(),
         })),
-      } as MovieBlock)
+      } as any)
   );
   for (let movie of blocks) {
     await moviesDB.addOrUpdate({
@@ -171,10 +170,10 @@ export async function importActivities(force = false){
       Authorization: "Basic YWRtaW46YWRtaW4=",
     },
   }).then(x => x.json());
-  const locationDB = new Database<InsomniaLocation>("locations");
+  const locationDB = new Database<any>("locations");
   const locations = await locationDB.getSince();
   if (locations.length == 0) return;
-  const db = new Database<Activity>("activities");
+  const db = new Database<any>("activities");
   const activities = await db.getSince();
   // console.log('_____', activities)
   if (activities.length > 0) {
@@ -212,7 +211,7 @@ export async function importActivities(force = false){
 
 export async function importMainPage(force = false){
 
-  const db = new Database<MainPageCard>("main");
+  const db = new Database<any>("main");
   const cards = await db.getSince();
   if (cards.length) {
     if (!force) return;
@@ -223,7 +222,7 @@ export async function importMainPage(force = false){
   }
   // console.log('_____', activities)
   if (cards.length > 0) return;
-  for (let card of mainPageJSON as Array<MainPageCard>){
+  for (let card of mainPageJSON as Array<any>){
     await db.addOrUpdate({
       ...card,
       version: Fn.ulid()
