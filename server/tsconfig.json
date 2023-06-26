@@ -8,8 +8,8 @@
     ]
   },
   "include": [
-    "*.json",
-    "*.ts"
+    "**/*.json",
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules",
