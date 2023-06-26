@@ -45,7 +45,7 @@ fastify.post<{ Params: { name: string } }>(
   "/data/:name",
   async function (request, reply) {
     const value = JSON.parse(request.body as string)
-    const user = await authCtrl.parse(request.headers.authorization);
+    const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
     if (!checkWriteAccess(user, request.params.name, value)) {
       reply.status(401);
       return `User have not enough permissions to modify db`;
@@ -57,6 +57,7 @@ fastify.post<{ Params: { name: string } }>(
   }
 );
 fastify.post("/batch", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
   const data = JSON.parse(request.body as string) as Array<{
     db: string;
     value: any;
