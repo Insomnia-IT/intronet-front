@@ -191,7 +191,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 3000);
+    setInterval(() => this.loadFromServer(), 10000);
   }
 
   public get local(): Record<string, string> {
@@ -200,7 +200,11 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     );
   }
 
+  private isLoading = false;
   async loadFromServer() {
+    if (this.isLoading)
+      return;
+    this.isLoading = true;
     try {
       this.remote = await fetch(`${api}/versions`, {
         headers: authStore.headers,
@@ -208,6 +212,8 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
       IsConnected.set(true);
     } catch (e) {
       IsConnected.set(false);
+    } finally {
+      this.isLoading = false;
     }
   }
 }

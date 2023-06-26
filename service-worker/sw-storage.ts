@@ -30,10 +30,15 @@ export class SwStorage {
   }
 
   private isUpdating = false;
+  private isCheckUpdating = false;
   async checkUpdate(force = false) {
+    if (this.isUpdating || this.isCheckUpdating)
+      return;
     console.log(`check ${versionUrl} for update`);
+    this.isCheckUpdating = true;
     try {
       const version = await this.getVersion();
+      this.isCheckUpdating = false;
       if (version === this.version && !force) {
         console.log(
           `check ${versionUrl} for update: same version found, ${version}`
@@ -66,6 +71,8 @@ export class SwStorage {
         });
     } catch (e) {
       console.error(e);
+      this.isCheckUpdating = false;
+      this.isUpdating = false;
     }
   }
 
