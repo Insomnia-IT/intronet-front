@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@cmmn/tools": "1.7.12",
+    "@cmmn/cell": "1.7.19",
     "@notionhq/client": "2.2.5",
     "@types/node": "17.0.45",
     "@types/pouchdb": "6.4.0",
