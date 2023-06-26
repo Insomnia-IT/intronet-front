@@ -75,5 +75,11 @@ class AuthStore extends LocalStore<{
     })
   }
 
+  public seed(db: string, force: boolean){
+    return fetch(`/webapi/seed/${db}${force ? '?force=1' : ''}`, {
+      method: 'POST',
+      headers: this.headers,
+    })
+  }
 }
 export const authStore = globalThis['authStore'] = new AuthStore();
