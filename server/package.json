@@ -7,6 +7,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@cmmn/cell": "1.7.19",
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
     "fastify": "4.15.0",
@@ -17,7 +18,6 @@
   },
   "devDependencies": {
     "@cmmn/tools": "1.7.12",
-    "@cmmn/cell": "1.7.19",
     "@notionhq/client": "2.2.5",
     "@types/node": "17.0.45",
     "@types/pouchdb": "6.4.0",
