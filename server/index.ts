@@ -36,7 +36,7 @@ fastify.get<{
   Querystring: { since?: string };
 }>("/data/:name", async function (request, reply) {
   const items = await dbCtrl.get(request.params.name, request.query.since);
-  const user = await authCtrl.parse(request.headers.authorization);
+  const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
   if (user) return items;
   return items.filter(x => !x.restricted);
 });
