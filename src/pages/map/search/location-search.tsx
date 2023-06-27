@@ -1,3 +1,4 @@
+import {useSearch} from "@helpers/use-search";
 import { useMemo, useState } from "preact/hooks";
 import { Input } from "@components/input";
 import { SearchPlug } from "@components/plugs/search/SearchPlug";
@@ -6,9 +7,9 @@ import { locationsStore } from "@stores";
 import { LocationList } from "../location/location-list";
 
 export const LocationSearch = () => {
-  const [ query, setQuery ] = useState<string | undefined>(undefined);
-  const locations = useCell(() => locationsStore.FullLocations);
-  const check = useMemo(() => checkLocation(query), [ query ]);
+  const {query, check, setQuery} = useSearch(regex => (location: InsomniaLocation) =>
+    regex.test(location.name) || regex.test(location.directionId))
+  const locations = useCell(() => locationsStore.Locations);
   const filtered = useMemo(() => locations.filter(check), [ locations, check ]);
 
   return (
@@ -29,11 +30,4 @@ export const LocationSearch = () => {
       ) }
     </div>
   );
-};
-
-const checkLocation = (query: string | undefined) => {
-  if (!query) return () => true;
-  const regex = new RegExp(query, "i");
-  return (location: InsomniaLocationFull) =>
-    regex.test(location.name);
 };

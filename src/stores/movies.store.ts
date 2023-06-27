@@ -23,6 +23,12 @@ class MoviesStore {
   public get Movies(): MovieInfo[] {
     return this.MovieBlocks.flatMap((x) => x.movies);
   }
+
+  getCurrentMovieBlock(id: string) {
+    const block = this.MovieBlocks.filter(x => x.views.some(v => v.day === getCurrentDay() && v.locationId == id))[0];
+    if (!block) return undefined;
+    return block.info.Title + '\n' + block.info.SubTitle;
+  }
 }
 
 export const moviesStore = new MoviesStore();

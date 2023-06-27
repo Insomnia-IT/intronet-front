@@ -21,7 +21,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
     } else {
       router.goTo(["main"]);
     }
-  }, [props]);
+  }, []);
 
   return (
     <Button

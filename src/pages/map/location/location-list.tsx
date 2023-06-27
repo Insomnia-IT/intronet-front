@@ -5,7 +5,7 @@ import { GestureCell } from "@helpers/Gestures";
 import { LocationSmall } from "./location-small";
 
 export const LocationList: FunctionalComponent<{
-  locations: InsomniaLocationFull[];
+  locations: InsomniaLocation[];
   searchQuery?: string;
 }> = ({locations, searchQuery}) => {
   const [ gestureCell, setGestureCell ] = useState<GestureCell | undefined>(

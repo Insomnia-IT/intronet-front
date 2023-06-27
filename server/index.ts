@@ -1,7 +1,8 @@
 import * as console from "console";
-import {checkAccess} from "./auth";
+import {checkWriteAccess} from "./auth";
 import {authCtrl, UserInfo} from "./auth.ctrl";
 import Fastify from "fastify";
+import {importActivities, importLocations, importMainPage, importMovies} from "./data/import";
 import { dbCtrl } from "./db-ctrl";
 import {logCtrl} from "./log.ctrl";
 const fastify = Fastify({
@@ -34,37 +35,55 @@ fastify.get<{
   Params: { name: string };
   Querystring: { since?: string };
 }>("/data/:name", async function (request, reply) {
-  console.log(request.query.since);
-  return await dbCtrl.get(request.params.name, request.query.since);
+  const items = await dbCtrl.get(request.params.name, request.query.since);
+  const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
+  if (user) return items;
+  return items.filter(x => !x.restricted);
 });
 
 fastify.post<{ Params: { name: string } }>(
   "/data/:name",
   async function (request, reply) {
-    if (request.params.name !=='notes') {
-      const user = await authCtrl.parse(request.headers.authorization);
-      if (!checkAccess(user, request.params.name)) {
-        reply.status(401);
-        return `User have not enough permissions to modify db`;
-      }
+    const value = JSON.parse(request.body as string)
+    const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
+    if (!checkWriteAccess(user, request.params.name, value)) {
+      reply.status(401);
+      return `User have not enough permissions to modify db`;
     }
     return await dbCtrl.addOrUpdate(
       request.params.name,
-      JSON.parse(request.body as string)
+      value
     );
   }
 );
 fastify.post("/batch", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization).catch(() => null);
   const data = JSON.parse(request.body as string) as Array<{
     db: string;
     value: any;
   }>;
   for (let item of data) {
-    if (!checkAccess(user, item.db))
+    if (!checkWriteAccess(user, item.db, item.value))
       continue;
     await dbCtrl.addOrUpdate(item.db, item.value);
   }
 });
+fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
+  "/seed/:name",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin") {
+      reply.status(401);
+      return `User have not enough permissions to modify db`;
+    }
+    switch (request.params.name){
+      case "locations": return importLocations(request.query.force);
+      case "movies": return importMovies(request.query.force);
+      case "activities": return importActivities(request.query.force);
+      case "main": return importMainPage(request.query.force);
+    }
+  }
+);
 
 // Run the server!
 fastify.listen(

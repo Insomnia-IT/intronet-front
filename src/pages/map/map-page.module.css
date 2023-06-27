@@ -77,3 +77,16 @@
   border: none;
   color: white;
 }
+
+.editBar{
+  position: absolute;
+  top: 0;
+  padding: 16px 0 8px 0;
+  border-radius: 0 0 24px 24px;
+  background: radial-gradient(621.73% 136.43% at 4.04% -0.00%, #D8EEF4 0%, #D3B8FF 100%);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -16,7 +16,7 @@ import { useLocalStorageState } from "@helpers/useLocalStorageState";
 import { directionsToIconId } from "../mapElement";
 
 export type LocationSmallProps = {
-  location: InsomniaLocationFull;
+  location: InsomniaLocation;
   gesture?: Gesture;
   searchQuery?: string;
 };
@@ -124,8 +124,8 @@ const gestureLength = Math.min(window.innerWidth / 4, 300);
 function useGestures(
   ref,
   hasBookmark,
-  switchBookmark: (location: InsomniaLocationFull) => void,
-  location: InsomniaLocationFull,
+  switchBookmark: (location: InsomniaLocation) => void,
+  location: InsomniaLocation,
   gesture: Gesture
 ) {
   const shift =

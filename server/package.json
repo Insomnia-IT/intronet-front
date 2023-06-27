@@ -7,6 +7,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@cmmn/cell": "1.7.19",
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
     "fastify": "4.15.0",

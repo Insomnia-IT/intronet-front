@@ -9,7 +9,7 @@ import styles from "./map.module.css";
 import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
 
-export class MapComponent extends Component<MapProps> {
+export class MapComponent extends Component {
   constructor() {
     super();
     this.updTransform();
@@ -42,31 +42,21 @@ export class MapComponent extends Component<MapProps> {
     return this.Transform.Matrix.GetScaleFactor();
   }
 
-  propsCell = new Cell(this.props);
   state = cellState(this, {
-    scale: this.Scale
+    scale: this.Scale,
   });
 
   render() {
     return (
       <div
         ref={this.setHandler}
-        // onPointerUp={this.onClick}
         onClick={(e) => {
-          if (!e.defaultPrevented) {
-            this.props.onSelect(null);
+          if (!e.defaultPrevented && !locationsStore.isMoving) {
+            locationsStore.setSelectedId(null)
           }
         }}
         className={styles.container}
       >
-        {/*<object*/}
-        {/*  data={this.props.image.url}*/}
-        {/*  aria-label="transform"*/}
-        {/*  alt="Карта"*/}
-        {/*  className={styles.img}*/}
-        {/*  width={this.props.image.width}*/}
-        {/*  height={this.props.image.height}*/}
-        {/*/>*/}
         <svg className={styles.svg}>
           <defs>
             <filter x="0" y="0" width="1" height="1" id="solid">
@@ -80,22 +70,13 @@ export class MapComponent extends Component<MapProps> {
           <g aria-label="transform" style={{
             transition: `transform .1s ease`
           }}>
-            <MapElements
-              transformCell={this.TransformCell}
-              selected={this.props.selected}
-              onSelect={this.onSelect}
-            />
+            <MapElements transformCell={this.TransformCell} />
           </g>
         </svg>
       </div>
     );
   }
 
-  @bind
-  private onSelect(item: MapItem) {
-    this.setState({ selected: item });
-    this.props.onSelect(item);
-  }
   @bind
   private arrayToPath(figure: Array<Array<Point>>, map: (p: Point) => Point) {
     return figure
@@ -114,42 +95,38 @@ export class MapComponent extends Component<MapProps> {
   private root: HTMLDivElement;
   private handlers: (DragHandler | ZoomHandler)[];
   private transformElement: SVGGElement;
+  onTransform = (e: TransformMatrix) => {
+    const newTransform = e.Apply(this.Transform) as TransformMatrix;
+    this.setTransform(newTransform);
+    if (locationsStore.isMoving && locationsStore.selected) {
+      const transform = new TransformMatrix()
+        .Apply(this.Transform.Inverse())
+        .Apply(e)
+        .Apply(this.Transform);
+      locationsStore.moveSelectedLocation(transform.Inverse());
+    }
+  }
   setHandler = (element: HTMLDivElement) => {
     this.root = element;
     this.transformElement = this.root?.querySelector('[aria-label="transform"]') as SVGGElement;
+    if (!element) {
+      this.handlers.forEach((x) => x.dispose());
+      return;
+    }
     fetch('/public/images/map.svg').then(x => x.text()).then(text => {
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
       g.innerHTML = text;
       this.transformElement.prepend(g);
     })
-    if (element) {
-      this.initTransform({
-        width: 9728,
-        height: 6144,
-      }, element);
-      const dragHandler = new DragHandler(element);
-      const zoomHandler = new ZoomHandler(element);
-      this.handlers = [dragHandler, zoomHandler];
-      zoomHandler.on("transform", (e) => {
-        const newTransform = e.Apply(this.Transform) as TransformMatrix;
-        this.setTransform(newTransform);
-      });
-      dragHandler.on("transform", (e) => {
-        const { selected } = this.props;
-        if (this.props.isMovingEnabled && selected) {
-          const transform = new TransformMatrix()
-            .Apply(this.Transform.Inverse())
-            .Apply(e)
-            .Apply(this.Transform);
-          locationsStore.moveLocation(selected, transform);
-        } else {
-          const newTransform = e.Apply(this.Transform) as TransformMatrix;
-          this.setTransform(newTransform);
-        }
-      });
-    } else {
-      this.handlers.forEach((x) => x.dispose());
-    }
+    this.initTransform({
+      width: 9728,
+      height: 6144,
+    }, element);
+    const dragHandler = new DragHandler(element);
+    const zoomHandler = new ZoomHandler(element);
+    this.handlers = [dragHandler, zoomHandler];
+    zoomHandler.on("transform", this.onTransform);
+    dragHandler.on("transform", this.onTransform);
   };
 
   setTransform(transform: TransformMatrix) {
@@ -185,21 +162,13 @@ export class MapComponent extends Component<MapProps> {
 
   //endregion
 
-  componentDidUpdate(
-    prevProps: Readonly<MapProps>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ) {
-    if (this.props.selected && prevProps.selected !== this.props.selected) {
-      this.scrollTo(this.props.selected);
-    }
-    this.propsCell.set(this.props);
-  }
-
   componentDidMount() {
-    if (this.props.selected) {
-      this.scrollTo(this.props.selected);
+    if (locationsStore.selected) {
+      this.scrollTo(locationsStore.selected._id);
     }
+    return Cell.OnChange(() => locationsStore.selected, e => {
+      e.value && this.scrollTo(e.value._id)
+    })
   }
 
   scrollTo(id: string) {
@@ -242,10 +211,3 @@ export class MapComponent extends Component<MapProps> {
   // };
 }
 
-export type MapProps = {
-  selected: string;
-  location?: boolean;
-  isMovingEnabled: boolean;
-  onSelect(item);
-  // onClick(p: { X; Y });
-};

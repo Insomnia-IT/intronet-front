@@ -30,10 +30,15 @@ export class SwStorage {
   }
 
   private isUpdating = false;
+  private isCheckUpdating = false;
   async checkUpdate(force = false) {
+    if (this.isUpdating || this.isCheckUpdating)
+      return;
     console.log(`check ${versionUrl} for update`);
+    this.isCheckUpdating = true;
     try {
       const version = await this.getVersion();
+      this.isCheckUpdating = false;
       if (version === this.version && !force) {
         console.log(
           `check ${versionUrl} for update: same version found, ${version}`
@@ -66,6 +71,8 @@ export class SwStorage {
         });
     } catch (e) {
       console.error(e);
+      this.isCheckUpdating = false;
+      this.isUpdating = false;
     }
   }
 
@@ -111,7 +118,7 @@ export class SwStorage {
   }
 
   async fetchAndPut(request: Request, notify = true) {
-    const res = await fetch(new Request(request.url + `?hash=${+new Date()}`));
+    const res = await this.fetchRetry(new Request(request.url + `?hash=${+new Date()}`));
     if (!res.ok) {
       throw new Error(`Failed load ` + request.url + ", status: " + res.status);
     }
@@ -125,6 +132,17 @@ export class SwStorage {
     });
     await this.cache.put(request, res);
     return res;
+  }
+
+  private fetchRetry(request: Request, counter = 0){
+    return fetch(request)
+      .catch(e => {
+        if (counter < 3) {
+          return this.fetchRetry(request, counter + 1);
+        } else {
+          throw e;
+        }
+      })
   }
 
   async getResponse(request: Request) {

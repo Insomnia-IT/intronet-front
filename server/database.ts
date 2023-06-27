@@ -25,7 +25,6 @@ export class Database<T extends { _id: string }> {
 
   async addOrUpdate(value: T & { version: string }) {
     await this.db.upsert(value._id, () => value);
-    console.log("insert", value._id, this.name);
   }
 
   async getSince(revision: string = undefined): Promise<T[]> {

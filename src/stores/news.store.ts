@@ -13,7 +13,7 @@ class NewsStore {
       news: news.map(x => ({
         ...x,
         time: this.formatTime(x.time)
-      }))
+      })).orderBy(x => x.time, true)
     });
   });
 
@@ -23,7 +23,7 @@ class NewsStore {
     const hour = local.getHours();
     const minutes = local.getMinutes();
     const day = getDayText(getDay(+local), "short").toUpperCase();
-    return `${day} ${hour}:${minutes}`;
+    return `${day} ${hour}:${minutes < 10 ? '0'+minutes : minutes}`;
   }
 
   public async add(){

@@ -10,17 +10,23 @@ export const dbCtrl = new class {
   public async addOrUpdate(name: string, value: any){
     const db = databases.get(name);
     await db.addOrUpdate(value);
+    if (this.versions) {
+      this.versions[name] = value.version;
+    }
   }
 
+  versions: Record<string, string> = undefined;
   public async getVersions(){
-    const res = {} as Record<string, string>;
+    if (this.versions)
+      return this.versions;
+    this.versions = {};
     for (let database of databases.values()) {
       const version = await database.getMaxVersion();
       if (version){
-        res[database.name] = version;
+        this.versions[database.name] = version;
       }
     }
-    return res;
+    return this.versions;
   }
 }
 

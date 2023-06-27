@@ -1,3 +1,4 @@
+import {changesStore} from "../changes.store";
 import { ObservableDB } from "../observableDB";
 import { cell, Cell } from "@cmmn/cell/lib";
 import { bookmarksStore } from "@stores/bookmarks.store";
@@ -13,12 +14,9 @@ class ActivitiesStore {
       ...activity,
       start: parseTime(activity.start),
       end: parseTime(activity.end)
-    }));
+    })).map(x => changesStore.withChanges(x, x._id));
   }
 
-  getActivity(id: string): Activity {
-    return this.Activities.find((activity) => activity._id === id);
-  }
 }
 
 export const activitiesStore = new ActivitiesStore();
@@ -29,7 +27,7 @@ export class ActivityStore {
 
   @cell
   get activity(): Activity {
-    return activitiesStore.Activities.find((activity) => activity._id === this.id);
+    return  activitiesStore.Activities.find((activity) => activity._id === this.id);
   }
 
   public state = new Cell<{

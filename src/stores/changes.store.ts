@@ -11,7 +11,15 @@ class ChangesStore  {
   }
 
   public withChanges<T>(entity: T, id: string): T{
-    return Fn.deepAssign({}, entity, this.db.get(id) ?? {}, ...this.localChanges.toArray().filter(x => x._id === id));
+    const changes = [
+      this.db.get(id),
+      ...this.localChanges.toArray().filter(x => x._id === id)
+    ].filter(x => x);
+    if (changes.length === 0)
+      return entity;
+    return Fn.deepAssign({}, entity, ...changes, {
+      hasChanges: true
+    });
   }
 
   @cell

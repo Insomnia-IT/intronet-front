@@ -37,7 +37,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
         onClick={() => router.goTo(["map", activity?.locationId])}
       >
         <div flex class="sh1" gap={2}>
-          <SvgIcon id="#location2" size={32} style={{ color: "var(--electric-blues)" }} />
+          <SvgIcon id="#alert" size={32} style={{ color: "var(--electric-blues)" }} />
           {locationsStore.getName(activity?.locationId)}
         </div>
         <Link

@@ -57,6 +57,12 @@
 .orange{
   background: var(--chineese-cafe);
 }
+.frameOrange{
+  composes: frame;
+  color: var(--chineese-cafe);
+  border-color: var(--chineese-cafe);
+  background: var(--cold-white);
+}
 
 .buttonsBar {
   background: transparent;
@@ -165,4 +171,8 @@
 
 :global(.dark) .borderVivid:before{
   background: var(--ins-night);
+}
+
+.textSimple{
+  background: none;
 }

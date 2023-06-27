@@ -33,11 +33,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class="colorGray">
         {movie.author}, {movie.country}, {movie.year}
       </div>
-      <div class="colorGray">
+      <div class="colorGray" style={{ marginBottom: 24 }}>
         {minutes} мин {seconds} сек
       </div>
       {!votedMovie && (
-        <div flex column gap={2} style={{ marginBottom: 24, marginTop: 24 }}>
+        <div flex column gap={2} style={{ marginBottom: 24 }}>
           <Card border="Vivid" gap={0}>
             <div flex column gap="2">
               <div class="sh2 colorPink">Международный конкурс анимации</div>

@@ -1,8 +1,8 @@
 import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
-import style from "../../app/app.style.module.css";
 import { SvgIcon } from "@icons";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
+import {ActivityEdit} from "./edit/activity-edit";
 import { ActivitySearch } from "./search/activity-search";
 import { useActivitiesRouter } from "./hooks/useActivitiesRouter";
 import { useMemo } from "preact/hooks";
@@ -34,6 +34,11 @@ const baseRoute = "activities" as keyof typeof routes;
 
 function getActivitiesSheets(activityId: string){
   switch (activityId) {
+    case "edit":
+      return <>
+        <ActivityEdit />
+        <CloseButton/>
+      </>;
     case "search":
       return <>
         <ActivitySearch />

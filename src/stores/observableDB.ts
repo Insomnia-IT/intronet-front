@@ -2,7 +2,7 @@ import { EventEmitter, Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
-import {api} from "./api";
+import { api } from "./api";
 
 export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   loaded: void;
@@ -32,10 +32,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
     await this.loadItems().then((x) => {
       this.emit("loaded");
       this.emit("change");
-    } );
+    });
     if (!this.localOnly) {
       await this.sync().catch(console.error);
-      setInterval(() => this.sync().catch(console.error), 3000);
+      setInterval(() => this.sync().catch(console.error), 10_000);
     }
   }
 
@@ -148,7 +148,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   async loadFromServer() {
     if (this.localOnly) return;
     const newItems = (await fetch(
-      `${api}/data/${this.name}?since=${this.localVersion}`
+      `${api}/data/${this.name}?since=${this.localVersion}`,
+      {
+        headers: authStore.headers,
+      }
     ).then((x) => x.json())) as (T & { version: string })[];
     for (let newItem of newItems) {
       await this.set(newItem);
@@ -188,7 +191,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 3000);
+    setInterval(() => this.loadFromServer(), 10000);
   }
 
   public get local(): Record<string, string> {
@@ -197,12 +200,20 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     );
   }
 
+  private isLoading = false;
   async loadFromServer() {
+    if (this.isLoading)
+      return;
+    this.isLoading = true;
     try {
-      this.remote = await fetch(`${api}/versions`).then((x) => x.json());
+      this.remote = await fetch(`${api}/versions`, {
+        headers: authStore.headers,
+      }).then((x) => x.json());
       IsConnected.set(true);
     } catch (e) {
       IsConnected.set(false);
+    } finally {
+      this.isLoading = false;
     }
   }
 }

@@ -1,3 +1,5 @@
+import {Button} from "@components";
+import {RequireAuth} from "@components/RequireAuth";
 import { FunctionalComponent } from "preact";
 import { useCell } from "@helpers/cell-state";
 import { ActivityBlock } from "../card/activity-block";
@@ -62,14 +64,18 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
 
   return (
     <div flex column ref={ setRef }>
-      { filteredCards.map((x) => (
-        <ActivityBlock
-          id={ x._id }
-          key={ x._id }
-          gesture={ gesture }
-          searchQuery={ searchQuery }
-        />
-      )) }
+      {
+        filteredCards.map((x) => (<>
+          <ActivityBlock
+            id={ x._id }
+            key={ x._id }
+            gesture={ gesture }
+            searchQuery={ searchQuery }
+          />
+          <RequireAuth>
+            <Button class="w-full" style={{marginBottom: 24}} goTo={["activities", "edit", x._id]} type="frame">изменить время</Button>
+          </RequireAuth>
+      </>))}
     </div>
   );
 };

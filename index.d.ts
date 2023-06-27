@@ -57,7 +57,13 @@ type InsomniaLocation = {
 
 type ContentBlock = {
   blockType: 'link' | 'text';
-  content: string;
+  content: string | ListItem[];
+}
+
+type ListItem = {
+  tag?: string;
+  title: string;
+  description: string;
 }
 
 type Geo = { lat: number; lon: number };
@@ -73,15 +79,6 @@ type MapItem = {
   title?: string;
   minZoom?: number;
   maxZoom?: number;
-};
-
-type InsomniaLocationFull = Omit<InsomniaLocation, "tags"> & {
-  tags: Tag[];
-};
-
-type Tag = {
-  _id: string;
-  name: string;
 };
 
 type Movie = {
@@ -120,6 +117,8 @@ type INoteLocal = {
     name: string;
   };
   TTL: 13 | 14 | 15 | 16 | 17;
+  // on moderation
+  restricted?: boolean;
 };
 
 type INote = INoteLocal & {
@@ -160,7 +159,7 @@ interface Activity {
   end: string;
   author: string;
   age?: number;
-  changes?: string;
+  hasChanges?: boolean;
   isCanceled?: boolean;
 }
 
@@ -246,6 +245,8 @@ type MainPageCard = {
   col: number;
   colSpan?: number;
   rowSpan?: number;
+  article?: string;
+  link?: string;
 };
 
 /**
@@ -265,5 +266,4 @@ type Change = {
   day?: number;
   start?: string;
   end?: string;
-  other?: string;
-}
+} & Record<string, any>;

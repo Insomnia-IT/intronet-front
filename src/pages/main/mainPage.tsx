@@ -29,7 +29,7 @@ export const MainPage = () => {
               {x.rows.map(({row, cards}) => (
                 <div gap="1" flex>
                   {cards.map((c) => (
-                    <MainCard info={c} key={c} />
+                    <MainCard info={c} key={c}/>
                   ))}
                 </div>
               ))}
@@ -38,7 +38,7 @@ export const MainPage = () => {
         ))}
         <Menu />
         <Sheet children={sheetItems}
-               height="auto"
+               height={router.route[2] === undefined ? 'auto' : '100%'}
                onClose={() => router.goTo(["main"])}/>
       </div>
     </div>
