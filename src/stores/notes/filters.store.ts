@@ -4,25 +4,40 @@ import { notesStore } from "./notes.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { authStore } from "@stores/auth.store";
 
+export enum ConstantFilterIds {
+  All = 'all',
+  Favorites = 'favorites',
+  My = 'my',
+  NoApproved = 'noApproved',
+  NoActual = 'noActual',
+}
+
 class FiltersStore {
   @cell
   get filters(): IFilterEntity[] {
     return [
       {
         type: "all",
-        id: "all",
+        id: ConstantFilterIds.All,
         name: "Все",
       },
       {
         type: "favorites",
-        id: "favorites",
+        id: ConstantFilterIds.Favorites,
         name: "Избранные",
         icon: "bookmark",
       },
       {
         type: "my",
-        id: "my",
-        name: "Мои",
+        id: ConstantFilterIds.My,
+      },
+      {
+        type: "noApproved",
+        id: ConstantFilterIds.NoApproved,
+      },
+      {
+        type: "noActual",
+        id: ConstantFilterIds.NoActual,
       },
       ...categoriesStore.categories.map(({ _id, name }): IFilterEntity => {
         return {
@@ -43,70 +58,74 @@ export const filtersStore = new FiltersStore();
 
 export class FilteredNotesStore {
   private activeFilters: IFilterEntity[] = [];
+  private activeFiltersMap: {
+    [key in IFilterType]: null | IFilterEntity;
+  } = {
+    all: null,
+    category: null,
+    favorites: null,
+    my: null,
+    noApproved: null,
+    noActual: null,
+  }
 
-  constructor(private filterId: string | string[]) {
+  constructor(filterId: string | string[]) {
+    if (!Array.isArray(filterId)) {
+      filterId = [filterId]
+    }
+
     this.activeFilters = filtersStore.filters.filter((filter) => {
-      if (Array.isArray(filterId)) {
-        return filterId.includes(filter.id);
-      } else {
-        return filter.id === this.filterId;
+      const isExist = filterId.includes(filter.id);
+
+      if (isExist) {
+        this.activeFiltersMap[filter.type] = filter;
       }
+
+      return isExist;
     });
   }
 
-  get activeFilteresTypesList() {
-    return this.activeFilters.map((filter) => {
-      return filter.type;
-    }) || []
-  }
-
   get filteredNotes() {
-    if (!this.activeFilters.length || this.activeFilters.length === 1 && this.activeFilters[0].type === 'all') {
+    if (!this.activeFilters.length) {
       return notesStore.notes;
     }
 
-    const filteresTypes = this.activeFilteresTypesList;
-
     return notesStore.notes.filter((note) => {
-      let valid = true;
+      const { activeFiltersMap } = this;
 
-      filteresTypes.forEach((filterType) => {
-        
-      })
+      console.debug('activeFiltersMap', activeFiltersMap)
+      if (activeFiltersMap.category) {
+          if (activeFiltersMap.category.id !== note.categoryId) {
 
-      return valid;
-    })
-
-
-    switch (this.activeFilter.type) {
-      case "category": {
-        const { id: categoryId } = this.activeFilter;
-
-        if (!categoryId) {
-          return notesStore.notes;
+            return false;
+          }
+      } if (activeFiltersMap.favorites) {
+        if (!Boolean(bookmarksStore.getBookmark("note", note._id))) {
+          return false;
         }
-
-        return notesStore.getNotesByFilterId(categoryId);
+      } if (activeFiltersMap.my) {
+        if (!(typeof note.author === 'object' && note.author.id === authStore.uid)) {
+          return false;
+        }
+      } if (activeFiltersMap.noActual) {
+        if (notesStore.checkIsNoteActual(note)) {
+          return false;
+        }
+      } if (activeFiltersMap.noApproved) {
+        if (note.isApproved) {
+          return false;
+        }
       }
 
-      case "favorites": {
-        return notesStore.notes.filter((note) => {
-          return Boolean(bookmarksStore.getBookmark("note", note._id));
-        });
+      // Default filters
+      if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
+        return false;
+      } if (!note.isApproved && !activeFiltersMap.noApproved) {
+        return false;
       }
 
-      case "my": {
-        return notesStore.notes.filter((note) => {
-          console.debug(note.author)
-          console.debug(authStore.uid)
-          return typeof note.author === 'object' && note.author.id === authStore.uid;
-        })
-      }
-
-      default: {
-        return notesStore.notes;
-      }
-    }
+      return true;
+    })
   }
 
   public state = new Cell(() => ({
@@ -116,11 +135,11 @@ export class FilteredNotesStore {
 
 export const myNotesStore = new FilteredNotesStore('my');
 
-type IFilterType = "all" | "favorites" | "category" | "my";
+type IFilterType = "all" | "favorites" | "category" | "my" | "noApproved" | "noActual";
 
 type IFilterEntity = {
   type: IFilterType;
-  name: string;
-  id: string;
+  name?: string;
+  id: ConstantFilterIds | string;
   icon?: string;
 };

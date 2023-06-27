@@ -112,28 +112,32 @@ type MovieBlock = {
   movies: MovieInfo[];
 };
 
-type INote = {
-  _id: string;
+type INoteLocal = {
   title: string;
   text: string;
   categoryId: string;
   author: {
     name: string;
-    id: string;
   };
-  createdAt: number;
-  updatedAt?: number;
   TTL: 13 | 14 | 15 | 16 | 17;
 };
 
-type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt" | "author"> & {
+type INote = INoteLocal & {
+  _id: string;
   author: {
     name: string;
+    id: string;
   };
+  isApproved: boolean;
+  createdAt: number;
+  updatedAt?: number;
+  isDeleted?: boolean;
+  deletedAt?: number;
 };
 
+
 type INoteUpdated = Partial<
-  Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
+  Pick<INote, "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted">
 >;
 
 type ICategory = {

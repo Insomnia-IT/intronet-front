@@ -7,11 +7,33 @@ import { PageSection } from "@components/Layout/PageSection/PageSection";
 import styles from './my-page.module.css';
 import { NotesList } from "../NotesList/NotesList";
 import { INoteCardStylesProps } from "../NotesList/NoteCard/NoteCard";
+import { ConstantFilterIds } from "@stores/notes/filters.store";
 
-const sections = [
-  'На модерации',
-  'Опубликованные',
-  'Снятые с публикации',
+
+const baseFilters: ConstantFilterIds[] = [ConstantFilterIds.My]
+const sections: IMyPageSection[] = [
+  {
+    name: 'На модерации',
+    notes: {
+      filters: [...baseFilters, ConstantFilterIds.NoApproved],
+      disabled: true,
+    }
+  },
+  {
+    name: 'Опубликованные',
+    notes: {
+      filters: baseFilters,
+      withTTL: true,
+    }
+  },
+  {
+    name: 'Снятые с публикации',
+    notes: {
+      filters: [...baseFilters, ConstantFilterIds.NoActual],
+      withTTL: true,
+      disabled: true,
+    }
+  },
 ]
 
 export const MyPage: FunctionalComponent = () => {
@@ -27,8 +49,16 @@ export const MyPage: FunctionalComponent = () => {
       <div className={styles.content}>
         {sections.map((section) => (
           <div className={cx(styles.section)}>
-            <h3 className={cx('sh2', 'colorMediumBlue', styles.sectionName)}>{section}</h3>
-            <NotesList filterId="my" notesProps={commonNotesProps} />
+
+            <NotesList
+              filterIds={section.notes.filters}
+              title={section.name}
+              notesProps={{
+                ...commonNotesProps,
+                withTTL: section.notes.withTTL,
+                disabled: section.notes.disabled,
+              }}
+            />
           </div>
         ))}
       </div>
@@ -41,4 +71,13 @@ export const MyPage: FunctionalComponent = () => {
     </ButtonsBar>
   </PageContainer>
   )
+}
+
+type IMyPageSection = {
+  name: string;
+  notes: {
+    filters: ConstantFilterIds[];
+    withTTL?: boolean;
+    disabled?: boolean;
+  }
 }

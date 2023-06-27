@@ -15,13 +15,13 @@ import { GesturedNotesList } from "./NotesList/GesturedNoteList";
 import styles from "./notes.module.css";
 
 export const NotesPage: FunctionalComponent = () => {
-  const router = useNotesRouter();
+  const { section, filterId } = useNotesRouter();
   const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };
 
-  switch (router.section) {
+  switch (section) {
     case "search":
       return <div>Notes search</div>;
 
@@ -49,7 +49,10 @@ export const NotesPage: FunctionalComponent = () => {
               </div>
               <GesturedNotesList
                 className={styles.notesList}
-                onNoteClick={setActiveNoteId}
+                notesProps={{
+                  onClick: setActiveNoteId
+                }}
+                filterIds={[filterId]}
               />
             </PageSection>
             <ButtonsBar at="bottom">
