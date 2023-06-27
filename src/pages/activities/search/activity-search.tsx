@@ -1,15 +1,17 @@
 import { Input } from "@components/input";
-import { useMemo, useState } from "preact/hooks";
+import {useSearch} from "@helpers/use-search";
+import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { activitiesStore } from "@stores/activities/activities.store";
 import { ActivityList } from "../activities/activityList";
-import { SvgIcon } from "@icons";
 import { SearchPlug } from "@components/plugs/search/SearchPlug";
 
 export const ActivitySearch = () => {
-  const [query, setQuery] = useState<string | undefined>(undefined);
+
+  const {query, check, setQuery} = useSearch(regex => (activity: Activity) =>
+    regex.test(activity.title) ||
+    regex.test(activity.author))
   const activities = useCell(() => activitiesStore.Activities);
-  const check = useMemo(() => checkActivity(query), [query]);
   const filtered = useMemo(() => activities.filter(check), [activities, check]);
 
   return (
@@ -30,12 +32,4 @@ export const ActivitySearch = () => {
       )}
     </div>
   );
-};
-
-const checkActivity = (query: string | undefined) => {
-  if (!query) return () => true;
-  const regex = new RegExp(query, "i");
-  return (activity: Activity) =>
-    regex.test(activity.title) ||
-    regex.test(activity.author);
 };
