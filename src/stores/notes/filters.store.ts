@@ -2,6 +2,15 @@ import { Cell, cell } from "@cmmn/cell/lib";
 import { categoriesStore } from "./categories.store";
 import { notesStore } from "./notes.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
+import { authStore } from "@stores/auth.store";
+
+export enum ConstantFilterIds {
+  All = 'all',
+  Favorites = 'favorites',
+  My = 'my',
+  NoApproved = 'noApproved',
+  NoActual = 'noActual',
+}
 
 class FiltersStore {
   @cell
@@ -9,14 +18,26 @@ class FiltersStore {
     return [
       {
         type: "all",
-        id: "all",
+        id: ConstantFilterIds.All,
         name: "Все",
       },
       {
         type: "favorites",
-        id: "favorites",
+        id: ConstantFilterIds.Favorites,
         name: "Избранные",
         icon: "bookmark",
+      },
+      {
+        type: "my",
+        id: ConstantFilterIds.My,
+      },
+      {
+        type: "noApproved",
+        id: ConstantFilterIds.NoApproved,
+      },
+      {
+        type: "noActual",
+        id: ConstantFilterIds.NoActual,
       },
       ...categoriesStore.categories.map(({ _id, name }): IFilterEntity => {
         return {
@@ -36,44 +57,75 @@ class FiltersStore {
 export const filtersStore = new FiltersStore();
 
 export class FilteredNotesStore {
-  private activeFilter: IFilterEntity;
+  private activeFilters: IFilterEntity[] = [];
+  private activeFiltersMap: {
+    [key in IFilterType]: null | IFilterEntity;
+  } = {
+    all: null,
+    category: null,
+    favorites: null,
+    my: null,
+    noApproved: null,
+    noActual: null,
+  }
 
-  constructor(private filterId: string) {
-    this.activeFilter = filtersStore.filters.find((filter) => {
-      return filter.id === this.filterId;
+  constructor(filterId: string | string[]) {
+    if (!Array.isArray(filterId)) {
+      filterId = [filterId]
+    }
+
+    this.activeFilters = filtersStore.filters.filter((filter) => {
+      const isExist = filterId.includes(filter.id);
+
+      if (isExist) {
+        this.activeFiltersMap[filter.type] = filter;
+      }
+
+      return isExist;
     });
   }
 
   get filteredNotes() {
-    if (!this.activeFilter || !Object.keys(this.activeFilter).length) {
+    if (!this.activeFilters.length) {
       return notesStore.notes;
     }
 
-    switch (this.activeFilter.type) {
-      case "all": {
-        return notesStore.notes;
-      }
+    return notesStore.notes.filter((note) => {
+      const { activeFiltersMap } = this;
 
-      case "category": {
-        const { id: categoryId } = this.activeFilter;
+      if (activeFiltersMap.category) {
+          if (activeFiltersMap.category.id !== note.categoryId) {
 
-        if (!categoryId) {
-          return notesStore.notes;
+            return false;
+          }
+      } if (activeFiltersMap.favorites) {
+        if (!Boolean(bookmarksStore.getBookmark("note", note._id))) {
+          return false;
         }
-
-        return notesStore.getNotesByFilterId(categoryId);
+      } if (activeFiltersMap.my) {
+        if (!(typeof note.author === 'object' && note.author.id === authStore.uid)) {
+          return false;
+        }
+      } if (activeFiltersMap.noActual) {
+        if (notesStore.checkIsNoteActual(note)) {
+          return false;
+        }
+      } if (activeFiltersMap.noApproved) {
+        if (note.isApproved) {
+          return false;
+        }
       }
 
-      case "favorites": {
-        return notesStore.notes.filter((note) => {
-          return Boolean(bookmarksStore.getBookmark("note", note._id));
-        });
+      // Default filters
+      if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
+        return false;
       }
+      // if (!note.isApproved && !activeFiltersMap.noApproved) {
+      //   return false;
+      // }
 
-      default: {
-        return notesStore.notes;
-      }
-    }
+      return true;
+    })
   }
 
   public state = new Cell(() => ({
@@ -81,11 +133,13 @@ export class FilteredNotesStore {
   }));
 }
 
-type IFilterType = "all" | "favorites" | "category";
+export const myNotesStore = new FilteredNotesStore('my');
+
+type IFilterType = "all" | "favorites" | "category" | "my" | "noApproved" | "noActual";
 
 type IFilterEntity = {
   type: IFilterType;
-  name: string;
-  id: string;
+  name?: string;
+  id: ConstantFilterIds | string;
   icon?: string;
 };

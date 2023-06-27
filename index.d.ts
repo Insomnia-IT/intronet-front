@@ -38,6 +38,8 @@ declare module "*.html" {
   export default style;
 }
 
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
 type InsomniaLocation = {
   _id: string;
   // Неуникальный, но постоянный
@@ -107,30 +109,34 @@ type MovieBlock = {
   movies: MovieInfo[];
 };
 
-type INote = {
-  _id: string;
+type INoteLocal = {
   title: string;
   text: string;
   categoryId: string;
   author: {
     name: string;
-    id: string;
   };
-  createdAt: number;
-  updatedAt?: number;
   TTL: 13 | 14 | 15 | 16 | 17;
   // on moderation
   restricted?: boolean;
 };
 
-type INoteLocal = Omit<INote, "_id" | "createdAt" | "updatedAt" | "author"> & {
+type INote = INoteLocal & {
+  _id: string;
   author: {
     name: string;
+    id: string;
   };
+  isApproved: boolean;
+  createdAt: number;
+  updatedAt?: number;
+  isDeleted?: boolean;
+  deletedAt?: number;
 };
 
+
 type INoteUpdated = Partial<
-  Omit<INote, "createdAt" | "updatedAt" | "author" | "_id">
+  Pick<INote, "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted">
 >;
 
 type ICategory = {

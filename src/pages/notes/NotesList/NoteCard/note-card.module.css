@@ -1,6 +1,20 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
 .card {
   position: relative;
   user-select: none;
+  color: var(--medium-blue)
+}
+
+.cardDisabled {
+  background: transparent;
+  color: var(--gray);
+  border: 1px solid var(--inactive-grey);
 }
 
 .content {
@@ -15,6 +29,7 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
+  color: currentColor;
 }
 
 .noteText {
@@ -23,6 +38,7 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+  color: currentColor;
 }
 
 .bookmarkIcon {
@@ -32,6 +48,10 @@
   top: 22px;
   right: 22px;
   color: var(--pink);
+}
+
+.ttlText {
+  line-height: 16.71px;
 }
 
 .content,

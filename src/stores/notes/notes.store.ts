@@ -1,6 +1,7 @@
 import { Fn, cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "../observableDB";
 import { authStore } from "@stores/auth.store";
+import { getCurrentDate, getCurrentUtc } from "@helpers/date";
 
 class NotesStore {
   @cell
@@ -44,7 +45,7 @@ class NotesStore {
     await this.db.addOrUpdate({
       ...note,
       ...updatedNote,
-      updatedAt: Date.now(),
+      updatedAt: getCurrentUtc(),
     });
   };
 
@@ -55,11 +56,15 @@ class NotesStore {
     this.db.remove(id);
   };
 
+  public checkIsNoteActual = (note: INote) => {
+    return !note.isDeleted && note.TTL > getCurrentDate();
+  }
+
   // Отдаёт стор с объявлениями
   @cell
   get notes() {
     return this.db.toArray().sort((a, b) => {
-      return this.getLatestNoteDate(a) - this.getLatestNoteDate(b);
+      return this.getLatestNoteDate(b) - this.getLatestNoteDate(a);
     });
   }
 
@@ -83,7 +88,8 @@ class NotesStore {
         id: authStore.uid,
       },
       _id: Fn.ulid(),
-      createdAt: Date.now(),
+      createdAt: getCurrentUtc(),
+      isApproved: false,
     };
   }
 

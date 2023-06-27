@@ -1,14 +1,14 @@
+import { PageContainer } from "@components/Layout/PageContainer/PageContainer";
 import { PageHeader } from "@components/Layout/PageHeader/PageHeader";
 import { PageSection } from "@components/Layout/PageSection/PageSection";
 import { FunctionalComponent } from "preact";
 import { useEffect } from "preact/hooks";
-import { INewNoteSections, useNotesRouter } from "../hooks/useNotesRouter";
-import { RulesPage } from "./Rules/RulesPage/RulesPage";
-import { PageContainer } from "@components/Layout/PageContainer/PageContainer";
-import newStyles from "./new.module.css";
+import { useNotesRouter } from "../hooks/useNotesRouter";
 import noteStyles from "../notes.module.css";
 import { EditorPage } from "./Editor/EditorPage";
 import { SuccessPage } from "./Result/SuccessPage/SuccessPage";
+import { RulesPage } from "./Rules/RulesPage/RulesPage";
+import newStyles from "./new.module.css";
 
 export const NewNoteSwitch: FunctionalComponent = () => {
   const { subSection, goToNew } = useNotesRouter();
@@ -20,7 +20,7 @@ export const NewNoteSwitch: FunctionalComponent = () => {
   }, [subSection]);
 
   const getPage = () => {
-    switch (subSection as INewNoteSections) {
+    switch (subSection) {
       case "rules": {
         return <RulesPage />;
       }
@@ -31,7 +31,7 @@ export const NewNoteSwitch: FunctionalComponent = () => {
     }
   };
 
-  switch (subSection as INewNoteSections) {
+  switch (subSection) {
     case "success": {
       return <SuccessPage />;
     }

@@ -6,7 +6,6 @@
   top: 0;
   bottom: 0;
   overflow: auto;
-  pointer-events: none;
 }
 
 .containerClose{

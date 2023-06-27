@@ -22,6 +22,10 @@ export const FilteriesSlider: FunctionalComponent = () => {
   return (
     <Tags<typeof filters> tagsList={filters} class={styles.tags}>
       {({ id, name, icon }) => {
+        if (!name) {
+          return null;
+        }
+
         return (
           <Tag
             selected={activeFilterId === id}
