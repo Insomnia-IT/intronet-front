@@ -35,7 +35,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
     });
     if (!this.localOnly) {
       await this.sync().catch(console.error);
-      setInterval(() => this.sync().catch(console.error), 3000);
+      setInterval(() => this.sync().catch(console.error), 10_000);
     }
   }
 
