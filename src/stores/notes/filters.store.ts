@@ -119,9 +119,10 @@ export class FilteredNotesStore {
       // Default filters
       if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
         return false;
-      } if (!note.isApproved && !activeFiltersMap.noApproved) {
-        return false;
       }
+      // if (!note.isApproved && !activeFiltersMap.noApproved) {
+      //   return false;
+      // }
 
       return true;
     })
