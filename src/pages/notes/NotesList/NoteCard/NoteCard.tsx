@@ -7,6 +7,7 @@ import { COLORS } from "@constants";
 import { SvgIcon } from "@icons";
 import { getNoteDate } from "../../helpers/getNoteDate";
 import styles from "./note-card.module.css";
+import { getNoteTTLText } from "../../helpers/getNoteTTLText";
 
 export type INoteCardProps = INote & INoteCardStylesProps & {
   categoryColor: string;
@@ -34,6 +35,9 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     title,
     text,
     updatedAt,
+    TTL,
+    isDeleted,
+    deletedAt,
     iconOpacity,
     iconClassNames,
     withTTL = false,
@@ -54,35 +58,40 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
   };
 
   return (
-    <Card
-      background="Soft"
-      borderType="LeftCloud"
-      className={cx(styles.card, className, {
-        [styles.cardDisabled]: disabled,
-      })}
-      onClick={onCardClick}
-      id={_id}
-    >
-      {withBookmarkIcon && (
-        <SvgIcon
-          id="#bookmark"
-          className={cx(styles.bookmarkIcon, iconClassNames)}
-          onClick={!disabled && onIconClick}
-          style={{ opacity: iconOpacity }}
-        />
+    <div className={styles.cardContainer}>
+      <Card
+        background="Soft"
+        borderType="LeftCloud"
+        className={cx(styles.card, className, {
+          [styles.cardDisabled]: disabled,
+        })}
+        onClick={onCardClick}
+        id={_id}
+      >
+        {withBookmarkIcon && (
+          <SvgIcon
+            id="#bookmark"
+            className={cx(styles.bookmarkIcon, iconClassNames)}
+            onClick={!disabled && onIconClick}
+            style={{ opacity: iconOpacity }}
+          />
+        )}
+        <div className={styles.content}>
+          <h3 className={cx("sh1", styles.noteTitle)}>{title}</h3>
+          <span className={styles.noteText}>{text}</span>
+        </div>
+        {categoryName && (
+          <Badge type={"Adv"} background={disabled ? COLORS.inactiveGray : categoryColor}>
+            {categoryName}
+          </Badge>
+        )}
+        <div className={cx("sh3", disabled ? "colorInactiveGrey" : "colorGray", styles.footer)}>
+          {typeof author === 'string' ? author : author && author.name}, {getNoteDate(updatedAt || createdAt)}
+        </div>
+      </Card>
+      {withTTL && (
+        <span className={cx(styles.ttlText, "textSmall", "colorGray")}>{getNoteTTLText({deletedAt, isDeleted, TTL})}</span>
       )}
-      <div className={styles.content}>
-        <h3 className={cx("sh1", styles.noteTitle)}>{title}</h3>
-        <span className={styles.noteText}>{text}</span>
-      </div>
-      {categoryName && (
-        <Badge type={"Adv"} background={disabled ? COLORS.inactiveGray : categoryColor}>
-          {categoryName}
-        </Badge>
-      )}
-      <div className={cx("sh3", disabled ? "colorInactiveGrey" : "colorGray", styles.footer)}>
-        {typeof author === 'string' ? author : author && author.name}, {getNoteDate(updatedAt || createdAt)}
-      </div>
-    </Card>
+    </div>
   );
 };

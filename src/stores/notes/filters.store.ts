@@ -93,7 +93,6 @@ export class FilteredNotesStore {
     return notesStore.notes.filter((note) => {
       const { activeFiltersMap } = this;
 
-      console.debug('activeFiltersMap', activeFiltersMap)
       if (activeFiltersMap.category) {
           if (activeFiltersMap.category.id !== note.categoryId) {
 
