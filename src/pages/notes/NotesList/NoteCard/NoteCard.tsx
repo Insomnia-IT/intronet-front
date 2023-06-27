@@ -1,9 +1,10 @@
 import { FunctionalComponent } from "preact";
 import { TargetedEvent } from "preact/compat";
+import cx from "classnames";
 import { Badge } from "@components/badge/badge";
 import { Card } from "@components/cards";
+import { COLORS } from "@constants";
 import { SvgIcon } from "@icons";
-import cx from "classnames";
 import { getNoteDate } from "../../helpers/getNoteDate";
 import styles from "./note-card.module.css";
 
@@ -20,6 +21,7 @@ export type INoteCardStylesProps = {
   onIconClick?: (e: TargetedEvent) => void;
   withTTL?: boolean;
   withBookmarkIcon?: boolean;
+  disabled?: boolean;
 };
 
 export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
@@ -35,6 +37,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     iconOpacity,
     iconClassNames,
     withTTL = false,
+    disabled = false,
     withBookmarkIcon = true,
 
     onClick,
@@ -42,6 +45,11 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     className,
   } = props;
   const onCardClick = (e: TargetedEvent) => {
+    if (disabled) {
+      e.stopPropagation();
+      return;
+    }
+
     onClick && onClick(_id, e);
   };
 
@@ -49,14 +57,17 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     <Card
       background="Soft"
       borderType="LeftCloud"
-      className={cx(styles.card, className)}
+      className={cx(styles.card, className, {
+        [styles.cardDisabled]: disabled,
+      })}
       onClick={onCardClick}
+      id={_id}
     >
       {withBookmarkIcon && (
         <SvgIcon
           id="#bookmark"
           className={cx(styles.bookmarkIcon, iconClassNames)}
-          onClick={onIconClick}
+          onClick={!disabled && onIconClick}
           style={{ opacity: iconOpacity }}
         />
       )}
@@ -65,11 +76,11 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         <span className={styles.noteText}>{text}</span>
       </div>
       {categoryName && (
-        <Badge type={"Adv"} background={categoryColor}>
+        <Badge type={"Adv"} background={disabled ? COLORS.inactiveGray : categoryColor}>
           {categoryName}
         </Badge>
       )}
-      <div className={cx("sh3", "colorGray", styles.footer)}>
+      <div className={cx("sh3", disabled ? "colorInactiveGrey" : "colorGray", styles.footer)}>
         {typeof author === 'string' ? author : author && author.name}, {getNoteDate(updatedAt || createdAt)}
       </div>
     </Card>
