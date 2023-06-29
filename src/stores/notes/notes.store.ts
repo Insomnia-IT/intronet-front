@@ -46,11 +46,24 @@ class NotesStore {
       ...note,
       ...updatedNote,
       updatedAt: getCurrentUtc(),
+      deletedAt: updatedNote.isDeleted ? getCurrentDate() : note.deletedAt,
     });
   };
 
   /**
-   * Удаляет объявление по id
+   * Помечает объявление как удалённое, показывается только в архиве
+   */
+  public deleteNote = async (id: string) => {
+    this.updateNote({
+      id,
+      updatedNote: {
+        isDeleted: true,
+      },
+    });
+  };
+
+  /**
+   * Удаляет (полностью) объявление по id
    */
   public removeNote = async (id: string) => {
     this.db.remove(id);
@@ -58,7 +71,7 @@ class NotesStore {
 
   public checkIsNoteActual = (note: INote) => {
     return !note.isDeleted && note.TTL > getCurrentDate();
-  }
+  };
 
   // Отдаёт стор с объявлениями
   @cell

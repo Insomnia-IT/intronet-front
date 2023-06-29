@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 28px;
+  max-width: calc(100% - 52px);
+  overflow-wrap: break-word;
+}
+
+.text {
+  margin-bottom: 16px;
+}
+
+.author {
+  margin-bottom: 32px;
+}
