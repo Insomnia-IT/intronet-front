@@ -1,6 +1,8 @@
 .pageContainer {
-  background-color: var(--cold-white);
   height: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  background-color: var(--cold-white);
   box-sizing: border-box;
   overflow: scroll;
 }

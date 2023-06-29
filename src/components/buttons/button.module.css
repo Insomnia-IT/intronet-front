@@ -54,10 +54,10 @@
 .vivid {
   background: var(--vivid-gradient);
 }
-.orange{
+.orange {
   background: var(--chineese-cafe);
 }
-.frameOrange{
+.frameOrange {
   composes: frame;
   color: var(--chineese-cafe);
   border-color: var(--chineese-cafe);
@@ -143,8 +143,7 @@
   text-transform: uppercase;
 }
 
-
-.borderVivid{
+.borderVivid {
   border: none;
   position: relative;
   background: var(--vivid-gradient);
@@ -152,9 +151,12 @@
 }
 
 .borderVivid:before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 0;
   margin: 2px;
   border-radius: 22px;
@@ -165,14 +167,29 @@
   z-index: 1;
 }
 
-:global(.dark) .borderVivid{
+:global(.dark) .borderVivid {
   color: var(--cold-white);
 }
 
-:global(.dark) .borderVivid:before{
+:global(.dark) .borderVivid:before {
   background: var(--ins-night);
 }
 
-.textSimple{
+.textSimple {
   background: none;
+}
+
+.buttonOnlineContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.buttonOnlineNote {
+  text-align: center;
+}
+
+.buttonOnline {
+  width: 100%;
 }

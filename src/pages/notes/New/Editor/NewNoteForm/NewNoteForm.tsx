@@ -144,11 +144,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
               );
             })}
             <div className={styles.submitContainer}>
-              <NextButton
-                onClick={submit}
-                disabled={!allReqFieldIsFill}
-                type={""}
-              >
+              <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
                 Отправить на модерацию
               </NextButton>
             </div>
