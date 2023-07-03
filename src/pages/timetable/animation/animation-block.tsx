@@ -37,7 +37,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       </div>
       <Card
         background="Purple"
-        style={{ marginBottom: 30, paddingBottom: 8, paddingTop: 24 }}
+        style={{ marginBottom: 30, paddingBottom: 8, paddingTop: 24, alignItems: 'stretch' }}
       >
         <div flex column gap>
           <div class={[Styles.header, "sh1"].join(" ")}>
@@ -46,7 +46,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             )}
           </div>
-          <div class="textSmall colorGray">{block.info.SubTitle}</div>
+          <div class="textSmall colorGray">{block.info.SubTitle ?? ''}</div>
           <div class={[Styles.duplicate, "colorPurple"].join(" ")}>
             {duplicate}
           </div>

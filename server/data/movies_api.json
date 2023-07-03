@@ -1,0 +1,2803 @@
+[
+  {
+    "screenName": "Полевой экран",
+    "screenPrograms": [
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 1. (International &amp; national competition — Kidult. Part 1)",
+        "programAge": "12+",
+        "programStart": 1689274800,
+        "programEnd": 1689278400,
+        "programFilms": [
+          {
+            "title": "Плёвое дело",
+            "plot": "История о том, насколько важно сохранять спокойствие и не паниковать, даже если вы знаете, что через минуту на вас упадет огненный метеорит.",
+            "image": null,
+            "vurchelID": 17001
+          },
+          {
+            "title": "Миллион алых роз",
+            "plot": "Молодой офицер с горячим чувством влюбился в провинциальную актрису, которая любит только цветы.",
+            "image": null,
+            "vurchelID": 17119
+          },
+          {
+            "title": "Не кормите голубей",
+            "plot": "Даже в одиноком, отвратительном и скучном месте всегда можно найти немного гармонии.",
+            "image": null,
+            "vurchelID": 17146
+          },
+          {
+            "title": "Бабугли",
+            "plot": "История, произошедшая в древние времена с старой шаманкой по имени Бабугли, которая больше не была нужна своему племени.",
+            "image": null,
+            "vurchelID": 17238
+          },
+          {
+            "title": "Подсолнух",
+            "plot": "Подсолнух, отличающийся от остальных, решает взглянуть на своё окружение по-новому и обнаруживает совершенно другую вселенную...",
+            "image": null,
+            "vurchelID": 16950
+          },
+          {
+            "title": "Выгорание",
+            "plot": "Оказывается, быть Солнцем не самая легкая задача. Сможет ли оно преодолеть трудности и стресс на своём пути?",
+            "image": null,
+            "vurchelID": 17175
+          },
+          {
+            "title": "Песнь кита",
+            "plot": "Однажды утром жители обнаруживают огромного кита посреди города...",
+            "image": null,
+            "vurchelID": 17205
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 1. (National competition, part 1)",
+        "programAge": "16+",
+        "programStart": 1689278400,
+        "programEnd": 1689279600,
+        "programFilms": [
+          {
+            "title": "Украденная мелодия",
+            "plot": "Эта история происходит в городе, где все привыкли к беззаконию, и преступники привычно тянут руки ко всему, что плохо лежит. Жители так привыкли не оглядываться вокруг, чтобы не привлекать неприятности своим любопытством, что они не заметили, как в городе поселились гномы.",
+            "image": null,
+            "vurchelID": 17133
+          },
+          {
+            "title": "Легенда о сестрах",
+            "plot": "Эта история рассказывает о монахинях, которые сожгли себя, чтобы не попасть в руки зла.",
+            "image": null,
+            "vurchelID": 17360
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 1. (International competition. Profnastil. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689279600,
+        "programEnd": 1689287400,
+        "programFilms": [
+          {
+            "title": "Уважаемые пассажиры",
+            "plot": "Уважаемые пассажиры! Скорый поезд номер 72 отправляется с платформы два, путь номер один...",
+            "image": null,
+            "vurchelID": 16979
+          },
+          {
+            "title": "ПЛСТК",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17082
+          },
+          {
+            "title": "Миракасас",
+            "plot": "В 30-х годах потерянная деревня в Южной Америке желает сохранить свои странные традиции... Мэр опубликовал объявление в регионе: &quot;Ищет труп для увеличения Миракасас&quot;. Недавно убитый Эрнесто становится счастливчиком и, несмотря на себя, участвует в своеобразном карнавале погребения. Собравшиеся жители празднуют событие с страстью, жадно ожидая жизнь, которую приносит смерть.",
+            "image": null,
+            "vurchelID": 17073
+          },
+          {
+            "title": "Ожидание",
+            "plot": "Карен Липс - исследовательница, которая несколько лет живет в маленькой лачуге в Коста-Рике, чтобы наблюдать за лягушками. Когда она уходит из туманного леса на короткое время и возвращается, лягушки исчезли. Все они. Карен отправляется на поиски и сталкивается с ужасной правдой.",
+            "image": null,
+            "vurchelID": 17202
+          },
+          {
+            "title": "Довольно войн!",
+            "plot": "Мир без войны - это ещё одна утопия, которую мы больше не можем ждать.",
+            "image": null,
+            "vurchelID": 17261
+          },
+          {
+            "title": "Сан Ла Муэрте",
+            "plot": "Визуальная поэма о Сан Ла Муэрте, языческом культе, почитаемом в Аргентине, Парагвае и Бразилии. Фильм изображает наиболее распространенные приношения и просьбы, которые можно сделать ему. Амулеты часто вырезаются из человеческих костей и помещаются под кожу после благословения католическим священником. Он является святым для исключенных, различных и угнетенных.",
+            "image": null,
+            "vurchelID": 16963
+          },
+          {
+            "title": "След",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16989
+          },
+          {
+            "title": "Амок",
+            "plot": "После потери своей невесты и своей привлекательности в результате несчастного случая, Клайд должен столкнуться со своим внутренним демоном.",
+            "image": null,
+            "vurchelID": 17118
+          },
+          {
+            "title": "Электра",
+            "plot": "Электра переосмысливает свое десятое день рождения, смешивая воспоминания с воображением и скрытыми мечтами. Изолированная в своем фантастическом мире, полном придуманных пышногрудых кукол, пластиковых частей мужского тела, сочных клубники и зубных инструментов, она создает свои собственные отношения со своим телом и сексуальностью. Погружаясь все глубже в свои детские воспоминания, она снова переживает бунт против матери и смешанные чувства по отношению к отцу. Электре приходится пройти через самые больные воспоминания, чтобы дать выход своим подавленным чувствам. В конце концов, она готова раскрыть, что на самом деле произошло во время ее десятого дня рождения.",
+            "image": null,
+            "vurchelID": 17294
+          },
+          {
+            "title": "Помнишь, как я катался на белом коне",
+            "plot": "Официантка продолжает свою повседневную рутину, подавая кофе, в то время как в ее голове возникают мысли о побеге от реальности. Клиент постоянно записывает и слушает окружающие звуки в кафе, полностью увлеченный этим занятием. Апатия - это состояние, которое ведет сознание к застою, но осознают ли они, что являются примерами этого состояния сами для себя?",
+            "image": null,
+            "vurchelID": 17400
+          },
+          {
+            "title": "Растворение",
+            "plot": "Экспериментальная анимация, которая забирает зрителей в путешествие растворения через серию уникальных и захватывающих анимационных иллюзий. Фильм демонстрирует, что растворение - это не конец, а процесс нового создания. Используя динамичное сочетание анимационных техник, включая 3D-программное обеспечение, ручную 2D-анимацию и анимацию, созданную искусственным интеллектом, &quot;Dissolution&quot; освобождается от традиционных ограничений, чтобы предложить уникальный и связный визуальный опыт. Творческое видение фильма еще больше усиливается предварительно обученным инструментом передачи стиля нейронных сетей, который бесшовно объединяет различные стили анимации в единое целое.",
+            "image": null,
+            "vurchelID": 17159
+          },
+          {
+            "title": "Птица на полуострове",
+            "plot": "Дети танцуют под музыку под наблюдением своего учителя. Молодая женщина становится свидетельницей этой сцены и нарушает их ритуалы.",
+            "image": null,
+            "vurchelID": 17334
+          },
+          {
+            "title": "Подумай о чём-нибудь хорошем",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17212
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 1. (International competition. Debutoriya. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689287400,
+        "programEnd": 1689292500,
+        "programFilms": [
+          {
+            "title": "Певцы заката",
+            "plot": "Пожилая пара из Гонконга, Лонг и Софи, как любительские певцы, приходят на свое выступление по отдельности. Несмотря на социальные потрясения, их выступление начинается как обычно. В то время как Софи приходит раньше на место и готовится, Лонг попадает в непредвиденную ситуацию в метро. Используя как анимацию, так и документированные материалы, полученные во время протестов против экстрадиции в Гонконге в 2019 году, &quot;Sunset Singers&quot; представляет вымышленный комментарий о параллельной жизни отдельных индивидуумов Гонконга.\n\n&quot;Sunset Singers&quot; (2022) - это 10-минутный анимационный короткометражный фильм, основанный на документированных материалах, полученных в Гонконге в 2019 году во время протестов против экстрадиции. Есть два места съемок - концертные площадки, где выступали пенсионеры, и места протестов. Саундтрек был создан с использованием живых записей, которые сочетаются с визуальными эффектами из ручной 2D и 3D анимации, а также с документированными и архивными видеоматериалами. &quot;Sunset Singers&quot; является моим выпускным проектом в KHM.",
+            "image": null,
+            "vurchelID": 16907
+          },
+          {
+            "title": "Дружественный огонь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16868
+          },
+          {
+            "title": "Между",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17287
+          },
+          {
+            "title": "Безымянная дорога",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16951
+          },
+          {
+            "title": "Салют солнцу",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16882
+          },
+          {
+            "title": "Визионер",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17328
+          },
+          {
+            "title": "Сок",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17482
+          },
+          {
+            "title": "Красные щеки Маро",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17198
+          },
+          {
+            "title": "артефакты тебя, артефакты меня.",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16879
+          },
+          {
+            "title": "История для двух труб",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17263
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 1. (Music of the Night — music video International competition. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689292500,
+        "programEnd": 1689294600,
+        "programFilms": [
+          {
+            "title": "A Once Lonely Man",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17213
+          },
+          {
+            "title": "Sleeping Cell - Elevator to the Gallows",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17098
+          },
+          {
+            "title": "DJ Piper - RIP TXL",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17246
+          },
+          {
+            "title": "Juan Wauters - Milanesa al pan",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17143
+          },
+          {
+            "title": "I Gotta Cry",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17403
+          },
+          {
+            "title": "No Lullaby",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16959
+          },
+          {
+            "title": "Olivia Lumen",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16956
+          }
+        ]
+      },
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 2. (International &amp; national competition — Kidult. Part 2)",
+        "programAge": "12+",
+        "programStart": 1689361200,
+        "programEnd": 1689364500,
+        "programFilms": [
+          {
+            "title": "Галочка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17477
+          },
+          {
+            "title": "Прочь, Альфред!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17084
+          },
+          {
+            "title": "Кстати, о птичках",
+            "plot": null,
+            "image": null,
+            "vurchelID": 12792
+          },
+          {
+            "title": "Там, где цветёт жасмин",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17135
+          },
+          {
+            "title": "Колыбельная Бабы Яги",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16913
+          },
+          {
+            "title": "Фея-ведьма",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17254
+          },
+          {
+            "title": "Переход",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17478
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 2. (National competition, part 2)",
+        "programAge": "16+",
+        "programStart": 1689364500,
+        "programEnd": 1689366000,
+        "programFilms": [
+          {
+            "title": "Волк думающий",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17121
+          },
+          {
+            "title": "Крот",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17189
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 2. (International competition. Profnastil. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689366000,
+        "programEnd": 1689373800,
+        "programFilms": [
+          {
+            "title": "Жираф",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16732
+          },
+          {
+            "title": "Хармс",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17373
+          },
+          {
+            "title": "Кот-бутерброд",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17052
+          },
+          {
+            "title": "Сиди и ничего не трогай!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17095
+          },
+          {
+            "title": "Моя ворона не умеет ловить рыбу",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17131
+          },
+          {
+            "title": "Терра Инкогнита",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16990
+          },
+          {
+            "title": "Сексуальная жизнь бабушки",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16895
+          },
+          {
+            "title": "Саша",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16999
+          },
+          {
+            "title": "Обратное сальто",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17039
+          },
+          {
+            "title": "Полынь-25",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17256
+          },
+          {
+            "title": "Семейный портрет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17260
+          },
+          {
+            "title": "Розовый шум",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16973
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 2. (International competition. Debutoriya. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689373800,
+        "programEnd": 1689378900,
+        "programFilms": [
+          {
+            "title": "Код «Розовый»",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17008
+          },
+          {
+            "title": "Похороны в девять",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17044
+          },
+          {
+            "title": "В танце",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17401
+          },
+          {
+            "title": "Краешком глаза",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16994
+          },
+          {
+            "title": "Ее электрический свет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17207
+          },
+          {
+            "title": "РИМ",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16933
+          },
+          {
+            "title": "Над облаками",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16998
+          },
+          {
+            "title": "Луна восходит днем",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16935
+          },
+          {
+            "title": "Фурри",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17480
+          },
+          {
+            "title": "Пентола",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17219
+          },
+          {
+            "title": "Прогулка по парку",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17331
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 2. (Music of the Night — music video International competition. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689378900,
+        "programEnd": 1689381000,
+        "programFilms": [
+          {
+            "title": "Aube",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16974
+          },
+          {
+            "title": "Cores | Bacará",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17094
+          },
+          {
+            "title": "Do I Follow the Wall?",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17215
+          },
+          {
+            "title": "Fuites Cathodiques",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16966
+          },
+          {
+            "title": "Jerks",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16892
+          },
+          {
+            "title": "Mr Lady",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17406
+          },
+          {
+            "title": "Ciarán",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17142
+          },
+          {
+            "title": "Tulipomania: You Had to Be There",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17173
+          }
+        ]
+      },
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 3. (International &amp; national competition — Kidult. Part 3)",
+        "programAge": "12+",
+        "programStart": 1689447600,
+        "programEnd": 1689450900,
+        "programFilms": [
+          {
+            "title": "Малые часы",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17172
+          },
+          {
+            "title": "Путешествие с моим папой",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17080
+          },
+          {
+            "title": "Быть сестрами",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17036
+          },
+          {
+            "title": "Праздник весны",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17055
+          },
+          {
+            "title": "Торговцы льдом",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17324
+          },
+          {
+            "title": "Принцесса-баклажан",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16869
+          },
+          {
+            "title": "Сомни",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17176
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 3. (National competition, part 3)",
+        "programAge": "16+",
+        "programStart": 1689450900,
+        "programEnd": 1689452400,
+        "programFilms": [
+          {
+            "title": "Омичка",
+            "plot": "Фильм основан на реальных заголовках СМИ, в атмосфере абсурда нашей реальности развиваются непростые отношения пары",
+            "image": null,
+            "vurchelID": 17109
+          },
+          {
+            "title": "Светлые души",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17290
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 3. (International competition. Profnastil. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689452400,
+        "programEnd": 1689460200,
+        "programFilms": [
+          {
+            "title": "Ааааа!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17208
+          },
+          {
+            "title": "Мусорщик",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17197
+          },
+          {
+            "title": "Одиннадцать",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16883
+          },
+          {
+            "title": "У спасения нет имени",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17273
+          },
+          {
+            "title": "Чудо",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17340
+          },
+          {
+            "title": "Что движется, то живет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16995
+          },
+          {
+            "title": "Плоть Господня",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17161
+          },
+          {
+            "title": "Интерсексция",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16965
+          },
+          {
+            "title": "Тень бабочек",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17075
+          },
+          {
+            "title": "Белизна",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17155
+          },
+          {
+            "title": "Особый закат",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16875
+          },
+          {
+            "title": "Брикстонская суета",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16969
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 3. (International competition. Debutoriya. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689460200,
+        "programEnd": 1689465300,
+        "programFilms": [
+          {
+            "title": "При мне не умирай",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17483
+          },
+          {
+            "title": "Прекрасная ночь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17015
+          },
+          {
+            "title": "Человеческие ресурсы",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17092
+          },
+          {
+            "title": "Мальчишество",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16890
+          },
+          {
+            "title": "Эонов Ковчег",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17149
+          },
+          {
+            "title": "Заключенный извне",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17123
+          },
+          {
+            "title": "Здесь хорошо",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17216
+          },
+          {
+            "title": "Плесень",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17326
+          },
+          {
+            "title": "Дом потерь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17193
+          },
+          {
+            "title": "Мех",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16980
+          },
+          {
+            "title": "Звезда зоопарка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17283
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 3. (Music of the Night — music video International competition. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689465300,
+        "programEnd": 1689467400,
+        "programFilms": [
+          {
+            "title": "Be Gone",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17157
+          },
+          {
+            "title": "Day In My Dream",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16970
+          },
+          {
+            "title": "Emily",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16930
+          },
+          {
+            "title": "Get Back",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16866
+          },
+          {
+            "title": "Wooden Nickels",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17178
+          },
+          {
+            "title": "Medusa",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16976
+          },
+          {
+            "title": "The Wave",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16919
+          },
+          {
+            "title": "End of the Night",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17158
+          }
+        ]
+      },
+      {
+        "programTitle": "Лучшее из конкурса заставок «Бессонницы» (Insomnia&#039;2023 Teaser&amp;Trailer competition)",
+        "programAge": "12+",
+        "programStart": 1689534000,
+        "programEnd": 1689534600,
+        "programFilms": [
+          {
+            "title": "Лучшие работы конкурса фестивальных заставок",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Российский национальный конкурс (National competition)",
+        "programAge": "18+",
+        "programStart": 1689534600,
+        "programEnd": 1689546600,
+        "programFilms": [
+          {
+            "title": "Кстати, о птичках",
+            "plot": null,
+            "image": null,
+            "vurchelID": 12792
+          },
+          {
+            "title": "Плёвое дело",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17001
+          },
+          {
+            "title": "Переход",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17478
+          },
+          {
+            "title": "Галочка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17477
+          },
+          {
+            "title": "Колыбельная Бабы Яги",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16913
+          },
+          {
+            "title": "Жираф",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16732
+          },
+          {
+            "title": "Бабугли",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17238
+          },
+          {
+            "title": "Волк думающий",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17121
+          },
+          {
+            "title": "Миллионы алых роз",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17119
+          },
+          {
+            "title": "Подсолнух",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16950
+          },
+          {
+            "title": "Там, где цветёт жасмин",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17135
+          },
+          {
+            "title": "Уважаемые пассажиры",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16979
+          },
+          {
+            "title": "Украденная мелодия",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17133
+          },
+          {
+            "title": "Хармс",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17373
+          },
+          {
+            "title": "Светлые души",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17290
+          },
+          {
+            "title": "Омичка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17109
+          },
+          {
+            "title": "Ее электрический свет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17207
+          },
+          {
+            "title": "Легенда о сёстрах",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17360
+          },
+          {
+            "title": "Визионер",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17328
+          },
+          {
+            "title": "Красные щеки Маро",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17198
+          },
+          {
+            "title": "Полынь-25",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17256
+          },
+          {
+            "title": "Крот",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17189
+          },
+          {
+            "title": "Выгорание",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17175
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. (Music of the Night — music video International competition)",
+        "programAge": "18+",
+        "programStart": 1689546600,
+        "programEnd": 1689552000,
+        "programFilms": [
+          {
+            "title": "End of the Night",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17158
+          },
+          {
+            "title": "DJ Piper - RIP TXL",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17246
+          },
+          {
+            "title": "Be Gone",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17157
+          },
+          {
+            "title": "No Lullaby",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16959
+          },
+          {
+            "title": "Juan Wauters - Milanesa al pan",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17143
+          },
+          {
+            "title": "Aube",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16974
+          },
+          {
+            "title": "I Gotta Cry",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17403
+          },
+          {
+            "title": "Mr. Lady",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17406
+          },
+          {
+            "title": "Day In My Dream",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16970
+          },
+          {
+            "title": "Fuites Cathodiques",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16966
+          },
+          {
+            "title": "Ciarán",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17142
+          },
+          {
+            "title": "Wooden Nickels",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17178
+          },
+          {
+            "title": "Medusa",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16976
+          },
+          {
+            "title": "A Once Lonely Man",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17213
+          },
+          {
+            "title": "Olivia Lumen",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16956
+          },
+          {
+            "title": "The Wave",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16919
+          },
+          {
+            "title": "Jerks",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16892
+          },
+          {
+            "title": "Get Back",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16866
+          },
+          {
+            "title": "Emily",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16930
+          },
+          {
+            "title": "Tulipomania: You Had to Be There",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17173
+          },
+          {
+            "title": "Sleeping Cell - Elevator to the Gallows",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17098
+          },
+          {
+            "title": "Cores | Bacará",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17094
+          },
+          {
+            "title": "Do I Follow the Wall?",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17215
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "screenName": "Речной экран",
+    "screenPrograms": [
+      {
+        "programTitle": "Дрёма. Российская панорама. (Official selection. Russian panorama)",
+        "programAge": "18+",
+        "programStart": 1689274800,
+        "programEnd": 1689295200,
+        "programFilms": [
+          {
+            "title": "Егор!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16988
+          },
+          {
+            "title": "Как волки едят детей",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17292
+          },
+          {
+            "title": "Капустное чудо",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17378
+          },
+          {
+            "title": "Книга рецептов",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17243
+          },
+          {
+            "title": "Зимний вечер",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17304
+          },
+          {
+            "title": "Птаха",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16923
+          },
+          {
+            "title": "Яблочный пирог",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17129
+          },
+          {
+            "title": "Мой Пушкин",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17330
+          },
+          {
+            "title": "Носки для Звезды",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17126
+          },
+          {
+            "title": "Школа ёлок",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16982
+          },
+          {
+            "title": "Она же не кусается",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17187
+          },
+          {
+            "title": "Пингвины",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17404
+          },
+          {
+            "title": "Бес порядка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17188
+          },
+          {
+            "title": "Дедушкин словарь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17269
+          },
+          {
+            "title": "Орешник",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17063
+          },
+          {
+            "title": "Гнилой",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16876
+          },
+          {
+            "title": "Jenys – Lost",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17168
+          },
+          {
+            "title": "Банка с космосом",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17365
+          },
+          {
+            "title": "Зуб трусости",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17356
+          },
+          {
+            "title": "Небесный фрукт",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17312
+          },
+          {
+            "title": "На мосту",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16948
+          },
+          {
+            "title": "Кот-тракцион",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17139
+          },
+          {
+            "title": "Манки Битс",
+            "plot": null,
+            "image": null,
+            "vurchelID": 11536
+          },
+          {
+            "title": "Женщина",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17276
+          },
+          {
+            "title": "Остаёмся зимовать",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17268
+          },
+          {
+            "title": "Мышь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16885
+          },
+          {
+            "title": "Ива белая",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17150
+          },
+          {
+            "title": "Клад",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17271
+          },
+          {
+            "title": "Поговори со мной",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17320
+          },
+          {
+            "title": "Перемотка — Старое кино",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17127
+          },
+          {
+            "title": "Koi/Любовь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16953
+          },
+          {
+            "title": "Карельский алфавит",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17352
+          },
+          {
+            "title": "Руки",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17362
+          },
+          {
+            "title": "Рапсодия",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17278
+          },
+          {
+            "title": "Правильная остановка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17174
+          },
+          {
+            "title": "Предчувствие неизбежного",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17310
+          },
+          {
+            "title": "В поисках мозга",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17245
+          },
+          {
+            "title": "Как чувак звезду съел",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17346
+          },
+          {
+            "title": "После себя",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17318
+          },
+          {
+            "title": "Хрустальные пазлы (Что такое аутизм?)",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17181
+          },
+          {
+            "title": "Числа",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17303
+          },
+          {
+            "title": "Шум крыльев",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17265
+          },
+          {
+            "title": "Я видел дуб в Луизиане...",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17048
+          },
+          {
+            "title": "Летний трибьют",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16940
+          },
+          {
+            "title": "Трубку Миру",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17061
+          },
+          {
+            "title": "Сергей Слонимский. Колокола",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17255
+          },
+          {
+            "title": "Прощайте, люди",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17249
+          },
+          {
+            "title": "Устройства Голдберга",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16977
+          },
+          {
+            "title": "День полнолуния",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16926
+          },
+          {
+            "title": "Одинока ли Луна",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16863
+          },
+          {
+            "title": "Добрый Ваня",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16871
+          },
+          {
+            "title": "Дом",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17309
+          },
+          {
+            "title": "Белочки",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17350
+          },
+          {
+            "title": "Дичь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17366
+          },
+          {
+            "title": "Золото",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17351
+          },
+          {
+            "title": "Пепел",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17298
+          },
+          {
+            "title": "труднопроизносимое",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16921
+          },
+          {
+            "title": "Хокку",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17185
+          },
+          {
+            "title": "Недоношенность",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17220
+          },
+          {
+            "title": "Свобода не умрёт",
+            "plot": "Полина Яковлева, 2022, 03:50",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Компромисс",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17342
+          },
+          {
+            "title": "Корень",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17280
+          },
+          {
+            "title": "История одного холодильника",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16984
+          },
+          {
+            "title": "Плацкарт",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17211
+          },
+          {
+            "title": "Ветер",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16958
+          },
+          {
+            "title": "Покорность",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17028
+          },
+          {
+            "title": "И я там был",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17333
+          },
+          {
+            "title": "Изоляция",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16932
+          },
+          {
+            "title": "Старый дом",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17354
+          },
+          {
+            "title": "Сейчас или никогда",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17222
+          }
+        ]
+      },
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 1. (International &amp; national competition — Kidult. Part 1)",
+        "programAge": "12+",
+        "programStart": 1689361200,
+        "programEnd": 1689364800,
+        "programFilms": [
+          {
+            "title": "Плёвое дело",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17001
+          },
+          {
+            "title": "Миллионы алых роз",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17119
+          },
+          {
+            "title": "Не кормите голубей",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17146
+          },
+          {
+            "title": "Бабугли",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17238
+          },
+          {
+            "title": "Подсолнух",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16950
+          },
+          {
+            "title": "Выгорание",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17175
+          },
+          {
+            "title": "Песнь кита",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17205
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 1. (National competition, part 1)",
+        "programAge": "16+",
+        "programStart": 1689364800,
+        "programEnd": 1689366000,
+        "programFilms": [
+          {
+            "title": "Украденная мелодия",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17133
+          },
+          {
+            "title": "Легенда о сёстрах",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17360
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 1. (International competition. Debutoriya. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689366000,
+        "programEnd": 1689371100,
+        "programFilms": [
+          {
+            "title": "Певцы заката",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16907
+          },
+          {
+            "title": "Дружественный огонь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16868
+          },
+          {
+            "title": "Между",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17287
+          },
+          {
+            "title": "Безымянная дорога",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16951
+          },
+          {
+            "title": "Салют солнцу",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16882
+          },
+          {
+            "title": "Визионер",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17328
+          },
+          {
+            "title": "Сок",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17482
+          },
+          {
+            "title": "Красные щеки Маро",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17198
+          },
+          {
+            "title": "артефакты тебя, артефакты меня.",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16879
+          },
+          {
+            "title": "История для двух труб",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17263
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 1. (International competition. Profnastil. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689371100,
+        "programEnd": 1689378900,
+        "programFilms": [
+          {
+            "title": "Уважаемые пассажиры",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16979
+          },
+          {
+            "title": "ПЛСТК",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17082
+          },
+          {
+            "title": "Миракасас",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17073
+          },
+          {
+            "title": "Ожидание",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17202
+          },
+          {
+            "title": "Довольно войн!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17261
+          },
+          {
+            "title": "Сан Ла Муэрте",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16963
+          },
+          {
+            "title": "След",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16989
+          },
+          {
+            "title": "Амок",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17118
+          },
+          {
+            "title": "Электра",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17294
+          },
+          {
+            "title": "Помнишь, как я катался на белом коне",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17400
+          },
+          {
+            "title": "Растворение",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17159
+          },
+          {
+            "title": "Птица на полуострове",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17334
+          },
+          {
+            "title": "Подумай о чём-нибудь хорошем",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17212
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 1. (Music of the Night — music video International competition. Part 1)",
+        "programAge": "18+",
+        "programStart": 1689378900,
+        "programEnd": 1689381000,
+        "programFilms": [
+          {
+            "title": "A Once Lonely Man",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17213
+          },
+          {
+            "title": "Sleeping Cell - Elevator to the Gallows",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17098
+          },
+          {
+            "title": "DJ Piper - RIP TXL",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17246
+          },
+          {
+            "title": "Juan Wauters - Milanesa al pan",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17143
+          },
+          {
+            "title": "I Gotta Cry",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17403
+          },
+          {
+            "title": "No Lullaby",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16959
+          },
+          {
+            "title": "Olivia Lumen",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16956
+          }
+        ]
+      },
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 2. (International &amp; national competition — Kidult. Part 2)",
+        "programAge": "12+",
+        "programStart": 1689447600,
+        "programEnd": 1689450900,
+        "programFilms": [
+          {
+            "title": "Галочка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17477
+          },
+          {
+            "title": "Прочь, Альфред!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17084
+          },
+          {
+            "title": "Кстати, о птичках",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17494
+          },
+          {
+            "title": "Там, где цветёт жасмин",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17135
+          },
+          {
+            "title": "Колыбельная Бабы Яги",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16913
+          },
+          {
+            "title": "Фея-ведьма",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17254
+          },
+          {
+            "title": "Переход",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17478
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 2. (National competition, part 2)",
+        "programAge": "16+",
+        "programStart": 1689450900,
+        "programEnd": 1689452400,
+        "programFilms": [
+          {
+            "title": "Волк думающий",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17121
+          },
+          {
+            "title": "Крот",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17189
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 2. (International competition. Debutoriya. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689452400,
+        "programEnd": 1689457500,
+        "programFilms": [
+          {
+            "title": "Код «Розовый»",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17008
+          },
+          {
+            "title": "Похороны в девять",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17044
+          },
+          {
+            "title": "В танце",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17401
+          },
+          {
+            "title": "Краешком глаза",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16994
+          },
+          {
+            "title": "Ее электрический свет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17207
+          },
+          {
+            "title": "РИМ",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16933
+          },
+          {
+            "title": "Над облаками",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16998
+          },
+          {
+            "title": "Луна восходит днем",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16935
+          },
+          {
+            "title": "Фурри",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17480
+          },
+          {
+            "title": "Пентола",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17219
+          },
+          {
+            "title": "Прогулка по парку",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17331
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 2. (International competition. Profnastil. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689457500,
+        "programEnd": 1689465300,
+        "programFilms": [
+          {
+            "title": "Жираф",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16732
+          },
+          {
+            "title": "Хармс",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17373
+          },
+          {
+            "title": "Кот-бутерброд",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17052
+          },
+          {
+            "title": "Сиди и ничего не трогай!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17095
+          },
+          {
+            "title": "Моя ворона не умеет ловить рыбу",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17131
+          },
+          {
+            "title": "Терра Инкогнита",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16990
+          },
+          {
+            "title": "Сексуальная жизнь бабушки",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16895
+          },
+          {
+            "title": "Саша",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16999
+          },
+          {
+            "title": "Обратное сальто",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17039
+          },
+          {
+            "title": "Полынь-25",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17256
+          },
+          {
+            "title": "Семейный портрет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17260
+          },
+          {
+            "title": "Розовый шум",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16973
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 2. (Music of the Night — music video International competition. Part 2)",
+        "programAge": "18+",
+        "programStart": 1689465300,
+        "programEnd": 1689467400,
+        "programFilms": [
+          {
+            "title": "Aube",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16974
+          },
+          {
+            "title": "Cores | Bacará",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17094
+          },
+          {
+            "title": "Do I Follow the Wall?",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17215
+          },
+          {
+            "title": "Fuites Cathodiques",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16966
+          },
+          {
+            "title": "Jerks",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16892
+          },
+          {
+            "title": "Mr. Lady",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17406
+          },
+          {
+            "title": "Ciarán",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17142
+          },
+          {
+            "title": "Tulipomania: You Had to Be There",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17173
+          }
+        ]
+      },
+      {
+        "programTitle": "Кидалт — анимация для всех. Часть 3. (International &amp; national competition — Kidult. Part 3)",
+        "programAge": "12+",
+        "programStart": 1689534000,
+        "programEnd": 1689537300,
+        "programFilms": [
+          {
+            "title": "Малые часы",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17172
+          },
+          {
+            "title": "Путешествие с моим папой",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17080
+          },
+          {
+            "title": "Быть сестрами",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17036
+          },
+          {
+            "title": "Праздник весны",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17055
+          },
+          {
+            "title": "Торговцы льдом",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17324
+          },
+          {
+            "title": "Принцесса-баклажан",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16869
+          },
+          {
+            "title": "Сомни",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17176
+          }
+        ]
+      },
+      {
+        "programTitle": "Национальный конкурс. Часть 3. (National competition, part 3)",
+        "programAge": "16+",
+        "programStart": 1689537300,
+        "programEnd": 1689538800,
+        "programFilms": [
+          {
+            "title": "Омичка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17109
+          },
+          {
+            "title": "Светлые души",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17290
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Дебютория». Часть 3. (International competition. Debutoriya. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689538800,
+        "programEnd": 1689543900,
+        "programFilms": [
+          {
+            "title": "При мне не умирай",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17483
+          },
+          {
+            "title": "Прекрасная ночь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17015
+          },
+          {
+            "title": "Человеческие ресурсы",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17092
+          },
+          {
+            "title": "Мальчишество",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16890
+          },
+          {
+            "title": "Эонов Ковчег",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17149
+          },
+          {
+            "title": "Заключенный извне",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17123
+          },
+          {
+            "title": "Здесь хорошо",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17216
+          },
+          {
+            "title": "Плесень",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17326
+          },
+          {
+            "title": "Дом потерь",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17193
+          },
+          {
+            "title": "Мех",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16980
+          },
+          {
+            "title": "Звезда зоопарка",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17283
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. «Профнастил». Часть 3. (International competition. Profnastil. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689543900,
+        "programEnd": 1689551700,
+        "programFilms": [
+          {
+            "title": "Ааааа!",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17208
+          },
+          {
+            "title": "Мусорщик",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17197
+          },
+          {
+            "title": "Одиннадцать",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16883
+          },
+          {
+            "title": "У спасения нет имени",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17273
+          },
+          {
+            "title": "Чудо",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17340
+          },
+          {
+            "title": "Что движется, то живет",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16995
+          },
+          {
+            "title": "Плоть Господня",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17161
+          },
+          {
+            "title": "Интерсекcция",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16965
+          },
+          {
+            "title": "Тень бабочек",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17075
+          },
+          {
+            "title": "Белизна",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17155
+          },
+          {
+            "title": "Особый закат",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16875
+          },
+          {
+            "title": "Брикстонская суета",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16969
+          }
+        ]
+      },
+      {
+        "programTitle": "Международный конкурс. Музыка ночи. Часть 3. (Music of the Night — music video International competition. Part 3)",
+        "programAge": "18+",
+        "programStart": 1689551700,
+        "programEnd": 1689553800,
+        "programFilms": [
+          {
+            "title": "Be Gone",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17157
+          },
+          {
+            "title": "Day In My Dream",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16970
+          },
+          {
+            "title": "Emily",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16930
+          },
+          {
+            "title": "Get Back",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16866
+          },
+          {
+            "title": "Wooden Nickels",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17178
+          },
+          {
+            "title": "Medusa",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16976
+          },
+          {
+            "title": "The Wave",
+            "plot": null,
+            "image": null,
+            "vurchelID": 16919
+          },
+          {
+            "title": "End of the Night",
+            "plot": null,
+            "image": null,
+            "vurchelID": 17158
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "screenName": "Детский экран",
+    "screenPrograms": [
+      {
+        "programTitle": "Хиты Инессы Ковалевской. К юбилею режиссера",
+        "programAge": "0+",
+        "programStart": 1689274200,
+        "programEnd": 1689278400,
+        "programFilms": [
+          {
+            "title": "Бременские музыканты",
+            "plot": "Все было хорошо, но во время одного циркового представления приглянулась нашему герою принцесса...",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Катерок",
+            "plot": "Музыкальный фильм о почтовом катерке и его путешествии на остров Чунга-Чанга.",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Как львёнок и черепаха пели песню",
+            "plot": "Черепаха сочинила песню, а Львенок выучил ее, и они стали петь вместе.",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "В порту",
+            "plot": "О жизни большого морского порта",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Чучело-мяучело",
+            "plot": "Котенок хочет спеть утреннюю песню, но все его прогоняют. История о том, как трудно без хорошего настроения.",
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Инесса Ковалевская и музыка. К юбилею режиссера",
+        "programAge": "0+",
+        "programStart": 1689278400,
+        "programEnd": 1689282300,
+        "programFilms": [
+          {
+            "title": "Русские напевы",
+            "plot": "Жители русского села поют и пляшут под звуки народных инструментов. Музыкальный этнографический мультфильм.",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Детский альбом",
+            "plot": "На музыку фортепьянных пьес «Детского альбома» Чайковского",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Камаринская",
+            "plot": "Мультфильм-фантазия на музыку Глинки. Все оживает, веселится, танцует под музыку и люди, и звери, и звезды...",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Картинки с выставки",
+            "plot": "В фильме использованы пьесы из сюиты Модеста Мусоргского «Картинки с выставки»: «Избушка на курьих ножках» и «Балет невылупившихся птенцов» в исполнении Святослава Рихтера",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Танцы кукол",
+            "plot": "О больной девочке, развлечь которую пришли игрушки",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Кострома",
+            "plot": "Музыкальный фильм на основе старинной обрядовой песни о весне и рукодельнице Костроме.",
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Ночь фильмов Романа Давыдова. К 110-летию со дня рождения режиссера",
+        "programAge": "0+",
+        "programStart": 1689360600,
+        "programEnd": 1689366600,
+        "programFilms": [
+          {
+            "title": "Маугли",
+            "plot": "История о мальчике, воспитанном волчьей стаей. Он стал своим в джунглях, победил врага — тигра Шерхана, совершил ещё многие подвиги и, в конце концов, ушел к людям.",
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Богатыри Романа Давыдова",
+        "programAge": "0+",
+        "programStart": 1689366600,
+        "programEnd": 1689371400,
+        "programFilms": [
+          {
+            "title": "Гунан-Батор",
+            "plot": "Хан выдаёт дочь замуж. На состязаниях пастух Гунан Батор потешает князей-женихов. Хан приказывает пастуху победить семиглавого Мангуса. Несмотря на помехи, чинимые князьями, Гунан выполняет задание",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Детство Ратибора",
+            "plot": "По мотивам исторического романа В.Иванова «Русь изначальная»",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Василиса Микулишна",
+            "plot": "Как Василиса Микулишна умом да хитростью своего мужа Ставра Годиновича из темницы Киевского князя вытащила",
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Последняя невеста Змея Горыныча",
+            "plot": "В основе фильма — русская народная сказка о добром и бесстрашном солдате, который всегда помогает тем, кто оказался в беде",
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Марафон «Ну, погоди!». К 100-летию со дня рождения художника-постановщика Светозара Русакова",
+        "programAge": "0+",
+        "programStart": 1689447000,
+        "programEnd": 1689456600,
+        "programFilms": [
+          {
+            "title": "Ну, погоди! Выпуск 1, 1969",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 2, 1970",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 3, 1971",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 4, 1971",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 5, 1972",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 6, 1973",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 7, 1973",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 8, 1974",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 9, 1976",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 10, 1976",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 11, 1977",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 12, 1978",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 13, 1980",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 14, 1984",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 15, 1985",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Ну, погоди! Выпуск 16, 1986",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      },
+      {
+        "programTitle": "Теплая анимация Союзмультфильма",
+        "programAge": "6+",
+        "programStart": 1689533400,
+        "programEnd": 1689541800,
+        "programFilms": [
+          {
+            "title": "Апельсин, реж. Мария Якушина, 2022",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Принцесса и бандит, реж. Мария Соснина, Михаил Алдашин, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Одеялко, реж. Марина Мошкова, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Игра, реж. Елена Куркова, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Большой и маленький, реж. Наталья Грофпель, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Под облаками, реж. Василиса Тикунова, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Снеговичок, реж. Алексей Почивалов, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Кораблик, который хотел летать, реж. Екатерина Филиппова, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Тучкины штучки, реж. Елизавета Скворцова, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Крылья для друга, реж. Михаил Алдашин, Константин Арефьев, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Тёплая звезда, реж. Анна Кузина, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Белый-белый день, реж. Василий Чирков, 2022",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Привет, бабульник, реж. Наталья Мирзоян, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Репетиция оркестра, реж. Татьяна Окружнова, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Баю-бай, реж. Виктория Спирягина, 2022",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "7 козлят, реж. Марина Карпова, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Баба Яга и малышка, реж. Евгения Голубева, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Мой друг тигр, реж. Татьяна Киселёва, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Петер-баас, реж. Анастасия Жакулина, 2018",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Яблоневый человек, реж. Алла Вартанян, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "День рождения Пишто, реж. Софья Кендель, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Снег идёт, реж. Нина Бисярина, 2022",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Медведь, реж. Святослав Ушаков, 2020",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          },
+          {
+            "title": "Колыбельная, реж. Марина Карпова, 2021",
+            "plot": null,
+            "image": null,
+            "vurchelID": null
+          }
+        ]
+      }
+    ]
+  }
+]

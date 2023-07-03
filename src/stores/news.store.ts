@@ -1,5 +1,5 @@
 import {cell, Cell, Fn} from "@cmmn/cell/lib";
-import {getDay, getDayText} from "@helpers/getDayText";
+import {getDay, getDayText, getTime} from "@helpers/getDayText";
 import {fromUTC, utc} from "@helpers/utc";
 import {ObservableDB} from "./observableDB";
 
@@ -20,10 +20,8 @@ class NewsStore {
   private formatTime(iso: string){
     const utc = new Date(iso);
     const local = fromUTC(utc);
-    const hour = local.getHours();
-    const minutes = local.getMinutes();
     const day = getDayText(getDay(+local), "short").toUpperCase();
-    return `${day} ${hour}:${minutes < 10 ? '0'+minutes : minutes}`;
+    return `${day} ${getTime(local)}`;
   }
 
   public async add(){

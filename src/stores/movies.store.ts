@@ -8,14 +8,27 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 class MoviesStore {
   @cell
   public db = new ObservableDB<MovieBlock>("movies");
+  @cell
+  private vurchelDB = new ObservableDB<VurchelFilm>("vurchel");
 
-  IsLoaded = this.db.isLoaded;
+  IsLoaded = this.db.isLoaded && this.vurchelDB.isLoaded;
 
   @cell
   public get MovieBlocks(): MovieBlock[] {
     return this.db.toArray().map(b => ({
       ...b,
-      views: b.views.map((view, index) => changesStore.withChanges(view, `${b._id}.${index}`))
+      views: b.views.map((view, index) => changesStore.withChanges(view, `${b._id}.${index}`)),
+      movies: b.movies.map(m => {
+        const info = this.vurchelDB.get(m.vurchelId?.toString());
+        if (!info) return m;
+        return ({
+          ...m,
+          name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
+          duration: m.duration || (info.filmDuration ? info.filmDuration + ':00' : ''),
+          country: m.country || info.countries.join(', ') || '',
+          author: m.author || info.credits.flatMap(x => x.directors.map(d => d.name)).filter(x => x).join(', ')
+        });
+      })
     }));
   }
 
@@ -54,19 +67,23 @@ export class MovieBlockStore {
     );
     if (!duplicate) return undefined;
     const isAfter = duplicate.day >= getCurrentDay();
-    const screen =
-      locationsStore
-        .getName(duplicate.locationId)
-        ?.toLowerCase()
-        .replace("ой", "ом") + "е";
+    const screen = locationsStore.getName(duplicate.locationId);
+    const screenAt = ((screen)=>{
+      if (!screen) return '';
+      console.log(screen)
+      if (screen.toLowerCase().includes('поле')) return 'Полевом экране';
+      if (screen.toLowerCase().includes('речн')) return 'Речном экране';
+      if (screen.toLowerCase().includes('детск')) return 'Дестком экране';
+      return 'Марсе'
+    })(screen);
     if (isAfter) {
       return `Покажем этот блок ещё раз ${getDayText(duplicate.day, "at")} в ${
         duplicate.start
-      } на ${screen}`;
+      } на ${screenAt}`;
     }
     return `Этот блок шёл ${getDayText(duplicate.day, "at")} в ${
       duplicate.start
-    } на ${screen}`;
+    } на ${screenAt}`;
   }
 
   public state = new Cell(() => ({
@@ -91,7 +108,7 @@ export class MovieStore {
   @cell
   get block(): MovieBlock {
     return moviesStore.MovieBlocks.find((x) =>
-      x.movies.some((x) => x.name == this.movie.name)
+      x.movies.some((x) => x.id == this.id)
     );
   }
 
@@ -100,10 +117,7 @@ export class MovieStore {
     block: MovieBlock;
     hasBookmark: boolean;
   }>(() => ({
-    movie: {
-      ...this.movie,
-      description: `Future. A spaceliner from Earth arrives in orbit on an undiscovered planet. A group of hunters, thrill-seekers, disembark from the ship. Life is discovered on the planet’s surface: animals and plants that are caricatures of their Earth counterparts. The frivolous extermination of the local fauna and flora by the earthlings begins.`
-    },
+    movie: this.movie,
     block: this.block,
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
   }));

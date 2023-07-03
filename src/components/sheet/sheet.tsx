@@ -23,7 +23,6 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
     >
       <div
         class={[style.sheet, props.shadowType ? style[props.shadowType] : ''].filter(x => x).join(' ')}
-        onScroll={console.log}
         style={{
           height: props.height,
           paddingBottom: props.height === 'auto' ? 16 : undefined,

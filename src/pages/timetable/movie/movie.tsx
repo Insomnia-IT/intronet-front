@@ -20,7 +20,6 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const state = useCell(store.state);
   const movie = state.movie ?? ({} as MovieInfo);
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
-  console.log(screenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { votedMovie, isOnline } = useCell(votingStore.state);
   if (!screenLocations.length) return <></>;
@@ -31,7 +30,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         marginBottom: 8
       }} className="text colorMediumBlue">{movie?.description}</div>}
       <div class="colorGray">
-        {movie.author}, {movie.country}, {movie.year}
+        {[movie.author, movie.country, movie.year].filter(x => x).join(', ')}
       </div>
       <div class="colorGray" style={{ marginBottom: 24 }}>
         {minutes} мин {seconds} сек
@@ -84,7 +83,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               </Link>
               <div flex column gap={2}>
                 <div class="tags colorMediumBlue">
-                  {state.block.info.Title} {state.block.info.SubTitle}
+                  {state.block.info.Title} {state.block.info.SubTitle ?? ''}
                 </div>
                 <div class="sh1">
                   {view.start} - {view.end}

@@ -5,6 +5,10 @@
     "resolveJsonModule": true,
     "lib": [
       "ESNext"
+    ],
+    "types": [
+      "node",
+      "../index.d.ts"
     ]
   },
   "include": [

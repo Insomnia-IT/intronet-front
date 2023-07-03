@@ -2,7 +2,8 @@ import * as console from "console";
 import {checkWriteAccess} from "./auth";
 import {authCtrl, UserInfo} from "./auth.ctrl";
 import Fastify from "fastify";
-import {importActivities, importLocations, importMainPage, importMovies} from "./data/import";
+import {importActivities, importLocations, importMainPage} from "./data/import";
+import {importMovies} from "./data/importMovies";
 import { dbCtrl } from "./db-ctrl";
 import {logCtrl} from "./log.ctrl";
 const fastify = Fastify({

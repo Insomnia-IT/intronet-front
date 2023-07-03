@@ -1,3 +1,5 @@
+import {fromUTC} from "./utc";
+
 export function getDayText(
   day: number,
   type?: "at" | "short" | "full" | "shortWD"
@@ -30,12 +32,16 @@ export function getCurrentDay(): Day {
 }
 
 export function getDay(utc: number): Day {
-  const day = new Date(utc).getDay() - 4; // четверг = 0
-
-  if (day === -3) return 4;
+  const day = (new Date(utc).getDay() + 3) % 7; // четверг = 0
   if (day < 0) return 0;
 
   return day as Day;
+}
+
+export function getTime(local: Date): string{
+  const hour = local.getHours();
+  const minutes = local.getMinutes();
+  return `${hour < 10 ?'0'+hour : hour}:${minutes < 10 ? '0'+minutes : minutes}`;
 }
 
 export function getCurrentHour() {

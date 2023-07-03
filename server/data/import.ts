@@ -1,9 +1,8 @@
-import locationsJSON from "./locations.json" assert {type: "json"};
-import moviesJSON from "./movies.json" assert {type: "json"};
-import mainPageJSON from "./main-page.json" assert {type: "json"};
-import { Fn } from "@cmmn/cell/lib";
-import { Database } from "../database";
+import {Fn} from "@cmmn/cell/lib";
 import fetch from "node-fetch";
+import {Database} from "../database";
+import locationsJSON from "./locations.json" assert {type: "json"};
+import mainPageJSON from "./main-page.json" assert {type: "json"};
 
 export async function importLocations(force = false){
   const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
@@ -83,67 +82,6 @@ export async function importLocations(force = false){
   );
   for (let loc of data) {
     await db.addOrUpdate({ ...loc, version: Fn.ulid() });
-  }
-}
-
-export async function importMovies(force = false){
-  const locationsDb = new Database<any>("locations");
-  const locations = await locationsDb.getSince();
-  if (locations.length == 0) return;
-  const moviesDB = new Database<any>("movies");
-  const movies = await moviesDB.getSince();
-  // console.log(movies);
-  if (movies.length != 0) {
-    if (!force) return;
-    for (let movie of movies) {
-      await moviesDB.remove(movie._id);
-    }
-  }
-  const blocks = Array.from(
-    moviesJSON
-      .flatMap((x) =>
-        x.Blocks.map((b) => ({
-          block: b,
-          day: x.Day,
-          locationId: locations.find((y) => y.name == x.Screen)._id,
-        }))
-      )
-      .groupBy((x) => `${x.block.Title}.${x.block.SubTitle}.${x.block.Part}`)
-      .entries()
-  ).map(
-    ([key, blocks]) =>
-      ({
-        _id: Fn.ulid(),
-        views: blocks.map((x) => ({
-          day: x.day,
-          start: x.block.Start,
-          end: x.block.End,
-          locationId: x.locationId,
-        })),
-        info: {
-          Title: blocks[0].block.Title,
-          SubTitle: blocks[0].block.SubTitle,
-          TitleEn: blocks[0].block.TitleEn,
-          SubTitleEn: blocks[0].block.SubTitleEn,
-          MinAge: blocks[0].block.MinAge,
-          Part: blocks[0].block.Part,
-        },
-        movies: blocks[0].block.Movies.map((x) => ({
-          name: x.Name,
-          description: "",
-          author: x.Author,
-          country: x.Country,
-          year: x.Year,
-          duration: x.Duration,
-          id: Fn.ulid(),
-        })),
-      } as any)
-  );
-  for (let movie of blocks) {
-    await moviesDB.addOrUpdate({
-      ...movie,
-      version: Fn.ulid(),
-    });
   }
 }
 

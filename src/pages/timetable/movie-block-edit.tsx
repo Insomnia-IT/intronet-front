@@ -15,7 +15,7 @@ export const MovieBlockEdit = () => {
     return <></>;
   const views = movieBlock.views.orderBy(x => x.day);
   return <div flex column gap={4} style={{marginTop: 50}}>
-    <div class="sh1">{movieBlock.info.Title} {movieBlock.info.SubTitle}</div>
+    <div class="sh1">{movieBlock.info.Title} {movieBlock.info.SubTitle ?? ''}</div>
     {views.map((x, i) => <EditMovieBlockView index={i} block={movieBlock}/>)}
     <CloseButton onClick={() => {
       changesStore.clearChanges();
