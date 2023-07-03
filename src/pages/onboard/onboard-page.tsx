@@ -9,7 +9,6 @@ export const OnboardPage = () => {
   const stage = useCell(() => userStore.OnboardingPhase);
   const router = useRouter();
   useEffect(() => {
-    console.log(stage);
     if (Number.isNaN(stage)) userStore.OnboardingPhase = 0;
     if (stage >= Stages.length) router.goTo(["main"], {}, true);
   }, [stage]);

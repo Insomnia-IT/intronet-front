@@ -19,7 +19,7 @@ export const MovieBlockEdit = () => {
     {views.map((x, i) => <EditMovieBlockView index={i} block={movieBlock}/>)}
     <CloseButton onClick={() => {
       changesStore.clearChanges();
-      router.back();
+      router.goTo("/timetable");
     }}/>
   </div>;
 }

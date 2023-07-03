@@ -13,7 +13,7 @@ export function TimetablePage() {
     return (
       <div class="page">
         <TimetableAll />
-        <CloseButton />
+        <CloseButton goTo="/main" />
         <ButtonsBar at="bottom">
           <Button type="vivid" goTo="/timetable/search">
             <SvgIcon id="#search" size={15} />
@@ -37,14 +37,14 @@ function getTimetableSheets(movieId: string){
     case "search":
       return <>
         <MovieSearch />
-        <CloseButton/>
+        <CloseButton goTo="/timetable"/>
       </>;
     case undefined:
       return null;
     default:
       return <>
         <Movie id={movieId} />
-        <CloseButton/>
+        <CloseButton goTo="/timetable"/>
       </>;
   }
 }

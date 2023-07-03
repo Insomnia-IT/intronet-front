@@ -19,7 +19,7 @@ export function Living() {
   const Component = sections[section]?.component;
   return <div class="page" flex>
     <h1>Жилье</h1>
-    <CloseButton/>
+    <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)} style={{marginTop: 28, marginBottom: 8}}>
       {x => <Tag
         key={x}

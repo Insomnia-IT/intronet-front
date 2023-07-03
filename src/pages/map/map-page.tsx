@@ -44,7 +44,7 @@ export function MapPageWithRouting() {
                   locationsStore.isEdit = false;
                 }}>готово</Button>
       </div>: <>
-        <CloseButton />
+        <CloseButton goTo="/main"/>
         <ButtonsBar at="bottom">
           <Button type="vivid" goTo="/map/search">
             <SvgIcon id="#search" size="14px" />

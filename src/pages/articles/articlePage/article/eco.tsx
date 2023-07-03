@@ -1,5 +1,4 @@
-import {Button, ButtonsBar, CloseButton} from "@components";
-import {Link} from "@components/link/link";
+import {CloseButton} from "@components";
 import {Tag, Tags} from "@components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
@@ -7,18 +6,18 @@ import {useRouter} from "../../../routing";
 export function Eco() {
   const router = useRouter();
   const section = router.route[2] as keyof typeof sections | undefined;
-  const goTo = (section, replace = false) => {
+  const goTo = (section, replace = true) => {
     router.goTo(['articles', 'eco', section], {}, replace);
   }
   useEffect(() => {
     if (!section) {
-      goTo(Object.keys(sections)[0], true);
+      goTo(Object.keys(sections)[0]);
     }
   }, [!!section]);
   const Component = sections[section]?.component;
   return <div class="page" flex gap="4">
     <div class="sh1">Экология</div>
-    <CloseButton/>
+    <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
         key={x}
