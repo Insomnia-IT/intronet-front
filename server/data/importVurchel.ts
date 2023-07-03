@@ -34,7 +34,7 @@ export async function importVurchel(force = false) {
     }
   }else {
     for (let item of json){
-      await vurchelDB.addOrUpdate(item);
+      await vurchelDB.addOrUpdate(item as any);
     }
   }
 }
