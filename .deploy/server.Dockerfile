@@ -27,7 +27,7 @@ WORKDIR /app
 COPY ./server/package.json yarn.lock ./
 
 COPY --from=library /app/node_modules /app/node_modules
-COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/dist/esm /app/dist/esm
 
 EXPOSE 80
 
