@@ -16,7 +16,7 @@ jobs:
       - name: build image
         run: |
           docker build . -f ./.deploy/client.Dockerfile -t $IMAGE_NAME
-          docker build . -t ./.deploy/server.Dockerfile $IMAGE_NAME_SERVER
+          docker build . -f ./.deploy/server.Dockerfile -t $IMAGE_NAME_SERVER
         env:
           COMPOSE_DOCKER_CLI_BUILD: 1
           DOCKER_BUILDKIT: 1
