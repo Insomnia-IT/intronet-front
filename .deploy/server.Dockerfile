@@ -31,4 +31,4 @@ COPY --from=builder /app/dist /app/dist
 
 EXPOSE 80
 
-CMD ["node", "/app/dist/esm/index.js"]
+CMD ["node", "/app/dist/esm/server/index.js"]
