@@ -141,3 +141,71 @@ export interface ProgramFilm {
   image: string | null;
   vurchelID: number | null;
 }
+
+type MovieInfo = {
+  id: string;
+  name: string;
+  description: string;
+  country: string;
+  year;
+  image: string;
+  duration: string;
+  author: string;
+  vurchelId: string;
+  info?: VurchelFilm;
+};
+
+
+interface VurchelFilm {
+  _id: string;
+  entryID: number;
+  link: string;
+  filmEnTitle: string;
+  filmOrigTitle: string | null;
+  filmDuration: string | null;
+  filmEnPlot: string;
+  filmTrailer: string | null;
+  filmFull: string | null;
+  filmReleaseYear: string | null;
+  countries: string[];
+  images: string[];
+  translations: Translation[];
+  credits: Credits[];
+}
+
+interface Translation {
+  language: string;
+  translatedTitle: string;
+  translatedPlot: string;
+}
+
+interface Credits {
+  directors: Filmmaker[];
+}
+
+interface Filmmaker {
+  name: string;
+  photo: string | null;
+  link: string;
+}
+
+
+type MovieBlock = {
+  _id: string;
+  views: {
+    day: number;
+    locationId: string;
+    start: string;
+    end: string;
+  }[];
+
+  info: {
+    Title: string;
+    SubTitle: string;
+    TitleEn: string;
+    SubTitleEn: string;
+    MinAge: number;
+    Part: number;
+  };
+  movies: MovieInfo[];
+};

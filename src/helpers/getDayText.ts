@@ -1,4 +1,3 @@
-import {fromUTC} from "./utc";
 
 export function getDayText(
   day: number,
