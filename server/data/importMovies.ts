@@ -44,9 +44,9 @@ export async function importMovies(force = false) {
       .flatMap((x) =>
         x.screenPrograms.map((b) => ({
           block: b,
-          day: getDay(b.programStart*1000 - 10*60*60*1000),
-          start: getTime(new Date(b.programStart*1000-60*60*1000)),
-          end: getTime(new Date(b.programEnd*1000-60*60*1000)),
+          day: getDay(toMoscow(b.programStart*1000)),
+          start: getTime(toMoscow(b.programStart*1000)),
+          end: getTime(toMoscow(b.programEnd*1000)),
           locationId: screenNameMap[x.screenName],
           programStart: b.programStart
         }))
@@ -67,7 +67,8 @@ export async function importMovies(force = false) {
       && b.end == x[0].end
     );
     if (xlsx.length !== 1){
-      console.log('error mapping movies', x[0], xlsx)
+      console.log('error mapping movies', x[0], xlsx);
+      continue;
     }
     const block: MovieBlock = {
       _id: Fn.ulid(),
@@ -104,7 +105,7 @@ export async function importMovies(force = false) {
         duration: xls.Duration,
         image: f.image,
         description: f.plot,
-        vurchelId: f.vurchelID.toString()
+        vurchelId: f.vurchelID?.toString()
       } as any;
       block.movies.push(movie);
     }
@@ -142,14 +143,19 @@ export interface ProgramFilm {
 }
 
 
-export function getDay(utc: number): number {
-  const day = (new Date(utc).getDay() + 3) % 7; // четверг = 0
+export function getDay(local: number): number {
+  const day = (new Date(local - 12*60*60*1000).getDay() + 3) % 7; // четверг = 0
   if (day > 4) return 0;
   return day;
 }
 
-export function getTime(local: Date): string{
-  const hour = local.getHours();
-  const minutes = local.getMinutes();
+export function getTime(local: number): string{
+  const date = new Date(local);
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
   return `${hour < 10 ?'0'+hour : hour}:${minutes < 10 ? '0'+minutes : minutes}`;
+}
+
+function toMoscow(unix: number): number{
+  return unix + (new Date().getTimezoneOffset()+3*60)*60000;
 }
