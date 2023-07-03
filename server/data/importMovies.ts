@@ -3,7 +3,6 @@ import {Fn} from "@cmmn/cell/lib";
 import * as console from "console";
 import { writeFileSync } from "fs";
 import fetch from "node-fetch";
-import {getCurrentDay, getDay, getTime} from "../../src/helpers/getDayText";
 import {Database} from "../database";
 import moviesXLS from "./movies.json" assert {"type": "json"};
 
@@ -142,70 +141,15 @@ export interface ProgramFilm {
   vurchelID: number | null;
 }
 
-type MovieInfo = {
-  id: string;
-  name: string;
-  description: string;
-  country: string;
-  year;
-  image: string;
-  duration: string;
-  author: string;
-  vurchelId: string;
-  info?: VurchelFilm;
-};
 
-
-interface VurchelFilm {
-  _id: string;
-  entryID: number;
-  link: string;
-  filmEnTitle: string;
-  filmOrigTitle: string | null;
-  filmDuration: string | null;
-  filmEnPlot: string;
-  filmTrailer: string | null;
-  filmFull: string | null;
-  filmReleaseYear: string | null;
-  countries: string[];
-  images: string[];
-  translations: Translation[];
-  credits: Credits[];
+export function getDay(utc: number): number {
+  const day = (new Date(utc).getDay() + 3) % 7; // четверг = 0
+  if (day > 4) return 0;
+  return day;
 }
 
-interface Translation {
-  language: string;
-  translatedTitle: string;
-  translatedPlot: string;
+export function getTime(local: Date): string{
+  const hour = local.getHours();
+  const minutes = local.getMinutes();
+  return `${hour < 10 ?'0'+hour : hour}:${minutes < 10 ? '0'+minutes : minutes}`;
 }
-
-interface Credits {
-  directors: Filmmaker[];
-}
-
-interface Filmmaker {
-  name: string;
-  photo: string | null;
-  link: string;
-}
-
-
-type MovieBlock = {
-  _id: string;
-  views: {
-    day: number;
-    locationId: string;
-    start: string;
-    end: string;
-  }[];
-
-  info: {
-    Title: string;
-    SubTitle: string;
-    TitleEn: string;
-    SubTitleEn: string;
-    MinAge: number;
-    Part: number;
-  };
-  movies: MovieInfo[];
-};

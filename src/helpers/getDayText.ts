@@ -32,7 +32,7 @@ export function getCurrentDay(): Day {
 
 export function getDay(utc: number): Day {
   const day = (new Date(utc).getDay() + 3) % 7; // четверг = 0
-  if (day < 0) return 0;
+  if (day > 4) return 0;
 
   return day as Day;
 }

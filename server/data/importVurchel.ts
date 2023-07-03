@@ -6,7 +6,7 @@ import json from "./vurchel.json" assert {"type": "json"};
 
 const importFromVurchel = false;
 export async function importVurchel(force = false) {
-  const vurchelDB = new Database<VurchelFilm>("vurchel");
+  const vurchelDB = new Database<any>("vurchel");
   const films = await vurchelDB.getSince();
   // console.log(movies);
   // writeFileSync('./vurchel.json', JSON.stringify(films), 'utf-8')
