@@ -5,7 +5,8 @@ export type SheetProps = {
   onClose?(): void;
   height?: string;
   noShadow?: boolean;
-  shadowType?: 'globalShadow' | 'localShadow'
+  shadowType?: 'globalShadow' | 'localShadow';
+  style?: JSX.HTMLAttributes<HTMLDivElement>["style"];
 }
 export const Sheet: FunctionalComponent<SheetProps> = props => {
   const isOpen = !!props.children;
@@ -20,6 +21,7 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
         props.noShadow ? '' : style.shadow,
       ].filter(x => x).join(' ')}
       onClick={onClick}
+      style={props.style}
     >
       <div
         class={[style.sheet, props.shadowType ? style[props.shadowType] : ''].filter(x => x).join(' ')}

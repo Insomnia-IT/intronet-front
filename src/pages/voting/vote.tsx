@@ -1,3 +1,4 @@
+import {Card} from "@components/cards";
 import { useCell } from "@helpers/cell-state";
 import { votingStore } from "@stores/votingStore";
 import {useEffect, useState} from "preact/hooks";
@@ -24,8 +25,12 @@ export const Vote: FunctionalComponent<{
   return (
     <div flex column gap={3} style={{marginTop: 29}}>
       <div class="sh1">Голосуем за эту анимацию?</div>
-      {movie && <MovieSmall disabled movie={movie} />}
-      <div class="text colorMediumBlue">Если вы передумали, вернитесь назад и выберите другую работу</div>
+      {movie && <Card background="Purple">
+        <MovieSmall disabled movie={movie} />
+      </Card>}
+      <div class="sh2 colorMediumBlue">Проголосовать можно только 1 раз.</div>
+      <div class="text colorMediumBlue">Не спешите с выбором — голосование в номинации Приз зрительских симпатий будет доступно до конца фестиваля.</div>
+      <div class="text colorMediumBlue">Если вы передумали, вернитесь назад и выберите другую работу.</div>
       <ButtonsBar at="bottom">
         <Button
           type="vivid"
@@ -36,7 +41,7 @@ export const Vote: FunctionalComponent<{
             router.goTo(['voting', 'success'])
           }}
         >
-          Голосовать за эту работу
+          {isOnline ? 'Голосовать за эту работу' : 'Ждем подключения к Wi-Fi'}
         </Button>
       </ButtonsBar>
     </div>

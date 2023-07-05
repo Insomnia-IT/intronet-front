@@ -12,7 +12,9 @@ export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
     <Card
       background={info.color ? "Vivid" : "White"}
       flex-grow
-      onClick={info.article ? () => goTo(['articles', info.article]) : () => goTo(info.link as any ?? '/main')}
+      onClick={info.link
+        ? () => goTo(info.link as any ?? '/main')
+        : () => goTo(['articles', info.article ?? info._id])}
       class={info.color ? styles.mainCardColor : styles.mainCard}
     >
       <header>{info.title}</header>

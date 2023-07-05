@@ -4,6 +4,7 @@ import * as console from "console";
 import { writeFileSync } from "fs";
 import fetch from "node-fetch";
 import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 import moviesXLS from "./movies.json" assert {"type": "json"};
 
 export async function importMovies(force = false) {
@@ -54,7 +55,7 @@ export async function importMovies(force = false) {
       .groupBy((x) => `${x.block.programTitle}`)
       .values()
   );
-  writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
+  // writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
   const results = [] as Array<MovieBlock>;
   for (let x of blocks) {
     const title = x[0].block.programTitle;
@@ -97,7 +98,7 @@ export async function importMovies(force = false) {
       let f = x[0].block.programFilms[i];
       const xls = xlsx[0].block.Movies[i];
       const movie: MovieInfo = {
-        id: Fn.ulid(),
+        id: f.vurchelID ?? Fn.ulid(),
         name: xls.Name ?? f.title,
         author: xls.Author,
         country: xls.Country,
@@ -118,6 +119,7 @@ export async function importMovies(force = false) {
       version: Fn.ulid(),
     });
   }
+  dbCtrl.versions = undefined;
 }
 
 export type Schedule = Screen[];

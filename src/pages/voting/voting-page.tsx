@@ -3,10 +3,11 @@ import { useRouter } from "../routing";
 import { useEffect } from "preact/hooks";
 import { votingStore } from "@stores/votingStore";
 import { useCell } from "@helpers/cell-state";
+import {VotingList} from "./list";
 import { VotingIntro } from "./voting-intro";
 import { Vote } from "./vote";
 
-type Section = undefined | "ticket" | "check" | "success" | "error";
+type Section = undefined | "ticket" | "check" | "success" | "list";
 export const VotingPage = () => {
   const { route, goTo } = useRouter();
   const state = useCell(votingStore.state);
@@ -27,6 +28,14 @@ export const VotingPage = () => {
           <ButtonsBar at="bottom">
             <Button goTo="/main" type="vivid" class="w-full">на главную</Button>
           </ButtonsBar>
+        </div>
+      );
+    case 'list':
+      return (
+        <div class="page">
+          <CloseButton />
+          <h1>голосовать</h1>
+          <VotingList />
         </div>
       );
     case undefined:

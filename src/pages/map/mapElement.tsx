@@ -101,6 +101,10 @@ export function MapElement(props: {
     return (
       <path
         class={ styles.zone }
+        onClick={ (e) => {
+          e.preventDefault();
+          locationsStore.setSelectedId(props.item.id);
+        } }
         d={ props.item.figure
           .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
           .join(" ") }
@@ -162,10 +166,7 @@ const directionsToOrder = new Map([
   [ "Медпункт (Медицинская Служба)", OrderType.Info ],
   [ "КПП", OrderType.Main ],
   [ "Баня", OrderType.WC ],
-  [
-    "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
-    OrderType.Info,
-  ],
+  [ "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде", OrderType.Info],
   [ "Хатифнатты", OrderType.Other ],
   [ "Платный лагерь", OrderType.Main ],
   [ "Детская Поляна", OrderType.Other ],

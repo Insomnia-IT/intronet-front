@@ -65,7 +65,7 @@ export function MapPageWithRouting() {
             </Button>
             <Button
               type="frameOrange"
-              goTo={["map", "add"]}
+              onClick={() => locationsStore.startAddLocation()}
               aria-label="Add location"
             >
               <SvgIcon id="#plus" />
@@ -76,6 +76,9 @@ export function MapPageWithRouting() {
       <Sheet
         height={["add", "edit", "search"].includes(router.locationId) ? "100%" : isMoving ? "auto" : "50%"}
         noShadow
+        style={isMoving ? {
+          pointerEvents: 'none'
+        } : {}}
         shadowType={"localShadow"}
         children={sheets}
         onClose={() => isMoving ? locationsStore.isMoving = false : router.goTo(["map"])}

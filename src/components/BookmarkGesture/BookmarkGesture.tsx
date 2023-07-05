@@ -17,6 +17,7 @@ export type IBookmarkGestureProps = {
   children: (props: IBookmarkChildrenProps) => JSX.Element;
   borderRadius?: number;
   contentNoOpacity?: boolean;
+  disabled?: boolean;
 }
 
 export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
@@ -29,6 +30,7 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
   className,
   borderRadius,
   contentNoOpacity = false,
+  disabled,
   ...props
 }) => {
   const ref = useRef();
@@ -45,7 +47,10 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
     switchBookmark,
     gesture,
   );
-
+  if (disabled)
+    return <div class={className}>
+      {children({iconOpacity: 0, classNames: []})}
+    </div>;
   return (
     <div
       className={cx(wrapperClassName, {
