@@ -10,10 +10,12 @@ import { NoteSheetContent } from "./NoteSheetContent/NoteSheetContent";
 
 export type INoteSheetProps = {
   activeNoteId: string;
+  onClose?: () => void;
 };
 
 export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
   activeNoteId,
+  onClose,
 }) => {
   const activeNote = useCell(() => {
     return notesStore.getNote(activeNoteId);
@@ -31,7 +33,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
 
   return (
     <div className={styles.container}>
-      <NoteSheetContent note={activeNote} />
+      <NoteSheetContent note={activeNote} onClose={onClose} />
 
       <Button className={styles.button} type="vivid" onClick={onBtnClick}>
         <SvgIcon id="#bookmark" size={13} />

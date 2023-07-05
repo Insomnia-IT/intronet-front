@@ -1,4 +1,4 @@
-import { FunctionalComponent, Ref } from "preact";
+import { FunctionalComponent, Ref, VNode } from "preact";
 import { useMemo } from "preact/hooks";
 import cx from "classnames";
 import { Gesture } from "@helpers/Gestures";
@@ -22,6 +22,7 @@ export type INotesListProps = {
   gesture?: Gesture;
   setRef?: Ref<HTMLDivElement>;
   title?: string;
+  fallBack?: VNode;
 };
 
 export const NotesList: FunctionalComponent<INotesListProps> = ({
@@ -32,6 +33,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
   setRef,
   notesProps,
   title,
+  fallBack,
 }) => {
   const store = useMemo(
     () => new FilteredNotesStore(filterIds),
@@ -42,7 +44,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
   const NoteCardComponent = withGesture ? NoteGesturedCard : NoteCard;
 
   if (!filteredNotes.length) {
-    return null;
+    return fallBack || null;
   }
 
   return (

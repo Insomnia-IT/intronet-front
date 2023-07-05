@@ -63,12 +63,44 @@ class NotesStore {
   };
 
   /**
+   * Делаем объявление общедоступным.
+   * Если пользователь не имеет прав - вернёт ошибку.
+   */
+  public approveNote(noteId: string) {
+    if (!this.isUserModerator) {
+      return new Error("Current user doesn`t have permission to approve notes");
+    }
+
+    this.updateNote({
+      id: noteId,
+      updatedNote: {
+        isApproved: true,
+      },
+    });
+  }
+
+  /**
+   * Полностью удаляем объявление
+   * Если пользователь не имеет прав - вернёт ошибку.
+   */
+  public rejectNote(noteId: string) {
+    if (!this.isUserModerator) {
+      return new Error("Current user doesn`t have permission to reject notes");
+    }
+
+    this.removeNote(noteId);
+  }
+
+  /**
    * Удаляет (полностью) объявление по id
    */
   public removeNote = async (id: string) => {
     this.db.remove(id);
   };
 
+  /**
+   * Проверяет, можно ли обычным пользователям показывать объявление
+   */
   public checkIsNoteActual = (note: INote) => {
     return !note.isDeleted && note.TTL > getCurrentDate();
   };
@@ -79,6 +111,11 @@ class NotesStore {
     return this.db.toArray().sort((a, b) => {
       return this.getLatestNoteDate(b) - this.getLatestNoteDate(a);
     });
+  }
+
+  @cell
+  get isUserModerator() {
+    return authStore.isAdmin;
   }
 
   public getNotesByFilterId(categoryId: string): INote[] | [] {

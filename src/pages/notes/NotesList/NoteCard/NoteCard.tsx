@@ -9,14 +9,16 @@ import { getNoteDate } from "../../helpers/getNoteDate";
 import styles from "./note-card.module.css";
 import { getNoteTTLText } from "../../helpers/getNoteTTLText";
 
-export type INoteCardProps = INote & INoteCardStylesProps & {
-  categoryColor: string;
-  categoryName: string;
-};
+export type INoteCardProps = INote &
+  INoteCardStylesProps & {
+    categoryColor: string;
+    categoryName: string;
+  };
 
 export type INoteCardStylesProps = {
   className?: string;
   onClick?: (id: string, e: TargetedEvent) => void;
+  forceOnClick?: INoteCardStylesProps["onClick"];
   iconOpacity?: number;
   iconClassNames?: string[];
   onIconClick?: (e: TargetedEvent) => void;
@@ -45,11 +47,13 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
     withBookmarkIcon = true,
 
     onClick,
+    forceOnClick,
     onIconClick,
     className,
   } = props;
   const onCardClick = (e: TargetedEvent) => {
     if (disabled) {
+      forceOnClick && forceOnClick(_id, e);
       e.stopPropagation();
       return;
     }
@@ -81,16 +85,28 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
           <span className={styles.noteText}>{text}</span>
         </div>
         {categoryName && (
-          <Badge type={"Adv"} background={disabled ? COLORS.inactiveGray : categoryColor}>
+          <Badge
+            type={"Adv"}
+            background={disabled ? COLORS.inactiveGray : categoryColor}
+          >
             {categoryName}
           </Badge>
         )}
-        <div className={cx("sh3", disabled ? "colorInactiveGrey" : "colorGray", styles.footer)}>
-          {typeof author === 'string' ? author : author && author.name}, {getNoteDate(updatedAt || createdAt)}
+        <div
+          className={cx(
+            "sh3",
+            disabled ? "colorInactiveGrey" : "colorGray",
+            styles.footer
+          )}
+        >
+          {typeof author === "string" ? author : author && author.name},{" "}
+          {getNoteDate(updatedAt || createdAt)}
         </div>
       </Card>
       {withTTL && (
-        <span className={cx(styles.ttlText, "textSmall", "colorGray")}>{getNoteTTLText({deletedAt, isDeleted, TTL})}</span>
+        <span className={cx(styles.ttlText, "textSmall", "colorGray")}>
+          {getNoteTTLText({ deletedAt, isDeleted, TTL })}
+        </span>
       )}
     </div>
   );

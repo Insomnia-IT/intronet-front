@@ -1,4 +1,3 @@
-import { CloseButton } from "@components";
 import { FunctionalComponent } from "preact";
 import cx from "classnames";
 import { NoteSheetContent } from "../../NoteSheet/NoteSheetContent/NoteSheetContent";
@@ -31,9 +30,12 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
   }
 
   return (
-    <div>
-      <CloseButton />
-      <NoteSheetContent note={note} className={styles.content} />
+    <>
+      <NoteSheetContent
+        note={note}
+        className={styles.content}
+        onClose={onClose}
+      />
       <div
         className={cx(styles.deletingTimeContainer, "sh3", "colorMediumBlue")}
       >
@@ -49,6 +51,6 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
       <OnlineButton type={"orange"} onClick={onDeleteClick}>
         Снять с публикации
       </OnlineButton>
-    </div>
+    </>
   );
 };
