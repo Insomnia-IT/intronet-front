@@ -5,7 +5,7 @@ import styles from "./badge.module.css";
 import { SvgIcon } from "@icons";
 
 export type IBadgeProps = {
-  type: "Age12" | "Age18" | "Adv" | "Location" | "Change";
+  type: `Age${number}` | "Adv" | "Location" | "Change";
   background?: string | keyof typeof COLORS;
   className?: string;
 };
@@ -24,8 +24,7 @@ export const Badge: FunctionalComponent<IBadgeProps> = (props) => {
       style={maybeColorStyle}
     >
       {type === "Location" && <SvgIcon id={"location"} size={16} />}
-      {type === "Age12" && "12+"}
-      {type === "Age18" && "18+"}
+      {type.startsWith('Age') && `${type.substring(3)}+`}
       {children}
     </div>
   );

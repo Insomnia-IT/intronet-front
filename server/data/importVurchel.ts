@@ -2,6 +2,7 @@ import "@cmmn/cell/lib";
 import {Fn} from "@cmmn/cell/lib";
 import fetch from "node-fetch";
 import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 import json from "./vurchel.json" assert {"type": "json"};
 
 const importFromVurchel = false;
@@ -37,4 +38,5 @@ export async function importVurchel(force = false) {
       await vurchelDB.addOrUpdate(item as any);
     }
   }
+  dbCtrl.versions = undefined;
 }

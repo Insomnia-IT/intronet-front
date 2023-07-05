@@ -1,4 +1,3 @@
-export * from "./LocationModal";
 export * from "./LoginModal";
 export * from "./LogoutModal";
 

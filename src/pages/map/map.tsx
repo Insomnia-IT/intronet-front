@@ -171,20 +171,23 @@ export class MapComponent extends Component {
     })
   }
 
+  getCenter(figure: Figure): Point{
+    if (!Array.isArray(figure))
+      return figure;
+    const flat = figure.flat();
+    if (flat.length == 0)
+      return {X: 0, Y: 0};
+    const length = flat.length;
+    const sum = (a: Point, b: Point) => ({
+      X: (a.X + b.X),
+      Y: (a.Y + b.Y),
+    });
+    return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
+  }
   scrollTo(id: string) {
     const x = locationsStore.MapItems.find((x) => x.id === id);
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(
-      Array.isArray(x.figure)
-        ? x.figure.flat().reduce(
-            (x, y) => ({
-              X: x.X + y.X,
-              Y: x.Y + y.Y,
-            }),
-            { X: 0, Y: 0 }
-          )
-        : x.figure
-    );
+    const view = this.Transform.Invoke(this.getCenter(x.figure));
     // if (
     //   view.X > rect.left + rect.width / 100 &&
     //   view.X < rect.right - rect.width / 100 &&

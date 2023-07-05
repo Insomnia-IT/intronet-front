@@ -4,6 +4,7 @@ import * as console from "console";
 import { writeFileSync } from "fs";
 import fetch from "node-fetch";
 import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 import moviesXLS from "./movies.json" assert {"type": "json"};
 
 export async function importMovies(force = false) {
@@ -118,6 +119,7 @@ export async function importMovies(force = false) {
       version: Fn.ulid(),
     });
   }
+  dbCtrl.versions = undefined;
 }
 
 export type Schedule = Screen[];

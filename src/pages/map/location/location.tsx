@@ -7,6 +7,7 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { Button, ButtonsBar } from "@components";
 import { Link } from "@components/link/link";
 import { SvgIcon } from "@icons";
+import {useLocationsRouter} from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { directionsToDetailsGroup } from "../mapElement";
 
@@ -19,6 +20,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
                                                                id,
                                                                expanded,
                                                              }) => {
+  const router = useLocationsRouter();
   const store = useMemo(() => new LocationStore(id), [ id ]);
   const {location, hasBookmark, currentActivity, timetable} = useCell(store.state);
   const isEdit = useCell(() => locationsStore.isEdit);
@@ -29,7 +31,13 @@ export const Location: FunctionalComponent<LocationProps> = ({
       { location.name }
     </div>
     <Button type="vivid" class="w-full"
-            onClick={() => locationsStore.applyChanges()}>
+            onClick={async () => {
+              if (locationsStore.newLocation) {
+                router.goTo(["map", "edit", location._id])
+              }else {
+                await locationsStore.applyChanges();
+              }
+            }}>
       <SvgIcon id="#movePoint"/> Разместить тут
     </Button>
   </div>
@@ -66,6 +74,9 @@ export const Location: FunctionalComponent<LocationProps> = ({
             </Button>
             <Button type="frame" class="w-full" onClick={() => locationsStore.isMoving = true}>
               <SvgIcon id="#movePoint"/> переместить точку
+            </Button>
+            <Button type="frame" class="w-full" onClick={() => locationsStore.deleteLocation(location)}>
+              <SvgIcon id="#trash" /> Удалить
             </Button>
           </div> :
           <ButtonsBar at="bottom">
