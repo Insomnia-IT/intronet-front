@@ -17,6 +17,7 @@ export type INotesListProps = {
   className?: string;
   onNoteClick?: (noteId: string) => void;
   filterIds?: (ConstantFilterIds | string)[];
+  notes?: INote[];
   notesProps?: INoteCardStylesProps;
   withGesture?: boolean;
   gesture?: Gesture;
@@ -28,6 +29,7 @@ export type INotesListProps = {
 export const NotesList: FunctionalComponent<INotesListProps> = ({
   className,
   filterIds = ["all"],
+  notes = [],
   withGesture,
   gesture,
   setRef,
@@ -40,10 +42,11 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
     [...filterIds]
   );
   const { filteredNotes } = useCell(store.state);
+  const notesList = notes.length ? notes : filteredNotes;
 
   const NoteCardComponent = withGesture ? NoteGesturedCard : NoteCard;
 
-  if (!filteredNotes.length) {
+  if (!notesList.length) {
     return fallBack || null;
   }
 
@@ -54,7 +57,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
       )}
 
       <div className={styles.list}>
-        {filteredNotes.map((note) => {
+        {notesList.map((note) => {
           const noteCategory = {
             name: categoriesStore.getCategory(note.categoryId)?.name,
             color: categoriesStore.getCategoryColor(note.categoryId),

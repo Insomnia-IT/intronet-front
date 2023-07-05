@@ -1,21 +1,21 @@
 import { BookmarkPlug } from "@components/plugs/bookmark/BookmarkPlug";
+import { useCell } from "@helpers/cell-state";
+import { bookmarksStore } from "@stores/bookmarks.store";
+import { GesturedNotesList } from "../../notes/NotesList/GesturedNoteList";
 
 export const BookmarkNotes = () => {
-  // TODO: add notes
-  const items = [];
+  const notesList = useCell(() => bookmarksStore.Notes);
 
-  return (
-    items.length > 0
-      ? (<div flex column style={ 'gap: 24px' }>
-        { items.map(item => <span>{ item }</span>) }
-      </div>)
-      : (<BookmarkPlug
-        buttonTitle={ 'К объявлениям' }
-        text={ [
-          `Добавить объявления в избранное можно в разделе Объявления.`,
-          `Нажмите на объявление в списке — откроется подробная информация и кнопка «Добавить в избранное».`,
-        ] }
-        route={ '/notes' }
-      />)
-  )
+  return notesList.length ? (
+    <GesturedNotesList notes={notesList} />
+  ) : (
+    <BookmarkPlug
+      buttonTitle={"К объявлениям"}
+      text={[
+        `Добавить объявления в избранное можно в разделе Объявления.`,
+        `Нажмите на объявление в списке — откроется подробная информация и кнопка «Добавить в избранное».`,
+      ]}
+      route={"/notes"}
+    />
+  );
 };
