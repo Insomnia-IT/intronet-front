@@ -18,9 +18,14 @@
 .addNoteBtn {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .notesList {
   padding-bottom: 20px;
+}
+
+.myPageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

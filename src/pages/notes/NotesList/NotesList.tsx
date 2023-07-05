@@ -1,4 +1,4 @@
-import { FunctionalComponent, Ref } from "preact";
+import { FunctionalComponent, Ref, VNode } from "preact";
 import { useMemo } from "preact/hooks";
 import cx from "classnames";
 import { Gesture } from "@helpers/Gestures";
@@ -17,32 +17,37 @@ export type INotesListProps = {
   className?: string;
   onNoteClick?: (noteId: string) => void;
   filterIds?: (ConstantFilterIds | string)[];
+  notes?: INote[];
   notesProps?: INoteCardStylesProps;
   withGesture?: boolean;
   gesture?: Gesture;
   setRef?: Ref<HTMLDivElement>;
   title?: string;
+  fallBack?: VNode;
 };
 
 export const NotesList: FunctionalComponent<INotesListProps> = ({
   className,
   filterIds = ["all"],
+  notes = [],
   withGesture,
   gesture,
   setRef,
   notesProps,
   title,
+  fallBack,
 }) => {
   const store = useMemo(
     () => new FilteredNotesStore(filterIds),
     [...filterIds]
   );
   const { filteredNotes } = useCell(store.state);
+  const notesList = notes.length ? notes : filteredNotes;
 
   const NoteCardComponent = withGesture ? NoteGesturedCard : NoteCard;
 
-  if (!filteredNotes.length) {
-    return null;
+  if (!notesList.length) {
+    return fallBack || null;
   }
 
   return (
@@ -52,7 +57,7 @@ export const NotesList: FunctionalComponent<INotesListProps> = ({
       )}
 
       <div className={styles.list}>
-        {filteredNotes.map((note) => {
+        {notesList.map((note) => {
           const noteCategory = {
             name: categoriesStore.getCategory(note.categoryId)?.name,
             color: categoriesStore.getCategoryColor(note.categoryId),

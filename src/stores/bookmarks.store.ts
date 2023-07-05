@@ -8,9 +8,9 @@ import {
 } from "@cmmn/cell/lib";
 import { moviesStore } from "@stores/movies.store";
 import { ObservableDB } from "@stores/observableDB";
-import { TimerCell } from "@stores/timer";
 import { activitiesStore } from "@stores/activities/activities.store";
 import { locationsStore } from "@stores/locations.store";
+import { notesStore } from "./notes";
 
 class BookmarksStore {
   @cell
@@ -61,6 +61,22 @@ class BookmarksStore {
       .toArray()
       .filter((x) => x.type == "locations")
       .map((m) => locationsStore.Locations.find((x) => x._id == m.itemId))
+      .filter((x) => x);
+  }
+
+  @cell
+  public get Notes() {
+    return this.db
+      .toArray()
+      .filter((bookmark) => bookmark.type === "note")
+      .map((bookmark) =>
+        notesStore.notes.find(
+          (note) =>
+            note._id === bookmark.itemId &&
+            notesStore.checkIsNoteActual(note) &&
+            note.isApproved
+        )
+      )
       .filter((x) => x);
   }
 

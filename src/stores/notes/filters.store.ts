@@ -5,11 +5,11 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { authStore } from "@stores/auth.store";
 
 export enum ConstantFilterIds {
-  All = 'all',
-  Favorites = 'favorites',
-  My = 'my',
-  NoApproved = 'noApproved',
-  NoActual = 'noActual',
+  All = "all",
+  Favorites = "favorites",
+  My = "my",
+  NoApproved = "noApproved",
+  NoActual = "noActual",
 }
 
 class FiltersStore {
@@ -67,11 +67,11 @@ export class FilteredNotesStore {
     my: null,
     noApproved: null,
     noActual: null,
-  }
+  };
 
   constructor(filterId: string | string[]) {
     if (!Array.isArray(filterId)) {
-      filterId = [filterId]
+      filterId = [filterId];
     }
 
     this.activeFilters = filtersStore.filters.filter((filter) => {
@@ -94,38 +94,48 @@ export class FilteredNotesStore {
       const { activeFiltersMap } = this;
 
       if (activeFiltersMap.category) {
-          if (activeFiltersMap.category.id !== note.categoryId) {
-
-            return false;
-          }
-      } if (activeFiltersMap.favorites) {
+        if (activeFiltersMap.category.id !== note.categoryId) {
+          return false;
+        }
+      }
+      if (activeFiltersMap.favorites) {
         if (!Boolean(bookmarksStore.getBookmark("note", note._id))) {
           return false;
         }
-      } if (activeFiltersMap.my) {
-        if (!(typeof note.author === 'object' && note.author.id === authStore.uid)) {
+      }
+      if (activeFiltersMap.my) {
+        if (
+          !(typeof note.author === "object" && note.author.id === authStore.uid)
+        ) {
           return false;
         }
-      } if (activeFiltersMap.noActual) {
+      }
+      if (activeFiltersMap.noActual) {
         if (notesStore.checkIsNoteActual(note)) {
           return false;
         }
-      } if (activeFiltersMap.noApproved) {
-        if (note.isApproved) {
-          return false;
-        }
+      }
+      if (
+        activeFiltersMap.noApproved &&
+        notesStore.isUserModerator &&
+        note.isApproved
+      ) {
+        return false;
       }
 
       // Default filters
       if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
         return false;
       }
-      // if (!note.isApproved && !activeFiltersMap.noApproved) {
-      //   return false;
-      // }
+      if (
+        !note.isApproved &&
+        !(activeFiltersMap.noApproved && notesStore.isUserModerator)
+      ) {
+        return false;
+      }
 
       return true;
-    })
+    });
   }
 
   public state = new Cell(() => ({
@@ -133,9 +143,19 @@ export class FilteredNotesStore {
   }));
 }
 
-export const myNotesStore = new FilteredNotesStore('my');
+export const myNotesStore = new FilteredNotesStore("my");
 
-type IFilterType = "all" | "favorites" | "category" | "my" | "noApproved" | "noActual";
+export const noApprovedNotesStore = new FilteredNotesStore(
+  ConstantFilterIds.NoApproved
+);
+
+type IFilterType =
+  | "all"
+  | "favorites"
+  | "category"
+  | "my"
+  | "noApproved"
+  | "noActual";
 
 type IFilterEntity = {
   type: IFilterType;

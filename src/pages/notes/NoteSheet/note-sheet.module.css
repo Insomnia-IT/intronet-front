@@ -5,7 +5,21 @@
   height: 100%;
 }
 
+.actions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .button {
   width: 100%;
   margin-top: auto;
+}
+
+.moderaterSaveBtn {
+  align-self: flex-start;
+  justify-content: flex-start;
+  padding-left: 0;
+  color: var(--electric-blues);
 }

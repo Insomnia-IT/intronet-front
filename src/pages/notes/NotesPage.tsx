@@ -13,6 +13,8 @@ import { NewNoteSwitch } from "./New/NewNoteSwitch";
 import { NoteSheet } from "./NoteSheet/NoteSheet";
 import { GesturedNotesList } from "./NotesList/GesturedNoteList";
 import styles from "./notes.module.css";
+import { ModerationPageLink } from "./Moderator/ModerationPageLink/ModerationPageLink";
+import { ModerationPage } from "./Moderator/ModerationPage/ModerationPage";
 
 export const NotesPage: FunctionalComponent = () => {
   const { section, filterId } = useNotesRouter();
@@ -29,7 +31,10 @@ export const NotesPage: FunctionalComponent = () => {
       return <NewNoteSwitch />;
 
     case "my":
-      return <MyPage />
+      return <MyPage />;
+
+    case "moderation":
+      return <ModerationPage />;
 
     case undefined:
       return (
@@ -43,14 +48,15 @@ export const NotesPage: FunctionalComponent = () => {
             <div className={styles.filters}>
               <FilteriesSlider />
             </div>
-            <PageSection>
+            <PageSection className={styles.myPageContent}>
+              <ModerationPageLink />
               <div className={styles.addNoteBtn}>
                 <AddNoteBtn />
               </div>
               <GesturedNotesList
                 className={styles.notesList}
                 notesProps={{
-                  onClick: setActiveNoteId
+                  onClick: setActiveNoteId,
                 }}
                 filterIds={[filterId]}
               />
@@ -64,14 +70,7 @@ export const NotesPage: FunctionalComponent = () => {
               </Button>
             </ButtonsBar>
             <Sheet onClose={resetActiveNoteId} height="auto">
-              {activeNoteId && (
-                <>
-                  <NoteSheet
-                    activeNoteId={activeNoteId}
-                  />
-                  <CloseButton onClick={resetActiveNoteId} />
-                </>
-              )}
+              {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
             </Sheet>
           </div>
         </PageContainer>

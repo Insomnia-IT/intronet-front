@@ -43,6 +43,6 @@ type IGoToNotes = {
 
 type IFilter = string;
 
-export type ISections = "new" | "my" | "search";
+export type ISections = "new" | "my" | "search" | "moderation";
 
 export type ISubSections = "rules" | "editor" | "success" | "error";

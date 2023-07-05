@@ -71,13 +71,16 @@
   color: var(--gray) !important;
 }
 :global(.colorInactiveGrey) {
-  color: var(--inactive-grey)
+  color: var(--inactive-grey);
 }
 :global(.colorOrange) {
   color: var(--chineese-cafe) !important;
 }
 :global(.colorMediumBlue) {
   color: var(--medium-blue) !important;
+}
+:global(.colorElectricBlues) {
+  color: var(--electric-blues);
 }
 :global(.colorMenu) {
   color: var(--menu-gradient);
@@ -206,17 +209,17 @@
   list-style: none;
   padding-left: 12px;
 }
-:global(ul.disc li){
+:global(ul.disc li) {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
 }
-:global(ul.disc li:before){
-  content: '•';
+:global(ul.disc li:before) {
+  content: "•";
   font-size: 20px;
 }
 
-:global(b){
+:global(b) {
   font-variation-settings: "wght" 640;
 }
