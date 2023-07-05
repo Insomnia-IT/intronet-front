@@ -37,14 +37,14 @@ function getTimetableSheets(movieId: string){
     case "search":
       return <>
         <MovieSearch />
-        <CloseButton goTo="/timetable"/>
+        <CloseButton/>
       </>;
     case undefined:
       return null;
     default:
       return <>
         <Movie id={movieId} />
-        <CloseButton goTo="/timetable"/>
+        <CloseButton/>
       </>;
   }
 }

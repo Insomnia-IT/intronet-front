@@ -21,7 +21,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const movie = state.movie ?? ({} as MovieInfo);
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
-  const { votedMovie, isOnline } = useCell(votingStore.state);
+  const { isOnline } = useCell(votingStore.state);
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
@@ -35,7 +35,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class="colorGray" style={{ marginBottom: 24 }}>
         {minutes} мин {seconds} сек
       </div>
-      {!votedMovie && (
+      {state.canVote && (
         <div flex column gap={2} style={{ marginBottom: 24 }}>
           <Card border="Vivid" gap={0}>
             <div flex column gap="2">
@@ -61,7 +61,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       )}
       <div flex column gap={6}>
         <div className="sh1">Расписание показов:</div>
-        {state.block.views.map((view) => (
+        {state.views.map((view) => (
           <div flex column gap={3} key={view.day + view.locationId}>
             <div class="tags colorMediumBlue">
               {getDayText(view.day, "full")}
@@ -83,7 +83,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               </Link>
               <div flex column gap={2}>
                 <div class="tags colorMediumBlue">
-                  {state.block.info.Title} {state.block.info.SubTitle ?? ''}
+                  {view.block.info.Title} {view.block.info.SubTitle ?? ''}
                 </div>
                 <div class="sh1">
                   {view.start} - {view.end}

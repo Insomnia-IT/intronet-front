@@ -191,7 +191,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 10000);
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
   public get local(): Record<string, string> {

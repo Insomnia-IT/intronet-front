@@ -33,6 +33,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   // const hasBookmarks = useCell(() => bookmarksStore.Movies.length > 0);
   return (
     <BookmarkGesture
+      disabled={disabled}
       className={Styles.movieSmall}
       onClick={disabled ? undefined : (e) => e.defaultPrevented || router.goToMovie(movie.id)}
       {...{
@@ -48,7 +49,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
               <div flex-grow class={Styles.movieTitle}>
                 {highlight(movie.name, searchQuery)}
               </div>
-              <SvgIcon
+              {!disabled && <SvgIcon
                 id="#bookmark"
                 class={[...classNames, "colorPink"].join(" ")}
                 onClick={(e) => {
@@ -61,7 +62,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
                   flexShrink: 0,
                   opacity: iconOpacity,
                 }}
-              />
+              />}
             </div>
             {(movie.author || movie.country || movie.year) ? <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
               {highlight(movie.author, searchQuery)},{" "}

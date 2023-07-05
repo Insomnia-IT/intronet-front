@@ -14,7 +14,11 @@ export const Timetable: FunctionalComponent<TimetableProps> = (props) => {
       x.views.some(
         (y) => y.locationId === props.locationId && y.day == props.day
       )
-    );
+    ).orderBy(x => {
+      const start = x.views.find(x => x.locationId === props.locationId).start;
+      if (start.startsWith('0')) return '3' + start;
+      return  start;
+    });
   }, [props.locationId, props.day]);
   return (
     <>

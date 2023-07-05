@@ -1,5 +1,6 @@
 import {useRouter} from "../../routing";
 import {FunctionalComponent} from "preact";
+import {Animation} from "./article/animation";
 import {Eco} from "./article/eco";
 import {Food} from "./article/food";
 import {Living} from "./article/living";
@@ -14,4 +15,5 @@ const articles: Record<string, FunctionalComponent> = {
   living: Living,
   eco: Eco,
   food: Food,
+  animation: Animation
 }

@@ -4,6 +4,7 @@ import {ObservableDB} from "./observableDB";
 import {locationsStore} from "@stores/locations.store";
 import {getCurrentDay, getDayText} from "@helpers/getDayText";
 import {bookmarksStore} from "@stores/bookmarks.store";
+import {votingStore} from "./votingStore";
 
 class MoviesStore {
   @cell public db = new ObservableDB<MovieBlock>("movies");
@@ -34,6 +35,10 @@ class MoviesStore {
   @cell
   public get Movies(): MovieInfo[] {
     return this.MovieBlocks.flatMap((x) => x.movies);
+  }
+
+  public get VotingBlock(): MovieBlock{
+    return this.MovieBlocks.find(x =>  x.info.Title.toLowerCase().includes('российский национальный конкурс'));
   }
 
   getCurrentMovieBlock(id: string) {
@@ -114,13 +119,20 @@ export class MovieStore {
     return moviesStore.MovieBlocks.flatMap((x) => x.movies).find((x) => x.id == this.id);
   }
 
-  @cell get block(): MovieBlock {
-    return moviesStore.MovieBlocks.find((x) => x.movies.some((x) => x.id == this.id));
+  get blocks(): MovieBlock[] {
+    return  moviesStore.MovieBlocks
+      .filter(x => x.movies.some(m => m.id == this.id))
   }
 
   public state = new Cell<{
-    movie: MovieInfo; block: MovieBlock; hasBookmark: boolean;
+    movie: MovieInfo;hasBookmark: boolean;
+    canVote: boolean;
+    views: Array<MovieBlock["views"][number] & {block: MovieBlock}>
   }>(() => ({
-    movie: this.movie, block: this.block, hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
+    canVote: !votingStore.state.get().votedMovie && this.blocks.includes(moviesStore.VotingBlock),
+    movie: this.movie,
+    views: this.blocks
+      .flatMap(x => x.views.map(v => ({...v, block: x}))),
+    hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
   }));
 }
