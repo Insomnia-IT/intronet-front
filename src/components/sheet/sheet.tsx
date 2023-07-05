@@ -6,7 +6,7 @@ export type SheetProps = {
   height?: string;
   noShadow?: boolean;
   shadowType?: 'globalShadow' | 'localShadow';
-  style: JSX.HTMLAttributes<HTMLDivElement>["style"];
+  style?: JSX.HTMLAttributes<HTMLDivElement>["style"];
 }
 export const Sheet: FunctionalComponent<SheetProps> = props => {
   const isOpen = !!props.children;
