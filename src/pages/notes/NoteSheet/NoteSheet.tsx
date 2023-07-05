@@ -7,6 +7,7 @@ import { SvgIcon } from "@icons";
 import { useIsBookmarkCell } from "../hooks/useIsBookmarkCell";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { NoteSheetContent } from "./NoteSheetContent/NoteSheetContent";
+import { useIsUserModeratorCell } from "../hooks/useIsUserModeratorCell";
 
 export type INoteSheetProps = {
   activeNoteId: string;
@@ -20,25 +21,51 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
   const activeNote = useCell(() => {
     return notesStore.getNote(activeNoteId);
   }, [activeNoteId]);
+  const isModerater = useIsUserModeratorCell();
 
-  if (!activeNote) {
+  if (!activeNote || !notesStore.checkIsNoteActual(activeNote)) {
+    onClose();
     return null;
   }
 
   const { _id: id } = activeNote;
   const isBookmark = useIsBookmarkCell(id);
-  const onBtnClick = () => {
+  const addToBookmark = () => {
     bookmarksStore.switchBookmark("note", id);
+  };
+  const deleteNote = () => {
+    notesStore.deleteNote(activeNoteId);
   };
 
   return (
     <div className={styles.container}>
       <NoteSheetContent note={activeNote} onClose={onClose} />
 
-      <Button className={styles.button} type="vivid" onClick={onBtnClick}>
-        <SvgIcon id="#bookmark" size={13} />
-        {isBookmark ? "Удалить из избранного" : "Сохранить в избранное"}
-      </Button>
+      <div className={styles.actions}>
+        {isModerater ? (
+          <>
+            <Button
+              type={"text"}
+              onClick={addToBookmark}
+              className={styles.moderaterSaveBtn}
+            >
+              Сохранить в избранное
+            </Button>
+            <Button type={"orange"} onClick={deleteNote}>
+              Снять с публикации
+            </Button>
+          </>
+        ) : (
+          <Button
+            className={styles.button}
+            type="vivid"
+            onClick={addToBookmark}
+          >
+            <SvgIcon id="#bookmark" size={13} />
+            {isBookmark ? "Удалить из избранного" : "Сохранить в избранное"}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

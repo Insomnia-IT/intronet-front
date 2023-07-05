@@ -2,5 +2,5 @@
   display: grid;
   width: 100%;
   gap: 8px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
 }
