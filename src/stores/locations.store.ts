@@ -43,6 +43,11 @@ class LocationsStore {
   }
 
   @cell
+  public get ActivityLocations(): ReadonlyArray<InsomniaLocation> {
+    return this.Locations.filter((x) => x.work_tags?.includes('activity'));
+  }
+
+  @cell
   public get Infocenter(): InsomniaLocation {
     return this.Locations.find((x) => x.directionId === Directions.info);
   }

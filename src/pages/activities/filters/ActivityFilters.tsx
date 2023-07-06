@@ -4,6 +4,7 @@ import { activityFiltersStore, IActivityFilter } from "@stores/activities/activi
 import { useEffect } from "preact/hooks";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import { getCurrentDay, getCurrentHour } from "@helpers/getDayText";
+import { goTo } from "../../routing";
 
 export type ActivityTagType = 'filter' | 'day' | 'place' | 'time';
 
@@ -17,13 +18,13 @@ export interface ActivityFilterProp {
 
 export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
                                                                            filters,
+                                                                           type,
                                                                            flexGrow,
                                                                            flexWrap,
-                                                                           smallTag,
-                                                                           type
+                                                                           smallTag
                                                                          }: ActivityFilterProp) => {
   const activitiesRouter = useActivitiesRouter();
-  const {activityId, filter, day, time, place, goToActivities} = activitiesRouter;
+  const {activityId, locationId, filter, day, time, place, goToActivities} = activitiesRouter;
 
   const current = activitiesRouter[type] ?? (() => {
     switch (type) {
@@ -37,7 +38,7 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   })();
 
   useEffect(() => {
-    if (!filter && !activityId) {
+    if ((!filter || filter === 'time') && !activityId) {
       goToActivities({
         filter: `${ activityFiltersStore.filters[0].key }`,
         day: getCurrentDay().toString(),
@@ -47,15 +48,15 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   }, [ filter ]);
 
   useEffect(() => {
-    if (filter === 'place' && (filters.some((f) => f.key !== place) || !place)) {
+    if (locationId) {
       goToActivities({
-        filter,
-        day,
-        place: filters[0].key.toString()
+        filter: 'place',
+        day: getCurrentDay().toString(),
+        time: getCurrentHour().toString(),
+        path: ['location', locationId]
       });
     }
-  }, [ day ]);
-
+  }, [ locationId ]);
 
   return (
     <Tags style={ `flex-wrap: ${ flexWrap ? 'wrap' : 'nowrap' };` } tagsList={ filters }>
@@ -69,7 +70,8 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
             day,
             time,
             place,
-            [type]: key
+            [type]: key,
+            path: locationId ? ['location', locationId] : undefined
           })
           }
         >

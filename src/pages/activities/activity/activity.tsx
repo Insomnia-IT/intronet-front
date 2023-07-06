@@ -38,7 +38,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
       >
         <div flex class="sh1" gap={2}>
           <SvgIcon id="#alert" size={32} style={{ color: "var(--electric-blues)" }} />
-          {locationsStore.getName(activity?.locationId)}
+          {locationsStore.getName(activity?.locationId) ?? activity?.locationId}
         </div>
         <Link
           goTo={["map", activity?.locationId]}

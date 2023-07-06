@@ -163,6 +163,7 @@ interface Activity {
   start: string;
   end: string;
   author: string;
+  authorDescription?: string;
   age?: number;
   hasChanges?: boolean;
   isCanceled?: boolean;
