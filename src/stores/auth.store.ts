@@ -81,5 +81,13 @@ class AuthStore extends LocalStore<{
       headers: this.headers,
     })
   }
+
+  public async seedAll(force: boolean){
+    await this.seed('locations', force);
+    await this.seed('activities', force);
+    await this.seed('movies', force);
+    await this.seed('vurchel', force);
+    await this.seed('main', force);
+  }
 }
 export const authStore = globalThis['authStore'] = new AuthStore();
