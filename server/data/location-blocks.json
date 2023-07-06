@@ -951,7 +951,7 @@
       "lon": 35.087088
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbx_rRVys7aDVD",
     "contentBlocks": [
       {
@@ -1029,7 +1029,7 @@
       "lon": 35.089955
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxb6ogVSR5cBt",
     "contentBlocks": []
   },
@@ -1128,6 +1128,7 @@
         }
       ]
     ],
+    "work_tags": ["activity"],
     "version": "LDbxaN@3cyYxPOP",
     "contentBlocks": []
   },
@@ -1309,7 +1310,7 @@
       "lon": 35.090287
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxe9U1qSEmT7b",
     "contentBlocks": [
       {
@@ -1332,7 +1333,7 @@
       "lon": 35.090169
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxe1Wi8g0trgI",
     "contentBlocks": [
       {
@@ -1463,7 +1464,7 @@
       "lon": 35.083577
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxeFw9hrpBaEA",
     "contentBlocks": [
       {
@@ -1536,7 +1537,7 @@
       "lon": 35.093649
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxdjmZ2cWsKXY",
     "contentBlocks": []
   },
@@ -1836,7 +1837,7 @@
       "lon": 35.088125
     },
     "menu": "",
-    "work_tags": [],
+    "work_tags": ["activity"],
     "version": "LDbxebSd19HkWph",
     "contentBlocks": [
       {
