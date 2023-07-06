@@ -56,8 +56,12 @@ type InsomniaLocation = {
 };
 
 type ContentBlock = {
-  blockType: 'link' | 'text';
-  content: string | ListItem[];
+  blockType: 'text';
+  content: string;
+} | {
+  blockType: 'link';
+  title: string;
+  link: string;
 }
 
 type ListItem = {

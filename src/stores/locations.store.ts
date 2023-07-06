@@ -86,7 +86,9 @@ class LocationsStore {
 
   public moveSelectedLocation(transform: TransformMatrix) {
     const selected = this.MapItems.find((x) => x.id === this.selected._id);
-    const moved = Array.isArray(selected.figure) ? selected.figure.map((line) => line.map(transform.Invoke)) : transform.Invoke(selected.figure);
+    const moved = Array.isArray(selected.figure)
+      ? selected.figure.map((line) => line.map(transform.Invoke))
+      : transform.Invoke(selected.figure);
     this.locationPatches.push([selected.id, moved]);
   }
 

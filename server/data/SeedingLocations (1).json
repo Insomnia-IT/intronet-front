@@ -1,0 +1,2481 @@
+[
+  {
+    "_id": "LDbxX1fO2BX0xvQ",
+    "_rev": "1-9c5d8139c023fa519e40f137d9bf04a4",
+    "name": "Баня братьев Лимонов",
+    "tags": [],
+    "description": "23.04.2023 18:54:14",
+    "figure": [
+      [
+        {
+          "lat": 54.681369,
+          "lon": 35.076384
+        },
+        {
+          "lat": 54.681048,
+          "lon": 35.075861
+        },
+        {
+          "lat": 54.680774,
+          "lon": 35.076346
+        },
+        {
+          "lat": 54.681013,
+          "lon": 35.07677
+        },
+        {
+          "lat": 54.681369,
+          "lon": 35.076384
+        }
+      ]
+    ],
+    "version": "LDbxXDVqYqWYfhJ",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1fchvNHT2l",
+    "_rev": "1-cf83e115e8427146d865f2d771fd0e8a",
+    "name": "техзона сцены, гримерка, парковка",
+    "tags": [],
+    "description": "13.04.2023 21:09:54",
+    "figure": [
+      [
+        {
+          "lat": 54.676579,
+          "lon": 35.090188
+        },
+        {
+          "lat": 54.676132,
+          "lon": 35.089801
+        },
+        {
+          "lat": 54.675841,
+          "lon": 35.09055
+        },
+        {
+          "lat": 54.676144,
+          "lon": 35.090976
+        },
+        {
+          "lat": 54.676579,
+          "lon": 35.090188
+        }
+      ]
+    ],
+    "version": "LDbxX1sYQrxL72y",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1g5R@X2uJL",
+    "_rev": "1-b6bd577c3cb46864ec1f5763ac8f7739",
+    "directionId": "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
+    "notionId": "9fd0d50e-3dd1-4db7-87fa-2fe38e09b227",
+    "name": "Точка Сборки",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.678289,
+      "lon": 35.086004
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxXS405WGN2gh",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "я потерял ребёнка"
+      },
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "я потерял взрослого"
+      },
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "я потерял животное"
+      },
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "я потерял вещь"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1gNBxk0br3",
+    "_rev": "1-0b80e955357be292844c939d9522aef2",
+    "name": "Сокровищница Хатифнаттов",
+    "tags": [],
+    "description": "24.04.2023 21:59:28",
+    "figure": [
+      [
+        {
+          "lat": 54.680906,
+          "lon": 35.081235
+        },
+        {
+          "lat": 54.681186,
+          "lon": 35.081868
+        },
+        {
+          "lat": 54.681688,
+          "lon": 35.081213
+        },
+        {
+          "lat": 54.68144,
+          "lon": 35.08058
+        },
+        {
+          "lat": 54.680906,
+          "lon": 35.081235
+        }
+      ]
+    ],
+    "version": "LDbxXZKU8xBAJsg",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1gS3B3OOoo",
+    "_rev": "1-93e4eae31623e08324af5116ad560674",
+    "name": "Лагерь Актёров",
+    "tags": [],
+    "description": "24.04.2023 21:33:09",
+    "figure": [
+      [
+        {
+          "lat": 54.682296,
+          "lon": 35.090773
+        },
+        {
+          "lat": 54.681859,
+          "lon": 35.091067
+        },
+        {
+          "lat": 54.681946,
+          "lon": 35.091523
+        },
+        {
+          "lat": 54.682383,
+          "lon": 35.091245
+        },
+        {
+          "lat": 54.682296,
+          "lon": 35.090773
+        }
+      ]
+    ],
+    "version": "LDbxXL0Pb0yTy2H",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1hAQVkeFDh",
+    "_rev": "1-ede632d581ddbb42a01ee2d64fa5fbeb",
+    "name": "Лагерь Музыкантов",
+    "tags": [],
+    "description": "03.05.2023 15:55:29",
+    "figure": [
+      [
+        {
+          "lat": 54.676293,
+          "lon": 35.091378
+        },
+        {
+          "lat": 54.676132,
+          "lon": 35.090978
+        },
+        {
+          "lat": 54.675841,
+          "lon": 35.09055
+        },
+        {
+          "lat": 54.675485,
+          "lon": 35.091199
+        },
+        {
+          "lat": 54.675435,
+          "lon": 35.091622
+        },
+        {
+          "lat": 54.675372,
+          "lon": 35.091711
+        },
+        {
+          "lat": 54.675319,
+          "lon": 35.092062
+        },
+        {
+          "lat": 54.675327,
+          "lon": 35.092237
+        },
+        {
+          "lat": 54.675877,
+          "lon": 35.092261
+        },
+        {
+          "lat": 54.676022,
+          "lon": 35.091837
+        },
+        {
+          "lat": 54.676234,
+          "lon": 35.091738
+        },
+        {
+          "lat": 54.676293,
+          "lon": 35.091378
+        }
+      ]
+    ],
+    "version": "LDbxYDPOdn0k1Ql",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1hVK_FZAFQ",
+    "_rev": "1-7401c6095369b7940d8df6d3eec0a96a",
+    "name": "Лагерь Медиков",
+    "tags": [],
+    "description": "03.05.2023 15:37:56",
+    "figure": [
+      [
+        {
+          "lat": 54.681148,
+          "lon": 35.088241
+        },
+        {
+          "lat": 54.681263,
+          "lon": 35.088724
+        },
+        {
+          "lat": 54.681437,
+          "lon": 35.088611
+        },
+        {
+          "lat": 54.681322,
+          "lon": 35.088123
+        },
+        {
+          "lat": 54.681148,
+          "lon": 35.088241
+        }
+      ]
+    ],
+    "version": "LDbxXmklJ9pm2YP",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1iGkANCmYh",
+    "_rev": "1-f81feafd790f48d85735f39cdea181bc",
+    "name": "Лагерь Диалога",
+    "tags": [],
+    "description": "03.05.2023 21:38:17",
+    "figure": [
+      [
+        {
+          "lat": 54.682299,
+          "lon": 35.092327
+        },
+        {
+          "lat": 54.682116,
+          "lon": 35.09244
+        },
+        {
+          "lat": 54.682215,
+          "lon": 35.09296
+        },
+        {
+          "lat": 54.682414,
+          "lon": 35.092826
+        },
+        {
+          "lat": 54.682299,
+          "lon": 35.092327
+        }
+      ]
+    ],
+    "version": "LDbxYZFzF5SQWLp",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1iHX0Rw4fd",
+    "_rev": "1-01c4f461ed0350401df07eb20a93bcf2",
+    "name": "Лагерь Лапки",
+    "tags": [],
+    "description": "03.05.2023 22:22:10",
+    "figure": [
+      [
+        {
+          "lat": 54.676221,
+          "lon": 35.091773
+        },
+        {
+          "lat": 54.676033,
+          "lon": 35.091859
+        },
+        {
+          "lat": 54.675892,
+          "lon": 35.09228
+        },
+        {
+          "lat": 54.675998,
+          "lon": 35.092406
+        },
+        {
+          "lat": 54.676088,
+          "lon": 35.09228
+        },
+        {
+          "lat": 54.676136,
+          "lon": 35.091942
+        },
+        {
+          "lat": 54.676221,
+          "lon": 35.091773
+        }
+      ]
+    ],
+    "version": "LDbxYmvyryIREOV",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1iSFTd6Fpq",
+    "_rev": "1-c26798b81bfd42cb95a09a8a8531e5d2",
+    "name": "Лагерь Зари",
+    "tags": [],
+    "description": "03.05.2023 22:15:48",
+    "figure": [
+      [
+        {
+          "lat": 54.677404,
+          "lon": 35.097186
+        },
+        {
+          "lat": 54.677935,
+          "lon": 35.097224
+        },
+        {
+          "lat": 54.678292,
+          "lon": 35.097092
+        },
+        {
+          "lat": 54.6785,
+          "lon": 35.09684
+        },
+        {
+          "lat": 54.678428,
+          "lon": 35.096623
+        },
+        {
+          "lat": 54.678341,
+          "lon": 35.096381
+        },
+        {
+          "lat": 54.678262,
+          "lon": 35.096454
+        },
+        {
+          "lat": 54.678108,
+          "lon": 35.096558
+        },
+        {
+          "lat": 54.677829,
+          "lon": 35.096628
+        },
+        {
+          "lat": 54.677401,
+          "lon": 35.096832
+        },
+        {
+          "lat": 54.677404,
+          "lon": 35.097186
+        }
+      ]
+    ],
+    "version": "LDbxYfXjVMUo7cf",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1j@HtwA1Dg",
+    "_rev": "1-55a663e239a3f1a1c22acffd8db2f386",
+    "name": "Лагерь Лаборатории",
+    "tags": [],
+    "description": "03.05.2023 22:23:34",
+    "figure": [
+      [
+        {
+          "lat": 54.67597,
+          "lon": 35.092438
+        },
+        {
+          "lat": 54.675883,
+          "lon": 35.092304
+        },
+        {
+          "lat": 54.675312,
+          "lon": 35.092261
+        },
+        {
+          "lat": 54.675396,
+          "lon": 35.093336
+        },
+        {
+          "lat": 54.675387,
+          "lon": 35.093524
+        },
+        {
+          "lat": 54.675266,
+          "lon": 35.093883
+        },
+        {
+          "lat": 54.675275,
+          "lon": 35.094085
+        },
+        {
+          "lat": 54.675479,
+          "lon": 35.09509
+        },
+        {
+          "lat": 54.675603,
+          "lon": 35.095159
+        },
+        {
+          "lat": 54.675822,
+          "lon": 35.094548
+        },
+        {
+          "lat": 54.675768,
+          "lon": 35.093919
+        },
+        {
+          "lat": 54.675877,
+          "lon": 35.092986
+        },
+        {
+          "lat": 54.67597,
+          "lon": 35.092438
+        }
+      ]
+    ],
+    "version": "LDbxYvCrBOlBrVy",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1jB98vjUEe",
+    "_rev": "1-ae2b945b1d432c8d22eb46a6a17c0ffc",
+    "name": "Лагерь Избушки",
+    "tags": [],
+    "description": "03.05.2023 23:44:03",
+    "figure": [
+      [
+        {
+          "lat": 54.681535,
+          "lon": 35.089974
+        },
+        {
+          "lat": 54.681776,
+          "lon": 35.090983
+        },
+        {
+          "lat": 54.682073,
+          "lon": 35.090776
+        },
+        {
+          "lat": 54.681822,
+          "lon": 35.089773
+        },
+        {
+          "lat": 54.681535,
+          "lon": 35.089974
+        }
+      ]
+    ],
+    "version": "LDbxZVXks6Jy_c3",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1jQCMc7vSm",
+    "_rev": "1-cb5bd94cc32edc187e3c89db2dd5f89f",
+    "name": "Лагерь Джанк Тауна",
+    "tags": [],
+    "description": "03.05.2023 22:41:48",
+    "figure": [
+      [
+        {
+          "lat": 54.675805,
+          "lon": 35.095342
+        },
+        {
+          "lat": 54.675485,
+          "lon": 35.095176
+        },
+        {
+          "lat": 54.675471,
+          "lon": 35.095401
+        },
+        {
+          "lat": 54.675718,
+          "lon": 35.095787
+        },
+        {
+          "lat": 54.675845,
+          "lon": 35.096114
+        },
+        {
+          "lat": 54.675913,
+          "lon": 35.096427
+        },
+        {
+          "lat": 54.676239,
+          "lon": 35.096924
+        },
+        {
+          "lat": 54.676345,
+          "lon": 35.096597
+        },
+        {
+          "lat": 54.676345,
+          "lon": 35.096163
+        },
+        {
+          "lat": 54.676177,
+          "lon": 35.095744
+        },
+        {
+          "lat": 54.676118,
+          "lon": 35.095519
+        },
+        {
+          "lat": 54.675926,
+          "lon": 35.095601
+        },
+        {
+          "lat": 54.675805,
+          "lon": 35.095342
+        }
+      ]
+    ],
+    "version": "LDbxZ90JTMuvAVL",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1jWCJgQU8y",
+    "_rev": "1-4df49ed4607af659496fc636d192287c",
+    "name": "Админка.Тихий лагерь",
+    "tags": [],
+    "description": "04.05.2023 0:49:30",
+    "figure": [
+      [
+        {
+          "lat": 54.681298,
+          "lon": 35.08781
+        },
+        {
+          "lat": 54.681459,
+          "lon": 35.08862
+        },
+        {
+          "lat": 54.681918,
+          "lon": 35.088357
+        },
+        {
+          "lat": 54.682079,
+          "lon": 35.088153
+        },
+        {
+          "lat": 54.682163,
+          "lon": 35.087703
+        },
+        {
+          "lat": 54.68224,
+          "lon": 35.087107
+        },
+        {
+          "lat": 54.682234,
+          "lon": 35.086587
+        },
+        {
+          "lat": 54.682188,
+          "lon": 35.085959
+        },
+        {
+          "lat": 54.682101,
+          "lon": 35.085557
+        },
+        {
+          "lat": 54.682101,
+          "lon": 35.085106
+        },
+        {
+          "lat": 54.681977,
+          "lon": 35.084092
+        },
+        {
+          "lat": 54.681843,
+          "lon": 35.084068
+        },
+        {
+          "lat": 54.681682,
+          "lon": 35.085096
+        },
+        {
+          "lat": 54.681657,
+          "lon": 35.085734
+        },
+        {
+          "lat": 54.681729,
+          "lon": 35.086308
+        },
+        {
+          "lat": 54.681754,
+          "lon": 35.087182
+        },
+        {
+          "lat": 54.681723,
+          "lon": 35.087585
+        },
+        {
+          "lat": 54.681298,
+          "lon": 35.08781
+        }
+      ]
+    ],
+    "version": "LDbxZbh037aLU@c",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1jxkUqWc5q",
+    "_rev": "1-fffece1d41c052f93c694d9c92b4675d",
+    "name": "Лагерь.Фудкорт и Ярмарка",
+    "tags": [],
+    "description": "04.05.2023 0:53:30",
+    "figure": [
+      [
+        {
+          "lat": 54.681905,
+          "lon": 35.088424
+        },
+        {
+          "lat": 54.681473,
+          "lon": 35.08866
+        },
+        {
+          "lat": 54.681705,
+          "lon": 35.089822
+        },
+        {
+          "lat": 54.68213,
+          "lon": 35.089551
+        },
+        {
+          "lat": 54.681905,
+          "lon": 35.088424
+        }
+      ]
+    ],
+    "version": "LDbxZj4e67ZpuEj",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1kOQ4WnQK1",
+    "_rev": "1-54bfc97438da3d04bc8e1efa93093c90",
+    "name": "Лагерь Арт-станции",
+    "tags": [],
+    "description": "04.05.2023 1:28:24",
+    "figure": [
+      [
+        {
+          "lat": 54.68208,
+          "lon": 35.077044
+        },
+        {
+          "lat": 54.681844,
+          "lon": 35.077441
+        },
+        {
+          "lat": 54.682005,
+          "lon": 35.077801
+        },
+        {
+          "lat": 54.682269,
+          "lon": 35.077398
+        },
+        {
+          "lat": 54.68208,
+          "lon": 35.077044
+        }
+      ]
+    ],
+    "version": "LDbxZxSxFo1TvjL",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1kS6kq3rqe",
+    "_rev": "1-0ad98230a689deb868571ef7dcc034b9",
+    "name": "Лагерь. Энергоснаб",
+    "tags": [],
+    "description": "04.05.2023 0:56:52",
+    "figure": [
+      [
+        {
+          "lat": 54.681443,
+          "lon": 35.088655
+        },
+        {
+          "lat": 54.681273,
+          "lon": 35.088768
+        },
+        {
+          "lat": 54.681371,
+          "lon": 35.089205
+        },
+        {
+          "lat": 54.68154,
+          "lon": 35.089092
+        },
+        {
+          "lat": 54.681443,
+          "lon": 35.088655
+        }
+      ]
+    ],
+    "version": "LDbxZqHsA4eZRAs",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1krD@3abwt",
+    "_rev": "1-78755d18b88eb49a15f96d12dbe60f25",
+    "name": "Лагерь Кинобара",
+    "tags": [],
+    "description": "04.05.2023 1:29:48",
+    "figure": [
+      [
+        {
+          "lat": 54.682775,
+          "lon": 35.074443
+        },
+        {
+          "lat": 54.683134,
+          "lon": 35.074968
+        },
+        {
+          "lat": 54.683139,
+          "lon": 35.075611
+        },
+        {
+          "lat": 54.683761,
+          "lon": 35.074153
+        },
+        {
+          "lat": 54.682775,
+          "lon": 35.074443
+        }
+      ]
+    ],
+    "version": "LDbx_A96xsJ7BGe",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1lA7e9L8VJ",
+    "_rev": "1-ab5184cb3c6d2a35db6cf2462ca7c9b2",
+    "directionId": "Инфоцентр",
+    "notionId": "77db04e5-4093-480e-aed7-0044b3f3e56a",
+    "name": "Инфоцентр",
+    "tags": [
+      "Капшеринг",
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678673,
+      "lon": 35.086853
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbx_jykzeJxm41",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к разделам"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1lF3TPDM64",
+    "_rev": "1-b3c75bc24ff876b5b2e5a396d7e91bbc",
+    "name": "Лагерь Детской",
+    "tags": [],
+    "description": "04.05.2023 1:34:53",
+    "figure": [
+      [
+        {
+          "lat": 54.682957,
+          "lon": 35.093024
+        },
+        {
+          "lat": 54.682789,
+          "lon": 35.094183
+        },
+        {
+          "lat": 54.683178,
+          "lon": 35.094473
+        },
+        {
+          "lat": 54.683798,
+          "lon": 35.095064
+        },
+        {
+          "lat": 54.683959,
+          "lon": 35.094087
+        },
+        {
+          "lat": 54.682957,
+          "lon": 35.093024
+        }
+      ]
+    ],
+    "version": "LDbx_cjY62nxiQJ",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1lb8NjH8LV",
+    "_rev": "1-11d9887c3adbc31b8565316440c466ec",
+    "name": "Лагерь Шамбалы№3",
+    "tags": [],
+    "description": "04.05.2023 1:31:24",
+    "figure": [
+      [
+        {
+          "lat": 54.678935,
+          "lon": 35.078895
+        },
+        {
+          "lat": 54.678644,
+          "lon": 35.078627
+        },
+        {
+          "lat": 54.678408,
+          "lon": 35.079378
+        },
+        {
+          "lat": 54.678619,
+          "lon": 35.079668
+        },
+        {
+          "lat": 54.678935,
+          "lon": 35.078895
+        }
+      ]
+    ],
+    "version": "LDbx_PCFlZOZPjd",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1lk0_ORK9K",
+    "_rev": "1-f5720e3b4660d747b4f57014deb684c6",
+    "name": "Лагерь Эль-стэйко",
+    "tags": [],
+    "description": "04.05.2023 1:33:48",
+    "figure": [
+      [
+        {
+          "lat": 54.67713,
+          "lon": 35.085933
+        },
+        {
+          "lat": 54.676919,
+          "lon": 35.085751
+        },
+        {
+          "lat": 54.676708,
+          "lon": 35.086287
+        },
+        {
+          "lat": 54.676913,
+          "lon": 35.086513
+        },
+        {
+          "lat": 54.67713,
+          "lon": 35.085933
+        }
+      ]
+    ],
+    "version": "LDbx_WCC0fvnV9i",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1lt2OViigw",
+    "_rev": "1-f7654e489797417b690c1b7d714a1149",
+    "name": "Лагерь Витражей",
+    "tags": [],
+    "description": "04.05.2023 1:30:39",
+    "figure": [
+      [
+        {
+          "lat": 54.680563,
+          "lon": 35.077163
+        },
+        {
+          "lat": 54.680386,
+          "lon": 35.076444
+        },
+        {
+          "lat": 54.67984,
+          "lon": 35.076761
+        },
+        {
+          "lat": 54.680064,
+          "lon": 35.077614
+        },
+        {
+          "lat": 54.680563,
+          "lon": 35.077163
+        }
+      ]
+    ],
+    "version": "LDbx_HVZ1@wzNDx",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1ltIcj4isJ",
+    "_rev": "1-7688e07fedd63474385499b9498bfd9d",
+    "directionId": "Хатифнатты",
+    "notionId": "93a405a5-661f-463c-9fc6-13a98a689b0b",
+    "name": "Шатёр “Хатифнариум”",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678056,
+      "lon": 35.087088
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbx_rRVys7aDVD",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1m4@W59Dty",
+    "_rev": "1-e8ba98250bd668ed975d0f28e029f36c",
+    "directionId": "Ветви Дерева",
+    "notionId": "c40b068d-e0bd-4401-ae7b-5d2c23d66d59",
+    "name": "Steam Temple",
+    "tags": [
+      "Капшеринг"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.679412,
+      "lon": 35.095696
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxapJV4533_IL",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m4FYm2h87",
+    "_rev": "1-7d7c486e1295890b078566c8f6f9cf89",
+    "directionId": "Арт-объект",
+    "notionId": "c7f6a1d3-a2c4-470f-b8ac-d94c43b6b056",
+    "name": "Затмение.Социальный лифт",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.676367,
+      "lon": 35.096014
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxc8G3fPwq4AJ",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m4gmDOvwi",
+    "_rev": "1-ad720f2c0c4fc6b3de3a27922f86a67e",
+    "directionId": "Арт-объект",
+    "notionId": "02ed23ac-1d0c-42b5-a361-0174c89dda18",
+    "name": "Затмение.Мандала Счастья",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.679837,
+      "lon": 35.0910537
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbZRHKrQ7ukZ",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m5FyNuRHS",
+    "_rev": "1-18b8bdb8f3126d3b9c5c89d4b8cc03ff",
+    "directionId": "Ярмарка",
+    "notionId": "c8bcb428-99d2-40c9-b28c-772440c0076f",
+    "name": "Шатёр “Мастер-классы” на Ярмарке",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678406,
+      "lon": 35.089955
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxb6ogVSR5cBt",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m64XncW3X",
+    "_rev": "1-a7aa2b551202f7f1d7ebc9eb5ff5def2",
+    "name": "Детский шатёр",
+    "tags": [],
+    "description": "03.05.2023 20:58:16",
+    "figure": [
+      [
+        {
+          "lat": 54.682718,
+          "lon": 35.095423
+        },
+        {
+          "lat": 54.682678,
+          "lon": 35.095361
+        },
+        {
+          "lat": 54.682623,
+          "lon": 35.095373
+        },
+        {
+          "lat": 54.682587,
+          "lon": 35.095445
+        },
+        {
+          "lat": 54.68259,
+          "lon": 35.095536
+        },
+        {
+          "lat": 54.682634,
+          "lon": 35.095599
+        },
+        {
+          "lat": 54.68269,
+          "lon": 35.095595
+        },
+        {
+          "lat": 54.682721,
+          "lon": 35.095518
+        },
+        {
+          "lat": 54.682718,
+          "lon": 35.095423
+        }
+      ]
+    ],
+    "version": "LDbx_yUuB__JQig",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m9C3XexHR",
+    "_rev": "1-2095ce24e6db9509fd1408d08cec19a6",
+    "name": "Малый шатёр \"Мастер-классы\"",
+    "tags": [],
+    "description": "03.05.2023 20:51:53",
+    "figure": [
+      [
+        {
+          "lat": 54.677701,
+          "lon": 35.08908
+        },
+        {
+          "lat": 54.677672,
+          "lon": 35.089051
+        },
+        {
+          "lat": 54.677639,
+          "lon": 35.089066
+        },
+        {
+          "lat": 54.677622,
+          "lon": 35.089117
+        },
+        {
+          "lat": 54.67763,
+          "lon": 35.089178
+        },
+        {
+          "lat": 54.67766,
+          "lon": 35.089206
+        },
+        {
+          "lat": 54.677689,
+          "lon": 35.089192
+        },
+        {
+          "lat": 54.67771,
+          "lon": 35.089139
+        },
+        {
+          "lat": 54.677701,
+          "lon": 35.08908
+        }
+      ]
+    ],
+    "version": "LDbxaN@3cyYxPOP",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1m9i0I8u1p",
+    "_rev": "1-789f68707ea47e523c873e6067a27564",
+    "directionId": "Лекторий",
+    "notionId": "88f00b6e-df96-4214-9779-27e30cf8c473",
+    "name": "Фотовыставка “Лики Бессонницы”",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.677271,
+      "lon": 35.088051
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxaavFIlabKjP",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1mD4Bki19n",
+    "_rev": "1-6692b209bec7a684fd425a465b12611f",
+    "directionId": "Ярмарка",
+    "notionId": "dee1d08b-ac0b-41c3-b29c-345c938d716a",
+    "name": "Ярмарка",
+    "tags": [
+      "Место Встречи",
+      "Капшеринг"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678548,
+      "lon": 35.090146
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbD6S2PvzZnu",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1mF28fU5ce",
+    "_rev": "1-6142c7042d1ae23cc63a12fdda58d131",
+    "directionId": "Арт-объект",
+    "notionId": "5b2da2c5-8067-4df1-86f0-d06b8951b988",
+    "name": "Затмение.Умывальник",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.680402,
+      "lon": 35.094675
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxcJOKva1ZNhX",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1mRJLYXuJd",
+    "_rev": "1-934374c907f97688c743a9a90ceaecdd",
+    "directionId": "Ветви Дерева",
+    "notionId": "bd42bf9a-4810-4ca8-9a93-b5fc762a035e",
+    "name": "Junk Town (Игротека)",
+    "tags": [
+      "Капшеринг",
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.675926,
+      "lon": 35.095361
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxawLDFUU7TS7",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1ma3k6otCF",
+    "_rev": "1-9bdf3f8f460a5bc1df9d38fe13afc4f4",
+    "directionId": "Арт-объект",
+    "notionId": "e769552e-9e47-4913-a4f3-e33bfb1c3e4e",
+    "name": "Затмение.Послесущество",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.678335,
+      "lon": 35.086811
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbfxXg1uf7vS",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1mkXdGrgrT",
+    "_rev": "1-f853d97e38b11bc14354f6c565a0c5d0",
+    "directionId": "Спортплощадка",
+    "notionId": "a9f7cd30-283d-4b9a-8884-6b2e578f28dc",
+    "name": "Спортплощадка",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.680572,
+      "lon": 35.088421
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbKFJmZA@W4U",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1msn_NBe28",
+    "_rev": "1-3532ecab962e424bb9ba322cf6313c3a",
+    "directionId": "Арт-объект",
+    "notionId": "bffa261f-c92a-4175-9264-238f9aff7a05",
+    "name": "Затмение.Луна",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.679842,
+      "lon": 35.08713
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbRf_P@WOKc4",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1mvkTn6AiO",
+    "_rev": "1-e419ffb63d03d8143473eaaa7ae46d02",
+    "directionId": "Арт-объект",
+    "notionId": "cf958ef1-ee73-4b2a-aa14-59e2513e32ce",
+    "name": "Затмение.Живой ковёр",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.684062,
+      "lon": 35.095265
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbu_ZRf3o@x3",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1myqO8smo@",
+    "_rev": "1-03a188bd619615a8d5e4b13fa65e9c8d",
+    "directionId": "Арт-объект",
+    "notionId": "a216e6fa-1de6-4d3a-a261-03dde9a68566",
+    "name": "Затмение.Луч и домик",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.678314,
+      "lon": 35.092918
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxbnIwpoZNN78",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1n1wJjljkt",
+    "_rev": "1-3fe7b682f66a99184a68d778bc1dda77",
+    "directionId": "Мастер-Классы",
+    "notionId": "de095d1c-8444-4006-8b51-73b9e63402a4",
+    "name": "Накрывашка “Фьюжн”",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.680993,
+      "lon": 35.090287
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxe9U1qSEmT7b",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1n4EYJtpnw",
+    "_rev": "1-5f91849e183ffbe89e71f7d1fcef9d3e",
+    "directionId": "Мастер-Классы",
+    "notionId": "c4ee6e27-e02a-43dd-86ec-824be5d2f0ac",
+    "name": "Накрывашка “Ψ Психология и игры”",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.680832,
+      "lon": 35.090169
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxe1Wi8g0trgI",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1n@x4TxUUT",
+    "_rev": "1-da08540d85eca13f0d542b8168416c04",
+    "directionId": "Арт-объект",
+    "notionId": "7ffa5199-a943-4b20-8e18-4463c21b0b61",
+    "name": "Затмение.Жук в Муравейнике + Нора Старейшины",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.676839,
+      "lon": 35.09394
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxcQkHIFB87Nv",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nEqejEk93",
+    "_rev": "1-36b10c8600f2107c28b71007f64d3f7c",
+    "directionId": "Экран",
+    "notionId": "80b0c1e8-bde2-489a-8077-1bfad0ad0b81",
+    "name": "Экран “Детский” + ЦУЭ",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.682515,
+      "lon": 35.095207
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxeVDOJaEls9W",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1nJHv3Lzn9",
+    "_rev": "1-2ea7c4f82d3d8b32bc753ee568fe9264",
+    "directionId": "Арт-объект",
+    "notionId": "1867adb0-e285-4026-a71f-7dabd40c9d40",
+    "name": "Затмение.Одуванчик",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.679267,
+      "lon": 35.09236
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxcea8fAc22_3",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nMLuC3a0K",
+    "_rev": "1-6e3e90616fa55d1d545153d8a93c7fc1",
+    "name": "Кафе \"Кинобар\"",
+    "tags": [],
+    "description": "23.04.2023 18:43:47",
+    "figure": [
+      [
+        {
+          "lat": 54.683117,
+          "lon": 35.075016
+        },
+        {
+          "lat": 54.68286,
+          "lon": 35.074629
+        },
+        {
+          "lat": 54.682481,
+          "lon": 35.074688
+        },
+        {
+          "lat": 54.682292,
+          "lon": 35.075123
+        },
+        {
+          "lat": 54.682301,
+          "lon": 35.075702
+        },
+        {
+          "lat": 54.682562,
+          "lon": 35.07611
+        },
+        {
+          "lat": 54.682928,
+          "lon": 35.076046
+        },
+        {
+          "lat": 54.683139,
+          "lon": 35.075611
+        },
+        {
+          "lat": 54.683117,
+          "lon": 35.075016
+        }
+      ]
+    ],
+    "version": "LDbxdWb4iQQtjsD",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nQxRka9Mi",
+    "_rev": "1-c90f99b45d0aeef7fd1a4324355b6dc3",
+    "directionId": "Лекторий",
+    "notionId": "9ac81a05-d4fb-4f92-90d3-49e31ccad563",
+    "name": "Накрывашка “Территория тела”",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678152,
+      "lon": 35.083577
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxeFw9hrpBaEA",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1nRzE8eZj7",
+    "_rev": "1-808a0ab853afb1e50b911c1e76c38a08",
+    "directionId": "Экран",
+    "notionId": "b7d56f56-58e5-4a6c-9515-715b9788cf71",
+    "name": "Экран 1 +ЦУЭ (Полевой экран)",
+    "tags": [
+      "Место Встречи"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.68096,
+      "lon": 35.090014
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxdIFNncyfvXa",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1nUwP7vWYc",
+    "_rev": "1-8bd2352af703ecddabacaa0acc4501f9",
+    "directionId": "Ветви Дерева",
+    "notionId": "e0228dbb-a5d9-45bb-a601-0b18324af01b",
+    "name": "Арт-пространство “Витражи”",
+    "tags": [
+      "Место Встречи",
+      "Капшеринг",
+      "Музыка",
+      "Игра",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.680346,
+      "lon": 35.07749
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxct3lr_C6_5N",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1n_lJDy4L1",
+    "_rev": "1-bdf240a22bfc7b4816e359ada5f3b103",
+    "directionId": "Ветви Дерева",
+    "notionId": "47c13339-eecf-42a0-ba76-b66516f19865",
+    "name": "1L Лаборатория",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.675874,
+      "lon": 35.093649
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxdjmZ2cWsKXY",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nePoX6qr0",
+    "_rev": "1-e18d6dba058c54ef626a3ef8dc7351b6",
+    "directionId": "Экран",
+    "notionId": "2dcaa8bc-dd23-41eb-a9ae-02210c59c7ee",
+    "name": "Экран 2 + ЦУЭ (Речной экран)",
+    "tags": [
+      "Место Встречи"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.67802,
+      "lon": 35.083347
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxdPMVeDHvGZQ",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1nh_ZqWIM7",
+    "_rev": "1-35d2b0922afd920634f91c6674ddb512",
+    "name": "Леся",
+    "tags": [],
+    "description": "23.04.2023 20:11:50",
+    "figure": [
+      [
+        {
+          "lat": 54.678981,
+          "lon": 35.078961
+        },
+        {
+          "lat": 54.67865,
+          "lon": 35.079707
+        },
+        {
+          "lat": 54.678851,
+          "lon": 35.079809
+        },
+        {
+          "lat": 54.679034,
+          "lon": 35.079627
+        },
+        {
+          "lat": 54.679081,
+          "lon": 35.079246
+        },
+        {
+          "lat": 54.678981,
+          "lon": 35.078961
+        }
+      ]
+    ],
+    "version": "LDbxdcoRa2Ql4gp",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nnnniLqlJ",
+    "_rev": "1-1e75c25133a31758a86bea3d58d8c6fc",
+    "directionId": "Мастер-Классы",
+    "notionId": "889b42eb-38e5-4939-b229-c5670550532b",
+    "name": "Накрывашка “Психологическая беседка”",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678207,
+      "lon": 35.083271
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxeN8c5J90xx6",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1npk77TTLD",
+    "_rev": "1-587bb1ea6781f94961f31e1f96556807",
+    "directionId": "Арт-объект",
+    "notionId": "614fb94a-b9fd-41bc-9e9d-891315a0f7b6",
+    "name": "Затмение.Перерождение",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.676978,
+      "lon": 35.096392
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxcYLQt9LsYyc",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1npyWNgX7l",
+    "_rev": "1-1cf9a0f9fbdc9daf29716dc76df2bd1c",
+    "directionId": "Ветви Дерева",
+    "notionId": "ce4d98f9-db7c-4b5e-8b66-279f9c65ddd1",
+    "name": "Диафильминариум",
+    "tags": [
+      "Капшеринг",
+      "Игра",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.682604,
+      "lon": 35.094054
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxdB7_lKQtnsG",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nqTGojtOb",
+    "_rev": "1-aa39f19e30cb167b2f5a1e77a17c2fc5",
+    "directionId": "Музыкальная Сцена",
+    "notionId": "b765feeb-32f5-4874-a8d6-95ba0e3aad40",
+    "name": "Музыкальная сцена (сцена+пультовая+бэкстэйдж)",
+    "tags": [
+      "Место Встречи",
+      "Музыка"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.676363,
+      "lon": 35.090581
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxclnPDBgHsSc",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1nwItVfYa1",
+    "_rev": "1-189bf6d22740d35b293fe2697186a625",
+    "directionId": "Ветви Дерева",
+    "notionId": "ed4ed9a3-a1ca-4be2-90a5-7c9dce0a964f",
+    "name": "Шамбала №3",
+    "tags": [
+      "Капшеринг",
+      "Музыка",
+      "Игра",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678817,
+      "lon": 35.079342
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxd4sczBg6C8p",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1nx4DKeWxu",
+    "_rev": "1-d8454e41d8ea57bf1bdac1ad6cac01b1",
+    "name": "Лаборатория",
+    "tags": [],
+    "description": "23.04.2023 20:24:39",
+    "figure": [
+      [
+        {
+          "lat": 54.676225,
+          "lon": 35.093428
+        },
+        {
+          "lat": 54.675868,
+          "lon": 35.093329
+        },
+        {
+          "lat": 54.675787,
+          "lon": 35.093932
+        },
+        {
+          "lat": 54.676142,
+          "lon": 35.094053
+        },
+        {
+          "lat": 54.676225,
+          "lon": 35.093428
+        }
+      ]
+    ],
+    "version": "LDbxdqrLlnCRekB",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1oJWSzVT4E",
+    "_rev": "1-30ec85a2907b870dbc449545177000d9",
+    "directionId": "КАФЕ",
+    "notionId": "8f414bc3-35d6-4ae4-ad3f-bba860cf3460",
+    "name": "Кафе “Ништя4ная”",
+    "tags": [
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678545,
+      "lon": 35.081102
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxg8jIkErzLbv",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1oMrKBe6fu",
+    "_rev": "1-649e8c9e549b74f046b6139ee94b55ee",
+    "directionId": "Детская Поляна",
+    "notionId": "081a10e3-30ba-4f82-b7a6-537c0fb2ff8f",
+    "name": "Детское кафе “Глаз да глаз”",
+    "tags": [
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.683329,
+      "lon": 35.095005
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxg1V0@kfnF9C",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1oND2y@aeD",
+    "_rev": "1-6ef574866ee8c4d3fd522e696cce8786",
+    "directionId": "Ветви Дерева",
+    "notionId": "0f7840f3-84fb-4abf-9c6f-7911c1f60f40",
+    "name": "Кинобар",
+    "tags": [
+      "Место Встречи",
+      "Капшеринг",
+      "Музыка",
+      "Игра",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.68271,
+      "lon": 35.075364
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxf@oHHaOyH2x",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1oQJYrDYqR",
+    "_rev": "1-8750749cc28b3c545a225f79cce75b0e",
+    "directionId": "Лекторий",
+    "notionId": "ebb1ed67-d525-45f3-b908-b075a1ea21df",
+    "name": "Шатер анимации",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.677386,
+      "lon": 35.088125
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxebSd19HkWph",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "к расписанию"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1oV7kzggAO",
+    "_rev": "1-27a908163c8e4001be05b67076074430",
+    "directionId": "Арт-объект",
+    "notionId": "4b53ff68-11bc-4f59-8f0f-83e46ca4cf75",
+    "name": "Затмение.Портальный гонг",
+    "tags": [],
+    "description": "",
+    "figure": {
+      "lat": 54.679042,
+      "lon": 35.094246
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxf0KHrcWPc1a",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1oVxTcMb@4",
+    "_rev": "1-d2d0dd5a97be4db8fc684f3f6b8a4e77",
+    "directionId": "Фудкорт",
+    "notionId": "cf7ae04e-4c89-46f8-835c-980b5af604ea",
+    "name": "Фудкорт",
+    "tags": [
+      "Место Встречи",
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.679102,
+      "lon": 35.089722
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxgLtPxlldUvn",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1ocLAMi9Z5",
+    "_rev": "1-1bc4258196113f9f444639b1f12d49aa",
+    "directionId": "КАФЕ",
+    "notionId": "bc91fd60-4aec-43b9-aa04-f063a2ce02d4",
+    "name": "Кафе “Улей”",
+    "tags": [
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.680152,
+      "lon": 35.079585
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxgTFKR7zZ7f7",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1odDo5uW7L",
+    "_rev": "1-c8dec3fefb39b2b06ab3854d0d4f24ce",
+    "name": "Лагеря гостей Северо-Восток",
+    "tags": [],
+    "description": "04.05.2023 3:15:36",
+    "figure": [
+      [
+        {
+          "lat": 54.6837698,
+          "lon": 35.0942804
+        },
+        {
+          "lat": 54.6843528,
+          "lon": 35.0952995
+        },
+        {
+          "lat": 54.6845378,
+          "lon": 35.0958975
+        },
+        {
+          "lat": 54.6862498,
+          "lon": 35.0957045
+        },
+        {
+          "lat": 54.6854068,
+          "lon": 35.0900826
+        },
+        {
+          "lat": 54.6830748,
+          "lon": 35.0895676
+        },
+        {
+          "lat": 54.6814738,
+          "lon": 35.0893526
+        },
+        {
+          "lat": 54.6819328,
+          "lon": 35.0929575
+        },
+        {
+          "lat": 54.6823298,
+          "lon": 35.0934295
+        },
+        {
+          "lat": 54.6831488,
+          "lon": 35.0940734
+        },
+        {
+          "lat": 54.6837698,
+          "lon": 35.0942804
+        }
+      ]
+    ],
+    "version": "LDbxgmojRePqczZ",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1ofAH3zHr_",
+    "_rev": "1-83342f76f7fde199a6f220156e49c813",
+    "directionId": "Ветви Дерева",
+    "notionId": "fadb761a-5e0c-4b5e-a104-7647550d9b6d",
+    "name": "Арт-объект “Диалог”",
+    "tags": [
+      "Игра"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.681964,
+      "lon": 35.092686
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxeir0EbGVoIN",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1olhA9u9Vs",
+    "_rev": "1-02aaf22ad25d7612280f2303b3922058",
+    "directionId": "КАФЕ",
+    "notionId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "name": "Арт-Кафе “Эль-Стэйко”",
+    "tags": [
+      "Место Встречи",
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.677099,
+      "lon": 35.086428
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxfVwKnN7RJu1",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1onOAxfL4L",
+    "_rev": "1-87393bf3f40edff6a464c6e767ff8449",
+    "name": "Кафе \"Эль-стэйко\"",
+    "tags": [],
+    "description": "24.04.2023 15:08:32",
+    "figure": [
+      [
+        {
+          "lat": 54.677238,
+          "lon": 35.086305
+        },
+        {
+          "lat": 54.677086,
+          "lon": 35.08617
+        },
+        {
+          "lat": 54.676959,
+          "lon": 35.086562
+        },
+        {
+          "lat": 54.67712,
+          "lon": 35.086696
+        },
+        {
+          "lat": 54.677238,
+          "lon": 35.086305
+        }
+      ]
+    ],
+    "version": "LDbxfcFgGht6vRu",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1orU2mdEle",
+    "_rev": "1-00e2f78c8da42d89b52ce1e3b427c2d4",
+    "name": "Кафе \"Лапка\"",
+    "tags": [],
+    "description": "23.04.2023 20:37:19",
+    "figure": [
+      [
+        {
+          "lat": 54.67633,
+          "lon": 35.092036
+        },
+        {
+          "lat": 54.676147,
+          "lon": 35.091972
+        },
+        {
+          "lat": 54.6761,
+          "lon": 35.092288
+        },
+        {
+          "lat": 54.676287,
+          "lon": 35.092347
+        },
+        {
+          "lat": 54.67633,
+          "lon": 35.092036
+        }
+      ]
+    ],
+    "version": "LDbxfOzPzQxIM6T",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1ovqty7yJU",
+    "_rev": "1-351732936bb7035977f369222224d57b",
+    "directionId": "КАФЕ",
+    "notionId": "e21789c3-0a47-4d1c-bf15-98a52a24e488",
+    "name": "Кафе “Лапки”",
+    "tags": [
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.676122,
+      "lon": 35.092132
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxfI2W6UC36Yd",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1ow8RGd6Iy",
+    "_rev": "1-13ec3064d888890aa222813701415b33",
+    "name": "Северный Город",
+    "tags": [],
+    "description": "04.05.2023 3:14:13",
+    "figure": [
+      [
+        {
+          "lat": 54.6814796,
+          "lon": 35.0838415
+        },
+        {
+          "lat": 54.6851886,
+          "lon": 35.0857085
+        },
+        {
+          "lat": 54.6860946,
+          "lon": 35.0813955
+        },
+        {
+          "lat": 54.6848786,
+          "lon": 35.0806655
+        },
+        {
+          "lat": 54.6829316,
+          "lon": 35.0795286
+        },
+        {
+          "lat": 54.6823356,
+          "lon": 35.0815885
+        },
+        {
+          "lat": 54.6814796,
+          "lon": 35.0838415
+        }
+      ]
+    ],
+    "version": "LDbxg_NWJnzSeAR",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1oxPbwP@jF",
+    "_rev": "1-c44ce6de0512e89a3b773930b34148fc",
+    "directionId": "Ветви Дерева",
+    "notionId": "f7f3b13c-b108-445a-96c4-429633a678ad",
+    "name": "Карусель Заря",
+    "tags": [
+      "Место Встречи",
+      "Музыка",
+      "Игра",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.678738,
+      "lon": 35.096204
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxepvzgDwh53Q",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1ozjb3tnUg",
+    "_rev": "1-c6fd35736430256a4a256304de9c57a3",
+    "directionId": "КАФЕ",
+    "notionId": "224c2a39-49ef-465d-b02c-0f85bc23587b",
+    "name": "Кафе “Избушка”",
+    "tags": [
+      "Капшеринг",
+      "Кафе"
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.681585,
+      "lon": 35.090511
+    },
+    "menu": "",
+    "work_tags": [],
+    "version": "LDbxgF2xX2YRlul",
+    "contentBlocks": [
+      {
+        "blockType": "link",
+        "content": "",
+        "title": "посмотреть меню"
+      }
+    ]
+  },
+  {
+    "_id": "LDbxX1pDHP2tKd2",
+    "_rev": "1-70470403cedb04168b9b3fd3868d79c9",
+    "name": "Лесной лагерь “Байка”",
+    "tags": [],
+    "description": "04.05.2023 0:45:51",
+    "figure": [
+      [
+        {
+          "lat": 54.681077,
+          "lon": 35.088051
+        },
+        {
+          "lat": 54.681202,
+          "lon": 35.087467
+        },
+        {
+          "lat": 54.681167,
+          "lon": 35.086501
+        },
+        {
+          "lat": 54.68108,
+          "lon": 35.085648
+        },
+        {
+          "lat": 54.681087,
+          "lon": 35.08523
+        },
+        {
+          "lat": 54.681167,
+          "lon": 35.084656
+        },
+        {
+          "lat": 54.68095,
+          "lon": 35.084581
+        },
+        {
+          "lat": 54.680792,
+          "lon": 35.085407
+        },
+        {
+          "lat": 54.680373,
+          "lon": 35.087462
+        },
+        {
+          "lat": 54.680875,
+          "lon": 35.088013
+        },
+        {
+          "lat": 54.681077,
+          "lon": 35.088051
+        }
+      ]
+    ],
+    "version": "LDbxhXEN1EtytLg",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1pQTPTRl_0",
+    "_rev": "1-4e698e18cccb55edf990ecca34b73e3c",
+    "name": "Парковка",
+    "tags": [],
+    "description": "24.04.2023 22:03:31",
+    "figure": [
+      [
+        {
+          "lat": 54.68028,
+          "lon": 35.087425
+        },
+        {
+          "lat": 54.681223,
+          "lon": 35.082876
+        },
+        {
+          "lat": 54.68059,
+          "lon": 35.081578
+        },
+        {
+          "lat": 54.679519,
+          "lon": 35.086225
+        },
+        {
+          "lat": 54.68028,
+          "lon": 35.087425
+        }
+      ]
+    ],
+    "version": "LDbxguPTDT6VBEy",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1pW@YrJ3KU",
+    "_rev": "1-9c00bb844893b8e0633552182e830003",
+    "name": "Юрты",
+    "tags": [],
+    "description": "03.05.2023 23:55:54",
+    "figure": [
+      [
+        {
+          "lat": 54.67936,
+          "lon": 35.078331
+        },
+        {
+          "lat": 54.679028,
+          "lon": 35.078744
+        },
+        {
+          "lat": 54.679152,
+          "lon": 35.078894
+        },
+        {
+          "lat": 54.679417,
+          "lon": 35.078465
+        },
+        {
+          "lat": 54.67936,
+          "lon": 35.078331
+        }
+      ]
+    ],
+    "version": "LDbxhJ@4tNIoSr1",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1pZCrsBJQc",
+    "_rev": "1-c60a6d81a52ab86093b7708ad4bf0f01",
+    "name": "Лвгерь у Детской Поляны",
+    "tags": [],
+    "description": "03.06.2023 12:17:57",
+    "figure": [
+      [
+        {
+          "lat": 54.684055,
+          "lon": 35.09399
+        },
+        {
+          "lat": 54.683856,
+          "lon": 35.094966
+        },
+        {
+          "lat": 54.684445,
+          "lon": 35.095556
+        },
+        {
+          "lat": 54.684681,
+          "lon": 35.095674
+        },
+        {
+          "lat": 54.685022,
+          "lon": 35.095589
+        },
+        {
+          "lat": 54.685326,
+          "lon": 35.09532
+        },
+        {
+          "lat": 54.684768,
+          "lon": 35.094269
+        },
+        {
+          "lat": 54.684055,
+          "lon": 35.09399
+        }
+      ]
+    ],
+    "version": "LDbxhkqyR1xahxD",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1pgKW@Yfi4",
+    "_rev": "1-71e77773b3d44c7b6b53c9c2c9b5f734",
+    "name": "Палаточный отель \"Караван\"",
+    "tags": [],
+    "description": "05.05.2023 13:51:24",
+    "figure": [
+      [
+        {
+          "lat": 54.688573,
+          "lon": 35.093494
+        },
+        {
+          "lat": 54.686891,
+          "lon": 35.094573
+        },
+        {
+          "lat": 54.68704,
+          "lon": 35.095313
+        },
+        {
+          "lat": 54.688745,
+          "lon": 35.094283
+        },
+        {
+          "lat": 54.688573,
+          "lon": 35.093494
+        }
+      ]
+    ],
+    "version": "LDbxhdVKAktSR6@",
+    "contentBlocks": []
+  },
+  {
+    "_id": "LDbxX1pnmClQpT_",
+    "_rev": "1-69d04f98ddc3b3631298ccc2fe3882cc",
+    "name": "Автокемпинг",
+    "tags": [],
+    "description": "04.05.2023 0:42:51",
+    "figure": [
+      [
+        {
+          "lat": 54.681831,
+          "lon": 35.084066
+        },
+        {
+          "lat": 54.681419,
+          "lon": 35.083889
+        },
+        {
+          "lat": 54.681189,
+          "lon": 35.084805
+        },
+        {
+          "lat": 54.681136,
+          "lon": 35.085283
+        },
+        {
+          "lat": 54.68113,
+          "lon": 35.085712
+        },
+        {
+          "lat": 54.681189,
+          "lon": 35.086146
+        },
+        {
+          "lat": 54.681205,
+          "lon": 35.08656
+        },
+        {
+          "lat": 54.681222,
+          "lon": 35.086948
+        },
+        {
+          "lat": 54.681229,
+          "lon": 35.087355
+        },
+        {
+          "lat": 54.681206,
+          "lon": 35.087719
+        },
+        {
+          "lat": 54.681695,
+          "lon": 35.087756
+        },
+        {
+          "lat": 54.681733,
+          "lon": 35.087271
+        },
+        {
+          "lat": 54.681693,
+          "lon": 35.086225
+        },
+        {
+          "lat": 54.681631,
+          "lon": 35.085723
+        },
+        {
+          "lat": 54.681653,
+          "lon": 35.085077
+        },
+        {
+          "lat": 54.681831,
+          "lon": 35.084066
+        }
+      ]
+    ],
+    "version": "LDbxhQFYZxmv7z8",
+    "contentBlocks": []
+  }
+]

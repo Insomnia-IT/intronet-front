@@ -103,7 +103,14 @@ export class MapComponent extends Component {
         .Apply(this.Transform.Inverse())
         .Apply(e)
         .Apply(this.Transform);
-      locationsStore.moveSelectedLocation(transform.Inverse());
+      const selected = locationsStore.MapItems.find(x => x.id === locationsStore.selected._id);
+      const center = this.getCenter(selected.figure);
+      const newCenter = transform.Inverse().Invoke(center);
+      const shift = {
+        X: newCenter.X - center.X,
+        Y: newCenter.Y - center.Y
+      };
+      locationsStore.moveSelectedLocation(TransformMatrix.Translate(shift));
     }
   }
   setHandler = (element: HTMLDivElement) => {
@@ -185,6 +192,8 @@ export class MapComponent extends Component {
     return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
   }
   scrollTo(id: string) {
+    if (!this.root)
+      return;
     const x = locationsStore.MapItems.find((x) => x.id === id);
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(this.getCenter(x.figure));

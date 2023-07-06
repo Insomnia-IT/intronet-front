@@ -26,6 +26,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
   const isEdit = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
   if (!location) return <></>;
+  console.log(location?.contentBlocks);
   if (isMoving) return <div flex column gap="2">
     <div className={ [ "sh1", Styles.locationHeader ].join(" ") }>
       { location.name }
@@ -61,6 +62,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           day: getCurrentDay(),
           screen: id
         }}>к расписанию</Link>}
+        <div className="text colorMediumBlue"> { location.description }</div>
         <LocationContent location={ {
           ...location,
           description: location.description
@@ -100,13 +102,23 @@ export const Location: FunctionalComponent<LocationProps> = ({
 
 
 const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({location}) => {
+
+  const blocks = location.contentBlocks;
+  return <>
+    {blocks?.map(b => <>
+      {b.blockType === "link" && <Link goTo={b.link as any}>{b.title}</Link>}
+      {b.blockType === "text" && <div class="text colorMediumBlue">
+        {b.content}
+      </div>}
+    </>)}
+  </>;
+
   const detailGroup = directionsToDetailsGroup.get(location.directionId);
 
   switch (detailGroup) {
     case "cafe":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "map", ] }>Посмотреть меню</Link>
         </>
@@ -114,7 +126,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "shop":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "map", ] }>Перейти к списку палаток</Link>
         </>
@@ -122,7 +133,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "screen":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "timetable", ] }>К расписанию</Link>
         </>
@@ -131,7 +141,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "activity":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "activities", ] }>К расписанию</Link>
         </>
@@ -139,7 +148,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "tent":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "map", ] }>Правила кемпинга</Link>
 
@@ -149,7 +157,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "info":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "main", ] }>К разделам</Link>
         </>
@@ -157,7 +164,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "point":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "map", ] }>Я потерял ребёнка</Link>
           <Link goTo={ [ "map", ] }>Я потерял взрослого</Link>
@@ -168,7 +174,6 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "med":
       return (
         <>
-          <div className="text colorMediumBlue"> { location.description }</div>
 
           <Link goTo={ [ "map", ] }>Я поранился</Link>
           <Link goTo={ [ "map", ] }>Как помочь раненому</Link>
@@ -180,7 +185,7 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
     case "other":
     default:
       return (
-        <div className="text colorMediumBlue"> { location.description }</div>
+        <></>
       );
   }
 }
