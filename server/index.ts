@@ -1,12 +1,14 @@
 import * as console from "console";
-import {checkWriteAccess} from "./auth";
-import {authCtrl, UserInfo} from "./auth.ctrl";
+import { checkWriteAccess } from "./auth";
+import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
-import {importActivities, importMainPage} from "./data/import";
-import {importLocations} from "./data/importLocations";
-import {importMovies} from "./data/importMovies";
+import { importMainPage } from "./data/import";
+import { importLocations } from "./data/importLocations";
+import { importMovies } from "./data/importMovies";
+import { importActivities } from "./data/importActivities";
 import { dbCtrl } from "./db-ctrl";
-import {logCtrl} from "./log.ctrl";
+import { logCtrl } from "./log.ctrl";
+
 const fastify = Fastify({
   logger: false
 });
@@ -21,7 +23,7 @@ fastify.get("/auth", async function (request, reply) {
 });
 fastify.post("/auth/token", async function (request, reply) {
   const user = await authCtrl.parse(request.headers.authorization);
-  if (user.role !== "superadmin"){
+  if (user.role !== "superadmin") {
     reply.status(401);
     return `Only superadmin can create tokens`;
   }
@@ -70,7 +72,7 @@ fastify.post("/batch", async function (request, reply) {
     await dbCtrl.addOrUpdate(item.db, item.value);
   }
 });
-fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
+fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
     const user = await authCtrl.parse(request.headers.authorization);
@@ -78,18 +80,22 @@ fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
       reply.status(401);
       return `User have not enough permissions to modify db`;
     }
-    switch (request.params.name){
-      case "locations": return importLocations(request.query.force);
-      case "movies": return importMovies(request.query.force);
-      case "activities": return importActivities(request.query.force);
-      case "main": return importMainPage(request.query.force);
+    switch (request.params.name) {
+      case "locations":
+        return importLocations(request.query.force);
+      case "movies":
+        return importMovies(request.query.force);
+      case "activities":
+        return importActivities(request.query.force);
+      case "main":
+        return importMainPage(request.query.force);
     }
   }
 );
 
 // Run the server!
 fastify.listen(
-  { port: +(process.env.PORT ?? 5002), host: process.env.HOST },
+  {port: +(process.env.PORT ?? 5002), host: process.env.HOST},
   function (err, address) {
     if (err) {
       fastify.log.error(err);
@@ -101,7 +107,7 @@ fastify.listen(
 
 let user: UserInfo;
 fastify.addHook('onRequest', async (request, reply) => {
-  if (request.headers.authorization){
+  if (request.headers.authorization) {
     user = await authCtrl.parse(request.headers.authorization);
   }
 })
