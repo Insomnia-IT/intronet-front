@@ -40,12 +40,12 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async remove(key: string) {
-    await this.db.remove(key);
-    this.items.delete(key);
-    this.emit("change", {
-      type: "delete",
-      key,
-    });
+    const existed = this.get(key);
+    if (!existed) return;
+    return this.addOrUpdate({
+      ...existed,
+      deleted: true
+    })
   }
 
   async clear() {
@@ -87,7 +87,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   toArray(): T[] {
-    return Array.from(this.items.values());
+    return Array.from(this.items.values()).filter(x => !x['deleted']);
   }
 
   entries() {
