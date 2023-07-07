@@ -1,12 +1,11 @@
-import {Button} from "@components";
-import {RequireAuth} from "@components/RequireAuth";
 import { FunctionalComponent } from "preact";
+import { Button } from "@components";
+import { RequireAuth } from "@components/RequireAuth";
 import { useCell } from "@helpers/cell-state";
-import { ActivityBlock } from "../card/activity-block";
 import { coerceHour, isInTimePeriod } from "@helpers/getDayText";
-import { useCallback, useState } from "preact/hooks";
-import { GestureCell } from "@helpers/Gestures";
+import { useGestureCell } from "@helpers/Gestures";
 import { IActivityQueries, useActivitiesRouter } from "../hooks/useActivitiesRouter";
+import { ActivityGesturedCard } from "../card/activity-gestured-card";
 
 export type ActivityListProps = {
   filters?: Partial<IActivityQueries>;
@@ -25,19 +24,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
                                                                      }) => {
   const {filter, day, time, place} = useActivitiesRouter();
 
-  const [ gestureCell, setGestureCell ] = useState<GestureCell | undefined>(
-    undefined
-  );
-  const setRef = useCallback((div: HTMLDivElement | undefined) => {
-    if (div) {
-      const gestureCell = new GestureCell(div);
-      setGestureCell(gestureCell);
-      /*}*/
-    } else {
-      setGestureCell(undefined);
-    }
-  }, []);
-  const gesture = useCell(gestureCell);
+  const {setRef, gesture} = useGestureCell();
 
   const cards = useCell(() => {
     const numberTime = Number(time);
@@ -55,7 +42,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
   const filteredCards = cards
     .filter((activity) => filters?.day !== undefined
       ? filterByDay(activity, filters.day.toString())
-      : (day !== undefined ? filterByDay(activity, day.toString())  : true))
+      : (day !== undefined ? filterByDay(activity, day.toString()) : true))
     .map((activity) => ({
       ...activity,
       start: new Date(activity.start)
@@ -66,16 +53,18 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
     <div flex column ref={ setRef }>
       {
         filteredCards.map((x) => (<>
-          <ActivityBlock
+          <ActivityGesturedCard
             id={ x._id }
             key={ x._id }
             gesture={ gesture }
-            searchQuery={ searchQuery }
-          />
+            searchQuery={ searchQuery }>
+          </ActivityGesturedCard>
+
           <RequireAuth>
-            <Button class="w-full" style={{marginBottom: 24}} goTo={["activities", "edit", x._id]} type="frame">изменить время</Button>
+            <Button class="w-full" style={ {marginBottom: 24, marginTop: 12} } goTo={ [ "activities", "edit", x._id ] } type="frame">изменить
+              время</Button>
           </RequireAuth>
-      </>))}
+        </>)) }
     </div>
   );
 };

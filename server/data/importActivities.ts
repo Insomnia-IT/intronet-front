@@ -3,7 +3,6 @@ import { Fn } from "@cmmn/cell/lib";
 import fetch from "node-fetch";
 import { Database } from "../database";
 import json from "./activity-v3.json" assert {"type": "json"};
-import * as console from "console";
 
 const importFromNotion = true;
 export async function importActivities(force = false) {
@@ -48,8 +47,6 @@ export async function importActivities(force = false) {
     for (let notion of notionSchedule) {
       const location = locations.find(x => x.name === notion.location);
 
-      console.log(location);
-
       if (!location){
         console.error(`Not found: ${notion.location}`)
         continue;
@@ -64,7 +61,8 @@ export async function importActivities(force = false) {
               start: activity.start_time,
               end: activity.end_time,
               author: activity.author,
-              description: activity.description,
+              authorDescription: activity.description,
+              description: activity.short_description,
               title: activity.name,
               locationId: location._id
             })

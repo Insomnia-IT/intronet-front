@@ -39,6 +39,7 @@ export class TileConverter {
   public fromGeo(geo: Geo[][]): Array<Array<Point>>;
   public fromGeo(geo: Geo): Point;
   public fromGeo(geo: GeoFigure): Figure {
+    if(!geo) return
     if (Array.isArray(geo)) {
       return geo.map((arr) => arr.map((x) => this.fromGeo(x)));
     }

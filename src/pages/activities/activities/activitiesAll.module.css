@@ -1,0 +1,16 @@
+.locationCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 16px 16px 18px;
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.title {
+  word-break: break-word;
+}
