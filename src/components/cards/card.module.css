@@ -39,6 +39,10 @@
   composes: border;
   border-color: var(--medium-blue);
 }
+.borderYellow {
+  composes: border;
+  border-color: var(--bonfire-light);
+}
 .borderVivid {
   composes: borderVivid from "../buttons/button.module.css";
 }

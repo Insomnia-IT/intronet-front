@@ -18,7 +18,7 @@ export function About() {
   const Component = sections[section]?.component;
   console.log(sections, section, Component)
   return <div class="page" flex gap="4">
-    <div class="sh1">о Портале Insight</div>
+    <h1>о Портале Insight</h1>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag

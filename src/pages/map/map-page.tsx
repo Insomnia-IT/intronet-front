@@ -17,15 +17,11 @@ export function MapPageWithRouting() {
 
   const isEditing = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
-  const sheets = useMemo(
-    () =>
-      getMapSheets(
-        router.locationId,
-        () => router.goTo(["map"]),
-        () => locationsStore.setSelectedId(null)
-      ),
-    [router.locationId]
-  );
+  const sheets = getMapSheets(
+      router.locationId,
+      () => router.goTo(["map"]),
+      () => locationsStore.setSelectedId(null)
+    );
 
   return (
     <div className={styles.container}>
@@ -90,6 +86,15 @@ const getMapSheets = (
   onSearchClose: () => void,
   onPageClose: () => void
 ) => {
+  const selected = useCell(() => locationsStore.selected);
+  console.log(selected);
+  if (selected.length === 1)
+    return (
+      <>
+        <Location id={selected[0]._id} />
+        <CloseButton onClick={onPageClose} />
+      </>
+    );
   switch (locationId) {
     case "add":
       return (
@@ -114,12 +119,5 @@ const getMapSheets = (
       );
     case undefined:
       return null;
-    default:
-      return (
-        <>
-          <Location id={locationId} />
-          <CloseButton onClick={onPageClose} />
-        </>
-      );
   }
 };

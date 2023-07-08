@@ -10,7 +10,6 @@ export function MapElements(props: {
   transformCell: Cell<TransformMatrix>;
 }) {
   const items = useCell(() => locationsStore.MapItems);
-  console.log(items)
   const children = useMemo(
     () =>
       items

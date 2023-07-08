@@ -7,7 +7,7 @@ import classNames from "classnames";
 export type ActivityCardProps = {
   children: ComponentChildren;
   borderType?: "LeftCloud";
-  border?: "Blue" | "Vivid" | "InactiveGrey" | "None";
+  border?: "Blue" | "Vivid" | "InactiveGrey" | "None" | "Yellow";
   background?: "Purple" | "None" | "White" | "ColdWhite" | "Soft" | "Vivid";
   className?: string;
 } & JSXInternal.HTMLAttributes<HTMLDivElement>;
