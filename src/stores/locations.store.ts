@@ -18,12 +18,21 @@ class LocationsStore {
   @cell public newLocation: InsomniaLocation;
 
   @cell
-  public get selected(): InsomniaLocation {
+  public get selected(): InsomniaLocation[] {
     const router = routerCell.get();
-    const location = this.findByName(decodeURIComponent(router.query.name)) ?? this.Locations.find((x) => x._id === router.route[1]);
-    return location;
+    if (router.query.direction)
+      return this.findByDirection(decodeURIComponent(router.query.direction));
+    if (router.query.name)
+      return [this.findByName(decodeURIComponent(router.query.name))].filter(x => x);
+    return [this.Locations.find((x) => x._id === router.route[1])].filter(x => x);
   }
 
+  findByName(s: string) {
+    return this.Locations.find(x => x.name?.toLowerCase().includes(s));
+  }
+  findByDirection(s: string) {
+    return this.Locations.filter(x => x.directionId?.toLowerCase().includes(s));
+  }
   public setSelectedId(id: string | null) {
     goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
   }
@@ -70,7 +79,7 @@ class LocationsStore {
   }
 
   async deleteLocation(location: InsomniaLocation | InsomniaLocation) {
-    if (this.selected._id === location._id) this.setSelectedId(null)
+    if (this.selected.some(x => x._id === location._id)) this.setSelectedId(null)
     await this.Loading;
     await this.db.remove(location._id);
   }
@@ -85,7 +94,8 @@ class LocationsStore {
   @cell private locationPatches = new ObservableList<[id: string, figure: Figure]>();
 
   public moveSelectedLocation(transform: TransformMatrix) {
-    const selected = this.MapItems.find((x) => x.id === this.selected._id);
+    if (this.selected.length !== 1) return;
+    const selected = this.MapItems.find((x) => x.id === this.selected[0]._id);
     const moved = Array.isArray(selected.figure)
       ? selected.figure.map((line) => line.map(transform.Invoke))
       : transform.Invoke(selected.figure);
@@ -103,9 +113,6 @@ class LocationsStore {
     this.isMoving = false;
   }
 
-  findByName(s: string) {
-    return this.Locations.find(x => x.name === s);
-  }
 
   discardChanges() {
     this.locationPatches.clear();

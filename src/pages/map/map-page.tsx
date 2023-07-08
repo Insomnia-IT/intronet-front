@@ -7,7 +7,6 @@ import {LocationAdd} from "./location/location-add";
 import {LocationEdit} from "./location/location-edit";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
-import { RoutePath } from "../routing";
 import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
@@ -15,7 +14,6 @@ import { Location } from "./location/location";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
-  const selected = useCell(() => locationsStore.selected);
 
   const isEditing = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);

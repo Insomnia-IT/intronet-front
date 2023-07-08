@@ -98,12 +98,12 @@ export class MapComponent extends Component {
   onTransform = (e: TransformMatrix) => {
     const newTransform = e.Apply(this.Transform) as TransformMatrix;
     this.setTransform(newTransform);
-    if (locationsStore.isMoving && locationsStore.selected) {
+    if (locationsStore.isMoving && locationsStore.selected.length == 1) {
       const transform = new TransformMatrix()
         .Apply(this.Transform.Inverse())
         .Apply(e)
         .Apply(this.Transform);
-      const selected = locationsStore.MapItems.find(x => x.id === locationsStore.selected._id);
+      const selected = locationsStore.MapItems.find(x => x.id === locationsStore.selected[0]._id);
       const center = this.getCenter(selected.figure);
       const newCenter = transform.Inverse().Invoke(center);
       const shift = {
@@ -170,11 +170,11 @@ export class MapComponent extends Component {
   //endregion
 
   componentDidMount() {
-    if (locationsStore.selected) {
-      this.scrollTo(locationsStore.selected._id);
+    if (locationsStore.selected.length) {
+      this.scrollTo(locationsStore.selected.map(x => x._id));
     }
     return Cell.OnChange(() => locationsStore.selected, e => {
-      e.value && this.scrollTo(e.value._id)
+      e.value && this.scrollTo(e.value.map(x => x._id))
     })
   }
 
@@ -191,12 +191,13 @@ export class MapComponent extends Component {
     });
     return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
   }
-  scrollTo(id: string) {
+  scrollTo(ids: string[]) {
     if (!this.root)
       return;
-    const x = locationsStore.MapItems.find((x) => x.id === id);
+    const centers = locationsStore.MapItems.filter((x) => ids.includes(x.id))
+      .map(x => this.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(this.getCenter(x.figure));
+    const view = this.Transform.Invoke(this.getCenter([centers]));
     // if (
     //   view.X > rect.left + rect.width / 100 &&
     //   view.X < rect.right - rect.width / 100 &&

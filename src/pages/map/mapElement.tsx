@@ -35,7 +35,7 @@ export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
   item: MapItem;
 }) {
-  const isSelected = useCell(() =>locationsStore.selected?._id == props.item.id);
+  const isSelected = useCell(() => locationsStore.selected.some(x => x._id == props.item.id));
   const type = directionsToOrder.get(props.item.directionId);
   const scale = useCell(
     () => props.transformCell.get().Matrix.GetScaleFactor(),

@@ -72,6 +72,7 @@ export type RoutePath =
   | [keyof typeof routes, ...Array<string | number>, Record<string, string>];
 export type RoutePathString =
   | `/${keyof typeof routes}/${string}`
+  | `/${keyof typeof routes}?${string}`
   | `/${keyof typeof routes}`;
 const routeCell = new Cell<RoutePath>(
   location.pathname.split("/").slice(1) as RoutePath,
