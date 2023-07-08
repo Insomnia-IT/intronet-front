@@ -8,6 +8,8 @@ import { importMovies } from "./data/importMovies";
 import { importActivities } from "./data/importActivities";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
+import {Database} from "./database";
+import {getResults, vote} from "./vote.ctrl";
 
 const fastify = Fastify({
   logger: false
@@ -34,6 +36,27 @@ fastify.post("/log", async function (request, reply) {
     ...JSON.parse(request.body as string),
     app: 'client',
   };
+});
+
+fastify.get("/vote", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization);
+  if (user.role !== "superadmin") {
+    reply.status(401);
+    return `Only superadmin can see voting results`;
+  }
+  const results = await getResults();
+  console.log(results);
+  return  results;
+});
+
+fastify.post("/vote", async function (request, reply) {
+  const id  = JSON.parse(request.body as string).id;
+  logData = {
+    id,
+    action: 'vote',
+    app: 'client',
+  };
+  vote({id, uid: request.headers.uid as string, ip: request.headers.ip as string})
 });
 fastify.get<{
   Params: { name: string };

@@ -47,6 +47,7 @@ if (navigator.serviceWorker && !location.href.match("(localhost)")) {
         for (let db of x) {
           indexedDB.deleteDatabase(db.name);
         }
+        indexedDB.deleteDatabase('versions');
       })
       .catch()
       .then(() => (location.pathname = "/"));

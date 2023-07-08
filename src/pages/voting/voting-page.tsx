@@ -6,8 +6,9 @@ import { useCell } from "@helpers/cell-state";
 import {VotingList} from "./list";
 import { VotingIntro } from "./voting-intro";
 import { Vote } from "./vote";
+import {VotingResults} from "./results";
 
-type Section = undefined | "ticket" | "check" | "success" | "list";
+type Section = undefined | "ticket" | "check" | "success" | "list" | "result";
 export const VotingPage = () => {
   const { route, goTo } = useRouter();
   const state = useCell(votingStore.state);
@@ -36,6 +37,14 @@ export const VotingPage = () => {
           <CloseButton />
           <h1>голосовать</h1>
           <VotingList />
+        </div>
+      );
+    case 'result':
+      return (
+        <div class="page">
+          <CloseButton />
+          <h1>голосовать</h1>
+          <VotingResults />
         </div>
       );
     case undefined:
