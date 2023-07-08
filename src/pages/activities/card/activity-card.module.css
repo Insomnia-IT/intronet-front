@@ -4,6 +4,18 @@
   user-select: none;
 }
 
+.card {
+  position: relative;
+  user-select: none;
+  color: var(--medium-blue)
+}
+
+.cardDisabled {
+  background: transparent;
+  color: var(--gray);
+  border: 1px solid var(--inactive-grey);
+}
+
 .activityContainer {
   width: 100%;
 }
@@ -55,4 +67,13 @@
 .headerCanceled {
   composes: header;
   color: var(--gray);
+}
+
+.bookmarkIcon {
+  position: absolute;
+  width: 14px;
+  height: 16px;
+  top: 22px;
+  right: 22px;
+  color: var(--pink);
 }

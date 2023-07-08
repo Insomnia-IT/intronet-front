@@ -10,6 +10,7 @@ export function MapElements(props: {
   transformCell: Cell<TransformMatrix>;
 }) {
   const items = useCell(() => locationsStore.MapItems);
+  console.log(items)
   const children = useMemo(
     () =>
       items
@@ -112,7 +113,7 @@ export function MapElement(props: {
     );
   }
   return (
-    <g transform={ `translate(${ props.item.figure.X } ${ props.item.figure.Y })` } style={{
+    <g transform={ `translate(${ props.item.figure?.X } ${ props.item.figure?.Y })` } style={{
       transition: `transform .1s ease`
     }}>
       <g

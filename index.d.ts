@@ -49,6 +49,7 @@ type InsomniaLocation = {
   directionId: string;
   figure: Geo | Geo[][];
   tags: string[];
+  work_tags: string[];
   menu?: string;
   minZoom?: number;
   maxZoom?: number;
@@ -162,6 +163,7 @@ interface Activity {
   start: string;
   end: string;
   author: string;
+  authorDescription?: string;
   age?: number;
   hasChanges?: boolean;
   isCanceled?: boolean;
