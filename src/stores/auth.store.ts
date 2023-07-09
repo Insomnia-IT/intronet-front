@@ -68,7 +68,7 @@ class AuthStore extends LocalStore<{
     });
   }
   public createToken(role: 'admin'|'superadmin'|'tochka', username: string){
-    return fetch('/webapi/auth/token', {
+    return fetch(`${api}/auth/token`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({role, username})
@@ -76,7 +76,7 @@ class AuthStore extends LocalStore<{
   }
 
   public seed(db: string, force: boolean){
-    return fetch(`/webapi/seed/${db}${force ? '?force=1' : ''}`, {
+    return fetch(`${api}/seed/${db}${force ? '?force=1' : ''}`, {
       method: 'POST',
       headers: this.headers,
     })
