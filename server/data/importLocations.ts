@@ -1,5 +1,4 @@
 import {Fn} from "@cmmn/cell/lib";
-import fs from "fs";
 import fetch from "node-fetch";
 import {Database} from "../database";
 import {dbCtrl} from "../db-ctrl";
@@ -102,6 +101,8 @@ export async function importLocations(force = false) {
       }
       return name;
     }
+    const contentBlock = notionLoc?.uuid ? contentBlocks.find(x => x.notionId === notionLoc?.uuid) : null;
+    console.log(notionLoc?.description || (contentBlock?.description ?? ''))
     return [
       {
         _id: Fn.ulid(),
@@ -109,11 +110,11 @@ export async function importLocations(force = false) {
         notionId: notionLoc?.uuid,
         name: getName(notionLoc?.name ?? x.properties.name),
         tags: notionLoc?.tags ?? [],
-        description: notionLoc?.description ?? contentBlocks.find(x => x.notionId === notionLoc?.uuid)?.description,
+        description: notionLoc?.description || (contentBlock?.description ?? ''),
         figure,
         menu: notionLoc?.menu,
-        work_tags: contentBlocks.find(x => x.notionId === notionLoc?.uuid)?.work_tags,
-        contentBlocks: notionLoc?.uuid ? contentBlocks.find(x => x.notionId === notionLoc?.uuid)?.contentBlocks ?? [] : [],
+        work_tags: contentBlock?.work_tags,
+        contentBlocks: contentBlock?.contentBlocks ?? [],
         // ...geo,
         // x: point.X,
         // y: point.Y,
