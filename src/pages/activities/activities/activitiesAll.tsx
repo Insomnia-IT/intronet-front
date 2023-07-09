@@ -15,8 +15,6 @@ export const ActivitiesAll: FunctionalComponent = () => {
   const days = useCell(() => activityFiltersStore.days);
   const times = useCell(() => activityFiltersStore.times);
 
-  const activityLocation = [ 'Шатер анимации', 'Лаборатория', 'Хатифнариум', 'Большой шатёр мастер-классов', 'Малый шатёр мастер-классов', 'Мастер-классы на ярмарке', 'Психологическая беседка', 'Психология игры', 'Фьюжн', 'Территория тела', 'Костер у  фудкорта', 'тЯтр' ];
-
   const currentFilter = filter ?? filters[0].key;
 
   const activities = useCell(() => activitiesStore.Activities);
