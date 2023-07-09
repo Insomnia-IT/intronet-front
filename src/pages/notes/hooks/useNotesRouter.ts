@@ -1,4 +1,5 @@
 import { routes, useRouter } from "../../routing";
+import {authStore} from "@stores/auth.store";
 
 const baseRoute = "notes" as keyof typeof routes;
 
@@ -32,7 +33,8 @@ export const useNotesRouter = <TQuery extends Record<string, string>>() => {
     },
 
     goToNew(section?: ISubSections) {
-      router.goTo([baseRoute, "new", section || "rules"], {}, true);
+      const isAdmin = authStore.isAdmin;
+      router.goTo([baseRoute, "new", section || (isAdmin ? "editor" : "rules")], {}, true);
     },
   };
 };

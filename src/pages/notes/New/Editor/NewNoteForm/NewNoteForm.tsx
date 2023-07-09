@@ -6,6 +6,8 @@ import { categoriesStore, notesStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { NextButton } from "../../NextButton/NextButton";
 import { FunctionalComponent } from "preact";
+import {authStore} from "@stores/auth.store";
+import {useRouter} from "../../../../routing";
 
 const dayTags = daysShortNames.map((day) => {
   return {
@@ -66,15 +68,6 @@ const fields: INewNoteFormFields = [
   },
 ];
 
-const initialFormFields: IFormField[] = fields.map(
-  ({ name, value, require }) => {
-    return {
-      name,
-      value,
-      require,
-    };
-  }
-);
 
 export type INewNoteFormProps = {
   onAddNote: (success: boolean) => void;
@@ -91,27 +84,43 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
     };
   });
 
+  const router = useRouter();
   // TODO: нормально типизировать стейт формы
   const onSubmit = (formFields) => {
     notesStore
       .addNote({
         author: {
-          name: formFields["author"] as string,
+          name: isAdmin ? authStore.userName : formFields["author"] as string,
         },
         categoryId: formFields["category"]?.slice("tag+".length) || "",
         text: formFields["text"] as string,
         title: formFields["title"] as string,
-        TTL: parseInt(formFields["TTL"].slice("tag+".length + 3)) as
+        TTL: isAdmin ? 17 : parseInt(formFields["TTL"].slice("tag+".length + 3)) as
           | 13
           | 14
           | 15
           | 16
           | 17,
+        restricted: !isAdmin
       })
       .then(() => {
-        onAddNote(true);
+        isAdmin ? router.goTo("/notes") : onAddNote(true);
       });
   };
+
+  const isAdmin = useCell(() => authStore.isAdmin);
+
+  const currentFields = isAdmin ? fields.slice(0, 2) : fields;
+
+  const initialFormFields: IFormField[] = currentFields.map(
+    ({ name, value, require }) => {
+      return {
+        name,
+        value,
+        require,
+      };
+    }
+  );
 
   return (
     <Form
@@ -122,7 +131,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
       {({ allReqFieldIsFill, state, onFieldChange, submit }) => {
         return (
           <>
-            {fields.map((field) => {
+            {currentFields.map((field) => {
               const { name } = field;
               return (
                 <Field
@@ -145,7 +154,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
             })}
             <div className={styles.submitContainer}>
               <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
-                Отправить на модерацию
+                {isAdmin ? 'Опубликовать' : 'Отправить на модерацию'}
               </NextButton>
             </div>
           </>

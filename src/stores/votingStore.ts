@@ -3,6 +3,8 @@ import { LocalStore } from "@stores/localStore";
 import { IsConnected } from "@stores/connection";
 import { moviesStore } from "@stores/movies.store";
 import {userStore} from "./user.store";
+import { api } from "./api";
+import {authStore} from "@stores/auth.store";
 
 class TicketStore extends LocalStore<{
   ticket?: string;
@@ -36,10 +38,11 @@ class TicketStore extends LocalStore<{
     this.patch({
       movie: id,
     });
-    userStore.log({
-      action: "vote",
-      movieId: id
-    }).catch()
+    return fetch(`${api}/vote`, {
+      method: 'POST',
+      headers: authStore.headers,
+      body: JSON.stringify({id})
+    });
   }
 }
 

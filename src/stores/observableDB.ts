@@ -130,7 +130,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
       this.syncLock = false;
     }
   }
-
+  private errorTimeout = 300;
   async saveToServer() {
     if (this.localOnly) return;
     for (let item of this.items.values()) {
@@ -140,7 +140,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
         method: "POST",
         headers: authStore.headers,
         body: JSON.stringify(item),
-      }).catch();
+      }).catch(() => new Promise(resolve => setTimeout(resolve, this.errorTimeout*1.2 )));
     }
     await VersionsDB.Instance.loadFromServer();
   }
