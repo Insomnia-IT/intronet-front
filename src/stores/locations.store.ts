@@ -3,6 +3,7 @@ import {geoConverter} from "@helpers/geo";
 import {TransformMatrix} from "../pages/map/transform/transform.matrix";
 import {goTo, RoutePath, routerCell} from "../pages/routing";
 import {activitiesStore} from "./activities";
+import {shopsStore} from "./articles.store";
 import {changesStore} from "./changes.store";
 import {moviesStore} from "./movies.store";
 import {ObservableDB} from "./observableDB";
@@ -60,6 +61,30 @@ class LocationsStore {
   public get Infocenter(): InsomniaLocation {
     return this.Locations.find((x) => x.directionId === Directions.info);
   }
+  @cell
+  public get Shops(): InsomniaLocation {
+    return this.Locations.find((x) => x.name.toLowerCase() === 'ярмарка');
+  }
+  // @cell
+  // public get VirtualShops(): Array<MapItem> {
+  //   const patches = new Map(this.locationPatches.toArray());
+  //   const shopsCenter = this.Shops;
+  //   if (!shopsCenter) return [];
+  //   const point = (patches.get(shopsCenter._id) ?? geoConverter.fromGeo(shopsCenter.figure as Geo)) as Point;
+  //   const shops = shopsStore.shops;
+  //   const sqrt = Math.ceil(Math.sqrt(shops.length));
+  //   const size = 14;
+  //   return shops.map((x,i) => ({
+  //     minZoom: 1.6,
+  //     id: x._id,
+  //     title: x.name,
+  //     directionId: Directions.shop,
+  //     figure: {
+  //       X: point.X + ((i % sqrt) - sqrt/2) * size,
+  //       Y: point.Y - ((i / sqrt) - sqrt/2) * size,
+  //     },
+  //   } as MapItem))
+  // }
 
   public get MapItems(): MapItem[] {
     const patches = new Map(this.locationPatches.toArray());
@@ -69,7 +94,9 @@ class LocationsStore {
       title: x.name,
       id: x._id,
       radius: 10,
-    }));
+      // maxZoom: x._id == this.Shops._id ? 1.6 : undefined
+    } as MapItem))
+      // .concat(this.VirtualShops);
   }
 
   async addLocation(location: InsomniaLocation) {
@@ -112,7 +139,7 @@ class LocationsStore {
     this.locationPatches.clear();
     for (let [id, figure] of patches) {
       await this.db.addOrUpdate({
-        ...this.db.get(id), figure: geoConverter.toGeo(figure) as GeoFigure,
+        ...this.db.get(id), figure: geoConverter.toGeo(figure),
       });
     }
     this.isMoving = false;

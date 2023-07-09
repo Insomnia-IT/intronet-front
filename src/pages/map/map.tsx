@@ -138,7 +138,7 @@ export class MapComponent extends Component {
 
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
-    if (scale > 2.2 || scale < this.minScale * 0.98) {
+    if (scale > 3 || scale < this.minScale * 0.98) {
       return;
     }
     this.Transform = transform;
@@ -192,7 +192,7 @@ export class MapComponent extends Component {
     return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
   }
   scrollTo(ids: string[]) {
-    if (!this.root)
+    if (!this.root || !ids.length)
       return;
     const centers = locationsStore.MapItems.filter((x) => ids.includes(x.id))
       .map(x => this.getCenter(x.figure));

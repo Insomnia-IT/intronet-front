@@ -112,10 +112,11 @@ export const goTo = (
   query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
 ) => {
+  console.log(path, query)
   if (typeof path === "string") {
     const url = new URL(location.origin + path);
     path = url.pathname.split("/").slice(1) as RoutePath;
-    query = Object.fromEntries(url.searchParams.entries());
+    query ??= Object.fromEntries(url.searchParams.entries());
   }
   if (typeof path[path.length - 1] === "object") {
     query = path.pop() as Record<string, string>;

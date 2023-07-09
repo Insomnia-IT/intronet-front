@@ -93,7 +93,7 @@ const ContentBlockEdit: FunctionalComponent<{
     ]
   })
   return <>
-    <div flex gap="2" center style={{marginTop: 16}} class="textSmall colorMidBlue">
+    <div flex gap="2" center style={{marginTop: 16}} class="textSmall colorMediumBlue">
       <span onClick={() => patch({blockType: block.blockType === "text" ? "link" : "text"})}>
         {block.blockType === "text" ? 'Текст' : 'Ссылка'}
       </span>

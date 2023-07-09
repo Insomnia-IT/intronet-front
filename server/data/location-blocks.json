@@ -953,13 +953,7 @@
     "menu": "",
     "work_tags": ["activity"],
     "version": "LDbx_rRVys7aDVD",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1m4@W59Dty",
@@ -1023,7 +1017,7 @@
     "tags": [
       "Игра"
     ],
-    "description": "",
+    "description": "Множество магазинов",
     "figure": {
       "lat": 54.678406,
       "lon": 35.089955
@@ -1147,13 +1141,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxaavFIlabKjP",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1mD4Bki19n",
@@ -1173,7 +1161,11 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxbD6S2PvzZnu",
-    "contentBlocks": []
+    "contentBlocks": [{
+      "blockType": "link",
+      "link": "/articles/shops",
+      "title": "посмотреть магазины"
+    }]
   },
   {
     "_id": "LDbxX1mF28fU5ce",
@@ -1312,13 +1304,7 @@
     "menu": "",
     "work_tags": ["activity"],
     "version": "LDbxe9U1qSEmT7b",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1n4EYJtpnw",
@@ -1335,13 +1321,7 @@
     "menu": "",
     "work_tags": ["activity"],
     "version": "LDbxe1Wi8g0trgI",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1n@x4TxUUT",
@@ -1375,13 +1355,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxeVDOJaEls9W",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1nJHv3Lzn9",
@@ -1466,13 +1440,7 @@
     "menu": "",
     "work_tags": ["activity"],
     "version": "LDbxeFw9hrpBaEA",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1nRzE8eZj7",
@@ -1491,13 +1459,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxdIFNncyfvXa",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1nUwP7vWYc",
@@ -1558,13 +1520,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxdPMVeDHvGZQ",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1nh_ZqWIM7",
@@ -1620,13 +1576,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxeN8c5J90xx6",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1npk77TTLD",
@@ -1684,13 +1634,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxclnPDBgHsSc",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1nwItVfYa1",
@@ -1791,13 +1735,7 @@
     "menu": "",
     "work_tags": [],
     "version": "LDbxg1V0@kfnF9C",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1oND2y@aeD",
@@ -1839,13 +1777,7 @@
     "menu": "",
     "work_tags": ["activity"],
     "version": "LDbxebSd19HkWph",
-    "contentBlocks": [
-      {
-        "blockType": "link",
-        "content": "",
-        "title": "к расписанию"
-      }
-    ]
+    "contentBlocks": []
   },
   {
     "_id": "LDbxX1oV7kzggAO",

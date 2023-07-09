@@ -1,4 +1,5 @@
 import {getCurrentDay} from "@helpers/getDayText";
+import {shopsStore} from "@stores/articles.store";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
@@ -102,7 +103,6 @@ export const Location: FunctionalComponent<LocationProps> = ({
 
 
 const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({location}) => {
-
   const blocks = location.contentBlocks;
   return <>
     {blocks?.map(b => <>
@@ -112,80 +112,4 @@ const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({l
       </div>}
     </>)}
   </>;
-
-  const detailGroup = directionsToDetailsGroup.get(location.directionId);
-
-  switch (detailGroup) {
-    case "cafe":
-      return (
-        <>
-
-          <Link goTo={ [ "map", ] }>Посмотреть меню</Link>
-        </>
-      );
-    case "shop":
-      return (
-        <>
-
-          <Link goTo={ [ "map", ] }>Перейти к списку палаток</Link>
-        </>
-      );
-    case "screen":
-      return (
-        <>
-
-          <Link goTo={ [ "timetable", ] }>К расписанию</Link>
-        </>
-      );
-    case "music":
-    case "activity":
-      return (
-        <>
-
-          <Link goTo={ [ "activities", ] }>К расписанию</Link>
-        </>
-      );
-    case "tent":
-      return (
-        <>
-
-          <Link goTo={ [ "map", ] }>Правила кемпинга</Link>
-
-          <Link goTo={ [ "map", ] }>Про экологию и мусор</Link>
-        </>
-      );
-    case "info":
-      return (
-        <>
-
-          <Link goTo={ [ "main", ] }>К разделам</Link>
-        </>
-      );
-    case "point":
-      return (
-        <>
-
-          <Link goTo={ [ "map", ] }>Я потерял ребёнка</Link>
-          <Link goTo={ [ "map", ] }>Я потерял взрослого</Link>
-          <Link goTo={ [ "map", ] }>Я потерял животное</Link>
-          <Link goTo={ [ "map", ] }>я потерял вещь</Link>
-        </>
-      );
-    case "med":
-      return (
-        <>
-
-          <Link goTo={ [ "map", ] }>Я поранился</Link>
-          <Link goTo={ [ "map", ] }>Как помочь раненому</Link>
-          <Link goTo={ [ "map", ] }>Про клещей</Link>
-        </>
-      );
-    case "wc":
-    case "art":
-    case "other":
-    default:
-      return (
-        <></>
-      );
-  }
 }

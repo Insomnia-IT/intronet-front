@@ -6,6 +6,7 @@ import { importMainPage } from "./data/import";
 import { importLocations } from "./data/importLocations";
 import { importMovies } from "./data/importMovies";
 import { importActivities } from "./data/importActivities";
+import {importShops} from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
 
@@ -89,6 +90,8 @@ fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
         return importActivities(request.query.force);
       case "main":
         return importMainPage(request.query.force);
+      case "shops":
+        return importShops(request.query.force);
     }
   }
 );

@@ -6,7 +6,7 @@ import {useRouter} from "../../../routing";
 
 export function Theater() {
   return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>Мед. пункт</h1>
+    <h1>тЯтр</h1>
     <CloseButton goTo="/main"/>
     <div class="sh1">Новая площадка на Бессоннице! </div>
     <div>Тятр — это особенная сцена, где вся театральная работа, обычно спрятанная от глаз

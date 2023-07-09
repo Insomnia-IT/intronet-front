@@ -29,7 +29,7 @@ export function MapElements(props: {
   );
   return <>{ children }</>;
 }
-const scaleThreshold = 0.6;
+const scaleThreshold = 0.4;
 
 export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
@@ -97,17 +97,34 @@ export function MapElement(props: {
   if (isSelected) {
     classNames.push(styles.selected);
   }
+
+  if (props.item.maxZoom && scale > props.item.maxZoom)
+    return <></>;
+  if (props.item.minZoom && scale <= props.item.minZoom)
+    return <></>;
   if (Array.isArray(props.item.figure)) {
+    if (Array.isArray(props.item.figure[0])) {
+      return (
+        <path
+          class={ styles.zone }
+          onClick={ (e) => {
+            e.preventDefault();
+            locationsStore.setSelectedId(props.item.id);
+          } }
+          d={ props.item.figure
+            .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
+            .join(" ") }
+        />
+      );
+    }
     return (
       <path
-        class={ styles.zone }
+        class={ styles.road }
         onClick={ (e) => {
           e.preventDefault();
           locationsStore.setSelectedId(props.item.id);
         } }
-        d={ props.item.figure
-          .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
-          .join(" ") }
+        d={ "M" + props.item.figure.map((p) => `${ p.X } ${ p.Y }`).join("L")}
       />
     );
   }

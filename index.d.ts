@@ -47,7 +47,7 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
-  figure: Geo | Geo[][];
+  figure: GeoFigure;
   tags: string[];
   work_tags: string[];
   menu?: string;
@@ -73,8 +73,8 @@ type ListItem = {
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
-type GeoFigure = Geo | Array<Array<Geo>>;
-type Figure = Point | Array<Array<Point>>;
+type GeoFigure = Geo | Array<Geo> | Array<Array<Geo>>;
+type Figure = Point | Array<Point> | Array<Array<Point>>;
 
 type MapItem = {
   figure: Figure;
@@ -252,10 +252,11 @@ type Direction = {
   name: string;
   image: string;
 };
-interface IArticle {
+interface IShop {
   _id: string;
-  title: string;
-  text: string;
+  name: string;
+  description: string;
+  links: string;
 }
 
 type TMainPageCard = {

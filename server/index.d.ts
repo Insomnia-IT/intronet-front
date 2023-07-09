@@ -37,8 +37,8 @@ type MapItem = {
   radius;
   id;
   title?: string;
-  minZoom?: number;
-  maxZoom?: number;
+  minZoom?: number | undefined;
+  maxZoom?: number | undefined;
 };
 
 type Movie = {

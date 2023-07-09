@@ -57,3 +57,11 @@
   stroke-dasharray: 8;
   vector-effect: non-scaling-stroke;
 }
+
+.road{
+  stroke: var(--bonfire-light);
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1;
+  stroke-dasharray: 8 16;
+}
