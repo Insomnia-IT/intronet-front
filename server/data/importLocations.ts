@@ -109,7 +109,7 @@ export async function importLocations(force = false) {
         notionId: notionLoc?.uuid,
         name: getName(notionLoc?.name ?? x.properties.name),
         tags: notionLoc?.tags ?? [],
-        description: notionLoc?.description ?? x.properties.description,
+        description: notionLoc?.description ?? contentBlocks.find(x => x.notionId === notionLoc?.uuid)?.description,
         figure,
         menu: notionLoc?.menu,
         work_tags: contentBlocks.find(x => x.notionId === notionLoc?.uuid)?.work_tags,
