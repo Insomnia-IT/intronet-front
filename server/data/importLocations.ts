@@ -2,6 +2,7 @@ import {Fn} from "@cmmn/cell/lib";
 import fs from "fs";
 import fetch from "node-fetch";
 import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 import locationsJSON from "./locations.json" assert {"type": "json"};
 import contentBlocks from "./location-blocks.json" assert {"type": "json"};
 
@@ -129,4 +130,6 @@ export async function importLocations(force = false) {
   );
   for (let loc of data) {
     await db.addOrUpdate({...loc, version: Fn.ulid()});
-  }}
+  }
+  dbCtrl.versions = undefined;
+}

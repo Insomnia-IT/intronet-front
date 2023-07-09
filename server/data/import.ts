@@ -1,6 +1,6 @@
 import { Fn } from "@cmmn/cell/lib";
-import fetch from "node-fetch";
 import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 import mainPageJSON from "./main-page.json" assert {type: "json"};
 
 export async function importMainPage(force = false){
@@ -22,4 +22,6 @@ export async function importMainPage(force = false){
       version: Fn.ulid()
     });
   }
+  dbCtrl.versions = undefined;
+
 }

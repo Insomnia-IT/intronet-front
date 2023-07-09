@@ -2,6 +2,7 @@ import "@cmmn/cell/lib";
 import { Fn } from "@cmmn/cell/lib";
 import fetch from "node-fetch";
 import { Database } from "../database";
+import {dbCtrl} from "../db-ctrl";
 import json from "./activity-v3.json" assert {"type": "json"};
 
 const importFromNotion = true;
@@ -75,4 +76,6 @@ export async function importActivities(force = false) {
       await activitiesDB.addOrUpdate(item as any);
     }
   }
+  dbCtrl.versions = undefined;
+
 }

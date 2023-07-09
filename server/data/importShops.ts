@@ -1,6 +1,7 @@
 import "@cmmn/cell/lib";
 import { Fn } from "@cmmn/cell/lib";
 import { Database } from "../database";
+import {dbCtrl} from "../db-ctrl";
 import shopsJSON from "./shops.json" assert {"type": "json"};
 
 export async function importShops(force = false) {
@@ -20,4 +21,5 @@ export async function importShops(force = false) {
       ...shop,
     })
   }
+  dbCtrl.versions = undefined;
 }
