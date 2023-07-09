@@ -6,6 +6,7 @@ import { coerceHour, isInTimePeriod } from "@helpers/getDayText";
 import { useGestureCell } from "@helpers/Gestures";
 import { IActivityQueries, useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import { ActivityGesturedCard } from "../card/activity-gestured-card";
+import styles from "./activitiesAll.module.css";
 
 export type ActivityListProps = {
   filters?: Partial<IActivityQueries>;
@@ -50,7 +51,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
     .sort((prev, next) => prev.start.getTime() - next.start.getTime());
 
   return (
-    <div flex column ref={ setRef }>
+    <div flex column className={styles.container} ref={ setRef }>
       {
         filteredCards.map((x) => (<>
           <ActivityGesturedCard

@@ -14,3 +14,9 @@
 .title {
   word-break: break-word;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
