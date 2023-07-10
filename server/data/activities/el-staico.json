@@ -1,0 +1,178 @@
+[
+  {
+    "day": 0,
+    "start": "22:00",
+    "end": "23:00",
+    "title": "off sound system",
+    "authorDescription": "",
+    "author": "",
+    "description": "discoteque",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 0,
+    "start": "23:00",
+    "end": "00:30",
+    "title": "L8p2L8p",
+    "authorDescription": "",
+    "author": "",
+    "description": "house",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 0,
+    "start": "00:30",
+    "end": "02:00",
+    "title": "DIALECT",
+    "authorDescription": "",
+    "author": "",
+    "description": "drum-n-bass",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 0,
+    "start": "02:00",
+    "end": "04:00",
+    "title": "0ffmen (dj set)",
+    "authorDescription": "",
+    "author": "",
+    "description": "deep house",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 1,
+    "start": "22:00",
+    "end": "23:30",
+    "title": "off sound system",
+    "authorDescription": "",
+    "author": "",
+    "description": "discoteque",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 2,
+    "start": "23:30",
+    "end": "01:00",
+    "title": "Sasha U",
+    "authorDescription": "",
+    "author": "",
+    "description": "downtempo",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 2,
+    "start": "01:00",
+    "end": "02:30",
+    "title": "Stoneage Vibe",
+    "authorDescription": "",
+    "author": "",
+    "description": "melodic techno/dub",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 2,
+    "start": "02:30",
+    "end": "04:00",
+    "title": "knowntree",
+    "authorDescription": "",
+    "author": "",
+    "description": "indie",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 3,
+    "start": "22:00",
+    "end": "23:30",
+    "title": "Sasha U",
+    "authorDescription": "",
+    "author": "",
+    "description": "downtempo",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 3,
+    "start": "23:30",
+    "end": "01:00",
+    "title": "my recording",
+    "authorDescription": "",
+    "author": "",
+    "description": "techno/lo-fi",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 3,
+    "start": "01:00",
+    "end": "02:30",
+    "title": "0ffmen (live)",
+    "authorDescription": "",
+    "author": "",
+    "description": "electro chill",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 3,
+    "start": "02:30",
+    "end": "04:00",
+    "title": "kabaFm",
+    "authorDescription": "",
+    "author": "",
+    "description": "midtechno",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 4,
+    "start": "22:00",
+    "end": "23:30",
+    "title": "0ffmen (dj set)",
+    "authorDescription": "",
+    "author": "",
+    "description": "drum-n-bass",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 4,
+    "start": "23:30",
+    "end": "01:00",
+    "title": "Stoneage Vibe",
+    "authorDescription": "",
+    "author": "",
+    "description": "melodic techno/dub",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 4,
+    "start": "01:00",
+    "end": "02:30",
+    "title": "Pilot",
+    "authorDescription": "",
+    "author": "",
+    "description": "techno",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  },
+  {
+    "day": 4,
+    "start": "02:30",
+    "end": "04:00",
+    "title": "off sound system",
+    "authorDescription": "",
+    "author": "",
+    "description": "discoteque",
+    "notionLocationId": "acb9b2e9-f013-4144-82cf-e2016f1f5f4c",
+    "locationName": "Арт-Кафе “Эль-Стэйко”"
+  }
+]
