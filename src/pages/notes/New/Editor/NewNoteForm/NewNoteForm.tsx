@@ -1,20 +1,30 @@
 import { Form, Field, IFormField, IField } from "@components/forms";
-import { namesShort as daysShortNames } from "@helpers/getDayText";
+import {
+  namesShort as daysShortNames,
+  getCurrentDay,
+} from "@helpers/getDayText";
 import styles from "./new-note-form.module.css";
 import classNames from "classnames";
 import { categoriesStore, notesStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
 import { NextButton } from "../../NextButton/NextButton";
 import { FunctionalComponent } from "preact";
-import {authStore} from "@stores/auth.store";
-import {useRouter} from "../../../../routing";
+import { authStore } from "@stores/auth.store";
+import { useRouter } from "../../../../routing";
+import { getCurrentDate } from "@helpers/date";
 
-const dayTags = daysShortNames.map((day) => {
-  return {
-    name: "tag+" + day,
-    value: day,
-  };
-});
+const dayTags = daysShortNames
+  .map((day) => {
+    if (Number(day.slice(3)) <= getCurrentDate()) {
+      return;
+    }
+
+    return {
+      name: "tag+" + day,
+      value: day,
+    };
+  })
+  .filter((x) => x);
 
 const fields: INewNoteFormFields = [
   {
@@ -64,10 +74,8 @@ const fields: INewNoteFormFields = [
     description: "В 00:00 выбранного дня удалим объявление",
     type: "tags",
     tags: dayTags,
-    require: true,
   },
 ];
-
 
 export type INewNoteFormProps = {
   onAddNote: (success: boolean) => void;
@@ -90,18 +98,20 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
     notesStore
       .addNote({
         author: {
-          name: isAdmin ? authStore.userName : formFields["author"] as string,
+          name: isAdmin ? authStore.userName : (formFields["author"] as string),
         },
         categoryId: formFields["category"]?.slice("tag+".length) || "",
         text: formFields["text"] as string,
         title: formFields["title"] as string,
-        TTL: isAdmin ? 17 : parseInt(formFields["TTL"].slice("tag+".length + 3)) as
-          | 13
-          | 14
-          | 15
-          | 16
-          | 17,
-        restricted: !isAdmin
+        TTL: isAdmin
+          ? 17
+          : (parseInt(formFields["TTL"].slice("tag+".length + 3)) as
+              | 13
+              | 14
+              | 15
+              | 16
+              | 17),
+        restricted: !isAdmin,
       })
       .then(() => {
         isAdmin ? router.goTo("/notes") : onAddNote(true);
@@ -154,7 +164,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
             })}
             <div className={styles.submitContainer}>
               <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
-                {isAdmin ? 'Опубликовать' : 'Отправить на модерацию'}
+                {isAdmin ? "Опубликовать" : "Отправить на модерацию"}
               </NextButton>
             </div>
           </>
