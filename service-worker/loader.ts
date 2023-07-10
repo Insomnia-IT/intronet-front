@@ -50,7 +50,7 @@ if (navigator.serviceWorker && !location.href.match("(localhost)")) {
         indexedDB.deleteDatabase('versions');
       })
       .catch()
-      .then(() => location.reload());
+      .then(() => location.pathname = '/');
   }
   if (navigator.serviceWorker.controller) {
     const isIOS = CSS.supports("-webkit-touch-callout", "none");
