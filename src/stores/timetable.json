@@ -1,0 +1,400 @@
+[
+  {
+    "_id": "LCcA0y0DaIPQzFz",
+    "_rev": "1-11a7b02c56bec3ea935a23a8276aea2b",
+    "views": [
+      {
+        "day": 0,
+        "start": "21:50",
+        "end": "21:50",
+        "locationId": "LCZUlKPgh6J88yo"
+      }
+    ],
+    "info": {
+      "Title": "ПОКАЗ ПОБЕДИТЕЛЕЙ КОНКУРСА ДЕТСКОЙ АНИМАЦИИ 0+",
+      "SubTitle": null,
+      "TitleEn": null,
+      "SubTitleEn": null,
+      "MinAge": 0,
+      "Part": 0
+    },
+    "movies": [
+      {
+        "name": "Двадцать фильмов, созданных аниматорами-детьми.",
+        "description": "",
+        "author": null,
+        "country": null,
+        "year": null,
+        "duration": null,
+        "id": "LCcA0y1n9OuvHtV"
+      }
+    ],
+    "version": "LCcA0y1lwE2ATLY"
+  },
+  {
+    "_id": "LCcA0y158T2kOEE",
+    "_rev": "1-5f310e3ebe7d956bfd610cf5e689beea",
+    "views": [
+      {
+        "day": 0,
+        "start": "02:00",
+        "end": "02:00",
+        "locationId": "LCZUlKPgh6J88yo"
+      },
+      {
+        "day": 2,
+        "start": "23:55",
+        "end": "23:55",
+        "locationId": "LCZUlKPxVzK10bJ"
+      }
+    ],
+    "info": {
+      "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+      "SubTitle": "ДЕБЮТОРИЯ ",
+      "TitleEn": "INTERNATIONAL COMPETITION ",
+      "SubTitleEn": "DEBUTORIYA ",
+      "MinAge": 18,
+      "Part": 1
+    },
+    "movies": [
+      {
+        "name": "Anna, Cat-And-Mouse",
+        "description": "",
+        "author": "Varya Yakovleva",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "5'26\"",
+        "id": "LCcA0y1LRneeWcf"
+      },
+      {
+        "name": "Room With A Sea View",
+        "description": "",
+        "author": "Leonid Shmelkov",
+        "country": "Estonia",
+        "year": "2020",
+        "duration": "11'55\"",
+        "id": "LCcA0y1_KSMg3Vm"
+      },
+      {
+        "name": "Monachopsis",
+        "description": "",
+        "author": "Liesbet van Loon",
+        "country": "Belgium",
+        "year": "2020",
+        "duration": "10'20\"",
+        "id": "LCcA0y19pZWpsMp"
+      },
+      {
+        "name": "Little Miss Fate",
+        "description": "",
+        "author": "Joder von Rotz",
+        "country": "Switzerland",
+        "year": "2020",
+        "duration": "8'14\"",
+        "id": "LCcA0y1oj8mkUVv"
+      },
+      {
+        "name": "Needs",
+        "description": "",
+        "author": "Júlia Lerch",
+        "country": "Hungary",
+        "year": "2020",
+        "duration": "5'19\"",
+        "id": "LCcA0y1HbIpUvwt"
+      },
+      {
+        "name": "Washing Machine",
+        "description": "",
+        "author": "Czech Republic",
+        "country": "2020",
+        "year": "5'02\"",
+        "duration": null,
+        "id": "LCcA0y1LqnjWxI8"
+      },
+      {
+        "name": "Dear Viruses",
+        "description": "",
+        "author": "Wang Junjie",
+        "country": "Japan",
+        "year": "2021",
+        "duration": "3'15\"",
+        "id": "LCcA0y1zoNjrAlv"
+      },
+      {
+        "name": "45''",
+        "description": "",
+        "author": "Lucija Oroz",
+        "country": "Croatia",
+        "year": "2021",
+        "duration": "4'50\"",
+        "id": "LCcA0y1h3sH82Z0"
+      },
+      {
+        "name": "Step into the river",
+        "description": "",
+        "author": "Ma Weijia",
+        "country": "China",
+        "year": "2020",
+        "duration": "14'50\"",
+        "id": "LCcA0y16cPwczp9"
+      },
+      {
+        "name": "Cockpera",
+        "description": "",
+        "author": "Kata Gugic",
+        "country": "Croatia",
+        "year": "2020",
+        "duration": "4'27\"",
+        "id": "LCcA0y1tjiwZ8P@"
+      },
+      {
+        "name": "Run for the Bird Song",
+        "description": "",
+        "author": "Ingrid Pucci",
+        "country": "Estonia",
+        "year": "2020",
+        "duration": "3'48\"",
+        "id": "LCcA0y1Nzn_EkBq"
+      }
+    ],
+    "version": "LCcA1KARKKVGHCl"
+  },
+  {
+    "_id": "LCcA0y1MM8Xq1Mh",
+    "_rev": "1-5b4725da63ea6bc72465925af4104d2a",
+    "views": [
+      {
+        "day": 0,
+        "start": "0:45",
+        "end": "0:45",
+        "locationId": "LCZUlKPgh6J88yo"
+      },
+      {
+        "day": 2,
+        "start": "01:15",
+        "end": "01:15",
+        "locationId": "LCZUlKPxVzK10bJ"
+      }
+    ],
+    "info": {
+      "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+      "SubTitle": "ПРОФНАСТИЛ ",
+      "TitleEn": "INTERNATIONAL COMPETITION ",
+      "SubTitleEn": "PROFNASTIL ",
+      "MinAge": 18,
+      "Part": 1
+    },
+    "movies": [
+      {
+        "name": "My Galactic Twin Galaction",
+        "description": "",
+        "author": "Sasha Svirsky",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "6'33\"",
+        "id": "LCcA0y10DRwsChE"
+      },
+      {
+        "name": "Carrousel",
+        "description": "",
+        "author": "Jasmine Elsen",
+        "country": "Belgium",
+        "year": "2020",
+        "duration": "10'14\"",
+        "id": "LCcA0y1E7YukxiJ"
+      },
+      {
+        "name": "Cosmonaut",
+        "description": "",
+        "author": "Kaspar Jancis",
+        "country": "Estonia",
+        "year": "2019",
+        "duration": "11'38\"",
+        "id": "LCcA0y12JQmPv9J"
+      },
+      {
+        "name": "The Expected",
+        "description": "",
+        "author": "Carolina Sandvik",
+        "country": "Sweden",
+        "year": "2021",
+        "duration": "14'30\"",
+        "id": "LCcA0y1gwhW3Tfa"
+      },
+      {
+        "name": "The Stork",
+        "description": "",
+        "author": "Morten Tšinakov, Lucija Mrzljak",
+        "country": "Estonia",
+        "year": "2020",
+        "duration": "15'51\"",
+        "id": "LCcA0y1jOMs3Y1g"
+      },
+      {
+        "name": "Self Scratch",
+        "description": "",
+        "author": "Chenghua Yang",
+        "country": "France",
+        "year": "2020",
+        "duration": "9'00\"",
+        "id": "LCcA0y1Q0VZl@pp"
+      },
+      {
+        "name": "Mantis Love",
+        "description": "",
+        "author": "Baptiste Groazil",
+        "country": "France",
+        "year": "2020",
+        "duration": "6'30\"",
+        "id": "LCcA0y164OvZvTU"
+      }
+    ],
+    "version": "LCcA1CLu_ZC@0sN"
+  },
+  {
+    "_id": "LCcA0y1SAd9194_",
+    "_rev": "1-0848d7f7f7b3a8aeecccb29471e157bc",
+    "views": [
+      {
+        "day": 0,
+        "start": "22:45",
+        "end": "22:45",
+        "locationId": "LCZUlKPgh6J88yo"
+      },
+      {
+        "day": 2,
+        "start": "21:50",
+        "end": "21:50",
+        "locationId": "LCZUlKPxVzK10bJ"
+      }
+    ],
+    "info": {
+      "Title": "КИДАЛТ ",
+      "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
+      "TitleEn": "INTERNATIONAL COMPETITION & OFFICIAL SELECTION ",
+      "SubTitleEn": "KIDULT ",
+      "MinAge": 12,
+      "Part": 1
+    },
+    "movies": [
+      {
+        "name": "Shoom's Odyssey",
+        "description": "",
+        "author": "Julien Bisaro",
+        "country": "France",
+        "year": "2019",
+        "duration": "26'00\"",
+        "id": "LCcA0y1yv1wWnVa"
+      },
+      {
+        "name": "The 7 Kids",
+        "description": "",
+        "author": "Marina Karpova",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "5'20\"",
+        "id": "LCcA0y1V0_m7VN0"
+      },
+      {
+        "name": "Merry Grandmas",
+        "description": "",
+        "author": "Natalia Mirzoyan",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "8'00\"",
+        "id": "LCcA0y1zR2M3EC8"
+      },
+      {
+        "name": "Umbrellas",
+        "description": "",
+        "author": "Jose Prats , Alvaro Robles",
+        "country": "Spain",
+        "year": "2020",
+        "duration": "12:00",
+        "id": "LCcA0y1snMUEUV9"
+      },
+      {
+        "name": "Warm Star",
+        "description": "",
+        "author": "Anna Kuzina",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "4'29\"",
+        "id": "LCcA0y1Sgf0o7wE"
+      },
+      {
+        "name": "Empty Places",
+        "description": "",
+        "author": "Geoffroy de Crécy",
+        "country": "France",
+        "year": "2020",
+        "duration": "8'30\"",
+        "id": "LCcA0y1GlFCdSPl"
+      },
+      {
+        "name": "Beginning of the Light",
+        "description": "",
+        "author": "Anastasia Melikhova",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "6'20\"",
+        "id": "LCcA0y1maNdxr7s"
+      },
+      {
+        "name": "Ba",
+        "description": "",
+        "author": "Svetlana Filippova",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "15'00\"",
+        "id": "LCcA0y1C6WpRYFj"
+      },
+      {
+        "name": "The Fence",
+        "description": "",
+        "author": "Maria Kogan-Lerner",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "7'40\"",
+        "id": "LCcA0y1QDr_9RTC"
+      },
+      {
+        "name": "Dogs Smell Like the Sea",
+        "description": "",
+        "author": "Anastasiya Lisovets",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "4'14\"",
+        "id": "LCcA0y1Ix0HAehR"
+      },
+      {
+        "name": "I'm a Fish",
+        "description": "",
+        "author": "Daria Melnikova",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "5'10\"",
+        "id": "LCcA0y1mcdhoqwL"
+      },
+      {
+        "name": "10 000 Ugly Inkblots",
+        "description": "",
+        "author": "Dmitry Geller",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "8'10\"",
+        "id": "LCcA0y1781CBvIV"
+      },
+      {
+        "name": "Kolobok",
+        "description": "",
+        "author": "Ashot Mefodin",
+        "country": "Russia",
+        "year": "2020",
+        "duration": "9'49\"",
+        "id": "LCcA0y1AUX1xyLJ"
+      }
+    ],
+    "version": "LCcA15niOrwBhdA"
+  }
+]

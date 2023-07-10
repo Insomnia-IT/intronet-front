@@ -1,0 +1,64 @@
+[
+  {
+    "_id": "LCZUlKPgh6J88yo",
+    "_rev": "1-962c5c5ddef9ed83c4f65d351a3e6aea",
+    "directionId": "Экран",
+    "name": "Экран 1 +ЦУЭ (Полевой экран)",
+    "image": "camping",
+    "tags": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.68096,
+      "lon": 35.090014
+    },
+    "menu": "",
+    "version": "LCZUoYKLQ6uw_tS"
+  },
+  {
+    "_id": "LCZUlKPutJFHIsw",
+    "_rev": "1-27104eee2508461779a1af4eb8257214",
+    "directionId": "Экран",
+    "name": "Экран “Детский” + ЦУЭ",
+    "image": "camping",
+    "tags": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.682515,
+      "lon": 35.095207
+    },
+    "menu": "",
+    "version": "LCZUpXMAJFw2ck3"
+  },
+  {
+    "_id": "LCZUlKPxVzK10bJ",
+    "_rev": "1-62521108fc7c1b4d17263bfafef78cbf",
+    "directionId": "Экран",
+    "name": "Экран 2 + ЦУЭ (Речной экран)",
+    "image": "camping",
+    "tags": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "description": "",
+    "figure": {
+      "lat": 54.67802,
+      "lon": 35.083347
+    },
+    "menu": "",
+    "version": "LCZUoep3C_0w4a6"
+  }
+]
