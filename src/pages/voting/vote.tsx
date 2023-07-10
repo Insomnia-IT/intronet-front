@@ -24,7 +24,7 @@ export const Vote: FunctionalComponent<{
   }, [votedMovie]);
   return (
     <div flex column gap={3} style={{marginTop: 29}}>
-      <div class="sh1">Голосуем за эту анимацию?</div>
+      <div class="sh1">Голосуем за этот фильм?</div>
       {movie && <Card background="Purple">
         <MovieSmall disabled movie={movie} />
       </Card>}

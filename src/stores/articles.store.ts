@@ -1,37 +1,23 @@
 import { cell } from "@cmmn/cell/lib";
 import { ObservableDB } from "./observableDB";
 
-class ArticlesStore {
+class ShopsStore {
   constructor() {
   }
 
   @cell
-  Articles = new ObservableDB<IArticle>("articles");
+  private db = new ObservableDB<IShop>("shops");
 
   @cell
-  IsLoading = true;
+  private IsLoading = true;
 
-  get articles(): IArticle[] {
-    return this.Articles.toArray();
+  get shops(): IShop[] {
+    return this.db.toArray();
   }
 
-  public getArticle(id: IArticle["_id"]): IArticle {
-    return this.articles.find((article) => article._id === id);
+  public getShop(id: IShop["_id"]): IShop {
+    return this.db.get(id);
   }
 }
 
-export const articlesStore = new ArticlesStore();
-
-
-const testArticles: IArticle[] = [
-  {
-    _id: '1',
-    title: "Наши принципы и ценности",
-    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
-  },
-  {
-    _id: '2',
-    title: "Наши принципы и ценности",
-    text: `### Анимация — главная составляющая фестиваля\n«Бессонница» была и будет фестивалем анимационных фильмов. С наступлением темноты все площадки затихают, все программы сворачиваются, центрами жизни фестиваля становятся экраны.\n### Вдали от цивилизации\nМы считаем, что для правильного восприятия анимации необходимы открытое небо и темнота, образуемая естественным вращением Земли. Только такая темнота может вернуть нас к самим себе, отрывая от иллюзий и суеты цивилизации.`,
-  },
-];
+export const shopsStore = new ShopsStore();

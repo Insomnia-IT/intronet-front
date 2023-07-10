@@ -205,6 +205,9 @@
   padding: 0;
 }
 
+:global(ol li:not(:last-child)) {
+  margin-bottom: 20px;
+}
 :global(ul.disc) {
   list-style: none;
   padding-left: 12px;
@@ -214,6 +217,7 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
+  margin: 10px 0;
 }
 :global(ul.disc li:before) {
   content: "•";

@@ -1,4 +1,4 @@
-import { routes, useRouter } from "../../routing";
+import { RoutePath, RoutePathString, routes, useRouter } from "../../routing";
 
 const baseRoute = "activities" as keyof typeof routes;
 export const useActivitiesRouter = <TQuery extends Record<string, string>>() => {
@@ -12,6 +12,7 @@ export const useActivitiesRouter = <TQuery extends Record<string, string>>() => 
   return {
     ...router,
     activityId: router.route[1] as string | undefined,
+    locationId: router.route[2] as string | undefined,
     filter: router.query.filter,
     day: router.query.day,
     place: router.query.place,
@@ -19,6 +20,24 @@ export const useActivitiesRouter = <TQuery extends Record<string, string>>() => 
 
     goToActivity(id: string) {
       router.goTo([baseRoute, id]);
+    },
+
+    goToLocations() {
+      router.goTo([baseRoute, 'location']);
+    },
+
+    goToLocationActivity(id: string, props?: IActivityQueries) {
+      let filterQuery = {};
+
+      if (props) {
+        filterQuery = {...filterQuery, ...props};
+
+        if (isActivityQueries(filterQuery)) {
+          filterQuery = mapToActivityPlaceQueries(filterQuery);
+        }
+      }
+
+      router.goTo([baseRoute, 'location', id], filterQuery);
     },
 
     goToActivities(props?: IActivityQueries) {
@@ -32,7 +51,7 @@ export const useActivitiesRouter = <TQuery extends Record<string, string>>() => 
         }
       }
 
-      router.goTo([ baseRoute ], filterQuery, true);
+      router.goTo(props.path ? [ baseRoute, ...props.path ] : [ baseRoute ], filterQuery, true);
     },
   };
 };
@@ -42,10 +61,10 @@ export interface IActivityQueries {
   day: string;
   place?: string;
   time?: string;
+  path?: string[],
 }
 
 type IActivityTimeQueries = Omit<IActivityQueries, 'place'>;
-type IActivityPlaceQueries = Omit<IActivityQueries, 'time'>;
 
 const mapToActivityTimeQueries = ({filter, day, time}: IActivityQueries): IActivityTimeQueries => ({
   filter,
@@ -53,10 +72,11 @@ const mapToActivityTimeQueries = ({filter, day, time}: IActivityQueries): IActiv
   time
 });
 
-const mapToActivityPlaceQueries = ({filter, day, place}: IActivityQueries): IActivityPlaceQueries => ({
+const mapToActivityPlaceQueries = ({filter, day, place, time}: IActivityQueries): IActivityQueries => ({
   filter,
   day,
-  place
+  place,
+  time
 });
 
 const isActivityQueries = (prop: unknown): prop is IActivityQueries => {

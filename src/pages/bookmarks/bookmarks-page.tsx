@@ -52,6 +52,6 @@ const Sections: BookmarkSection[] = [
 const SectionNames: Record<BookmarkSection, string> = {
   movie: "Анимация",
   activity: "неАнимация",
-  locations: "Локации",
+  locations: "Площадки",
   note: "Объявления",
 };

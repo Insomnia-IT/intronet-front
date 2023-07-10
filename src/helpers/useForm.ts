@@ -16,17 +16,19 @@ export function useForm<T>(cell: Cell<Partial<T>>){
     return cell.on('change', e => ref.current && setValues(e.value, ref.current))
   }, [cell]);
   useEffect(() => {
+    console.log(ref.current)
     if (!ref.current) return;
     setValues(cell.get(), ref.current);
     ref.current.addEventListener('change', onChange, {});
     return () => ref.current?.removeEventListener('change', onChange);
-  }, [ref.current])
+  }, [ref])
 
   return ref;
 }
 
 function setValues(value: object, form: HTMLFormElement){
   if (!value) return;
+  console.log(value)
   for (let element of Array.from(form.elements) as HTMLInputElement[]) {
     const name = element.getAttribute('name');
     if (element.value !== value[name] && value[name]){

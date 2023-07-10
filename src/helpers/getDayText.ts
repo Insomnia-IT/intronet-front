@@ -27,7 +27,7 @@ export function getDayText(
 }
 
 export function getCurrentDay(): Day {
-  return getDay(Date.now());
+  return getDay(Date.now() - 12*60*60*1000);
 }
 
 export function getDay(utc: number): Day {

@@ -29,13 +29,13 @@ export function MapElements(props: {
   );
   return <>{ children }</>;
 }
-const scaleThreshold = 0.6;
+const scaleThreshold = 0.4;
 
 export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
   item: MapItem;
 }) {
-  const isSelected = useCell(() =>locationsStore.selected?._id == props.item.id);
+  const isSelected = useCell(() => locationsStore.selected.some(x => x._id == props.item.id));
   const type = directionsToOrder.get(props.item.directionId);
   const scale = useCell(
     () => props.transformCell.get().Matrix.GetScaleFactor(),
@@ -97,22 +97,40 @@ export function MapElement(props: {
   if (isSelected) {
     classNames.push(styles.selected);
   }
+
+  if (props.item.maxZoom && scale > props.item.maxZoom)
+    return <></>;
+  if (props.item.minZoom && scale <= props.item.minZoom)
+    return <></>;
   if (Array.isArray(props.item.figure)) {
-    return (
-      <path
-        class={ styles.zone }
-        onClick={ (e) => {
-          e.preventDefault();
-          locationsStore.setSelectedId(props.item.id);
-        } }
-        d={ props.item.figure
-          .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
-          .join(" ") }
-      />
-    );
+    if (Array.isArray(props.item.figure[0])) {
+      return (
+        <path
+          class={ isSelected ? styles.zoneSelected : styles.zone }
+          onClick={ (e) => {
+            e.preventDefault();
+            locationsStore.setSelectedId(props.item.id);
+          } }
+          d={ props.item.figure
+            .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
+            .join(" ") }
+        />
+      );
+    }
+    return <></>;
+    // return (
+    //   <path
+    //     class={ styles.road }
+    //     onClick={ (e) => {
+    //       e.preventDefault();
+    //       locationsStore.setSelectedId(props.item.id);
+    //     } }
+    //     d={ "M" + props.item.figure.map((p) => `${ p.X } ${ p.Y }`).join("L")}
+    //   />
+    // );
   }
   return (
-    <g transform={ `translate(${ props.item.figure.X } ${ props.item.figure.Y })` } style={{
+    <g transform={ `translate(${ props.item.figure?.X } ${ props.item.figure?.Y })` } style={{
       transition: `transform .1s ease`
     }}>
       <g

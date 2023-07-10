@@ -1,11 +1,17 @@
 import * as console from "console";
-import {checkWriteAccess} from "./auth";
-import {authCtrl, UserInfo} from "./auth.ctrl";
+import { checkWriteAccess } from "./auth";
+import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
-import {importActivities, importLocations, importMainPage} from "./data/import";
-import {importMovies} from "./data/importMovies";
+import { importMainPage } from "./data/import";
+import { importLocations } from "./data/importLocations";
+import { importMovies } from "./data/importMovies";
+import { importActivities } from "./data/importActivities";
+import {importShops} from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
-import {logCtrl} from "./log.ctrl";
+import { logCtrl } from "./log.ctrl";
+import {Database} from "./database";
+import {getResults, vote} from "./vote.ctrl";
+
 const fastify = Fastify({
   logger: false
 });
@@ -20,7 +26,7 @@ fastify.get("/auth", async function (request, reply) {
 });
 fastify.post("/auth/token", async function (request, reply) {
   const user = await authCtrl.parse(request.headers.authorization);
-  if (user.role !== "superadmin"){
+  if (user.role !== "superadmin") {
     reply.status(401);
     return `Only superadmin can create tokens`;
   }
@@ -31,6 +37,31 @@ fastify.post("/log", async function (request, reply) {
     ...JSON.parse(request.body as string),
     app: 'client',
   };
+});
+
+fastify.get("/vote", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization);
+  if (user.role !== "superadmin") {
+    reply.status(401);
+    return `Only superadmin can see voting results`;
+  }
+  const results = await getResults();
+  console.log(results);
+  return  results;
+});
+
+fastify.post("/vote", async function (request, reply) {
+  const id  = JSON.parse(request.body as string).id;
+  logData = {
+    id,
+    action: 'vote',
+    app: 'client',
+  };
+  vote({
+    id,
+    uid: request.headers.uid as string,
+    ip: request.headers['x-forwarded-for'] as string
+  })
 });
 fastify.get<{
   Params: { name: string };
@@ -69,7 +100,7 @@ fastify.post("/batch", async function (request, reply) {
     await dbCtrl.addOrUpdate(item.db, item.value);
   }
 });
-fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
+fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
     const user = await authCtrl.parse(request.headers.authorization);
@@ -77,18 +108,24 @@ fastify.post<{ Params: { name: string }, Querystring: {force: boolean} }>(
       reply.status(401);
       return `User have not enough permissions to modify db`;
     }
-    switch (request.params.name){
-      case "locations": return importLocations(request.query.force);
-      case "movies": return importMovies(request.query.force);
-      case "activities": return importActivities(request.query.force);
-      case "main": return importMainPage(request.query.force);
+    switch (request.params.name) {
+      case "locations":
+        return importLocations(request.query.force);
+      case "movies":
+        return importMovies(request.query.force);
+      case "activities":
+        return importActivities(request.query.force);
+      case "main":
+        return importMainPage(request.query.force);
+      case "shops":
+        return importShops(request.query.force);
     }
   }
 );
 
 // Run the server!
 fastify.listen(
-  { port: +(process.env.PORT ?? 5002), host: process.env.HOST },
+  {port: +(process.env.PORT ?? 5002), host: process.env.HOST},
   function (err, address) {
     if (err) {
       fastify.log.error(err);
@@ -100,7 +137,7 @@ fastify.listen(
 
 let user: UserInfo;
 fastify.addHook('onRequest', async (request, reply) => {
-  if (request.headers.authorization){
+  if (request.headers.authorization) {
     user = await authCtrl.parse(request.headers.authorization);
   }
 })
@@ -114,8 +151,9 @@ const logHook = async (request, reply) => {
     params: request.params,
     statusCode: reply.statusCode,
     user: user,
+    headers: request.headers,
     uid: request.headers.uid,
-    ip: request.ip,
+    ip: request.headers['x-forwarded-for'],
     query: request.query,
     time: reply.getResponseTime(),
     app: 'server',

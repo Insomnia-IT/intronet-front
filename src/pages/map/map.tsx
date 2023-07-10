@@ -35,6 +35,7 @@ export class MapComponent extends Component {
     return this.TransformCell.get();
   }
   set Transform(value: TransformMatrix){
+    // localStorage.setItem('transform', JSON.stringify(value))
     this.TransformCell.set(value);
   }
 
@@ -98,12 +99,19 @@ export class MapComponent extends Component {
   onTransform = (e: TransformMatrix) => {
     const newTransform = e.Apply(this.Transform) as TransformMatrix;
     this.setTransform(newTransform);
-    if (locationsStore.isMoving && locationsStore.selected) {
+    if (locationsStore.isMoving && locationsStore.selected.length == 1) {
       const transform = new TransformMatrix()
         .Apply(this.Transform.Inverse())
         .Apply(e)
         .Apply(this.Transform);
-      locationsStore.moveSelectedLocation(transform.Inverse());
+      const selected = locationsStore.MapItems.find(x => x.id === locationsStore.selected[0]._id);
+      const center = this.getCenter(selected.figure);
+      const newCenter = transform.Inverse().Invoke(center);
+      const shift = {
+        X: newCenter.X - center.X,
+        Y: newCenter.Y - center.Y
+      };
+      locationsStore.moveSelectedLocation(TransformMatrix.Translate(shift));
     }
   }
   setHandler = (element: HTMLDivElement) => {
@@ -131,7 +139,7 @@ export class MapComponent extends Component {
 
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
-    if (scale > 2.2 || scale < this.minScale * 0.98) {
+    if (scale > 3 || scale < this.minScale * 0.98) {
       return;
     }
     this.Transform = transform;
@@ -152,7 +160,7 @@ export class MapComponent extends Component {
         ? rect.width / image.width
         : rect.height / image.height;
     this.Transform = new TransformMatrix()
-      .Translate({ X: rect.width / 2, Y: rect.height / 2 })
+      .Translate({ X: rect.width*(-0.1), Y: rect.height / 2 })
       .Scale(this.minScale)
       .Translate({
         X: -image.width / 2,
@@ -163,11 +171,11 @@ export class MapComponent extends Component {
   //endregion
 
   componentDidMount() {
-    if (locationsStore.selected) {
-      this.scrollTo(locationsStore.selected._id);
+    if (locationsStore.selected.length) {
+      this.scrollTo(locationsStore.selected.map(x => x._id));
     }
     return Cell.OnChange(() => locationsStore.selected, e => {
-      e.value && this.scrollTo(e.value._id)
+      e.value && this.scrollTo(e.value.map(x => x._id))
     })
   }
 
@@ -184,10 +192,13 @@ export class MapComponent extends Component {
     });
     return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
   }
-  scrollTo(id: string) {
-    const x = locationsStore.MapItems.find((x) => x.id === id);
+  scrollTo(ids: string[]) {
+    if (!this.root || !ids.length)
+      return;
+    const centers = locationsStore.MapItems.filter((x) => ids.includes(x.id))
+      .map(x => this.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(this.getCenter(x.figure));
+    const view = this.Transform.Invoke(this.getCenter([centers]));
     // if (
     //   view.X > rect.left + rect.width / 100 &&
     //   view.X < rect.right - rect.width / 100 &&

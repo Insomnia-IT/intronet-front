@@ -68,7 +68,7 @@ class AuthStore extends LocalStore<{
     });
   }
   public createToken(role: 'admin'|'superadmin'|'tochka', username: string){
-    return fetch('/webapi/auth/token', {
+    return fetch(`${api}/auth/token`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({role, username})
@@ -76,10 +76,19 @@ class AuthStore extends LocalStore<{
   }
 
   public seed(db: string, force: boolean){
-    return fetch(`/webapi/seed/${db}${force ? '?force=1' : ''}`, {
+    return fetch(`${api}/seed/${db}${force ? '?force=1' : ''}`, {
       method: 'POST',
       headers: this.headers,
     })
+  }
+
+  public async seedAll(force: boolean){
+    await this.seed('locations', force);
+    await this.seed('activities', force);
+    await this.seed('movies', force);
+    await this.seed('vurchel', force);
+    await this.seed('main', force);
+    await this.seed('shops', force);
   }
 }
 export const authStore = globalThis['authStore'] = new AuthStore();

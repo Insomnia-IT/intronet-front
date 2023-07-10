@@ -9,7 +9,6 @@ import { Link } from "@components/link/link";
 import { SvgIcon } from "@icons";
 import {useLocationsRouter} from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
-import { directionsToDetailsGroup } from "../mapElement";
 
 export type LocationProps = {
   id: string;
@@ -61,6 +60,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           day: getCurrentDay(),
           screen: id
         }}>к расписанию</Link>}
+        <div className="text colorMediumBlue"> { location.description.split('\n').map(x => <div>{x}</div>) }</div>
         <LocationContent location={ {
           ...location,
           description: location.description
@@ -100,87 +100,13 @@ export const Location: FunctionalComponent<LocationProps> = ({
 
 
 const LocationContent: FunctionalComponent<{ location: InsomniaLocation }> = ({location}) => {
-  const detailGroup = directionsToDetailsGroup.get(location.directionId);
-
-  switch (detailGroup) {
-    case "cafe":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "map", ] }>Посмотреть меню</Link>
-        </>
-      );
-    case "shop":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "map", ] }>Перейти к списку палаток</Link>
-        </>
-      );
-    case "screen":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "timetable", ] }>К расписанию</Link>
-        </>
-      );
-    case "music":
-    case "activity":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "activities", ] }>К расписанию</Link>
-        </>
-      );
-    case "tent":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "map", ] }>Правила кемпинга</Link>
-
-          <Link goTo={ [ "map", ] }>Про экологию и мусор</Link>
-        </>
-      );
-    case "info":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "main", ] }>К разделам</Link>
-        </>
-      );
-    case "point":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "map", ] }>Я потерял ребёнка</Link>
-          <Link goTo={ [ "map", ] }>Я потерял взрослого</Link>
-          <Link goTo={ [ "map", ] }>Я потерял животное</Link>
-          <Link goTo={ [ "map", ] }>я потерял вещь</Link>
-        </>
-      );
-    case "med":
-      return (
-        <>
-          <div className="text colorMediumBlue"> { location.description }</div>
-
-          <Link goTo={ [ "map", ] }>Я поранился</Link>
-          <Link goTo={ [ "map", ] }>Как помочь раненому</Link>
-          <Link goTo={ [ "map", ] }>Про клещей</Link>
-        </>
-      );
-    case "wc":
-    case "art":
-    case "other":
-    default:
-      return (
-        <div className="text colorMediumBlue"> { location.description }</div>
-      );
-  }
+  const blocks = location.contentBlocks;
+  return <>
+    {blocks?.map(b => <>
+      {b.blockType === "link" && <Link goTo={b.link as any}>{b.title}</Link>}
+      {b.blockType === "text" && <div class="text colorMediumBlue">
+        {b.content}
+      </div>}
+    </>)}
+  </>;
 }

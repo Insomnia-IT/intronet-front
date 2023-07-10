@@ -1,11 +1,12 @@
 import "@cmmn/cell/lib";
 import {Fn} from "@cmmn/cell/lib";
 import * as console from "console";
-import { writeFileSync } from "fs";
+import fs from "fs";
 import fetch from "node-fetch";
 import {Database} from "../database";
 import {dbCtrl} from "../db-ctrl";
 import moviesXLS from "./movies.json" assert {"type": "json"};
+import moviesJSON from "./movies_api.json" assert {"type": "json"};
 
 export async function importMovies(force = false) {
   const locationsDb = new Database<any>("locations");
@@ -20,11 +21,12 @@ export async function importMovies(force = false) {
       await moviesDB.remove(movie._id);
     }
   }
-  const moviesJSON: Schedule = await fetch('https://insomniafest.ru/export/schedule').then(x => x.json()).catch(() => null);
-  if (!moviesJSON){
-    console.error('cannot load');
-    return;
-  }
+  // const moviesJSON: Schedule = await fetch('https://insomniafest.ru/export/schedule').then(x => x.json()).catch(() => null);
+  // fs.writeFileSync('./server/data/movies_api.json', JSON.stringify(moviesJSON), 'utf8');
+  // if (!moviesJSON){
+  //   console.error('cannot load');
+  //   return;
+  // }
   const screenNameMap = {
     'Полевой Экран (ЦУЭ 1)': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('полевой'))?._id,
     'Полевой экран': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('полевой'))?._id,

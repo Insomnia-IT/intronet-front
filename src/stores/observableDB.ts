@@ -40,12 +40,12 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   async remove(key: string) {
-    await this.db.remove(key);
-    this.items.delete(key);
-    this.emit("change", {
-      type: "delete",
-      key,
-    });
+    const existed = this.get(key);
+    if (!existed) return;
+    return this.addOrUpdate({
+      ...existed,
+      deleted: true
+    })
   }
 
   async clear() {
@@ -87,7 +87,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   }
 
   toArray(): T[] {
-    return Array.from(this.items.values());
+    return Array.from(this.items.values()).filter(x => !x['deleted']);
   }
 
   entries() {
@@ -130,7 +130,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
       this.syncLock = false;
     }
   }
-
+  private errorTimeout = 300;
   async saveToServer() {
     if (this.localOnly) return;
     for (let item of this.items.values()) {
@@ -140,7 +140,7 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
         method: "POST",
         headers: authStore.headers,
         body: JSON.stringify(item),
-      }).catch();
+      }).catch(() => new Promise(resolve => setTimeout(resolve, this.errorTimeout*1.2 )));
     }
     await VersionsDB.Instance.loadFromServer();
   }

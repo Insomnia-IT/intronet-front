@@ -37,6 +37,8 @@
 }
 
 .sheet{
+  display: flex;
+  flex-direction: column;
   background: var(--cold-white);
   position: absolute;
   width: 100%;
