@@ -104,13 +104,13 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
         text: formFields["text"] as string,
         title: formFields["title"] as string,
         TTL: isAdmin
-          ? 17
+          ? 18
           : (parseInt(formFields["TTL"].slice("tag+".length + 3)) as
               | 13
               | 14
               | 15
               | 16
-              | 17),
+              | 17) || 18,
         restricted: !isAdmin,
       })
       .then(() => {
