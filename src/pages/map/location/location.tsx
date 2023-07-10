@@ -1,5 +1,4 @@
 import {getCurrentDay} from "@helpers/getDayText";
-import {shopsStore} from "@stores/articles.store";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
@@ -10,7 +9,6 @@ import { Link } from "@components/link/link";
 import { SvgIcon } from "@icons";
 import {useLocationsRouter} from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
-import { directionsToDetailsGroup } from "../mapElement";
 
 export type LocationProps = {
   id: string;
@@ -27,7 +25,6 @@ export const Location: FunctionalComponent<LocationProps> = ({
   const isEdit = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
   if (!location) return <></>;
-  console.log(location?.contentBlocks);
   if (isMoving) return <div flex column gap="2">
     <div className={ [ "sh1", Styles.locationHeader ].join(" ") }>
       { location.name }
@@ -63,7 +60,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           day: getCurrentDay(),
           screen: id
         }}>к расписанию</Link>}
-        <div className="text colorMediumBlue"> { location.description }</div>
+        <div className="text colorMediumBlue"> { location.description.split('\n').map(x => <div>{x}</div>) }</div>
         <LocationContent location={ {
           ...location,
           description: location.description

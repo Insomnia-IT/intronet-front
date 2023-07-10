@@ -35,6 +35,7 @@ export class MapComponent extends Component {
     return this.TransformCell.get();
   }
   set Transform(value: TransformMatrix){
+    // localStorage.setItem('transform', JSON.stringify(value))
     this.TransformCell.set(value);
   }
 
@@ -159,7 +160,7 @@ export class MapComponent extends Component {
         ? rect.width / image.width
         : rect.height / image.height;
     this.Transform = new TransformMatrix()
-      .Translate({ X: rect.width / 2, Y: rect.height / 2 })
+      .Translate({ X: rect.width*(-0.1), Y: rect.height / 2 })
       .Scale(this.minScale)
       .Translate({
         X: -image.width / 2,

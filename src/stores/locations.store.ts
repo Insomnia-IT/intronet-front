@@ -42,55 +42,63 @@ class LocationsStore {
 
 
   @cell
-  public get Locations(): ReadonlyArray<InsomniaLocation> {
+  private get RealLocations(): ReadonlyArray<InsomniaLocation> {
     return this.db.toArray()
       .filter(x => x.figure)
       .concat(this.newLocation ? [this.newLocation] : [])
       .map((x) => changesStore.withChanges(x, x._id))
   }
+  @cell
+  public get Locations(): ReadonlyArray<InsomniaLocation> {
+    return this.RealLocations
+      .concat(this.VirtualCafe.filter(x => !this.db.get(x._id)))
+  }
 
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.Locations.filter((x) => x.directionId === Directions.screen);
+    return this.RealLocations.filter((x) => x.directionId === Directions.screen);
   }
 
   @cell
   public get ActivityLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.Locations.filter((x) => x.work_tags?.includes('activity'));
+    return this.RealLocations.filter((x) => x.work_tags?.includes('activity'));
   }
 
   @cell
   public get Infocenter(): InsomniaLocation {
-    return this.Locations.find((x) => x.directionId === Directions.info);
+    return this.RealLocations.find((x) => x.directionId === Directions.info);
   }
   @cell
   public get Shops(): InsomniaLocation {
-    return this.Locations.find((x) => x.name.toLowerCase() === 'ярмарка');
+    return this.RealLocations.find((x) => x.name.toLowerCase() === 'ярмарка');
   }
   @cell
   public get Foodcourt(): InsomniaLocation {
-    return this.Locations.find((x) => x.name.toLowerCase() === 'фудкорт');
+    return this.RealLocations.find((x) => x.name.toLowerCase() === 'фудкорт');
   }
   @cell
-  public get VirtualCafe(): Array<MapItem> {
+  public get VirtualCafe(): Array<InsomniaLocation> {
     const patches = new Map(this.locationPatches.toArray());
     const foodcourt = this.Foodcourt;
     if (!foodcourt) return [];
     const point = (patches.get(foodcourt._id) ?? geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
-    const cafes = [
-    ];
-    const sqrt = Math.ceil(Math.sqrt(cafes.length));
-    const size = 14;
-    return cafes.map((x,i) => ({
-      minZoom: 1.6,
-      id: x._id,
-      title: x.name,
-      directionId: Directions.cafe,
-      figure: {
-        X: point.X + ((i % sqrt) - sqrt/2) * size,
-        Y: point.Y - ((i / sqrt) - sqrt/2) * size,
-      },
-    } as MapItem))
+    const size = 56;
+    return foodCourtLocations.map((x,i) => {
+      const shift = TransformMatrix.Rotate(-1.6).Invoke(getFoodcourtShift(i));
+      return ({
+        minZoom: 1.6,
+        _id: foodcourt._id+i.toString(),
+        name: x,
+        directionId: Directions.cafe,
+        contentBlocks: [],
+        description: '',
+        menu: '',
+        figure: geoConverter.toGeo({
+          X: point.X + shift.X * size,
+          Y: point.Y - shift.Y * size,
+        }),
+      } as InsomniaLocation);
+    })
   }
   // @cell
   // public get VirtualShops(): Array<MapItem> {
@@ -121,9 +129,9 @@ class LocationsStore {
       title: x.name,
       id: x._id,
       radius: 10,
-      // maxZoom: x._id == this.Foodcourt._id ? 1.6 : undefined
+      maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
+      minZoom: x.minZoom
     } as MapItem))
-      // .concat(this.VirtualShops);
   }
 
   async addLocation(location: InsomniaLocation) {
@@ -251,3 +259,39 @@ export class LocationStore {
 const center = {
   lat: 54.68008397222222, lon: 35.08622484722222,
 };
+
+const foodCourtLocations =  [
+  'Пянсе',
+  'Мясо в пите , пица',
+  'Гонконгские вафли и греческий гирос',
+  'Буррито и кесадилья',
+  'Лавка Добра',
+  'Это Паста!',
+  'Hola Churros!',
+  'Та самая шаверма',
+  'Borisoff_produkt',
+  'БлинБлиныч',
+  'The russian pie',
+  'Тайская принцесса',
+  'Сытый гурман',
+  'Тесто',
+]
+
+function getFoodcourtShift(index: number){
+  if (index < 4){
+    return {
+      X: -2 + index / 4,
+      Y: index / 4
+    }
+  }
+  if (index < 10){
+    return {
+      X: -1 + (index - 4) / 3,
+      Y: 1
+    }
+  }
+  return {
+    X: 1 + (index - 10) / 4,
+    Y: 1 - (index - 10) / 4,
+  }
+}
