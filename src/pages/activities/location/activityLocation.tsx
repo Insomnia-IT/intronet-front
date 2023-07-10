@@ -7,6 +7,7 @@ import { ActivityFilters } from "../filters/ActivityFilters";
 import { activityFiltersStore } from "@stores/activities";
 import { locationsStore } from "@stores";
 import { ActivityList } from "../activities/activityList";
+import Styles from "./activityLocation.module.css";
 
 export type ActivityLocationProps = {
   id: string;
@@ -25,7 +26,7 @@ export const ActivityLocation: FunctionalComponent<ActivityLocationProps> = ({id
 
   return (
     <>
-      <span class={'sh1'}>{locationsStore.getName(id)}</span>
+      <span class={ [ 'sh1', Styles.header ].join(' ') }>{ locationsStore.getName(id) }</span>
       <div flex column gap={ 2 } style={ {margin: "25px 0 20px 0"} }>
         <ActivityFilters type={ 'day' } filters={ days }/>
         <ActivityFilters type={ 'time' } filters={ times }/>

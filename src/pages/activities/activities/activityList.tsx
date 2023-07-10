@@ -30,14 +30,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
   const cards = useCell(() => {
     const numberTime = Number(time);
 
-    switch (filter) {
-      case 'place':
-        return activities.filter((activity) => !place || activity.locationId === place);
-      case 'time':
-        return activities.filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true);
-      default:
-        return activities
-    }
+    return activities.filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true);
   }, [ activities, filter, day, time, place ]);
 
   const filteredCards = cards
@@ -51,7 +44,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
     .sort((prev, next) => prev.start.getTime() - next.start.getTime());
 
   return (
-    <div flex column className={styles.container} ref={ setRef }>
+    <div flex column className={ styles.container } ref={ setRef }>
       {
         filteredCards.map((x) => (<>
           <ActivityGesturedCard
@@ -62,7 +55,8 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
           </ActivityGesturedCard>
 
           <RequireAuth>
-            <Button class="w-full" style={ {marginBottom: 24, marginTop: 12} } goTo={ [ "activities", "edit", x._id ] } type="frame">изменить
+            <Button class="w-full" style={ {marginBottom: 24, marginTop: 12} } goTo={ [ "activities", "edit", x._id ] }
+                    type="frame">изменить
               время</Button>
           </RequireAuth>
         </>)) }
