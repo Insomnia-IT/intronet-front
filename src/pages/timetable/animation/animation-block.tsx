@@ -52,7 +52,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
           </div>
           {isOpen && <MovieList movies={block.movies} />}
           <Button type="text" onClick={() => setIsOpen((x) => !x)}>
-            {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
+            {isOpen ? "СВЕРНУТЬ СПИСОК ФИЛЬМОВ" : "ПОКАЗАТЬ СПИСОК ФИЛЬМОВ"}
           </Button>
         </div>
       </Card>
