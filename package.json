@@ -15,7 +15,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@cmmn/cell": "1.7.19",
+    "@cmmn/cell": "1.7.20",
     "@cmmn/tools": "1.7.19",
     "@fastify/websocket": "^7.1.3",
     "@types/luxon": "^2.3.1",
