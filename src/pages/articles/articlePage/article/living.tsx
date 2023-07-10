@@ -33,15 +33,15 @@ export function Living() {
 
 const sections = {
   camping: {
-    title: "Кэмпинг", component: () => <div class="text colorMediumBlue" flex column gap="4">
-      <div>Палатку можно поставить бесплатно в специальной зоне кэмпинга.</div>
+    title: "Кемпинг", component: () => <div class="text colorMediumBlue" flex column gap="4">
+      <div>Палатку можно поставить бесплатно на территориях свободного кемпинга.</div>
       <div class="colorOrange" flex gap="3">
         <SvgIcon id="#alert" size={24} style={{ color: "var(--chineese-cafe)", flex: 'auto 0 0' }} />
-        На поле между фестивальными объектами и локациями, палатки ставить запрещено!
+        На поле между фестивальными объектами и площадками палатки ставить запрещено!
       </div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full">к бесплатному лагерю</Button>
+        <Button type="vivid" class="w-full" goTo={['map',{direction: 'бесплатный лагерь'}]}>к бесплатному лагерю</Button>
       </ButtonsBar>
     </div>
   }, tents: {
@@ -58,15 +58,15 @@ const sections = {
       <div>Оплата аренды и залога происходит при получении. Если вы оставляли заявку на аренду заранее, то номер телефона
         является вашим номером заказа.</div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full">к прокату палаток</Button>
+        <Button type="vivid" class="w-full" goTo={['map',{name: 'прокат'}]}>к прокату палаток</Button>
       </ButtonsBar>
     </div>
   }, paid: {
-    title: "Платные кэмпинги", component: () => <div class="text colorMediumBlue" flex column gap="2">
-      <div  style={{marginBottom: 8}}>Если вы заранее купили билет в платный кэмпинг — вам сюда!</div>
-      <Link goTo="/map/?name=Байка" style={{margin: '10px 0'}}>к Лесному лагерю «Байка»</Link>
-      <Link goTo="/map/?name=Байка" style={{margin: '10px 0'}}>к Лагерю у Детской поляны</Link>
-      <Link goTo="/map/?name=Байка" style={{margin: '10px 0 24px'}}>к Автолагерю</Link>
+    title: "Платные кемпинги", component: () => <div class="text colorMediumBlue" flex column gap="2">
+      <div  style={{marginBottom: 8}}>Если вы заранее купили билет в платный кемпинг — вам сюда!</div>
+      <Link goTo="/map" query={{name: 'байка'}} style={{margin: '10px 0'}}>к Лесному лагерю «Байка»</Link>
+      <Link goTo="/map" query={{name: 'у детской'}} style={{margin: '10px 0'}}>к Лагерю у Детской поляны</Link>
+      <Link goTo="/map" query={{name: 'автокемпинг'}} style={{margin: '10px 0 24px'}}>к Автолагерю</Link>
       <Footer/>
     </div>
   }, caravan: {
@@ -74,7 +74,7 @@ const sections = {
       <div  style={{marginBottom: 8}}>Если вы заранее купили билет в палаточный отель Караван — вам сюда!</div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full">к каравану</Button>
+        <Button type="vivid" class="w-full" goTo={['map',{name: 'караван'}]}>к каравану</Button>
       </ButtonsBar>
     </div>
   }, yurt: {
@@ -82,7 +82,7 @@ const sections = {
       <div  style={{marginBottom: 8}}>Если вы заранее купили билет в Юрту — вам сюда!</div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full">к юртам</Button>
+        <Button type="vivid" class="w-full" goTo={['map',{name: 'юрты'}]}>к юртам</Button>
       </ButtonsBar>
     </div>
   },

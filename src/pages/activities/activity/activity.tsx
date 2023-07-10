@@ -44,7 +44,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
           goTo={["map", activity?.locationId]}
           style={{ marginBottom: 18 }}
         >
-          Локация на карте
+          на карте
         </Link>
         <div flex column gap={1} style={{ alignItems: "flex-start" }}>
           {activity?.isCanceled && <Badge type={"Change"}>Отменилось =(</Badge>}

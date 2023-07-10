@@ -1,8 +1,5 @@
-import {Button, ButtonsBar, CloseButton} from "@components";
-import {Card} from "@components/cards";
+import {CloseButton} from "@components";
 import {Link} from "@components/link/link";
-import {SvgIcon} from "@icons";
-import {useRouter} from "../../../routing";
 
 export function Dogs() {
   return <div class="page text colorMediumBlue" flex gap="4">
@@ -18,8 +15,8 @@ export function Dogs() {
       <li>И, конечно, не забывайте убирать за своим питомцем.</li>
     </ul>
     Если все-таки за собакой не уследили, и она потерялась, не паникуйте, обратитесь с Точку Сборки
-    <Link goTo="/map?name=точка">точка сборки</Link>
+    <Link goTo={['map',{name: 'точка'}]}>точка сборки</Link>
     Если собака кого-то покусала, или вас покусала собака, проверьте, что вы знаете что делать
-    <Link goTo="/map?name=медпункт">мед. пункт</Link>
+    <Link goTo={['map',{name: 'медпункт'}]}>мед. пункт</Link>
   </div>
 }

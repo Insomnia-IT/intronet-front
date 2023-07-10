@@ -82,9 +82,8 @@ export async function importLocations(force = false) {
     const notionLoc = notionLocations.find(n =>
       (escape(readNotionName(n.name.toLowerCase())) === name) || (n.map_name && escape(readNotionName(n.map_name.toLowerCase())) === name)
     );
-    if (!notionLoc) {
-      if (!Array.isArray(figure))
-        notMatched.push(x.properties.name);
+    if (!notionLoc && !Array.isArray(figure)) {
+      notMatched.push(x.properties.name);
       return [];
     }
     function getName(name: string) {

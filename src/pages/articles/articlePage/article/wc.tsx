@@ -1,8 +1,7 @@
 import {Button, ButtonsBar, CloseButton} from "@components";
-import {Card} from "@components/cards";
-import {Link} from "@components/link/link";
 import {Tag, Tags} from "@components/tag";
 import {SvgIcon} from "@icons";
+import {Directions} from "@stores";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
 
@@ -18,9 +17,8 @@ export function WC() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  console.log(sections, section, Component)
   return <div class="page" flex gap="4">
-    <div class="sh1">о Портале Insight</div>
+    <h1>Туалеты и<br/>души</h1>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -42,7 +40,7 @@ const sections = {
         средствами от запаха.</div>
       <div>Туалетной бумаги в кабинках нет.</div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo="/map?direction=туалет">к туалетам</Button>
+        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.wc}]}>к туалетам</Button>
       </ButtonsBar>
     </div>
   },
@@ -57,13 +55,13 @@ const sections = {
         Купаться в реке запрещено!
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo="/map?direction=душ">к бесплатному душу</Button>
+        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.shower}]}>к бесплатному душу</Button>
       </ButtonsBar>
     </div>
   },
   paid_shower: {
     title: "Платный душ", component: () => <div class="text colorMediumBlue" flex column gap="5">
-      <div>Душевые кабинки с постоянно нагреваемой водой — платная услуга бессонницы.</div>
+      <div>Душевые кабинки с постоянно нагреваемой водой — платная услуга «Бессонницы».</div>
       <div>Пожалуйста, используйте дегтярное мыло — это натуральное средство, полезное для кожи, которое не вредит
         окружающей среде.</div>
       <div flex gap="3">
@@ -71,24 +69,24 @@ const sections = {
         Купаться в реке запрещено!
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo="/map?direction=душ">к платному душу</Button>
+        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.shower}]}>к платному душу</Button>
       </ButtonsBar>
     </div>
   },
   sauna: {
     title: "Баня", component: () => <div class="text colorMediumBlue" flex column gap="5">
-      <div>Горячая баня — платная услуга бессонницы.</div>
+      <div>Горячая баня — платная услуга «Бессонницы».</div>
       <div>Пожалуйста, используйте дегтярное мыло — это натуральное средство, полезное для кожи, которое не вредит
         окружающей среде.
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo="/map?direction=баня">к бане</Button>
+        <Button type="vivid" class="w-full" goTo={['map', {name: 'steam'}]}>к бане</Button>
       </ButtonsBar>
     </div>
   },
   // river: {
   //   title: "Река", component: () => <div class="text colorMediumBlue" flex column gap="5">
-  //     <div>Поляна Бессонницы большая, поэтому важно не оставлять маленьких детей одних. На фестивале работает Точка сборки — команда волонтеров, которая поможет в случае потери ребёнка.</div>
+  //     <div>Поляна «Бессонницы» большая, поэтому важно не оставлять маленьких детей одних. На фестивале работает Точка сборки — команда волонтеров, которая поможет в случае потери ребёнка.</div>
   //     <Link goTo="/articles/tochka">рекомендации Точки сборки</Link>
   //   </div>
   // }

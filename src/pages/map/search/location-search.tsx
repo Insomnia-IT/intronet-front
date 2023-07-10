@@ -17,7 +17,7 @@ export const LocationSearch = () => {
       <h1>поиск</h1>
       <Input
         style={ {margin: "20px 0"} }
-        placeholder="Локация"
+        placeholder="Площадка"
         value={ query }
         onInput={ (e) => setQuery(e.currentTarget.value) }
       />
@@ -26,7 +26,7 @@ export const LocationSearch = () => {
       ) : (
         <SearchPlug
           title={ 'Ничего не найдено' }
-          text={ 'Попробуйте найти локацию по названию' }></SearchPlug>
+          text={ 'Попробуйте найти площадку по названию' }></SearchPlug>
       ) }
     </div>
   );

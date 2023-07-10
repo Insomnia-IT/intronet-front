@@ -21,18 +21,20 @@ class LocationsStore {
   @cell
   public get selected(): InsomniaLocation[] {
     const router = routerCell.get();
+    if (router.route[1])
+      return [this.Locations.find((x) => x._id === router.route[1])].filter(x => x);
     if (router.query.direction)
       return this.findByDirection(decodeURIComponent(router.query.direction));
     if (router.query.name)
       return [this.findByName(decodeURIComponent(router.query.name))].filter(x => x);
-    return [this.Locations.find((x) => x._id === router.route[1])].filter(x => x);
+    return [];
   }
 
   findByName(s: string) {
-    return this.Locations.find(x => x.name?.toLowerCase().includes(s));
+    return this.Locations.find(x => x.name?.toLowerCase().includes(s.toLowerCase()));
   }
   findByDirection(s: string) {
-    return this.Locations.filter(x => x.directionId?.toLowerCase().includes(s));
+    return this.Locations.filter(x => x.directionId?.toLowerCase().includes(s.toLowerCase()));
   }
   public setSelectedId(id: string | null) {
     goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
@@ -65,6 +67,31 @@ class LocationsStore {
   public get Shops(): InsomniaLocation {
     return this.Locations.find((x) => x.name.toLowerCase() === 'ярмарка');
   }
+  @cell
+  public get Foodcourt(): InsomniaLocation {
+    return this.Locations.find((x) => x.name.toLowerCase() === 'фудкорт');
+  }
+  @cell
+  public get VirtualCafe(): Array<MapItem> {
+    const patches = new Map(this.locationPatches.toArray());
+    const foodcourt = this.Foodcourt;
+    if (!foodcourt) return [];
+    const point = (patches.get(foodcourt._id) ?? geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
+    const cafes = [
+    ];
+    const sqrt = Math.ceil(Math.sqrt(cafes.length));
+    const size = 14;
+    return cafes.map((x,i) => ({
+      minZoom: 1.6,
+      id: x._id,
+      title: x.name,
+      directionId: Directions.cafe,
+      figure: {
+        X: point.X + ((i % sqrt) - sqrt/2) * size,
+        Y: point.Y - ((i / sqrt) - sqrt/2) * size,
+      },
+    } as MapItem))
+  }
   // @cell
   // public get VirtualShops(): Array<MapItem> {
   //   const patches = new Map(this.locationPatches.toArray());
@@ -94,7 +121,7 @@ class LocationsStore {
       title: x.name,
       id: x._id,
       radius: 10,
-      // maxZoom: x._id == this.Shops._id ? 1.6 : undefined
+      // maxZoom: x._id == this.Foodcourt._id ? 1.6 : undefined
     } as MapItem))
       // .concat(this.VirtualShops);
   }

@@ -37,7 +37,7 @@ export const useActivitiesRouter = <TQuery extends Record<string, string>>() => 
         }
       }
 
-      router.goTo([baseRoute, 'location', id], filterQuery, true);
+      router.goTo([baseRoute, 'location', id], filterQuery);
     },
 
     goToActivities(props?: IActivityQueries) {

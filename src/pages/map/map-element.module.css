@@ -57,6 +57,10 @@
   stroke-dasharray: 8;
   vector-effect: non-scaling-stroke;
 }
+.zoneSelected{
+  composes: zone;
+  fill: #FF4B16;
+}
 
 .road{
   stroke: var(--bonfire-light);

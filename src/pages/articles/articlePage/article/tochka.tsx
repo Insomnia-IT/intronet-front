@@ -35,7 +35,7 @@ const sections = {
   about: {
     title: "Точка сборки", component: () => <div class="text colorMediumBlue" flex column gap="4">
       <div>
-        Волонтеры Точки сборки работают круглосуточно. При сложных ситуациях на поляне есть поисковый отряд «ЛизаАлерт».
+        Волонтеры Точки сборки работают круглосуточно.
       </div>
       <ul class="disc" style={{margin: '4px 0'}}>
         <li>Что-то потеряли? Идите на Точку сборки — туда приносят все потеряшки фестиваля.</li>
@@ -45,7 +45,7 @@ const sections = {
           сборки.</li>
       </ul>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo="/map?name=точка">к точке сборки</Button>
+        <Button type="vivid" class="w-full"  goTo={['map',{name: 'точка'}]}>к точке сборки</Button>
       </ButtonsBar>
     </div>
   },

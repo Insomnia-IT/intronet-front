@@ -106,7 +106,7 @@ export function MapElement(props: {
     if (Array.isArray(props.item.figure[0])) {
       return (
         <path
-          class={ styles.zone }
+          class={ isSelected ? styles.zoneSelected : styles.zone }
           onClick={ (e) => {
             e.preventDefault();
             locationsStore.setSelectedId(props.item.id);
@@ -117,16 +117,17 @@ export function MapElement(props: {
         />
       );
     }
-    return (
-      <path
-        class={ styles.road }
-        onClick={ (e) => {
-          e.preventDefault();
-          locationsStore.setSelectedId(props.item.id);
-        } }
-        d={ "M" + props.item.figure.map((p) => `${ p.X } ${ p.Y }`).join("L")}
-      />
-    );
+    return <></>;
+    // return (
+    //   <path
+    //     class={ styles.road }
+    //     onClick={ (e) => {
+    //       e.preventDefault();
+    //       locationsStore.setSelectedId(props.item.id);
+    //     } }
+    //     d={ "M" + props.item.figure.map((p) => `${ p.X } ${ p.Y }`).join("L")}
+    //   />
+    // );
   }
   return (
     <g transform={ `translate(${ props.item.figure?.X } ${ props.item.figure?.Y })` } style={{

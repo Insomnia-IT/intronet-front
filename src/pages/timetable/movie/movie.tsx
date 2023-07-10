@@ -79,7 +79,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
                 goTo={["map", view.locationId]}
                 style={{ marginBottom: 18 }}
               >
-                Локация на карте
+                Площадка на карте
               </Link>
               <div flex column gap={2}>
                 <div class="tags colorMediumBlue">

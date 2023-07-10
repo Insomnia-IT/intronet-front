@@ -31,7 +31,7 @@ const OnboardStage1 = () => {
           <br />
           Это insight
         </h1>
-        <div class="text">— локальный портал Бессонницы</div>
+        <div class="text">— полевой сайт «Бессонницы»</div>
       </div>
       <svg width="46" height="67" viewBox="0 0 46 67" fill="none"
            class={styles.star}
@@ -61,7 +61,7 @@ const OnboardStage2 = () => {
         </div>
       </div>
       <div>
-        <h2 class={styles.menuText}>почти интернет</h2>
+        <h2 class={styles.menuText}>не-интернет</h2>
         <div class="text">
           Заходить на другие сайты нельзя, но можно наслаждаться порталом, даже
           если нет подключения к сети

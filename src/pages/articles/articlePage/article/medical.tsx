@@ -24,13 +24,13 @@ export function Medical() {
     <div class="sh1">Как вызвать медиков?</div>
     <Card border="Yellow">
       <ol>
-        <li>Найдите на ближайшей локации любого человека с рацией</li>
+        <li>Найдите на ближайшей площадке любого человека с рацией</li>
         <li>Опишите ситуацию и попроси вызвать медиков</li>
         <li>Встретьте медиков и проведите пострадавшего до мед. пункта</li>
       </ol>
     </Card>
     <ButtonsBar at="bottom">
-      <Button type="vivid" class="w-full" goTo="/map/?name=медпункт">к мед. пункту</Button>
+      <Button type="vivid" class="w-full" goTo={['map', {name: 'медпункт'}]}>к мед. пункту</Button>
     </ButtonsBar>
   </div>
 }
