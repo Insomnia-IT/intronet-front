@@ -57,7 +57,11 @@ fastify.post("/vote", async function (request, reply) {
     action: 'vote',
     app: 'client',
   };
-  vote({id, uid: request.headers.uid as string, ip: request.headers.ip as string})
+  vote({
+    id,
+    uid: request.headers.uid as string,
+    ip: request.headers['x-forwarded-for'] as string
+  })
 });
 fastify.get<{
   Params: { name: string };
@@ -147,8 +151,9 @@ const logHook = async (request, reply) => {
     params: request.params,
     statusCode: reply.statusCode,
     user: user,
+    headers: request.headers,
     uid: request.headers.uid,
-    ip: request.ip,
+    ip: request.headers['x-forwarded-for'],
     query: request.query,
     time: reply.getResponseTime(),
     app: 'server',
