@@ -38,7 +38,7 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   })();
 
   useEffect(() => {
-    if ((!filter || filter === 'time') && !activityId) {
+    if ((!filter) && !activityId) {
       goToActivities({
         filter: `${ activityFiltersStore.filters[0].key }`,
         day: getCurrentDay().toString(),
@@ -48,15 +48,16 @@ export const ActivityFilters: FunctionalComponent<ActivityFilterProp> = ({
   }, [ filter ]);
 
   useEffect(() => {
-    if (locationId) {
+    if (locationId && !filter) {
       goToActivities({
         filter: 'place',
+        place: locationId,
         day: getCurrentDay().toString(),
         time: getCurrentHour().toString(),
         path: ['location', locationId]
       });
     }
-  }, [ locationId ]);
+  }, [ locationId, filter ]);
 
   return (
     <Tags style={ `flex-wrap: ${ flexWrap ? 'wrap' : 'nowrap' };` } tagsList={ filters }>
