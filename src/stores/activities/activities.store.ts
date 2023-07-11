@@ -2,7 +2,7 @@ import {changesStore} from "../changes.store";
 import { ObservableDB } from "../observableDB";
 import { cell, Cell } from "@cmmn/cell/lib";
 import { bookmarksStore } from "@stores/bookmarks.store";
-import { parseTime } from "@helpers/getDayText";
+import {getCurrentDay, getTime, getTimeComparable, parseTime} from "@helpers/getDayText";
 
 class ActivitiesStore {
   @cell
@@ -17,6 +17,12 @@ class ActivitiesStore {
     })).map(x => changesStore.withChanges(x, x._id));
   }
 
+  getCurrentActivity(locationId: string) {
+    let time = getTimeComparable(getTime(new Date()));
+    return this.Activities.filter(x => x.locationId === locationId)
+      .filter(x => x.day == getCurrentDay())
+      .filter(x => getTimeComparable(x.start) <= time && getTimeComparable(x.end) >= time)[0]?.title;
+  }
 }
 
 export const activitiesStore = new ActivitiesStore();

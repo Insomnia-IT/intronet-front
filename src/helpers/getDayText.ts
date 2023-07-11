@@ -37,6 +37,10 @@ export function getDay(utc: number): Day {
   return day as Day;
 }
 
+export function getTimeComparable(time: string): string{
+  if (time.startsWith('0')) return  '3' + time;
+  return  time;
+}
 export function getTime(local: Date): string{
   const hour = local.getHours();
   const minutes = local.getMinutes();

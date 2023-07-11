@@ -250,7 +250,10 @@ export class LocationStore {
     const timetable = this.location?.directionId === Directions.screen ? 'animation' : activitiesStore.Activities.some(x => x.locationId === this.id) ? 'activity' : undefined;
     return ({
       location: this.location,
-      currentActivity: timetable === 'activity' ? activitiesStore.Activities.filter(x => x.locationId === this.id)[0]?.title : timetable === 'animation' ? moviesStore.getCurrentMovieBlock(this.id) : undefined,
+      currentActivity: timetable === 'activity'
+        ? activitiesStore.getCurrentActivity(this.id)
+        : timetable === 'animation'
+          ? moviesStore.getCurrentMovieBlock(this.id) : undefined,
       hasBookmark: !!bookmarksStore.getBookmark('locations', this.location?._id),
       timetable
     });

@@ -2,7 +2,7 @@ import {Fn, cell, Cell, DeepPartial} from "@cmmn/cell/lib";
 import {changesStore} from "./changes.store";
 import {ObservableDB} from "./observableDB";
 import {locationsStore} from "@stores/locations.store";
-import {getCurrentDay, getDayText} from "@helpers/getDayText";
+import {getCurrentDay, getDayText, getTime, getTimeComparable} from "@helpers/getDayText";
 import {bookmarksStore} from "@stores/bookmarks.store";
 import {votingStore} from "./votingStore";
 
@@ -42,7 +42,12 @@ class MoviesStore {
   }
 
   getCurrentMovieBlock(id: string) {
-    const block = this.MovieBlocks.filter(x => x.views.some(v => v.day === getCurrentDay() && v.locationId == id))[0];
+    let time = getTimeComparable(getTime(new Date()));
+    const block = this.MovieBlocks
+      .filter(x => x.views.some(v =>
+        v.day === getCurrentDay() && v.locationId == id
+        && getTimeComparable(v.start) <= time && getTimeComparable(v.end) >= time
+      ))[0];
     if (!block) return undefined;
     return block.info.Title + '\n' + block.info.SubTitle;
   }
