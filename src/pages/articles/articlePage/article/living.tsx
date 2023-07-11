@@ -66,7 +66,7 @@ const sections = {
       <div  style={{marginBottom: 8}}>Если вы заранее купили билет в платный кемпинг — вам сюда!</div>
       <Link goTo="/map" query={{name: 'байка'}} style={{margin: '10px 0'}}>к Лесному лагерю «Байка»</Link>
       <Link goTo="/map" query={{name: 'у детской'}} style={{margin: '10px 0'}}>к Лагерю у Детской поляны</Link>
-      <Link goTo="/map" query={{name: 'автокемпинг'}} style={{margin: '10px 0 24px'}}>к Автолагерю</Link>
+      <Link goTo="/map" query={{name: 'автолагерь'}} style={{margin: '10px 0 24px'}}>к Автолагерю</Link>
       <Footer/>
     </div>
   }, caravan: {
