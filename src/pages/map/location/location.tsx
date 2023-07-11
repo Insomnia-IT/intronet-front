@@ -51,11 +51,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           <div class="textSmall">Сейчас идёт</div>
           <div class="sh2 ">{currentActivity}</div>
         </div>}
-        {timetable == 'activity' && <Link goTo={["activities"]} query={{
-          filter: 'place',
-          day: getCurrentDay(),
-          place: id
-        }}>к расписанию</Link>}
+        {timetable == 'activity' && <Link goTo={["activities", "location", id]}>к расписанию</Link>}
         {timetable == 'animation' && <Link goTo={["timetable"]} query={{
           day: getCurrentDay(),
           screen: id
