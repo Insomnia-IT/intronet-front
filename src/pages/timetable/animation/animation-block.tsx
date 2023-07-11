@@ -42,9 +42,9 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
         <div flex column gap>
           <div class={[Styles.header, "sh1"].join(" ")}>
             {block.info.Title}
-            {block.info.MinAge && (
+            {block.info.MinAge > 0 ? (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
-            )}
+            ) : null}
           </div>
           <div class="textSmall colorGray">{block.info.SubTitle ?? ''}</div>
           <div class={[Styles.duplicate, "colorPurple"].join(" ")}>
