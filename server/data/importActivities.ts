@@ -14,7 +14,7 @@ import notionActivities from "./notion/activities.json" assert {"type": "json"};
 const importFromNotion = false;
 export async function importActivities(force = false) {
   const locationDB = new Database<any>("locations");
-  const locations = await locationDB.getSince();
+  const locations = (await locationDB.getSince()).filter(x => !x.deleted);
   if (locations.length == 0) return;
 
   const activitiesDB = new Database<any>("activities");

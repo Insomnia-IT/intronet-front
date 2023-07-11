@@ -9,8 +9,8 @@ import moviesXLS from "./movies.json" assert {"type": "json"};
 import moviesJSON from "./movies_api.json" assert {"type": "json"};
 
 export async function importMovies(force = false) {
-  const locationsDb = new Database<any>("locations");
-  const locations = await locationsDb.getSince();
+  const locationDB = new Database<any>("locations");
+  const locations = (await locationDB.getSince()).filter(x => !x.deleted);
   if (locations.length == 0) return;
   const moviesDB = new Database<any>("movies");
   const movies = await moviesDB.getSince();
