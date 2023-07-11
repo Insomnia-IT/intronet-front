@@ -1,4 +1,8 @@
+import { searchDataValidator } from "@helpers/search/searchDataValidator";
+
 export function highlight(text: string, query: string | undefined) {
+  text = searchDataValidator(text);
+  query = searchDataValidator(query);
   if (!query || !text) return text;
   if (!text.toLowerCase().includes(query.toLowerCase())) {
     return text;

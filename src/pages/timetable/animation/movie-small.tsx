@@ -21,8 +21,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
   searchQuery,
   disabled,
 }) => {
-  const switchBookmark = () =>
-    bookmarksStore.switchBookmark("movie", movie.id);
+  const switchBookmark = () => bookmarksStore.switchBookmark("movie", movie.id);
   const router = useTimetableRouter();
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const hasBookmark = useCell(
@@ -35,7 +34,11 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     <BookmarkGesture
       disabled={disabled}
       className={Styles.movieSmall}
-      onClick={disabled ? undefined : (e) => e.defaultPrevented || router.goToMovie(movie.id)}
+      onClick={
+        disabled
+          ? undefined
+          : (e) => e.defaultPrevented || router.goToMovie(movie.id)
+      }
       {...{
         gesture,
         hasBookmark,
@@ -49,30 +52,39 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
               <div flex-grow class={Styles.movieTitle}>
                 {highlight(movie.name, searchQuery)}
               </div>
-              {!disabled && <SvgIcon
-                id="#bookmark"
-                class={[...classNames, "colorPink"].join(" ")}
-                onClick={(e) => {
-                  if (!hasBookmark) return;
-                  e.preventDefault();
-                  switchBookmark();
-                }}
-                size={17}
-                style={{
-                  flexShrink: 0,
-                  opacity: iconOpacity,
-                }}
-              />}
+              {!disabled && (
+                <SvgIcon
+                  id="#bookmark"
+                  class={[...classNames, "colorPink"].join(" ")}
+                  onClick={(e) => {
+                    if (!hasBookmark) return;
+                    e.preventDefault();
+                    switchBookmark();
+                  }}
+                  size={17}
+                  style={{
+                    flexShrink: 0,
+                    opacity: iconOpacity,
+                  }}
+                />
+              )}
             </div>
-            {(movie.author || movie.country || movie.year) ? <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-              {highlight(movie.author, searchQuery)},{" "}
-              {highlight(movie.country, searchQuery)}{movie.year ? ', ' + movie.year : ''}
-              </div> : null}
+            {movie.author || movie.country || movie.year ? (
+              <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
+                {highlight(movie.author, searchQuery)},{" "}
+                {highlight(movie.country, searchQuery)}
+                {movie.year ? ", " + movie.year : ""}
+              </div>
+            ) : null}
             <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-              {movie.duration ? <>{minutes}&nbsp;мин&nbsp;{seconds}&nbsp;сек</> : null}
+              {movie.duration ? (
+                <>
+                  {minutes}&nbsp;мин&nbsp;{seconds}&nbsp;сек
+                </>
+              ) : null}
             </div>
           </>
-        )
+        );
       }}
     </BookmarkGesture>
   );
