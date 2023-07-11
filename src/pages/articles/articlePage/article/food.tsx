@@ -18,7 +18,7 @@ export function Food() {
   }, [!!section]);
   const Component = sections[section]?.component;
   return <div class="page" flex gap="4">
-    <div class="sh1">Еда</div>
+    <h1>Еда</h1>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag

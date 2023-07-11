@@ -109,8 +109,9 @@ fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
       return `User have not enough permissions to modify db`;
     }
     switch (request.params.name) {
-      case "locations":
-        return importLocations(request.query.force);
+      // disabled!!! admin only editing
+      // case "locations":
+      //   return importLocations(request.query.force);
       case "movies":
         return importMovies(request.query.force);
       case "activities":
