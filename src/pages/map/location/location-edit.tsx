@@ -30,13 +30,15 @@ export const LocationEdit = () => {
       <Tags tagsList={[
         Directions.wc,
         Directions.branches,
-        Directions.lectures
+        Directions.lectures,
+        Directions.master,
       ]}>
         {(direction) => <Tag selected={location?.directionId === direction}
           onClick={() => cell.set({...location, directionId: direction})}>{direction}</Tag>}
       </Tags>
       <Tags tagsList={[
         Directions.shop,
+        Directions.cafe,
         Directions.art,
         Directions.shower
       ]}>
