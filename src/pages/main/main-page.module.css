@@ -1,77 +1,80 @@
 .container {
-    max-width: 440px;
-    background: var(--ins-night);
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+  max-width: 440px;
+  background: var(--ins-night);
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
 .mainPage {
-    color: var(--cold-white);
-    padding: 24px 8px 84px;
-    box-sizing: border-box;
-    flex: 1;
+  color: var(--cold-white);
+  padding: 24px 16px 84px;
+  box-sizing: border-box;
+  flex: 1;
 }
 
 .mainPage :global(#logo) {
-    margin: 0 calc(50% - 93px);
+  margin: 0 calc(50% - 93px);
 }
 
 .menuBtn {
-    padding: 16px 32px !important;
-    background: var(--menu-gradient);
-    /* Pink Shadow */
-    box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14), -4px -4px 12px rgba(248, 192, 194, 0.14), 0px 4px 12px rgba(248, 192, 194, 0.14);
-    font-family: 'Unbounded';
-    font-style: normal;
-    font-variation-settings: "wght" 700;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height */
+  padding: 16px 32px !important;
+  background: var(--menu-gradient);
+  /* Pink Shadow */
+  box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14),
+    -4px -4px 12px rgba(248, 192, 194, 0.14),
+    0px 4px 12px rgba(248, 192, 194, 0.14);
+  font-family: "Unbounded";
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
 
-    text-align: center;
-    text-transform: uppercase;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .menu {
-    position: fixed;
-    height: 100%;
-    background: var(--ins-night);
-    bottom: -100vh;
-    transition: bottom .3s ease-out;
-    display: flex;
-    flex-direction: column;
-    gap: 42px;
-    justify-content: center;
-    z-index: 2;
-    opacity: 0;
+  position: fixed;
+  height: 100%;
+  padding-left: 16px;
+  margin-left: -16px;
+  background: var(--ins-night);
+  bottom: -100vh;
+  transition: bottom 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  justify-content: center;
+  z-index: 2;
+  opacity: 0;
 }
 
 .menuOpen {
-    composes: menu;
-    bottom: 0;
-    opacity: 1;
+  composes: menu;
+  bottom: 0;
+  opacity: 1;
 }
 
 .mainCard {
-    color: var(--ins-night);
-    gap: 0;
-    justify-content: space-between;
-    height: 120px;
-    flex: 1 0 0;
+  color: var(--ins-night);
+  gap: 0;
+  justify-content: space-between;
+  height: 120px;
+  flex: 1 0 0;
 }
 
-.mainCard > header{
-    font-style: normal;
-    font-weight: 860;
-    font-size: 18px;
-    line-height: 21px;
+.mainCard > header {
+  font-style: normal;
+  font-weight: 860;
+  font-size: 18px;
+  line-height: 21px;
 }
 .mainCardColor {
-    composes: mainCard;
-    color: var(--cold-white);
+  composes: mainCard;
+  color: var(--cold-white);
 }
-
