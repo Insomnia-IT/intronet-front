@@ -1,5 +1,6 @@
+import {geoConverter} from "@helpers/geo";
 import { SvgIcon } from "@icons";
-import { useMemo } from "preact/hooks";
+import {useCallback, useLayoutEffect, useMemo, useRef, useState} from "preact/hooks";
 import styles from "./map-element.module.css";
 import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
@@ -65,6 +66,9 @@ export function MapElement(props: {
       case OrderType.Info:
       case OrderType.Screens:
         return "star";
+      case OrderType.MainZone:
+      case OrderType.Main:
+        return "circle";
       default:
         return scale > scaleThreshold || isSelected ? "circle" : "circleSmall";
     }
@@ -97,15 +101,23 @@ export function MapElement(props: {
   if (isSelected) {
     classNames.push(styles.selected);
   }
-
+  const [rect, setRect] = useState<{width: number; height: number;}>(null)
+  const ref = useRef<SVGTextElement>()
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    const bbox = ref.current.getBBox();
+    setRect({width:bbox.width * scale+10, height: bbox.height * scale * 1.2});
+  }, [ref.current])
   if (props.item.maxZoom && scale > props.item.maxZoom)
     return <></>;
   if (props.item.minZoom && scale <= props.item.minZoom)
     return <></>;
   if (Array.isArray(props.item.figure)) {
     if (Array.isArray(props.item.figure[0])) {
-      return (
+      const center = geoConverter.getCenter(props.item.figure);
+      return (<>
         <path
+          id={props.item.id}
           class={ isSelected ? styles.zoneSelected : styles.zone }
           onClick={ (e) => {
             e.preventDefault();
@@ -115,7 +127,18 @@ export function MapElement(props: {
             .map((line) => "M" + line.map((p) => `${ p.X } ${ p.Y }`).join("L"))
             .join(" ") }
         />
-      );
+        {rect && <rect x={center.X - rect.width / 2 / scale}
+                       width={rect.width / scale}
+                       class={ isSelected ? styles.zoneSelectedRect : styles.zoneRect }
+                       rx={rect.height/2 / scale}
+                       height={rect.height / scale}
+                       y={center.Y - rect.height/2 / scale}/>}
+        <text x={center.X} ref={ref} y={center.Y}
+              class={ isSelected ? styles.zoneSelectedText : styles.zoneText }
+              alignment-baseline="middle"
+              font-size={10/scale} text-anchor="middle">{props.item.title}
+        </text>
+      </>);
     }
     return <></>;
     // return (

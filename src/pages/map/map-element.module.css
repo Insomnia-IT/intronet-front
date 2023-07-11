@@ -50,16 +50,30 @@
 }
 
 
-.zone {
+.zone{
   fill:  rgba(255, 75, 22, 0.25);
-  stroke: #FF4B16;
+  stroke: var(--chineese-cafe);
   stroke-width: 3;
   stroke-dasharray: 8;
   vector-effect: non-scaling-stroke;
 }
-.zoneSelected{
+.zoneSelected {
   composes: zone;
-  fill: #FF4B16;
+}
+.zoneRect{
+  fill: var(--cold-white);
+}
+.zoneText{
+  fill: var(--medium-blue);
+  font-weight: bold;
+}
+
+.zoneSelectedRect{
+  fill:var(--chineese-cafe);
+}
+.zoneSelectedText{
+  composes: zoneText;
+  fill: var(--cold-white);
 }
 
 .road{

@@ -2,12 +2,15 @@ import {useRouter} from "../../routing";
 import {FunctionalComponent} from "preact";
 import {About} from "./article/about";
 import {Animation} from "./article/animation";
+import {Ants} from "./article/ants";
 import {Art} from "./article/art";
+import {Car} from "./article/car";
 import {Carnaval} from "./article/carnaval";
 import {Child} from "./article/child";
 import {Dogs} from "./article/dogs";
 import {Eco} from "./article/eco";
 import {Food} from "./article/food";
+import {Game} from "./article/game";
 import {Living} from "./article/living";
 import {Medical} from "./article/medical";
 import {Music} from "./article/music";
@@ -41,5 +44,8 @@ const articles: Record<string, FunctionalComponent> = {
   shops: Shops,
   art: Art,
   music: Music,
-  carnaval: Carnaval
+  carnaval: Carnaval,
+  game: Game,
+  ants: Ants,
+  carFailure: Car
 }

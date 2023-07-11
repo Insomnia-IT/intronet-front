@@ -1,5 +1,6 @@
 import { bind, Cell, cell } from "@cmmn/cell/lib";
 import {cellState} from "@helpers/cell-state";
+import {geoConverter} from "@helpers/geo";
 import { locationsStore } from "@stores";
 import fetch from "node-fetch";
 import { Component } from "preact";
@@ -105,7 +106,7 @@ export class MapComponent extends Component {
         .Apply(e)
         .Apply(this.Transform);
       const selected = locationsStore.MapItems.find(x => x.id === locationsStore.selected[0]._id);
-      const center = this.getCenter(selected.figure);
+      const center = geoConverter.getCenter(selected.figure);
       const newCenter = transform.Inverse().Invoke(center);
       const shift = {
         X: newCenter.X - center.X,
@@ -179,26 +180,13 @@ export class MapComponent extends Component {
     })
   }
 
-  getCenter(figure: Figure): Point{
-    if (!Array.isArray(figure))
-      return figure;
-    const flat = figure.flat();
-    if (flat.length == 0)
-      return {X: 0, Y: 0};
-    const length = flat.length;
-    const sum = (a: Point, b: Point) => ({
-      X: (a.X + b.X),
-      Y: (a.Y + b.Y),
-    });
-    return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
-  }
   scrollTo(ids: string[]) {
     if (!this.root || !ids.length)
       return;
     const centers = locationsStore.MapItems.filter((x) => ids.includes(x.id))
-      .map(x => this.getCenter(x.figure));
+      .map(x => geoConverter.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
-    const view = this.Transform.Invoke(this.getCenter([centers]));
+    const view = this.Transform.Invoke(geoConverter.getCenter([centers]));
     // if (
     //   view.X > rect.left + rect.width / 100 &&
     //   view.X < rect.right - rect.width / 100 &&

@@ -56,6 +56,20 @@ export class TileConverter {
       Y: (latToY(geo.lat) * 2 ** this.zoom - this.offset.y) * this.scale,
     };
   }
+
+  public getCenter(figure: Figure): Point{
+    if (!Array.isArray(figure))
+      return figure;
+    const flat = figure.flat();
+    if (flat.length == 0)
+      return {X: 0, Y: 0};
+    const length = flat.length;
+    const sum = (a: Point, b: Point) => ({
+      X: (a.X + b.X),
+      Y: (a.Y + b.Y),
+    });
+    return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
+  }
 }
 
 export const geoConverter = new TileConverter(
