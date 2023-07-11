@@ -44,7 +44,6 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
   const store = useMemo(() => new ActivityStore(id), [ id ]);
   const {activity} = useCell(store.state);
   const router = useActivitiesRouter();
-console.log(activity);
   return (
     <Card
       className={ cx(Styles.card, className, {
@@ -106,7 +105,10 @@ console.log(activity);
                 : Styles.activityTime
             }
           >
-            { (activity.start) } - { (activity.end) }
+            {activity.start.includes('undefined') && activity.end.includes('undefined') ? `` :
+              activity.start.includes('undefined') ? `до ${activity.end}` :
+              activity.end.includes('undefined') ? `с ${activity.start}` :
+                `${activity.start} - ${activity.end}` }
           </span>
         </div>
       </div>
