@@ -103,7 +103,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
           {getNoteDate(updatedAt || createdAt)}
         </div>
       </Card>
-      {withTTL && (
+      {withTTL && TTL < 18 && (
         <span className={cx(styles.ttlText, "textSmall", "colorGray")}>
           {getNoteTTLText({ deletedAt, isDeleted, TTL })}
         </span>

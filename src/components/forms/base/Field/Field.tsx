@@ -90,6 +90,10 @@ export const Field: FunctionalComponent<IFieldProps> = ({
     }
   };
 
+  if (type === "tags" && !tags.length) {
+    return;
+  }
+
   return (
     <div className={classNames(className, styles.field)} key={key}>
       {lable && (

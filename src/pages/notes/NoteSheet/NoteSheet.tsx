@@ -36,6 +36,9 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
   const deleteNote = () => {
     notesStore.deleteNote(activeNoteId);
   };
+  const bookmarkActionText = isBookmark
+    ? "Удалить из избранного"
+    : "Сохранить в избранное";
 
   return (
     <div className={styles.container}>
@@ -49,7 +52,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
               onClick={addToBookmark}
               className={styles.moderaterSaveBtn}
             >
-              Сохранить в избранное
+              {bookmarkActionText}
             </Button>
             <Button type={"orange"} onClick={deleteNote}>
               Снять с публикации
@@ -62,7 +65,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
             onClick={addToBookmark}
           >
             <SvgIcon id="#bookmark" size={13} />
-            {isBookmark ? "Удалить из избранного" : "Сохранить в избранное"}
+            {bookmarkActionText}
           </Button>
         )}
       </div>

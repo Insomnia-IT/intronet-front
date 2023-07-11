@@ -61,7 +61,9 @@ class LocationsStore {
 
   @cell
   public get ActivityLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.RealLocations.filter((x) => x.work_tags?.includes('activity'));
+    const locationsIDs = Array.from(new Set(activitiesStore.Activities.reduce<string[]>((locationIds, activity) => [ ...locationIds, activity.locationId ], [])))
+
+    return this.RealLocations.filter((x) => locationsIDs.includes(x._id));
   }
 
   @cell

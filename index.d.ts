@@ -38,7 +38,7 @@ declare module "*.html" {
   export default style;
 }
 
-type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 type InsomniaLocation = {
   _id: string;
@@ -56,20 +56,22 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
 };
 
-type ContentBlock = {
-  blockType: 'text';
-  content: string;
-} | {
-  blockType: 'link';
-  title: string;
-  link: string;
-}
+type ContentBlock =
+  | {
+      blockType: "text";
+      content: string;
+    }
+  | {
+      blockType: "link";
+      title: string;
+      link: string;
+    };
 
 type ListItem = {
   tag?: string;
   title: string;
   description: string;
-}
+};
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
@@ -121,7 +123,7 @@ type INoteLocal = {
   author: {
     name: string;
   };
-  TTL: 13 | 14 | 15 | 16 | 17;
+  TTL: 13 | 14 | 15 | 16 | 17 | 18;
   // on moderation
   restricted?: boolean;
 };
@@ -139,9 +141,11 @@ type INote = INoteLocal & {
   deletedAt?: number;
 };
 
-
 type INoteUpdated = Partial<
-  Pick<INote, "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted">
+  Pick<
+    INote,
+    "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted"
+  >
 >;
 
 type ICategory = {
@@ -212,7 +216,6 @@ type MovieInfo = {
   info?: VurchelFilm;
 };
 
-
 interface VurchelFilm {
   _id: string;
   entryID: number;
@@ -245,7 +248,6 @@ interface Filmmaker {
   photo: string | null;
   link: string;
 }
-
 
 type Direction = {
   _id: string;
@@ -304,7 +306,7 @@ type NewsItem = {
   link: string | undefined;
   linkText: string | undefined;
   time: string;
-}
+};
 
 type Change = {
   _id: string;

@@ -127,10 +127,7 @@ export class FilteredNotesStore {
       if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
         return false;
       }
-      if (
-        !note.isApproved &&
-        !(activeFiltersMap.noApproved && notesStore.isUserModerator)
-      ) {
+      if (!note.isApproved && !activeFiltersMap.noApproved) {
         return false;
       }
 

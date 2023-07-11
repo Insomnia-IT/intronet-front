@@ -4,6 +4,11 @@ import fetch from "node-fetch";
 import { Database } from "../database";
 import {dbCtrl} from "../db-ctrl";
 import json from "./activity-v3.json" assert {"type": "json"};
+import hattifnarium from "./activities/hattifnarium.json" assert {"type": "json"};
+import shambala from "./activities/shambala.json" assert {"type": "json"};
+import music from "./activities/music-stage.json" assert {"type": "json"};
+import child from "./activities/child.json" assert {"type": "json"};
+import elStaico from "./activities/el-staico.json" assert {"type": "json"};
 
 const importFromNotion = true;
 export async function importActivities(force = false) {
@@ -45,6 +50,8 @@ export async function importActivities(force = false) {
       },
     }).then(x => x.json());
 
+    const activities = [];
+
     for (let notion of notionSchedule) {
       const location = locations.find(x => x.name === notion.location);
 
@@ -55,7 +62,7 @@ export async function importActivities(force = false) {
       for (let schedule of notion.schedule) {
         for (let auditory of schedule.auditories) {
           for (let activity of auditory.activity) {
-            await activitiesDB.addOrUpdate({
+            activities.push({
               _id: Fn.ulid(),
               version: Fn.ulid(),
               day: schedule.day,
@@ -70,6 +77,65 @@ export async function importActivities(force = false) {
           }
         }
       }
+    }
+
+    for (let item of hattifnarium) {
+      const location = locations.find(x => x.notionId === item.notionLocationId);
+
+      activities.push({
+        ...item,
+        _id: Fn.ulid(),
+        version: Fn.ulid(),
+        locationId: location._id
+      })
+    }
+
+    for (let item of shambala) {
+      const location = locations.find(x => x.notionId === item.notionLocationId);
+
+      activities.push({
+        ...item,
+        _id: Fn.ulid(),
+        version: Fn.ulid(),
+        locationId: location._id
+      })
+    }
+
+    for (let item of music) {
+      const location = locations.find(x => x.notionId === item.notionLocationId);
+
+      activities.push({
+        ...item,
+        _id: Fn.ulid(),
+        version: Fn.ulid(),
+        locationId: location._id
+      })
+    }
+
+    for (let item of child) {
+      const location = locations.find(x => x.notionId === item.notionLocationId);
+
+      activities.push({
+        ...item,
+        _id: Fn.ulid(),
+        version: Fn.ulid(),
+        locationId: location._id
+      })
+    }
+
+    for (let item of elStaico) {
+      const location = locations.find(x => x.notionId === item.notionLocationId);
+
+      activities.push({
+        ...item,
+        _id: Fn.ulid(),
+        version: Fn.ulid(),
+        locationId: location._id
+      })
+    }
+
+    for (let item of activities) {
+      await activitiesDB.addOrUpdate(item as any);
     }
   } else {
     for (let item of json){
