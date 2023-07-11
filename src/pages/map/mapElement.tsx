@@ -234,7 +234,7 @@ const directionsToOrder = new Map([
 export const directionsToIconId = new Map<string, MapIconId>([
   [ "Медпункт (Медицинская Служба)", ".map #sign" ],
   [ "КПП", ".map #kpp" ],
-  [ "Баня", ".map #wc" ],
+  [ "Баня", ".map #shower" ],
   [
     "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
     ".map #sign",
@@ -252,7 +252,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   [ "КАФЕ", ".map #cafe" ],
   [ "Ветви Дерева", ".map #art" ],
   [ "Спортплощадка", ".map #art" ],
-  [ "Души", ".map #wc" ],
+  [ "Души", ".map #shower" ],
   [ "Музыкальная Сцена", ".map #eye" ],
   [ "Театральная Сцена", ".map #eye" ],
   [ "Гостевые Кемпинги", ".map #tent" ],
@@ -271,6 +271,7 @@ export type MapIconId =
   | ".map #lecture"
   | ".map #cafe"
   | ".map #kpp"
+  | ".map #shower"
   | ".map #shop";
 
 export type DetailsGroup =
