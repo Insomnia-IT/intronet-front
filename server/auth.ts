@@ -8,6 +8,6 @@ export function checkWriteAccess(user: UserInfo, db: (typeof databasesList)[numb
         value.restricted = true;
       }
       return true;
-    return !!user && user.role !== 'tochka';
+    return !!user && (user.role !== 'tochka');
   }
 }
