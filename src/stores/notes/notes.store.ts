@@ -110,8 +110,13 @@ class NotesStore {
       return true;
     }
 
-    return authStore.uid === note._id || this.isUserModerator;
+    return this.checkIsCurrentUserNoteAuthor(note) || this.isUserModerator;
   };
+
+
+  public checkIsCurrentUserNoteAuthor(note: INote): boolean {
+    return typeof note.author === "object" && note.author.id === authStore.uid;
+  }
 
   // Отдаёт стор с объявлениями
   @cell

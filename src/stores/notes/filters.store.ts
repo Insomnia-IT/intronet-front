@@ -104,9 +104,7 @@ export class FilteredNotesStore {
         }
       }
       if (activeFiltersMap.my) {
-        if (
-          !(typeof note.author === "object" && note.author.id === authStore.uid)
-        ) {
+        if (!notesStore.checkIsCurrentUserNoteAuthor(note)) {
           return false;
         }
       }
