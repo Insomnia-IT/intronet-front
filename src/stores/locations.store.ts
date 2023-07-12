@@ -31,7 +31,8 @@ class LocationsStore {
   }
 
   findByName(s: string) {
-    return this.Locations.find(x => x.name?.toLowerCase().includes(s.toLowerCase()));
+    return this.Locations.find(x => x.name?.toLowerCase() == s.toLowerCase()) ??
+      this.Locations.find(x => x.name?.toLowerCase().includes(s.toLowerCase()));
   }
   findByDirection(s: string) {
     return this.Locations.filter(x => x.directionId?.toLowerCase().includes(s.toLowerCase()));
