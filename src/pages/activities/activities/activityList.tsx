@@ -2,7 +2,7 @@ import { FunctionalComponent } from "preact";
 import { Button } from "@components";
 import { RequireAuth } from "@components/RequireAuth";
 import { useCell } from "@helpers/cell-state";
-import { coerceHour, isInTimePeriod } from "@helpers/getDayText";
+import {coerceHour, getTimeComparable, isInTimePeriod} from "@helpers/getDayText";
 import { useGestureCell } from "@helpers/Gestures";
 import { IActivityQueries, useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import { ActivityGesturedCard } from "../card/activity-gestured-card";
@@ -37,11 +37,7 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
     .filter((activity) => filters?.day !== undefined
       ? filterByDay(activity, filters.day.toString())
       : (day !== undefined ? filterByDay(activity, day.toString()) : true))
-    .map((activity) => ({
-      ...activity,
-      start: new Date(activity.start)
-    }))
-    .sort((prev, next) => prev.start.getTime() - next.start.getTime());
+    .orderBy(x => getTimeComparable(x.start))
 
   return (
     <div flex column className={ styles.container } ref={ setRef }>
