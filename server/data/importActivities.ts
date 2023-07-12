@@ -4,6 +4,8 @@ import fs from "fs";
 import fetch from "node-fetch";
 import { Database } from "../database";
 import {dbCtrl} from "../db-ctrl";
+import animationShater from "./activities/animation-shater.json" assert {"type": "json"};
+import shopShater from "./activities/shop-shater.json" assert {"type": "json"};
 import hattifnarium from "./activities/hattifnarium.json" assert {"type": "json"};
 import shambala from "./activities/shambala.json" assert {"type": "json"};
 import music from "./activities/music-stage.json" assert {"type": "json"};
@@ -55,7 +57,7 @@ export async function importActivities(force = false) {
   const activities = [];
 
   for (let notion of notionSchedule) {
-    const location = locations.find(x => x.name === notion.location);
+    const location = locations.find(x => escape(x.name) === escape(notion.location));
 
     if (!location){
       console.error(`Not found: ${notion.location}`)
@@ -142,3 +144,9 @@ export async function importActivities(force = false) {
   dbCtrl.versions = undefined;
 
 }
+const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
+const escape = text => text.trim()
+  .replace(/\s/g, '')
+  .replace(regexOnlyWord, '')
+  .replace(/ё/g, 'е')
+  .toLowerCase()

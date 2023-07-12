@@ -10,8 +10,8 @@ export async function importShops(force = false) {
 
   if (shops.length != 0) {
     if (!force) return;
-    for (let activity of shops) {
-      await shops.remove(activity._id);
+    for (let shop of shops) {
+      await db.remove(shop._id);
     }
   }
   for (let shop of shopsJSON){
