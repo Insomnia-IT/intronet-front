@@ -9,6 +9,7 @@ import {Carnaval} from "./article/carnaval";
 import {Child} from "./article/child";
 import {Dogs} from "./article/dogs";
 import {Eco} from "./article/eco";
+import {Fire} from "./article/fire";
 import {Food} from "./article/food";
 import {Game} from "./article/game";
 import {Living} from "./article/living";
@@ -47,5 +48,7 @@ const articles: Record<string, FunctionalComponent> = {
   carnaval: Carnaval,
   game: Game,
   ants: Ants,
-  carFailure: Car
+  carFailure: Car,
+  fireplace: Fire,
+  fire: Fire,
 }
