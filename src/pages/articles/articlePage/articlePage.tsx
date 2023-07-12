@@ -1,5 +1,5 @@
-import {useRouter} from "../../routing";
 import {FunctionalComponent} from "preact";
+import {useRouter} from "../../routing";
 import {About} from "./article/about";
 import {Animation} from "./article/animation";
 import {Ants} from "./article/ants";
@@ -21,6 +21,7 @@ import {Theater} from "./article/theater";
 import {Tochka} from "./article/tochka";
 import {Water} from "./article/water";
 import {WC} from "./article/wc";
+import {NonAnimation} from "./article/nonAnimation";
 
 export const ArticlePage: FunctionalComponent = () => {
   const {route} = useRouter();
@@ -33,6 +34,7 @@ const articles: Record<string, FunctionalComponent> = {
   eco: Eco,
   food: Food,
   animation: Animation,
+  nonanimation: NonAnimation,
   water: Water,
   phone: Phone,
   insight: About,
