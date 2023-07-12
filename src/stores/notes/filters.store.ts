@@ -128,7 +128,7 @@ export class FilteredNotesStore {
         return false;
       }
       if (
-        (!note.isApproved || !note.restricted) &&
+        (!note.isApproved || note.restricted) &&
         !activeFiltersMap.noApproved
       ) {
         return false;
