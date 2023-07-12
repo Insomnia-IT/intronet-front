@@ -20,7 +20,6 @@ export function IntersectOnly(props: VirtualListProps){
     observer.observe(div);
     const off = onChange.on('event', e => {
       if (e.filter(x => x.target === ref.current).some(x => x.isIntersecting)) {
-        console.log(e.find(x => x.target === ref.current).rootBounds)
         setIsVisible(true);
       }
     })

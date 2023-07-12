@@ -1,4 +1,5 @@
 import { Input } from "@components/input";
+import {getTimeComparable} from "@helpers/getDayText";
 import { useSearch } from "@helpers/search/use-search";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
@@ -14,10 +15,12 @@ export const ActivitySearch = () => {
       regex.test(searchDataValidator(activity.author))
   );
   const activities = useCell(() => activitiesStore.Activities);
-  const filtered = useMemo(() => activities.filter(check), [activities, check]);
-
+  const filtered = useMemo(() => activities.filter(check)
+    .orderBy(x => x.title, true)
+    .orderBy(x => getTimeComparable(x.start), true)
+    .orderBy(x => x.day), [activities, check]);
   return (
-    <div flex column gap={5} className="h-full">
+    <div flex column gap={5} className="h-full" style={{marginBottom: 40}}>
       <h1>поиск</h1>
       <Input
         style={{ margin: "20px 0" }}
@@ -26,7 +29,7 @@ export const ActivitySearch = () => {
         onInput={(e) => setQuery(e.currentTarget.value)}
       />
       {filtered.length > 0 ? (
-        <ActivityList activities={filtered} searchQuery={query} />
+        <ActivityList activities={filtered} searchQuery={query} showDate/>
       ) : (
         <SearchPlug
           title={"Ничего не найдено"}

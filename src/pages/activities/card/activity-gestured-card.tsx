@@ -8,9 +8,10 @@ import { useCell } from "@helpers/cell-state";
 
 export type IActivityGesturedCardProps = {
   gesture: Gesture;
+  showDate?: boolean;
 } & ActivityCardProps;
 
-export const ActivityGesturedCard: FunctionalComponent<IActivityGesturedCardProps> = ({gesture, id, ...props}) => {
+export const ActivityGesturedCard: FunctionalComponent<IActivityGesturedCardProps> = ({gesture, showDate, id, ...props}) => {
   const hasBookmark = useCell(
     () => !!bookmarksStore.getBookmark("activity", id),
     [ id ]
@@ -34,6 +35,7 @@ export const ActivityGesturedCard: FunctionalComponent<IActivityGesturedCardProp
           <ActivityCard
             onIconClick={ onBookmarkIconClick }
             id={ id }
+            showDate={showDate}
             iconClassNames={ classNames }
             iconOpacity={ iconOpacity }
             { ...props }

@@ -62,11 +62,11 @@ export function getCurrentHour() {
 export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
   switch (filter) {
     case 9:
-      return hour < 13;
+      return hour < 13 && hour > 9;
     case 13:
       return hour >= 13 && hour < 17;
     case 17:
-      return hour >= 17 && hour < 24;
+      return (hour >= 17 && hour < 24) || (hour < 9);
   }
 };
 

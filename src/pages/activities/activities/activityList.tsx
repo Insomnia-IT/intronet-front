@@ -1,3 +1,4 @@
+import {IntersectOnly} from "@helpers/intersect-only";
 import { FunctionalComponent } from "preact";
 import { Button } from "@components";
 import { RequireAuth } from "@components/RequireAuth";
@@ -9,44 +10,29 @@ import { ActivityGesturedCard } from "../card/activity-gestured-card";
 import styles from "./activitiesAll.module.css";
 
 export type ActivityListProps = {
-  filters?: Partial<IActivityQueries>;
   activities?: Activity[];
   searchQuery?: string;
+  showDate?: boolean;
 };
-
-const filterByDay = (activity: Activity, day: string) => {
-  return activity.day.toString() === day;
-}
 
 export const ActivityList: FunctionalComponent<ActivityListProps> = ({
                                                                        activities,
-                                                                       filters,
+                                                                       showDate,
                                                                        searchQuery
                                                                      }) => {
-  const {filter, day, time, place} = useActivitiesRouter();
 
   const {setRef, gesture} = useGestureCell();
 
-  const cards = useCell(() => {
-    const numberTime = Number(time);
-
-    return activities.filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true);
-  }, [ activities, filter, day, time, place ]);
-
-  const filteredCards = cards
-    .filter((activity) => filters?.day !== undefined
-      ? filterByDay(activity, filters.day.toString())
-      : (day !== undefined ? filterByDay(activity, day.toString()) : true))
-    .orderBy(x => getTimeComparable(x.start))
 
   return (
     <div flex column className={ styles.container } ref={ setRef }>
       {
-        filteredCards.map((x) => (<>
+        activities.map((x) => (<IntersectOnly height={140}>
           <ActivityGesturedCard
             id={ x._id }
             key={ x._id }
             gesture={ gesture }
+            showDate={ showDate }
             searchQuery={ searchQuery }>
           </ActivityGesturedCard>
 
@@ -55,7 +41,8 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
                     type="frame">изменить
               время</Button>
           </RequireAuth>
-        </>)) }
+        </IntersectOnly>
+      )) }
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import {getDayText} from "@helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { TargetedEvent } from "preact/compat";
 import { useEffect, useMemo, useState } from "preact/hooks";
@@ -28,6 +29,7 @@ export type ActivityCardStylesProps = {
   onIconClick?: (e: TargetedEvent) => void;
   withBookmarkIcon?: boolean;
   disabled?: boolean;
+  showDate?: boolean;
 };
 
 
@@ -38,12 +40,14 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
                                                                        iconOpacity,
                                                                        iconClassNames,
                                                                        onIconClick,
+                                                                       showDate,
                                                                        disabled = false,
                                                                        withBookmarkIcon = true
                                                                      }) => {
   const store = useMemo(() => new ActivityStore(id), [ id ]);
   const {activity} = useCell(store.state);
   const router = useActivitiesRouter();
+  const day = getDayText(activity.day, "short");
   return (
     <Card
       className={ cx(Styles.card, className, {
@@ -105,6 +109,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
                 : Styles.activityTime
             }
           >
+            {showDate && day + ", "}
             {activity.start.includes('undefined') && activity.end.includes('undefined') ? `` :
               activity.start.includes('undefined') ? `до ${activity.end}` :
               activity.end.includes('undefined') ? `с ${activity.start}` :

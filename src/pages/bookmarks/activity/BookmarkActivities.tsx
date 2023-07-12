@@ -15,7 +15,7 @@ export const BookmarkActivities = () => {
           { dayGroup.map(day =>
             <div flex column style={ 'gap: 8px' }>
               <span className="colorMediumBlue tags">{ getDayText(day, 'full') }</span>
-              <ActivityList activities={ items } filters={ {day: day.toString()} }></ActivityList>
+              <ActivityList activities={ items } ></ActivityList>
             </div>) }
         </div>
       )

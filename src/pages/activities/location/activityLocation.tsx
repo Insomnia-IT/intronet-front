@@ -1,3 +1,4 @@
+import {coerceHour, getTimeComparable, isInTimePeriod} from "@helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { activitiesStore, ActivityStore } from "@stores/activities/activities.store";
@@ -17,12 +18,20 @@ export const ActivityLocation: FunctionalComponent<ActivityLocationProps> = ({id
   // const store = useMemo(() => new ActivityStore(id), [id]);
   // const { activity, hasBookmark } = useCell(store.state);
 
-  const {filter, day} = useActivitiesRouter();
+  const {filter, day, time, place} = useActivitiesRouter();
   const filters = useCell(() => activityFiltersStore.filters);
   const days = useCell(() => activityFiltersStore.days);
   const times = useCell(() => activityFiltersStore.times);
 
   const activities = useCell(() => activitiesStore.Activities.filter((activity) => activity.locationId === id));
+  const cards = useMemo(() => {
+    const numberTime = Number(time);
+    return activities
+      .filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true)
+      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true))
+      .orderBy(x => getTimeComparable(x.start))
+      ;
+  }, [ activities, filter, day, time, place ]);
 
   return (
     <>
@@ -32,7 +41,12 @@ export const ActivityLocation: FunctionalComponent<ActivityLocationProps> = ({id
         <ActivityFilters type={ 'time' } filters={ times }/>
       </div>
 
-      <ActivityList activities={ activities }/>
+      <ActivityList activities={ cards }/>
     </>
   );
 };
+
+
+const filterByDay = (activity: Activity, day: string) => {
+  return activity.day.toString() === day;
+}

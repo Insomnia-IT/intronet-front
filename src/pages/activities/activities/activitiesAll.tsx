@@ -1,7 +1,9 @@
+import {coerceHour, getTimeComparable, isInTimePeriod} from "@helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { locationsStore } from "@stores";
 import { activitiesStore, activityFiltersStore } from "@stores/activities";
 import { useCell } from "@helpers/cell-state";
+import {useMemo} from "preact/hooks";
 import { ActivityList } from "./activityList";
 import { ActivityFilters } from "../filters/ActivityFilters";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
@@ -10,7 +12,7 @@ import { SvgIcon } from "@icons";
 import styles from "./activitiesAll.module.css";
 
 export const ActivitiesAll: FunctionalComponent = () => {
-  const {filter, day} = useActivitiesRouter();
+  const {filter, day, time, place} = useActivitiesRouter();
   const filters = useCell(() => activityFiltersStore.filters);
   const days = useCell(() => activityFiltersStore.days);
   const times = useCell(() => activityFiltersStore.times);
@@ -20,6 +22,15 @@ export const ActivitiesAll: FunctionalComponent = () => {
   const activities = useCell(() => activitiesStore.Activities);
   const locations = useCell(() => locationsStore.ActivityLocations);
   const router = useActivitiesRouter();
+
+  const cards = useMemo(() => {
+    const numberTime = Number(time);
+    return activities
+      .filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true)
+      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true))
+      .orderBy(x => getTimeComparable(x.start))
+      ;
+  }, [ activities, filter, day, time, place ]);
 
   return (
     <>
@@ -36,7 +47,7 @@ export const ActivitiesAll: FunctionalComponent = () => {
         }
       </div>
       { (currentFilter === 'time')
-        ? <ActivityList activities={ activities }/>
+        ? <ActivityList activities={ cards }/>
         : locations.map(location => (
           <Card
             className={ styles.locationCard }
@@ -53,3 +64,8 @@ export const ActivitiesAll: FunctionalComponent = () => {
   );
 };
 
+
+
+const filterByDay = (activity: Activity, day: string) => {
+  return activity.day.toString() === day;
+}
