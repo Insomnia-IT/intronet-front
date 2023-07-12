@@ -8,5 +8,8 @@ export function Ants() {
     На фестивале водятся комары, клещи и прочие кусачие насекомые.<br/><br/>
     Используйте репелленты!<br/><br/>
     Если вы обнаружили клеща, приходите в медпункт - поможем удалить.
+    <ButtonsBar at="bottom">
+      <Button type="vivid" class="w-full" goTo={['map', {name: 'медпункт'}]}>к медпункту</Button>
+    </ButtonsBar>
   </div>
 }

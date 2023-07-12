@@ -1,4 +1,4 @@
-import {CloseButton} from "@components";
+import {Button, ButtonsBar, CloseButton} from "@components";
 import {Tag, Tags} from "@components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
@@ -67,6 +67,9 @@ const sections = {
         пакеты для раздельного сбора, следят за чистотой на поляне.</div>
       <div>А ещё хатифнатты ставят шатёр Хатифнариум, где рассказывают всем желающим, как беречь природу и делать мир чище
         и уютнее.</div>
+      <ButtonsBar at="bottom">
+        <Button type="vivid" class="w-full" goTo={['map', {name: 'хатифнариум'}]}>к Хатифнариуму</Button>
+      </ButtonsBar>
     </div>
   }
 }
