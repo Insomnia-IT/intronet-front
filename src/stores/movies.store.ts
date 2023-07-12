@@ -34,7 +34,7 @@ class MoviesStore {
 
   @cell
   public get Movies(): MovieInfo[] {
-    return this.MovieBlocks.flatMap((x) => x.movies);
+    return this.MovieBlocks.flatMap((x) => x.movies).distinct(x => x.id);
   }
 
   public get VotingBlock(): MovieBlock{
