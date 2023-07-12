@@ -103,6 +103,7 @@ fastify.post("/batch", async function (request, reply) {
 fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
+    return `Seed is temporary disabled: production`;
     const user = await authCtrl.parse(request.headers.authorization);
     if (user.role !== "superadmin") {
       reply.status(401);
