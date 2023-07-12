@@ -75,6 +75,7 @@ class NotesStore {
       id: noteId,
       updatedNote: {
         isApproved: true,
+        restricted: true,
       },
     });
   }
