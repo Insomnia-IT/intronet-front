@@ -117,8 +117,9 @@ export class FilteredNotesStore {
       }
       if (
         activeFiltersMap.noApproved &&
-        notesStore.isUserModerator &&
-        note.isApproved
+        (note.isApproved ||
+          !note.restricted ||
+          !notesStore.checkHasCurrentUserAccessToNote(note))
       ) {
         return false;
       }

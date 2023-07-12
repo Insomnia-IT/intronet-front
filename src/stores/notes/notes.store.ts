@@ -14,10 +14,6 @@ class NotesStore {
     return this.IsLoading;
   }
 
-  toggleLoading = () => {
-    this.IsLoading = !this.isLoading;
-  };
-
   /**
    * Добавляет объявление
    */
@@ -100,10 +96,21 @@ class NotesStore {
   };
 
   /**
-   * Проверяет, можно ли обычным пользователям показывать объявление
+   * Проверяет, актуально ли ещё объявление.
    */
   public checkIsNoteActual = (note: INote) => {
     return !note.isDeleted && note.TTL > getCurrentDate();
+  };
+
+  /**
+   * Проверяет, имеет ли текущий юзер доступ к объявлению
+   */
+  public checkHasCurrentUserAccessToNote = (note: INote): boolean => {
+    if (note.isApproved && !note.restricted) {
+      return true;
+    }
+
+    return authStore.uid === note._id || this.isUserModerator;
   };
 
   // Отдаёт стор с объявлениями
