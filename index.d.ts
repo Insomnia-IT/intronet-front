@@ -144,7 +144,13 @@ type INote = INoteLocal & {
 type INoteUpdated = Partial<
   Pick<
     INote,
-    "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted"
+    | "title"
+    | "text"
+    | "categoryId"
+    | "TTL"
+    | "isApproved"
+    | "isDeleted"
+    | "restricted"
   >
 >;
 
