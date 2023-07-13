@@ -94,34 +94,27 @@ export async function importMovies(force = false) {
         MinAge: x[0].block.programAge,
         Part: en[2] ?? ru[2],
       },
-      movies:  x[0].block.programFilms.map(f => ({
+      movies: []
+    } as any;
+    for (let i = 0; i < x[0].block.programFilms.length; i++){
+      let f = x[0].block.programFilms[i];
+      const xls = xlsx[0].block.Movies[i];
+      if (escape(xls.NameOrig) !== escape(f.title)){
+        console.log(xls.NameOrig, '|||', f.title)
+      }
+      const movie: MovieInfo = {
         id: f.vurchelID ?? Fn.ulid(),
-        name: f.title,
-        // author: xls.Author,
-        // country: xls.Country,
-        // year: xls.Year,
-        // duration: xls.Duration,
+        name: xls.Name ?? f.title,
+        author: xls.Author,
+        country: xls.Country,
+        year: xls.Year,
+        duration: xls.Duration,
         image: f.image,
         description: f.plot,
         vurchelId: f.vurchelID?.toString()
-      }))
-    } as any;
-    // for (let i = 0; i < x[0].block.programFilms.length; i++){
-    //   let f = x[0].block.programFilms[i];
-    //   const xls = xlsx[0].block.Movies[i];
-    //   const movie: MovieInfo = {
-    //     id: f.vurchelID ?? Fn.ulid(),
-    //     name: xls.Name ?? f.title,
-    //     author: xls.Author,
-    //     country: xls.Country,
-    //     year: xls.Year,
-    //     duration: xls.Duration,
-    //     image: f.image,
-    //     description: f.plot,
-    //     vurchelId: f.vurchelID?.toString()
-    //   } as any;
-    //   block.movies.push(movie);
-    // }
+      } as any;
+      block.movies.push(movie);
+    }
     results.push(block);
   }
   //
@@ -173,3 +166,10 @@ export function getTime(local: number): string{
 function toMoscow(unix: number): number{
   return unix + (new Date().getTimezoneOffset()+3*60)*60000;
 }
+
+const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
+const escape = text => text.trim()
+  .replace(/\s/g, '')
+  .replace(regexOnlyWord, '')
+  .replace(/ё/g, 'е')
+  .toLowerCase()
