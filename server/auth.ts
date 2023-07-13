@@ -5,7 +5,7 @@ export function checkWriteAccess(user: UserInfo, db: (typeof databasesList)[numb
   switch (db){
     case "notes":
       if (!user) {
-        value.restricted = true;
+        value.isApproved = false;
       }
       return true;
     default:

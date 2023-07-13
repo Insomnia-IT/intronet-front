@@ -77,8 +77,6 @@ type INoteLocal = {
     name: string;
   };
   TTL: 13 | 14 | 15 | 16 | 17;
-  // on moderation
-  restricted?: boolean;
 };
 
 type INote = INoteLocal & {
