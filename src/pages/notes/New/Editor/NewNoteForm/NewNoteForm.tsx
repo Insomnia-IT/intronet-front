@@ -120,9 +120,8 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
 
   const isAdmin = useCell(() => authStore.isAdmin);
 
-  const currentFields = isAdmin ? fields.slice(0, 2) : fields;
 
-  const initialFormFields: IFormField[] = currentFields.map(
+  const initialFormFields: IFormField[] = fields.map(
     ({ name, value, require }) => {
       return {
         name,
@@ -141,7 +140,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
       {({ allReqFieldIsFill, state, onFieldChange, submit }) => {
         return (
           <>
-            {currentFields.map((field) => {
+            {fields.map((field) => {
               const { name } = field;
               return (
                 <Field
