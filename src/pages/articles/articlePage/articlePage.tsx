@@ -12,6 +12,7 @@ import {Eco} from "./article/eco";
 import {Fire} from "./article/fire";
 import {Food} from "./article/food";
 import {Game} from "./article/game";
+import {GoAway} from "./article/go-away";
 import {Living} from "./article/living";
 import {Medical} from "./article/medical";
 import {Music} from "./article/music";
@@ -53,4 +54,5 @@ const articles: Record<string, FunctionalComponent> = {
   carFailure: Car,
   fireplace: Fire,
   fire: Fire,
+  leave: GoAway
 }
