@@ -113,7 +113,6 @@ class NotesStore {
     return this.checkIsCurrentUserNoteAuthor(note) || this.isUserModerator;
   };
 
-
   public checkIsCurrentUserNoteAuthor(note: INote): boolean {
     return typeof note.author === "object" && note.author.id === authStore.uid;
   }
@@ -152,7 +151,7 @@ class NotesStore {
       },
       _id: Fn.ulid(),
       createdAt: getCurrentUtc(),
-      isApproved: false,
+      isApproved: this.isUserModerator,
     };
   }
 
