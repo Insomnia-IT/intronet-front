@@ -94,24 +94,34 @@ export async function importMovies(force = false) {
         MinAge: x[0].block.programAge,
         Part: en[2] ?? ru[2],
       },
-      movies: []
-    } as any;
-    for (let i = 0; i < x[0].block.programFilms.length; i++){
-      let f = x[0].block.programFilms[i];
-      const xls = xlsx[0].block.Movies[i];
-      const movie: MovieInfo = {
+      movies:  x[0].block.programFilms.map(f => ({
         id: f.vurchelID ?? Fn.ulid(),
-        name: xls.Name ?? f.title,
-        author: xls.Author,
-        country: xls.Country,
-        year: xls.Year,
-        duration: xls.Duration,
+        name: f.title,
+        // author: xls.Author,
+        // country: xls.Country,
+        // year: xls.Year,
+        // duration: xls.Duration,
         image: f.image,
         description: f.plot,
         vurchelId: f.vurchelID?.toString()
-      } as any;
-      block.movies.push(movie);
-    }
+      }))
+    } as any;
+    // for (let i = 0; i < x[0].block.programFilms.length; i++){
+    //   let f = x[0].block.programFilms[i];
+    //   const xls = xlsx[0].block.Movies[i];
+    //   const movie: MovieInfo = {
+    //     id: f.vurchelID ?? Fn.ulid(),
+    //     name: xls.Name ?? f.title,
+    //     author: xls.Author,
+    //     country: xls.Country,
+    //     year: xls.Year,
+    //     duration: xls.Duration,
+    //     image: f.image,
+    //     description: f.plot,
+    //     vurchelId: f.vurchelID?.toString()
+    //   } as any;
+    //   block.movies.push(movie);
+    // }
     results.push(block);
   }
   //

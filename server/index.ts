@@ -103,7 +103,7 @@ fastify.post("/batch", async function (request, reply) {
 fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
-    return `Seed is temporary disabled: production`;
+    // return `Seed is temporary disabled: production`;
     const user = await authCtrl.parse(request.headers.authorization);
     if (user.role !== "superadmin") {
       reply.status(401);
@@ -115,12 +115,12 @@ fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
       //   return importLocations(request.query.force);
       case "movies":
         return importMovies(request.query.force);
-      case "activities":
-        return importActivities(request.query.force);
-      case "main":
-        return importMainPage(request.query.force);
-      case "shops":
-        return importShops(request.query.force);
+      // case "activities":
+      //   return importActivities(request.query.force);
+      // case "main":
+      //   return importMainPage(request.query.force);
+      // case "shops":
+      //   return importShops(request.query.force);
     }
   }
 );
