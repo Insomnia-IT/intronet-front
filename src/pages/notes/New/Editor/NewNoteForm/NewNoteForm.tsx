@@ -98,7 +98,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
     notesStore
       .addNote({
         author: {
-          name: isAdmin ? authStore.userName : (formFields["author"] as string),
+          name: isAdmin ? (authStore.userName || 'Insight') : (formFields["author"] as string),
         },
         categoryId: formFields["category"]?.slice("tag+".length) || "",
         text: formFields["text"] as string,
