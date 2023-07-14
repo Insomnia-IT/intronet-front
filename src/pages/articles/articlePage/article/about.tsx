@@ -44,7 +44,7 @@ const sections = {
       </div>
     </div>
   }, fast: {
-    title: "Быстрый доступ", component: () => <div class="text colorMediumBlue" flex column gap="5">
+    title: "Поделиться с другом", component: () => <div class="text colorMediumBlue" flex column gap="5">
       <ol>
         <li>Присоединяйся к сети «insomnia-WIFI» у Инфоцентра, Речного или Полевого экрана.</li>
         <li>Сканируй QR-код или переходи по ссылке insight.app в браузере.</li>
@@ -52,7 +52,7 @@ const sections = {
       <img src="/public/images/qr-min.png" style={{alignSelf: 'center'}} width="243"/>
     </div>
   }, share: {
-    title: "Поделиться с другом", component: () => <div class="text colorMediumBlue" flex column gap="5">
+    title: "Быстрый доступ", component: () => <div class="text colorMediumBlue" flex column gap="5">
       <div>Чтобы иметь быстрый доступ к порталу с домашнего экрана телефона, нужно:</div>
       <div>на телефонах Android:</div>
       <Card border="Blue">
