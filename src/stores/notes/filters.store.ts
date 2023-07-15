@@ -116,7 +116,6 @@ export class FilteredNotesStore {
       if (
         activeFiltersMap.noApproved &&
         (note.isApproved ||
-          !note.restricted ||
           !notesStore.checkHasCurrentUserAccessToNote(note))
       ) {
         return false;
@@ -127,7 +126,7 @@ export class FilteredNotesStore {
         return false;
       }
       if (
-        (!note.isApproved || note.restricted) &&
+        (!note.isApproved) &&
         !activeFiltersMap.noApproved
       ) {
         return false;

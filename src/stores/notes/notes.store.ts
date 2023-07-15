@@ -106,7 +106,7 @@ class NotesStore {
    * Проверяет, имеет ли текущий юзер доступ к объявлению
    */
   public checkHasCurrentUserAccessToNote = (note: INote): boolean => {
-    if (note.isApproved && !note.restricted) {
+    if (note.isApproved) {
       return true;
     }
 

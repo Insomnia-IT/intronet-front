@@ -111,7 +111,6 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
               | 15
               | 16
               | 17) || 18,
-        restricted: !isAdmin,
       })
       .then(() => {
         isAdmin ? router.goTo("/notes") : onAddNote(true);
