@@ -76,7 +76,7 @@ export class MapComponent extends Component {
           }}>
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
-              <UserLocation/>
+              <UserLocation transformCell={this.TransformCell}/>
             </RequireAuth>
           </g>
         </svg>
