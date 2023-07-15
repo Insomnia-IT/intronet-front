@@ -1,4 +1,5 @@
 import { bind, Cell, cell } from "@cmmn/cell/lib";
+import {RequireAuth} from "@components/RequireAuth";
 import {cellState} from "@helpers/cell-state";
 import {geoConverter} from "@helpers/geo";
 import { locationsStore } from "@stores";
@@ -9,6 +10,7 @@ import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
 import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
+import {UserLocation} from "./user-location";
 
 export class MapComponent extends Component {
   constructor() {
@@ -73,6 +75,9 @@ export class MapComponent extends Component {
             transition: `transform .1s ease`
           }}>
             <MapElements transformCell={this.TransformCell} />
+            <RequireAuth>
+              <UserLocation/>
+            </RequireAuth>
           </g>
         </svg>
       </div>
