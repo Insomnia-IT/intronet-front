@@ -21,6 +21,7 @@ jobs:
         working-directory: ./.deploy/prod
         run: |
           docker compose build
+          docker login ghcr.io -u franzzua -p ${{ secrets.DOCKER_TOKEN }}
           docker compose push
 
       - name: Azure Login
