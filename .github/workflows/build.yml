@@ -8,9 +8,13 @@ on:
 jobs:
   build:
     runs-on: [ubuntu-latest]
+    permissions:
+      packages: write
+      contents: read
     env:
       DB_PASSWORD: fransuane/insomnia-front
       IMAGE_NAME_SERVER: fransuane/intronet-server
+
     steps:
       - uses: actions/checkout@v3
       - name: build and push docker
