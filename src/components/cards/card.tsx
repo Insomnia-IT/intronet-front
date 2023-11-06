@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact";
 import Style from "./card.module.css";
 import { ComponentChildren } from "preact";
-import { JSXInternal } from "preact/src/jsx";
+import { JSX } from "preact";
 import classNames from "classnames";
 
 export type ActivityCardProps = {
@@ -10,7 +10,7 @@ export type ActivityCardProps = {
   border?: "Blue" | "Vivid" | "InactiveGrey" | "None" | "Yellow";
   background?: "Purple" | "None" | "White" | "ColdWhite" | "Soft" | "Vivid";
   className?: string;
-} & JSXInternal.HTMLAttributes<HTMLDivElement>;
+} & JSX.HTMLAttributes<HTMLDivElement>;
 
 export const Card: FunctionalComponent<ActivityCardProps> = ({
   border,

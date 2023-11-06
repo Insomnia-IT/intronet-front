@@ -106,15 +106,5 @@ M149.82 200.4 C139.74,200.4 130.08,196.4 122.95,189.27 C115.82,182.15 117.37,190
   </svg>
 </div>
 <div id="root"/>
-<script>
-  document.title = 'Insomnia Fest';
-  document.querySelector('#logo').addEventListener('load', () => {
-    setTimeout(() =>{
-      const scr = document.createElement('script');
-      scr.src = "/sw-loader${minify ? '.min' : ''}.js";
-      document.head.appendChild(scr);
-    }, 100);
-  });
-</script>
 </body>
 </html>

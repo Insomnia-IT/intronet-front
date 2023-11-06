@@ -14,7 +14,8 @@
     "pouchdb": "8.0.1",
     "pouchdb-find": "8.0.1",
     "pouchdb-node": "8.0.1",
-    "pouchdb-upsert": "2.2.0"
+    "pouchdb-upsert": "2.2.0",
+    "tslib": "2.6.2"
   },
   "devDependencies": {
     "@cmmn/tools": "1.7.12",

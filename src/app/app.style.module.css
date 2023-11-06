@@ -1,5 +1,4 @@
 .main {
-  composes: colors from "../styles.css";
   height: 100%;
   width: 100%;
 }

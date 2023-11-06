@@ -9,22 +9,30 @@ jobs:
   build:
     runs-on: [ubuntu-latest]
     env:
-      IMAGE_NAME: fransuane/insomnia-front
+      DB_PASSWORD: fransuane/insomnia-front
       IMAGE_NAME_SERVER: fransuane/intronet-server
     steps:
       - uses: actions/checkout@v3
-      - name: build image
+      - name: build and push docker
+        working-directory: ./.deploy/prod
         run: |
-          docker build . -f ./.deploy/client.Dockerfile -t $IMAGE_NAME
-          docker build . -f ./.deploy/server.Dockerfile -t $IMAGE_NAME_SERVER
-        env:
-          COMPOSE_DOCKER_CLI_BUILD: 1
-          DOCKER_BUILDKIT: 1
+          docker compose build
+          docker compose push
 
-      - name: login
-        run: echo dckr_pat_kldQql7KodyN7mpA0jqaJPRvEA0 | docker login -u fransuane --password-stdin
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: push images
-        run: |
-          docker push $IMAGE_NAME
-          docker push $IMAGE_NAME_SERVER
+      - name: subsitutte variables in docker
+        uses: franzbischoff/replace_envs@v1
+        with:
+          from_file: './.deploy/prod/docker-compose.yml'
+          to_file: './.deploy/prod/docker-compose.yml'
+
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az webapp config container set --resource-group Insight --name insight-app --multicontainer-config-type compose --multicontainer-config-file ./.deploy/prod/docker-compose.yml

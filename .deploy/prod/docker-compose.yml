@@ -1,0 +1,67 @@
+version: "3.8"
+
+name: intronet-prod
+services:
+  nginx:
+    image: "ghcr.io/intronet-front/nginx:${GITHUB_SHA}"
+    build:
+      context: ../../nginx
+      dockerfile: nginx.dockerfile
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      apps:
+    links:
+      - front
+      - db
+      - server
+    depends_on:
+      - front
+      - db
+      - server
+
+
+  front:
+    image: "ghcr.io/intronet-front/front:${GITHUB_SHA}"
+    build:
+      context: ../../
+      dockerfile: .deploy/client.Dockerfile
+    restart: always
+    networks:
+      apps:
+
+  server:
+    image: "ghcr.io/intronet-front/server:${GITHUB_SHA}"
+    build:
+      context: ../../
+      dockerfile: .deploy/server.Dockerfile
+    environment:
+      PORT: "80"
+      DATABASE: "http://admin:${DB_PASSWORD}@db:5984"
+    restart: always
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      apps:
+
+  db:
+    image: couchdb:3.3.2
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: "${DB_PASSWORD}"
+    restart: always
+    networks:
+      apps:
+    volumes:
+      - couchdb_data:/opt/couchdb/data
+      - ./couchdb.ini:/opt/couchdb/etc/local.ini
+
+volumes:
+  couchdb_data:
+
+networks:
+  apps:
+    driver: bridge

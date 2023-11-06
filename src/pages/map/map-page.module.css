@@ -75,7 +75,6 @@
   composes: chipActive from "../../components/chip/chip.module.css";
   padding: 8px 16px;
   border: none;
-  color: white;
 }
 
 .editBar{

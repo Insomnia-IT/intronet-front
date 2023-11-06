@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "preact/hooks";
-import {JSXInternal} from "preact/src/jsx";
+import {JSX} from "preact";
 
 export function factory(
   html: string
-): (key: string | number, options?: IIconOptions) => JSXInternal.Element {
+): (key: string | number, options?: IIconOptions) => JSX.Element {
   const div = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   div.innerHTML = html;
   // const div = React.createElement(ReactWrapper, { html, custom: null });

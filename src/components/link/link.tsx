@@ -1,8 +1,7 @@
 import { FunctionalComponent, JSX } from "preact";
 import { RoutePath, RoutePathString, useRouter } from "../../pages/routing";
 import { useMemo } from "preact/hooks";
-import { JSXInternal } from "preact/src/jsx";
-import SignalLike = JSXInternal.SignalLike;
+import SignalLike = JSX.SignalLike;
 
 export type LinkProps = {
   goTo: RoutePath | RoutePathString;

@@ -5,7 +5,8 @@
     "resolveJsonModule": true,
     "lib": [
       "ESNext"
-    ]
+    ],
+    "noEmitHelpers": false
   },
   "include": [
     "**/*.json",

@@ -1,12 +1,12 @@
 import { FunctionalComponent } from "preact";
 import {useEffect, useRef} from "preact/hooks";
 import Styles from "./tag.module.css";
-import { JSXInternal } from "preact/src/jsx";
+import { JSX } from "preact";
 import classNames from "classnames";
 
 export type TagProps = {
   selected: boolean;
-} & JSXInternal.HTMLAttributes<HTMLDivElement>;
+} & JSX.HTMLAttributes<HTMLDivElement>;
 
 export const Tag: FunctionalComponent<TagProps> = ({
   selected,

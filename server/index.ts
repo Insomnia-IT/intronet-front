@@ -1,15 +1,15 @@
+import "tslib/tslib.js"
 import * as console from "console";
 import { checkWriteAccess } from "./auth";
 import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
-import { importMainPage } from "./data/import";
-import { importLocations } from "./data/importLocations";
+import {importMainPage} from "./data/import";
+import {importActivities} from "./data/importActivities";
+import {importLocations} from "./data/importLocations";
 import { importMovies } from "./data/importMovies";
-import { importActivities } from "./data/importActivities";
 import {importShops} from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
-import {Database} from "./database";
 import {getResults, vote} from "./vote.ctrl";
 
 const fastify = Fastify({
@@ -111,16 +111,16 @@ fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
     }
     switch (request.params.name) {
       // disabled!!! admin only editing
-      // case "locations":
-      //   return importLocations(request.query.force);
+      case "locations":
+        return importLocations(request.query.force);
       case "movies":
         return importMovies(request.query.force);
-      // case "activities":
-      //   return importActivities(request.query.force);
-      // case "main":
-      //   return importMainPage(request.query.force);
-      // case "shops":
-      //   return importShops(request.query.force);
+      case "activities":
+        return importActivities(request.query.force);
+      case "main":
+        return importMainPage(request.query.force);
+      case "shops":
+        return importShops(request.query.force);
     }
   }
 );

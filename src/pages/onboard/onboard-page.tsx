@@ -14,7 +14,7 @@ export const OnboardPage = () => {
   }, [stage]);
   const Page = Stages[+stage] ?? (() => <></>);
   return (
-    <div class={styles.page}>
+    <div class={styles.pageOnboard}>
       <Page />
       <CloseButton white onClick={userStore.onboardingFinish} />
     </div>

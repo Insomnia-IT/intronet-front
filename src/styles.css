@@ -1,4 +1,4 @@
-.colors {
+body {
   --electric-blues: #536bf3;
   --chineese-cafe: #ff4b16;
   --bonfire-light: #fda631;
@@ -55,49 +55,49 @@
     )
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
-:global(.bgInsNight) {
+.bgInsNight {
   background: var(--ins-night);
 }
-:global(.colorInsNight) {
+.colorInsNight {
   color: var(--ins-night) !important;
 }
-:global(.colorPink) {
+.colorPink {
   color: var(--pink) !important;
 }
-:global(.colorDisco) {
+.colorDisco {
   color: var(--cyber-disco) !important;
 }
-:global(.colorGray) {
+.colorGray {
   color: var(--gray) !important;
 }
-:global(.colorInactiveGrey) {
+.colorInactiveGrey {
   color: var(--inactive-grey);
 }
-:global(.colorOrange) {
+.colorOrange {
   color: var(--chineese-cafe) !important;
 }
-:global(.colorMediumBlue) {
+.colorMediumBlue {
   color: var(--medium-blue) !important;
 }
-:global(.colorElectricBlues) {
+.colorElectricBlues {
   color: var(--electric-blues);
 }
-:global(.colorMenu) {
+.colorMenu {
   color: var(--menu-gradient);
 }
-:global(.colorPurple) {
+.colorPurple {
   color: var(--purple) !important;
 }
-:global(.colorWhite) {
+.colorWhite {
   color: var(--cold-white) !important;
 }
-:global(.colorElBlue) {
+.colorElBlue {
   color: var(--electric-blues) !important;
 }
-:global(.unbounded) {
+.unbounded {
   font-family: "Unbounded";
 }
-:global(h1) {
+h1 {
   font-family: "Unbounded";
   font-style: normal;
   font-weight: initial;
@@ -109,7 +109,7 @@
   /*margin-bottom: 8px;*/
 }
 
-:global(h2) {
+h2 {
   /*color: var(--medium-blue);*/
   font-family: "Unbounded";
   font-style: normal;
@@ -121,7 +121,7 @@
   margin: 0;
 }
 
-:global(h3) {
+h3 {
   margin: 0;
   color: var(--medium-blue);
   font-style: normal;
@@ -130,7 +130,7 @@
   line-height: 21px;
 }
 
-:global(.sh1) {
+.sh1 {
   color: var(--medium-blue);
   font-style: normal;
   font-variation-settings: "wght" 590;
@@ -139,7 +139,7 @@
   line-height: 29px;
 }
 
-:global(.sh2) {
+.sh2 {
   font-style: normal;
   font-variation-settings: "wght" 590;
   font-weight: 590;
@@ -148,7 +148,7 @@
   display: flex;
   align-items: flex-end;
 }
-:global(.sh3) {
+.sh3 {
   font-style: normal;
   font-variation-settings: "wght" 510;
   font-weight: 510;
@@ -158,14 +158,14 @@
   display: flex;
   align-items: flex-end;
 }
-:global(.text) {
+.text {
   font-style: normal;
   font-variation-settings: "wght" 400;
   font-size: 20px;
   line-height: 24px;
 }
 
-:global(.textSmall) {
+.textSmall {
   color: var(--medium-blue);
   font-style: normal;
   font-weight: 400;
@@ -173,7 +173,7 @@
   line-height: 16.7px;
 }
 
-:global(.tags) {
+.tags {
   font-style: normal;
   font-weight: 510;
   font-size: 14px;
@@ -182,48 +182,48 @@
   align-items: flex-end;
 }
 
-:global(mark) {
+mark {
   background: initial;
   color: var(--cyber-disco);
 }
 
-:global(.colorChineeseCaffe) {
+.colorChineeseCaffe {
   color: var(--chineese-cafe);
 }
 
-:global(p) {
+p {
   margin: 0;
 }
 
-:global(ul) {
+ul {
   margin: 0;
   padding-left: 32px;
 }
 
-:global(ul:not(.styledList)) {
+ul:not(.styledList) {
   list-style: none;
   padding: 0;
 }
 
-:global(ol li:not(:last-child)) {
+ol li:not(:last-child) {
   margin-bottom: 20px;
 }
-:global(ul.disc) {
+ul.disc {
   list-style: none;
   padding-left: 12px;
 }
-:global(ul.disc li) {
+ul.disc li {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
   margin: 10px 0;
 }
-:global(ul.disc li:before) {
+ul.disc li:before {
   content: "•";
   font-size: 20px;
 }
 
-:global(b) {
+b {
   font-variation-settings: "wght" 640;
 }

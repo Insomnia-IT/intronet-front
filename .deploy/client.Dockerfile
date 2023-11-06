@@ -18,4 +18,6 @@ FROM nginx:alpine
 EXPOSE 80
 WORKDIR /app
 
+COPY .deploy/client.nginx.conf /etc/nginx/conf.d/default.conf
+COPY /public /app/public
 COPY --from=builder /app/dist/bundle /app

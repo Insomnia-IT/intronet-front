@@ -121,7 +121,11 @@ if (navigator.serviceWorker && !location.href.match("(localhost)")) {
 }
 async function init() {
   const elements: HTMLElement[] = [];
-  for (let asset of globalThis.assets.concat("public/styles/index.css")) {
+  for (let asset of [
+    "main.min.js",
+    "main.css",
+    "public/styles/index.css"
+  ]) {
     if (asset.endsWith("css")) {
       const link = document.createElement("link");
       link.rel = "stylesheet";

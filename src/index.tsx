@@ -3,6 +3,7 @@ import {SvgContainer} from "@icons";
 import {render} from "preact";
 import { App } from "./app/app";
 import {EventListener} from "@cmmn/cell/lib";
+import "./styles.css";
 
 window.addEventListener('init', async () => {
   SvgContainer.logo = document.getElementById('logo').cloneNode(true) as SVGElement;
