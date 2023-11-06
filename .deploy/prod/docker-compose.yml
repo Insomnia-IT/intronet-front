@@ -3,7 +3,7 @@ version: "3.8"
 name: intronet-prod
 services:
   nginx:
-    image: "ghcr.io/insomnia-it/nginx:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/nginx:GITHUB_SHA"
     build:
       context: ../../nginx
       dockerfile: nginx.dockerfile
@@ -23,7 +23,7 @@ services:
 
 
   front:
-    image: "ghcr.io/insomnia-it/front:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/front:GITHUB_SHA"
     build:
       context: ../../
       dockerfile: .deploy/client.Dockerfile
@@ -32,7 +32,7 @@ services:
       apps:
 
   server:
-    image: "ghcr.io/insomnia-it/server:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/server:GITHUB_SHA"
     build:
       context: ../../
       dockerfile: .deploy/server.Dockerfile
@@ -48,7 +48,10 @@ services:
       apps:
 
   db:
-    image: couchdb:3.3.2
+    image: "ghcr.io/insomnia-it/db:GITHUB_SHA"
+    build:
+      context: ../couchdb
+      dockerfile: db.Dockerfile
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: "${DB_PASSWORD}"
@@ -57,7 +60,6 @@ services:
       apps:
     volumes:
       - couchdb_data:/opt/couchdb/data
-      - ./couchdb.ini:/opt/couchdb/etc/local.ini
 
 volumes:
   couchdb_data:

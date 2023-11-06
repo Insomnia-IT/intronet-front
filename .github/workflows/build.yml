@@ -11,12 +11,14 @@ jobs:
     permissions:
       packages: write
       contents: read
-    env:
-      DB_PASSWORD: fransuane/insomnia-front
-      IMAGE_NAME_SERVER: fransuane/intronet-server
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: subsitutte GITHUB_SHA in docker
+        working-directory: ./.deploy/prod
+        run: sed s/GITHUB_SHA/${GITHUB_SHA}/g ./docker-compose.yml > ./docker-compose.yml
+
       - name: build and push docker
         working-directory: ./.deploy/prod
         run: |
@@ -29,11 +31,6 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: subsitutte variables in docker
-        uses: franzbischoff/replace_envs@v1
-        with:
-          from_file: './.deploy/prod/docker-compose.yml'
-          to_file: './.deploy/prod/docker-compose.yml'
 
       - name: Azure CLI script
         uses: azure/CLI@v1
