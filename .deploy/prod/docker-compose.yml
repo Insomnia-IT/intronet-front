@@ -3,7 +3,7 @@ version: "3.8"
 name: intronet-prod
 services:
   nginx:
-    image: "ghcr.io/Insomnia-IT/nginx:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/nginx:${GITHUB_SHA}"
     build:
       context: ../../nginx
       dockerfile: nginx.dockerfile
@@ -23,7 +23,7 @@ services:
 
 
   front:
-    image: "ghcr.io/Insomnia-IT/front:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/front:${GITHUB_SHA}"
     build:
       context: ../../
       dockerfile: .deploy/client.Dockerfile
@@ -32,7 +32,7 @@ services:
       apps:
 
   server:
-    image: "ghcr.io/Insomnia-IT/server:${GITHUB_SHA}"
+    image: "ghcr.io/insomnia-it/server:${GITHUB_SHA}"
     build:
       context: ../../
       dockerfile: .deploy/server.Dockerfile
