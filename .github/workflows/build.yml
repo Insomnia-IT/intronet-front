@@ -17,7 +17,9 @@ jobs:
 
       - name: subsitutte GITHUB_SHA in docker
         working-directory: ./.deploy/prod
-        run: sed s/GITHUB_SHA/${GITHUB_SHA}/g ./docker-compose.yml > ./docker-compose.yml
+        run: |
+          sed s/GITHUB_SHA/${{ GITHUB_SHA }}/g ./docker-compose.yml > ./docker-compose.yml
+          cat ./docker-compose.yml
 
       - name: build and push docker
         working-directory: ./.deploy/prod
