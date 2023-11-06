@@ -40,6 +40,8 @@ services:
       PORT: "80"
       DATABASE: "http://admin:${DB_PASSWORD}@db:5984"
     restart: always
+    volumes:
+      - "${WEBAPP_STORAGE_HOME}/secrets:/app/secrets"
     links:
       - db
     depends_on:

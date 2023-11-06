@@ -2,10 +2,11 @@ import * as console from "console";
 import fs from "fs";
 import {Buffer} from "node:buffer";
 import {createCipheriv, createDecipheriv, randomBytes} from "crypto";
+import * as path from "path";
 
 const algorithm = 'aes-256-cbc';
 
-const key = getOrCreateKey("./secret.key", 32);
+const key = getOrCreateKey("./secrets/secret.key", 32);
 
 function encrypt(text) {
   const iv = randomBytes(16);
@@ -34,6 +35,7 @@ function getOrCreateKey(file: string, size: number){
       return Buffer.from(result, "hex");
   }catch (e){
       const buffer = randomBytes(size);
+      fs.mkdirSync(path.dirname(file), {recursive: true});
       fs.writeFileSync(file, buffer.toString("hex"), "utf-8");
       return  buffer;
   }
