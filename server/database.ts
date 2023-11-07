@@ -9,7 +9,12 @@ export class Database<T extends { _id: string }> {
   protected db = new PouchDB<T & { version: string }>(
     `${process.env.DATABASE || "http://admin:password@localhost:5984"}/${
       this.name
-    }`
+    }`,{
+      auth: {
+        username: process.env.COUCHDB_USER || 'admin',
+        password: process.env.COUCHDB_PASSWORD || 'password',
+      }
+    }
   );
   protected index = this.getIndexOrCreate();
 

@@ -38,7 +38,9 @@ services:
       dockerfile: .deploy/server.Dockerfile
     environment:
       PORT: "80"
-      DATABASE: "http://admin:${DB_PASSWORD}@db:5984"
+      DATABASE: "http://db:5984"
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: "${DB_PASSWORD}"
     restart: always
     volumes:
       - "${WEBAPP_STORAGE_HOME}/secrets:/app/secrets"
