@@ -19,14 +19,14 @@ export const dbCtrl = new class {
   public async getVersions(){
     if (this.versions)
       return this.versions;
-    this.versions = {};
+    const versions = {};
     for (let database of databases.values()) {
       const version = await database.getMaxVersion();
       if (version){
-        this.versions[database.name] = version;
+        versions[database.name] = version;
       }
     }
-    return this.versions;
+    return this.versions = versions;
   }
 }
 

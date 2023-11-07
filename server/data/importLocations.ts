@@ -3,7 +3,9 @@ import fetch from "node-fetch";
 import {Database} from "../database";
 import {dbCtrl} from "../db-ctrl";
 import locationsJSON from "./locations.json" assert {"type": "json"};
+import notionLocationsJSON from "./notion/locations.json" assert {"type": "json"};
 import contentBlocks from "./location-blocks.json" assert {"type": "json"};
+const importFromNotion = false;
 
 export async function importLocations(force = false) {
   const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
@@ -21,11 +23,11 @@ export async function importLocations(force = false) {
     work_tags: string[];
     menu: string;
     directionId: string;
-  }> = await fetch(`https://srv.rumyantsev.com/api/v1/intranet/locations`, {
+  }> = importFromNotion ? await fetch(`https://srv.rumyantsev.com/api/v1/intranet/locations`, {
     headers: {
       Authorization: "Basic YWRtaW46YWRtaW4=",
     },
-  }).then((x) => x.json());
+  }).then((x) => x.json()) : notionLocationsJSON;
   // fs.writeFileSync('./server/data/notion-locations.csv', `
   //   ${Object.keys(notionLocations[0]).join('\t')}
   //   ${notionLocations.map(x => Object.values(x).map(x => typeof x === "object" ? JSON.stringify(x) : x).join('\t')).join('\n')}

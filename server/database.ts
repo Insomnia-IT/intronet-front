@@ -82,7 +82,9 @@ export class Database<T extends { _id: string }> {
       });
       return indexName;
     } catch (e) {
-      console.error(e);
+      console.log(`Failed init db, ${this.name}. Wait 1 second...`)
+      await new Promise(x => setTimeout(x, 1000));
+      return await this.getIndexOrCreate();
     }
   }
 
