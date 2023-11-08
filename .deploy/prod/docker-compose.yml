@@ -63,7 +63,7 @@ services:
     networks:
       apps:
     volumes:
-      - couchdb_data:/opt/couchdb/data
+      - "${WEBAPP_STORAGE_HOME}/data:/opt/couchdb/data"
 
 volumes:
   couchdb_data:
