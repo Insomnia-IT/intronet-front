@@ -318,3 +318,6 @@ type Change = {
   start?: string;
   end?: string;
 } & Record<string, any>;
+
+
+declare const PRODUCTION: boolean;

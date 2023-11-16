@@ -8,7 +8,7 @@
     "run": "cmmn spawn compile --watch bundle --watch serve -b",
     "bundle:watch": "cmmn bundle -b --watch",
     "bundle:stats": "cmmn bundle -b --prod --stats",
-    "build": "cmmn compile -b && cmmn bundle -b --prod",
+    "build": "cmmn compile -b && cmmn bundle -b --prod --minify",
     "story": "start-storybook -p 6006",
     "ci": "docker build . -t insomnia/intronet-front",
     "server": "nodemon ./dist/esm/server"
@@ -17,8 +17,8 @@
   "workspaces": ["."],
   "type": "module",
   "dependencies": {
-    "@cmmn/cell": "1.9.6",
-    "@cmmn/tools": "1.9.6",
+    "@cmmn/cell": "1.9.12",
+    "@cmmn/tools": "1.9.12",
     "@fastify/websocket": "^7.1.3",
     "@types/luxon": "^2.3.1",
     "@types/node": "17.x.x",

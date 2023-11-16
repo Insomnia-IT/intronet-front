@@ -122,7 +122,7 @@ if (navigator.serviceWorker && !location.href.match("(localhost)")) {
 async function init() {
   const elements: HTMLElement[] = [];
   for (let asset of [
-    "main.min.js",
+    PRODUCTION ? "main.min.js": "main.js",
     "main.css",
     "public/styles/index.css"
   ]) {
