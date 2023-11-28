@@ -27,6 +27,8 @@ services:
     volumes:
       - ./.data:/opt/couchdb/data
       - ./couchdb.ini:/opt/couchdb/etc/local.ini
+    ports:
+      - "5984:5984"
     networks:
       main:
 

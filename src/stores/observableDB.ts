@@ -1,118 +1,34 @@
-import { EventEmitter, Fn } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/cell/lib";
 import { IsConnected } from "@stores/connection";
-import { IndexedDatabase } from "@stores/indexedDatabase";
 import { authStore } from "@stores/auth.store";
 import { api } from "./api";
+import { LocalObservableDB } from "./localObservableDB";
 
-export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
-  loaded: void;
-  change:
-    | { type: "init"; value: T[] }
-    | ((
-        | { type: "addOrUpdate"; key: string | number; value: T }
-        | { type: "delete"; key: string | number }
-      ) & { fromReplication?: boolean });
-}> {
-  private db = new IndexedDatabase(this.name);
-
-  protected items = new Map<string, T & { version: string }>();
-
-  public isLoaded: Promise<void> = this.onceAsync("loaded");
-
-  constructor(public name: string, public localOnly: boolean = false) {
-    super();
-    globalThis[name] = this;
-    if (location.pathname.match(/\.reload/)) {
-      this.clear();
-    }
-    this.init();
-  }
-
+export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
+  T & { version: string }
+> {
   async init() {
-    await this.loadItems().then((x) => {
-      this.emit("loaded");
-      this.emit("change");
-    });
-    if (!this.localOnly) {
-      await this.sync().catch(console.error);
-      setInterval(() => this.sync().catch(console.error), 10_000);
-    }
+    await super.init();
+    await this.sync().catch(console.error);
+    setInterval(() => this.sync().catch(console.error), 10_000);
   }
 
-  async remove(key: string) {
-    const existed = this.get(key);
-    if (!existed) return;
-    return this.addOrUpdate({
-      ...existed,
-      deleted: true
-    })
-  }
-
-  async clear() {
-    await this.db.purge();
-    this.items.clear();
-    this.emit("change", {
-      type: "delete",
-      key: undefined,
-    });
-  }
-
-  async set(value: T & { version: string }) {
-    await this.db.set(value._id, value);
-    this.items.set(value._id, value);
+  toArray(): T[] {
+    return Array.from(this.items.values()).filter((x) => !x["deleted"]);
   }
 
   async addOrUpdate(value: T, skipChange = false) {
-    await this.isLoaded;
     const valueWithVersion = {
       ...value,
       version: Fn.ulid(),
     };
-    await this.set(valueWithVersion);
+    await super.addOrUpdate(valueWithVersion, skipChange);
     if (!skipChange) {
       await VersionsDB.Instance.set({
         _id: this.name,
         version: valueWithVersion.version,
       });
-      this.emit("change", {
-        type: "addOrUpdate",
-        key: value._id,
-        value,
-      });
     }
-  }
-
-  get(id: string): T {
-    return this.items.get(id);
-  }
-
-  toArray(): T[] {
-    return Array.from(this.items.values()).filter(x => !x['deleted']);
-  }
-
-  entries() {
-    return this.items.entries();
-  }
-
-  keys() {
-    return this.items.keys();
-  }
-
-  values() {
-    return this.items.values();
-  }
-
-  async loadItems() {
-    const keys = await this.db.keys();
-
-    this.items = new Map();
-    for (let key of keys) {
-      this.items.set(key as string, await this.db.get(key as string));
-    }
-    this.emit("change", {
-      type: "init",
-      value: Array.from(this.values()),
-    });
   }
 
   private syncLock = false;
@@ -133,14 +49,20 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
   private errorTimeout = 300;
   async saveToServer() {
     if (this.localOnly) return;
+    const updates = [] as Array<{ db: string; value: T }>;
     for (let item of this.items.values()) {
       if (item.version <= this.remoteVersion) continue;
-
-      await fetch(`${api}/data/${this.name}`, {
+      updates.push({ db: this.name, value: item });
+    }
+    if (updates.length > 0) {
+      await fetch(`${api}/batch`, {
         method: "POST",
         headers: authStore.headers,
-        body: JSON.stringify(item),
-      }).catch(() => new Promise(resolve => setTimeout(resolve, this.errorTimeout*1.2 )));
+        body: JSON.stringify(updates),
+      }).catch(
+        () =>
+          new Promise((resolve) => setTimeout(resolve, this.errorTimeout * 1.2))
+      );
     }
     await VersionsDB.Instance.loadFromServer();
   }
@@ -154,7 +76,10 @@ export class ObservableDB<T extends { _id: string }> extends EventEmitter<{
       }
     ).then((x) => x.json())) as (T & { version: string })[];
     for (let newItem of newItems) {
-      await this.set(newItem);
+      const local = this.items.get(newItem._id);
+      if (!local || local.version < newItem.version) {
+        await this.set(newItem);
+      }
     }
     this.emit("change", {
       type: "init",
@@ -202,8 +127,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
 
   private isLoading = false;
   async loadFromServer() {
-    if (this.isLoading)
-      return;
+    if (this.isLoading) return;
     this.isLoading = true;
     try {
       this.remote = await fetch(`${api}/versions`, {
@@ -217,3 +141,13 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     }
   }
 }
+
+export type ObservableDBEvents<T> = {
+  loaded: void;
+  change:
+    | { type: "init"; value: T[] }
+    | ((
+        | { type: "addOrUpdate"; key: string | number; value: T }
+        | { type: "delete"; key: string | number }
+      ) & { fromReplication?: boolean });
+};
