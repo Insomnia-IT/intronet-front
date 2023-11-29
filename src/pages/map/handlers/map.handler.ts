@@ -1,10 +1,10 @@
 import { TransformMatrix } from "../transform/transform.matrix";
 import { DragHandler } from "./dragHandler";
 import { ZoomHandler } from "./zoomHandler";
-import { EventEmitter } from "@cmmn/cell/lib";
+import { EventEmitter } from "@cmmn/core";
 
 export class MapHandler extends EventEmitter<{
-  transform: TransformMatrix
+  transform: TransformMatrix;
 }> {
   constructor(public root: HTMLDivElement) {
     super();

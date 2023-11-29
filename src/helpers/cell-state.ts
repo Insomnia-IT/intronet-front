@@ -1,21 +1,21 @@
-import {useEffect, useMemo, useReducer, useState} from "preact/hooks";
-import { Cell, BaseCell, compare } from "@cmmn/cell/lib";
+import { useEffect, useMemo, useReducer, useState } from "preact/hooks";
+import { Cell, BaseCell } from "@cmmn/cell";
+import { compare } from "@cmmn/core";
 
 export function useCell<T>(
   getter: (() => T) | BaseCell<T> | undefined,
   deps: any[] = []
 ): T {
-  if (!getter || getter instanceof BaseCell)
-    deps.push(getter);
+  if (!getter || getter instanceof BaseCell) deps.push(getter);
   const cell = useMemo<BaseCell>(
-    () => getter instanceof BaseCell ? getter : new Cell(getter, {compare}),
+    () => (getter instanceof BaseCell ? getter : new Cell(getter, { compare })),
     deps
   );
-  const [, dispatch] = useReducer(x => ({}), {});
+  const [, dispatch] = useReducer((x) => ({}), {});
   useEffect(() => {
-    dispatch('change');
-    return cell.on('change', dispatch);
-  }, [cell])
+    dispatch("change");
+    return cell.on("change", dispatch);
+  }, [cell]);
   return cell.get();
 }
 export function cellState<TState>(

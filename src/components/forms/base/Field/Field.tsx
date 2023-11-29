@@ -1,4 +1,4 @@
-import { Fn } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
 import { Input } from "@components/input";
 import { Tag, Tags } from "@components/tag";
 import classNames from "classnames";

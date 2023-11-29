@@ -1,4 +1,4 @@
-import { bind } from "@cmmn/cell/lib";
+import { bind } from "@cmmn/core";
 
 function latToY(lat) {
   const phi = (lat * Math.PI) / 180;
@@ -27,11 +27,11 @@ export class TileConverter {
 
   @bind
   public toGeo(figure: Figure): GeoFigure {
-    if (Array.isArray(figure)){
-      if (Array.isArray(figure[0])){
-        return figure.map(line => line.map(p => this.toGeo(p) as Geo));
+    if (Array.isArray(figure)) {
+      if (Array.isArray(figure[0])) {
+        return figure.map((line) => line.map((p) => this.toGeo(p) as Geo));
       }
-      return figure.map(p => this.toGeo(p) as Geo);
+      return figure.map((p) => this.toGeo(p) as Geo);
     }
     return {
       lon: x2lng((figure.X / this.scale + this.offset.x) / 2 ** this.zoom),
@@ -43,11 +43,11 @@ export class TileConverter {
   public fromGeo(geo: Geo[]): Point[];
   public fromGeo(geo: Geo): Point;
   public fromGeo(geo: GeoFigure): Figure {
-    if(!geo) return
+    if (!geo) return;
     if (Array.isArray(geo)) {
       if (Array.isArray(geo[0])) {
         return geo.map((arr) => arr.map((x) => this.fromGeo(x)));
-      }else {
+      } else {
         return geo.map((x) => this.fromGeo(x)) as any;
       }
     }
@@ -57,18 +57,16 @@ export class TileConverter {
     };
   }
 
-  public getCenter(figure: Figure): Point{
-    if (!Array.isArray(figure))
-      return figure;
+  public getCenter(figure: Figure): Point {
+    if (!Array.isArray(figure)) return figure;
     const flat = figure.flat();
-    if (flat.length == 0)
-      return {X: 0, Y: 0};
+    if (flat.length == 0) return { X: 0, Y: 0 };
     const length = flat.length;
     const sum = (a: Point, b: Point) => ({
-      X: (a.X + b.X),
-      Y: (a.Y + b.Y),
+      X: a.X + b.X,
+      Y: a.Y + b.Y,
     });
-    return flat.map(p => ({X: p.X / length, Y: p.Y / length})).reduce(sum);
+    return flat.map((p) => ({ X: p.X / length, Y: p.Y / length })).reduce(sum);
   }
 }
 

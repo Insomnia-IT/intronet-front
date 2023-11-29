@@ -1,3 +1,3 @@
-import { Cell } from "@cmmn/cell/lib";
+import { Cell } from "@cmmn/cell";
 
 export const IsConnected = new Cell(false);

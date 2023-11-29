@@ -1,7 +1,8 @@
-import { Fn, cell } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
 import { ObservableDB } from "../observableDB";
 import { authStore } from "@stores/auth.store";
 import { getCurrentDate, getCurrentUtc } from "@helpers/date";
+import { cell } from "@cmmn/cell";
 
 class NotesStore {
   @cell

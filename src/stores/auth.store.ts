@@ -1,19 +1,22 @@
-import { cell, Fn } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
 import { LocalStore } from "@stores/localStore";
-import {api} from "./api";
+import { api } from "./api";
+import { cell } from "@cmmn/cell";
 
 class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
-  role: 'admin' | 'superadmin' | 'tochka';
+  role: "admin" | "superadmin" | "tochka";
 }> {
   get headers() {
     return {
-      ...(this.token ? {
-        Authorization: `Bearer ${this.token}`,
-      } : {}),
-      uid: this.uid
+      ...(this.token
+        ? {
+            Authorization: `Bearer ${this.token}`,
+          }
+        : {}),
+      uid: this.uid,
     };
   }
   constructor() {
@@ -27,14 +30,14 @@ class AuthStore extends LocalStore<{
     const token = url.searchParams.get("token");
     if (token) {
       this.patch({ token });
-      fetch(api+'/auth', {
+      fetch(api + "/auth", {
         headers: this.headers,
       }).then(async (x) => {
         if (!x.ok) {
           this.patch({ token: null });
-        }else {
-          const role = await x.text() as any;
-          this.patch({role})
+        } else {
+          const role = (await x.text()) as any;
+          this.patch({ role });
         }
       });
     }
@@ -67,28 +70,31 @@ class AuthStore extends LocalStore<{
       token: token,
     });
   }
-  public createToken(role: 'admin'|'superadmin'|'tochka', username: string){
+  public createToken(
+    role: "admin" | "superadmin" | "tochka",
+    username: string
+  ) {
     return fetch(`${api}/auth/token`, {
-      method: 'POST',
+      method: "POST",
       headers: this.headers,
-      body: JSON.stringify({role, username})
-    })
+      body: JSON.stringify({ role, username }),
+    });
   }
 
-  public seed(db: string, force: boolean){
-    return fetch(`${api}/seed/${db}${force ? '?force=1' : ''}`, {
-      method: 'POST',
+  public seed(db: string, force: boolean) {
+    return fetch(`${api}/seed/${db}${force ? "?force=1" : ""}`, {
+      method: "POST",
       headers: this.headers,
-    })
+    });
   }
 
-  public async seedAll(force: boolean){
-    await this.seed('locations', force);
-    await this.seed('activities', force);
-    await this.seed('movies', force);
-    await this.seed('vurchel', force);
-    await this.seed('main', force);
-    await this.seed('shops', force);
+  public async seedAll(force: boolean) {
+    await this.seed("locations", force);
+    await this.seed("activities", force);
+    await this.seed("movies", force);
+    await this.seed("vurchel", force);
+    await this.seed("main", force);
+    await this.seed("shops", force);
   }
 }
-export const authStore = globalThis['authStore'] = new AuthStore();
+export const authStore = (globalThis["authStore"] = new AuthStore());

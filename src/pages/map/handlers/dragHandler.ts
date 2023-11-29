@@ -1,5 +1,5 @@
 import { TransformMatrix } from "../transform/transform.matrix";
-import { EventEmitter } from "@cmmn/cell/lib";
+import { EventEmitter } from "@cmmn/core";
 
 export class DragHandler extends EventEmitter<{
   transform: TransformMatrix;

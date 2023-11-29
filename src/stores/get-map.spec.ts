@@ -1,4 +1,4 @@
-import { describe, it, jest } from "@jest/globals";
+import { suite, test, timeout } from "@cmmn/tools/test";
 //@ts-ignore
 import { createCanvas, loadImage } from "canvas";
 import * as fs from "fs";
@@ -15,14 +15,17 @@ function geoToIJ(geo: { lat; lng }, level: number) {
   };
 }
 
-jest.setTimeout(5000000);
-const abc = () => 'abc'[Math.floor(Math.random() * 3)];
+const abc = () => "abc"[Math.floor(Math.random() * 3)];
 const getUrl = (z, x, y) =>
-  `https://${abc()}.tile.thunderforest.com/thunderforest.transport-v2/${z}/${x}/${y}.vector.pbf?apikey=4fb4ac8dd7614138877f11c7eb177c98`
-  // `https://${abc()}.tile.opentopomap.org/${z}/${x}/${y}.png`;
+  `https://${abc()}.tile.thunderforest.com/thunderforest.transport-v2/${z}/${x}/${y}.vector.pbf?apikey=4fb4ac8dd7614138877f11c7eb177c98`;
+// `https://${abc()}.tile.opentopomap.org/${z}/${x}/${y}.png`;
 // `https://core-sat.maps.yandex.net/tiles?l=sat&v=3.1016.0&x=${x}&y=${y}&z=${z}&scale=1&lang=ru_RU`;
-describe("maps load", () => {
-  it("should get maps", async () => {
+
+@suite
+export class GetMapSpec {
+  @test
+  @timeout(50000)
+  async ShouldGetMap() {
     const z = 15;
     const leftTop = geoToIJ({ lat: lats[0], lng: lngs[0] }, z);
     const rightBottom = geoToIJ({ lat: lats[1], lng: lngs[1] }, z);
@@ -62,10 +65,10 @@ describe("maps load", () => {
         }
       }
     const out = fs.createWriteStream(
-        `./map_${z}_${leftTop.i}_${leftTop.j}_${rightBottom.i}_${rightBottom.j}.png`
+      `./map_${z}_${leftTop.i}_${leftTop.j}_${rightBottom.i}_${rightBottom.j}.png`
     );
     const png = canvas.createPNGStream();
     png.pipe(out);
     await new Promise((resolve) => out.on("finish", resolve));
-  });
-});
+  }
+}

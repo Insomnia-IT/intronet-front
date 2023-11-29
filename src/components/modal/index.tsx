@@ -1,9 +1,9 @@
-import { ResolvablePromise } from "@cmmn/cell/lib";
+import { ResolvablePromise } from "@cmmn/core";
 import { ModalProps } from "@components/modals";
-import {FunctionalComponent, JSX} from "preact";
-import {Modal as BaseModal} from "./modal";
-import {Cell} from "@cmmn/cell/lib";
-import {useCell} from "@helpers/cell-state";
+import { FunctionalComponent, JSX } from "preact";
+import { Modal as BaseModal } from "./modal";
+import { Cell } from "@cmmn/cell";
+import { useCell } from "@helpers/cell-state";
 
 const parts = {
   Body: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
@@ -12,7 +12,7 @@ const parts = {
   Footer: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
   Header: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
   Overlay: (props: JSX.IntrinsicElements["div"]) => <div {...props}></div>,
-  async show<T>(factory: FunctionalComponent<ModalProps<T>>): Promise<T>{
+  async show<T>(factory: FunctionalComponent<ModalProps<T>>): Promise<T> {
     const result = new ResolvablePromise<T>();
     const props: ModalProps = {
       show: true,
@@ -21,22 +21,23 @@ const parts = {
         result.resolve(res);
         currentModal.set(null);
       },
-      abort: e => {
+      abort: (e) => {
         result.reject(e);
         currentModal.set(null);
-      }
+      },
     };
     const component = factory(props);
-    currentModal.set(component)
+    currentModal.set(component);
     return result;
-  }
-}
+  },
+};
 
 const currentModal = new Cell<JSX.Element>(null);
 
 export const ModalSlot: FunctionalComponent = () => {
   const current = useCell(() => currentModal.get());
   return current;
-}
+};
 
-export const Modal = Object.assign(BaseModal, parts) as typeof BaseModal & typeof parts;
+export const Modal = Object.assign(BaseModal, parts) as typeof BaseModal &
+  typeof parts;

@@ -1,4 +1,4 @@
-import { BaseCell } from "@cmmn/cell/lib";
+import { BaseCell } from "@cmmn/cell";
 export class TimerCell extends BaseCell<Date> {
   private timer: any | undefined;
 

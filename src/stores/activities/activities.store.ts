@@ -1,8 +1,13 @@
-import {changesStore} from "../changes.store";
+import { changesStore } from "../changes.store";
 import { ObservableDB } from "../observableDB";
-import { cell, Cell } from "@cmmn/cell/lib";
+import { cell, Cell } from "@cmmn/cell";
 import { bookmarksStore } from "@stores/bookmarks.store";
-import {getCurrentDay, getTime, getTimeComparable, parseTime} from "@helpers/getDayText";
+import {
+  getCurrentDay,
+  getTime,
+  getTimeComparable,
+  parseTime,
+} from "@helpers/getDayText";
 
 class ActivitiesStore {
   @cell
@@ -10,18 +15,24 @@ class ActivitiesStore {
 
   @cell
   public get Activities(): Activity[] {
-    return this.db.toArray().map((activity) => ({
-      ...activity,
-      start: parseTime(activity.start),
-      end: parseTime(activity.end)
-    })).map(x => changesStore.withChanges(x, x._id));
+    return this.db
+      .toArray()
+      .map((activity) => ({
+        ...activity,
+        start: parseTime(activity.start),
+        end: parseTime(activity.end),
+      }))
+      .map((x) => changesStore.withChanges(x, x._id));
   }
 
   getCurrentActivity(locationId: string) {
     let time = getTimeComparable(getTime(new Date()));
-    return this.Activities.filter(x => x.locationId === locationId)
-      .filter(x => x.day == getCurrentDay())
-      .filter(x => getTimeComparable(x.start) <= time && getTimeComparable(x.end) >= time)[0]?.title;
+    return this.Activities.filter((x) => x.locationId === locationId)
+      .filter((x) => x.day == getCurrentDay())
+      .filter(
+        (x) =>
+          getTimeComparable(x.start) <= time && getTimeComparable(x.end) >= time
+      )[0]?.title;
   }
 }
 
@@ -33,7 +44,9 @@ export class ActivityStore {
 
   @cell
   get activity(): Activity {
-    return  activitiesStore.Activities.find((activity) => activity._id === this.id);
+    return activitiesStore.Activities.find(
+      (activity) => activity._id === this.id
+    );
   }
 
   public state = new Cell<{
@@ -41,6 +54,6 @@ export class ActivityStore {
     hasBookmark: boolean;
   }>(() => ({
     activity: this.activity,
-    hasBookmark: !!bookmarksStore.getBookmark('activity', this.activity?._id),
+    hasBookmark: !!bookmarksStore.getBookmark("activity", this.activity?._id),
   }));
 }

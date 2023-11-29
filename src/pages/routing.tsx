@@ -1,12 +1,12 @@
-import {userStore} from "@stores/user.store";
-import {ArticlePage} from "./articles/articlePage/articlePage";
+import { userStore } from "@stores/user.store";
+import { ArticlePage } from "./articles/articlePage/articlePage";
 import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
-import { Cell } from "@cmmn/cell/lib";
+import { Cell } from "@cmmn/cell";
 import { useCell } from "@helpers/cell-state";
 import { MainPage } from "./main/mainPage";
-import { compare } from "@cmmn/cell/lib";
+import { compare } from "@cmmn/core";
 import { BookmarksPage } from "./bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
 import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
@@ -84,35 +84,37 @@ const queryCell = new Cell<Record<string, string>>(
 
 export const routerCell = new Cell(() => {
   const route = routeCell.get();
-  const query = queryCell.get()
+  const query = queryCell.get();
   return {
     back: history.back.bind(history),
     route,
     query,
     active: routes[route[0]] ?? routes.main,
     goTo,
-  }
-})
+  };
+});
 
-function onRoutingChange(e: {oldValue: RoutePath, value: RoutePath} ){
+function onRoutingChange(e: { oldValue: RoutePath; value: RoutePath }) {
   document.title = "Insomnia: " + routes[e.value[0]]?.title;
-  userStore.log({
-    action: 'navigate',
-    from: e.oldValue.join('/')
-  }).catch();
+  userStore
+    .log({
+      action: "navigate",
+      from: e.oldValue.join("/"),
+    })
+    .catch();
 }
-routeCell.on('change', onRoutingChange)
+routeCell.on("change", onRoutingChange);
 
 onRoutingChange({
   value: routeCell.get(),
-  oldValue: [] as any
+  oldValue: [] as any,
 });
 export const goTo = (
   path: RoutePath | RoutePathString,
   query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
 ) => {
-  console.log(path, query)
+  console.log(path, query);
   if (typeof path === "string") {
     const url = new URL(location.origin + path);
     path = url.pathname.split("/").slice(1) as RoutePath;

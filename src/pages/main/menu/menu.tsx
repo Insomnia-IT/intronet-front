@@ -2,7 +2,7 @@ import { FunctionalComponent } from "preact";
 import { RoutePath, RoutePathString, useRouter } from "../../routing";
 import styles from "../main-page.module.css";
 import { Button, ButtonsBar, CloseButton } from "@components";
-import { Cell } from "@cmmn/cell/lib";
+import { Cell } from "@cmmn/cell";
 import { useCell } from "@helpers/cell-state";
 
 export const IsMenuOpen = new Cell(false);
@@ -19,7 +19,10 @@ export const Menu: FunctionalComponent = () => {
       <ButtonsBar at="bottom" onClick={switchOpen}>
         <Button class={styles.menuBtn}>МЕНЮ</Button>
       </ButtonsBar>
-      <div class={isOpen ? styles.menuOpen : styles.menu} style={{userSelect: 'none'}}>
+      <div
+        class={isOpen ? styles.menuOpen : styles.menu}
+        style={{ userSelect: "none" }}
+      >
         {items.map((x) => (
           <div
             key={x.href}

@@ -1,10 +1,9 @@
-import { Fn } from "@cmmn/cell/lib";
-import {Database} from "../database";
-import {dbCtrl} from "../db-ctrl";
-import mainPageJSON from "./main-page.json" assert {type: "json"};
+import { Fn } from "@cmmn/core";
+import { Database } from "../database";
+import { dbCtrl } from "../db-ctrl";
+import mainPageJSON from "./main-page.json" assert { type: "json" };
 
-export async function importMainPage(force = false){
-
+export async function importMainPage(force = false) {
   const db = new Database<any>("main");
   const cards = await db.getSince();
   if (cards.length) {
@@ -19,9 +18,8 @@ export async function importMainPage(force = false){
   for (let card of mainPageJSON as Array<any>) {
     await db.addOrUpdate({
       ...card,
-      version: Fn.ulid()
+      version: Fn.ulid(),
     });
   }
   dbCtrl.versions = undefined;
-
 }

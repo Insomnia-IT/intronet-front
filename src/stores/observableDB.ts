@@ -1,4 +1,4 @@
-import { Fn } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
 import { IsConnected } from "@stores/connection";
 import { authStore } from "@stores/auth.store";
 import { api } from "./api";
@@ -37,9 +37,9 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     if (this.syncLock) return;
     this.syncLock = true;
     try {
-      if (this.localVersion < this.remoteVersion) {
+      if (this.lastRemoteVersion < this.remoteVersion) {
         await this.loadFromServer();
-      } else if (this.localVersion > this.remoteVersion) {
+      } else if (this.lastRemoteVersion > this.remoteVersion) {
         await this.saveToServer();
       }
     } finally {
@@ -70,7 +70,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
   async loadFromServer() {
     if (this.localOnly) return;
     const newItems = (await fetch(
-      `${api}/data/${this.name}?since=${this.localVersion}`,
+      `${api}/data/${this.name}?since=${this.lastRemoteVersion}`,
       {
         headers: authStore.headers,
       }
@@ -95,7 +95,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     return VersionsDB.Instance.remote[this.name] ?? "";
   }
 
-  get localVersion() {
+  get lastRemoteVersion() {
     return VersionsDB.Instance.get(this.name)?.version ?? "";
   }
 }
@@ -117,12 +117,6 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadFromServer();
     this.emit("loaded");
     setInterval(() => this.loadFromServer(), 3000);
-  }
-
-  public get local(): Record<string, string> {
-    return Object.fromEntries(
-      Array.from(this.values()).map((x) => [x._id, x.version])
-    );
   }
 
   private isLoading = false;

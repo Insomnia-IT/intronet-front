@@ -1,4 +1,4 @@
-import { Cell } from "@cmmn/cell/lib";
+import { Cell } from "@cmmn/cell";
 
 export type Gesture =
   | {
@@ -19,7 +19,7 @@ export class GestureCell extends Cell<Gesture> {
   private path: EventTarget[] | undefined;
 
   private onDown = (e: PointerEvent) => {
-    console.log('down',e);
+    console.log("down", e);
     this.shift = { x: 0, y: 0 };
     this.lastTouch = e;
     this.path = e.composedPath();
@@ -27,13 +27,13 @@ export class GestureCell extends Cell<Gesture> {
       passive: true,
     });
   };
-  private lastTouch: PointerEvent|undefined = undefined;
+  private lastTouch: PointerEvent | undefined = undefined;
   private onMove = (e: PointerEvent) => {
     if (!this.shift) return;
-    this.shift.x += (e.screenX - this.lastTouch.screenX);
-    this.shift.y += (e.screenY - this.lastTouch.screenY);
+    this.shift.x += e.screenX - this.lastTouch.screenX;
+    this.shift.y += e.screenY - this.lastTouch.screenY;
     this.lastTouch = e;
-    console.log('shift', this.shift, e, e.screenX);
+    console.log("shift", this.shift, e, e.screenX);
     if (Math.abs(this.shift.x) > 2 || Math.abs(this.shift.y) > 2) {
       this.root.setPointerCapture(e.pointerId);
     }

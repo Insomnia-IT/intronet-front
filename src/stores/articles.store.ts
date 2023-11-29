@@ -1,9 +1,8 @@
-import { cell } from "@cmmn/cell/lib";
+import { cell } from "@cmmn/cell";
 import { ObservableDB } from "./observableDB";
 
 class ShopsStore {
-  constructor() {
-  }
+  constructor() {}
 
   @cell
   private db = new ObservableDB<IShop>("shops");

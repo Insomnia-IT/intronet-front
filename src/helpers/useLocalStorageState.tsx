@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "preact/hooks";
-import { EventEmitter } from "@cmmn/cell/lib";
+import { EventEmitter } from "@cmmn/core";
 
 const localStorageChangeEmitter = new EventEmitter<Record<string, any>>();
 export const useLocalStorageState = <T,>(key: string, initialValue?: T) => {

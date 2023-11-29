@@ -1,7 +1,7 @@
-import { cell } from "@cmmn/cell/lib";
+import { cell } from "@cmmn/cell";
 import { qrApi } from "@api";
 import { ObservableDB } from "./observableDB";
-import {Fn} from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
 
 class AccountStore {
   @cell
@@ -37,19 +37,15 @@ class AccountStore {
 
   Select(id: string) {
     if (this.Selected) {
-      this.db.addOrUpdate(
-        {
-          ...this.Selected,
-          isSelected: false,
-        },
-      );
+      this.db.addOrUpdate({
+        ...this.Selected,
+        isSelected: false,
+      });
     }
-    this.db.addOrUpdate(
-      {
-        ...this.db.get(id),
-        isSelected: true,
-      },
-    );
+    this.db.addOrUpdate({
+      ...this.db.get(id),
+      isSelected: true,
+    });
   }
 }
 

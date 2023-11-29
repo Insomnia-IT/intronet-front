@@ -1,4 +1,4 @@
-import { EventEmitter } from "@cmmn/cell/lib";
+import { EventEmitter } from "@cmmn/core";
 import { TransformMatrix } from "../transform/transform.matrix";
 
 export class ZoomHandler extends EventEmitter<{

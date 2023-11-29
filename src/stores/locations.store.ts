@@ -1,4 +1,4 @@
-import { cell, ObservableList, Cell, Fn } from "@cmmn/cell/lib";
+import { cell, ObservableList, Cell } from "@cmmn/cell";
 import { geoConverter } from "@helpers/geo";
 import { TransformMatrix } from "../pages/map/transform/transform.matrix";
 import { goTo, RoutePath, routerCell } from "../pages/routing";
@@ -7,6 +7,7 @@ import { changesStore } from "./changes.store";
 import { moviesStore } from "./movies.store";
 import { ObservableDB } from "./observableDB";
 import { bookmarksStore } from "@stores/bookmarks.store";
+import { Fn } from "@cmmn/core";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");

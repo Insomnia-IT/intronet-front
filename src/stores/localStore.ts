@@ -1,5 +1,4 @@
-import { cell, Fn } from "@cmmn/cell/lib";
-import { jest } from "@jest/globals";
+import { cell } from "@cmmn/cell";
 export class LocalStore<TCookie extends Record<string, string>> {
   @cell
   protected values: TCookie = this.readValues();
@@ -21,7 +20,7 @@ export class LocalStore<TCookie extends Record<string, string>> {
       ...patch,
     };
     for (let key in patch) {
-      if ((patch[key] === null)) localStorage.removeItem(key);
+      if (patch[key] === null) localStorage.removeItem(key);
       else localStorage.setItem(key, patch[key]);
     }
   }

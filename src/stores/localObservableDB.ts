@@ -1,4 +1,4 @@
-import { EventEmitter } from "@cmmn/cell/lib";
+import { EventEmitter } from "@cmmn/core";
 import { IndexedDatabase } from "@stores/indexedDatabase";
 import { ObservableDBEvents } from "@stores/observableDB";
 

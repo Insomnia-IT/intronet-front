@@ -1,10 +1,11 @@
-import { Cell, cell, Fn } from "@cmmn/cell/lib";
+import { Fn } from "@cmmn/core";
+import { Cell, cell } from "@cmmn/cell";
 import { LocalStore } from "@stores/localStore";
 import { IsConnected } from "@stores/connection";
 import { moviesStore } from "@stores/movies.store";
-import {userStore} from "./user.store";
+import { userStore } from "./user.store";
 import { api } from "./api";
-import {authStore} from "@stores/auth.store";
+import { authStore } from "@stores/auth.store";
 
 class TicketStore extends LocalStore<{
   ticket?: string;
@@ -39,9 +40,9 @@ class TicketStore extends LocalStore<{
       movie: id,
     });
     return fetch(`${api}/vote`, {
-      method: 'POST',
+      method: "POST",
       headers: authStore.headers,
-      body: JSON.stringify({id})
+      body: JSON.stringify({ id }),
     });
   }
 }

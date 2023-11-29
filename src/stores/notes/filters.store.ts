@@ -1,8 +1,7 @@
-import { Cell, cell } from "@cmmn/cell/lib";
+import { Cell, cell } from "@cmmn/cell";
 import { categoriesStore } from "./categories.store";
 import { notesStore } from "./notes.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
-import { authStore } from "@stores/auth.store";
 
 export enum ConstantFilterIds {
   All = "all",
@@ -115,8 +114,7 @@ export class FilteredNotesStore {
       }
       if (
         activeFiltersMap.noApproved &&
-        (note.isApproved ||
-          !notesStore.checkHasCurrentUserAccessToNote(note))
+        (note.isApproved || !notesStore.checkHasCurrentUserAccessToNote(note))
       ) {
         return false;
       }
@@ -125,10 +123,7 @@ export class FilteredNotesStore {
       if (!notesStore.checkIsNoteActual(note) && !activeFiltersMap.noActual) {
         return false;
       }
-      if (
-        (!note.isApproved) &&
-        !activeFiltersMap.noApproved
-      ) {
+      if (!note.isApproved && !activeFiltersMap.noApproved) {
         return false;
       }
 

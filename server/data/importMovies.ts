@@ -1,16 +1,16 @@
-import "@cmmn/cell/lib";
-import {Fn} from "@cmmn/cell/lib";
+import "@cmmn/cell";
+import { Fn } from "@cmmn/core";
 import * as console from "console";
 import fs from "fs";
 import fetch from "node-fetch";
-import {Database} from "../database";
-import {dbCtrl} from "../db-ctrl";
-import moviesXLS from "./movies.json" assert {"type": "json"};
-import moviesJSON from "./movies_api.json" assert {"type": "json"};
+import { Database } from "../database";
+import { dbCtrl } from "../db-ctrl";
+import moviesXLS from "./movies.json" assert { "type": "json" };
+import moviesJSON from "./movies_api.json" assert { "type": "json" };
 
 export async function importMovies(force = false) {
   const locationDB = new Database<any>("locations");
-  const locations = (await locationDB.getSince()).filter(x => !x.deleted);
+  const locations = (await locationDB.getSince()).filter((x) => !x.deleted);
   if (locations.length == 0) return;
   const moviesDB = new Database<any>("movies");
   const movies = await moviesDB.getSince();
@@ -28,30 +28,43 @@ export async function importMovies(force = false) {
   //   return;
   // }
   const screenNameMap = {
-    'Полевой Экран (ЦУЭ 1)': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('полевой'))?._id,
-    'Полевой экран': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('полевой'))?._id,
-    'Речной Экран (ЦУЭ 2)': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('речной'))?._id,
-    'Речной экран': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('речной'))?._id,
-    'Детский экран': locations.filter(x => x.directionId == 'Экран').find(x => x.name?.toLowerCase().includes('детский'))?._id,
+    "Полевой Экран (ЦУЭ 1)": locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.toLowerCase().includes("полевой"))?._id,
+    "Полевой экран": locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.toLowerCase().includes("полевой"))?._id,
+    "Речной Экран (ЦУЭ 2)": locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.toLowerCase().includes("речной"))?._id,
+    "Речной экран": locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.toLowerCase().includes("речной"))?._id,
+    "Детский экран": locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.toLowerCase().includes("детский"))?._id,
   };
   const blocksXls = moviesXLS
-      .flatMap(x => x.Blocks.map(b => ({
+    .flatMap((x) =>
+      x.Blocks.map((b) => ({
         block: b,
         day: x.Day,
         locationId: screenNameMap[x.Screen],
         start: b.Start,
-        end: b.End
-      }))).filter(x => x);
+        end: b.End,
+      }))
+    )
+    .filter((x) => x);
   const blocks = Array.from(
     moviesJSON
       .flatMap((x) =>
         x.screenPrograms.map((b) => ({
           block: b,
-          day: getDay(toMoscow(b.programStart*1000)),
-          start: getTime(toMoscow(b.programStart*1000)),
-          end: getTime(toMoscow(b.programEnd*1000)),
+          day: getDay(toMoscow(b.programStart * 1000)),
+          start: getTime(toMoscow(b.programStart * 1000)),
+          end: getTime(toMoscow(b.programEnd * 1000)),
           locationId: screenNameMap[x.screenName],
-          programStart: b.programStart
+          programStart: b.programStart,
         }))
       )
       .groupBy((x) => `${x.block.programTitle}`)
@@ -61,46 +74,52 @@ export async function importMovies(force = false) {
   const results = [] as Array<MovieBlock>;
   for (let x of blocks) {
     const title = x[0].block.programTitle;
-    const en = title.match(/.*\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*part\s+(\d*)/i) ?? [];
-    const ru = title.match(/(.*)\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*часть\s+(\d*)/i) ?? [];
-    const xlsx = blocksXls.filter(b =>
-      b.day == x[0].day
-      && b.locationId == x[0].locationId
-      && b.start == x[0].start
-      && b.end == x[0].end
+    const en =
+      title.match(/.*\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*part\s+(\d*)/i) ?? [];
+    const ru =
+      title.match(/(.*)\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*часть\s+(\d*)/i) ??
+      [];
+    const xlsx = blocksXls.filter(
+      (b) =>
+        b.day == x[0].day &&
+        b.locationId == x[0].locationId &&
+        b.start == x[0].start &&
+        b.end == x[0].end
     );
-    if (xlsx.length !== 1){
-      console.log('error mapping movies', x[0], xlsx);
+    if (xlsx.length !== 1) {
+      console.log("error mapping movies", x[0], xlsx);
       continue;
     }
     const block: MovieBlock = {
       _id: Fn.ulid(),
-      views: x.map(b => ({
+      views: x.map((b) => ({
         locationId: b.locationId,
         day: b.day,
         start: b.start,
-        end: b.end
+        end: b.end,
       })),
-      info: xlsx[0].block ? {
-        Title: xlsx[0].block.Title,
-        SubTitle: xlsx[0].block.SubTitle,
-        TitleEn: xlsx[0].block.TitleEn,
-        SubTitleEn: xlsx[0].block.SubTitleEn,
-        MinAge: xlsx[0].block.MinAge,
-        Part: xlsx[0].block.Part,
-      } : {
-        Title: ru[1] ?? title,
-        TitleEn: en[1],
-        MinAge: x[0].block.programAge,
-        Part: en[2] ?? ru[2],
-      },
-      movies: []
+      info: xlsx[0].block
+        ? {
+            Title: xlsx[0].block.Title,
+            SubTitle: xlsx[0].block.SubTitle,
+            TitleEn: xlsx[0].block.TitleEn,
+            SubTitleEn: xlsx[0].block.SubTitleEn,
+            MinAge: xlsx[0].block.MinAge,
+            Part: xlsx[0].block.Part,
+          }
+        : {
+            Title: ru[1] ?? title,
+            TitleEn: en[1],
+            MinAge: x[0].block.programAge,
+            Part: en[2] ?? ru[2],
+          },
+      movies: [],
     } as any;
-    for (let i = 0; i < x[0].block.programFilms.length; i++){
+    for (let i = 0; i < x[0].block.programFilms.length; i++) {
       let f = x[0].block.programFilms[i];
       const xls = xlsx[0].block.Movies[i];
-      if (escape(xls.NameOrig) !== escape(f.title)){
-        console.log(xls.NameOrig, '|||', f.title)
+      if (escape(xls.NameOrig) !== escape(f.title)) {
+        console.log(xls.NameOrig, "|||", f.title);
       }
       const movie: MovieInfo = {
         id: f.vurchelID ?? Fn.ulid(),
@@ -111,7 +130,7 @@ export async function importMovies(force = false) {
         duration: xls.Duration,
         image: f.image,
         description: f.plot,
-        vurchelId: f.vurchelID?.toString()
+        vurchelId: f.vurchelID?.toString(),
       } as any;
       block.movies.push(movie);
     }
@@ -149,27 +168,30 @@ export interface ProgramFilm {
   vurchelID: number | null;
 }
 
-
 export function getDay(local: number): number {
-  const day = (new Date(local - 12*60*60*1000).getDay() + 3) % 7; // четверг = 0
+  const day = (new Date(local - 12 * 60 * 60 * 1000).getDay() + 3) % 7; // четверг = 0
   if (day > 4) return 0;
   return day;
 }
 
-export function getTime(local: number): string{
+export function getTime(local: number): string {
   const date = new Date(local);
   const hour = date.getHours();
   const minutes = date.getMinutes();
-  return `${hour < 10 ?'0'+hour : hour}:${minutes < 10 ? '0'+minutes : minutes}`;
+  return `${hour < 10 ? "0" + hour : hour}:${
+    minutes < 10 ? "0" + minutes : minutes
+  }`;
 }
 
-function toMoscow(unix: number): number{
-  return unix + (new Date().getTimezoneOffset()+3*60)*60000;
+function toMoscow(unix: number): number {
+  return unix + (new Date().getTimezoneOffset() + 3 * 60) * 60000;
 }
 
 const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
-const escape = text => text.trim()
-  .replace(/\s/g, '')
-  .replace(regexOnlyWord, '')
-  .replace(/ё/g, 'е')
-  .toLowerCase()
+const escape = (text) =>
+  text
+    .trim()
+    .replace(/\s/g, "")
+    .replace(regexOnlyWord, "")
+    .replace(/ё/g, "е")
+    .toLowerCase();
