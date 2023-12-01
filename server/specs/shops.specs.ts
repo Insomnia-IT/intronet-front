@@ -1,6 +1,11 @@
-import { test } from "node:test";
+import { suite, test, timeout } from "@cmmn/tools/test";
 import { importShops } from "../data/importShops";
 
-test("should load shops", async () => {
-  await importShops(true);
-}, 3000000);
+@suite()
+class ShopsSpecs {
+  @test()
+  @timeout(3000000)
+  async importShops() {
+    await importShops(true);
+  }
+}
