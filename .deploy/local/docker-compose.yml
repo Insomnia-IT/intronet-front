@@ -3,30 +3,48 @@ name: intronet-local
 services:
   web:
     image: nginx:latest
-    container_name: insomnia_web_local
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../dist/bundle:/app:ro
+      - ../../public:/app/public:ro
     ports:
       - 5002:80
+    links:
+      - server
+    depends_on:
+      - server
+    networks:
+      main:
+
+  server:
+    image: node:18-alpine
+    volumes:
+      - ../../dist/esm/server:/app:ro
+      - ../../node_modules:/app/node_modules:ro
+      - ./secrets:/secrets
+    command: "node /app/index.js"
+    environment:
+      PORT: "80"
+      DATABASE: "http://couchdb:5984"
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: password
+    ports:
+      - 5003:80
     links:
       - couchdb
     depends_on:
       - couchdb
     networks:
       main:
-      host_local:
 
   couchdb:
     image: couchdb
-    container_name: insomnia_couchdb_local
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: password
     volumes:
       - ./.data:/opt/couchdb/data
-      - ./couchdb.ini:/opt/couchdb/etc/local.ini
+      - ./couchdb.ini:/opt/couchdb/etc/local.ini:ro
     ports:
       - "5984:5984"
     networks:
@@ -35,5 +53,3 @@ services:
 networks:
   main:
     driver: bridge
-  host_local:
-    external: true
