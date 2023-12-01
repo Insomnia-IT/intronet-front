@@ -13,6 +13,7 @@ window.addEventListener("init", async () => {
     .cloneNode(true) as SVGElement;
   if (!location.href.includes("localhost")) await waitEyeAnimation();
   const container = document.getElementById("root");
+  container.style.display = "flex";
   render(<App />, container);
   document.getElementById("start").remove();
 });
