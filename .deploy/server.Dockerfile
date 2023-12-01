@@ -1,4 +1,4 @@
-FROM node:18-alpine as builder
+FROM node:20-alpine as builder
 
 ENV NODE_ENV=production
 ENV YARN_CACHE_FOLDER=/root/.yarn
@@ -14,7 +14,7 @@ COPY . ./
 RUN yarn build
 
 
-FROM node:18-alpine as library
+FROM node:20-alpine as library
 
 WORKDIR /app
 COPY ./server/package.json ./server/yarn.lock ./

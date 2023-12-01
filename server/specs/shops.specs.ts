@@ -1,4 +1,4 @@
-import {it, expect} from "node:test";
+import {it, expect} from "fs";
 import {importLocations} from "../data/importLocations";
 import {importMovies} from "../data/importMovies";
 import {importShops} from "../data/importShops";
