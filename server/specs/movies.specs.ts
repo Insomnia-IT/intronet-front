@@ -1,4 +1,4 @@
-import {it, expect} from "@jest/globals";
+import {it, expect} from "node:test";
 import {importMovies} from "../data/importMovies";
 import {importVurchel} from "../data/importVurchel";
 

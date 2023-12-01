@@ -1,4 +1,4 @@
-import {it, expect} from "@jest/globals";
+import {it, expect} from "node:test";
 import {importLocations} from "../data/importLocations";
 
 it("should load locations", async () => {

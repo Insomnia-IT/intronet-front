@@ -1,4 +1,4 @@
-import {it, expect} from "@jest/globals";
+import {it, expect} from "node:test";
 import {importActivities} from "../data/importActivities";
 import {importLocations} from "../data/importLocations";
 
