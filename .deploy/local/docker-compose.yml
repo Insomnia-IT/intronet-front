@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ../../dist/bundle:/app:ro
+      - ../../dist/bundle:/app
       - ../../public:/app/public:ro
     ports:
       - 5002:80
@@ -19,7 +19,7 @@ services:
   server:
     image: node:18-alpine
     volumes:
-      - ../../dist/esm/server:/app:ro
+      - ../../dist/esm/server:/app
       - ../../node_modules:/app/node_modules:ro
       - ./secrets:/secrets
     command: "node /app/index.js"

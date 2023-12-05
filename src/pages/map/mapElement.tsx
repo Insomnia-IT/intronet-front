@@ -12,16 +12,13 @@ import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { Cell } from "@cmmn/cell";
+import {orderBy} from "@cmmn/core";
 
 export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
   const items = useCell(() => locationsStore.MapItems);
   const children = useMemo(
-    () =>
-      items
-        .orderBy((x) =>
-          Array.isArray(x.figure)
-            ? -100
-            : -(directionsToOrder.get(x.directionId) ?? -10)
+    () => orderBy(items, (x) =>
+          Array.isArray(x.figure) ? -100 : -(directionsToOrder.get(x.directionId) ?? -10)
         )
         .map((x) => (
           <MapElement item={x} key={x.id} transformCell={props.transformCell} />

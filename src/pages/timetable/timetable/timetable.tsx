@@ -2,6 +2,7 @@ import { FunctionalComponent } from "preact";
 import { AnimationBlock } from "../animation/animation-block";
 import { moviesStore } from "@stores";
 import { useCell } from "@helpers/cell-state";
+import {orderBy} from "@cmmn/core";
 
 export type TimetableProps = {
   locationId: string;
@@ -10,11 +11,11 @@ export type TimetableProps = {
 
 export const Timetable: FunctionalComponent<TimetableProps> = (props) => {
   const blocks = useCell(() => {
-    return moviesStore.MovieBlocks.filter((x) =>
+    return orderBy(moviesStore.MovieBlocks.filter((x) =>
       x.views.some(
         (y) => y.locationId === props.locationId && y.day == props.day
       )
-    ).orderBy(x => {
+    ), x => {
       const start = x.views.find(x => x.locationId === props.locationId).start;
       if (start.startsWith('0')) return '3' + start;
       return  start;

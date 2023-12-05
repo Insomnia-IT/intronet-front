@@ -1,4 +1,4 @@
-import { Fn, DeepPartial } from "@cmmn/core";
+import { Fn, DeepPartial, distinct } from "@cmmn/core";
 import { cell, Cell } from "@cmmn/cell";
 import { changesStore } from "./changes.store";
 import { ObservableDB } from "./observableDB";
@@ -48,7 +48,7 @@ class MoviesStore {
 
   @cell
   public get Movies(): MovieInfo[] {
-    return this.MovieBlocks.flatMap((x) => x.movies).distinct((x) => x.id);
+    return distinct(this.MovieBlocks.flatMap((x) => x.movies), (x) => x.id);
   }
 
   public get VotingBlock(): MovieBlock {

@@ -8,13 +8,14 @@ import {getDayText} from "@helpers/getDayText";
 import {moviesStore} from "@stores";
 import {changesStore} from "@stores/changes.store";
 import {useRouter} from "../routing";
+import { orderBy } from "@cmmn/core";
 
 export const MovieBlockEdit = () => {
   const router = useRouter();
   const id = router.route[2];
   const block = useCell(() => moviesStore.MovieBlocks.find(x => x._id === id));
   if (!block) return <></>;
-  const views = block.views.orderBy(x => x.day);
+  const views = orderBy(block.views,x => x.day);
   return <div flex column gap={4} style={{marginTop: 50}}>
     <div class="sh1">{block.info.Title} {block.info.SubTitle ?? ''}</div>
     {views.map((x, i) => <EditMovieBlockView index={i} block={block}/>)}

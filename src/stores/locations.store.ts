@@ -7,7 +7,7 @@ import { changesStore } from "./changes.store";
 import { moviesStore } from "./movies.store";
 import { ObservableDB } from "./observableDB";
 import { bookmarksStore } from "@stores/bookmarks.store";
-import { Fn } from "@cmmn/core";
+import {Fn, orderBy} from "@cmmn/core";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
@@ -146,9 +146,7 @@ class LocationsStore {
 
   public get MapItems(): MapItem[] {
     const patches = new Map(this.locationPatches.toArray());
-    return this.Locations.orderBy((x) =>
-      Array.isArray(x.figure) ? -1 : 1
-    ).map(
+    return orderBy(this.Locations, (x) => Array.isArray(x.figure) ? -1 : 1).map(
       (x) =>
         ({
           figure: patches.get(x._id) ?? geoConverter.fromGeo(x.figure as Geo),

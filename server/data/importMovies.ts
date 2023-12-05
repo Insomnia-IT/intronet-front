@@ -1,5 +1,5 @@
 import "@cmmn/cell";
-import { Fn } from "@cmmn/core";
+import {Fn, groupBy} from "@cmmn/core";
 import * as console from "console";
 import fs from "fs";
 import fetch from "node-fetch";
@@ -55,21 +55,18 @@ export async function importMovies(force = false) {
       }))
     )
     .filter((x) => x);
-  const blocks = Array.from(
-    moviesJSON
-      .flatMap((x) =>
-        x.screenPrograms.map((b) => ({
-          block: b,
-          day: getDay(toMoscow(b.programStart * 1000)),
-          start: getTime(toMoscow(b.programStart * 1000)),
-          end: getTime(toMoscow(b.programEnd * 1000)),
-          locationId: screenNameMap[x.screenName],
-          programStart: b.programStart,
-        }))
-      )
-      .groupBy((x) => `${x.block.programTitle}`)
-      .values()
-  );
+  const array = moviesJSON
+    .flatMap((x) =>
+      x.screenPrograms.map((b) => ({
+        block: b,
+        day: getDay(toMoscow(b.programStart * 1000)),
+        start: getTime(toMoscow(b.programStart * 1000)),
+        end: getTime(toMoscow(b.programEnd * 1000)),
+        locationId: screenNameMap[x.screenName],
+        programStart: b.programStart,
+      }))
+    );
+  const blocks = Array.from(groupBy(array, (x) => `${x.block.programTitle}`).values()) as Array<typeof array>;
   // writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
   const results = [] as Array<MovieBlock>;
   for (let x of blocks) {

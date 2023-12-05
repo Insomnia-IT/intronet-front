@@ -2,13 +2,14 @@ import { useCell } from "@helpers/cell-state";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { MovieList } from "../../timetable/animation/movie-list";
 import { BookmarkPlug } from "@components/plugs/bookmark/BookmarkPlug";
+import {orderBy} from "@cmmn/core";
 
 export const BookmarkMovies = () => {
   const items = useCell(() => bookmarksStore.Movies);
 
   return (
     items.length > 0
-      ? (<MovieList movies={ items.orderBy((x) => x.name) }/>)
+      ? (<MovieList movies={ orderBy(items, (x) => x.name) }/>)
       : (<BookmarkPlug
         buttonTitle={ 'К расписанию анимации' }
         text={ [

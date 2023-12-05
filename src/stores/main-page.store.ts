@@ -1,5 +1,6 @@
 import { cell, Cell } from "@cmmn/cell";
 import { ObservableDB } from "./observableDB";
+import {groupBy, orderBy} from "@cmmn/core";
 
 class MainPageStore {
   @cell
@@ -16,18 +17,17 @@ class MainPageStore {
     }[];
   }>(() => {
     const items = this.db.toArray();
+
     return {
-      sections: Sections.map((s) => ({
-        ...s,
-        rows: Array.from(
-          items
-            .filter((x) => x.section === s.section)
-            .groupBy((x) => x.row)
-            .entries()
-        )
-          .map(([row, cards]) => ({ row, cards: cards.orderBy((x) => x.col) }))
-          .orderBy((x) => x.row),
-      })),
+      sections: Sections.map((s) => {
+        const grouped = groupBy(items.filter((x) => x.section === s.section), (x) => x.row) as Map<number, MainPageCard[]>;
+        const rows = Array.from(grouped.entries())
+          .map(([row, cards]) => ({ row, cards: orderBy(cards, (x) => x.col) }))
+        return {
+          ...s,
+          rows: orderBy(rows, (x) => x.row),
+        };
+      }),
     };
   });
 }

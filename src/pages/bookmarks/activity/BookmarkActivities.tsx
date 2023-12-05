@@ -3,10 +3,11 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { getDayText, getTimeComparable } from "@helpers/getDayText";
 import { ActivityList } from "../../activities/activities/activityList";
 import { BookmarkPlug } from "@components/plugs/bookmark/BookmarkPlug";
+import { orderBy } from "@cmmn/core";
 
 export const BookmarkActivities = () => {
   const items = useCell(() => bookmarksStore.Activities);
-  const activities = items.orderBy(x => getTimeComparable(x.start));
+  const activities = orderBy(items, x => getTimeComparable(x.start));
   const dayGroup = Array.from(new Set(items.map(item => item.day))).sort((a, b) => a - b);
 
   return (

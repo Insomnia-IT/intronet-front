@@ -10,6 +10,7 @@ import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import { Card } from "@components/cards";
 import { SvgIcon } from "@icons";
 import styles from "./activitiesAll.module.css";
+import {orderBy} from "@cmmn/core";
 
 export const ActivitiesAll: FunctionalComponent = () => {
   const {filter, day, time, place} = useActivitiesRouter();
@@ -25,11 +26,10 @@ export const ActivitiesAll: FunctionalComponent = () => {
 
   const cards = useMemo(() => {
     const numberTime = Number(time);
-    return activities
+    const unordered = activities
       .filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true)
-      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true))
-      .orderBy(x => getTimeComparable(x.start))
-      ;
+      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true));
+    return orderBy(unordered, x => getTimeComparable(x.start));
   }, [ activities, filter, day, time, place ]);
 
   return (

@@ -5,6 +5,7 @@ import {useCell} from "@helpers/cell-state";
 import {SvgIcon} from "@icons";
 import {shopsStore} from "@stores/articles.store";
 import {useRouter} from "../../../routing";
+import {orderBy} from "@cmmn/core";
 
 export function Shops() {
   const router = useRouter();
@@ -33,7 +34,7 @@ const ShopList = () => {
   const shops = useCell(() => shopsStore.shops);
   return <>
     <CloseButton goTo="/main"/>
-    {shops.orderBy(x => x.name).map(s => <div key={s._id}>
+    {orderBy(shops, x => x.name).map(s => <div key={s._id}>
       <Link goTo={['articles','shops',s._id]}>{s.name}</Link>
     </div>)}
   </>

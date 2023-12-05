@@ -1,4 +1,4 @@
-import { Fn } from "@cmmn/core";
+import {Fn, groupBy, orderBy} from "@cmmn/core";
 import { Database } from "./database";
 
 const voteDB = new Database<{
@@ -22,7 +22,7 @@ export function vote(data: { id: string; uid: string; ip: string }) {
 
 export async function getResults() {
   const votes = await voteDB.getSince();
-  return Array.from(votes.groupBy((x) => x.animation).entries())
-    .map(([id, votes]) => ({ id, count: votes.length }))
-    .orderBy((x) => -x.count);
+  const unordered = Array.from(groupBy(votes, (x) => x.animation).entries())
+    .map(([id, votes]) => ({ id, count: votes.length }));
+  return orderBy(unordered, x => -x.count);
 }

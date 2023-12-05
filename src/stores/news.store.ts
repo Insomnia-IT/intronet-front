@@ -2,7 +2,7 @@ import { cell, Cell } from "@cmmn/cell";
 import { getDay, getDayText, getTime } from "@helpers/getDayText";
 import { fromUTC, utc } from "@helpers/utc";
 import { ObservableDB } from "./observableDB";
-import { Fn } from "@cmmn/core";
+import { Fn, orderBy } from "@cmmn/core";
 
 class NewsStore {
   @cell
@@ -11,12 +11,11 @@ class NewsStore {
   public State = new Cell(() => {
     const news = this.db.toArray();
     return {
-      news: news
+      news: orderBy(news
         .map((x) => ({
           ...x,
           time: this.formatTime(x.time),
-        }))
-        .orderBy((x) => x.time, true),
+        })), (x) => x.time, true),
     };
   });
 

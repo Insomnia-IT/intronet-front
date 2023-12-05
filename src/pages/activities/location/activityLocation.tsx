@@ -9,6 +9,7 @@ import { activityFiltersStore } from "@stores/activities";
 import { locationsStore } from "@stores";
 import { ActivityList } from "../activities/activityList";
 import Styles from "./activityLocation.module.css";
+import { orderBy } from "@cmmn/core";
 
 export type ActivityLocationProps = {
   id: string;
@@ -26,11 +27,10 @@ export const ActivityLocation: FunctionalComponent<ActivityLocationProps> = ({id
   const activities = useCell(() => activitiesStore.Activities.filter((activity) => activity.locationId === id));
   const cards = useMemo(() => {
     const numberTime = Number(time);
-    return activities
+    const unordered = activities
       .filter((activity) => coerceHour(numberTime) ? isInTimePeriod(+activity.start.split(':')[0], numberTime) : true)
-      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true))
-      .orderBy(x => getTimeComparable(x.start))
-      ;
+      .filter((activity) => (day !== undefined ? filterByDay(activity, day.toString()) : true));
+    return orderBy(unordered, x => getTimeComparable(x.start));
   }, [ activities, filter, day, time, place ]);
 
   return (

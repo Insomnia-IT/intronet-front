@@ -1,4 +1,4 @@
-import { Fn } from "@cmmn/core";
+import {Fn, groupBy} from "@cmmn/core";
 import { cell, ObservableList } from "@cmmn/cell";
 import { ObservableDB } from "./observableDB";
 
@@ -34,9 +34,7 @@ class ChangesStore {
   }
 
   public async applyChanges() {
-    const changes = this.localChanges
-      .toArray()
-      .groupBy((x) => x._id)
+    const changes = groupBy(this.localChanges.toArray(), (x) => x._id)
       .values();
     for (let change of changes) {
       await this.db.addOrUpdate(Fn.deepAssign({}, ...change));

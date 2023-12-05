@@ -7,6 +7,7 @@ import { activitiesStore } from "@stores/activities/activities.store";
 import { ActivityList } from "../activities/activityList";
 import { SearchPlug } from "@components/plugs/search/SearchPlug";
 import { searchDataValidator } from "@helpers/search/searchDataValidator";
+import {orderBy} from "@cmmn/core";
 
 export const ActivitySearch = () => {
   const { query, check, setQuery } = useSearch(
@@ -15,10 +16,13 @@ export const ActivitySearch = () => {
       regex.test(searchDataValidator(activity.author))
   );
   const activities = useCell(() => activitiesStore.Activities);
-  const filtered = useMemo(() => activities.filter(check)
-    .orderBy(x => x.title, true)
-    .orderBy(x => getTimeComparable(x.start), true)
-    .orderBy(x => x.day), [activities, check]);
+  const filtered = useMemo(() => {
+    return orderBy(orderBy(orderBy(
+      activities.filter(check),
+    (x) => x.title, true),
+    (x) => getTimeComparable(x.start), true),
+    (x) => x.day);
+  }, [activities, check]);
   return (
     <div flex column gap={5} className="h-full" style={{marginBottom: 40}}>
       <h1>поиск</h1>

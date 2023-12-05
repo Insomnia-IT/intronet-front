@@ -2,24 +2,24 @@
 # yarn lockfile v1
 
 
-"@cmmn/cell@1.9.13":
-  version "1.9.13"
-  resolved "https://registry.npmjs.org/@cmmn/cell/-/cell-1.9.13.tgz"
-  integrity sha512-CIMt5llpXjrtmzpmubENT2315O9Ve5LSwDMJpbUG4btB4cYfIWs1Y0pXaTrL5/p5PinXXXQr9H6+Dhd1+saerw==
+"@cmmn/cell@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@cmmn/cell/-/cell-2.0.0.tgz#f222f5b9057504cf74b555a4b1e6cfa2e7025b97"
+  integrity sha512-M83oxWw6COSoAzJBH5jUdg6yHoJhfZDrizOBMZD0Cl9b16r6k4o+Ho7z8NWe/JKIIoZSCSz6iDIosChBq7hTvw==
   dependencies:
-    "@cmmn/core" "1.9.13"
+    "@cmmn/core" "2.0.0"
 
-"@cmmn/core@1.9.13":
-  version "1.9.13"
-  resolved "https://registry.npmjs.org/@cmmn/core/-/core-1.9.13.tgz"
-  integrity sha512-2/VF/EXb5f1M+Wk544HREcE5oIjI2LoIQqhxOQbI6CaJCTQMNnMhKF0MPeg0atf+KVwEhTGrsJTE/ihkJyWZ9w==
+"@cmmn/core@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@cmmn/core/-/core-2.0.0.tgz#710c6bc8130c0875daee872175a85888a01f4a13"
+  integrity sha512-7dPi/d3zAH1lA9l2bieC65T1i0TPgG68iY4vPxwUFLYFwbz6RPEMfPcUdoiMEZ/2tgkLhKdTwKyd9fmwH0Z+iA==
   dependencies:
     bind-decorator "^1.0.11"
 
-"@cmmn/tools@1.9.13":
-  version "1.9.13"
-  resolved "https://registry.npmjs.org/@cmmn/tools/-/tools-1.9.13.tgz"
-  integrity sha512-MU6P8tges8u1zzrxz/RUnjcB+osjIYKakTrVOVLflOGI8c2538xnq9l6BcPXq6NCu/+fh837PgaIExea9qnBVg==
+"@cmmn/tools@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-2.0.1.tgz#afc5c4fe3974871323b2249d4e24bbb4c0ee9a1e"
+  integrity sha512-JfHGX2ZzaIq/0b4FwTcqcjzefVzk+3lLJvEU5EHfNRkKjdrSE60UiEX2It7Uvqm6PF4O7/Cqt98pOI97DH035A==
   dependencies:
     "@testdeck/jest" "0.2.0"
     "@types/node" "20.x.x"
@@ -33,7 +33,6 @@
     fast-glob "^3.2.11"
     file-uri-to-path "2.x.x"
     import-meta-resolve "2"
-    jasmine-expect "5.0.0"
     less "^4"
     live-server "1.2.2"
     sinon "17.0.1"
@@ -787,11 +786,6 @@ accepts@~1.3.4:
   dependencies:
     mime-types "~2.1.34"
     negotiator "0.6.3"
-
-add-matchers@0.6.2:
-  version "0.6.2"
-  resolved "https://registry.npmjs.org/add-matchers/-/add-matchers-0.6.2.tgz"
-  integrity sha512-hVO2wodMei9RF00qe+506MoeJ/NEOdCMEkSJ12+fC3hx/5Z4zmhNiP92nJEF6XhmXokeB0hOtuQrjHCx2vmXrQ==
 
 aggregate-error@^3.0.0:
   version "3.1.0"
@@ -2243,13 +2237,6 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
-
-jasmine-expect@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/jasmine-expect/-/jasmine-expect-5.0.0.tgz"
-  integrity sha512-byn1zq0EQBA9UKs5A+H6gk5TRcanV+TqQMRxrjurGuqKkclaqgjw/vV6aT/jtf5tabXGonTH6VDZJ33Z1pxSxw==
-  dependencies:
-    add-matchers "0.6.2"
 
 jest-util@^28.0.0:
   version "28.1.3"

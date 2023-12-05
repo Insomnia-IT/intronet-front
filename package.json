@@ -20,9 +20,9 @@
   ],
   "type": "module",
   "dependencies": {
-    "@cmmn/cell": "1.9.13",
-    "@cmmn/core": "1.9.13",
-    "@cmmn/tools": "1.9.13",
+    "@cmmn/cell": "2.0.0",
+    "@cmmn/core": "2.0.0",
+    "@cmmn/tools": "2.0.1",
     "@fastify/websocket": "^7.1.3",
     "@types/luxon": "^2.3.1",
     "@types/node": "20.10.1",
