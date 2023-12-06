@@ -21,12 +21,20 @@ jobs:
           sed -i s/GITHUB_SHA/${GITHUB_SHA}/g ./docker-compose.yml
           cat ./docker-compose.yml
 
-      - name: build and push docker
+      - name: build docker
         working-directory: ./.deploy/prod
-        run: |
-          docker compose build
-          docker login ghcr.io -u franzzua -p ${{ secrets.DOCKER_TOKEN }}
-          docker compose push
+        run: docker compose build
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: push docker
+        working-directory: ./.deploy/prod
+        run: docker compose push
 
       - name: Azure Login
         uses: azure/login@v1
