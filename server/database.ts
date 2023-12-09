@@ -93,7 +93,6 @@ export class Database<T extends { _id: string }> {
       .limit(1)
       .map((x) => x.version)
       .toArray();
-    console.log(result);
     return result[0];
   }
 
