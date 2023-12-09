@@ -1,99 +1,137 @@
 import * as console from "console";
-import PouchDB from "pouchdb";
-import upsertPlugin from "pouchdb-upsert";
-import findPlugin from "pouchdb-find";
-PouchDB.plugin(upsertPlugin);
-PouchDB.plugin(findPlugin);
+import { Collection, Filter, MongoClient, Db } from "mongodb";
+import * as process from "process";
 
 export class Database<T extends { _id: string }> {
-  protected db = new PouchDB<T & { version: string }>(
-    `${process.env.DATABASE || "http://admin:password@localhost:5984"}/${
-      this.name
-    }`,{
-      auth: {
-        username: process.env.COUCHDB_USER || 'admin',
-        password: process.env.COUCHDB_PASSWORD || 'password',
+  private static _client: MongoClient;
+  private static get client() {
+    return (this._client ??= new MongoClient(
+      process.env.DATABASE ?? "mongodb://localhost:27017",
+      {
+        auth: {
+          username: process.env.MONGODB_USER || "admin",
+          password: process.env.MONGODB_PASSWORD || "password",
+        },
+      }
+    ));
+  }
+  private static _db: Db;
+  private static get db() {
+    return (this._db ??= this.client.db("insight"));
+  }
+
+  private static initPromise = (async () => {
+    let waitTimeout = 1000;
+    while (true) {
+      try {
+        await Database.client.connect();
+        return;
+      } catch (e) {
+        if (waitTimeout > 4) {
+          console.error(e);
+          console.log(
+            `Failed init db, ${this.name}. Wait ${waitTimeout / 1000} second...`
+          );
+        }
+        await new Promise((r) => setTimeout(r, waitTimeout));
+        waitTimeout *= 2;
       }
     }
-  );
-  protected index = this.getIndexOrCreate();
+  })();
 
-  constructor(public name: string) {}
+  private _db: Collection<T & { version: string }>;
+  protected get db() {
+    return (this._db ??= Database.db.collection<T & { version: string }>(
+      this.name
+    ));
+  }
+
+  constructor(public name: string) {
+    this.getIndexOrCreate();
+  }
 
   async remove(key: string) {
-    const rev = await this.db.get(key).then((x) => x._rev);
-    await this.db.remove({
-      _id: key.toString(),
-      _rev: rev ?? null,
-    });
+    await Database.initPromise;
+    await this.db.deleteOne({
+      _id: { $eq: key },
+    } as Filter<T & { version: string }>);
   }
 
   async addOrUpdate(value: T & { version: string }) {
-    await this.db.upsert(value._id, () => value);
+    await Database.initPromise;
+    await this.db.updateOne(
+      {
+        _id: { $eq: value._id },
+      } as Filter<T & { version: string }>,
+      {
+        $set: value,
+      },
+      {
+        upsert: true,
+      }
+    );
   }
 
   async getSince(revision: string = undefined): Promise<T[]> {
-    const index = await this.index;
+    await Database.initPromise;
     if (revision) {
-      const result = await this.db.find({
-        selector: {
-          version: { $gte: revision },
-        },
-        use_index: index,
-      });
-      return result.docs;
+      const result = this.db.find({
+        version: { $gte: revision },
+      } as Filter<T & { version: string }>);
+      return result.map((x) => x as T).toArray();
     } else {
-      const result = await this.db.allDocs({
-        include_docs: true,
-      });
-      return result.rows
-        .filter((x) => !x.id.startsWith("_design"))
-        .map((x) => x.doc);
+      const result = this.db.find({});
+      return result.map((x) => x as T).toArray();
     }
   }
 
   async getMaxVersion(): Promise<string> {
-    const index = await this.index;
-    const result = await this.db.find({
-      fields: ["version"],
-      selector: {},
-      sort: [
-        {
-          version: "desc",
-        },
-      ],
-      // limit: 1,
-      use_index: index,
-    });
-    return result.docs[0]?.version ?? null;
+    await Database.initPromise;
+    const result = await this.db
+      .find({})
+      .sort({ version: -1 })
+      .limit(1)
+      .map((x) => x.version)
+      .toArray();
+    console.log(result);
+    return result[0];
   }
 
   private async getIndexOrCreate(): Promise<string> {
+    await Database.initPromise;
     const indexName = "version";
     try {
-      const index = await this.db
-        .getIndexes()
-        .then((x) => x.indexes.find((c) => c.name == indexName));
-      // await this.db.deleteIndex(index);
-      // for (let index of indexes) {
-      //   await this.db.deleteIndex(index);
-      // }
+      const collections = await Database.db.collections();
+      if (!collections.some((x) => x.collectionName == this.name))
+        await Database.db.createCollection(this.name, {
+          clusteredIndex: {
+            name: "_id",
+            key: { _id: 1 },
+            unique: true,
+          },
+        });
+      const indexes = await this.db.indexes();
+      const index = indexes.find((x) => x.name == indexName);
       if (index) return indexName;
-      await this.db.createIndex({
-        index: {
-          fields: ["version"],
-          name: "version",
+      await this.db.createIndex(
+        {
+          version: -1,
         },
-      });
+        {
+          name: indexName,
+        }
+      );
       return indexName;
     } catch (e) {
-      console.log(`Failed init db, ${this.name}. Wait 1 second...`)
-      await new Promise(x => setTimeout(x, 1000));
-      return await this.getIndexOrCreate();
+      console.log(`Failed create index on ${this.name}.`);
+      console.log(e);
     }
   }
 
-  get(value: string) {
-    return this.db.get(value);
+  async get(value: string) {
+    await Database.initPromise;
+    return this.db.findOne({ _id: { $eq: value } } as Filter<
+      T & { version: string }
+    >);
   }
 }

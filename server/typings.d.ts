@@ -1,4 +1,5 @@
-type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
+type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 type InsomniaLocation = {
   _id: string;
@@ -7,29 +8,36 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
-  figure: Geo | Geo[][];
+  figure: GeoFigure;
   tags: string[];
+  work_tags: string[];
   menu?: string;
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
 };
 
-type ContentBlock = {
-  blockType: 'link' | 'text';
-  content: string | ListItem[];
-}
+type ContentBlock =
+  | {
+      blockType: "text";
+      content: string;
+    }
+  | {
+      blockType: "link";
+      title: string;
+      link: string;
+    };
 
 type ListItem = {
   tag?: string;
   title: string;
   description: string;
-}
+};
 
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
-type GeoFigure = Geo | Array<Array<Geo>>;
-type Figure = Point | Array<Array<Point>>;
+type GeoFigure = Geo | Array<Geo> | Array<Array<Geo>>;
+type Figure = Point | Array<Point> | Array<Array<Point>>;
 
 type MapItem = {
   figure: Figure;
@@ -37,8 +45,8 @@ type MapItem = {
   radius;
   id;
   title?: string;
-  minZoom?: number | undefined;
-  maxZoom?: number | undefined;
+  minZoom?: number;
+  maxZoom?: number;
 };
 
 type Movie = {
@@ -76,7 +84,7 @@ type INoteLocal = {
   author: {
     name: string;
   };
-  TTL: 13 | 14 | 15 | 16 | 17;
+  TTL: 13 | 14 | 15 | 16 | 17 | 18;
 };
 
 type INote = INoteLocal & {
@@ -92,9 +100,17 @@ type INote = INoteLocal & {
   deletedAt?: number;
 };
 
-
 type INoteUpdated = Partial<
-  Pick<INote, "title" | "text" | "categoryId" | "TTL" | "isApproved" | "isDeleted">
+  Pick<
+    INote,
+    | "title"
+    | "text"
+    | "categoryId"
+    | "TTL"
+    | "isApproved"
+    | "isDeleted"
+    | "restricted"
+  >
 >;
 
 type ICategory = {
@@ -116,6 +132,7 @@ interface Activity {
   start: string;
   end: string;
   author: string;
+  authorDescription?: string;
   age?: number;
   hasChanges?: boolean;
   isCanceled?: boolean;
@@ -164,7 +181,6 @@ type MovieInfo = {
   info?: VurchelFilm;
 };
 
-
 interface VurchelFilm {
   _id: string;
   entryID: number;
@@ -198,16 +214,16 @@ interface Filmmaker {
   link: string;
 }
 
-
 type Direction = {
   _id: string;
   name: string;
   image: string;
 };
-interface IArticle {
+interface IShop {
   _id: string;
-  title: string;
-  text: string;
+  name: string;
+  description: string;
+  links: string;
 }
 
 type TMainPageCard = {
@@ -255,7 +271,7 @@ type NewsItem = {
   link: string | undefined;
   linkText: string | undefined;
   time: string;
-}
+};
 
 type Change = {
   _id: string;
@@ -263,3 +279,6 @@ type Change = {
   start?: string;
   end?: string;
 } & Record<string, any>;
+
+
+declare const PRODUCTION: boolean;

@@ -31,8 +31,6 @@
   "include": [
     "service-worker/*.ts",
     "service-worker/*.json",
-    "server/**/*.json",
-    "server/**/*.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.json",
@@ -42,7 +40,13 @@
   "exclude": [
     "node_modules",
     "dist",
+    "server",
     "public",
     "**/*.stories.tsx"
+  ],
+  "references": [
+    {
+      "path": "server"
+    }
   ]
 }

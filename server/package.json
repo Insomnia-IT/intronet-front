@@ -11,18 +11,14 @@
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
     "fastify": "4.15.0",
-    "pouchdb": "8.0.1",
-    "pouchdb-find": "8.0.1",
-    "pouchdb-node": "8.0.1",
-    "pouchdb-upsert": "2.2.0",
+    "mongodb": "6.3.0",
     "tslib": "2.6.2"
   },
   "devDependencies": {
     "@cmmn/tools": "2.0.1",
     "@notionhq/client": "2.2.5",
     "@types/node": "20.10.1",
-    "@types/pouchdb": "6.4.0",
-    "@types/pouchdb-upsert": "2.2.6",
+    "@insight/app": "file:..",
     "typescript": "4.6.4",
     "typescript-transform-paths": "3.3.1"
   },
