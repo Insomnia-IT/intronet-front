@@ -9,7 +9,7 @@ export class LocalObservableDB<T extends { _id: string }> extends EventEmitter<
   protected items = new Map<string, T>();
   public isLoaded: Promise<void> = this.onceAsync("loaded");
 
-  constructor(public name: string, public localOnly: boolean = false) {
+  constructor(public name: string) {
     super();
     globalThis[name] = this;
     this.init();
@@ -78,8 +78,9 @@ export class LocalObservableDB<T extends { _id: string }> extends EventEmitter<
     this.items.set(value._id, value);
   }
 
-  async addOrUpdate(value: T, skipChange = false) {
+  async addOrUpdate(diff: Partial<T> & { _id: string }, skipChange = false) {
     await this.isLoaded;
+    const value = { ...this.items.get(diff._id), ...diff };
     await this.set(value);
     if (!skipChange) {
       this.emit("change", {
@@ -88,5 +89,9 @@ export class LocalObservableDB<T extends { _id: string }> extends EventEmitter<
         value,
       });
     }
+  }
+
+  toArray(): T[] {
+    return Array.from(this.items.values()).filter((x) => !x["deleted"]);
   }
 }
