@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --production=false --frozen-lockfile
+RUN yarn -w --production=false --frozen-lockfile
 
 COPY . ./
 RUN yarn build

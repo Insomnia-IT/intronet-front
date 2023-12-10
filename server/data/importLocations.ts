@@ -31,7 +31,7 @@ export async function importLocations(force = false) {
           Authorization: "Basic YWRtaW46YWRtaW4=",
         },
       }).then((x) => x.json())
-    : notionLocationsJSON;
+    : notionLocationsJSON as any;
   // fs.writeFileSync('./server/data/notion-locations.csv', `
   //   ${Object.keys(notionLocations[0]).join('\t')}
   //   ${notionLocations.map(x => Object.values(x).map(x => typeof x === "object" ? JSON.stringify(x) : x).join('\t')).join('\n')}

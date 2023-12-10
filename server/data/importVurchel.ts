@@ -4,7 +4,6 @@ import fetch from "node-fetch";
 import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import json from "./vurchel.json" assert { "type": "json" };
-import type {MovieBlock, VurchelFilm} from "@insight/app";
 
 const importFromVurchel = false;
 export async function importVurchel(force = false) {
@@ -29,7 +28,7 @@ export async function importVurchel(force = false) {
         `https://vurchel.com/export/filminfo/${movie.vurchelId}`
       )
         .then((x) => x.json())
-        .catch(() => null);
+        .catch(() => null) as any;
       await new Promise((resolve) => setTimeout(resolve, 100));
       if (!info) continue;
       await vurchelDB.addOrUpdate({

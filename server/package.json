@@ -3,25 +3,23 @@
   "version": "1.0.0",
   "description": "Intronet web site for insomnia fest",
   "scripts": {
-    "server": "nodemon ./dist/esm"
+    "server": "nodemon ./dist/esm",
+    "build": "cmmn compile"
   },
   "type": "module",
   "dependencies": {
     "@cmmn/cell": "2.0.0",
-    "@insight/app": "file:..",
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
     "fastify": "4.15.0",
     "mongodb": "6.3.0",
+    "node-fetch": "3.3.2",
     "tslib": "2.6.2"
   },
   "devDependencies": {
     "@cmmn/tools": "2.0.1",
-    "@notionhq/client": "2.2.5",
     "@types/node": "20.10.1",
-    "@insight/app": "file:..",
-    "typescript": "4.6.4",
-    "typescript-transform-paths": "3.3.1"
+    "typescript": "5.2.2"
   },
   "author": "",
   "license": "ISC"

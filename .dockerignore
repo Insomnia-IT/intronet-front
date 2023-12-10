@@ -1,7 +1,11 @@
 node_modules
+**/node_modules
+dist
+**/dist
 build
 run.sh
 .dockerignore
 .github
 .idea
 .storybook
+.deploy/local

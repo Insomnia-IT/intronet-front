@@ -52,7 +52,7 @@ export async function importActivities(force = false) {
           Authorization: "Basic YWRtaW46YWRtaW4=",
         },
       }).then((x) => x.json())
-    : notionActivities;
+    : notionActivities as any;
   if (importFromNotion) {
     fs.writeFileSync(
       "./server/data/notion/activities.json",

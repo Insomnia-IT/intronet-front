@@ -14,11 +14,11 @@ services:
       apps:
     links:
       - front
-      - db
+      - dbui
       - server
     depends_on:
       - front
-      - db
+      - dbui
       - server
 
 
@@ -38,9 +38,9 @@ services:
       dockerfile: .deploy/server.Dockerfile
     environment:
       PORT: "80"
-      DATABASE: "http://db:5984"
-      COUCHDB_USER: admin
-      COUCHDB_PASSWORD: "${DB_PASSWORD}"
+      DATABASE: "mongodb://db:27017"
+      MONGODB_USER: "admin"
+      MONGODB_PASSWORD: "${DB_PASSWORD}"
     restart: always
     volumes:
       - "${WEBAPP_STORAGE_HOME}/secrets:/app/secrets"
@@ -54,13 +54,30 @@ services:
   db:
     image: mongo:7.0.4
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_USERNAME: "admin"
       MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - "${WEBAPP_STORAGE_HOME}/data:/data/db"
     restart: always
     networks:
       apps:
+
+  dbui:
+    image: mongo-express:1.0.0-18-alpine3.18
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "admin"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${DB_PASSWORD}"
+      ME_CONFIG_BASICAUTH_USERNAME: "admin"
+      ME_CONFIG_BASICAUTH_PASSWORD: "${DB_PASSWORD}"
+      ME_CONFIG_MONGODB_SERVER: "db"
+      ME_CONFIG_MONGODB_PORT: "27017"
+      ME_CONFIG_SITE_BASEURL: "/db/"
+    ports:
+      - "8081:8081"
+    networks:
+      - apps
+    depends_on:
+      - db
 
 volumes:
   couchdb_data:

@@ -44,13 +44,5 @@
     "e2e",
     "public",
     "**/*.stories.tsx"
-  ],
-  "references": [
-    {
-      "path": "./e2e"
-    },
-    {
-      "path": "./server"
-    }
   ]
 }

@@ -3,7 +3,6 @@ import { RequireAuth } from "@components/RequireAuth";
 import { cellState } from "@helpers/cell-state";
 import { geoConverter } from "@helpers/geo";
 import { locationsStore } from "@stores";
-import fetch from "node-fetch";
 import { Component } from "preact";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
