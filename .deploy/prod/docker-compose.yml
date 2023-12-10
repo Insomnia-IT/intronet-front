@@ -5,7 +5,7 @@ services:
   nginx:
     image: "ghcr.io/insomnia-it/nginx:GITHUB_SHA"
     build:
-      context: ../../nginx
+      context: ../nginx
       dockerfile: nginx.dockerfile
     restart: always
     ports:
@@ -58,8 +58,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - "${WEBAPP_STORAGE_HOME}/data:/data/db"
-    ports:
-      - "27017:27017"
     restart: always
     networks:
       apps:
