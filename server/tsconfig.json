@@ -13,6 +13,7 @@
     "**/*.ts"
   ],
   "exclude": [
+    "dist",
     "node_modules",
     "**/*.stories.tsx",
     "*.specs.ts"

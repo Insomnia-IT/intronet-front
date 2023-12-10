@@ -1,5 +1,5 @@
 {
-  "name": "@insomnia/intro-front",
+  "name": "@insight/app",
   "version": "1.0.0",
   "description": "Intronet web site for insomnia fest",
   "scripts": {
@@ -16,8 +16,20 @@
   },
   "private": true,
   "workspaces": [
-    "."
+    ".",
+    "./e2e",
+    "./server"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/esm/src/index.js"
+    },
+    "./*": {
+      "types": "./dist/typings/src/*.d.ts",
+      "default": "./dist/esm/src/*.js"
+    }
+  },
   "type": "module",
   "dependencies": {
     "@cmmn/cell": "2.0.0",

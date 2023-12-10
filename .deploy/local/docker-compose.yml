@@ -19,8 +19,8 @@ services:
   server:
     image: node:18-alpine
     volumes:
-      - ../../dist/esm/server:/app
-      - ../../node_modules:/app/node_modules:ro
+      - ../../server/dist/esm:/app
+      - ../../node_modules:/node_modules:ro
       - ./secrets:/secrets
     command: "node /app/index.js"
     environment:
@@ -44,7 +44,7 @@ services:
       COUCHDB_PASSWORD: password
     volumes:
       - ./.data:/opt/couchdb/data
-      - ./couchdb.ini:/opt/couchdb/etc/local.ini:ro
+      - ./couchdb.ini:/opt/couchdb/etc/local.ini
     ports:
       - "5984:5984"
     networks:

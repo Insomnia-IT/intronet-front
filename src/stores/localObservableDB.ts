@@ -27,8 +27,12 @@ export class LocalObservableDB<T extends { _id: string }> extends EventEmitter<
   }
 
   async clear() {
-    await this.db.purge();
-    this.items.clear();
+    for (let [key, item] of this.items) {
+      await this.addOrUpdate({
+        ...item,
+        deleted: true,
+      }, true);
+    }
     this.emit("change", {
       type: "delete",
       key: undefined,

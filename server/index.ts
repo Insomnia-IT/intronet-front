@@ -94,6 +94,7 @@ fastify.post("/batch", async function (request, reply) {
     db: string;
     value: any;
   }>;
+  console.log('batch', data);
   for (let item of data) {
     if (!checkWriteAccess(user, item.db, item.value))
       continue;
@@ -146,6 +147,7 @@ fastify.addHook('onRequest', async (request, reply) => {
 let logData = {};
 
 const logHook = async (request, reply) => {
+  if (request.routerPath == '/versions') return;
   // Some code
   await logCtrl.log({
     method: request.method,

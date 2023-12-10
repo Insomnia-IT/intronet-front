@@ -4,6 +4,7 @@ import fetch from "node-fetch";
 import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import json from "./vurchel.json" assert { "type": "json" };
+import type {MovieBlock, VurchelFilm} from "@insight/app";
 
 const importFromVurchel = false;
 export async function importVurchel(force = false) {

@@ -1,0 +1,10 @@
+{
+  "extends": "@cmmn/tools/compile/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

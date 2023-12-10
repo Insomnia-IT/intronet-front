@@ -10,7 +10,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
   async init() {
     await super.init();
     await this.sync().catch(console.error);
-    setInterval(() => this.sync().catch(console.error), 10_000);
+    setInterval(() => this.sync().catch(console.error), 100);
   }
 
   toArray(): T[] {
@@ -39,9 +39,8 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     try {
       if (this.lastRemoteVersion < this.remoteVersion) {
         await this.loadFromServer();
-      } else if (this.lastRemoteVersion > this.remoteVersion) {
-        await this.saveToServer();
       }
+      await this.saveToServer();
     } finally {
       this.syncLock = false;
     }
@@ -64,7 +63,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
           new Promise((resolve) => setTimeout(resolve, this.errorTimeout * 1.2))
       );
     }
-    await VersionsDB.Instance.loadFromServer();
+    // await VersionsDB.Instance.loadFromServer();
   }
 
   async loadFromServer() {
@@ -116,7 +115,7 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 3000);
+    setInterval(() => this.loadFromServer(), 1_000);
   }
 
   private isLoading = false;

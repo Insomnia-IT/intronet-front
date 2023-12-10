@@ -53,6 +53,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
       case "textarea": {
         return (
           <Input
+            name={name}
             placeholder={placeholder}
             className={classNames(inputClassName, styles.input)}
             inputType={type}

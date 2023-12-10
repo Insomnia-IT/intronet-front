@@ -7,6 +7,7 @@ import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };
 import moviesJSON from "./movies_api.json" assert { "type": "json" };
+import type {MovieBlock, MovieInfo} from "@insight/app";
 
 export async function importMovies(force = false) {
   const locationDB = new Database<any>("locations");

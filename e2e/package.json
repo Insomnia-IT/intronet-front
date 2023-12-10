@@ -1,0 +1,16 @@
+{
+  "name": "@insight/e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run tests": "playwright test --ui"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@insight/app": "file:..",
+    "@types/node": "^20.10.4"
+  }
+}
