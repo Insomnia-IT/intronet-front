@@ -1,8 +1,6 @@
 import "@cmmn/cell";
 import {Fn, groupBy} from "@cmmn/core";
 import * as console from "console";
-import fs from "fs";
-import fetch from "node-fetch";
 import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };

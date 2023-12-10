@@ -1,7 +1,11 @@
 import "@cmmn/core";
 import {test, expect, Page} from '@playwright/test';
 
-test('simple case', async ({ page, context, browser }) => {
+test('create unmoderated note', async ({ page, context, browser }) => {
+  await createNote(page);
+});
+
+test('admin case', async ({ page, context, browser }) => {
   const userContext = await browser.newContext();
   const userPage = await userContext.newPage();
 
@@ -13,21 +17,30 @@ test('simple case', async ({ page, context, browser }) => {
   await createNote(page);
   await createNote(userPage);
   // Expect a title "to contain" a substring.
-  const itemsCount = await adminPage.locator('.note_card_cardContainer').count();
-  expect(itemsCount).toBe(2);
+  await adminPage.goto(`http://localhost:5002/notes/moderation`);
+  await expectCount(adminPage, 2);
   await publishNote(adminPage);
   await publishNote(adminPage);
 
   await userPage.goto(`http://localhost:5002/notes`);
-  await userPage.waitForTimeout(3000);
-  const userItems = await userPage.locator('.note_card_cardContainer').all();
-  expect(userItems).toHaveLength(2);
-  const myItems = await page.locator('.note_card_cardContainer').all();
-  expect(myItems).toHaveLength(2);
+  await expectCount(userPage, 2);
+
+  await page.goto(`http://localhost:5002/notes`);
+  await expectCount(page, 2);
+
+  await clearNotes(adminPage);
+  await expectCount(page, 0);
+  await expectCount(userPage, 0);
+
 });
 
+async function expectCount(page: Page, count: number){
+  await page.waitForTimeout(2000);
+  const itemsCount = await page.locator('.note_card_cardContainer').count();
+  expect(itemsCount).toBe(count);
+}
 async function publishNote(adminPage: Page){
-  await adminPage.waitForTimeout(3000);
+  await adminPage.waitForTimeout(1000);
   const first = await adminPage.$('.note_card_cardContainer');
   await first.click();
   const publish = await adminPage.locator('button', {hasText: 'Опубликовать'});
@@ -50,4 +63,7 @@ async function createNote(page: Page){
   await button.click();
   await page.waitForTimeout(100);
   await expect(page).toHaveURL(`http://localhost:5002/notes/new/success`);
+  await page.waitForTimeout(300);
+  await page.goto(`http://localhost:5002/notes/my`);
+  await expectCount(page, 1);
 }

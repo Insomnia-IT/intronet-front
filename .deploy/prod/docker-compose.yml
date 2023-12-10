@@ -43,7 +43,7 @@ services:
       MONGODB_PASSWORD: "${DB_PASSWORD}"
     restart: always
     volumes:
-      - "${WEBAPP_STORAGE_HOME}/secrets:/app/secrets"
+      - "${WEBAPP_STORAGE_HOME}/secrets:/web/secrets"
     links:
       - db
     depends_on:

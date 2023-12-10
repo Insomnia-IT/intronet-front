@@ -1,5 +1,5 @@
 {
-  "name": "@insight/app",
+  "name": "@insight/monorepo",
   "version": "1.0.0",
   "description": "Intronet web site for insomnia fest",
   "scripts": {
@@ -16,69 +16,11 @@
   },
   "private": true,
   "workspaces": [
-    ".",
+    "./web",
     "./e2e",
     "./server"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/esm/src/index.js"
-    },
-    "./*": {
-      "types": "./dist/typings/src/*.d.ts",
-      "default": "./dist/esm/src/*.js"
-    }
-  },
   "type": "module",
-  "dependencies": {
-    "@cmmn/cell": "2.0.0",
-    "@cmmn/core": "2.0.0",
-    "@cmmn/tools": "2.0.1",
-    "@fastify/websocket": "^7.1.3",
-    "@types/luxon": "^2.3.1",
-    "@types/node": "20.10.1",
-    "classnames": "^2.3.2",
-    "fastify": "^4.15.0",
-    "get-browser-fingerprint": "^3.0.0",
-    "preact": "^10.13.0",
-    "qr-scanner": "^1.4.1"
-  },
-  "devDependencies": {
-    "@types/classnames": "^2.3.1",
-    "husky": ">=6",
-    "lint-staged": ">=10",
-    "prettier": "^2.6.2",
-    "typescript": "5.2.2"
-  },
   "author": "",
-  "license": "ISC",
-  "proxy": "https://redmine.cb27.ru:17443",
-  "cmmn": {
-    "main": {
-      "input": "dist/esm/src/index.js",
-      "module": "es",
-      "port": 5001,
-      "platform": "browser",
-      "styles": "modules",
-      "inject": "json",
-      "mount": {
-        "/public": "./public"
-      },
-      "proxy": {
-        "/webapi": "http://localhost:5002"
-      }
-    },
-    "sw": {
-      "input": "dist/esm/service-worker/index.js",
-      "platform": "browser",
-      "module": "es"
-    },
-    "sw-loader": {
-      "input": "dist/esm/service-worker/loader.js",
-      "platform": "browser",
-      "html": "src/index.html",
-      "module": "es"
-    }
-  }
+  "license": "ISC"
 }

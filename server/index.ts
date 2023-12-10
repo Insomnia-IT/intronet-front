@@ -1,5 +1,3 @@
-import "tslib/tslib.js"
-import * as console from "console";
 import { checkWriteAccess } from "./auth";
 import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
@@ -11,6 +9,7 @@ import {importShops} from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
 import {getResults, vote} from "./vote.ctrl";
+import * as console from "console";
 
 const fastify = Fastify({
   logger: false
@@ -37,6 +36,7 @@ fastify.post("/log", async function (request, reply) {
     ...JSON.parse(request.body as string),
     app: 'client',
   };
+  reply.status(205);
 });
 
 fastify.get("/vote", async function (request, reply) {
@@ -134,7 +134,7 @@ fastify.listen(
       fastify.log.error(err);
       process.exit(1);
     }
-    // Server is now listening on ${address}
+    console.log(`Server is now listening on ${address}`);
   }
 );
 

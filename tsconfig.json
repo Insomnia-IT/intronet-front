@@ -1,48 +1,18 @@
 {
   "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
-    "paths": {
-      "@hooks": ["./src/hooks"],
-      "@icons": ["./src/icons"],
-      "@constants": ["./src/constants"],
-      "@components": ["./src/components"],
-      "@components/*": ["./src/components/*"],
-      "@helpers/*": ["./src/helpers/*"],
-      "@api": ["./src/api"],
-      "@stores": ["./src/stores"],
-      "@stores/*": ["./src/stores/*"]
-    },
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "types": [
-      "preact",
-      "node"
-    ]
+    "baseUrl": "./"
   },
-  "include": [
-    "service-worker/*.ts",
-    "service-worker/*.json",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.json",
-    ".private/**/*.json",
-    "index.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "server",
-    "e2e",
-    "public",
-    "**/*.stories.tsx"
+  "include": [],
+  "references": [
+    {
+      "path": "./web"
+    },
+    {
+      "path": "./e2e"
+    },
+    {
+      "path": "./server"
+    }
   ]
 }

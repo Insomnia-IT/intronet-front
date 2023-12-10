@@ -6,11 +6,11 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY web/package.json yarn.lock ./
 
-RUN yarn -w --production=false --frozen-lockfile
+RUN yarn -w --production=false
 
-COPY . ./
+COPY web ./
 RUN yarn build
 
 FROM nginx:alpine
@@ -19,5 +19,5 @@ EXPOSE 80
 WORKDIR /app
 
 COPY .deploy/client.nginx.conf /etc/nginx/conf.d/default.conf
-COPY /public /app/public
+COPY web/public /app/public
 COPY --from=builder /app/dist/bundle /app

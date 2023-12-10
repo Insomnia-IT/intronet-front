@@ -12,6 +12,7 @@ export class Database<T extends { _id: string }> {
           username: process.env.MONGODB_USER || "admin",
           password: process.env.MONGODB_PASSWORD || "password",
         },
+        connectTimeoutMS: 1000
       }
     ));
   }
@@ -25,6 +26,7 @@ export class Database<T extends { _id: string }> {
     while (true) {
       try {
         await Database.client.connect();
+        console.log(`Init Database`);
         return;
       } catch (e) {
         if (waitTimeout > 4) {
@@ -38,6 +40,7 @@ export class Database<T extends { _id: string }> {
       }
     }
   })();
+  private initCollection = this.getIndexOrCreate();
 
   private _db: Collection<T & { version: string }>;
   protected get db() {
@@ -47,18 +50,17 @@ export class Database<T extends { _id: string }> {
   }
 
   constructor(public name: string) {
-    this.getIndexOrCreate();
   }
 
   async remove(key: string) {
-    await Database.initPromise;
+    await this.initCollection;
     await this.db.deleteOne({
       _id: { $eq: key },
     } as Filter<T & { version: string }>);
   }
 
   async addOrUpdate(value: T & { version: string }) {
-    await Database.initPromise;
+    await this.initCollection;
     await this.db.updateOne(
       {
         _id: { $eq: value._id },
@@ -73,7 +75,7 @@ export class Database<T extends { _id: string }> {
   }
 
   async getSince(revision: string = undefined): Promise<T[]> {
-    await Database.initPromise;
+    await this.initCollection;
     if (revision) {
       const result = this.db.find({
         version: { $gte: revision },
@@ -86,7 +88,7 @@ export class Database<T extends { _id: string }> {
   }
 
   async getMaxVersion(): Promise<string> {
-    await Database.initPromise;
+    await this.initCollection;
     const result = await this.db
       .find({})
       .sort({ version: -1 })
@@ -102,24 +104,20 @@ export class Database<T extends { _id: string }> {
     try {
       const collections = await Database.db.collections();
       if (!collections.some((x) => x.collectionName == this.name))
-        await Database.db.createCollection(this.name, {
-          clusteredIndex: {
-            name: "_id",
-            key: { _id: 1 },
-            unique: true,
-          },
-        });
+        await Database.db.createCollection(this.name, {});
       const indexes = await this.db.indexes();
       const index = indexes.find((x) => x.name == indexName);
-      if (index) return indexName;
-      await this.db.createIndex(
-        {
-          version: -1,
-        },
-        {
-          name: indexName,
-        }
-      );
+      if (!index) {
+        await this.db.createIndex(
+          {
+            version: -1,
+          },
+          {
+            name: indexName,
+          }
+        );
+      }
+      console.log(`Init Collection ${this.name}`);
       return indexName;
     } catch (e) {
       console.log(`Failed create index on ${this.name}.`);

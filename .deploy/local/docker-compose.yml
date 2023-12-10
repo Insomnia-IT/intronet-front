@@ -5,8 +5,8 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ../../dist/bundle:/app
-      - ../../public:/app/public:ro
+      - ../../web/dist/bundle:/app/dist:ro
+      - ../../web/public:/app/public:ro
     ports:
       - 5002:80
     links:
@@ -20,12 +20,13 @@ services:
     restart: always
 
   server:
-    image: node:18-alpine
+    image: node:20-alpine
     volumes:
-      - ../../server/dist/esm:/app
-      - ../../server/node_modules:/node_modules:ro
+      - ../../server/dist/esm:/app/dist
+      - ../../node_modules:/node_modules:ro
+      - ../../server/node_modules:/app/node_modules:ro
       - ./secrets:/secrets
-    command: "node /app/index.js"
+    command: "node /app/dist/index.js"
     environment:
       PORT: "80"
       DATABASE: "mongodb://mongodb:27017"
@@ -65,11 +66,12 @@ services:
       ME_CONFIG_MONGODB_SERVER: "mongodb"
       ME_CONFIG_MONGODB_PORT: "27017"
     ports:
-      - "0.0.0.0:8081:8081"
+      - "5004:8081"
     networks:
       - main
     depends_on:
       - mongodb
+    restart: always
 
 networks:
   main:
