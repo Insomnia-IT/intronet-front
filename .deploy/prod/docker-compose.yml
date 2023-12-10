@@ -52,18 +52,17 @@ services:
       apps:
 
   db:
-    image: "ghcr.io/insomnia-it/db:GITHUB_SHA"
-    build:
-      context: ../couchdb
-      dockerfile: db.Dockerfile
+    image: mongo:7.0.4
     environment:
-      COUCHDB_USER: admin
-      COUCHDB_PASSWORD: "${DB_PASSWORD}"
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - "${WEBAPP_STORAGE_HOME}/data:/data/db"
+    ports:
+      - "27017:27017"
     restart: always
     networks:
       apps:
-    volumes:
-      - "${WEBAPP_STORAGE_HOME}/data:/opt/couchdb/data"
 
 volumes:
   couchdb_data:

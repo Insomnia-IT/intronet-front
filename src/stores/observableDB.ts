@@ -10,25 +10,17 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
   async init() {
     await super.init();
     await this.sync().catch(console.error);
-    setInterval(() => this.sync().catch(console.error), 100);
+    setInterval(() => this.sync().catch(console.error), 10_000);
   }
 
-  toArray(): T[] {
-    return Array.from(this.items.values()).filter((x) => !x["deleted"]);
-  }
-
-  async addOrUpdate(value: T, skipChange = false) {
+  async addOrUpdate(value: Partial<T> & { _id: string }, skipChange = false) {
     const valueWithVersion = {
       ...value,
       version: Fn.ulid(),
-    };
+    } as Partial<T & { version: string }> & { _id: string };
     await super.addOrUpdate(valueWithVersion, skipChange);
-    if (!skipChange) {
-      await VersionsDB.Instance.set({
-        _id: this.name,
-        version: valueWithVersion.version,
-      });
-    }
+    if (skipChange) return;
+    this.localVersion = valueWithVersion.version;
   }
 
   private syncLock = false;
@@ -37,20 +29,26 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     if (this.syncLock) return;
     this.syncLock = true;
     try {
-      if (this.lastRemoteVersion < this.remoteVersion) {
-        await this.loadFromServer();
-      }
-      await this.saveToServer();
+      await Promise.all([this.loadFromServer(), this.saveToServer()]);
+      this.syncVersion =
+        this.localVersion > this.remoteVersion
+          ? this.localVersion
+          : this.remoteVersion;
     } finally {
       this.syncLock = false;
     }
   }
   private errorTimeout = 300;
+  private saveLock = false;
   async saveToServer() {
-    if (this.localOnly) return;
+    // nothing changed since sync
+    if (this.localVersion <= this.syncVersion) return;
+    if (this.saveLock) return;
+    this.saveLock = true;
     const updates = [] as Array<{ db: string; value: T }>;
     for (let item of this.items.values()) {
-      if (item.version <= this.remoteVersion) continue;
+      // item has not changed since sync
+      if (item.version <= this.syncVersion) continue;
       updates.push({ db: this.name, value: item });
     }
     if (updates.length > 0) {
@@ -63,13 +61,17 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
           new Promise((resolve) => setTimeout(resolve, this.errorTimeout * 1.2))
       );
     }
-    // await VersionsDB.Instance.loadFromServer();
+    this.saveLock = false;
   }
 
+  private loadLock = false;
   async loadFromServer() {
-    if (this.localOnly) return;
+    // nothing changed since sync
+    if (this.remoteVersion <= this.syncVersion) return;
+    if (this.loadLock) return;
+    this.loadLock = true;
     const newItems = (await fetch(
-      `${api}/data/${this.name}?since=${this.lastRemoteVersion}`,
+      `${api}/data/${this.name}?since=${this.localVersion}`,
       {
         headers: authStore.headers,
       }
@@ -84,22 +86,35 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
       type: "init",
       value: Array.from(this.items.values()),
     });
-    await VersionsDB.Instance.set({
-      _id: this.name,
-      version: VersionsDB.Instance.remote[this.name],
-    });
+    this.loadLock = false;
   }
 
+  // max version of remote items
   get remoteVersion() {
-    return VersionsDB.Instance.remote[this.name] ?? "";
+    return VersionsDB.Instance.get(this.name)?.remote ?? "";
   }
-
-  get lastRemoteVersion() {
-    return VersionsDB.Instance.get(this.name)?.version ?? "";
+  // max version of local items
+  get localVersion() {
+    return VersionsDB.Instance.get(this.name)?.local ?? "";
+  }
+  set localVersion(version: string) {
+    VersionsDB.Instance.addOrUpdate({ _id: this.name, local: version });
+  }
+  // synced version (data loaded from remote to local)
+  get syncVersion() {
+    return VersionsDB.Instance.get(this.name)?.synced ?? "";
+  }
+  set syncVersion(version: string) {
+    VersionsDB.Instance.addOrUpdate({ _id: this.name, synced: version });
   }
 }
 
-class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
+class VersionsDB extends LocalObservableDB<{
+  _id: string;
+  local: string;
+  remote: string;
+  synced: string;
+}> {
   private static _instance: VersionsDB | undefined;
   public static get Instance() {
     return (this._instance ??= new VersionsDB());
@@ -109,28 +124,32 @@ class VersionsDB extends ObservableDB<{ version: string; _id: string }> {
     super("versions");
   }
 
-  public remote: Record<string, string> = {};
-
   async init() {
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 1_000);
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
-  private isLoading = false;
+  private loadingLock = false;
   async loadFromServer() {
-    if (this.isLoading) return;
-    this.isLoading = true;
+    if (this.loadingLock) return;
+    this.loadingLock = true;
     try {
-      this.remote = await fetch(`${api}/versions`, {
+      const actual = (await fetch(`${api}/versions`, {
         headers: authStore.headers,
-      }).then((x) => x.json());
+      }).then((x) => x.json())) as Record<string, string>;
+      for (let name in actual) {
+        await this.addOrUpdate({
+          _id: name,
+          remote: actual[name],
+        });
+      }
       IsConnected.set(true);
     } catch (e) {
       IsConnected.set(false);
     } finally {
-      this.isLoading = false;
+      this.loadingLock = false;
     }
   }
 }

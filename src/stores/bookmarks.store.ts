@@ -1,14 +1,14 @@
 import { Fn, compare, debounced } from "@cmmn/core";
 import { Cell, ObservableList, cell } from "@cmmn/cell";
 import { moviesStore } from "@stores/movies.store";
-import { ObservableDB } from "@stores/observableDB";
 import { activitiesStore } from "@stores/activities/activities.store";
 import { locationsStore } from "@stores/locations.store";
 import { notesStore } from "./notes";
+import { LocalObservableDB } from "@stores/localObservableDB";
 
 class BookmarksStore {
   @cell
-  private db = new ObservableDB<Bookmark>("bookmarks", true);
+  private db = new LocalObservableDB<Bookmark>("bookmarks");
 
   addHistory(item: HistoryItem) {
     const last = this.history.get(this.history.length - 1);
