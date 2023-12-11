@@ -146,7 +146,7 @@ spec:
         io.kompose.service: front
     spec:
       containers:
-        - image: ghcr.io/insomnia-it/front:840535b96cd68daaf82dd5f9cf18b77a94bb1350
+        - image: ghcr.io/insomnia-it/front:GITHUB_SHA
           name: front
           resources: {}
           ports:
@@ -192,7 +192,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: ghcr.io/insomnia-it/server:840535b96cd68daaf82dd5f9cf18b77a94bb1350
+          image: ghcr.io/insomnia-it/server:GITHUB_SHA
           env:
             - name: DATABASE
               value: mongodb://db:27017
