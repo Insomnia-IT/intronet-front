@@ -48,4 +48,7 @@ jobs:
           azcliversion: 2.30.0
           inlineScript: |
             az aks get-credentials --resource-group Insight --name InsightKube
-            kubectl apply -f .deploy/prod/kubernates.yaml
+
+      - uses: actions-hub/kubectl@master
+        with:
+          args: apply -f .deploy/prod/kubernates.yaml
