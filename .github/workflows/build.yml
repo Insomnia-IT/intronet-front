@@ -47,8 +47,5 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp compose create \
-              -g Insight \
-              --environment InsightApp \
-              --compose-file-path ".deploy/prod/docker-compose.yml"
+            az aks get-credentials --resource-group Insight --name InsightKube
+            kubectl apply -f .deploy/prod/kubernates.yaml
