@@ -43,8 +43,10 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Gets K8s context
-        uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
+        uses: azure/k8s-set-context@v3
         with:
+          method: service-principal
+          cluster-type: arc
           resource-group: Insight
           cluster-name: InsightKube
         id: login
