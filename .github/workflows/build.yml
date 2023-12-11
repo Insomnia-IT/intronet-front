@@ -36,19 +36,16 @@ jobs:
         working-directory: ./.deploy/prod
         run: docker compose push
 
-      - name: Azure Login
-        uses: azure/login@v1
+      - name: Gets K8s context
+        uses: azure/aks-set-context@94ccc775c1997a3fcfbfbce3c459fec87e0ab188
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: Insight
+          cluster-name: InsightKube
+        id: login
 
-
-      - name: Azure CLI script
-        uses: azure/CLI@v1
+      - name: Deploys application
+        uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
         with:
-          azcliversion: 2.30.0
-          inlineScript: |
-            az aks get-credentials --resource-group Insight --name InsightKube
-
-      - uses: actions-hub/kubectl@master
-        with:
-          args: apply -f .deploy/prod/kubernates.yaml
+          manifests: .deploy/prod/kubernates.yaml
+          action: deploy
