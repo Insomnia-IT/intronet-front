@@ -47,4 +47,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            az webapp config container set --resource-group Insight --name insight-app --multicontainer-config-type compose --multicontainer-config-file ./.deploy/prod/docker-compose.yml
+            az containerapp compose create
+              -g Insight
+              --environment InsightApp
+              --compose-file-path ".deploy/prod/docker-compose.yml"
