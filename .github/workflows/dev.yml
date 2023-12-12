@@ -37,13 +37,15 @@ jobs:
         working-directory: ./.deploy/prod
         run: docker compose push
 
-      - name: GET K8S Context
-        uses: azure/aks-set-context@v1
+      - uses: azure/login@v1
         with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: GET K8S Context
+        uses: azure/aks-set-context@v3
+        with:
           resource-group: 'Insight'
           cluster-name: 'InsightKube'
-        id: login
 
       - name: Deploys application
         uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
