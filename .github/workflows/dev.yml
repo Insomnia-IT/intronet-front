@@ -75,6 +75,8 @@ jobs:
 
       - uses: azure/setup-kubectl@v3
         id: install
-        run: kubectl apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+        with:
+          kubectl-version: latest
+      - run: kubectl apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
 
 
