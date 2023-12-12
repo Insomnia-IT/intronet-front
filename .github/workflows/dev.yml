@@ -37,11 +37,6 @@ jobs:
         working-directory: ./.deploy/prod
         run: docker compose push
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: GET K8S Context
         uses: azure/aks-set-context@v1
         with:
