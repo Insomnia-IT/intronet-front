@@ -73,9 +73,8 @@ jobs:
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
           use-kubelogin: "true"
 
-      - name: "Create deployment"
-        uses: okteto/apply@main
-        with:
-          manifest: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+      - uses: azure/setup-kubectl@v3
+        id: install
+        run: kubectl apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
 
 
