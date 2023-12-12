@@ -9,7 +9,7 @@ env:
   CLUSTER_NAME: InsightKube
   CLUSTER_RESOURCE_GROUP: Insight
   DEPLOYMENT_MANIFEST_PATH: |
-    ./.deploy/prod/kubernates.yaml
+    ./.deploy/prod/kubernetes.yaml
 jobs:
   build:
     runs-on: [ubuntu-latest]
@@ -20,12 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: subsitutte GITHUB_SHA in docker
+      - name: substitute GITHUB_SHA in docker
         working-directory: ./.deploy/prod
         run: |
           sed -i s/GITHUB_SHA/${GITHUB_SHA}/g ./docker-compose.yml
-          sed -i s/GITHUB_SHA/${GITHUB_SHA}/g ./kubernates.yaml
-          cat ./docker-compose.yml
 
       - name: build docker
         working-directory: ./.deploy/prod
@@ -52,6 +50,11 @@ jobs:
       - build
     steps:
       - uses: actions/checkout@v3
+
+      - name: substitute GITHUB_SHA in kubernetes
+        working-directory: ./.deploy/prod
+        run: |
+          sed -i s/GITHUB_SHA/${GITHUB_SHA}/g ./kubernetes.yaml
       - uses: azure/login@92a5484dfaf04ca78a94597f4f19fea633851fa2
         name: Azure login
         with:
