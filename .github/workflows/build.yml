@@ -42,17 +42,17 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Gets K8s context
-        uses: azure/k8s-set-context@v3
+      - name: GET K8S Context
+        uses: azure/aks-set-context@v1
         with:
-          method: service-principal
-          cluster-type: arc
-          resource-group: Insight
-          cluster-name: InsightKube
+          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+          resource-group: 'Insight'
+          cluster-name: 'InsightKube'
         id: login
 
       - name: Deploys application
         uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
         with:
           manifests: .deploy/prod/kubernates.yaml
+          namespace: 'insight'
           action: deploy
