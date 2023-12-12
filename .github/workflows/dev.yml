@@ -72,11 +72,9 @@ jobs:
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
           use-kubelogin: "true"
-      - uses: Azure/k8s-deploy@v4
+      - uses: actions-hub/kubectl@master
         name: Deploys application
         with:
-          action: deploy
-          manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
-          namespace: insight
+          args: apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
 
 
