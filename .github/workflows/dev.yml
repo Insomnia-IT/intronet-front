@@ -72,9 +72,10 @@ jobs:
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
           use-kubelogin: "true"
-      - uses: actions-hub/kubectl@master
-        name: Deploys application
+
+      - name: "Create deployment"
+        uses: okteto/apply@master
         with:
-          args: apply -f ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+          manifest: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
 
 
