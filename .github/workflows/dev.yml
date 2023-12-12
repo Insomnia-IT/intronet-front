@@ -5,6 +5,11 @@ on:
     branches:
       - 'master'
 
+env:
+  CLUSTER_NAME: InsightKube
+  CLUSTER_RESOURCE_GROUP: Insight
+  DEPLOYMENT_MANIFEST_PATH: |
+    ./.deploy/prod/kubernates.yaml
 jobs:
   build:
     runs-on: [ubuntu-latest]
@@ -37,20 +42,37 @@ jobs:
         working-directory: ./.deploy/prod
         run: docker compose push
 
-      - uses: azure/login@v1
+  deploy:
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: azure/login@92a5484dfaf04ca78a94597f4f19fea633851fa2
+        name: Azure login
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: GET K8S Context
-        uses: azure/aks-set-context@v3
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      - uses: azure/use-kubelogin@v1
+        name: Set up kubelogin for non-interactive login
         with:
-          resource-group: 'Insight'
-          cluster-name: 'InsightKube'
-
-      - name: Deploys application
-        uses: Azure/k8s-deploy@dd4bbd13a5abd2fc9ca8bdcb8aee152bb718fa78
+          kubelogin-version: v0.0.25
+      - uses: azure/aks-set-context@v3
+        name: Get K8s context
         with:
-          manifests: .deploy/prod/kubernates.yaml
-          namespace: 'insight'
+          admin: "false"
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+          use-kubelogin: "true"
+      - uses: Azure/k8s-deploy@v4
+        name: Deploys application
+        with:
           action: deploy
+          manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+
 
