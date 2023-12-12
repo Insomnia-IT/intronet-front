@@ -52,12 +52,3 @@ jobs:
           namespace: 'insight'
           action: deploy
 
-      - name: Remove old packages
-        uses: snok/container-retention-policy@v2
-        with:
-          image-names: *
-          cut-off: 1 day ago UTC
-          timestamp-to-use: updated_at
-          keep-at-least: 1
-          skip-tags: latest
-          token: ${{ secrets.DOCKER_TOKEN }}
