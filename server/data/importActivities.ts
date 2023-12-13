@@ -12,14 +12,15 @@ import music from "./activities/music-stage.json" assert { "type": "json" };
 import child from "./activities/child.json" assert { "type": "json" };
 import elStaico from "./activities/el-staico.json" assert { "type": "json" };
 import notionActivities from "./notion/activities.json" assert { "type": "json" };
+import * as process from "process";
 
-const importFromNotion = false;
+
 export async function importActivities(force = false) {
-  const locationDB = new Database<any>("locations");
+  const locationDB = Database.Get<any>("locations");
   const locations = (await locationDB.getSince()).filter((x) => !x.deleted);
   if (locations.length == 0) return;
 
-  const activitiesDB = new Database<any>("activities");
+  const activitiesDB = Database.Get<any>("activities");
   const activitiesInDB = await activitiesDB.getSince();
 
   if (activitiesInDB.length != 0) {
@@ -46,14 +47,14 @@ export async function importActivities(force = false) {
         }>;
       }>;
     }>;
-  }[] = importFromNotion
-    ? await fetch(`https://srv.rumyantsev.com/api/v1/intranet/schedules`, {
+  }[] = process.env.NOTION_API
+    ? await fetch(`${process.env.NOTION_API}/api/v1/intranet/schedules`, {
         headers: {
           Authorization: "Basic YWRtaW46YWRtaW4=",
         },
       }).then((x) => x.json())
     : notionActivities as any;
-  if (importFromNotion) {
+  if (process.env.NOTION_API) {
     fs.writeFileSync(
       "./server/data/notion/activities.json",
       JSON.stringify(notionSchedule),

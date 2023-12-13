@@ -1,7 +1,7 @@
 import {Fn, groupBy, orderBy} from "@cmmn/core";
 import { Database } from "./database";
 
-const voteDB = new Database<{
+const voteDB = Database.Get<{
   _id: string;
   animation: string;
   uid: string;

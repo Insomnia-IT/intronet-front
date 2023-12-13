@@ -50,8 +50,14 @@ export class Database<T extends { _id: string }> {
     ));
   }
 
-  constructor(public name: string) {}
+  private constructor(public name: string) {}
 
+  private static _instances = new Map<string, Database<any>>();
+  public static Get<T extends { _id: string }>(name: string): Database<T>{
+    if (!this._instances.has(name))
+      this._instances.set(name, new Database<T>(name));
+    return this._instances.get(name) as Database<T>;
+  }
   async remove(key: string) {
     await this.initCollection;
     await this.db.deleteOne({
@@ -97,6 +103,16 @@ export class Database<T extends { _id: string }> {
       .toArray();
     return result[0];
   }
+  async getMinVersion(): Promise<string> {
+    await this.initCollection;
+    const result = await this.db
+      .find({})
+      .sort({ version: 1 })
+      .limit(1)
+      .map((x) => x.version)
+      .toArray();
+    return result[0];
+  }
 
   private async getIndexOrCreate(): Promise<string> {
     await Database.initPromise;
@@ -114,6 +130,14 @@ export class Database<T extends { _id: string }> {
           },
           {
             name: indexName,
+          }
+        );
+        await this.db.createIndex(
+          {
+            version: 1,
+          },
+          {
+            name: indexName+'Back',
           }
         );
       }

@@ -4,7 +4,7 @@ import { dbCtrl } from "../db-ctrl";
 import mainPageJSON from "./main-page.json" assert { type: "json" };
 
 export async function importMainPage(force = false) {
-  const db = new Database<any>("main");
+  const db = Database.Get<any>("main");
   const cards = await db.getSince();
   if (cards.length) {
     if (!force) return;

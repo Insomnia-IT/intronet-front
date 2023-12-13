@@ -1,4 +1,4 @@
-import styles from "./onboard.style.css";
+import styles from "./onboard.module.css";
 import { Button, ButtonsBar, CloseButton } from "../../components";
 import { useEffect } from "preact/hooks";
 import { useRouter } from "../routing";

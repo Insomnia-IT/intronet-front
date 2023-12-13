@@ -7,7 +7,7 @@ import json from "./vurchel.json" assert { "type": "json" };
 
 const importFromVurchel = false;
 export async function importVurchel(force = false) {
-  const vurchelDB = new Database<any>("vurchel");
+  const vurchelDB = Database.Get<any>("vurchel");
   const films = await vurchelDB.getSince();
   // console.log(movies);
   // writeFileSync('./vurchel.json', JSON.stringify(films), 'utf-8')
@@ -18,7 +18,7 @@ export async function importVurchel(force = false) {
     }
   }
   if (importFromVurchel) {
-    const moviesDB = new Database<MovieBlock>("movies");
+    const moviesDB = Database.Get<MovieBlock>("movies");
     const movies = await moviesDB.getSince();
     for (let movie of movies.flatMap((x) => x.movies)) {
       if (!movie.vurchelId) {

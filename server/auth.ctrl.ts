@@ -4,7 +4,7 @@ import {decrypt, encrypt} from "./cryptor";
 import {Database} from "./database";
 
 export const authCtrl = new (class {
-  db = new Database<{encrypted: string, _id: string;}>("tokens");
+  db = Database.Get<{encrypted: string, _id: string;}>("tokens");
   public async parse(token: string): Promise<UserInfo> {
     if (!token) throw new Error(`Token not provided`);
     if (!/Bearer [\w\d]+/.test(token)) throw new Error(`Token invalid`);

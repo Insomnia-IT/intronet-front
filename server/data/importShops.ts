@@ -5,7 +5,7 @@ import { dbCtrl } from "../db-ctrl";
 import shopsJSON from "./shops.json" assert { "type": "json" };
 
 export async function importShops(force = false) {
-  const db = new Database<any>("shops");
+  const db = Database.Get<any>("shops");
   const shops = await db.getSince();
 
   if (shops.length != 0) {

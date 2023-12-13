@@ -4,6 +4,7 @@
   "description": "Intronet web site for insomnia fest",
   "scripts": {
     "server": "nodemon ./dist/esm",
+    "test": "node --test ./dist/esm/specs/locations.specs.js",
     "build": "cmmn compile"
   },
   "type": "module",

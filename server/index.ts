@@ -128,10 +128,10 @@ fastify.post<{ Params: { name: string }, Querystring: { force: boolean } }>(
 
 // Run the server!
 fastify.listen(
-  {port: +(process.env.PORT ?? 5002), host: process.env.HOST},
+  {port: +(process.env.PORT ?? 5005), host: process.env.HOST},
   function (err, address) {
     if (err) {
-      fastify.log.error(err);
+      console.error(err);
       process.exit(1);
     }
     console.log(`Server is now listening on ${address}`);

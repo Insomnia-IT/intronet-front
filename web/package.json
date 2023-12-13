@@ -61,7 +61,7 @@
         "/public": "./public"
       },
       "proxy": {
-        "/webapi": "http://localhost:5002"
+        "/webapi": "http://localhost:5005"
       }
     },
     "sw": {

@@ -5,7 +5,7 @@ import { dbCtrl } from "../db-ctrl";
 import locationsJSON from "./locations.json" assert { "type": "json" };
 import notionLocationsJSON from "./notion/locations.json" assert { "type": "json" };
 import contentBlocks from "./location-blocks.json" assert { "type": "json" };
-const importFromNotion = false;
+import * as process from "process";
 
 export async function importLocations(force = false) {
   const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;
@@ -25,8 +25,8 @@ export async function importLocations(force = false) {
     work_tags: string[];
     menu: string;
     directionId: string;
-  }> = importFromNotion
-    ? await fetch(`https://srv.rumyantsev.com/api/v1/intranet/locations`, {
+  }> = process.env.NOTION_API
+    ? await fetch(`${process.env.NOTION_API}/api/v1/intranet/locations`, {
         headers: {
           Authorization: "Basic YWRtaW46YWRtaW4=",
         },
@@ -37,7 +37,7 @@ export async function importLocations(force = false) {
   //   ${notionLocations.map(x => Object.values(x).map(x => typeof x === "object" ? JSON.stringify(x) : x).join('\t')).join('\n')}
   // `, "utf-8")
 
-  const db = new Database("locations");
+  const db = Database.Get("locations");
   const existed = await db.getSince();
 
   if (existed.length != 0) {
@@ -88,14 +88,20 @@ export async function importLocations(force = false) {
       if (name.includes("тауматроп")) return "Тауматроп";
       return name;
     }
-    const name = escape(readGoogleMapsName(x.properties.name.toLowerCase()));
+    const notionName = escape(readGoogleMapsName(x.properties.name.toLowerCase()));
     const notionLoc = notionLocations.find(
       (n) =>
-        escape(readNotionName(n.name.toLowerCase())) === name ||
+        escape(readNotionName(n.name.toLowerCase())) === notionName ||
         (n.map_name &&
-          escape(readNotionName(n.map_name.toLowerCase())) === name)
+          escape(readNotionName(n.map_name.toLowerCase())) === notionName)
     );
-    if (!notionLoc && !Array.isArray(figure)) {
+    const name = getName(notionLoc?.name ?? x.properties.name);
+    if (Array.isArray(figure) && !enabledFigures.some(x => x.test(name))){
+      return [];
+    }
+    if (Array.isArray(figure))
+      console.log(name)
+    if (!notionLoc) {
       notMatched.push(x.properties.name);
       return [];
     }
@@ -116,13 +122,13 @@ export async function importLocations(force = false) {
     const contentBlock = notionLoc?.uuid
       ? contentBlocks.find((x) => x.notionId === notionLoc?.uuid)
       : null;
-    console.log(notionLoc?.description || (contentBlock?.description ?? ""));
+    // console.log(notionLoc?.description || (contentBlock?.description ?? ""));
     return [
       {
         _id: Fn.ulid(),
         directionId: notionLoc?.directionId,
         notionId: notionLoc?.uuid,
-        name: getName(notionLoc?.name ?? x.properties.name),
+        name,
         tags: notionLoc?.tags ?? [],
         description:
           notionLoc?.description || (contentBlock?.description ?? ""),
@@ -136,16 +142,22 @@ export async function importLocations(force = false) {
       },
     ];
   });
-  console.log(
-    notMatched.join("\n"),
-    "\n-------------------\n",
-    notionLocations
-      .filter((x) => !data.some((y) => y.name === x.name))
-      .map((x) => `${x.map_name}(${x.name})`)
-      .join("\n")
-  );
+  // console.log(
+  //   notMatched.join("\n"),
+  //   "\n-------------------\n",
+  //   notionLocations
+  //     .filter((x) => !data.some((y) => y.name === x.name))
+  //     .map((x) => `${x.map_name}(${x.name})`)
+  //     .join("\n")
+  // );
   for (let loc of data) {
     await db.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
   dbCtrl.versions = undefined;
 }
+
+const enabledFigures = [
+  /Северо-Восток/g,
+  /Северный\sгород/g,
+  /Лагерь\sДетской/g,
+];

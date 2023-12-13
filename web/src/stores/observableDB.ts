@@ -33,11 +33,24 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     if (this.syncLock) return;
     this.syncLock = true;
     try {
+      for (let item of this.items.values()) {
+        if (item.version >= this.initVersion)
+          continue;
+        await this.db.remove(item._id);
+        this.items.delete(item._id);
+      }
       await Promise.all([this.loadFromServer(), this.saveToServer()]);
-      this.syncVersion =
+      const syncVersion =
         this.localVersion > this.remoteVersion
           ? this.localVersion
           : this.remoteVersion;
+      if (syncVersion <= this.syncVersion)
+        return;
+      this.syncVersion = syncVersion;
+      this.emit("change", {
+        type: "init",
+        value: Array.from(this.items.values()),
+      });
     } finally {
       this.syncLock = false;
     }
@@ -86,13 +99,12 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
         await this.set(newItem);
       }
     }
-    this.emit("change", {
-      type: "init",
-      value: Array.from(this.items.values()),
-    });
     this.loadLock = false;
   }
-
+  // version of db data loading
+  get initVersion() {
+    return VersionsDB.Instance.get(this.name)?.init ?? "";
+  }
   // max version of remote items
   get remoteVersion() {
     return VersionsDB.Instance.get(this.name)?.remote ?? "";
@@ -115,6 +127,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
 
 class VersionsDB extends LocalObservableDB<{
   _id: string;
+  init: string;
   local: string;
   remote: string;
   synced: string;
@@ -132,7 +145,7 @@ class VersionsDB extends LocalObservableDB<{
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 1000);
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
   private loadingLock = false;
@@ -142,12 +155,13 @@ class VersionsDB extends LocalObservableDB<{
     try {
       const actual = (await fetch(`${api}/versions`, {
         headers: authStore.headers,
-      }).then((x) => x.json())) as Record<string, string>;
+      }).then((x) => x.json())) as Record<string, {min: string; max: string;}>;
       for (let name in actual) {
         await this.set({
           ...this.get(name),
           _id: name,
-          remote: actual[name],
+          remote: actual[name].max,
+          init: actual[name].min
         });
       }
       IsConnected.set(true);

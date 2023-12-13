@@ -11,19 +11,20 @@ export const dbCtrl = new class {
     const db = databases.get(name);
     await db.addOrUpdate(value);
     if (this.versions) {
-      this.versions[name] = value.version;
+      this.versions[name].max = value.version;
     }
   }
 
-  versions: Record<string, string> = undefined;
+  versions: Record<string, {min: string, max: string}> = undefined;
   public async getVersions(){
     if (this.versions)
       return this.versions;
     const versions = {};
     for (let database of databases.values()) {
-      const version = await database.getMaxVersion();
-      if (version){
-        versions[database.name] = version;
+      const maxVersion = await database.getMaxVersion();
+      const minVersion = await database.getMinVersion();
+      if (minVersion && maxVersion){
+        versions[database.name] = {min: minVersion, max: maxVersion};
       }
     }
     return this.versions = versions;
@@ -46,4 +47,4 @@ export const databasesList = [
   'vurchel',
   'shops'
 ];
-const databases = new Map<string, Database<any>>(databasesList.map(x => [x, new Database<any>(x)]));
+export const databases = new Map<string, Database<any>>(databasesList.map(x => [x, Database.Get<any>(x)]));
