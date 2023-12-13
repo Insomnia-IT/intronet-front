@@ -1,0 +1,285 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db
+  namespace: insight
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/intronet-prod-apps: "true"
+        io.kompose.service: db
+    spec:
+      containers:
+        - env:
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: password
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: admin
+          image: mongo:7.0.4
+          name: db
+          resources: {}
+          ports:
+            - name: tcp
+              containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: db-data
+      restartPolicy: Always
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: insight
+spec:
+  ports:
+    - port: 27017
+      targetPort: tcp
+  selector:
+    io.kompose.service: db
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: db-data
+  namespace: insight
+  name: db-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: dbui
+  name: dbui
+  namespace: insight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: dbui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/intronet-prod-apps: "true"
+        io.kompose.service: dbui
+    spec:
+      containers:
+        - env:
+            - name: ME_CONFIG_BASICAUTH_PASSWORD
+              value: password
+            - name: ME_CONFIG_BASICAUTH_USERNAME
+              value: admin
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              value: password
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              value: admin
+            - name: ME_CONFIG_MONGODB_PORT
+              value: "27017"
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: db
+            - name: ME_CONFIG_SITE_BASEURL
+              value: /db/
+          image: mongo-express:1.0.0-18-alpine3.18
+          name: dbui
+          ports:
+            - name: http
+              containerPort: 8081
+          resources: {}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: insight
+  name: dbui
+spec:
+  ports:
+    - port: 8081
+      targetPort: http
+  selector:
+    io.kompose.service: dbui
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: front
+  namespace: insight
+  name: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: front
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/intronet-prod-apps: "true"
+        io.kompose.service: front
+    spec:
+      containers:
+        - image: ghcr.io/insomnia-it/front:GITHUB_SHA
+          name: front
+          resources: {}
+          ports:
+            - name: http
+              containerPort: 80
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: front
+  namespace: insight
+  name: front
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    io.kompose.service: front
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: server
+  namespace: insight
+  name: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/intronet-prod-apps: "true"
+        io.kompose.service: server
+    spec:
+      containers:
+        - name: server
+          image: ghcr.io/insomnia-it/server:GITHUB_SHA
+          env:
+            - name: DATABASE
+              value: mongodb://db:27017
+            - name: MONGODB_PASSWORD
+              value: password
+            - name: MONGODB_USER
+              value: admin
+            - name: PORT
+              value: "80"
+          volumeMounts:
+            - mountPath: /web/secrets
+              name: server-secrets
+          ports:
+            - name: http
+              containerPort: 80
+      restartPolicy: Always
+      volumes:
+        - name: server-secrets
+          persistentVolumeClaim:
+            claimName: server-secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: server
+  namespace: insight
+  name: server
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    io.kompose.service: server
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: server-secrets
+  namespace: insight
+  name: server-secrets
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ki
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  namespace: insight
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  defaultBackend:
+    service:
+      name: front
+      port:
+        name: http
+  rules:
+    - http:
+        paths:
+          - path: /webapi/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: server
+                port:
+                  name: http
+          - path: /db
+            pathType: Prefix
+            backend:
+              service:
+                name: dbui
+                port:
+                  name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front
+                port:
+                  name: http

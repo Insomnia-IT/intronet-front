@@ -12,7 +12,7 @@ export class Database<T extends { _id: string }> {
           username: process.env.MONGODB_USER || "admin",
           password: process.env.MONGODB_PASSWORD || "password",
         },
-        connectTimeoutMS: 1000
+        connectTimeoutMS: 1000,
       }
     ));
   }
@@ -30,10 +30,11 @@ export class Database<T extends { _id: string }> {
         return;
       } catch (e) {
         if (waitTimeout > 4) {
-          console.error(e);
-          console.log(
-            `Failed init db, ${this.name}. Wait ${waitTimeout / 1000} second...`
-          );
+          console.log(`Failed init db. Wait ${waitTimeout / 1000} second...`);
+        }
+        if (waitTimeout > 64) {
+          console.log(`Failed init db`);
+          process.exit(1);
         }
         await new Promise((r) => setTimeout(r, waitTimeout));
         waitTimeout *= 2;
@@ -49,8 +50,7 @@ export class Database<T extends { _id: string }> {
     ));
   }
 
-  constructor(public name: string) {
-  }
+  constructor(public name: string) {}
 
   async remove(key: string) {
     await this.initCollection;
