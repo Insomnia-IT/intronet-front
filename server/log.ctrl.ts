@@ -1,30 +1,34 @@
-import * as console from "console";
 import log4js from "log4js";
+import * as process from "process";
 
-// log4js.configure({
-//   appenders: {
-//     logstash: {
-//       "type": "log4js-logstash-tcp",
-//       "host": "logstash",
-//       "port": 5000,
-//       "fields": {
-//         "environment": "development"
-//       }
-//     }
-//   },
-//   categories: {
-//     default: { appenders: ['logstash'], level: 'info' }
-//   }
-// });
+if (process.env.LOGSTASH) {
+log4js.configure({
+  appenders: {
+    logstash: {
+      "type": "log4js-logstash-tcp",
+      "host": process.env.LOGSTASH,
+      "port": 5000,
+      "fields": {
+        "environment": "development"
+      }
+    }
+  },
+  categories: {
+    default: { appenders: ['logstash'], level: 'info' }
+  }
+});
+}
 
 export const logCtrl = new class {
-  // logger = log4js.getLogger();
+  logger = process.env.LOGSTASH ? log4js.getLogger() : null;
   log = (data: any) => {
-    // this.logger.log('INFO', {
-    //   '@tags': ['nodejs', 'test'],
-    //   '@timestamp': new Date().getTime(),
-    //   '@version': '1',
-    //   ...data,
-    // })
+    if (!process.env.LOGSTASH)
+      return;
+    this.logger.log('INFO', {
+      '@tags': ['nodejs', 'test'],
+      '@timestamp': new Date().getTime(),
+      '@version': '1',
+      ...data,
+    })
   }
 }
