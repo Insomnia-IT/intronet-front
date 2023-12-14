@@ -16,10 +16,10 @@
   dependencies:
     bind-decorator "^1.0.11"
 
-"@cmmn/tools@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-2.0.1.tgz#afc5c4fe3974871323b2249d4e24bbb4c0ee9a1e"
-  integrity sha512-JfHGX2ZzaIq/0b4FwTcqcjzefVzk+3lLJvEU5EHfNRkKjdrSE60UiEX2It7Uvqm6PF4O7/Cqt98pOI97DH035A==
+"@cmmn/tools@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@cmmn/tools/-/tools-2.0.2.tgz#d28841bc3041f638ab3e6a1d00e608c595c33521"
+  integrity sha512-RKaaXextVW8uepQPzQJHeY8VeiMPFH1D/7RM4hSvx25eH0RHHfhddtewBGp7R3FU5mmSTKdoDCfdNYXH0fyhSQ==
   dependencies:
     "@testdeck/jest" "0.2.0"
     "@types/node" "20.x.x"
