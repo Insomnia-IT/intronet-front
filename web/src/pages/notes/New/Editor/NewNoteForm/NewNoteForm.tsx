@@ -1,17 +1,16 @@
-import { Form, Field, IFormField, IField } from "../../../../../components/forms";
+import { Form, Field, IFormField, IField } from "@components/forms";
 import {
   namesShort as daysShortNames,
-  getCurrentDay,
 } from "../../../../../helpers/getDayText";
 import styles from "./new-note-form.module.css";
 import classNames from "classnames";
-import { categoriesStore, notesStore } from "../../../../../stores";
-import { useCell } from "../../../../../helpers/cell-state";
+import { categoriesStore, notesStore } from "@stores";
+import { useCell } from "@helpers/cell-state";
 import { NextButton } from "../../NextButton/NextButton";
 import { FunctionalComponent } from "preact";
-import { authStore } from "../../../../../stores/auth.store";
+import { authStore } from "@stores/auth.store";
 import { useRouter } from "../../../../routing";
-import { getCurrentDate } from "../../../../../helpers/date";
+import { getCurrentDate } from "@helpers/date";
 
 const dayTags = daysShortNames
   .map((day) => {
