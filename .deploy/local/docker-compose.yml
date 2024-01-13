@@ -12,6 +12,8 @@ services:
       - 5002:80
     expose:
       - 80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     links:
       - server
       - mongo-express

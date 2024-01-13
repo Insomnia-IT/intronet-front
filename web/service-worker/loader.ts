@@ -2,8 +2,8 @@
 import { ServiceWorkerAction } from "./actions";
 
 // @ts-ignore
-const sw = process.env.NODE_ENV == "production" ? "/sw.min.js" : "/sw.js";
-if (navigator.serviceWorker && process.env.NODE_ENV == "production") {
+const sw = PRODUCTION ? "/sw.min.js" : "/sw.js";
+if (navigator.serviceWorker && PRODUCTION) {
   const handle = (globalThis.ServiceWorkerHandle = {
     event: null as BeforeInstallPromptEvent,
     worker: navigator.serviceWorker.controller,
