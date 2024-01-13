@@ -6,6 +6,7 @@
     "compile": "cmmn compile --watch",
     "serve": "cmmn serve -b",
     "run": "cmmn spawn compile --watch bundle --watch serve -b",
+    "bundle:prod": "cmmn bundle -b --prod --minify",
     "bundle:watch": "cmmn bundle -b --watch",
     "bundle:stats": "cmmn bundle -b --prod --stats",
     "build": "cmmn compile -b && cmmn bundle -b --prod --minify",

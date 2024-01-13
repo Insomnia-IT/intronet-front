@@ -3,12 +3,15 @@ name: intronet-local
 services:
   web:
     image: nginx:latest
+    hostname: insight-app
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ../../web/dist/bundle:/app/dist:ro
       - ../../web/public:/app/public:ro
     ports:
       - 5002:80
+    expose:
+      - 80
     links:
       - server
       - mongo-express
@@ -17,6 +20,7 @@ services:
       - mongo-express
     networks:
       main:
+      host_local:
     restart: always
 
   server:
@@ -76,3 +80,5 @@ services:
 networks:
   main:
     driver: bridge
+  host_local:
+    external: true
