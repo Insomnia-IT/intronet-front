@@ -41,7 +41,7 @@ export function MapPageWithRouting() {
         <CloseButton goTo="/main"/>
         <ButtonsBar at="bottom">
           <Button type="vivid" goTo="/map/search">
-            <SvgIcon id="#search" size="14px" />
+            <SvgIcon id="#search" size="14px"  stroke-width={3}/>
           </Button>
           <Button type="vivid" goTo="/bookmarks/locations">
             <SvgIcon id="#bookmark" size="14px" />

@@ -1,0 +1,20 @@
+.searchInput {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.searchInput svg{
+  position: absolute;
+  color: var(--medium-blue);
+  left: 16px;
+  top: 18px;
+}
+
+.input {
+  composes: input from "./input.module.css";
+  padding-left: 48px !important;
+  background-color: white;
+}

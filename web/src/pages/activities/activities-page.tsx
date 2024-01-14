@@ -19,7 +19,7 @@ export function ActivitiesPage() {
       <CloseButton onClick={ () => router.goTo([ 'main' ]) }/>
       <ButtonsBar at="bottom">
         <Button type="vivid" goTo={['activities','search',{}]}>
-          <SvgIcon id="#search" size={ 15 }/>
+          <SvgIcon id="#search" size={ 15 } stroke-width={3}/>
         </Button>
         <Button type="vivid" goTo="/bookmarks/activity">
           <SvgIcon id="#bookmark" size="14px"/>

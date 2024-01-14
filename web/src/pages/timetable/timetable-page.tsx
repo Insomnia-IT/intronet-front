@@ -16,7 +16,7 @@ export function TimetablePage() {
         <CloseButton goTo="/main" />
         <ButtonsBar at="bottom">
           <Button type="vivid" goTo="/timetable/search">
-            <SvgIcon id="#search" size={15} />
+            <SvgIcon id="#search" size={15}  stroke-width={3}/>
           </Button>
           <Button type="vivid" goTo="/bookmarks/movie">
             <SvgIcon id="#bookmark" size="14px" />

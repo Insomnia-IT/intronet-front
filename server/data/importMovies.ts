@@ -4,7 +4,7 @@ import * as console from "console";
 import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };
-import moviesJSON from "./movies_api.json" assert { "type": "json" };
+import moviesAPI from "./movies_api.json" assert { "type": "json" };
 
 export async function importMovies(force = false) {
   const locationDB = Database.Get<any>("locations");
@@ -53,7 +53,8 @@ export async function importMovies(force = false) {
       }))
     )
     .filter((x) => x);
-  const array = moviesJSON
+  console.log(blocksXls[0])
+  const array = moviesAPI
     .flatMap((x) =>
       x.screenPrograms.map((b) => ({
         block: b,
@@ -76,13 +77,13 @@ export async function importMovies(force = false) {
       [];
     const xlsx = blocksXls.filter(
       (b) =>
-        b.day == x[0].day &&
-        b.locationId == x[0].locationId &&
-        b.start == x[0].start &&
-        b.end == x[0].end
+        b.day == x[0].day
+        && b.locationId == x[0].locationId
+        && b.start == x[0].start
+        && b.end == x[0].end
     );
     if (xlsx.length !== 1) {
-      console.log("error mapping movies", x[0], xlsx);
+      console.log("error mapping movies", x, xlsx);
       continue;
     }
     const block: MovieBlock = {
@@ -179,7 +180,7 @@ export function getTime(local: number): string {
 }
 
 function toMoscow(unix: number): number {
-  return unix + (new Date().getTimezoneOffset() + 3 * 60) * 60000;
+  return unix + (new Date(unix).getTimezoneOffset() + 3 * 60) * 60000;
 }
 
 const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;

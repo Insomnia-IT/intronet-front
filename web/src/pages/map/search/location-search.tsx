@@ -1,20 +1,14 @@
-import { useSearch } from "../../../helpers/search/use-search";
-import { useMemo, useState } from "preact/hooks";
-import { Input } from "../../../components/input";
-import { SearchPlug } from "../../../components/plugs/search/SearchPlug";
-import { useCell } from "../../../helpers/cell-state";
-import { locationsStore } from "../../../stores";
+import { Input } from "@components/input";
+import { SearchPlug } from "@components/plugs/search/SearchPlug";
+import { useCell } from "@helpers/cell-state";
 import { LocationList } from "../location/location-list";
-import { searchDataValidator } from "../../../helpers/search/searchDataValidator";
+import {searchStore} from "@stores/search.store";
+import {useEffect} from "preact/hooks";
 
 export const LocationSearch = () => {
-  const { query, check, setQuery } = useSearch(
-    (regex) => (location: InsomniaLocation) =>
-      regex.test(searchDataValidator(location.name)) ||
-      regex.test(searchDataValidator(location.directionId))
-  );
-  const locations = useCell(() => locationsStore.Locations);
-  const filtered = useMemo(() => locations.filter(check), [locations, check]);
+  const query = useCell(searchStore.query)
+  const locations = useCell(searchStore.filteredLocations);
+  useEffect(() => () => searchStore.query.set(''), []);
 
   return (
     <div flex column gap={5} className="h-full">
@@ -23,10 +17,10 @@ export const LocationSearch = () => {
         style={{ margin: "20px 0" }}
         placeholder="Площадка"
         value={query}
-        onInput={(e) => setQuery(e.currentTarget.value)}
+        onInput={searchStore.onInput}
       />
-      {filtered.length > 0 ? (
-        <LocationList locations={filtered} searchQuery={query} />
+      {locations.length > 0 ? (
+        <LocationList locations={locations} searchQuery={query} />
       ) : (
         <SearchPlug
           title={"Ничего не найдено"}

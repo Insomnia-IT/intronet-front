@@ -1,6 +1,7 @@
 import { FunctionalComponent, JSX } from "preact";
 import style from "./input.module.css";
 import classNames from "classnames";
+import {useEffect, useRef} from "preact/hooks";
 
 export type InputProps =
   | ({
@@ -10,7 +11,7 @@ export type InputProps =
       inputType: "textarea";
     } & JSX.HTMLAttributes<HTMLTextAreaElement>);
 
-export const Input: FunctionalComponent<InputProps> = ({
+export const Input: FunctionalComponent<Omit<InputProps, "ref">> = ({
   class: c,
   className,
   inputType,
@@ -24,10 +25,14 @@ export const Input: FunctionalComponent<InputProps> = ({
     }),
     ...inputProps,
   };
-
+  const ref = useRef<HTMLInputElement & HTMLTextAreaElement>()
+  useEffect(() => {
+    if (ref.current && inputProps.autofocus)
+      ref.current.focus();
+  }, [ref.current]);
   return isTextarea ? (
-    <textarea {...(props as JSX.HTMLAttributes<HTMLTextAreaElement>)} />
+    <textarea {...(props as JSX.HTMLAttributes<HTMLTextAreaElement>)} ref={ref} />
   ) : (
-    <input {...(props as JSX.HTMLAttributes<HTMLInputElement>)} />
+    <input {...(props as JSX.HTMLAttributes<HTMLInputElement>)} ref={ref}/>
   );
 };
