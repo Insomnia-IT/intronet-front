@@ -2,120 +2,139 @@
 import { ServiceWorkerAction } from "./actions";
 
 // @ts-ignore
-const sw = PRODUCTION ? "/sw.min.js" : "/sw.js";
-if (navigator.serviceWorker && PRODUCTION) {
-  const handle = (globalThis.ServiceWorkerHandle = {
-    event: null as BeforeInstallPromptEvent,
-    worker: navigator.serviceWorker.controller,
-    // size: 0,
-    // get percent() {
-    //   return this.size / 1372629;
-    // },
-    // reload() {
-    //   this.worker.postMessage({
-    //     action: "reload" as ServiceWorkerAction,
-    //   });
-    // },
-    // check(force: boolean) {
-    //   this.worker.postMessage({
-    //     action: "check" as ServiceWorkerAction,
-    //     force,
-    //   });
-    // },
-  });
-  setInterval(
-    () =>
-      handle.worker?.postMessage({
-        action: "check",
-      }),
-    5 * 1000
-  );
-
-  // const isFirstInstall = !(
-  //   navigator.serviceWorker.controller instanceof ServiceWorker
-  // ); // при первой установке на клиенте еще нет sw
-
-  if (location.pathname.match(/\.reload/)) {
-    localStorage.clear();
-    document.cookie = "";
-    navigator.serviceWorker
-      .getRegistration()
-      .then((x) => x?.unregister())
-      .catch()
-      .then((x) => indexedDB.databases())
-      .then((x) => {
-        for (let db of x) {
-          indexedDB.deleteDatabase(db.name);
-        }
-        indexedDB.deleteDatabase("versions");
-      })
-      .catch()
-      .then(() => (location.pathname = "/"));
-  }
-  if (navigator.serviceWorker.controller) {
-    const isIOS = CSS.supports("-webkit-touch-callout", "none");
-    navigator.serviceWorker.controller.postMessage({
-      action: "init",
-      isIOS: isIOS,
-    });
+if (PRODUCTION) {
+  if (!navigator.serviceWorker){
+    const start = document.getElementById('start');
+    start.style.flexDirection = 'column';
+    const span = document.createElement('div');
+    span.innerText = `К сожалению этот браузер не поддерживается. Откройте сайт в поддерживаемом браузере:\n Chrome, Firefox, Yandex или Safari`;
+    span.style.padding = '1em';
+    span.style.textAlign = 'center';
+    span.style.color = 'white';
+    start.appendChild(span);
+    const link = document.createElement('a');
+    link.href = location.href;
+    link.innerText = location.href;
+    link.style.display = 'block'
+    link.style.color = '#fe4ba9';
+    link.style.fontSize = '6vw';
+    start.appendChild(link);
+    start.querySelector('svg').remove();
   } else {
-    navigator.serviceWorker.register(sw, { scope: "/" }).then((reg) => {
-      reg.addEventListener("updatefound", () => {
-        // A wild service worker has appeared in reg.installing!
-        const newWorker = reg.installing;
+    const sw = PRODUCTION ? "/sw.min.js" : "/sw.js";
+    const handle = (globalThis.ServiceWorkerHandle = {
+      event: null as BeforeInstallPromptEvent,
+      worker: navigator.serviceWorker.controller,
+      // size: 0,
+      // get percent() {
+      //   return this.size / 1372629;
+      // },
+      // reload() {
+      //   this.worker.postMessage({
+      //     action: "reload" as ServiceWorkerAction,
+      //   });
+      // },
+      // check(force: boolean) {
+      //   this.worker.postMessage({
+      //     action: "check" as ServiceWorkerAction,
+      //     force,
+      //   });
+      // },
+    });
+    setInterval(
+      () =>
+        handle.worker?.postMessage({
+          action: "check",
+        }),
+      5 * 1000
+    );
 
-        // "installing" - the install event has fired, but not yet complete
-        // "installed"  - install complete
-        // "activating" - the activate event has fired, but not yet complete
-        // "activated"  - fully active
-        // "redundant"  - discarded. Either failed install, or it's been
-        //                replaced by a newer version
+    // const isFirstInstall = !(
+    //   navigator.serviceWorker.controller instanceof ServiceWorker
+    // ); // при первой установке на клиенте еще нет sw
 
-        newWorker.addEventListener("statechange", () => {
-          if (newWorker.state === "activated") {
-            handle.worker = newWorker;
-            newWorker.postMessage({
-              action: "init",
-            });
+    if (location.pathname.match(/\.reload/)) {
+      localStorage.clear();
+      document.cookie = "";
+      navigator.serviceWorker
+        .getRegistration()
+        .then((x) => x?.unregister())
+        .catch()
+        .then((x) => indexedDB.databases())
+        .then((x) => {
+          for (let db of x) {
+            indexedDB.deleteDatabase(db.name);
           }
-          // newWorker.state has changed
+          indexedDB.deleteDatabase("versions");
+        })
+        .catch()
+        .then(() => (location.pathname = "/"));
+    }
+    if (navigator.serviceWorker.controller) {
+      const isIOS = CSS.supports("-webkit-touch-callout", "none");
+      navigator.serviceWorker.controller.postMessage({
+        action: "init",
+        isIOS: isIOS,
+      });
+    } else {
+      navigator.serviceWorker.register(sw, {scope: "/"}).then((reg) => {
+        reg.addEventListener("updatefound", () => {
+          // A wild service worker has appeared in reg.installing!
+          const newWorker = reg.installing;
+
+          // "installing" - the install event has fired, but not yet complete
+          // "installed"  - install complete
+          // "activating" - the activate event has fired, but not yet complete
+          // "activated"  - fully active
+          // "redundant"  - discarded. Either failed install, or it's been
+          //                replaced by a newer version
+
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "activated") {
+              handle.worker = newWorker;
+              newWorker.postMessage({
+                action: "init",
+              });
+            }
+            // newWorker.state has changed
+          });
         });
       });
+    }
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      console.log(navigator.serviceWorker.controller);
+      // This fires when the service worker controlling this page
+      // changes, eg a new worker has skipped waiting and become
+      // the new active worker.
     });
+
+    navigator.serviceWorker.addEventListener("message", ({data}) => {
+      switch (data.action) {
+        // case "loading":
+        // handle.size += data.size;
+        // console.log(`${data.cache}: +${data.size} (${data.url})`);
+        // break;
+
+        case "init":
+          init().catch(console.error);
+          break;
+        case "new-version":
+          console.log("web has new version");
+          navigator.serviceWorker
+            .getRegistration()
+            .then((x) => x?.unregister())
+            .then((x) => location.reload());
+          break;
+      }
+    });
+    window.addEventListener(
+      "beforeinstallprompt",
+      (e: BeforeInstallPromptEvent) => {
+        handle.event = e;
+      }
+    );
   }
-
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    console.log(navigator.serviceWorker.controller);
-    // This fires when the service worker controlling this page
-    // changes, eg a new worker has skipped waiting and become
-    // the new active worker.
-  });
-
-  navigator.serviceWorker.addEventListener("message", ({ data }) => {
-    switch (data.action) {
-      // case "loading":
-      // handle.size += data.size;
-      // console.log(`${data.cache}: +${data.size} (${data.url})`);
-      // break;
-
-      case "init":
-        init().catch(console.error);
-        break;
-      case "new-version":
-        console.log("web has new version");
-        navigator.serviceWorker
-          .getRegistration()
-          .then((x) => x?.unregister())
-          .then((x) => location.reload());
-        break;
-    }
-  });
-  window.addEventListener(
-    "beforeinstallprompt",
-    (e: BeforeInstallPromptEvent) => {
-      handle.event = e;
-    }
-  );
 } else {
   init().catch(console.error);
 }
