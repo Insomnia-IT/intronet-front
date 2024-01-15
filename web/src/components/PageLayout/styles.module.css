@@ -1,0 +1,28 @@
+.layout {
+  overflow-x: hidden;
+  position: relative;
+  max-width: 440px;
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.clear {
+  display: block;
+  padding: unset;
+  box-sizing: unset;
+}
+
+.light {
+  background: var(--cold-white);
+}
+
+.dark {
+  background: var(--ins-night);
+}
+
+.with-tapbar {
+  padding-bottom: 75px;
+}

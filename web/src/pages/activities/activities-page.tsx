@@ -8,13 +8,14 @@ import { ActivitySearch } from "./search/activity-search";
 import { useActivitiesRouter } from "./hooks/useActivitiesRouter";
 import { routes } from "../routing";
 import { ActivityLocation } from "./location/activityLocation";
+import { PageLayout } from "@components/PageLayout";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
   const sheets = useMemo(() => getActivitiesSheets(router.activityId, router.locationId), [ router.activityId, router.locationId ]);
 
   return (
-    <div class="page">
+    <PageLayout withTapBar>
       <ActivitiesAll/>
       <CloseButton onClick={ () => router.goTo([ 'main' ]) }/>
       <ButtonsBar at="bottom">
@@ -27,7 +28,7 @@ export function ActivitiesPage() {
         </Button>
       </ButtonsBar>
       <Sheet children={sheets} onClose={() => router.goTo(['activities'])}/>
-    </div>
+    </PageLayout>
   );
 }
 

@@ -6,12 +6,13 @@ import { MovieBlockEdit } from "./movie-block-edit";
 import { Movie } from "./movie/movie";
 import { MovieSearch } from "./search/movie-search";
 import { TimetableAll } from "./timetable";
+import { PageLayout } from "@components/PageLayout";
 
 export function TimetablePage() {
     const router = useTimetableRouter();
     const sheets = useMemo(() => getTimetableSheets(router.movieId), [router.movieId]);
     return (
-      <div class="page">
+      <PageLayout withTapBar>
         <TimetableAll />
         <CloseButton goTo="/main" />
         <ButtonsBar at="bottom">
@@ -24,7 +25,7 @@ export function TimetablePage() {
           </Button>
         </ButtonsBar>
         <Sheet children={sheets} height="100%" onClose={() => router.goTo([baseRoute])}/>
-      </div>
+      </PageLayout>
     );
 }
 
