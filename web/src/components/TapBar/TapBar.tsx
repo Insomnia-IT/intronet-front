@@ -5,7 +5,7 @@ import { useRouter } from "../../pages/routing";
 import { SvgIcon } from "../../icons";
 import { TapBarItems } from "./dict";
 import type { TapBarItem } from "./types";
-import styles from './styles.module.css';
+import styles from './TapBar.module.css';
 
 export type TapBarItemProps = TapBarItem & {
   isActive: boolean;

@@ -2,7 +2,7 @@ import { FunctionalComponent } from "preact";
 import { PropsWithChildren } from "preact/compat";
 import cn from 'classnames';
 import { TapBar } from "@components/TapBar";
-import styles from './styles.module.css';
+import styles from './PageLayout.module.css';
 
 export type PageLayoutProps = PropsWithChildren<{
   design?: 'light' | 'dark';
@@ -25,7 +25,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         styles.layout,
         styles[design],
         clear && styles.clear,
-        withTapBar && styles['with-tapbar'],
+        withTapBar && styles.withTapbar,
         className
       )}
     >
