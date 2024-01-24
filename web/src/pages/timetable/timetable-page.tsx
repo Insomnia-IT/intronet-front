@@ -1,4 +1,6 @@
-import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
+import { Fragment } from "preact";
+import { PageLayout } from "@components/PageLayout";
+import { Button, CloseButton, Sheet } from "../../components";
 import { SvgIcon } from "../../icons";
 import { useMemo } from "preact/hooks";
 import { routes, useRouter } from "../routing";
@@ -6,24 +8,26 @@ import { MovieBlockEdit } from "./movie-block-edit";
 import { Movie } from "./movie/movie";
 import { MovieSearch } from "./search/movie-search";
 import { TimetableAll } from "./timetable";
-import { PageLayout } from "@components/PageLayout";
 
 export function TimetablePage() {
     const router = useTimetableRouter();
     const sheets = useMemo(() => getTimetableSheets(router.movieId), [router.movieId]);
     return (
-      <PageLayout withTapBar>
+      <PageLayout
+        withTapBar
+        buttons={(
+          <Fragment>
+            <Button type="vivid" goTo="/timetable/search">
+              <SvgIcon id="#search" size={15}  stroke-width={3}/>
+            </Button>
+            <Button type="vivid" goTo="/bookmarks/movie">
+              <SvgIcon id="#bookmark" size="14px" />
+              Избранное
+            </Button>
+          </Fragment>
+        )}>
         <TimetableAll />
         <CloseButton goTo="/main" />
-        <ButtonsBar at="bottom">
-          <Button type="vivid" goTo="/timetable/search">
-            <SvgIcon id="#search" size={15}  stroke-width={3}/>
-          </Button>
-          <Button type="vivid" goTo="/bookmarks/movie">
-            <SvgIcon id="#bookmark" size="14px" />
-            Избранное
-          </Button>
-        </ButtonsBar>
         <Sheet children={sheets} height="100%" onClose={() => router.goTo([baseRoute])}/>
       </PageLayout>
     );

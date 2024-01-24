@@ -1,19 +1,13 @@
 import { FunctionalComponent } from "preact";
-import { Button, ButtonsBar } from "../../index";
 import Styles from "./bookmark-plug.module.css";
-import { RoutePath, RoutePathString } from "../../../pages/routing";
 
 export interface BookmarkPlugProps {
   text: string[];
-  buttonTitle: string;
-  route: RoutePath | RoutePathString;
 }
 
 export const BookmarkPlug: FunctionalComponent<BookmarkPlugProps> = ({
-                                                                       buttonTitle,
-                                                                       text,
-                                                                       route
-                                                                     }) => {
+  text
+}) => {
   return (
     <>
       <div className={ Styles.container }>
@@ -22,14 +16,6 @@ export const BookmarkPlug: FunctionalComponent<BookmarkPlugProps> = ({
           { text.map((block) => <span className="text colorMediumBlue">{ block }</span>) }
         </div>
       </div>
-
-      <ButtonsBar at="bottom">
-        <Button
-          type="vivid" class="w-full"
-          goTo={route}>
-          { buttonTitle }
-        </Button>
-      </ButtonsBar>
     </>
   )
 }

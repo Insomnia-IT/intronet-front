@@ -1,3 +1,5 @@
+import { Fragment } from "preact";
+import { PageLayout } from "@components/PageLayout";
 import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
 import { RequireAuth } from "../../components/RequireAuth";
 import { locationsStore } from "../../stores/locations.store";
@@ -10,7 +12,6 @@ import { SvgIcon } from "../../icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
-import { PageLayout } from "@components/PageLayout";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -24,7 +25,21 @@ export function MapPageWithRouting() {
     );
 
   return (
-    <PageLayout withTapBar clear>
+    <PageLayout
+      withTapBar
+      clear
+      buttons={(
+        <Fragment>
+          <Button type="vivid" goTo="/map/search">
+            <SvgIcon id="#search" size="14px"  stroke-width={3}/>
+          </Button>
+          <Button type="vivid" goTo="/bookmarks/locations">
+            <SvgIcon id="#bookmark" size="14px" />
+            мои места
+          </Button>
+        </Fragment>
+      )}
+    >
       <div className={styles.container}>
         <MapComponent />
         {isEditing ? <div class={styles.editBar}>
@@ -40,15 +55,6 @@ export function MapPageWithRouting() {
                   }}>готово</Button>
         </div>: <>
           <CloseButton goTo="/main"/>
-          <ButtonsBar at="bottom">
-            <Button type="vivid" goTo="/map/search">
-              <SvgIcon id="#search" size="14px"  stroke-width={3}/>
-            </Button>
-            <Button type="vivid" goTo="/bookmarks/locations">
-              <SvgIcon id="#bookmark" size="14px" />
-              мои места
-            </Button>
-          </ButtonsBar>
           <ButtonsBar at="left">
             <RequireAuth>
               <Button

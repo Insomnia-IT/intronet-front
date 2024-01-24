@@ -1,13 +1,12 @@
 import { FunctionalComponent } from "preact";
+import { PageLayout } from "@components/PageLayout";
 import { useState } from "preact/hooks";
-import { PageContainer } from "../../components/Layout/PageContainer/PageContainer";
 import { PageHeader } from "../../components/Layout/PageHeader/PageHeader";
 import { PageSection } from "../../components/Layout/PageSection/PageSection";
 import { AddNoteBtn } from "./AddNoteBtn/AddNoteBtn";
 import { FilteriesSlider } from "./FilteriesSlider/FilteriesSlider";
 import { useNotesRouter } from "./hooks/useNotesRouter";
-import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
-import { SvgIcon } from "../../icons";
+import { Button, Sheet } from "../../components";
 import { MyPage } from "./My/MyPage";
 import { NewNoteSwitch } from "./New/NewNoteSwitch";
 import { NoteSheet } from "./NoteSheet/NoteSheet";
@@ -38,7 +37,13 @@ export const NotesPage: FunctionalComponent = () => {
 
     case undefined:
       return (
-        <PageContainer>
+        <PageLayout
+          withTapBar
+          buttons={(
+          <Button type="vivid" goTo="/notes/my">
+            Мои объявления
+          </Button>
+        )}>
           <div className={styles.page}>
             <PageSection>
               <div className={styles.header}>
@@ -61,19 +66,11 @@ export const NotesPage: FunctionalComponent = () => {
                 filterIds={[filterId]}
               />
             </PageSection>
-            <ButtonsBar at="bottom">
-              {/* <Button type="vivid" goTo="/notes/search">
-                <SvgIcon id="#search" size={15} />
-              </Button> */}
-              <Button type="vivid" goTo="/notes/my">
-                Мои объявления
-              </Button>
-            </ButtonsBar>
             <Sheet onClose={resetActiveNoteId} height="auto">
               {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
             </Sheet>
           </div>
-        </PageContainer>
+        </PageLayout>
       );
   }
 };
