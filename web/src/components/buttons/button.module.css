@@ -119,6 +119,9 @@
   right: 16px;
   gap: 1em;
 }
+.bottom.withTapbar {
+  bottom: 80px;
+}
 .fill {
   bottom: 0;
   left: 0;

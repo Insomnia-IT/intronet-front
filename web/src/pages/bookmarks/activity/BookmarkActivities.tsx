@@ -13,22 +13,20 @@ export const BookmarkActivities = () => {
   return (
     items.length > 0
       ? (
-        <div flex column style={ 'gap: 24px' }>
-          { dayGroup.map(day =>
-            <div flex column style={ 'gap: 8px' }>
-              <span className="colorMediumBlue tags">{ getDayText(day, 'full') }</span>
-              <ActivityList activities={ activities.filter(activity => activity.day === day) } ></ActivityList>
-            </div>) }
+        <div flex column style={'gap: 24px'}>
+          {dayGroup.map(day =>
+            <div flex column style={'gap: 8px'}>
+              <span className="colorMediumBlue tags">{getDayText(day, 'full')}</span>
+              <ActivityList activities={activities.filter(activity => activity.day === day)}></ActivityList>
+            </div>)}
         </div>
       )
       : (<BookmarkPlug
-        buttonTitle={ 'К расписанию неанимации' }
-        text={ [
+        text={[
           `Добавить мероприятие в избранное можно в разделе неАнимация.`,
           `Нажмите на карточку мероприятия в списке — откроется подробная информация и кнопка «Добавить в избранное».`,
           `Или свайпните мероприятие прямо в расписании.`
-        ] }
-        route={ '/activities' }
+        ]}
       />)
   );
 };

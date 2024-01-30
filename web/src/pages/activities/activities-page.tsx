@@ -1,5 +1,7 @@
+import { Fragment } from "preact";
 import { useMemo } from "preact/hooks";
-import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
+import { PageLayout } from "@components/PageLayout";
+import { Button, CloseButton, Sheet } from "../../components";
 import { SvgIcon } from "../../icons";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
@@ -11,23 +13,27 @@ import { ActivityLocation } from "./location/activityLocation";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
-  const sheets = useMemo(() => getActivitiesSheets(router.activityId, router.locationId), [ router.activityId, router.locationId ]);
+  const sheets = useMemo(() => getActivitiesSheets(router.activityId, router.locationId), [router.activityId, router.locationId]);
 
   return (
-    <div class="page">
+    <PageLayout
+      withTapBar
+      buttons={(
+        <Fragment>
+          <Button type="vivid" goTo={['activities', 'search', {}]}>
+            <SvgIcon id="#search" size={15} stroke-width={3}/>
+          </Button>
+          <Button type="vivid" goTo="/bookmarks/activity">
+            <SvgIcon id="#bookmark" size="14px"/>
+            Избранное
+          </Button>
+        </Fragment>
+      )}
+    >
       <ActivitiesAll/>
-      <CloseButton onClick={ () => router.goTo([ 'main' ]) }/>
-      <ButtonsBar at="bottom">
-        <Button type="vivid" goTo={['activities','search',{}]}>
-          <SvgIcon id="#search" size={ 15 } stroke-width={3}/>
-        </Button>
-        <Button type="vivid" goTo="/bookmarks/activity">
-          <SvgIcon id="#bookmark" size="14px"/>
-          Избранное
-        </Button>
-      </ButtonsBar>
+      <CloseButton onClick={() => router.goTo(['main'])}/>
       <Sheet children={sheets} onClose={() => router.goTo(['activities'])}/>
-    </div>
+    </PageLayout>
   );
 }
 
@@ -42,7 +48,7 @@ function getActivitiesSheets(activityId: string, locationId: string) {
       </>;
     case "location":
       return <>
-        <ActivityLocation id={ locationId }/>
+        <ActivityLocation id={locationId}/>
         <CloseButton/>
       </>;
     case "search":
@@ -54,7 +60,7 @@ function getActivitiesSheets(activityId: string, locationId: string) {
       return null;
     default:
       return <>
-        <Activity id={ activityId }/>
+        <Activity id={activityId}/>
         <CloseButton/>
       </>;
   }

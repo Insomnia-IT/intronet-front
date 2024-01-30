@@ -2,10 +2,10 @@ import { Toast } from "../components";
 import { AppProvider } from "../helpers/AppProvider";
 import { userStore } from "../stores/user.store";
 import { useEffect } from "preact/hooks";
-import styles from "./app.style.module.css";
 import { useRouter } from "../pages/routing";
 import { ModalSlot } from "../components/modal";
 import { Snackbar } from "../pages/bookmarks/snackbar/snackbar";
+import styles from "./app.style.module.css";
 
 export const App = () => {
   const {

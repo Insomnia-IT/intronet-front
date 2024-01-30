@@ -10,8 +10,8 @@
 }
 
 .mainPage {
-  color: var(--cold-white);
   padding: 24px 16px 84px;
+  gap: 24px;
   box-sizing: border-box;
   flex: 1;
 }
