@@ -6,6 +6,7 @@ import { getCurrentDay, getDayText } from "../../../helpers/getDayText";
 import { Timetable } from "./timetable";
 import { useRouter } from "../../routing";
 import { Tag, Tags } from "../../../components/tag";
+import { SvgIcon } from "@icons";
 
 export const TimetableAll: FunctionalComponent = () => {
   const router = useRouter<{
@@ -43,7 +44,6 @@ export const TimetableAll: FunctionalComponent = () => {
 
   return (
     <>
-      <h1>анимация</h1>
       <div flex column gap={2} style={{ margin: "28px 0 20px 0" }}>
         <Tags value={day} tagsList={[0, 1, 2, 3, 4]}>
           {(d) => (

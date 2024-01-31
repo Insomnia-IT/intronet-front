@@ -17,21 +17,18 @@ export function ActivitiesPage() {
 
   return (
     <PageLayout
+      title='Неанимация'
+      favoritesRoute='/bookmarks/activity'
       withTapBar
       buttons={(
         <Fragment>
           <Button type="vivid" goTo={['activities', 'search', {}]}>
             <SvgIcon id="#search" size={15} stroke-width={3}/>
           </Button>
-          <Button type="vivid" goTo="/bookmarks/activity">
-            <SvgIcon id="#bookmark" size="14px"/>
-            Избранное
-          </Button>
         </Fragment>
       )}
     >
       <ActivitiesAll/>
-      <CloseButton onClick={() => router.goTo(['main'])}/>
       <Sheet children={sheets} onClose={() => router.goTo(['activities'])}/>
     </PageLayout>
   );

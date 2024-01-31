@@ -24,6 +24,8 @@ export const BookmarksPage = () => {
 
   return (
     <PageLayout
+      title='избранное'
+      withCloseButton
       withTapBar
       buttons={(
         <Button
@@ -33,7 +35,6 @@ export const BookmarksPage = () => {
         </Button>
       )}
     >
-      <h1>избранное</h1>
       <Tags style={{ marginTop: 16, marginBottom: 20 }} tagsList={Sections}>
         {(x) => (
           <Tag
@@ -50,7 +51,7 @@ export const BookmarksPage = () => {
       {type == "activity" && <BookmarkActivities/>}
       {type == "locations" && <BookmarkLocations/>}
       {type == "note" && <BookmarkNotes/>}
-      <CloseButton/>
+      {/*<CloseButton/>*/}
     </PageLayout>
   );
 };
