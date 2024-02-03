@@ -13,6 +13,11 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     setInterval(() => this.sync().catch(console.error), 300);
   }
 
+  async refresh() {
+    await this.db.purge();
+    this.localVersion = this.syncVersion = "";
+  }
+
   async addOrUpdate(value: Partial<T> & { _id: string }, skipChange = false) {
     const valueWithVersion = {
       ...value,
@@ -21,10 +26,9 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     await super.addOrUpdate(valueWithVersion, skipChange);
   }
 
-  async set(value: T & {version: string}){
+  async set(value: T & { version: string }) {
     await super.set(value);
-    if (value.version > this.localVersion)
-      this.localVersion = value.version;
+    if (value.version > this.localVersion) this.localVersion = value.version;
   }
 
   private syncLock = false;
@@ -34,8 +38,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     this.syncLock = true;
     try {
       for (let item of this.items.values()) {
-        if (item.version >= this.initVersion)
-          continue;
+        if (item.version >= this.initVersion) continue;
         await this.db.remove(item._id);
         this.items.delete(item._id);
       }
@@ -44,8 +47,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
         this.localVersion > this.remoteVersion
           ? this.localVersion
           : this.remoteVersion;
-      if (syncVersion <= this.syncVersion)
-        return;
+      if (syncVersion <= this.syncVersion) return;
       this.syncVersion = syncVersion;
       this.emit("change", {
         type: "init",
@@ -155,13 +157,13 @@ class VersionsDB extends LocalObservableDB<{
     try {
       const actual = (await fetch(`${api}/versions`, {
         headers: authStore.headers,
-      }).then((x) => x.json())) as Record<string, {min: string; max: string;}>;
+      }).then((x) => x.json())) as Record<string, { min: string; max: string }>;
       for (let name in actual) {
         await this.set({
           ...this.get(name),
           _id: name,
           remote: actual[name].max,
-          init: actual[name].min
+          init: actual[name].min,
         });
       }
       IsConnected.set(true);

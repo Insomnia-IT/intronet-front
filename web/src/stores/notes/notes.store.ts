@@ -2,7 +2,7 @@ import { Fn } from "@cmmn/core";
 import { ObservableDB } from "../observableDB";
 import { authStore } from "../auth.store";
 import { getCurrentDate, getCurrentUtc } from "../../helpers/date";
-import { cell } from "@cmmn/cell";
+import { Cell, cell } from "@cmmn/cell";
 
 class NotesStore {
   @cell
@@ -13,6 +13,13 @@ class NotesStore {
 
   get isLoading() {
     return this.IsLoading;
+  }
+
+  constructor() {
+    Cell.OnChange(
+      () => authStore.isAdmin,
+      () => this.db.refresh()
+    );
   }
 
   /**
