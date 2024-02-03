@@ -23,11 +23,16 @@ import {Tochka} from "./article/tochka";
 import {Water} from "./article/water";
 import {WC} from "./article/wc";
 import {NonAnimation} from "./article/nonAnimation";
+import { PageLayout } from "@components/PageLayout";
 
 export const ArticlePage: FunctionalComponent = () => {
   const {route} = useRouter();
   const Article = articles[route[1] as keyof typeof articles];
-  return <Article/>;
+  return (
+    <PageLayout>
+      <Article/>
+    </PageLayout>
+  );
 }
 
 const articles: Record<string, FunctionalComponent> = {

@@ -1,0 +1,1 @@
+export { TapBar } from './TapBar';

@@ -1,28 +1,14 @@
-import { Input } from "../../../components/input";
-import {getTimeComparable} from "../../../helpers/getDayText";
-import { useSearch } from "../../../helpers/search/use-search";
-import { useMemo } from "preact/hooks";
-import { useCell } from "../../../helpers/cell-state";
-import { activitiesStore } from "../../../stores/activities/activities.store";
+import { Input } from "@components/input";
+import { useCell } from "@helpers/cell-state";
 import { ActivityList } from "../activities/activityList";
-import { SearchPlug } from "../../../components/plugs/search/SearchPlug";
-import { searchDataValidator } from "../../../helpers/search/searchDataValidator";
-import {orderBy} from "@cmmn/core";
+import { SearchPlug } from "@components/plugs/search/SearchPlug";
+import {searchStore} from "@stores/search.store";
+import {useEffect} from "preact/hooks";
 
 export const ActivitySearch = () => {
-  const { query, check, setQuery } = useSearch(
-    (regex) => (activity: Activity) =>
-      regex.test(searchDataValidator(activity.title)) ||
-      regex.test(searchDataValidator(activity.author))
-  );
-  const activities = useCell(() => activitiesStore.Activities);
-  const filtered = useMemo(() => {
-    return orderBy(orderBy(orderBy(
-      activities.filter(check),
-    (x) => x.title, true),
-    (x) => getTimeComparable(x.start), true),
-    (x) => x.day);
-  }, [activities, check]);
+  const query = useCell(searchStore.query)
+  const filtered = useCell(searchStore.filteredActivities);
+  useEffect(() => () => searchStore.query.set(''), []);
   return (
     <div flex column gap={5} className="h-full" style={{marginBottom: 40}}>
       <h1>поиск</h1>
@@ -30,7 +16,7 @@ export const ActivitySearch = () => {
         style={{ margin: "20px 0" }}
         placeholder="Название мероприятия"
         value={query}
-        onInput={(e) => setQuery(e.currentTarget.value)}
+        onInput={searchStore.onInput}
       />
       {filtered.length > 0 ? (
         <ActivityList activities={filtered} searchQuery={query} showDate/>

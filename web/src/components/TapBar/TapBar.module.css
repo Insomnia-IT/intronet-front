@@ -1,0 +1,40 @@
+.layout {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 8px 24px 10px;
+  box-sizing: border-box;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 0 8px 0 rgba(247, 252, 255, 0.20);
+  background: #0C1035;
+  color: white;
+}
+
+.item {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.active,
+.active svg path {
+  color: #536BF3;
+  fill: #536BF3;
+}
+
+/* Чтобы на деве и на больших экранах никто не словил кринжа */
+@media screen and (min-width: 441px) {
+  .layout {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -141,7 +141,11 @@ fastify.listen(
 let user: UserInfo;
 fastify.addHook('onRequest', async (request, reply) => {
   if (request.headers.authorization) {
-    user = await authCtrl.parse(request.headers.authorization);
+    try {
+      user = await authCtrl.parse(request.headers.authorization);
+    }catch (e){
+      
+    }
   }
 })
 let logData = {};

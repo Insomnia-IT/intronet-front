@@ -1,4 +1,4 @@
-import { searchDataValidator } from "../helpers/search/searchDataValidator";
+import {searchDataValidator} from "@stores/search.store";
 
 export function highlight(text: string, query: string | undefined) {
   text = searchDataValidator(text);

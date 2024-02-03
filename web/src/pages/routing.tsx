@@ -4,7 +4,7 @@ import { MapPageWithRouting } from "./map/map-page";
 
 import { TimetablePage } from "./timetable/timetable-page";
 import { Cell } from "@cmmn/cell";
-import { useCell } from "../helpers/cell-state";
+import { useCell } from "@helpers/cell-state";
 import { MainPage } from "./main/mainPage";
 import { compare } from "@cmmn/core";
 import { BookmarksPage } from "./bookmarks/bookmarks-page";
@@ -13,12 +13,18 @@ import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
 import { NotesPage } from "./notes/NotesPage";
 import { ActivitiesPage } from "./activities/activities-page";
+import {AllSearchPage} from "./search/all-search-page";
 
 export const routes = {
   main: {
     name: "main",
     title: "Главная",
     Component: MainPage,
+  },
+  search: {
+    name: "search",
+    title: "Поиск",
+    Component: AllSearchPage,
   },
   notes: {
     name: "notes",

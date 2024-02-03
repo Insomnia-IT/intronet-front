@@ -53,12 +53,16 @@ export class MapComponent extends Component {
     scale: this.Scale,
   });
 
+  mouseDown: MouseEvent | undefined;
   render() {
     return (
       <div
         ref={this.setHandler}
-        onClick={(e) => {
-          if (!e.defaultPrevented && !locationsStore.isMoving) {
+        onPointerDown={(e) => this.mouseDown = e}
+        onPointerUp={(e) => {
+          if (Math.abs(this.mouseDown.pageX - e.pageX) > 3) return;
+          if (Math.abs(this.mouseDown.pageY - e.pageY) > 3) return;
+          if (!e.defaultPrevented) {
             locationsStore.setSelectedId(null);
           }
         }}
