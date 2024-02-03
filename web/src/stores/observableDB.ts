@@ -7,15 +7,28 @@ import { LocalObservableDB } from "./localObservableDB";
 export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
   T & { version: string }
 > {
+  private syncInterval: any | undefined;
   async init() {
     await super.init();
     await this.sync().catch(console.error);
-    setInterval(() => this.sync().catch(console.error), 300);
+    this.syncInterval = setInterval(
+      () => this.sync().catch(console.error),
+      300
+    );
   }
 
   async refresh() {
+    clearInterval(this.syncInterval);
     await this.db.purge();
-    this.localVersion = this.syncVersion = "";
+    await VersionsDB.Instance.addOrUpdate({
+      _id: this.name,
+      synced: "",
+      init: "",
+      local: "",
+      remote: "",
+    });
+    await VersionsDB.Instance.loadFromServer();
+    await this.init();
   }
 
   async addOrUpdate(value: Partial<T> & { _id: string }, skipChange = false) {

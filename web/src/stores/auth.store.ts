@@ -27,17 +27,19 @@ class AuthStore extends LocalStore<{
       });
     }
     const url = new URL(location.href);
-    const token = url.searchParams.get("token");
-    if (token || this.token) {
-      this.patch({ token, role: null });
+    const token = url.searchParams.get("token") || this.token;
+    if (token) {
       fetch(api + "/auth", {
-        headers: this.headers,
+        headers: {
+          ...this.headers,
+          Authorization: `Bearer ${token}`,
+        },
       }).then(async (x) => {
         if (!x.ok) {
-          this.patch({ token: null });
+          this.patch({ token: null, role: null });
         } else {
           const role = (await x.text()) as any;
-          this.patch({ role });
+          this.patch({ role, token });
         }
       });
     }
