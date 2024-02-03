@@ -29,7 +29,7 @@ class AuthStore extends LocalStore<{
     const url = new URL(location.href);
     const token = url.searchParams.get("token");
     if (token || this.token) {
-      this.patch({ token });
+      this.patch({ token, role: null });
       fetch(api + "/auth", {
         headers: this.headers,
       }).then(async (x) => {
