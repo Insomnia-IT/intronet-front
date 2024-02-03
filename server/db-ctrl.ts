@@ -17,8 +17,6 @@ export const dbCtrl = new class {
 
   versions: Record<string, {min: string, max: string}> = undefined;
   public async getVersions(){
-    if (this.versions)
-      return this.versions;
     const versions = {};
     for (let database of databases.values()) {
       const maxVersion = await database.getMaxVersion();
