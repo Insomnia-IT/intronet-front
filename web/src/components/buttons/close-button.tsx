@@ -16,13 +16,24 @@ export type CloseButtonProps = {
 
 export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
   const router = useRouter();
+
   const onClick = useCallback(() => {
+    if (props.onClick) {
+      onClick();
+      return
+    }
+
+    if (props.goTo) {
+      router.goTo(props.goTo);
+      return;
+    }
+
     if (history.length > 0) {
       router.back();
     } else {
       router.goTo(["main"]);
     }
-  }, []);
+  }, [props?.onClick, props?.goTo]);
 
   return (
     <Button
@@ -34,7 +45,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
         },
         props.className
       )}
-      onClick={props.onClick ?? (props.goTo ? () => router.goTo(props.goTo): onClick)}
+      onClick={onClick}
     >
       <SvgIcon id="#x" size={14} />
     </Button>

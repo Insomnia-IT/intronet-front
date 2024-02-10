@@ -34,7 +34,6 @@ export const ActivitiesAll: FunctionalComponent = () => {
 
   return (
     <>
-      <h1>неанимация</h1>
       <div flex column gap={ 2 } style={ {margin: "25px 0 20px 0"} }>
         <ActivityFilters type={ 'filter' } filters={ filters } flexGrow={ "1" }/>
         {

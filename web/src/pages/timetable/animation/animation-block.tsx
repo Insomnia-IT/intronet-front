@@ -9,6 +9,7 @@ import { useCell } from "../../../helpers/cell-state";
 import { Button } from "../../../components";
 import { useHistoryState } from "../../routing";
 import { MovieList } from "./movie-list";
+import styles from './animation.module.css';
 
 export type AnimationBlockProps = {
   id: string;
@@ -29,9 +30,11 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   );
   return (
     <div>
-      <RequireAuth>
-        <Button class="w-full" goTo={["timetable", "edit", props.id]} type="frame">изменить время</Button>
-      </RequireAuth>
+      <div class={styles.editButton}>
+        <RequireAuth>
+          <Button class="w-full" goTo={["timetable", "edit", props.id]} type="frame">изменить время</Button>
+        </RequireAuth>
+      </div>
       <div className={[Styles.time, "sh1"].join(" ")}>
         {view.start} - {view.end}
       </div>
@@ -52,7 +55,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
           </div>
           {isOpen && <MovieList movies={block.movies} />}
           <Button type="text" onClick={() => setIsOpen((x) => !x)}>
-            {isOpen ? "СВЕРНУТЬ СПИСОК ФИЛЬМОВ" : "ПОКАЗАТЬ СПИСОК ФИЛЬМОВ"}
+            {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
         </div>
       </Card>

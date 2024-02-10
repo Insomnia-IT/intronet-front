@@ -3,23 +3,33 @@ import { PropsWithChildren, ReactNode } from "preact/compat";
 import cn from 'classnames';
 import { TapBar } from "@components/TapBar";
 import styles from './PageLayout.module.css';
-import { ButtonsBar } from "@components";
+import { ButtonsBar, CloseButton } from "@components";
+import { SvgIcon } from "@icons";
+import { goTo, RoutePath, RoutePathString, useRouter } from "../../pages/routing";
 
 export type PageLayoutProps = PropsWithChildren<{
   design?: 'light' | 'dark';
+  title?: string;
+  /* При наличии добавит к заколовку переход в Избранное */
+  favoritesRoute?: RoutePath | RoutePathString;
   withTapBar?: boolean;
+  withCloseButton?: boolean;
+  /* Кнопки, которые будут помещены в ButtonsBar */
   buttons?: ReactNode;
-  className?: string;
   /* Если true, у контейнера не будет стилей */
-  clear?: boolean;
+  dropStyles?: boolean;
+  className?: string;
 }>
 
 export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   design = 'light',
+  title,
+  favoritesRoute,
+  withCloseButton,
   withTapBar,
   buttons,
   className= '',
-  clear,
+  dropStyles,
   children,
 }) => {
   return (
@@ -27,11 +37,16 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
       className={cn(
         styles.layout,
         styles[design],
-        clear && styles.clear,
+        dropStyles && styles.clear,
         withTapBar && styles.withTapbar,
         className
       )}
     >
+      <div className={styles.header}>
+        <h1>{title}</h1>
+        {Boolean(favoritesRoute) &&  <SvgIcon id='#favorites' size={32} onClick={() => goTo(favoritesRoute)} />}
+        {withCloseButton && <CloseButton position='static' />}
+      </div>
       {children}
       {Boolean(buttons) && (
         <ButtonsBar at='bottomWithTapbar'>

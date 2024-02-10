@@ -64,6 +64,11 @@
   margin: 21px 0;
   animation: fadeOut ease-out 5s both;
 }
+
+.editButton {
+  margin-bottom: 8px;
+}
+
 @keyframes fadeOut {
   0%{
     opacity: 1;

@@ -12,6 +12,7 @@ import { SvgIcon } from "../../icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
+import { SearchInput } from "@components/input/search-input";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -27,53 +28,75 @@ export function MapPageWithRouting() {
   return (
     <PageLayout
       withTapBar
-      clear
+      dropStyles
       buttons={(
         <Fragment>
           <Button type="vivid" goTo="/map/search">
             <SvgIcon id="#search" size="14px"  stroke-width={3}/>
-          </Button>
-          <Button type="vivid" goTo="/bookmarks/locations">
-            <SvgIcon id="#bookmark" size="14px" />
-            мои места
           </Button>
         </Fragment>
       )}
     >
       <div className={styles.container}>
         <MapComponent />
-        {isEditing ? <div class={styles.editBar}>
-          <Button type="textSimple" class="colorOrange"
-                  onClick={() => {
-                    locationsStore.discardChanges();
-                    locationsStore.isEdit = false;
-                  }}>отменить</Button>
-          <Button type="textSimple" class="colorElBlue"
-                  onClick={async () => {
-                    await locationsStore.applyChanges();
-                    locationsStore.isEdit = false;
-                  }}>готово</Button>
-        </div>: <>
-          <CloseButton goTo="/main"/>
-          <ButtonsBar at="left">
-            <RequireAuth>
-              <Button
-                type="frameOrange"
-                aria-label="Start edit"
-                onClick={() => locationsStore.isEdit = !locationsStore.isEdit}
-              >
-                {isEditing ? <SvgIcon id="#ok-circle" /> : <SvgIcon id="#edit" />}
-              </Button>
-              <Button
-                type="frameOrange"
-                onClick={() => locationsStore.startAddLocation()}
-                aria-label="Add location"
-              >
-                <SvgIcon id="#plus" />
-              </Button>
-            </RequireAuth>
-          </ButtonsBar>
-        </>}
+        {isEditing ? (
+          <div class={styles.editBar}>
+            <Button
+              type="textSimple"
+              class="colorOrange"
+              onClick={() => {
+                locationsStore.discardChanges();
+                locationsStore.isEdit = false;
+              }}>
+              отменить
+            </Button>
+            <Button
+              type="textSimple"
+              class="colorElBlue"
+              onClick={async () => {
+                await locationsStore.applyChanges();
+                locationsStore.isEdit = false;
+              }}>
+              готово
+            </Button>
+        </div>
+        ) : (
+          <>
+            <div className={styles.header}>
+              {/* TODO убрать заглушку и сделать нормальный поиск */}
+              <SearchInput
+                placeholder="Локация"
+                onFocus={() => {
+                  console.log('focus')
+                }}
+              />
+              <SvgIcon
+                id="#favorites"
+                className={styles.favoritesIcon}
+                size={32}
+                onClick={() => router.goTo("/bookmarks/locations")}
+              />
+            </div>
+            <ButtonsBar at="left">
+              <RequireAuth>
+                <Button
+                  type="frameOrange"
+                  aria-label="Start edit"
+                  onClick={() => locationsStore.isEdit = !locationsStore.isEdit}
+                >
+                  {isEditing ? <SvgIcon id="#ok-circle" /> : <SvgIcon id="#edit" />}
+                </Button>
+                <Button
+                  type="frameOrange"
+                  onClick={() => locationsStore.startAddLocation()}
+                  aria-label="Add location"
+                >
+                  <SvgIcon id="#plus" />
+                </Button>
+              </RequireAuth>
+            </ButtonsBar>
+          </>
+        )}
         <Sheet
           height={["add", "edit", "search"].includes(router.locationId) ? "100%" : isMoving ? "auto" : "50%"}
           noShadow
