@@ -25,7 +25,13 @@ export const MainPage = () => {
       <Logo />
       <BookmarkIcon
         onClick={() => router.goTo(["bookmarks"])}
-        style={{ color: "var(--white)", position: "absolute", right: "2em" }}
+        size={36}
+        style={{
+          color: "var(--white)",
+          position: "absolute",
+          right: "2em",
+          top: "44px",
+        }}
       />
       <SearchInput
         style={{ background: "var(--white)" }}

@@ -17,6 +17,13 @@
   z-index: 1;
   flex-flow: row-reverse;
 }
+.header > svg {
+  flex: 0 0 auto;
+}
+.header > div {
+  min-width: 0;
+  flex: 1;
+}
 
 .favoritesIcon {
   flex-shrink: 0;
