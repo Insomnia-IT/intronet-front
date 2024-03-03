@@ -8,7 +8,14 @@ export type ActivityCardProps = {
   children: ComponentChildren;
   borderType?: "LeftCloud";
   border?: "Blue" | "Vivid" | "InactiveGrey" | "None" | "Yellow";
-  background?: "Purple" | "None" | "White" | "ColdWhite" | "Soft" | "Vivid";
+  background?:
+    | "Purple"
+    | "None"
+    | "White"
+    | "ColdWhite"
+    | "Soft"
+    | "Vivid"
+    | "Night";
   className?: string;
 } & JSX.HTMLAttributes<HTMLDivElement>;
 

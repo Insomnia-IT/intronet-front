@@ -10,11 +10,14 @@
   overflow: hidden;
 }
 
-.bgPurple {
+.bgPurple:not(.borderVivid) {
   background: var(--purple-gradient);
 }
-.bgWhite {
+.bgWhite:not(.borderVivid) {
   background: white;
+}
+.bgNight:not(.borderVivid) {
+  background: var(--ins-night);
 }
 
 .bgSoft {
@@ -45,6 +48,9 @@
 }
 .borderVivid {
   composes: borderVivid from "../buttons/button.module.css";
+}
+.borderVivid.bgNight:before{
+  background: var(--ins-night) !important;
 }
 
 .borderLeftCloud {
