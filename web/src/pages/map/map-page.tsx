@@ -4,15 +4,14 @@ import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
 import { RequireAuth } from "../../components/RequireAuth";
 import { locationsStore } from "../../stores/locations.store";
 import { useCell } from "../../helpers/cell-state";
-import {LocationAdd} from "./location/location-add";
-import {LocationEdit} from "./location/location-edit";
+import { LocationAdd } from "./location/location-add";
+import { LocationEdit } from "./location/location-edit";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
 import { SvgIcon } from "../../icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
-import { SearchInput } from "@components/input/search-input";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -20,22 +19,20 @@ export function MapPageWithRouting() {
   const isEditing = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
   const sheets = getMapSheets(
-      router.locationId,
-      () => router.goTo(["map"]),
-      () => locationsStore.setSelectedId(null)
-    );
-
+    router.locationId,
+    () => router.goTo(["map"]),
+    () => locationsStore.setSelectedId(null)
+  );
   return (
     <PageLayout
       withTapBar
       dropStyles
-      buttons={(
-        <Fragment>
-          <Button type="vivid" goTo="/map/search">
-            <SvgIcon id="#search" size="14px"  stroke-width={3}/>
-          </Button>
-        </Fragment>
-      )}
+      favoritesRoute="/bookmarks/locations"
+      searchLabel="Площадка"
+      search={LocationSearch}
+      searchStyle={{ background: "var(--white)" }}
+      hideSearchDeps={[router.locationId]}
+      headerStyle={styles.header}
     >
       <div className={styles.container}>
         <MapComponent />
@@ -47,7 +44,8 @@ export function MapPageWithRouting() {
               onClick={() => {
                 locationsStore.discardChanges();
                 locationsStore.isEdit = false;
-              }}>
+              }}
+            >
               отменить
             </Button>
             <Button
@@ -56,35 +54,27 @@ export function MapPageWithRouting() {
               onClick={async () => {
                 await locationsStore.applyChanges();
                 locationsStore.isEdit = false;
-              }}>
+              }}
+            >
               готово
             </Button>
-        </div>
+          </div>
         ) : (
           <>
-            <div className={styles.header}>
-              {/* TODO убрать заглушку и сделать нормальный поиск */}
-              <SearchInput
-                placeholder="Локация"
-                onFocus={() => {
-                  console.log('focus')
-                }}
-              />
-              <SvgIcon
-                id="#favorites"
-                className={styles.favoritesIcon}
-                size={32}
-                onClick={() => router.goTo("/bookmarks/locations")}
-              />
-            </div>
             <ButtonsBar at="left">
               <RequireAuth>
                 <Button
                   type="frameOrange"
                   aria-label="Start edit"
-                  onClick={() => locationsStore.isEdit = !locationsStore.isEdit}
+                  onClick={() =>
+                    (locationsStore.isEdit = !locationsStore.isEdit)
+                  }
                 >
-                  {isEditing ? <SvgIcon id="#ok-circle" /> : <SvgIcon id="#edit" />}
+                  {isEditing ? (
+                    <SvgIcon id="#ok-circle" />
+                  ) : (
+                    <SvgIcon id="#edit" />
+                  )}
                 </Button>
                 <Button
                   type="frameOrange"
@@ -98,18 +88,26 @@ export function MapPageWithRouting() {
           </>
         )}
         <Sheet
-          height={["add", "edit", "search"].includes(router.locationId) ? "100%" : isMoving ? "auto" : "50%"}
+          height={
+            ["add", "edit", "search"].includes(router.locationId)
+              ? "100%"
+              : isMoving
+              ? "auto"
+              : "50%"
+          }
           noShadow
           style={{
-            pointerEvents: 'none'
+            pointerEvents: "none",
           }}
           shadowType={"localShadow"}
           children={sheets}
-          onClose={() => isMoving ? locationsStore.isMoving = false : router.goTo(["map"])}
+          onClose={() =>
+            isMoving ? (locationsStore.isMoving = false) : router.goTo(["map"])
+          }
         />
       </div>
-  </PageLayout>
-);
+    </PageLayout>
+  );
 }
 
 const getMapSheets = (

@@ -8,46 +8,64 @@ import { MovieBlockEdit } from "./movie-block-edit";
 import { Movie } from "./movie/movie";
 import { MovieSearch } from "./search/movie-search";
 import { TimetableAll } from "./timetable";
+import { ActivitySearch } from "../activities/search/activity-search";
 
 export function TimetablePage() {
-    const router = useTimetableRouter();
-    const sheets = useMemo(() => getTimetableSheets(router.movieId), [router.movieId]);
-    return (
-      <PageLayout
-        title={'анимация'}
-        favoritesRoute='/bookmarks/movie'
-        withTapBar
-        buttons={(
-          <Fragment>
-            <Button type="vivid" goTo="/timetable/search">
-              <SvgIcon id="#search" size={15}  stroke-width={3}/>
-            </Button>
-          </Fragment>
-        )}>
-        <TimetableAll />
-        <Sheet children={sheets} height="100%" onClose={() => router.goTo([baseRoute])}/>
-      </PageLayout>
-    );
+  const router = useTimetableRouter();
+  const sheets = useMemo(
+    () => getTimetableSheets(router.movieId),
+    [router.movieId]
+  );
+  return (
+    <PageLayout
+      title={"анимация"}
+      favoritesRoute="/bookmarks/movie"
+      withTapBar
+      search={MovieSearch}
+      hideSearchDeps={[router.movieId]}
+      searchLabel="Название мультфильма"
+      buttons={
+        <Fragment>
+          <Button type="vivid" goTo="/timetable/search">
+            <SvgIcon id="#search" size={15} stroke-width={3} />
+          </Button>
+        </Fragment>
+      }
+    >
+      <TimetableAll />
+      <Sheet
+        children={sheets}
+        height="100%"
+        onClose={() => router.goTo([baseRoute])}
+      />
+    </PageLayout>
+  );
 }
 
-function getTimetableSheets(movieId: string){
+function getTimetableSheets(movieId: string) {
   switch (movieId) {
     case "edit":
-      return <>
-        <MovieBlockEdit />
-      </>;
+      return (
+        <>
+          <MovieBlockEdit />
+        </>
+      );
     case "search":
-      return <>
-        <MovieSearch />
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <MovieSearch />
+          <CloseButton />
+        </>
+      );
     case undefined:
       return null;
     default:
-      return <>
-        <Movie id={movieId} />
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <Movie id={movieId} />
+          <CloseButton />
+        </>
+      );
   }
 }
 

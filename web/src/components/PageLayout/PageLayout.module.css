@@ -13,6 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  flex-flow: row wrap;
   gap: 8px;
 }
 

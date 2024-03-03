@@ -1,7 +1,7 @@
 import { SvgIcon } from "../../icons";
 import Styles from "./button.module.css";
 import { Button } from "./button";
-import {RoutePath, RoutePathString, useRouter} from "../../pages/routing";
+import { RoutePath, RoutePathString, useRouter } from "../../pages/routing";
 import { useCallback } from "preact/hooks";
 import { FunctionalComponent } from "preact";
 import classNames from "classnames";
@@ -19,8 +19,8 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
 
   const onClick = useCallback(() => {
     if (props.onClick) {
-      onClick();
-      return
+      props.onClick();
+      return;
     }
 
     if (props.goTo) {

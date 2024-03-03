@@ -28,11 +28,9 @@ export const MainPage = () => {
         style={{ color: "var(--white)", position: "absolute", right: "2em" }}
       />
       <SearchInput
+        style={{ background: "var(--white)" }}
         placeholder="Поиск всего-всего"
-        onFocus={() => {
-          console.log("focus");
-          setSearchSheetOpen(true);
-        }}
+        onFocus={() => setSearchSheetOpen(true)}
       />
       <News />
       {state.sections.map((x) => (

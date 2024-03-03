@@ -13,23 +13,29 @@ import { ActivityLocation } from "./location/activityLocation";
 
 export function ActivitiesPage() {
   const router = useActivitiesRouter();
-  const sheets = useMemo(() => getActivitiesSheets(router.activityId, router.locationId), [router.activityId, router.locationId]);
+  const sheets = useMemo(
+    () => getActivitiesSheets(router.activityId, router.locationId),
+    [router.activityId, router.locationId]
+  );
 
   return (
     <PageLayout
-      title='Неанимация'
-      favoritesRoute='/bookmarks/activity'
+      title="Неанимация"
+      favoritesRoute="/bookmarks/activity"
+      search={ActivitySearch}
+      hideSearchDeps={[router.locationId, router.activityId]}
+      searchLabel="Мастер-классы, лекции..."
       withTapBar
-      buttons={(
+      buttons={
         <Fragment>
-          <Button type="vivid" goTo={['activities', 'search', {}]}>
-            <SvgIcon id="#search" size={15} stroke-width={3}/>
+          <Button type="vivid" goTo={["activities", "search", {}]}>
+            <SvgIcon id="#search" size={15} stroke-width={3} />
           </Button>
         </Fragment>
-      )}
+      }
     >
-      <ActivitiesAll/>
-      <Sheet children={sheets} onClose={() => router.goTo(['activities'])}/>
+      <ActivitiesAll />
+      <Sheet children={sheets} onClose={() => router.goTo(["activities"])} />
     </PageLayout>
   );
 }
@@ -39,26 +45,34 @@ const baseRoute = "activities" as keyof typeof routes;
 function getActivitiesSheets(activityId: string, locationId: string) {
   switch (activityId) {
     case "edit":
-      return <>
-        <ActivityEdit/>
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <ActivityEdit />
+          <CloseButton />
+        </>
+      );
     case "location":
-      return <>
-        <ActivityLocation id={locationId}/>
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <ActivityLocation id={locationId} />
+          <CloseButton />
+        </>
+      );
     case "search":
-      return <>
-        <ActivitySearch/>
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <ActivitySearch />
+          <CloseButton />
+        </>
+      );
     case undefined:
       return null;
     default:
-      return <>
-        <Activity id={activityId}/>
-        <CloseButton/>
-      </>;
+      return (
+        <>
+          <Activity id={activityId} />
+          <CloseButton />
+        </>
+      );
   }
 }
