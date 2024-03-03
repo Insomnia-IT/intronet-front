@@ -12,6 +12,7 @@ import { SvgIcon } from "../../../icons";
 import { Badge } from "../../../components/badge/badge";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import Styles from "./activity.module.css";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type ActivityProps = {
   id: string;
@@ -37,13 +38,14 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
         onClick={() => router.goTo(["map", activity?.locationId])}
       >
         <div flex class="sh1" gap={2}>
-          <SvgIcon id="#alert" size={32} style={{ color: "var(--electric-blues)" }} />
+          <SvgIcon
+            id="#alert"
+            size={32}
+            style={{ color: "var(--electric-blues)" }}
+          />
           {locationsStore.getName(activity?.locationId) ?? activity?.locationId}
         </div>
-        <Link
-          goTo={["map", activity?.locationId]}
-          style={{ marginBottom: 18 }}
-        >
+        <Link goTo={["map", activity?.locationId]} style={{ marginBottom: 18 }}>
           на карте
         </Link>
         <div flex column gap={1} style={{ alignItems: "flex-start" }}>
@@ -54,7 +56,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
               activity?.isCanceled ? Styles.canceled : "default",
             ].join(" ")}
           >
-            {(activity?.start)} - {(activity?.end)}
+            {activity?.start} - {activity?.end}
           </div>
         </div>
       </Card>
@@ -68,7 +70,7 @@ export const Activity: FunctionalComponent<ActivityProps> = (props) => {
             width: "100%",
           }}
         >
-          <SvgIcon id="#bookmark" size={14} />
+          <BookmarkIcon size={14} />
           {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
         </Button>
       </ButtonsBar>

@@ -38,6 +38,8 @@ body {
     #fffbe9 0%,
     rgba(249, 184, 255, 0.46) 93.3%
   );
+
+  --radius: 24px;
 }
 
 .pinkShadow {

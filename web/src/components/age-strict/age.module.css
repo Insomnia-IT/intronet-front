@@ -6,7 +6,7 @@
     gap: 8px;
 
     background: #CFBAFF;
-    border-radius: 24px;
+    border-radius: var(--radius);
 
     /* Inside auto layout */
 

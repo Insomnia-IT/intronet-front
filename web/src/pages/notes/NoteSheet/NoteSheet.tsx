@@ -8,6 +8,7 @@ import { useIsBookmarkCell } from "../hooks/useIsBookmarkCell";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { NoteSheetContent } from "./NoteSheetContent/NoteSheetContent";
 import { useIsUserModeratorCell } from "../hooks/useIsUserModeratorCell";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type INoteSheetProps = {
   activeNoteId: string;
@@ -64,7 +65,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
             type="vivid"
             onClick={addToBookmark}
           >
-            <SvgIcon id="#bookmark" size={13} />
+            <BookmarkIcon size={13} />
             {bookmarkActionText}
           </Button>
         )}

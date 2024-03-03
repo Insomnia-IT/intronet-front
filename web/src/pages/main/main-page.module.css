@@ -74,7 +74,10 @@
   font-size: 18px;
   line-height: 21px;
 }
-.mainCardColor {
-  composes: mainCard;
+.colored {
   color: var(--cold-white);
+}
+
+.small {
+  height: 60px;
 }

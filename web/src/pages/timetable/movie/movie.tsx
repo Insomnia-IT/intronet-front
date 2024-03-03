@@ -10,6 +10,7 @@ import { SvgIcon } from "../../../icons";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { Link } from "../../../components/link/link";
 import { votingStore } from "../../../stores/votingStore";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type MovieProps = {
   id: string;
@@ -25,12 +26,21 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   if (!screenLocations.length) return <></>;
   return (
     <div flex column gap={2}>
-      <header className="sh1" style={{marginBottom: 16}}>{movie?.name}</header>
-      {movie.description && <div style={{
-        marginBottom: 8
-      }} className="text colorMediumBlue">{movie?.description}</div>}
+      <header className="sh1" style={{ marginBottom: 16 }}>
+        {movie?.name}
+      </header>
+      {movie.description && (
+        <div
+          style={{
+            marginBottom: 8,
+          }}
+          className="text colorMediumBlue"
+        >
+          {movie?.description}
+        </div>
+      )}
       <div class="colorGray">
-        {[movie.author, movie.country, movie.year].filter(x => x).join(', ')}
+        {[movie.author, movie.country, movie.year].filter((x) => x).join(", ")}
       </div>
       <div class="colorGray" style={{ marginBottom: 24 }}>
         {minutes} мин {seconds} сек
@@ -42,13 +52,19 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               <div class="sh2 colorPink">Международный конкурс анимации</div>
               <div class="sh3 colorPink">Приз зрительских симпатий</div>
             </div>
-            <Link disabled={!isOnline} goTo={["voting", movie.id]} style={{
-              marginTop: 20,
-              marginBottom: 12
-            }}>
+            <Link
+              disabled={!isOnline}
+              goTo={["voting", movie.id]}
+              style={{
+                marginTop: 20,
+                marginBottom: 12,
+              }}
+            >
               Голосую за эту работу!
             </Link>
-            <div class="textSmall colorGray">Голосовать можно онлайн и только 1 раз</div>
+            <div class="textSmall colorGray">
+              Голосовать можно онлайн и только 1 раз
+            </div>
           </Card>
 
           {!isOnline && (
@@ -72,7 +88,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               onClick={() => router.goTo(["map", view.locationId])}
             >
               <div flex class="sh1" gap={2}>
-                <SvgIcon id=".common #eye" size={32} style={{ color: "var(--electric-blues)" }} />
+                <SvgIcon
+                  id=".common #eye"
+                  size={32}
+                  style={{ color: "var(--electric-blues)" }}
+                />
                 {locationsStore.getName(view.locationId)}
               </div>
               <Link
@@ -83,7 +103,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               </Link>
               <div flex column gap={2}>
                 <div class="tags colorMediumBlue">
-                  {view.block.info.Title} {view.block.info.SubTitle ?? ''}
+                  {view.block.info.Title} {view.block.info.SubTitle ?? ""}
                 </div>
                 <div class="sh1">
                   {view.start} - {view.end}
@@ -95,10 +115,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       <ButtonsBar at="bottom">
         <Button
-          type="vivid" class="w-full"
+          type="vivid"
+          class="w-full"
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >
-          <SvgIcon id="#bookmark" size={14} />
+          <BookmarkIcon size={14} />
           {state.hasBookmark
             ? "Удалить из избранного"
             : "сохранить в избранное"}

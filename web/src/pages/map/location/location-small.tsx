@@ -14,6 +14,7 @@ import { useCell } from "../../../helpers/cell-state";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { useLocalStorageState } from "../../../helpers/useLocalStorageState";
 import { directionsToIconId } from "../mapElement";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type LocationSmallProps = {
   location: InsomniaLocation;
@@ -84,8 +85,7 @@ export const LocationSmall: FunctionalComponent<LocationSmallProps> = ({
       <div className={Styles.locationSmallHeader}>
         <div flex-grow>{highlight(location.name, searchQuery)}</div>
 
-        <SvgIcon
-          id="#bookmark"
+        <BookmarkIcon
           class={[...classNames, "colorPink"].join(" ")}
           onClick={(e) => {
             if (!hasBookmark) return;
@@ -106,8 +106,7 @@ export const LocationSmall: FunctionalComponent<LocationSmallProps> = ({
           "--width": gestureLength + "px",
         }}
       >
-        <SvgIcon
-          id="#bookmark"
+        <BookmarkIcon
           class={
             state == "Deleting" || (!hasBookmark && state !== "Adding")
               ? "strokeOnly"

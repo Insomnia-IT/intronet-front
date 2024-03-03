@@ -1,6 +1,6 @@
 .button {
   padding: 16px;
-  border-radius: 24px;
+  border-radius: var(--radius);
   text-transform: uppercase;
   border: none;
   color: var(--white);

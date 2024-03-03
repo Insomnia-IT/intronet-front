@@ -26,13 +26,14 @@
 .movieSmall{
   user-select: none;
   -webkit-user-select: none;
-  background: transparent;
+  background: color-mix(in oklab, var(--purple), transparent 93%);
   display: flex;
   flex-flow: column nowrap;
   gap: 4px;
   padding: 12px 16px;
   box-sizing: border-box;
-  margin: 0 -16px;
+  margin: 4px -8px;
+  border-radius: 16px;
 }
 .movieSmall:active{
   background: rgba(83, 107, 243, 0.1);
@@ -57,7 +58,7 @@
   padding: 16px 24px;
   gap: 16px;
   background-color: var(--ins-night);
-  border-radius: 24px;
+  border-radius:var(--radius);
   height: 48px;
   box-sizing: border-box;
   color: var(--electric-blues);

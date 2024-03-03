@@ -7,6 +7,7 @@ import { SvgIcon } from "../../../icons";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { useTimetableRouter } from "../timetable-page";
 import Styles from "./animation.module.css";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type MovieSmallProps = {
   movie: MovieInfo;
@@ -53,15 +54,13 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
                 {highlight(movie.name, searchQuery)}
               </div>
               {!disabled && (
-                <SvgIcon
-                  id="#bookmark"
+                <BookmarkIcon
                   class={[...classNames, "colorPink"].join(" ")}
                   onClick={(e) => {
                     if (!hasBookmark) return;
                     e.preventDefault();
                     switchBookmark();
                   }}
-                  size={17}
                   style={{
                     flexShrink: 0,
                     opacity: iconOpacity,

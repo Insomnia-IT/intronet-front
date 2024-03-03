@@ -1,5 +1,83 @@
 [
   {
+    "_id": "animation",
+    "title": "Анимация",
+    "color": true,
+    "descr": "Расписание показов",
+    "section": "main",
+    "row": 1,
+    "col": 1
+  },
+  {
+    "_id": "nonanimation",
+    "title": "неАнимация",
+    "descr": "Дневные развлечения на фестивале",
+    "color": false,
+    "section": "main",
+    "row": 1,
+    "col": 2
+  },
+  {
+    "_id": "map",
+    "title": "Карта",
+    "descr": "Где туалеты??",
+    "color": false,
+    "link": "/map",
+    "section": "main",
+    "row": 2,
+    "col": 1
+  },
+  {
+    "_id": "notes",
+    "title": "Объявления",
+    "descr": "Записочки как на инфоцентре!",
+    "color": false,
+    "link": "/notes",
+    "section": "main",
+    "row": 2,
+    "col": 2
+  },
+
+  {
+    "_id": "game",
+    "title": "Игра",
+    "color": false,
+    "section": "main",
+    "small": true,
+    "row": 3,
+    "col": 1
+  },
+  {
+    "_id": "theatre",
+    "title": "Театр",
+    "color": false,
+    "section": "main",
+    "small": true,
+    "row": 3,
+    "col": 2
+  },
+
+  {
+    "_id": "art",
+    "title": "Арт",
+    "color": true,
+    "section": "main",
+    "small": true,
+    "row": 4,
+    "col": 2
+  },
+
+  {
+    "_id": "music",
+    "title": "Музыка",
+    "color": false,
+    "section": "main",
+    "small": true,
+    "row": 4,
+    "col": 1
+  },
+
+  {
     "_id": "house",
     "title": "Жилье",
     "color": true,
@@ -57,11 +135,30 @@
   },
 
   {
+    "_id": "carnaval",
+    "title": "Карнавал",
+    "color": true,
+    "section": "about",
+    "small": true,
+    "row": 4,
+    "col": 1
+  },
+  {
+    "_id": "fireplace",
+    "title": "Костры",
+    "color": false,
+    "section": "about",
+    "small": true,
+    "row": 4,
+    "col": 2
+  },
+
+  {
     "_id": "wc",
     "title": "Туалеты и\nдуши",
     "color": false,
     "section": "about",
-    "row": 4,
+    "row": 5,
     "col": 1
   },
 
@@ -70,75 +167,33 @@
     "title": "Мусор и\nэкология",
     "color": false,
     "section": "about",
-    "row": 4,
+    "row": 5,
     "col": 2
   },
 
   {
-    "_id": "animation",
-    "title": "Анимация",
+    "_id": "dogs",
+    "title": "Про собак",
     "color": false,
-    "descr": "Расписание показов, все про мультфильмы в лесу",
-    "section": "activity",
-    "row": 1,
+    "section": "about",
+    "small": true,
+    "row": 6,
     "col": 1
   },
-
   {
-    "_id": "art",
-    "title": "Арт объекты",
-    "color": false,
-    "section": "activity",
-    "row": 2,
-    "col": 1
-  },
-
-  {
-    "_id": "carnaval",
-    "title": "Карнавал",
+    "_id": "leave",
+    "title": "Как уехать",
     "color": true,
-    "section": "activity",
-    "row": 2,
+    "section": "about",
+    "small": true,
+    "row": 6,
     "col": 2
   },
-  {
-    "_id": "game",
-    "title": "Игра",
-    "color": true,
-    "section": "activity",
-    "row": 3,
-    "col": 1
-  },
-  {
-    "_id": "theatre",
-    "title": "Театр",
-    "color": false,
-    "section": "activity",
-    "row": 3,
-    "col": 2
-  },
-  {
-    "_id": "music",
-    "title": "Музыка",
-    "color": false,
-    "section": "activity",
-    "row": 3,
-    "col": 3
-  },
 
-  {
-    "_id": "nonanimation",
-    "title": "неАнимация",
-    "descr": "Дневные развлечения на фестивале",
-    "color": true,
-    "section": "activity",
-    "row": 4,
-    "col": 1
-  },
 
   {
     "_id": "tochka",
-    "title": "Точка Сборки: потерянные люди и вещи",
+    "title": "Точка Сборки",
     "descr": "Если вы потеряли ребёнка, друга, телефон или смысл жизни — тут помогут",
     "color": false,
     "section": "warning",
@@ -172,29 +227,5 @@
     "section": "warning",
     "row": 3,
     "col": 1
-  },
-  {
-    "_id": "dogs",
-    "title": "Про собак",
-    "color": false,
-    "section": "other",
-    "row": 2,
-    "col": 1
-  },
-  {
-    "_id": "leave",
-    "title": "Как уехать",
-    "color": false,
-    "section": "other",
-    "row": 2,
-    "col": 2
-  },
-  {
-    "_id": "fireplace",
-    "title": "Костры",
-    "color": true,
-    "section": "other",
-    "row": 2,
-    "col": 3
   }
 ]

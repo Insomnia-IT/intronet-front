@@ -2,9 +2,10 @@ import { Gesture, useGestures } from "../../helpers/Gestures";
 import { FunctionalComponent } from "preact";
 import { useRef } from "preact/hooks";
 import { JSX } from "preact/jsx-runtime";
-import cx from 'classnames'
-import styles from './bookmarks-gesture.module.css';
+import cx from "classnames";
+import styles from "./bookmarks-gesture.module.css";
 import { SvgIcon } from "../../icons";
+import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type IBookmarkGestureProps = {
   gesture: Gesture;
@@ -18,7 +19,7 @@ export type IBookmarkGestureProps = {
   borderRadius?: number;
   contentNoOpacity?: boolean;
   disabled?: boolean;
-}
+};
 
 export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
   gesture,
@@ -40,17 +41,14 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
     classNames,
     state,
     gestureLength,
-    needViewDemo
-  } = useGestures(
-    ref,
-    hasBookmark,
-    switchBookmark,
-    gesture,
-  );
+    needViewDemo,
+  } = useGestures(ref, hasBookmark, switchBookmark, gesture);
   if (disabled)
-    return <div class={className}>
-      {children({iconOpacity: 0, classNames: []})}
-    </div>;
+    return (
+      <div class={className}>
+        {children({ iconOpacity: 0, classNames: [] })}
+      </div>
+    );
   return (
     <div
       className={cx(wrapperClassName, {
@@ -67,13 +65,13 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
         style={{ transform }}
         {...props}
       >
-        {
-          contentNoOpacity ? (
+        {contentNoOpacity ? (
           <div className={styles.contentWrapper}>
             {children({ iconOpacity, classNames })}
           </div>
-          ) : children({ iconOpacity, classNames })
-        }
+        ) : (
+          children({ iconOpacity, classNames })
+        )}
 
         <div
           className={cx(styles["bookmarkAdd" + state], placeholderClassName)}
@@ -81,21 +79,16 @@ export const BookmarkGesture: FunctionalComponent<IBookmarkGestureProps> = ({
             "--width": gestureLength + "px",
           }}
         >
-          <SvgIcon
-            id="#bookmark"
-            class={
-              state == "Deleting" || (!hasBookmark && state !== "Adding")
-                ? "strokeOnly"
-                : undefined
-            }
+          <BookmarkIcon
+            active={state == "Deleting" || (!hasBookmark && state !== "Adding")}
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export type IBookmarkChildrenProps = {
   iconOpacity: number;
   classNames: string[];
-}
+};
