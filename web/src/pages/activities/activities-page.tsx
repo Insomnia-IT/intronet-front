@@ -26,13 +26,6 @@ export function ActivitiesPage() {
       hideSearchDeps={[router.locationId, router.activityId]}
       searchLabel="Мастер-классы, лекции..."
       withTapBar
-      buttons={
-        <Fragment>
-          <Button type="vivid" goTo={["activities", "search", {}]}>
-            <SvgIcon id="#search" size={15} stroke-width={3} />
-          </Button>
-        </Fragment>
-      }
     >
       <ActivitiesAll />
       <Sheet children={sheets} onClose={() => router.goTo(["activities"])} />

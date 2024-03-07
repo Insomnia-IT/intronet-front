@@ -24,13 +24,6 @@ export function TimetablePage() {
       search={MovieSearch}
       hideSearchDeps={[router.movieId]}
       searchLabel="Название мультфильма"
-      buttons={
-        <Fragment>
-          <Button type="vivid" goTo="/timetable/search">
-            <SvgIcon id="#search" size={15} stroke-width={3} />
-          </Button>
-        </Fragment>
-      }
     >
       <TimetableAll />
       <Sheet
