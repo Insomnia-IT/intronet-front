@@ -31,7 +31,7 @@
       "type": "image/png"
     },
     {
-      "src": "maskable-icon-512x512.png",
+      "src": "icons/maskable-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -47,8 +47,5 @@
     "idle",
     "cookies",
     "background"
-  ],
-  "host_permissions": [
-    "https://redmine.cb27.ru:17443"
   ]
 }
