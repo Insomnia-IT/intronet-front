@@ -13,7 +13,7 @@ import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
 import { NotesPage } from "./notes/NotesPage";
 import { ActivitiesPage } from "./activities/activities-page";
-import {AllSearchPage} from "./search/all-search-page";
+import { AllSearchPage } from "./search/all-search-page";
 
 export const routes = {
   main: {
@@ -120,7 +120,6 @@ export const goTo = (
   query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
 ) => {
-  console.log(path, query);
   if (typeof path === "string") {
     const url = new URL(location.origin + path);
     path = url.pathname.split("/").slice(1) as RoutePath;
@@ -156,7 +155,7 @@ export function useRouter<TQuery extends Record<string, string> = {}>() {
   }, [router.route[0]]);
   return router;
 }
-// history.scrollRestoration = "auto";
+history.scrollRestoration = "manual";
 export const historyStateCell = new Cell<Record<string, any>>(
   {},
   {

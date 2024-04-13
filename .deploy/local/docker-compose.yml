@@ -55,8 +55,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - ./.data:/data/db
-    ports:
-      - "27017:27017"
     restart: always
     networks:
       main:

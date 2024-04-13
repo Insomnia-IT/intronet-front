@@ -50,7 +50,7 @@
   composes: borderVivid from "../buttons/button.module.css";
 }
 .borderVivid.bgNight:before{
-  background: var(--ins-night) !important;
+  background-color: var(--ins-night) !important;
 }
 
 .borderLeftCloud {
