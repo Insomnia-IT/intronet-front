@@ -11,7 +11,7 @@
   box-sizing: border-box;
   border-radius: var(--radius) var(--radius) 0 0;
   box-shadow: 0 0 8px 0 rgba(247, 252, 255, 0.20);
-  background: #0C1035;
+  background: var(--ins-night);
   color: white;
 }
 
@@ -27,8 +27,8 @@
 
 .active,
 .active svg path {
-  color: #536BF3;
-  fill: #536BF3;
+  color: var(--vivid);
+  fill: var(--vivid);
 }
 
 /* Чтобы на деве и на больших экранах никто не словил кринжа */

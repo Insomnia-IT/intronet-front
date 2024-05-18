@@ -14,11 +14,11 @@
   align-items: center;
   transition: 0.3s ease-out;
 
-  font-family: "Unbounded";
+  font-family: "Cygre Extra Bold";
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
   text-align: center;
   text-transform: uppercase;
   user-select: none;
@@ -55,12 +55,12 @@
   background: var(--vivid-gradient);
 }
 .orange {
-  background: var(--chineese-cafe);
+  background: var(--ch-orange);
 }
 .frameOrange {
   composes: frame;
-  color: var(--chineese-cafe);
-  border-color: var(--chineese-cafe);
+  color: var(--ch-orange);
+  border-color: var(--ch-orange);
   background: var(--cold-white);
 }
 
@@ -137,11 +137,11 @@
   color: var(--medium-blue);
   /* Button */
 
-  font-family: "Unbounded";
+  font-family: "Cygre Extra Bold";
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
   text-align: center;
   text-transform: uppercase;
 }

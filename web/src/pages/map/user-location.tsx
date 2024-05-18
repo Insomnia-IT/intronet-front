@@ -22,7 +22,7 @@ export const UserLocation = (props: {
   if (!point) return <></>;
   return (
     <g transform={`translate(${point.X},${point.Y}) scale(${1.5 / scale})`}>
-      <circle r="10" fill="var(--chineese-cafe)" />
+      <circle r="10" fill="var(--ch-orange)" />
       <text
         font-size="10"
         alignment-baseline="middle"

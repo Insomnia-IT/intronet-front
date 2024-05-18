@@ -9,7 +9,7 @@ export function Water() {
       Вода продается в пятилитровых бутылках на инфоцентре.
     </div>
     <div className="colorOrange" flex gap="3">
-      <SvgIcon id="#alert" size={24} style={{color: "var(--chineese-cafe)", flex: 'auto 0 0'}}/>
+      <SvgIcon id="#alert" size={24} style={{color: "var(--ch-orange)", flex: 'auto 0 0'}}/>
       Техническую воду и воду из местного родника пить нельзя!
     </div>
     <ButtonsBar at="bottom">

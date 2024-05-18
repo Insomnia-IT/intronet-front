@@ -36,7 +36,7 @@ const sections = {
     title: "Кемпинг", component: () => <div class="text colorMediumBlue" flex column gap="4">
       <div>Палатку можно поставить бесплатно на территориях свободного кемпинга.</div>
       <div class="colorOrange" flex gap="3">
-        <SvgIcon id="#alert" size={24} style={{ color: "var(--chineese-cafe)", flex: 'auto 0 0' }} />
+        <SvgIcon id="#alert" size={24} style={{ color: "var(--ch-orange)", flex: 'auto 0 0' }} />
         На поле между фестивальными объектами и площадками палатки ставить запрещено!
       </div>
       <Footer/>

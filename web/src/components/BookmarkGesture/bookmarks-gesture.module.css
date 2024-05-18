@@ -44,7 +44,7 @@
 
 .bookmarkAddDeleting {
   composes: bookmarkAdd;
-  background: var(--chineese-cafe);
+  background: var(--ch-orange);
 }
 
 .bookmarkAddAdding {

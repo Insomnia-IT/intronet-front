@@ -1,11 +1,13 @@
 body {
   --electric-blues: #536bf3;
-  --chineese-cafe: #ff4b16;
+  --ch-orange: #ff4b16;
   --bonfire-light: #fda631;
-  --ins-night: #0c1035;
+  --ins-night: #061E35;
   --medium-blue: #1c2573;
   --cyber-disco: #fe4ba9;
   --pink: #ff6e76;
+  --yummy-green: #60D67A;
+  --calm-blue: #45D2F1;
   --cold-white: #f7fcff;
   --white: #fff;
   --black: #000;
@@ -14,6 +16,7 @@ body {
   --inactive-grey: #a0a5d1;
   --light-orange: #fac5c0;
   --lavand: #cfbaff;
+  --vivid: #2770B4;
   --vivid-gradient: radial-gradient(
       87.66% 151.93% at 19.01% 12.34%,
       #ff6d76 32.81%,
@@ -33,11 +36,17 @@ body {
     #ffc576 89.64%
   );
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  --soft-gradient: radial-gradient(
+  --soft-gradient2: radial-gradient(
     100% 613.64% at 4.04% 0%,
     #fffbe9 0%,
     rgba(249, 184, 255, 0.46) 93.3%
   );
+
+  --soft-gradient: radial-gradient(
+    100% 613.64% at 4.04% 0%,
+    #D7E3F4 0%,
+    rgba(184, 204, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
 
   --radius: 24px;
 }
@@ -76,7 +85,7 @@ body {
   color: var(--inactive-grey);
 }
 .colorOrange {
-  color: var(--chineese-cafe) !important;
+  color: var(--ch-orange) !important;
 }
 .colorMediumBlue {
   color: var(--medium-blue) !important;
@@ -87,6 +96,9 @@ body {
 .colorMenu {
   color: var(--menu-gradient);
 }
+.colorVivid {
+  color: var(--vivid) !important;
+}
 .colorPurple {
   color: var(--purple) !important;
 }
@@ -96,16 +108,19 @@ body {
 .colorElBlue {
   color: var(--electric-blues) !important;
 }
+.colorInherit {
+  color: inherit !important;
+}
 .unbounded {
-  font-family: "Unbounded";
+  font-family: "Cygre Black";
 }
 h1 {
-  font-family: "Unbounded";
+  font-family: "Cygre Black";
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 28px;
-  line-height: 35px;
+  font-size: 32px;
+  line-height: 40px;
   text-transform: uppercase;
   margin: 0;
   /*margin-bottom: 8px;*/
@@ -113,12 +128,12 @@ h1 {
 
 h2 {
   /*color: var(--medium-blue);*/
-  font-family: "Unbounded";
+  font-family: "Cygre Black";
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 20px;
-  line-height: 25px;
+  font-size: 28px;
+  line-height: 36px;
   text-transform: uppercase;
   margin: 0;
 }
@@ -190,7 +205,7 @@ mark {
 }
 
 .colorChineeseCaffe {
-  color: var(--chineese-cafe);
+  color: var(--ch-orange);
 }
 
 p {

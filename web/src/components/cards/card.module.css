@@ -8,6 +8,7 @@
   max-width: 440px;
   box-sizing: border-box;
   overflow: hidden;
+  transition: background ease-out 300ms;
 }
 
 .bgPurple:not(.borderVivid) {
@@ -23,13 +24,23 @@
 .bgSoft {
   background: var(--soft-gradient);
 }
+.bgSoft:active{
+  box-shadow: 0px 0px 8px 0px #1C257366;
+}
+.bgSoft:hover{
+  /*box-shadow: 0px 0px 8px 0px #1C257366;*/
+}
+
+.bgSoft2 {
+  background: var(--soft-gradient2);
+}
 
 .bgColdWhite {
   background: var(--cold-white);;
 }
 
 .bgVivid{
-  background: var(--vivid-gradient);
+  background: var(--vivid);
 }
 
 .borderNone,
@@ -46,10 +57,14 @@
   composes: border;
   border-color: var(--bonfire-light);
 }
-.borderVivid {
+.borderVivid{
+  composes: border;
+  border-color: var(--vivid);
+}
+.borderVividGradient {
   composes: borderVivid from "../buttons/button.module.css";
 }
-.borderVivid.bgNight:before{
+.borderVividGradient.bgNight:before{
   background-color: var(--ins-night) !important;
 }
 

@@ -39,10 +39,10 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
         {view.start} - {view.end}
       </div>
       <Card
-        background="Purple"
+        background="Soft"
         style={{ marginBottom: 30, paddingBottom: 8, paddingTop: 24, alignItems: 'stretch' }}
       >
-        <div flex column gap>
+        <div flex column gap onClick={isOpen ? undefined : () => setIsOpen(true)}>
           <div class={[Styles.header, "sh1"].join(" ")}>
             {block.info.Title}
             {block.info.MinAge > 0 ? (
@@ -50,7 +50,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
             ) : null}
           </div>
           <div class="textSmall colorGray">{block.info.SubTitle ?? ''}</div>
-          <div class={[Styles.duplicate, "colorPurple"].join(" ")}>
+          <div class={[Styles.duplicate, "colorVivid"].join(" ")}>
             {duplicate}
           </div>
           {isOpen && <MovieList movies={block.movies} />}

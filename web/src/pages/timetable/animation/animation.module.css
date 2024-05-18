@@ -26,7 +26,8 @@
 .movieSmall{
   user-select: none;
   -webkit-user-select: none;
-  background: color-mix(in oklab, var(--purple), transparent 93%);
+  background: #536BF312;
+  /*background: color-mix(in oklab, var(--purple), transparent 93%);*/
   display: flex;
   flex-flow: column nowrap;
   gap: 4px;

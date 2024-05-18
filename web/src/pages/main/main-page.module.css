@@ -27,7 +27,7 @@
   box-shadow: 0px 4px 12px rgba(248, 192, 194, 0.14),
     -4px -4px 12px rgba(248, 192, 194, 0.14),
     0px 4px 12px rgba(248, 192, 194, 0.14);
-  font-family: "Unbounded";
+  font-family: "Cygre Black";
   font-style: normal;
   font-variation-settings: "wght" 700;
   font-size: 16px;
@@ -66,6 +66,7 @@
   justify-content: space-between;
   height: 120px;
   flex: 1 0 0;
+  position: relative;
 }
 
 .mainCard > header {

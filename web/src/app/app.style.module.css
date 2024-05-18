@@ -42,14 +42,14 @@
 }
 
 :global(.link){
-  font-family: 'Unbounded';
+  font-family: 'Cygre Extra Bold';
   font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 18px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--electric-blues);
+  color: var(--ch-orange);
   user-select: none;
 }
 :global(.link.disabled){

@@ -1,5 +1,4 @@
 import { FunctionalComponent } from "preact";
-import style from "./age.module.css";
 import { Badge } from "../badge/badge";
 
 export const AgeStrict: FunctionalComponent<{

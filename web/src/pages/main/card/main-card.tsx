@@ -2,6 +2,7 @@ import { FunctionalComponent } from "preact";
 import { Card } from "../../../components/cards";
 import { goTo, useRouter } from "../../routing";
 import styles from "../main-page.module.css";
+import { Plant } from "./plant";
 
 export type MainCard = {
   info: MainPageCard;
@@ -25,8 +26,9 @@ export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
         .filter((x) => x)
         .join(" ")}
     >
+      <Plant/>
       <header>{info.title}</header>
-      <div class="textSmall colorInsNight">{info.descr}</div>
+      <div class="textSmall colorInherit">{info.descr}</div>
     </Card>
   );
 };

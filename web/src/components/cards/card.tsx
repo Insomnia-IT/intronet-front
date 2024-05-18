@@ -14,6 +14,7 @@ export type ActivityCardProps = {
     | "White"
     | "ColdWhite"
     | "Soft"
+    | "Soft2"
     | "Vivid"
     | "Night";
   className?: string;

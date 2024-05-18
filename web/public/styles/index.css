@@ -78,6 +78,12 @@ body, html {
 }
 
 @font-face {
-  font-family: 'Unbounded';
-  src: local('Unbounded'), url('/public/fonts/Unbounded.woff2') format('woff2');
+  font-family: 'Cygre Black';
+  src: local('Cygre Black'), url('/public/fonts/Cygre-Black.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Cygre Extra Bold';
+  src: local('Cygre Extra Bold'), url('/public/fonts/Cygre-ExtraBold.ttf') format('truetype');
 }

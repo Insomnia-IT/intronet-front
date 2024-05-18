@@ -33,12 +33,12 @@
 
 .badgeAge12 {
   composes: badgeAge;
-  background: var(--lavand);
+  background: #BACDFF;
 }
 
 .badgeAge18 {
   composes: badgeAge;
-  background: var(--light-orange);
+  background: #FFC19ECC;
 }
 
 .badgeAdv {

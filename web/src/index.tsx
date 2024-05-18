@@ -48,7 +48,7 @@ async function waitEyeAnimation() {
     x.querySelector("animate").setAttribute("dur", "2s");
   });
   const eyeOpen = svg.querySelector("#eye-open");
-  eyeOpen.setAttribute("fill", "#0C1035");
+  eyeOpen.setAttribute("fill", "#061E35");
   eyeOpen.setAttribute("transform", "scale(0.8) translate(37, 49)");
   svg.querySelector("#circle").setAttribute("fill", "white");
   await new EventListener<{ endEvent: void }>(

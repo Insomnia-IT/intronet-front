@@ -1,0 +1,11 @@
+.plant {
+  position: absolute;
+  right: 10px;
+  aspect-ratio: 1;
+  top: 0;
+  transform-origin: right top;
+  transform: rotate(-15deg) scale(2);
+  width: 40px;
+  height: 70px;
+  fill: color-mix(in oklab, var(--ins-night), transparent 87%);
+}
