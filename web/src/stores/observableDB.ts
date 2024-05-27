@@ -160,7 +160,7 @@ class VersionsDB extends LocalObservableDB<{
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 30000);
+    setInterval(() => this.loadFromServer(), 3000);
   }
 
   private loadingLock = false;
