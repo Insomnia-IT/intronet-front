@@ -11,13 +11,11 @@
   display: initial;
 }
 
-.element  text{
-  font-family: 'Cygre Black';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12em;
-  line-height: 12em;
+.elementText {
+  font-size: 13em !important;
+  line-height: 15em !important;
   text-anchor: middle;
+  font-weight: bold;
 }
 
 .selected {
@@ -51,8 +49,8 @@
 
 
 .zone{
-  fill:  rgba(255, 75, 22, 0.25);
-  stroke: var(--ch-orange);
+  fill: #5C4A2E40;
+  stroke: #5C4A2E;
   stroke-width: 3;
   stroke-dasharray: 8;
   vector-effect: non-scaling-stroke;
