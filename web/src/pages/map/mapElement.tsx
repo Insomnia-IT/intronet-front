@@ -27,7 +27,8 @@ export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
   );
   return <>{children}</>;
 }
-const scaleThreshold = 0.4;
+const scaleThresholdOther = 0.4;
+const scaleThresholdCafe = 0.2;
 
 export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
@@ -45,15 +46,15 @@ export function MapElement(props: {
     switch (type) {
       case OrderType.Main:
       case OrderType.Info:
-        return "#1C2973";
+        return "var(--medium-blue)";
       case OrderType.Screens:
-        return "#536BF3";
+        return "var(--electric-blues)";
       case OrderType.Cafe:
-        return "#60D67A";
+        return "var(--yummy-green)";
       case OrderType.WC:
-        return "#45D2F1";
+        return "var(--calm-blue)";
       case OrderType.Other:
-        return "#FE4BA9";
+        return "var(--cyber-disco)";
       default:
         return "black";
     }
@@ -68,8 +69,13 @@ export function MapElement(props: {
       case OrderType.MainZone:
       case OrderType.Main:
         return "circle";
+      case OrderType.Cafe:
+        return scale > scaleThresholdCafe || isSelected ? "circle" : "circleSmall";
+      case OrderType.Other:
+        return scale > scaleThresholdOther || isSelected ? "circle" : "circleSmall";
+      case OrderType.WC:
       default:
-        return scale > scaleThreshold || isSelected ? "circle" : "circleSmall";
+        return isSelected ? "circle" : "circleSmall"
     }
   })();
   const size = "20em";
@@ -80,8 +86,13 @@ export function MapElement(props: {
       case OrderType.Screens:
       case OrderType.Info:
         return true;
+      case OrderType.Cafe:
+        return scale > scaleThresholdCafe || isSelected;
+      case OrderType.Other:
+        return scale > scaleThresholdOther || isSelected;
+      case OrderType.WC:
       default:
-        return scale > scaleThreshold || isSelected;
+        return isSelected;
     }
   })();
   const shape = (
@@ -197,7 +208,7 @@ export function MapElement(props: {
                 overflow="visible"
               />
             </g>
-            <text y="2.5em" filter="url(#solid)">
+            <text className={styles.elementText } y="2.5em" filter="url(#solid)">
               {props.item.directionId && props.item.title}
             </text>
           </>

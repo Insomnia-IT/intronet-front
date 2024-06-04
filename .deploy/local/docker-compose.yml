@@ -80,4 +80,4 @@ networks:
   main:
     driver: bridge
   host_local:
-    external: true
+    driver: bridge
