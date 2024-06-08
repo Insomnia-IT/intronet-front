@@ -1,8 +1,7 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
+import { Button, ButtonsBar, CloseButton, PageLayout } from "@components";
 
 export function NonAnimation() {
-  return <div className="page text colorMediumBlue" flex gap="4">
-    <h1>неанимация</h1>
+  return <PageLayout title='неанимация'>
     <CloseButton goTo="/main"/>
     <br/>
     «Бессонница» — фестиваль авторской анимации, но не только! Днем в программе мероприятий - музыка, перформансы,
@@ -26,7 +25,7 @@ export function NonAnimation() {
     Понравившиеся лекции и мастер-классы можно сохранить в Избранное, а еще больше площадок и мероприятий - в программе
     Неанимации!
     <ButtonsBar at="bottom">
-      <Button type="vivid" class="w-full" goTo={['activities']}>к расписанию</Button>
+      <Button type="blue" class="w-full" goTo={['activities']}>к расписанию</Button>
     </ButtonsBar>
-  </div>
+  </PageLayout>
 }

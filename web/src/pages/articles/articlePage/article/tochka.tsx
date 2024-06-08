@@ -3,6 +3,7 @@ import {Card} from "../../../../components/cards";
 import {Tag, Tags} from "../../../../components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function Tochka() {
   const router = useRouter();
@@ -16,9 +17,7 @@ export function Tochka() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  console.log(sections, section, Component)
-  return <div class="page" flex gap="4">
-    <h1>точка сборки</h1>
+  return <PageLayout title='точка сборки'>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -28,7 +27,7 @@ export function Tochka() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {
@@ -45,7 +44,7 @@ const sections = {
           сборки.</li>
       </ul>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full"  goTo={['map',{name: 'точка'}]}>к точке сборки</Button>
+        <Button type="blue" class="w-full"  goTo={['map',{name: 'точка'}]}>к точке сборки</Button>
       </ButtonsBar>
     </div>
   },

@@ -17,7 +17,7 @@ import { SearchInput } from "@components/input/search-input";
 
 export type PageLayoutProps = PropsWithChildren<{
   design?: "light" | "dark";
-  title?: string;
+  title?: ReactNode;
   /* При наличии добавит к заколовку переход в Избранное */
   favoritesRoute?: RoutePath | RoutePathString;
   withTapBar?: boolean;
@@ -32,6 +32,7 @@ export type PageLayoutProps = PropsWithChildren<{
   hideSearchDeps?: any[];
   searchLabel?: string;
   headerStyle?: string;
+  gap?: number | string;
 }>;
 
 export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
@@ -49,6 +50,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   hideSearchDeps,
   searchLabel,
   headerStyle,
+  gap
 }) => {
   const router = useRouter();
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
@@ -62,6 +64,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         withTapBar && styles.withTapbar,
         className
       )}
+      gap={gap}
     >
       <div className={headerStyle ?? styles.header}>
         <h1>{title}</h1>

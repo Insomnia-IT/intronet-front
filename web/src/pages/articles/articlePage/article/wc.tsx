@@ -4,6 +4,7 @@ import {SvgIcon} from "../../../../icons";
 import {Directions} from "../../../../stores";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function WC() {
   const router = useRouter();
@@ -17,8 +18,7 @@ export function WC() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  return <div class="page" flex gap="4">
-    <h1>Туалеты и<br/>души</h1>
+  return <PageLayout title={<>Туалеты и<br/>души</>}>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -28,7 +28,7 @@ export function WC() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {
@@ -40,7 +40,7 @@ const sections = {
         средствами от запаха.</div>
       <div>Туалетной бумаги в кабинках нет.</div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.wc}]}>к туалетам</Button>
+        <Button type="blue" class="w-full" goTo={['map', {direction: Directions.wc}]}>к туалетам</Button>
       </ButtonsBar>
     </div>
   },
@@ -55,7 +55,7 @@ const sections = {
         Купаться в реке запрещено!
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.shower}]}>к бесплатному душу</Button>
+        <Button type="blue" class="w-full" goTo={['map', {direction: Directions.shower}]}>к бесплатному душу</Button>
       </ButtonsBar>
     </div>
   },
@@ -69,7 +69,7 @@ const sections = {
         Купаться в реке запрещено!
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map', {direction: Directions.shower}]}>к платному душу</Button>
+        <Button type="blue" class="w-full" goTo={['map', {direction: Directions.shower}]}>к платному душу</Button>
       </ButtonsBar>
     </div>
   },
@@ -80,7 +80,7 @@ const sections = {
         окружающей среде.
       </div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map', {name: 'steam'}]}>к бане</Button>
+        <Button type="blue" class="w-full" goTo={['map', {name: 'steam'}]}>к бане</Button>
       </ButtonsBar>
     </div>
   },

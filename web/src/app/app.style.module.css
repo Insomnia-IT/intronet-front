@@ -49,7 +49,7 @@
   line-height: 18px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--ch-orange);
+  color: var(--electric-blues);
   user-select: none;
 }
 :global(.link.disabled){

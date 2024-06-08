@@ -1,9 +1,7 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
-import {SvgIcon} from "../../../../icons";
+import { CloseButton, PageLayout } from "@components";
 
 export function GoAway() {
-  return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>Как уехать</h1>
+  return <PageLayout title='Как уехать'>
     <CloseButton goTo="/main"/>
     <br/>
     <div class="sh1">Калужские автобусы</div>
@@ -35,5 +33,5 @@ export function GoAway() {
     <a href="tel://+79208844778">+7 920 88 44 778</a>
     <div className="sh1">Автовокзал в Юхнове:</div>
     <a href="tel://+74843621304">+7 48436 2 13 04</a>
-  </div>
+  </PageLayout>
 }

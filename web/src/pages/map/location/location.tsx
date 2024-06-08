@@ -1,12 +1,12 @@
-import { getCurrentDay } from "../../../helpers/getDayText";
+import { getCurrentDay } from "@helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
-import { useCell } from "../../../helpers/cell-state";
-import { locationsStore, LocationStore } from "../../../stores";
-import { bookmarksStore } from "../../../stores/bookmarks.store";
-import { Button, ButtonsBar } from "../../../components";
-import { Link } from "../../../components/link/link";
-import { SvgIcon } from "../../../icons";
+import { useCell } from "@helpers/cell-state";
+import { locationsStore, LocationStore } from "@stores";
+import { bookmarksStore } from "@stores/bookmarks.store";
+import { Button, ButtonsBar } from "@components";
+import { Link } from "@components";
+import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
@@ -78,7 +78,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
         )}
         <div className="text colorMediumBlue">
           {" "}
-          {location.description.split("\n").map((x) => (
+          {location.description?.split("\n").map((x) => (
             <div>{x}</div>
           ))}
         </div>

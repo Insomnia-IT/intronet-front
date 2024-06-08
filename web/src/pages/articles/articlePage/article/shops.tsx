@@ -6,17 +6,17 @@ import {SvgIcon} from "../../../../icons";
 import {shopsStore} from "../../../../stores/articles.store";
 import {useRouter} from "../../../routing";
 import {orderBy} from "@cmmn/core";
+import { PageLayout } from "@components/PageLayout";
 
 export function Shops() {
   const router = useRouter();
   const id = router.route[2] as string | undefined;
-  return <div class="page" flex gap="4">
-    <h1>Ярмарка</h1>
+  return <PageLayout title='Ярмарка'>
     {id ? <Shop id={id}/> : <ShopList/>}
     <ButtonsBar at="bottom">
-      <Button type="vivid" class="w-full" goTo="/map/?name=ярмарка">к ярмарке</Button>
+      <Button type="blue" class="w-full" goTo="/map/?name=ярмарка">к ярмарке</Button>
     </ButtonsBar>
-  </div>
+  </PageLayout>
 }
 
 const Shop = (props: {id: string}) => {

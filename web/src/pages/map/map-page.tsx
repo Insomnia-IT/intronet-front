@@ -1,14 +1,13 @@
-import { Fragment } from "preact";
 import { PageLayout } from "@components/PageLayout";
-import { Button, ButtonsBar, CloseButton, Sheet } from "../../components";
-import { RequireAuth } from "../../components/RequireAuth";
-import { locationsStore } from "../../stores/locations.store";
-import { useCell } from "../../helpers/cell-state";
+import { Button, ButtonsBar, CloseButton, Sheet } from "@components";
+import { RequireAuth } from "@components/RequireAuth";
+import { locationsStore } from "@stores";
+import { useCell } from "@helpers/cell-state";
 import { LocationAdd } from "./location/location-add";
 import { LocationEdit } from "./location/location-edit";
 import { MapComponent } from "./map";
 import styles from "./map-page.module.css";
-import { SvgIcon } from "../../icons";
+import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
@@ -116,7 +115,8 @@ const getMapSheets = (
   onPageClose: () => void
 ) => {
   const selected = useCell(() => locationsStore.selected);
-  console.log(selected);
+  if (selected.length === 0)
+    return <></>;
   if (selected.length === 1)
     return (
       <>

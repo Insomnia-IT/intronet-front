@@ -1,9 +1,8 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
-import {Link} from "../../../../components/link/link";
-import {Tag, Tags} from "../../../../components/tag";
-import {SvgIcon} from "../../../../icons";
+import {Button, ButtonsBar, CloseButton, Link, Tag, Tags} from "@components";
+import {SvgIcon} from "@icons";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function Living() {
   const router = useRouter();
@@ -17,8 +16,7 @@ export function Living() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  return <div class="page" flex>
-    <h1>Жилье</h1>
+  return <PageLayout title='Жилье' >
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)} style={{marginTop: 28, marginBottom: 8}}>
       {x => <Tag
@@ -28,20 +26,22 @@ export function Living() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {
   camping: {
     title: "Кемпинг", component: () => <div class="text colorMediumBlue" flex column gap="4">
-      <div>Палатку можно поставить бесплатно на территориях свободного кемпинга.</div>
+      <div>Палатку можно поставить бесплатно в специальной зоне кэмпинга.</div>
       <div class="colorOrange" flex gap="3">
         <SvgIcon id="#alert" size={24} style={{ color: "var(--ch-orange)", flex: 'auto 0 0' }} />
-        На поле между фестивальными объектами и площадками палатки ставить запрещено!
+        На поле между фестивальными объектами и локациями, палатки ставить запрещено
       </div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map',{direction: 'бесплатный лагерь'}]}>к бесплатному лагерю</Button>
+        <Button type="blue" class="w-full" goTo={['map',{direction: 'бесплатный лагерь'}]}>
+          к бесплатным лагерям
+        </Button>
       </ButtonsBar>
     </div>
   }, tents: {
@@ -58,7 +58,7 @@ const sections = {
       <div>Оплата аренды и залога происходит при получении. Если вы оставляли заявку на аренду заранее, то номер телефона
         является вашим номером заказа.</div>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map',{name: 'прокат'}]}>к прокату палаток</Button>
+        <Button type="blue" class="w-full" goTo={['map',{name: 'прокат'}]}>к прокату палаток</Button>
       </ButtonsBar>
     </div>
   }, paid: {
@@ -74,7 +74,7 @@ const sections = {
       <div  style={{marginBottom: 8}}>Если вы заранее купили билет в палаточный отель Караван — вам сюда!</div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map',{name: 'караван'}]}>к каравану</Button>
+        <Button type="blue" class="w-full" goTo={['map',{name: 'караван'}]}>к каравану</Button>
       </ButtonsBar>
     </div>
   }, yurt: {
@@ -82,7 +82,7 @@ const sections = {
       <div  style={{marginBottom: 8}}>Если вы заранее купили билет в Юрту — вам сюда!</div>
       <Footer/>
       <ButtonsBar at="bottom">
-        <Button type="vivid" class="w-full" goTo={['map',{name: 'юрты'}]}>к юртам</Button>
+        <Button type="blue" class="w-full" goTo={['map',{name: 'юрты'}]}>к юртам</Button>
       </ButtonsBar>
     </div>
   },

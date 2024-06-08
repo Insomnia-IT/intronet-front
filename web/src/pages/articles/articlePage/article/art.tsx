@@ -1,12 +1,7 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
-import {Card} from "../../../../components/cards";
-import {Link} from "../../../../components/link/link";
-import {SvgIcon} from "../../../../icons";
-import {useRouter} from "../../../routing";
+import { Link, PageLayout, CloseButton } from "@components";
 
 export function Art() {
-  return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>Арт-объекты</h1>
+  return <PageLayout title='Арт-объекты'>
     <CloseButton goTo="/main"/>
     <div>Мы хотели наполнить поле арт-объектами, чтобы еще больше погрузиться в фантастическую атмосферу. Для этого мы
       устроили конкурс «Затмение».
@@ -47,5 +42,5 @@ export function Art() {
     <div>Энтомологическая лаборатория, представитель — профессор Жуковски</div>
     <Link style={{marginTop: -8}} goTo="/map" query={{name: 'муравейник'}}>Жук в Муравейнике и Нора
       Старейшины</Link>
-  </div>
+  </PageLayout>
 }

@@ -2,6 +2,7 @@ import {Button, ButtonsBar, CloseButton} from "../../../../components";
 import {Tag, Tags} from "../../../../components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function Eco() {
   const router = useRouter();
@@ -15,8 +16,7 @@ export function Eco() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  return <div class="page" flex gap="4">
-    <h1>Экология</h1>
+  return <PageLayout title='Экология'>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -26,7 +26,7 @@ export function Eco() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {

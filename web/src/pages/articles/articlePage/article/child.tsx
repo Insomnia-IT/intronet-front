@@ -1,9 +1,9 @@
-import {CloseButton} from "../../../../components";
-import {Card} from "../../../../components/cards";
-import {Link} from "../../../../components/link/link";
-import {Tag, Tags} from "../../../../components/tag";
+import {CloseButton} from "@components";
+import {Link} from "@components";
+import {Tag, Tags} from "@components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function Child() {
   const router = useRouter();
@@ -17,9 +17,7 @@ export function Child() {
     }
   }, [!!section]);
   const Component = sections[section]?.component;
-  console.log(sections, section, Component)
-  return <div class="page" flex gap="4">
-    <h1>Я с ребёнком</h1>
+  return <PageLayout title='Я с ребёнком'>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -29,7 +27,7 @@ export function Child() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {

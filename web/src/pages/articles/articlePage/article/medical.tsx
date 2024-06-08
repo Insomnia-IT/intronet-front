@@ -1,11 +1,7 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
-import {Card} from "../../../../components/cards";
-import {SvgIcon} from "../../../../icons";
-import {useRouter} from "../../../routing";
+import { Card, Button, ButtonsBar, CloseButton, PageLayout } from "@components";
 
 export function Medical() {
-  return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>Мед. пункт</h1>
+  return <PageLayout title='Мед. пункт'>
     <CloseButton goTo="/main"/>
     <div class="sh1">В каком случае необходимо вызывать медиков?</div>
     <Card border="Blue">
@@ -32,5 +28,5 @@ export function Medical() {
     <ButtonsBar at="bottom">
       <Button type="vivid" class="w-full" goTo={['map', {name: 'медпункт'}]}>к мед. пункту</Button>
     </ButtonsBar>
-  </div>
+  </PageLayout>
 }

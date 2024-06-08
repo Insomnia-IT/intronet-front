@@ -235,10 +235,10 @@ class LocationsStore {
 export const locationsStore = new LocationsStore();
 
 export enum Directions {
-  medical = "Медпункт (Медицинская Служба)",
+  medical = "Медпункт",
   kpp = "КПП",
   bath = "Баня",
-  tochka = "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
+  tochka = "Точка Сборки",
   hatifnati = "Хатифнатты",
   paid = "Платный лагерь",
   children = "Детская Поляна",

@@ -1,9 +1,7 @@
-import {Button, ButtonsBar, CloseButton} from "../../../../components";
-import {SvgIcon} from "../../../../icons";
+import { CloseButton, PageLayout } from "@components";
 
 export function Game() {
-  return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>ИГРА</h1>
+  return <PageLayout title='ИГРА'>
     <CloseButton goTo="/main"/>
     Игра вот-вот начнется!
     В этом году традиционная игра фестиваля будет в обновленном формате.
@@ -20,5 +18,5 @@ export function Game() {
     <br/><br/>
     Во-первых, брать фишки или нет — это исключительно ваше решение; игра — не в них и не про них. А фишками могут стать любые монетки, шишки или камушки с дороги, и, это учитывается в правилах. Кубик важен, но фишки — нет.
     Во-вторых, получить набор фишек гости смогут только в последний день фестиваля на специальных станциях. Брать набор будут только те, кто твердо изъявит интерес и желание, а за оставшиеся часы ничего не успеет потеряться.
-  </div>
+  </PageLayout>
 }

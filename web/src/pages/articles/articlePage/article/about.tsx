@@ -3,6 +3,7 @@ import {Card} from "../../../../components/cards";
 import {Tag, Tags} from "../../../../components/tag";
 import {useEffect} from "preact/hooks";
 import {useRouter} from "../../../routing";
+import { PageLayout } from "@components/PageLayout";
 
 export function About() {
   const router = useRouter();
@@ -17,8 +18,7 @@ export function About() {
   }, [!!section]);
   const Component = sections[section]?.component;
   console.log(sections, section, Component)
-  return <div class="page" flex gap="4">
-    <h1>о Портале Insight</h1>
+  return <PageLayout title='о Портале Insight'>
     <CloseButton goTo="/main"/>
     <Tags tagsList={Object.keys(sections)}>
       {x => <Tag
@@ -28,7 +28,7 @@ export function About() {
         selected={x === section}>{sections[x].title}</Tag>}
     </Tags>
     {Component && <Component/>}
-  </div>
+  </PageLayout>
 }
 
 const sections = {

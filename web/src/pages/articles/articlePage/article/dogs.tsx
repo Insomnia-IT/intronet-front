@@ -1,9 +1,7 @@
-import {CloseButton} from "../../../../components";
-import {Link} from "../../../../components/link/link";
+import { CloseButton, PageLayout, Link } from "@components";
 
 export function Dogs() {
-  return <div class="page text colorMediumBlue" flex gap="4">
-    <h1>Про собак</h1>
+  return <PageLayout title='Про собак'>
     <CloseButton goTo="/main"/>
     <ul className="disc" style={{margin: '4px 0'}}>
       <li>Собака все время должна быть на поводке, отпускать нельзя. Если собака может быть агрессивна по отношению к
@@ -18,5 +16,5 @@ export function Dogs() {
     <Link goTo={['map',{name: 'точка'}]}>точка сборки</Link>
     Если собака кого-то покусала, или вас покусала собака, проверьте, что вы знаете что делать
     <Link goTo={['map',{name: 'медпункт'}]}>мед. пункт</Link>
-  </div>
+  </PageLayout>
 }

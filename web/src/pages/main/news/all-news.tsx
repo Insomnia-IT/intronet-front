@@ -1,9 +1,8 @@
-import {Button, ButtonsBar, CloseButton} from "../../../components";
-import {Link} from "../../../components/link/link";
-import {useCell} from "../../../helpers/cell-state";
-import {SvgIcon} from "../../../icons";
-import {authStore} from "../../../stores/auth.store";
-import { newsStore } from "../../../stores/news.store";
+import {Button, Link, CloseButton} from "@components";
+import {useCell} from "@helpers/cell-state";
+import {SvgIcon} from "@icons";
+import {authStore} from "@stores/auth.store";
+import { newsStore } from "@stores/news.store";
 import style from "./news.module.css";
 
 export const AllNews = () => {
@@ -30,6 +29,6 @@ export const AllNews = () => {
     </div>
     {isAdmin
       ? <Button type="blue" goTo={["main", "news", "add"]}>Добавить новость</Button>
-      : <Button type="vivid" class="w-full" goTo={["main"]}>Понятно</Button>}
+      : <Button type="blue" class="w-full" goTo={["main"]}>Понятно</Button>}
   </>
 }

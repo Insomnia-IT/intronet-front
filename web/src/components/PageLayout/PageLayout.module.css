@@ -3,7 +3,7 @@
   position: relative;
   max-width: 440px;
   min-height: 100%;
-  padding: 54px 16px 16px;
+  padding: 54px 16px 80px 16px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
