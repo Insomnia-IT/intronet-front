@@ -4,15 +4,15 @@
   "description": "Intronet web site for insomnia fest",
   "scripts": {
     "server": "nodemon ./dist/esm",
-    "test": "node --test ./dist/esm/specs/locations.specs.js",
+    "test": "node --env-file=.env.local --test ./dist/esm/specs/locations.specs.js",
     "build": "cmmn compile"
   },
   "type": "module",
   "dependencies": {
     "@cmmn/cell": "2.0.0",
+    "fastify": "4.15.0",
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
-    "fastify": "4.15.0",
     "mongodb": "6.3.0",
     "node-fetch": "3.3.2",
     "tslib": "2.6.2"
@@ -20,6 +20,8 @@
   "devDependencies": {
     "@cmmn/tools": "2.0.2",
     "@types/node": "20.10.1",
+    "google-auth-library": "^9.10.0",
+    "google-spreadsheet": "^4.1.2",
     "typescript": "5.2.2"
   },
   "author": "",

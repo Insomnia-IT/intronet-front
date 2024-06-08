@@ -230,13 +230,10 @@ const enum OrderType {
 }
 
 const directionsToOrder = new Map([
-  ["Медпункт (Медицинская Служба)", OrderType.Info],
+  ["Медпункт", OrderType.Info],
   ["КПП", OrderType.Main],
   ["Баня", OrderType.WC],
-  [
-    "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
-    OrderType.Info,
-  ],
+  ["Точка Сборки", OrderType.Info],
   ["Хатифнатты", OrderType.Other],
   ["Платный лагерь", OrderType.Main],
   ["Детская Поляна", OrderType.Other],
@@ -249,7 +246,6 @@ const directionsToOrder = new Map([
   ["Лекторий", OrderType.Other],
   ["Фудкорт", OrderType.Cafe],
   ["Кафе", OrderType.Cafe],
-  ["КАФЕ", OrderType.Cafe],
   ["Ветви Дерева", OrderType.Other],
   ["Спортплощадка", OrderType.Other],
   ["Души", OrderType.WC],
@@ -258,23 +254,26 @@ const directionsToOrder = new Map([
   ["Гостевые Кемпинги", OrderType.MainZone],
   ["Экран", OrderType.Screens],
   ["Инфоцентр", OrderType.Info],
+  ["", OrderType.Other],
+  ["Гостевые Кемпинги", OrderType.Main],
+  ["Зона", OrderType.Other],
+  ["Костер", OrderType.Other],
+  ["Платные души", OrderType.Other],
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
-  ["Медпункт (Медицинская Служба)", ".map #sign"],
+  ["Медпункт", ".map #sign"],
   ["КПП", ".map #kpp"],
   ["Баня", ".map #shower"],
-  [
-    "Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде",
-    ".map #sign",
-  ],
+  ["Точка Сборки", ".map #sign"],
+  ["Хатифнатты", ".map #lecture"],
+  ["Платный лагерь", ".map #tent"],
   ["Детская Площадка", ".map #art"],
   ["Арт-объект", ".map #art"],
   ["Мастер-Классы", ".map #lecture"],
   ["Туалет", ".map #wc"],
   ["Ярмарка", ".map #shop"],
   ["Автолагерь", ".map #tent"],
-  ["Платный лагерь", ".map #tent"],
   ["Лекторий", ".map #lecture"],
   ["Фудкорт", ".map #cafe"],
   ["Кафе", ".map #cafe"],
@@ -286,8 +285,8 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Театральная Сцена", ".map #eye"],
   ["Гостевые Кемпинги", ".map #tent"],
   ["Экран", ".map #eye"],
-  ["Хатифнатты", ".map #lecture"],
   ["Инфоцентр", ".map #sign"],
+  ["Гостевые Кемпинги", ".map #tent"],
 ]);
 
 export type MapIconId =
@@ -318,10 +317,10 @@ export type DetailsGroup =
   | "other";
 
 export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
-  ["Медпункт (Медицинская Служба)", "med"],
+  ["Медпункт", "med"],
   ["КПП", "other"],
   ["Баня", "wc"],
-  ["Точка Сборки (Место Встречи И Помощь В Поиске Потерянных Люде", "point"],
+  ["Точка Сборки", "point"],
   ["Хатифнатты", "activity"],
   ["Платный лагерь", "tent"],
   ["Детская Поляна", "other"],
@@ -334,7 +333,7 @@ export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
   ["Лекторий", "activity"],
   ["Фудкорт", "cafe"],
   ["Кафе", "cafe"],
-  ["КАФЕ", "cafe"],
+  // ["КАФЕ", "cafe"],
   ["Ветви Дерева", "art"],
   ["Спортплощадка", "art"],
   ["Души", "wc"],
@@ -342,5 +341,9 @@ export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
   ["Театральная Сцена", "activity"],
   ["Гостевые Кемпинги", "tent"],
   ["Экран", "screen"],
-  ["Инфоцентр", "info"],
+  ["", "other"],
+  ["Гостевые Кемпинги", "tent"],
+  ["Зона", "other"],
+  ["Костер", "other"],
+  ["Платные души", "other"],
 ]);

@@ -4,7 +4,7 @@ type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 type InsomniaLocation = {
   _id: string;
   // Неуникальный, но постоянный
-  notionId: string;
+  // notionId: string;
   name: string;
   description: string;
   directionId: string;

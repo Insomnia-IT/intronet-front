@@ -56,6 +56,8 @@ services:
     volumes:
       - ./.data:/data/db
     restart: always
+    ports:
+      - "27017:27017"
     networks:
       main:
 

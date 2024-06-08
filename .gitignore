@@ -19,3 +19,4 @@ build
 .private
 .data
 .deploy/local/.data
+**/.env.local
