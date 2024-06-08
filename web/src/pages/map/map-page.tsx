@@ -115,8 +115,6 @@ const getMapSheets = (
   onPageClose: () => void
 ) => {
   const selected = useCell(() => locationsStore.selected);
-  if (selected.length === 0)
-    return <></>;
   if (selected.length === 1)
     return (
       <>
