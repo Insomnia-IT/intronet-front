@@ -1,7 +1,10 @@
 {
   "extends": "@cmmn/tools/compile/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "lib": [
+      "ESNext"
+    ]
   },
   "include": [],
   "references": [

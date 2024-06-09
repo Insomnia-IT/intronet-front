@@ -3,7 +3,7 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import auth, { GoogleAuth, JWT } from 'google-auth-library';
 import process from "node:process";
   import { Database } from "../database";
-import { Fn } from "@cmmn/core";
+import { Fn, groupBy } from "@cmmn/core";
 
 export async function importLocations(force = false) {
   const doc = await getDoc();
@@ -13,26 +13,39 @@ export async function importLocations(force = false) {
   // await mapSheet.setHeaderRow([
   //   'id', 'googleName', 'insightName', 'icon', 'descr', 'geometry'
   // ]);
-  const mapData = new Map<string, GeoFigure>((await mapSheet.getRows()).map(row =>
-    [row.get('Название Гугл Карты'), geometryToFigure(JSON.parse(row.get('geometry') ?? 'null'))]));
-  const data = (await dataSheet.getRows()).map(row => {
-    const mapName =  row.get('Название Гугл Карты') as string;
-    return ({
+  const mapArray = (await mapSheet.getRows()).map(row => ({
+    name: row.get('Название Гугл Карты'),
+    figure: geometryToFigure(JSON.parse(row.get('geometry') ?? 'null'))
+  }));
+  const mapData = groupBy(mapArray, x => x.name);
+  console.log(...mapData.entries())
+  const data = (await dataSheet.getRows()).flatMap(row => {
+    const mapName = row.get('Название Гугл Карты') as string;
+    const geo = mapData.get(mapName)?.map(x => x.figure) ?? [];
+
+    const directionId = row.get('directionId') as string;
+    const figure: GeoFigure = directionId == 'Зона'
+      ? geo.find(Array.isArray)
+      : geo.find(x => !Array.isArray(x));
+    if (!figure){
+      console.error(row.get('Название Insight'));
+      return  [];
+    }
+    return [{
       _id: Fn.ulid(),
       mapName,
       name: row.get('Название Insight') as string,
       description: row.get('Описание') as string,
-      directionId: row.get('directionId') as string,
-      figure: mapData.get(mapName),
+      figure,
+      directionId,
       tags: [],
       work_tags: [],
       priority: row.get('Приоритет') as string,
       details: row.get('Тип деталки') as string,
       groupLink: row.get('Ссылка на группу') as string,
-    } as InsomniaLocation);
+    } as InsomniaLocation];
   });
 
-  console.log(...mapData.entries())
   const locationsDB = Database.Get<any>("locations");
   const locationsInDB = await locationsDB.getSince();
 

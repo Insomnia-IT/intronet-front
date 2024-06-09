@@ -127,14 +127,13 @@ export function MapElement(props: {
     if (Array.isArray(props.item.figure[0])) {
       const center = geoConverter.getCenter(props.item.figure);
       return (
-        <>
+        <g onClick={(e) => {
+          e.preventDefault();
+          locationsStore.setSelectedId(props.item.id);
+        }}>
           <path
             id={props.item.id}
             class={isSelected ? styles.zoneSelected : styles.zone}
-            onClick={(e) => {
-              e.preventDefault();
-              locationsStore.setSelectedId(props.item.id);
-            }}
             d={props.item.figure
               .map((line) => "M" + line.map((p) => `${p.X} ${p.Y}`).join("L"))
               .join(" ")}
@@ -160,7 +159,7 @@ export function MapElement(props: {
           >
             {props.item.title}
           </text>
-        </>
+        </g>
       );
     }
     return <></>;

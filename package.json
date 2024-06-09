@@ -21,6 +21,9 @@
     "./e2e",
     "./server"
   ],
+  "devDependencies": {
+    "typescript": "5.4.5"
+  },
   "type": "module",
   "author": "",
   "license": "ISC",
