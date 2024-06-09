@@ -2,8 +2,9 @@ import { Input } from "@components/input";
 import { useCell } from "@helpers/cell-state";
 import { MovieList } from "../animation/movie-list";
 import { SearchPlug } from "@components/plugs/search/SearchPlug";
-import {searchStore} from "@stores/search.store";
-import {useEffect} from "preact/hooks";
+import { searchStore } from "@stores/search.store";
+import { useEffect } from "preact/hooks";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 export const MovieSearch = () => {
   const query = useCell(searchStore.query);
@@ -11,7 +12,8 @@ export const MovieSearch = () => {
   useEffect(() => () => searchStore.query.set(''), []);
   return (
     <div flex column gap={5} class="h-full">
-      <h1>поиск</h1>
+      <PageHeader titleH1={'поиск'} withCloseButton/>
+
       <Input
         placeholder="Название мультфильма"
         autofocus

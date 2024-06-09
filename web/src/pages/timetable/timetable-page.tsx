@@ -45,19 +45,13 @@ function getTimetableSheets(movieId: string) {
       );
     case "search":
       return (
-        <>
-          <MovieSearch />
-          <CloseButton />
-        </>
+        <MovieSearch />
       );
     case undefined:
       return null;
     default:
       return (
-        <>
-          <Movie id={movieId} />
-          <CloseButton />
-        </>
+        <Movie id={movieId} />
       );
   }
 }

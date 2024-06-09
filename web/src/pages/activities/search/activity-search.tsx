@@ -4,6 +4,7 @@ import { ActivityList } from "../activities/activityList";
 import { SearchPlug } from "@components/plugs/search/SearchPlug";
 import { searchStore } from "@stores/search.store";
 import { useEffect } from "preact/hooks";
+import {PageHeader} from "@components/PageHeader/PageHeader";
 
 export const ActivitySearch = () => {
   const query = useCell(searchStore.query);
@@ -11,9 +12,9 @@ export const ActivitySearch = () => {
   useEffect(() => () => searchStore.query.set(""), []);
   return (
     <div flex column gap={5} className="h-full" style={{ marginBottom: 40 }}>
-      <h1>поиск</h1>
+      <PageHeader titleH1={'поиск'} withCloseButton/>
+
       <Input
-        style={{ margin: "20px 0" }}
         autofocus
         placeholder="Название мероприятия"
         value={query}
@@ -25,7 +26,7 @@ export const ActivitySearch = () => {
         <SearchPlug
           title={"Ничего не найдено"}
           text={"Попробуйте найти мероприятие по названию или по ведущему"}
-        ></SearchPlug>
+        />
       )}
     </div>
   );

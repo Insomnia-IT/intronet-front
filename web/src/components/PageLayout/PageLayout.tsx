@@ -12,7 +12,6 @@ import {
   useRouter,
 } from "../../pages/routing";
 import { useEffect, useState } from "preact/hooks";
-import { ActivitySearch } from "../../pages/activities/search/activity-search";
 import { SearchInput } from "@components/input/search-input";
 
 export type PageLayoutProps = PropsWithChildren<{
@@ -55,6 +54,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   const router = useRouter();
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
   useEffect(() => setSearchSheetOpen(false), hideSearchDeps);
+
   return (
     <div
       className={cn(
@@ -71,7 +71,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         {Boolean(favoritesRoute) && (
           <SvgIcon
             id="#bookmark"
-            style={{ color: "var(--medium-blue)" }}
+            style={{ color: "var(--pink)" }}
             size={32}
             onClick={() => goTo(favoritesRoute)}
           />
@@ -81,7 +81,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
           <SearchInput
             placeholder={searchLabel}
             style={searchStyle}
-            onFocus={() => setSearchSheetOpen(true)}
+            onFocus={() => router.goTo([router.route[0], 'search'])}
           />
         )}
       </div>
@@ -92,12 +92,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
       {withTapBar && <TapBar />}
       {searchSheetOpen && Search && (
         <Sheet
-          children={
-            <>
-              <Search />
-              <CloseButton onClick={() => setSearchSheetOpen(false)} />
-            </>
-          }
+          children={<Search />}
           noShadow={true}
           height="100%"
           onClose={() => router.goTo([router.route[0]])}

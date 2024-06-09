@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 30px 0 8px;
+}
+
+.top {
+  align-items: flex-start;
+}
+
+.bottom {
+  align-items: flex-end;
+}
+
+.baseline {
+  align-items: center;
+}
+
+.baseline {
+  align-items: baseline;
+}
+
+.header > h1 {
+  color: var(--medium-blue);
+}
