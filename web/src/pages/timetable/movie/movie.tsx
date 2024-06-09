@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { locationsStore, moviesStore, MovieStore } from "../../../stores";
+import { locationsStore, MovieStore } from "../../../stores";
 import { useMemo } from "preact/hooks";
 import { useCell } from "../../../helpers/cell-state";
 import { getDayText } from "../../../helpers/getDayText";
@@ -11,6 +11,7 @@ import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { Link } from "../../../components/link/link";
 import { votingStore } from "../../../stores/votingStore";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
+import {PageHeader} from "@components/PageHeader/PageHeader";
 
 export type MovieProps = {
   id: string;
@@ -23,12 +24,12 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { isOnline } = useCell(votingStore.state);
+
   if (!screenLocations.length) return <></>;
+
   return (
     <div flex column gap={2}>
-      <header className="sh1" style={{ marginBottom: 16 }}>
-        {movie?.name}
-      </header>
+      <PageHeader titleH2={movie?.name} align={'top'} withCloseButton/>
       {movie.description && (
         <div
           style={{
@@ -115,7 +116,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       <ButtonsBar at="bottom">
         <Button
-          type="vivid"
+          type={state.hasBookmark ? 'orange' : 'blue'}
           class="w-full"
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >

@@ -10,6 +10,7 @@ import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
+import {PageHeader} from "@components/PageHeader/PageHeader";
 
 export type LocationProps = {
   id: string;
@@ -51,9 +52,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
     );
   return (
     <div className={Styles.container}>
-      <div className={["sh1", Styles.locationHeader].join(" ")}>
-        {location.name}
-      </div>
+      <PageHeader titleH2={location.name} align={'top'} onClose={() => locationsStore.setSelectedId(null)} withCloseButton/>
 
       <div className={Styles.locationContent}>
         {!!currentActivity && (
@@ -114,7 +113,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
       ) : (
         <ButtonsBar at="bottom">
           <Button
-            type="vivid"
+            type={hasBookmark ? 'orange' : 'blue'}
             onClick={() =>
               bookmarksStore.switchBookmark("locations", location._id)
             }

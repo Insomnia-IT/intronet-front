@@ -38,8 +38,6 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
     }
   });
 
-  console.log(activities.length, filteredActivities.length, excludedActivities)
-
   return (
     <div flex column className={ styles.container } ref={ setRef }>
       {
