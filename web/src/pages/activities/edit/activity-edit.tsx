@@ -7,6 +7,7 @@ import {ActivityStore} from "../../../stores/activities/activities.store";
 import {changesStore} from "../../../stores/changes.store";
 import {useMemo} from "preact/hooks";
 import {useRouter} from "../../routing";
+import {PageHeader} from "@components/PageHeader/PageHeader";
 
 export const ActivityEdit = () => {
   const router = useRouter();
@@ -16,8 +17,10 @@ export const ActivityEdit = () => {
   if (!state.activity)
     return <>Not found</>;
   return <div class="page" flex column gap="2">
-    <div class="sh1">{state.activity.title}</div>
+    <PageHeader titleH2={state.activity?.title} align={'top'} withCloseButton/>
+
     <div className="sh3">День</div>
+
     <Tags value={state.activity.day} tagsList={[0, 1, 2, 3, 4]}>
       {(d) => (
         <Tag selected={d == state.activity.day} key={d} onClick={() =>

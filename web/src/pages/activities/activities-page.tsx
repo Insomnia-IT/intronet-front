@@ -1,8 +1,6 @@
-import { Fragment } from "preact";
 import { useMemo } from "preact/hooks";
 import { PageLayout } from "@components/PageLayout";
-import { Button, CloseButton, Sheet } from "../../components";
-import { SvgIcon } from "../../icons";
+import { Sheet } from "../../components";
 import { ActivitiesAll } from "./activities/activitiesAll";
 import { Activity } from "./activity/activity";
 import { ActivityEdit } from "./edit/activity-edit";
@@ -39,33 +37,21 @@ function getActivitiesSheets(activityId: string, locationId: string) {
   switch (activityId) {
     case "edit":
       return (
-        <>
-          <ActivityEdit />
-          <CloseButton />
-        </>
+        <ActivityEdit />
       );
     case "location":
       return (
-        <>
-          <ActivityLocation id={locationId} />
-          <CloseButton />
-        </>
+        <ActivityLocation id={locationId} />
       );
     case "search":
       return (
-        <>
-          <ActivitySearch />
-          <CloseButton />
-        </>
+        <ActivitySearch />
       );
     case undefined:
       return null;
     default:
       return (
-        <>
-          <Activity id={activityId} />
-          <CloseButton />
-        </>
+        <Activity id={activityId} />
       );
   }
 }

@@ -1,9 +1,9 @@
 import { FunctionalComponent } from "preact";
-import { Tag, Tags } from "../../../components/tag";
+import { Tag, Tags } from "@components";
 import { activityFiltersStore, IActivityFilter } from "../../../stores/activities/activity-filters.store";
 import { useEffect } from "preact/hooks";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
-import { getCurrentDay, getCurrentHour } from "../../../helpers/getDayText";
+import { getCurrentDay, getCurrentHour } from "@helpers/getDayText";
 import { goTo } from "../../routing";
 
 export type ActivityTagType = 'filter' | 'day' | 'place' | 'time';

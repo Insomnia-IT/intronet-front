@@ -4,6 +4,7 @@ import { useCell } from "@helpers/cell-state";
 import { LocationList } from "../location/location-list";
 import { searchStore } from "@stores/search.store";
 import { useEffect } from "preact/hooks";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 export const LocationSearch = () => {
   const query = useCell(searchStore.query);
@@ -12,21 +13,22 @@ export const LocationSearch = () => {
 
   return (
     <div flex column gap={5} className="h-full">
-      <h1>поиск</h1>
+      <PageHeader titleH1={'поиск'} withCloseButton/>
+
       <Input
-        style={{ margin: "20px 0" }}
         autofocus
         placeholder="Площадка"
         value={query}
         onInput={searchStore.onInput}
       />
+
       {locations.length > 0 ? (
         <LocationList locations={locations} searchQuery={query} />
       ) : (
         <SearchPlug
           title={"Ничего не найдено"}
           text={"Попробуйте найти площадку по названию"}
-        ></SearchPlug>
+        />
       )}
     </div>
   );

@@ -53,8 +53,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
       className={ cx(Styles.card, className, {
         [Styles.cardDisabled]: disabled,
       }) }
-      background={ activity.isCanceled ? "White" : "Purple" }
-      border={ activity.isCanceled ? "InactiveGrey" : "None" }
+      background="Soft"
       onClick={ (e) => e.defaultPrevented || router.goToActivity(id) }
     >
       <div className={ Styles.activityContainer } flex column gap>

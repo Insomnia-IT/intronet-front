@@ -29,7 +29,7 @@ export const BookmarksPage = () => {
       withTapBar
       buttons={(
         <Button
-          type="vivid" class="w-full"
+          type="blue" class="w-full"
           goTo={buttonRoute}>
           {buttonTitle}
         </Button>

@@ -12,7 +12,6 @@ import {
   useRouter,
 } from "../../pages/routing";
 import { useEffect, useState } from "preact/hooks";
-import { ActivitySearch } from "../../pages/activities/search/activity-search";
 import { SearchInput } from "@components/input/search-input";
 
 export type PageLayoutProps = PropsWithChildren<{
@@ -55,6 +54,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   const router = useRouter();
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
   useEffect(() => setSearchSheetOpen(false), hideSearchDeps);
+
   return (
     <div className={cn(
       styles.layoutWrapper,
@@ -69,25 +69,25 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        {(title || withCloseButton || Search) && <div className={headerStyle ?? styles.header}>
-          {title && <h1>{title}</h1>}
+        <div className={headerStyle ?? styles.header}>
+          <h1>{title}</h1>
           {Boolean(favoritesRoute) && (
             <SvgIcon
               id="#bookmark"
-              style={{ color: design == "dark" ? "var(--white)" : "var(--medium-blue)" }}
+              style={{ color: "var(--pink)" }}
               size={32}
               onClick={() => goTo(favoritesRoute)}
             />
           )}
-          {withCloseButton && <CloseButton />}
+          {withCloseButton && <CloseButton position="static" />}
           {Boolean(Search) && (
             <SearchInput
               placeholder={searchLabel}
               style={searchStyle}
-              onFocus={() => setSearchSheetOpen(true)}
+              onFocus={() => router.goTo([router.route[0], 'search'])}
             />
           )}
-        </div>}
+        </div>
         {children}
         {Boolean(buttons) && (
           <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
@@ -95,12 +95,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         {withTapBar && <TapBar />}
         {searchSheetOpen && Search && (
           <Sheet
-            children={
-              <>
-                <Search />
-                <CloseButton onClick={() => setSearchSheetOpen(false)} />
-              </>
-            }
+            children={<Search />}
             noShadow={true}
             height="100%"
             onClose={() => router.goTo([router.route[0]])}

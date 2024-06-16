@@ -45,12 +45,13 @@ export const ActivitiesAll: FunctionalComponent = () => {
           )
         }
       </div>
+
       { (currentFilter === 'time')
         ? <ActivityList activities={ cards }/>
         : locations.map(location => (
           <Card
             className={ styles.locationCard }
-            background={ "Purple" }
+            background={ "Soft" }
             border={ "None" }
             onClick={ (e) => e.defaultPrevented || router.goToLocationActivity(location._id) }>
             <span className={ ['sh1', styles.title].join(' ') }>{ locationsStore.getName(location._id) }</span>

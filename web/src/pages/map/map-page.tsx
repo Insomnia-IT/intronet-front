@@ -119,10 +119,7 @@ const getMapSheets = (
   const selected = useCell(() => locationsStore.selected);
   if (selected.length === 1)
     return (
-      <>
         <Location id={selected[0]._id} />
-        <CloseButton onClick={onPageClose} />
-      </>
     );
   switch (locationId) {
     case "add":
@@ -141,10 +138,7 @@ const getMapSheets = (
       );
     case "search":
       return (
-        <>
-          <LocationSearch />
-          <CloseButton onClick={onSearchClose} />
-        </>
+        <LocationSearch />
       );
     case undefined:
       return null;
