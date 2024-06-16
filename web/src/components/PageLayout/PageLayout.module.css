@@ -1,14 +1,18 @@
-.layout {
+.layoutWrapper{
   overflow-x: hidden;
-  position: relative;
   max-width: 440px;
   min-height: 100%;
   padding: 54px 16px 80px 16px;
+}
+.layout {
+  position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
-
+.full {
+  padding: 0;
+}
 .header {
   display: flex;
   justify-content: space-between;

@@ -9,6 +9,7 @@ import { EditorPage } from "./Editor/EditorPage";
 import { SuccessPage } from "./Result/SuccessPage/SuccessPage";
 import { RulesPage } from "./Rules/RulesPage/RulesPage";
 import newStyles from "./new.module.css";
+import { PageLayout } from "@components";
 
 export const NewNoteSwitch: FunctionalComponent = () => {
   const { subSection, goToNew } = useNotesRouter();
@@ -38,14 +39,9 @@ export const NewNoteSwitch: FunctionalComponent = () => {
 
     default: {
       return (
-        <PageContainer>
-          <div className={noteStyles.page}>
-            <PageSection className={newStyles.notesHeader}>
-              <PageHeader pageTitleText="Написать объявление" />
-            </PageSection>
+        <PageLayout title="Написать объявление" withCloseButton gap={4}>
             {getPage()}
-          </div>
-        </PageContainer>
+        </PageLayout>
       );
     }
   }

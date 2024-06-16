@@ -5,27 +5,7 @@
   flex-direction: column;
 }
 
-.header {
-  margin-bottom: 24px;
-}
-
-.filters {
-  width: 100%;
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
 .addNoteBtn {
   display: flex;
   justify-content: center;
-}
-
-.notesList {
-  padding-bottom: 20px;
-}
-
-.myPageContent {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }

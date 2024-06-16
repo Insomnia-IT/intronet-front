@@ -4,7 +4,7 @@ body {
   --bonfire-light: #fda631;
   --ins-night: #061E35;
   --medium-blue: #062C4E;
-  --cyber-disco: #fe4ba9;
+  --cyber-disco: #FB84B7;
   --pink: #ff6e76;
   --yummy-green: #60D67A;
   --calm-blue: #45D2F1;
@@ -38,9 +38,8 @@ body {
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
   --soft-gradient2: radial-gradient(
     100% 613.64% at 4.04% 0%,
-    #fffbe9 0%,
-    rgba(249, 184, 255, 0.46) 93.3%
-  );
+    rgba(255, 180, 216, 0.4) 0%,
+    rgba(232, 202, 146, 0.3) 100%);
 
   --soft-gradient: radial-gradient(
     100% 613.64% at 4.04% 0%,

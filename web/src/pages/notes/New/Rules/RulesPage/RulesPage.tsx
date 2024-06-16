@@ -1,10 +1,9 @@
-import { PageSection } from "../../../../../components/Layout/PageSection/PageSection";
 import { FunctionalComponent } from "preact";
 import newStyles from "../../new.module.css";
 import classNames from "classnames";
 import { NextButton } from "../../NextButton/NextButton";
 import { useNotesRouter } from "../../../hooks/useNotesRouter";
-import { ButtonsBar } from "../../../../../components";
+import { ButtonsBar } from "@components";
 
 export const RulesPage: FunctionalComponent = () => {
   const { goToNew } = useNotesRouter();
@@ -13,7 +12,7 @@ export const RulesPage: FunctionalComponent = () => {
   };
 
   return (
-    <PageSection className={classNames(newStyles.rulesPage)}>
+    <>
       <div className={classNames(newStyles.rulesSecion)}>
         <h2 className={classNames("sh1", newStyles.rulesSectionTitle)}>
           Объявления можно отправить только онлайн
@@ -60,6 +59,6 @@ export const RulesPage: FunctionalComponent = () => {
           Написать объявление
         </NextButton>
       </ButtonsBar>
-    </PageSection>
+    </>
   );
 };

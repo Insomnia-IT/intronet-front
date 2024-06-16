@@ -4,7 +4,9 @@
   right: 3px;
   z-index: 1;
 }
-
+.full{
+  margin: 0;
+}
 .header {
   position: fixed;
   width: calc(100% - 32px);

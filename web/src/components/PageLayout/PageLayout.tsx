@@ -16,7 +16,7 @@ import { ActivitySearch } from "../../pages/activities/search/activity-search";
 import { SearchInput } from "@components/input/search-input";
 
 export type PageLayoutProps = PropsWithChildren<{
-  design?: "light" | "dark";
+  design?: "light" | "dark" | "full";
   title?: ReactNode;
   /* При наличии добавит к заколовку переход в Избранное */
   favoritesRoute?: RoutePath | RoutePathString;
@@ -56,53 +56,57 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
   useEffect(() => setSearchSheetOpen(false), hideSearchDeps);
   return (
-    <div
-      className={cn(
-        styles.layout,
-        styles[design],
-        dropStyles && styles.clear,
-        withTapBar && styles.withTapbar,
-        className
-      )}
-      gap={gap}
-    >
-      <div className={headerStyle ?? styles.header}>
-        <h1>{title}</h1>
-        {Boolean(favoritesRoute) && (
-          <SvgIcon
-            id="#bookmark"
-            style={{ color: "var(--medium-blue)" }}
-            size={32}
-            onClick={() => goTo(favoritesRoute)}
-          />
+    <div className={cn(
+      styles.layoutWrapper,
+      styles[design],
+    )}>
+      <div
+        className={cn(
+          styles.layout,
+          dropStyles && styles.clear,
+          withTapBar && styles.withTapbar,
+          className
         )}
-        {withCloseButton && <CloseButton position="static" />}
-        {Boolean(Search) && (
-          <SearchInput
-            placeholder={searchLabel}
-            style={searchStyle}
-            onFocus={() => setSearchSheetOpen(true)}
+        gap={gap}
+      >
+        {(title || withCloseButton || Search) && <div className={headerStyle ?? styles.header}>
+          {title && <h1>{title}</h1>}
+          {Boolean(favoritesRoute) && (
+            <SvgIcon
+              id="#bookmark"
+              style={{ color: design == "dark" ? "var(--white)" : "var(--medium-blue)" }}
+              size={32}
+              onClick={() => goTo(favoritesRoute)}
+            />
+          )}
+          {withCloseButton && <CloseButton />}
+          {Boolean(Search) && (
+            <SearchInput
+              placeholder={searchLabel}
+              style={searchStyle}
+              onFocus={() => setSearchSheetOpen(true)}
+            />
+          )}
+        </div>}
+        {children}
+        {Boolean(buttons) && (
+          <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
+        )}
+        {withTapBar && <TapBar />}
+        {searchSheetOpen && Search && (
+          <Sheet
+            children={
+              <>
+                <Search />
+                <CloseButton onClick={() => setSearchSheetOpen(false)} />
+              </>
+            }
+            noShadow={true}
+            height="100%"
+            onClose={() => router.goTo([router.route[0]])}
           />
         )}
       </div>
-      {children}
-      {Boolean(buttons) && (
-        <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
-      )}
-      {withTapBar && <TapBar />}
-      {searchSheetOpen && Search && (
-        <Sheet
-          children={
-            <>
-              <Search />
-              <CloseButton onClick={() => setSearchSheetOpen(false)} />
-            </>
-          }
-          noShadow={true}
-          height="100%"
-          onClose={() => router.goTo([router.route[0]])}
-        />
-      )}
     </div>
   );
 };

@@ -39,37 +39,29 @@ export const NotesPage: FunctionalComponent = () => {
       return (
         <PageLayout
           withTapBar
+          withCloseButton
+          title="Объявления"
+          gap={4}
           buttons={(
-          <Button type="vivid" goTo="/notes/my">
+          <Button type="blue" goTo="/notes/my">
             Мои объявления
           </Button>
         )}>
-          <div className={styles.page}>
-            <PageSection>
-              <div className={styles.header}>
-                <PageHeader pageTitleText="Объявления" />
-              </div>
-            </PageSection>
-            <div className={styles.filters}>
-              <FilteriesSlider />
+            <FilteriesSlider />
+            <ModerationPageLink />
+            <div className={styles.addNoteBtn}>
+              <AddNoteBtn />
             </div>
-            <PageSection className={styles.myPageContent}>
-              <ModerationPageLink />
-              <div className={styles.addNoteBtn}>
-                <AddNoteBtn />
-              </div>
-              <GesturedNotesList
-                className={styles.notesList}
-                notesProps={{
-                  onClick: setActiveNoteId,
-                }}
-                filterIds={[filterId]}
-              />
-            </PageSection>
-            <Sheet onClose={resetActiveNoteId} height="auto">
-              {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
-            </Sheet>
-          </div>
+            <GesturedNotesList
+              className={styles.notesList}
+              notesProps={{
+                onClick: setActiveNoteId,
+              }}
+              filterIds={[filterId]}
+            />
+          <Sheet onClose={resetActiveNoteId} height="auto">
+            {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
+          </Sheet>
         </PageLayout>
       );
   }

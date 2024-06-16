@@ -64,7 +64,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
   return (
     <div className={styles.cardContainer}>
       <Card
-        background="Soft"
+        background="Soft2"
         borderType="LeftCloud"
         className={cx(styles.card, className, {
           [styles.cardDisabled]: disabled,

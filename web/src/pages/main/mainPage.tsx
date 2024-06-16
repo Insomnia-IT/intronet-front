@@ -21,18 +21,10 @@ export const MainPage = () => {
   const sheetItems = useMemo(() => getSheetItems(router.route), [router.route]);
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
   return (
-    <PageLayout design="dark" withTapBar className={styles.mainPage}>
-      <Logo />
-      <BookmarkIcon
-        onClick={() => router.goTo(["bookmarks"])}
-        size={36}
-        style={{
-          color: "var(--white)",
-          position: "absolute",
-          right: "2em",
-          top: "44px",
-        }}
-      />
+    <PageLayout design="dark" withTapBar
+                title={<Logo />}
+                favoritesRoute="/bookmarks"
+                className={styles.mainPage}>
       <SearchInput
         style={{ background: "var(--white)" }}
         placeholder="Поиск всего-всего"

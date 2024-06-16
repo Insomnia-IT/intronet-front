@@ -1,7 +1,6 @@
 import { FunctionalComponent } from "preact";
 import styles from "./add-note.module.css";
-import { Button } from "../../../components";
-import { routes } from "../../routing";
+import { Button } from "@components";
 
 export const AddNoteBtn: FunctionalComponent = () => {
   return (

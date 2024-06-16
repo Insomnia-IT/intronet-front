@@ -85,8 +85,8 @@
   composes: button;
   position: absolute;
   z-index: 2;
-  right: 16px;
-  top: 54px;
+  right: 0px;
+  top: 0px;
   padding: 11px;
 }
 

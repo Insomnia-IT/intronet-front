@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "preact";
 import { useState } from "preact/hooks";
-import { Button, ButtonsBar, Sheet } from "../../../components";
+import { Button, ButtonsBar, PageLayout, Sheet } from "../../../components";
 import { PageContainer } from "../../../components/Layout/PageContainer/PageContainer";
 import { PageHeader } from "../../../components/Layout/PageHeader/PageHeader";
 import { PageSection } from "../../../components/Layout/PageSection/PageSection";
@@ -53,9 +53,7 @@ export const MyPage: FunctionalComponent = () => {
   };
 
   return (
-    <PageContainer>
-      <PageSection>
-        <PageHeader pageTitleText="Мои объявления" className={styles.header} />
+    <PageLayout title="Мои объявления" withCloseButton>
         <div className={styles.content}>
           {sections.map((section, idx) => (
             <NotesList
@@ -71,10 +69,9 @@ export const MyPage: FunctionalComponent = () => {
             />
           ))}
         </div>
-      </PageSection>
       <ButtonsBar>
         <Button
-          type={"vivid"}
+          type="blue"
           onClick={() => goToNew()}
           className={styles.newNoteBtn}
         >
@@ -87,7 +84,7 @@ export const MyPage: FunctionalComponent = () => {
           <MyNoteSheet noteId={activeNoteId} onClose={resetActiveNoteId} />
         )}
       </Sheet>
-    </PageContainer>
+    </PageLayout>
   );
 };
 

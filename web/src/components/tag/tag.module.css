@@ -11,7 +11,9 @@
   overscroll-behavior-x: auto;
   touch-action: pan-x;
   margin-right: -16px;
+  margin-left: -16px;
   padding-right: 16px;
+  padding-left: 16px;
 }
 
 .tags::-webkit-scrollbar {

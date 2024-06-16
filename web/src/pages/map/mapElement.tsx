@@ -1,5 +1,5 @@
-import { geoConverter } from "../../helpers/geo";
-import { SvgIcon } from "../../icons";
+import { geoConverter } from "@helpers/geo";
+import { SvgIcon } from "@icons";
 import {
   useCallback,
   useLayoutEffect,
@@ -8,17 +8,20 @@ import {
   useState,
 } from "preact/hooks";
 import styles from "./map-element.module.css";
-import { useCell } from "../../helpers/cell-state";
-import { locationsStore } from "../../stores";
+import { useCell } from "@helpers/cell-state";
+import { locationsStore } from "@stores";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { Cell } from "@cmmn/cell";
 import {orderBy} from "@cmmn/core";
 
 export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
   const items = useCell(() => locationsStore.MapItems);
+  const selectedItems = useCell(() => locationsStore.selected.map(x => x._id));
   const children = useMemo(
     () => orderBy(items, (x) =>
+      selectedItems.includes(x.id) ? 100 : (
           Array.isArray(x.figure) ? -100 : -(directionsToOrder.get(x.directionId) ?? -10)
+      )
         )
         .map((x) => (
           <MapElement item={x} key={x.id} transformCell={props.transformCell} />

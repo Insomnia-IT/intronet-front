@@ -1,6 +1,4 @@
 .tags {
-  padding-right: 16px;
-  padding-left: 16px;
 }
 
 .tag {
@@ -10,5 +8,4 @@
 }
 
 .tag:last-child {
-  margin-right: 16px;
 }

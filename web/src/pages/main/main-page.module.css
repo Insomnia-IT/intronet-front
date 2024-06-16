@@ -10,14 +10,14 @@
 }
 
 .mainPage {
-  padding: 24px 16px 84px;
   gap: 24px;
   box-sizing: border-box;
   flex: 1;
 }
 
 .mainPage :global(#logo) {
-  margin: 0 calc(50% - 93px);
+  margin-left: calc(50vw - 16px - 90px);
+  margin-bottom: -8px;
 }
 
 .menuBtn {

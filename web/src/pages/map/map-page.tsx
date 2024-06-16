@@ -28,6 +28,8 @@ export function MapPageWithRouting() {
       dropStyles
       favoritesRoute="/bookmarks/locations"
       searchLabel="Площадка"
+      design="full"
+      className={styles.full}
       search={LocationSearch}
       searchStyle={{ background: "var(--white)" }}
       hideSearchDeps={[router.locationId]}
