@@ -69,12 +69,12 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        <div className={headerStyle ?? styles.header}>
-          <h1>{title}</h1>
+        {(title || withCloseButton || !!Search || favoritesRoute) && <div className={headerStyle ?? styles.header}>
+          {title && <h1>{title}</h1>}
           {Boolean(favoritesRoute) && (
             <SvgIcon
               id="#bookmark"
-              style={{ color: "var(--pink)" }}
+              style={{ color: design == "dark" ? "var(--white)" : "var(--pink)" }}
               size={32}
               onClick={() => goTo(favoritesRoute)}
             />
@@ -87,7 +87,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
               onFocus={() => router.goTo([router.route[0], 'search'])}
             />
           )}
-        </div>
+        </div>}
         {children}
         {Boolean(buttons) && (
           <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
