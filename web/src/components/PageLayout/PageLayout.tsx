@@ -79,7 +79,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
               onClick={() => goTo(favoritesRoute)}
             />
           )}
-          {withCloseButton && <CloseButton position="static" />}
+          {withCloseButton && <CloseButton position="static"/>}
           {Boolean(Search) && (
             <SearchInput
               placeholder={searchLabel}
@@ -92,10 +92,10 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         {Boolean(buttons) && (
           <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
         )}
-        {withTapBar && <TapBar />}
+        {withTapBar && <TapBar/>}
         {searchSheetOpen && Search && (
           <Sheet
-            children={<Search />}
+            children={<Search/>}
             noShadow={true}
             height="100%"
             onClose={() => router.goTo([router.route[0]])}
