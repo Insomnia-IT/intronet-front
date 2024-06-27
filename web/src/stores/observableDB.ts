@@ -13,7 +13,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     await this.sync().catch(console.error);
     this.syncInterval = setInterval(
       () => this.sync().catch(console.error),
-      300
+      3000
     );
   }
 
@@ -50,22 +50,29 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     if (this.syncLock) return;
     this.syncLock = true;
     try {
+      // Очистка устаревших элементов
       for (let item of this.items.values()) {
-        if (item.version >= this.initVersion) continue;
-        await this.db.remove(item._id);
-        this.items.delete(item._id);
+        if (item.version < this.initVersion) {
+          await this.db.remove(item._id);
+          this.items.delete(item._id);
+        }
       }
-      await Promise.all([this.loadFromServer(), this.saveToServer()]);
-      const syncVersion =
-        this.localVersion > this.remoteVersion
-          ? this.localVersion
-          : this.remoteVersion;
-      if (syncVersion <= this.syncVersion) return;
-      this.syncVersion = syncVersion;
-      this.emit("change", {
-        type: "init",
-        value: Array.from(this.items.values()),
-      });
+
+      // Проверяем, есть ли изменения для синхронизации
+      const needsSync = this.localVersion > this.syncVersion || this.remoteVersion > this.syncVersion;
+      if (needsSync) {
+        await Promise.all([this.loadFromServer(), this.saveToServer()]);
+
+        // Определяем новую версию синхронизации как большую из локальной и удаленной
+        const syncVersion = this.localVersion > this.remoteVersion ? this.localVersion : this.remoteVersion;
+        if (syncVersion > this.syncVersion) {
+          this.syncVersion = syncVersion;
+          this.emit("change", {
+            type: "init",
+            value: Array.from(this.items.values()),
+          });
+        }
+      }
     } finally {
       this.syncLock = false;
     }
@@ -73,48 +80,80 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
   private errorTimeout = 300;
   private saveLock = false;
   async saveToServer() {
-    // nothing changed since sync
+    // Проверяем, есть ли локальные изменения для отправки
     if (this.localVersion <= this.syncVersion) return;
+
     if (this.saveLock) return;
     this.saveLock = true;
-    const updates = [] as Array<{ db: string; value: T }>;
-    for (let item of this.items.values()) {
-      // item has not changed since sync
-      if (item.version <= this.syncVersion) continue;
-      updates.push({ db: this.name, value: item });
+
+    try {
+      // Загружаем последние данные с сервера перед сохранением
+      // Это помогает избежать конфликтов при одновременном редактировании
+      await this.loadFromServer();
+
+      const updates = [] as Array<{ db: string; value: T }>;
+      for (let item of this.items.values()) {
+        // Отправляем только те элементы, которые изменились после последней синхронизации
+        if (item.version > this.syncVersion) {
+          updates.push({ db: this.name, value: item });
+        }
+      }
+
+      if (updates.length > 0) {
+        await fetch(`${api}/batch`, {
+          method: "POST",
+          headers: authStore.headers,
+          body: JSON.stringify(updates),
+        });
+
+        // Обновляем syncVersion после успешного сохранения
+        this.syncVersion = this.localVersion;
+      }
+    } catch (error) {
+      console.error('Error saving to server:', error);
+      // В случае ошибки ждем перед следующей попыткой
+      await new Promise((resolve) => setTimeout(resolve, this.errorTimeout));
+    } finally {
+      this.saveLock = false;
     }
-    if (updates.length > 0) {
-      await fetch(`${api}/batch`, {
-        method: "POST",
-        headers: authStore.headers,
-        body: JSON.stringify(updates),
-      }).catch(
-        () =>
-          new Promise((resolve) => setTimeout(resolve, this.errorTimeout * 1.2))
-      );
-    }
-    this.saveLock = false;
   }
 
   private loadLock = false;
   async loadFromServer() {
-    // nothing changed since sync
+    // Проверяем, есть ли новые данные на сервере
     if (this.remoteVersion <= this.syncVersion) return;
     if (this.loadLock) return;
     this.loadLock = true;
-    const newItems = (await fetch(
-      `${api}/data/${this.name}?since=${this.localVersion}`,
-      {
-        headers: authStore.headers,
+
+    try {
+      // Запрашиваем только новые элементы, используя текущую версию синхронизации
+      const newItems = await fetch(
+        `${api}/data/${this.name}?since=${this.syncVersion}`,
+        {
+          headers: authStore.headers
+        }
+      ).then((x) => x.json()) as (T & { version: string })[];
+
+      let updated = false;
+      for (let newItem of newItems) {
+        const local = this.items.get(newItem._id);
+        // Обновляем локальный элемент, если его нет или если серверная версия новее
+        if (!local || local.version < newItem.version) {
+          await this.set(newItem);
+          updated = true;
+        }
       }
-    ).then((x) => x.json())) as (T & { version: string })[];
-    for (let newItem of newItems) {
-      const local = this.items.get(newItem._id);
-      if (!local || local.version < newItem.version) {
-        await this.set(newItem);
+
+      // Оповещаем о изменениях только если были реальные обновления
+      if (updated) {
+        this.emit("change", {
+          type: "init",
+          value: Array.from(this.items.values()),
+        });
       }
+    } finally {
+      this.loadLock = false;
     }
-    this.loadLock = false;
   }
   // version of db data loading
   get initVersion() {
