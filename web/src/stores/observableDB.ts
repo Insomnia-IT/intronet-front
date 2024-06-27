@@ -13,7 +13,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     await this.sync().catch(console.error);
     this.syncInterval = setInterval(
       () => this.sync().catch(console.error),
-      3000
+      300
     );
   }
 
