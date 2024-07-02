@@ -1,10 +1,11 @@
 import "@cmmn/cell";
-import {Fn, groupBy} from "@cmmn/core";
+import { Fn, groupBy } from "@cmmn/core";
 import * as console from "console";
 import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };
-import moviesAPI from "./movies_api.json" assert { "type": "json" };
+import { ArrayElement } from "mongodb";
+// import moviesAPI from "./movies_api.json" assert { "type": "json" };
 
 export async function importMovies(force = false) {
   const locationDB = Database.Get<any>("locations");
@@ -52,86 +53,55 @@ export async function importMovies(force = false) {
         end: b.End,
       }))
     )
-    .filter((x) => x);
-  console.log(blocksXls[0])
-  const array = moviesAPI
-    .flatMap((x) =>
-      x.screenPrograms.map((b) => ({
-        block: b,
-        day: getDay(toMoscow(b.programStart * 1000)),
-        start: getTime(toMoscow(b.programStart * 1000)),
-        end: getTime(toMoscow(b.programEnd * 1000)),
-        locationId: screenNameMap[x.screenName],
-        programStart: b.programStart,
-      }))
-    );
-  const blocks = Array.from(groupBy(array, (x) => `${x.block.programTitle}`).values()) as Array<typeof array>;
-  // writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
-  const results = [] as Array<MovieBlock>;
-  for (let x of blocks) {
-    const title = x[0].block.programTitle;
-    const en =
-      title.match(/.*\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*part\s+(\d*)/i) ?? [];
-    const ru =
-      title.match(/(.*)\((.*)\)/)?.[1]?.match(/(.*)[,.\s]*часть\s+(\d*)/i) ??
-      [];
-    const xlsx = blocksXls.filter(
-      (b) =>
-        b.day == x[0].day
-        && b.locationId == x[0].locationId
-        && b.start == x[0].start
-        && b.end == x[0].end
-    );
-    if (xlsx.length !== 1) {
-      console.log("error mapping movies", x, xlsx);
-      continue;
-    }
-    const block: MovieBlock = {
-      _id: Fn.ulid(),
-      views: x.map((b) => ({
+    .filter((x) => x)
+    .map((b) => ({
+      view: {
         locationId: b.locationId,
         day: b.day,
         start: b.start,
         end: b.end,
-      })),
-      info: xlsx[0].block
-        ? {
-            Title: xlsx[0].block.Title,
-            SubTitle: xlsx[0].block.SubTitle,
-            TitleEn: xlsx[0].block.TitleEn,
-            SubTitleEn: xlsx[0].block.SubTitleEn,
-            MinAge: xlsx[0].block.MinAge,
-            Part: xlsx[0].block.Part,
-          }
-        : {
-            Title: ru[1] ?? title,
-            TitleEn: en[1],
-            MinAge: x[0].block.programAge,
-            Part: en[2] ?? ru[2],
-          },
-      movies: [],
-    } as any;
-    for (let i = 0; i < x[0].block.programFilms.length; i++) {
-      let f = x[0].block.programFilms[i];
-      const xls = xlsx[0].block.Movies[i];
-      if (escape(xls.NameOrig) !== escape(f.title)) {
-        console.log(xls.NameOrig, "|||", f.title);
-      }
-      const movie: MovieInfo = {
-        id: f.vurchelID ?? Fn.ulid(),
-        name: xls.Name ?? f.title,
+      },
+      info: {
+        Title: b.block.Title,
+        SubTitle: b.block.SubTitle,
+        TitleEn: b.block.TitleEn,
+        SubTitleEn: b.block.SubTitleEn,
+        MinAge: b.block.MinAge,
+        Part: b.block.Part,
+      },
+      movies: b.block.Movies.map((xls) => ({
+        id: Fn.ulid(),
+        name: xls.Name,
         author: xls.Author,
         country: xls.Country,
         year: xls.Year,
         duration: xls.Duration,
-        image: f.image,
-        description: f.plot,
-        vurchelId: f.vurchelID?.toString(),
-      } as any;
-      block.movies.push(movie);
-    }
-    results.push(block);
-  }
+      })),
+    }));
+  console.log(blocksXls[0]);
+  // const array = moviesAPI.flatMap((x) =>
+  //   x.screenPrograms.map((b) => ({
+  //     block: b,
+  //     day: getDay(toMoscow(b.programStart * 1000)),
+  //     start: getTime(toMoscow(b.programStart * 1000)),
+  //     end: getTime(toMoscow(b.programEnd * 1000)),
+  //     locationId: screenNameMap[x.screenName],
+  //     programStart: b.programStart,
+  //   }))
+  // );
+  // const blocks = Array.from(
+  //   groupBy(array, (x) => `${x.block.programTitle}`).values()
+  // ) as Array<typeof array>;
+  // writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
+  const blocksMap = groupBy(blocksXls, (b: ArrayElement<typeof blocksXls>) =>
+    [b.info.Title, b.info.SubTitle, b.info.Part].join(".")
+  ) as Map<string, ArrayElement<typeof blocksXls>[]>;
+  const results = Array.from(blocksMap.values()).map((x) => ({
+    _id: Fn.ulid(),
+    views: x.map((b) => b.view),
+    info: x[0].info,
+    movies: x[0].movies,
+  }));
   //
   for (let movie of results) {
     await moviesDB.addOrUpdate({

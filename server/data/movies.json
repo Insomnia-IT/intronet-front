@@ -9,94 +9,120 @@
         "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
         "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
         "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
+        "MinAge": 16,
         "Part": 1,
         "Start": "22:00",
-        "End": "23:00",
+        "End": "22:00",
         "Movies": [
           {
-            "Name": "Easy busy",
-            "NameOrig": "Плёвое дело",
-            "Author": "Екатерина Ганах",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:37"
+            "Name": "Pufferfish",
+            "Author": "Рыба Фугу",
+            "Country": "Julia Ocker",
+            "Year": "Germany",
+            "Duration": "2022"
           },
           {
-            "Name": "Millions of Scarlet Roses",
-            "NameOrig": "Миллионы алых роз",
-            "Author": "Галина Голубева",
-            "Country": "Российская Федерация",
+            "Name": "Come back to my shelf",
+            "Author": "Вернись ко мне на полку",
+            "Country": "Marina Zinkevich",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Ana Morphose",
+            "Author": "Ана Морфоза",
+            "Country": "Joao Rodrigues",
+            "Year": "Portugal",
+            "Duration": "2023"
+          },
+          {
+            "Name": "See You Champion",
+            "Author": "До встречи, чемпион!",
+            "Country": "Alexis Mouron",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Haute Fréquence",
+            "Author": "Anya Amosova",
+            "Country": "France",
             "Year": "2023",
-            "Duration": "14:10"
+            "Duration": "04:12"
           },
           {
-            "Name": "Do Not Feed the Pigeons",
-            "NameOrig": "Не кормите голубей",
-            "Author": "Антонин Никлас",
-            "Country": "Великобритания",
-            "Year": "2021",
-            "Duration": "08:41"
+            "Name": "Muscle Man in: Metal Mayhem",
+            "Author": "Мускулистый человек в \"Металлическом хаосе\"",
+            "Country": "Nicolas Laurent Gemoets",
+            "Year": "Belgium",
+            "Duration": "2023"
           },
           {
-            "Name": "Бабугли",
-            "NameOrig": "Бабугли",
-            "Author": "Евгения Жиркова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
+            "Name": "Yuck!",
+            "Author": "Фу!",
+            "Country": "Loïc Espuche",
+            "Year": "France",
+            "Duration": "2023"
           },
           {
-            "Name": "Sunflower",
-            "NameOrig": "Подсолнух",
-            "Author": "Наталья Чернышева",
-            "Country": "Франция, Российская Федерация",
-            "Year": "2023",
-            "Duration": "04:20"
-          },
-          {
-            "Name": "Burning out",
-            "NameOrig": "Выгорание",
-            "Author": "Элина Сибгатуллина",
-            "Country": "Российская Федерация",
-            "Year": "2021",
-            "Duration": "03:25"
-          },
-          {
-            "Name": "Whale’s Song",
-            "NameOrig": "Песнь кита",
-            "Author": "Аделин Фей",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "11:50"
+            "Name": "On the 8th Day",
+            "Author": "На восьмой день",
+            "Country": "Agathe Sénéchal, Alicia Massez, Elise Debruyne, Flavie Carin, Théo Duhautois",
+            "Year": "France",
+            "Duration": "2023"
           }
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 16+",
+        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 18+",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
         "Start": "23:00",
-        "End": "23:20",
+        "End": "23:00",
         "Movies": [
           {
-            "Name": "Украденная мелодия",
-            "NameOrig": "Украденная мелодия",
-            "Author": "Юра Богуславский",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "14:45"
+            "Name": "Poker Face",
+            "Author": "Покерфейс",
+            "Country": "Polina Chuykova",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Легенда о сёстрах",
-            "NameOrig": "Легенда о сёстрах",
-            "Author": "Павел Погудин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:26"
+            "Name": "Guess What, Girls!",
+            "Author": "Девки, прикиньте!",
+            "Country": "Nadya Goldman",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Tom Thumb",
+            "Author": "Мальчик с пальчик",
+            "Country": "Nikolay Lichtenfeld, Ivan Kostiurin",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Anxiety",
+            "Author": "Тревога+",
+            "Country": "Angelina Komissarova",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Lake",
+            "Author": "Озеро",
+            "Country": "Maria Afonina",
+            "Year": "Russia",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Teenage Rain",
+            "Author": "Дождь-подросток",
+            "Country": "Maria Savenkova",
+            "Year": "Russia",
+            "Duration": "2024"
           }
         ]
       },
@@ -107,112 +133,71 @@
         "SubTitleEn": "PROFNASTIL ",
         "MinAge": 18,
         "Part": 1,
-        "Start": "23:20",
-        "End": "01:30",
+        "Start": "00:00",
+        "End": "00:00",
         "Movies": [
           {
-            "Name": "Dear Passengers",
-            "NameOrig": "Уважаемые пассажиры",
-            "Author": "Макс Куликов",
-            "Country": "Российская Федерация",
+            "Name": "The Car that Came Back from the Sea",
+            "Author": "Автомобиль, вернувшийся с моря",
+            "Country": "Jadwiga Kowalska",
+            "Year": "Poland",
+            "Duration": "2023"
+          },
+          {
+            "Name": "In the Shadow of the Cypress",
+            "Author": "В тени кипариса",
+            "Country": "Hossein Molayemi, Shirin Sohani",
+            "Year": "Iran",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Extremely Short",
+            "Author": "Чрезвычайно короткий",
+            "Country": "Koji Yamamura",
+            "Year": "Japan",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Hair Universe",
+            "Author": "Волосяная вселенная",
+            "Country": "Jinuk Choi",
+            "Year": "South Korea",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Love Me True",
+            "Author": "Люби меня искренне",
+            "Country": "Inés Sedan",
+            "Year": "Argentina",
+            "Duration": "2023"
+          },
+          {
+            "Name": "This is a Story Without a Plan",
+            "Author": "Это история без плана",
+            "Country": "Cassie Shao",
+            "Year": "USA",
+            "Duration": "2023"
+          },
+          {
+            "Name": "And then They",
+            "Author": "А ещё он...",
+            "Country": "Shaun Clark",
+            "Year": "Great Britain",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Woman",
+            "Author": "Gilnaz Arzpeyma, Arash Akhgari",
+            "Country": "Canada",
             "Year": "2023",
-            "Duration": "11:00"
+            "Duration": "03:20"
           },
           {
-            "Name": "PLSTC",
-            "NameOrig": "ПЛСТК",
-            "Author": "Лен Санчес",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "01:37"
-          },
-          {
-            "Name": "Miracasas",
-            "NameOrig": "Миракасас",
-            "Author": "Рафаэль Штольц",
-            "Country": "Швейцария, Франция",
-            "Year": "2022",
-            "Duration": "13:40"
-          },
-          {
-            "Name": "The Waiting",
-            "NameOrig": "Ожидание",
-            "Author": "Вокер Шлехт",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "15:35"
-          },
-          {
-            "Name": "An End to War Enough",
-            "NameOrig": "Довольно войн!",
-            "Author": "Симон Масси",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "05:00"
-          },
-          {
-            "Name": "San La Muerte",
-            "NameOrig": "Сан Ла Муэрте",
-            "Author": "Эзе Маттео",
-            "Country": "Аргентина",
-            "Year": "2023",
-            "Duration": "01:21"
-          },
-          {
-            "Name": "Trace",
-            "NameOrig": "След",
-            "Author": "Аспарух Петров",
-            "Country": "Болгария",
-            "Year": "2022",
-            "Duration": "06:42"
-          },
-          {
-            "Name": "Amok",
-            "NameOrig": "Амок",
-            "Author": "Балаж Турай",
-            "Country": "Венгрия, Румыния",
-            "Year": "2022",
-            "Duration": "14:17"
-          },
-          {
-            "Name": "Electra",
-            "NameOrig": "Электра",
-            "Author": "Дарья Кащеева",
-            "Country": "Чехия, Франция, Словакия",
-            "Year": "2023",
-            "Duration": "26:33"
-          },
-          {
-            "Name": "Remember How I Used to Ride a White Horse",
-            "NameOrig": "Помнишь, как я катался на белом коне",
-            "Author": "Ивана Босняк Вольда, Томас Джонсон Вольда",
-            "Country": "Хорватия",
-            "Year": "2022",
-            "Duration": "09:57"
-          },
-          {
-            "Name": "Dissolution",
-            "NameOrig": "Растворение",
-            "Author": "Суджин Ким",
-            "Country": "Соединенные Штаты",
-            "Year": "2023",
-            "Duration": "03:09"
-          },
-          {
-            "Name": "Bird in the Peninsula",
-            "NameOrig": "Птица на полуострове",
-            "Author": "Ацуси Вада",
-            "Country": "Франция, Япония",
-            "Year": "2022",
-            "Duration": "16:00"
-          },
-          {
-            "Name": "Think Something Nice",
-            "NameOrig": "Подумай о чём-нибудь хорошем",
-            "Author": "Клаудиус Жентинетта",
-            "Country": "Швейцария",
-            "Year": "2022",
-            "Duration": "06:00"
+            "Name": "[S]",
+            "Author": "Mario Radev",
+            "Country": "Great Britain",
+            "Year": "2024",
+            "Duration": "12:30"
           }
         ]
       },
@@ -224,87 +209,91 @@
         "MinAge": 18,
         "Part": 1,
         "Start": "01:30",
-        "End": "02:55",
+        "End": "01:30",
         "Movies": [
           {
-            "Name": "Sunset Singers",
-            "NameOrig": "Певцы заката",
-            "Author": "Джессика Пун",
-            "Country": "Германия, Гонконг",
-            "Year": "2022",
-            "Duration": "10:40"
+            "Name": "Redman",
+            "Author": "Редмен",
+            "Country": "Kim Sungjae",
+            "Year": "Japan",
+            "Duration": "2024"
           },
           {
-            "Name": "Friendly Fire",
-            "NameOrig": "Дружественный огонь",
-            "Author": "Том Корыто Блюмен",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "06:14"
+            "Name": "Children of the bird",
+            "Author": "Дети птицы",
+            "Country": "Júlia Tudisco",
+            "Year": "Hungary",
+            "Duration": "2024"
           },
           {
-            "Name": "In-Between",
-            "NameOrig": "Между",
-            "Author": "Юлия Бенедиктович",
-            "Country": "Польша",
-            "Year": "2023",
-            "Duration": "05:58"
+            "Name": "Ice Rink",
+            "Author": "Ледовый каток",
+            "Country": "Ziyin Wang",
+            "Year": "China",
+            "Duration": "2024"
           },
           {
-            "Name": "Unnamed Road",
-            "NameOrig": "Безымянная дорога",
-            "Author": "Сонкай Чжоу",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "07:59"
+            "Name": "Next?",
+            "Author": "Следующий?",
+            "Country": "Christel Guibert",
+            "Year": "France",
+            "Duration": "2024"
           },
           {
-            "Name": "Salute to the Sun",
-            "NameOrig": "Салют солнцу",
-            "Author": "Дарко Маснец",
-            "Country": "Хорватия",
-            "Year": "2022",
-            "Duration": "08:50"
+            "Name": "Braided",
+            "Author": "Заплетённая",
+            "Country": "Chenxi Zhang",
+            "Year": "USA",
+            "Duration": "2023"
           },
           {
-            "Name": "Vizionair",
-            "NameOrig": "Визионер",
-            "Author": "Всеволод Булавкин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "09:16"
+            "Name": "Crow Man",
+            "Author": "Вороний человек",
+            "Country": "Yohann Abdelnour",
+            "Year": "Lebanon",
+            "Duration": "2023"
           },
           {
-            "Name": "Juice",
-            "NameOrig": "Сок",
-            "Author": "Мона Кейль",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "04:55"
+            "Name": "Who Killed The Unicorn",
+            "Author": "Кто убил единорога",
+            "Country": "Yu-Ting Liou",
+            "Year": "Taiwan",
+            "Duration": "2023"
           },
           {
-            "Name": "Maro's Red Cheeks",
-            "NameOrig": "Красные щеки Маро",
-            "Author": "Мариам Жордания",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "07:38"
+            "Name": "Echoes",
+            "Author": "Отголоски",
+            "Country": "Robinson Drossos",
+            "Year": "France",
+            "Duration": "2024"
           },
           {
-            "Name": "artifacts of you, artifacts of me.",
-            "NameOrig": "артефакты тебя, артефакты меня.",
-            "Author": "Брехт де Кок",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "09:00"
+            "Name": "To be a Seed",
+            "Author": "Быть семечком",
+            "Country": "Julia Granillo Tostado",
+            "Year": "Belgium, Finland, Mexico, Portugal",
+            "Duration": "2023"
           },
           {
-            "Name": "A Story for Two Trumpets",
-            "NameOrig": "История для двух труб",
-            "Author": "Амандин Мейер",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:26"
+            "Name": "Cocoon",
+            "Author": "Кокон",
+            "Country": "Yiwei Chen",
+            "Year": "China",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Tao",
+            "Author": "Дао",
+            "Country": "Shuxin Yan Wang, Simai Stella Huang, Haoran Yan Yang",
+            "Year": "Hong Kong",
+            "Duration": "2024"
+          },
+          {
+            "Name": "A Kind of Testament",
+            "Author": "Что-то вроде завещания",
+            "Country": "Stephen Vuillemin",
+            "Year": "France",
+            "Duration": "2023"
           }
         ]
       },
@@ -315,64 +304,64 @@
         "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
         "MinAge": 18,
         "Part": 1,
-        "Start": "02:55",
-        "End": "03:30",
+        "Start": "03:10",
+        "End": "03:10",
         "Movies": [
           {
-            "Name": "A Once Lonely Man",
-            "NameOrig": "A Once Lonely Man",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "06:00"
-          },
-          {
-            "Name": "Sleeping Cell - Elevator to the Gallows",
-            "NameOrig": "Sleeping Cell - Elevator to the Gallows",
-            "Author": "Луис Антонио Гуэрра",
-            "Country": "Колумбия",
-            "Year": "2023",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "DJ Piper - RIP TXL",
-            "NameOrig": "DJ Piper - RIP TXL",
-            "Author": "Раман Джафари",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "03:30"
-          },
-          {
-            "Name": "Juan Wauters - Milanesa al pan",
-            "NameOrig": "Juan Wauters - Milanesa al pan",
-            "Author": "Данте Забалла",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:11"
-          },
-          {
-            "Name": "I Gotta Cry",
-            "NameOrig": "I Gotta Cry",
-            "Author": "Франческа Коломбара",
-            "Country": "Италия",
+            "Name": "A Farewell on Time",
+            "Author": "Edgar Soberon",
+            "Country": "Spain",
             "Year": "2022",
-            "Duration": "02:51"
+            "Duration": "04:48"
           },
           {
-            "Name": "No Lullaby",
-            "NameOrig": "No Lullaby",
-            "Author": "Эзекиэль Торрес",
-            "Country": "Аргентина",
+            "Name": "Ajr - Maybe Man",
+            "Author": "Edoardo Ranaboldo",
+            "Country": "USA",
+            "Year": "2023",
+            "Duration": "03:39"
+          },
+          {
+            "Name": "In a Time Warp",
+            "Author": "Anh Tú Nguyen",
+            "Country": "Germany",
+            "Year": "2023",
+            "Duration": "06:30"
+          },
+          {
+            "Name": "King of Sea",
+            "Author": "Stéphane Berla",
+            "Country": "France",
             "Year": "2022",
-            "Duration": "03:58"
+            "Duration": "05:26"
           },
           {
-            "Name": "Olivia Lumen",
-            "NameOrig": "Olivia Lumen",
-            "Author": "Али Ашман",
-            "Country": "Великобритания",
-            "Year": "2021",
-            "Duration": "06:05"
+            "Name": "Nummer 2",
+            "Author": "Arthur Chaumay, Simon Duong Van Huyen",
+            "Country": "France",
+            "Year": "2022",
+            "Duration": "04:21"
+          },
+          {
+            "Name": "Soul Supreme - Geshem Bejuni",
+            "Author": "Tal Uliel",
+            "Country": "Israel",
+            "Year": "2023",
+            "Duration": "03:03"
+          },
+          {
+            "Name": "Boom Boom Kid - Sole",
+            "Author": "Dante Zaballa",
+            "Country": "Argentina",
+            "Year": "2024",
+            "Duration": "03:02"
+          },
+          {
+            "Name": "C C C",
+            "Author": "Aishwarya Chaudhari, Siddharth Modi",
+            "Country": "India",
+            "Year": "2023",
+            "Duration": "03:05"
           }
         ]
       }
@@ -388,94 +377,120 @@
         "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
         "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
         "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
+        "MinAge": 16,
         "Part": 2,
         "Start": "22:00",
-        "End": "22:55",
+        "End": "22:00",
         "Movies": [
           {
-            "Name": "Галочка",
-            "NameOrig": "Галочка",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:48"
+            "Name": "We are Quarantined",
+            "Author": "Мы сидим на карантине",
+            "Country": "Anna-Maria Chernigovskaya",
+            "Year": "Russia",
+            "Duration": "2024"
           },
           {
-            "Name": "Go Away, Alfred!",
-            "NameOrig": "Прочь, Альфред!",
-            "Author": "Селия Тиссерант, Арно Демюинк",
-            "Country": "Франция",
-            "Year": "2023",
-            "Duration": "11:00"
+            "Name": "Pilgrim",
+            "Author": "Пилигрим",
+            "Country": "Alejo Schettini",
+            "Year": "Uruguay",
+            "Duration": "2023"
           },
           {
-            "Name": "Кстати, о птичках",
-            "NameOrig": "Кстати, о птичках",
-            "Author": "Алла Вартанян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "10:25"
+            "Name": "The Missing Spots",
+            "Author": "Пропавшие пятна",
+            "Country": "Astrid Rothaug",
+            "Year": "Austria",
+            "Duration": "2023"
           },
           {
-            "Name": "Там, где цветёт жасмин",
-            "NameOrig": "Там, где цветёт жасмин",
-            "Author": "Полина Бовкун",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:14"
+            "Name": "Choir",
+            "Author": "Хор",
+            "Country": "Angelina Gilderman",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "The Witch's Lullaby",
-            "NameOrig": "Колыбельная Бабы Яги",
-            "Author": "Даша Вяткина",
-            "Country": "Нидерланды, Российская Федерация",
-            "Year": "2022",
-            "Duration": "04:02"
+            "Name": "When the Snow will Fall",
+            "Author": "Когда выпадет снег",
+            "Country": "Ekaterina Asrieva",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Witchfairy",
-            "NameOrig": "Фея-ведьма",
-            "Author": "Седрик Игод, Давид ван де Вейер",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "15:00"
+            "Name": "Ruslan & Lyudmila",
+            "Author": "Руслан и Людмила",
+            "Country": "Matt Lashko",
+            "Year": "Russia",
+            "Duration": "2024"
           },
           {
-            "Name": "Crosswalk",
-            "NameOrig": "Переход",
-            "Author": "Дарья Волчок",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "01:55"
+            "Name": "Recordari",
+            "Author": "Чтобы помнили",
+            "Country": "Carolina Cruz",
+            "Year": "Chile",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Don't Turn on the Light",
+            "Author": "Не включайте свет",
+            "Country": "Alexey Ignatov",
+            "Year": "Russia",
+            "Duration": "2023"
           }
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 16+",
+        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 18+",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "22:55",
-        "End": "23:20",
+        "Start": "23:00",
+        "End": "23:00",
         "Movies": [
           {
-            "Name": "Волк думающий",
-            "NameOrig": "Волк думающий",
-            "Author": "Юлия Евдокимова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
+            "Name": "Pups Station — Exit to the Right Side",
+            "Author": "Станция Пупсянция - выход на нужную сторону",
+            "Country": "Natasha Danilevskaya",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Крот",
-            "NameOrig": "Крот",
-            "Author": "Алексей Сухов",
-            "Country": "Российская Федерация",
+            "Name": "The Brook That Ran Back To The Mountain",
+            "Author": "Ручей, бегущий в горы",
+            "Country": "Alexandr Khramtsov",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Vedriti",
+            "Author": "Nikita Meshcheryakov",
+            "Country": "Russian Federation",
             "Year": "2023",
-            "Duration": "13:42"
+            "Duration": "11:17"
+          },
+          {
+            "Name": "Sleepy",
+            "Author": "Спать хочется",
+            "Country": "Igor Voloshin",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Mother America",
+            "Author": "Мама Америка",
+            "Country": "Anya Shveigolz",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Hide and Seek",
+            "Author": "Прятки",
+            "Country": "Polina Kilina",
+            "Year": "Russia",
+            "Duration": "2022"
           }
         ]
       },
@@ -486,104 +501,71 @@
         "SubTitleEn": "PROFNASTIL ",
         "MinAge": 18,
         "Part": 2,
-        "Start": "23:20",
-        "End": "01:30",
+        "Start": "00:00",
+        "End": "00:00",
         "Movies": [
           {
-            "Name": "Giraffe",
-            "NameOrig": "Жираф",
-            "Author": "Наталья Мирзоян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:35"
+            "Name": "La Voix des Sirènes",
+            "Author": "Голос сирен",
+            "Country": "Gianluigi Toccafondo",
+            "Year": "Italy",
+            "Duration": "2023"
           },
           {
-            "Name": "Kharms",
-            "NameOrig": "Хармс",
-            "Author": "Светлана Андрианова",
-            "Country": "Российская Федерация",
+            "Name": "The Lovers",
+            "Author": "Любовники",
+            "Country": "Carolina Sandvik",
+            "Year": "Sweden",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Spring",
+            "Author": "Весна",
+            "Country": "Pernille Kjaer",
+            "Year": "Denmark",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Lack",
+            "Author": "Нужда",
+            "Country": "Paweł Prewencki",
+            "Year": "Poland",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Wind and the Shadow",
+            "Author": "Ветер и тень",
+            "Country": "Kris Kelly",
+            "Year": "Ireland",
+            "Duration": "2023"
+          },
+          {
+            "Name": "O",
+            "Author": "S",
+            "Country": "Max Hattler",
+            "Year": "Germany",
+            "Duration": "2023"
+          },
+          {
+            "Name": "A Long Alone",
+            "Author": "В одиночестве",
+            "Country": "Eun-a Yeo",
+            "Year": "South Korea",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Body of the World",
+            "Author": "Simone Massi",
+            "Country": "Italy",
             "Year": "2023",
-            "Duration": "13:15"
+            "Duration": "04:00"
           },
           {
-            "Name": "Sandwich Cat",
-            "NameOrig": "Кот-бутерброд",
-            "Author": "Давид Фидальго",
-            "Country": "Испания",
-            "Year": "2022",
-            "Duration": "10:54"
-          },
-          {
-            "Name": "Sit Down, Don't Touch Anything",
-            "NameOrig": "Сиди и ничего не трогай!",
-            "Author": "Фредерик Зигель",
-            "Country": "Швейцария",
-            "Year": "2022",
-            "Duration": "05:20"
-          },
-          {
-            "Name": "My Crow Don't Know to Fish",
-            "NameOrig": "Моя ворона не умеет ловить рыбу",
-            "Author": "Дивакар Саккарапани Куппан",
-            "Country": "Индия",
-            "Year": "2021",
-            "Duration": "05:20"
-          },
-          {
-            "Name": "Terra Incognita",
-            "NameOrig": "Терра Инкогнита",
-            "Author": "Перниль Кьяе, Адриан Декстер",
-            "Country": "Дания, Франция",
-            "Year": "2021",
-            "Duration": "20:00"
-          },
-          {
-            "Name": "Granny's Sexual Life",
-            "NameOrig": "Сексуальная жизнь бабушки",
-            "Author": "Уршка Джукич, Эмили Пижар",
-            "Country": "Франция, Словения",
-            "Year": "2021",
-            "Duration": "13:40"
-          },
-          {
-            "Name": "Sasha",
-            "NameOrig": "Саша",
-            "Author": "Сергей Чивирига",
-            "Country": "Румыния",
-            "Year": "2022",
-            "Duration": "12:43"
-          },
-          {
-            "Name": "backflip",
-            "NameOrig": "Обратное сальто",
-            "Author": "Никита Дякур",
-            "Country": "Германия, Франция",
-            "Year": "2022",
-            "Duration": "12:30"
-          },
-          {
-            "Name": "Wormwood-25",
-            "NameOrig": "Полынь-25",
-            "Author": "Надя Гольдман",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "17:39"
-          },
-          {
-            "Name": "Family Portrait",
-            "NameOrig": "Семейный портрет",
-            "Author": "Леа Видакович",
-            "Country": "Хорватия, Франция, Сербия",
-            "Year": "2023",
-            "Duration": "14:30"
-          },
-          {
-            "Name": "Pink Noise",
-            "NameOrig": "Розовый шум",
-            "Author": "Мартин Виклунд, Артур Леметр",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "02:00"
+            "Name": "Sweet Like Lemons",
+            "Author": "Сладкие, как лимоны",
+            "Country": "Jenny Jokela",
+            "Year": "Great Britain",
+            "Duration": "2023"
           }
         ]
       },
@@ -595,171 +577,84 @@
         "MinAge": 18,
         "Part": 2,
         "Start": "01:30",
-        "End": "02:55",
+        "End": "01:30",
         "Movies": [
           {
-            "Name": "Code Rose",
-            "NameOrig": "Код «Розовый»",
-            "Author": "Тайе Кимон, Пьер Кооз, Жюли Гру, Сандра Лейдье, Мануарий Морель, Ромен Сейсон",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:08"
+            "Name": "Echoes of Grief",
+            "Author": "Отзвуки горя",
+            "Country": "Verena Repar",
+            "Year": "Austria",
+            "Duration": "2023"
           },
           {
-            "Name": "Funeral at Nine",
-            "NameOrig": "Похороны в девять",
-            "Author": "Мамаду Барри, Родриго Вера, Зию Ванг, Цзюньхао Сян, Ванг Ю, Линфэн Чжоу",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:57"
+            "Name": "Hic Svnt Dracones",
+            "Author": "Здесь обитают драконы",
+            "Country": "Justin Fayard",
+            "Year": "France",
+            "Duration": "2024"
           },
           {
-            "Name": "In the dance",
-            "NameOrig": "В танце",
-            "Author": "Катя Михеева",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "04:28"
+            "Name": "Interns",
+            "Author": "Стажёры",
+            "Country": "Marina Donderis, Núria Poveda, Marina Cortón",
+            "Year": "Spain",
+            "Duration": "2023"
           },
           {
-            "Name": "From the Corner of my Eye",
-            "NameOrig": "Краешком глаза",
-            "Author": "Домонкош Эрхардт",
-            "Country": "Венгрия",
-            "Year": "2023",
-            "Duration": "06:06"
+            "Name": "The Legend of Goldhorn",
+            "Author": "Легенда о Золотом Роге",
+            "Country": "Lea Vucko",
+            "Year": "Slovenia",
+            "Duration": "2022"
           },
           {
-            "Name": "Her electric light",
-            "NameOrig": "Ее электрический свет",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "12:38"
+            "Name": "Le Sexe de ma Mère",
+            "Author": "Сексуальность моей матери",
+            "Country": "Francis Canitrot",
+            "Year": "France",
+            "Duration": "2023"
           },
           {
-            "Name": "RIM",
-            "NameOrig": "РИМ",
-            "Author": "Хагар Файбиш",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "06:47"
+            "Name": "Little Dan",
+            "Author": "Малышка Дан",
+            "Country": "Yingdan Lai",
+            "Year": "USA",
+            "Duration": "2022"
           },
           {
-            "Name": "Above the Clouds",
-            "NameOrig": "Над облаками",
-            "Author": "Вивьен Харшеги",
-            "Country": "Венгрия",
-            "Year": "2022",
-            "Duration": "12:41"
+            "Name": "Sin Alas (Without Wings)",
+            "Author": "Без крыльев",
+            "Country": "Juliana Rios Martinez",
+            "Year": "Colombia",
+            "Duration": "2023"
           },
           {
-            "Name": "The Moon Rises During the Day",
-            "NameOrig": "Луна восходит днем",
-            "Author": "На Ли",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "03:13"
+            "Name": "Geometric Symphony",
+            "Author": "Геометрическая симфония",
+            "Country": "Ka Yuet Chan, Yau Hing Lam",
+            "Year": "Hong Kong",
+            "Duration": "2024"
           },
           {
-            "Name": "Furrie",
-            "NameOrig": "Фурри",
-            "Author": "Люси Граннек",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "08:36"
+            "Name": "Primitive Times",
+            "Author": "Первобытные времена",
+            "Country": "Hao Yu",
+            "Year": "Germany",
+            "Duration": "2023"
           },
           {
-            "Name": "Pentola",
-            "NameOrig": "Пентола",
-            "Author": "Лео Черник",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "07:12"
+            "Name": "The Deer",
+            "Author": "Олень",
+            "Country": "Baran Sedighian",
+            "Year": "Netherlands",
+            "Duration": "2023"
           },
           {
-            "Name": "Park Voyage",
-            "NameOrig": "Прогулка по парку",
-            "Author": "Флоранс Юк Ки Ли",
-            "Country": "Гонконг",
-            "Year": "2022",
-            "Duration": "03:13"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ ",
-        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "TitleEn": "MUSIC of the NIGHT ",
-        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
-        "MinAge": 18,
-        "Part": 2,
-        "Start": "02:55",
-        "End": "03:30",
-        "Movies": [
-          {
-            "Name": "Aube",
-            "NameOrig": "Aube",
-            "Author": "Венсан Жибо",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "04:00"
-          },
-          {
-            "Name": "Cores | Bacará",
-            "NameOrig": "Cores | Bacará",
-            "Author": "Патрик Хансер",
-            "Country": "Бразилия",
-            "Year": "2023",
-            "Duration": "03:42"
-          },
-          {
-            "Name": "Do I Follow the Wall?",
-            "NameOrig": "Do I Follow the Wall?",
-            "Author": "Бен Уолден",
-            "Country": "Великобритания",
-            "Year": "2023",
-            "Duration": "03:48"
-          },
-          {
-            "Name": "Fuites Cathodiques",
-            "NameOrig": "Fuites Cathodiques",
-            "Author": "Чарли Марс",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "02:30"
-          },
-          {
-            "Name": "Jerks",
-            "NameOrig": "Jerks",
-            "Author": "Алессандро Гаспари",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "04:42"
-          },
-          {
-            "Name": "Mr Lady",
-            "NameOrig": "Mr Lady",
-            "Author": "Пьетро Ледди",
-            "Country": "Италия",
-            "Year": "2023",
-            "Duration": "02:49"
-          },
-          {
-            "Name": "Ciarán",
-            "NameOrig": "Ciarán",
-            "Author": "Симон Медар",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:40"
-          },
-          {
-            "Name": "Tulipomania: You Had to Be There",
-            "NameOrig": "Tulipomania: You Had to Be There",
-            "Author": "Шерил Геловер, Том Мюррей",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "03:45"
+            "Name": "Piano in the Bushes",
+            "Author": "Пианино в кустах",
+            "Country": "Dashka Dementeva",
+            "Year": "Estonia",
+            "Duration": "2023"
           }
         ]
       }
@@ -775,378 +670,85 @@
         "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
         "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
         "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
+        "MinAge": 16,
         "Part": 3,
         "Start": "22:00",
-        "End": "22:55",
+        "End": "22:00",
         "Movies": [
           {
-            "Name": "Small Hours",
-            "NameOrig": "Малые часы",
-            "Author": "Марта Снежек, Кристиан Спарлинг",
-            "Country": "Ирландия",
-            "Year": "2022",
-            "Duration": "05:00"
+            "Name": "Architect A",
+            "Author": "Архитектор А",
+            "Country": "Jonghoon Lee",
+            "Year": "South Korea",
+            "Duration": "2022"
           },
           {
-            "Name": "A Journey with my Dad",
-            "NameOrig": "Путешествие с моим папой",
-            "Author": "Мор Израэль",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "10:00"
+            "Name": "Swimming With Wings",
+            "Author": "Плавание с крыльями",
+            "Country": "Daphna Awadish Golan",
+            "Year": "Netherlands",
+            "Duration": "2023"
           },
           {
-            "Name": "To Be Sisters",
-            "NameOrig": "Быть сестрами",
-            "Author": "Анн-Софи Гуссе, Клеман Сеар",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "07:20"
+            "Name": "Fishing",
+            "Author": "Рыбалка",
+            "Country": "Elena Kurkova",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "◆★PILIPALA●▲",
-            "NameOrig": "Праздник весны",
-            "Author": "Иньян Лян",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "01:10"
+            "Name": "Wrong Mat",
+            "Author": "Неправильный коврик",
+            "Country": "Ivan Maximov",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Ice Merchants",
-            "NameOrig": "Торговцы льдом",
-            "Author": "Жуан Гонсалес",
-            "Country": "Португалия, Франция, Великобритания",
-            "Year": "2022",
-            "Duration": "14:00"
+            "Name": "What Time is It?",
+            "Author": "Который час?",
+            "Country": "Eric Giessmann, Piers Goffart",
+            "Year": "Germany",
+            "Duration": "2022"
           },
           {
-            "Name": "Prinzessin Aubergine",
-            "NameOrig": "Принцесса-баклажан",
-            "Author": "Дина Великовская",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "07:37"
+            "Name": "Rosemary A.D. (After Dad)",
+            "Author": "Розмари П.П. (После папы)",
+            "Country": "Ethan Barrett",
+            "Year": "USA",
+            "Duration": "2022"
           },
           {
-            "Name": "Somni",
-            "NameOrig": "Сомни",
-            "Author": "Соня Роледер",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "03:00"
+            "Name": "Grey is the Color of Hope",
+            "Author": "Серый - цвет надежды",
+            "Country": "Anna Olekhnovich",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Dealing with War",
+            "Author": "Борьба с войной",
+            "Country": "Andreas Hykade",
+            "Year": "Germany",
+            "Duration": "2022"
           }
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 3 (NATIONAL COMPETITION part 3) 16+",
+        "Title": "ЩА5СЕК (специальная программа) 18+",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "22:55",
-        "End": "23:20",
+        "Start": "23:00",
+        "End": "23:00",
         "Movies": [
           {
-            "Name": "Омичка",
-            "NameOrig": "Омичка",
-            "Author": "Лиза Скворцова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Светлые души",
-            "NameOrig": "Светлые души",
-            "Author": "Анастасия Жакулина",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "08:00"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ПРОФНАСТИЛ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "PROFNASTIL ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "23:20",
-        "End": "01:30",
-        "Movies": [
-          {
-            "Name": "Aaaah!",
-            "NameOrig": "Ааааа!",
-            "Author": "Осман Цефрон",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "12:00"
-          },
-          {
-            "Name": "The Garbage Man",
-            "NameOrig": "Мусорщик",
-            "Author": "Лаура Гонсалвеш",
-            "Country": "Португалия",
-            "Year": "2022",
-            "Duration": "11:50"
-          },
-          {
-            "Name": "11",
-            "NameOrig": "Одиннадцать",
-            "Author": "Вук Евремович",
-            "Country": "Хорватия, Германия",
-            "Year": "2022",
-            "Duration": "05:28"
-          },
-          {
-            "Name": "Salvation Has No Name",
-            "NameOrig": "У спасения нет имени",
-            "Author": "Джозеф Уоллес",
-            "Country": "Великобритания, Франция, Чехия",
-            "Year": "2022",
-            "Duration": "16:50"
-          },
-          {
-            "Name": "The Miracle",
-            "NameOrig": "Чудо",
-            "Author": "Ниенке Дойтц",
-            "Country": "Бельгия, Нидерланды, Франция",
-            "Year": "2022",
-            "Duration": "14:58"
-          },
-          {
-            "Name": "Whatever Moves is Alive",
-            "NameOrig": "Что движется, то живет",
-            "Author": "Ноэми Марсийи",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "11:05"
-          },
-          {
-            "Name": "Carne de Dios",
-            "NameOrig": "Плоть Господня",
-            "Author": "Патрисио Плаза",
-            "Country": "Мексика, Аргентина",
-            "Year": "2022",
-            "Duration": "21:00"
-          },
-          {
-            "Name": "Intersextion",
-            "NameOrig": "Интерсекция",
-            "Author": "Ричард Роджер Ривз",
-            "Country": "Канада",
-            "Year": "2022",
-            "Duration": "04:00"
-          },
-          {
-            "Name": "Shadow of the Butterflies",
-            "NameOrig": "Тень бабочек",
-            "Author": "София Эль Кьяри",
-            "Country": "Франция, Португалия, Катар",
-            "Year": "2022",
-            "Duration": "09:00"
-          },
-          {
-            "Name": "White",
-            "NameOrig": "Белизна",
-            "Author": "Ким-Тхэк Чун",
-            "Country": "Соединенные Штаты",
-            "Year": "2022",
-            "Duration": "02:27"
-          },
-          {
-            "Name": "The Sunset Special",
-            "NameOrig": "Особый закат",
-            "Author": "Николас Геббе",
-            "Country": "Германия",
-            "Year": "2021",
-            "Duration": "17:30"
-          },
-          {
-            "Name": "Brixton Bustle",
-            "NameOrig": "Брикстонская суета",
-            "Author": "Шон Кларк",
-            "Country": "Великобритания",
-            "Year": "2023",
-            "Duration": "04:50"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ДЕБЮТОРИЯ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "DEBUTORIYA ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "01:30",
-        "End": "02:55",
-        "Movies": [
-          {
-            "Name": "Don't Die on Me",
-            "NameOrig": "При мне не умирай",
-            "Author": "Ори Голдберг",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "03:00"
-          },
-          {
-            "Name": "Une belle nuit d’été",
-            "NameOrig": "Прекрасная ночь",
-            "Author": "Артур Дюпьи, Энцо Лебушер, Сэм Кастелли, Александр Савич, Яннис Брюн, Барбара Дерай",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "07:18"
-          },
-          {
-            "Name": "Human Resources",
-            "NameOrig": "Человеческие ресурсы",
-            "Author": "Тринидад Пласс Коссад, Титуан Тилье, Исаак Венцек",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "03:30"
-          },
-          {
-            "Name": "Boywhood",
-            "NameOrig": "Мальчишество",
-            "Author": "Энрико Мотти, Эмануэле Мотти",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "05:50"
-          },
-          {
-            "Name": "Aeons Ark",
-            "NameOrig": "Эонов Ковчег",
-            "Author": "Софи Мария Викерс",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "06:29"
-          },
-          {
-            "Name": "Prisoner Outside",
-            "NameOrig": "Заключенный извне",
-            "Author": "Игорь Медведев",
-            "Country": "Германия",
-            "Year": "2021",
-            "Duration": "06:41"
-          },
-          {
-            "Name": "It's Nice in Here",
-            "NameOrig": "Здесь хорошо",
-            "Author": "Роберт-Джонатан Койерс",
-            "Country": "Нидерланды",
-            "Year": "2022",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Mold",
-            "NameOrig": "Плесень",
-            "Author": "Чен-Сю Ши",
-            "Country": "Япония",
-            "Year": "2023",
-            "Duration": "02:41"
-          },
-          {
-            "Name": "The House of Loss",
-            "NameOrig": "Дом потерь",
-            "Author": "Джинкю Джон",
-            "Country": "Япония, Республика Корея",
-            "Year": "2022",
-            "Duration": "09:34"
-          },
-          {
-            "Name": "fur",
-            "NameOrig": "Мех",
-            "Author": "Жэнь Ли",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "06:36"
-          },
-          {
-            "Name": "Zuman",
-            "NameOrig": "Звезда зоопарка",
-            "Author": "Хонор Прайс",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "10:00"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ ",
-        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "TitleEn": "MUSIC of the NIGHT ",
-        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "02:55",
-        "End": "03:30",
-        "Movies": [
-          {
-            "Name": "Be Gone",
-            "NameOrig": "Be Gone",
-            "Author": "Сицзя Люо",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "03:56"
-          },
-          {
-            "Name": "Day In My Dream",
-            "NameOrig": "Day In My Dream",
-            "Author": "Пей-Син Хо",
-            "Country": "Тайвань, Великобритания",
-            "Year": "2022",
-            "Duration": "03:35"
-          },
-          {
-            "Name": "Emily",
-            "NameOrig": "Emily",
-            "Author": "Иян Сунь",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "05:24"
-          },
-          {
-            "Name": "Get Back",
-            "NameOrig": "Get Back",
-            "Author": "Тео Тонатиу Ленобль",
-            "Country": "Мексика",
-            "Year": "2022",
-            "Duration": "03:33"
-          },
-          {
-            "Name": "Wooden Nickels",
-            "NameOrig": "Wooden Nickels",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:36"
-          },
-          {
-            "Name": "Medusa",
-            "NameOrig": "Medusa",
-            "Author": "Маэва Жак",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "The Wave",
-            "NameOrig": "The Wave",
-            "Author": "Джованни Антонио Агилар Гутьеррес, Элеанор Розетта Мари Эванс",
-            "Country": "Австралия",
-            "Year": "2022",
-            "Duration": "03:00"
-          },
-          {
-            "Name": "End of the Night",
-            "NameOrig": "End of the Night",
-            "Author": "Морган Шоу",
-            "Country": "Австралия, Канада, Великобритания",
-            "Year": "2023",
-            "Duration": "02:27"
+            "Name": "программа фестиваля анимационных фильмов ультракороткого формата \"Ща5сек\"",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       }
@@ -1158,414 +760,273 @@
     "LocationId": 0,
     "Blocks": [
       {
-        "Title": "ЛУЧШЕЕ ИЗ КОНКУРСА ЗАСТАВОК (THE BEST OF INSOMNIA'2023 TEASER&TRAILER COMPETITION) 12+",
+        "Title": "РОССИЙСКИЙ АНИМАЦИОННЫЙ АВАНГАРД (специальная программа) 18+",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
         "Start": "22:00",
-        "End": "22:10",
+        "End": "22:00",
         "Movies": [
           {
-            "Name": "избранные работы конкурса фестивальных заставок 2023 года",
-            "NameOrig": "избранные работы конкурса фестивальных заставок 2023 года",
-            "Author": "",
-            "Country": "",
-            "Year": "",
-            "Duration": ""
-          }
-        ]
-      },
-      {
-        "Title": "РОССИЙСКИЙ НАЦИОНАЛЬНЫЙ КОНКУРС (NATIONAL COMPETITION) 18+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "22:10",
-        "End": "01:30",
-        "Movies": [
+            "Name": "Бабушки",
+            "Author": "Илья Юдович",
+            "Country": "2020",
+            "Year": "04:17",
+            "Duration": null
+          },
           {
-            "Name": "Кстати, о птичках",
-            "NameOrig": "Кстати, о птичках",
-            "Author": "Алла Вартанян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "10:25"
+            "Name": "Начало света",
+            "Author": "Анастасия Мелихова",
+            "Country": "2020",
+            "Year": "06:20",
+            "Duration": null
+          },
+          {
+            "Name": "Уточка и кенгуру",
+            "Author": "Елизавета Скворцова",
+            "Country": "2020",
+            "Year": "07:11",
+            "Duration": null
+          },
+          {
+            "Name": "За забором",
+            "Author": "Мария Коган-Лернер",
+            "Country": "2020",
+            "Year": "07:40",
+            "Duration": null
+          },
+          {
+            "Name": "Сахарное шоу",
+            "Author": "Лиана Макарян",
+            "Country": "2020",
+            "Year": "08:00",
+            "Duration": null
+          },
+          {
+            "Name": "10 000 безобразных пятен",
+            "Author": "Дмитрий Геллер",
+            "Country": "2020",
+            "Year": "08:10",
+            "Duration": null
+          },
+          {
+            "Name": "Боксбалет",
+            "Author": "Антон Дьяков",
+            "Country": "2019",
+            "Year": "12:00",
+            "Duration": null
+          },
+          {
+            "Name": "Голый",
+            "Author": "Кирилл Хачатуров",
+            "Country": "2019",
+            "Year": "14:40",
+            "Duration": null
+          },
+          {
+            "Name": "Ба",
+            "Author": "Светлана Филиппова",
+            "Country": "2020",
+            "Year": "15:00",
+            "Duration": null
+          },
+          {
+            "Name": "Собаки пахнут морем",
+            "Author": "Настя Лисовец",
+            "Country": "2020",
+            "Year": "04:14",
+            "Duration": null
+          },
+          {
+            "Name": "Сердце",
+            "Author": "Юрий Богуславский",
+            "Country": "2021",
+            "Year": "05:01",
+            "Duration": null
+          },
+          {
+            "Name": "О, неет!",
+            "Author": "Иван Максимов",
+            "Country": "2021",
+            "Year": "05:36",
+            "Duration": null
+          },
+          {
+            "Name": "Мой галактический двойник Галактион",
+            "Author": "Саша Свирский",
+            "Country": "2020",
+            "Year": "06:33",
+            "Duration": null
+          },
+          {
+            "Name": "Жизнь-паскуда",
+            "Author": "Варя Яковлева",
+            "Country": "2021",
+            "Year": "06:21",
+            "Duration": null
+          },
+          {
+            "Name": "Горю!",
+            "Author": "Антон Дьяков",
+            "Country": "2021",
+            "Year": "07:15",
+            "Duration": null
+          },
+          {
+            "Name": "Колобок",
+            "Author": "Ашот Мефодин",
+            "Country": "2020",
+            "Year": "09:49",
+            "Duration": null
+          },
+          {
+            "Name": "Бестиарий",
+            "Author": "Иван Максимов, Андрей Бахурин, Карина Погорелова, Наталья Мирзоян, Игорь Мельников, Михаил Солошенко, Светлана Разгуляева, Екатерина Михеева, Евгений Фадеев",
+            "Country": "2021",
+            "Year": "10:54",
+            "Duration": null
+          },
+          {
+            "Name": "Хозяйка Медной горы",
+            "Author": "Дмитрий Геллер",
+            "Country": "2020",
+            "Year": "13:33",
+            "Duration": null
+          },
+          {
+            "Name": "Огурцы",
+            "Author": "Леонид Шмельков",
+            "Country": "2021",
+            "Year": "15:43",
+            "Duration": null
           },
           {
             "Name": "Плёвое дело",
-            "NameOrig": "Плёвое дело",
             "Author": "Екатерина Ганах",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:37"
+            "Country": "2022",
+            "Year": "03:37",
+            "Duration": null
+          },
+          {
+            "Name": "Пуделко",
+            "Author": "Настя Лисовец",
+            "Country": "2022",
+            "Year": "03:54",
+            "Duration": null
+          },
+          {
+            "Name": "Костёр в заповеднике",
+            "Author": "Катя Милославская",
+            "Country": "2022",
+            "Year": "06:14",
+            "Duration": null
+          },
+          {
+            "Name": "Чужой хлеб",
+            "Author": "Андрей Бахурин",
+            "Country": "2022",
+            "Year": "07:11",
+            "Duration": null
+          },
+          {
+            "Name": "Вадим на прогулке",
+            "Author": "Саша Свирский",
+            "Country": "2021",
+            "Year": "07:57",
+            "Duration": null
+          },
+          {
+            "Name": "Не для меня",
+            "Author": "Иван Бондаренко",
+            "Country": "2022",
+            "Year": "08:06",
+            "Duration": null
+          },
+          {
+            "Name": "Кстати, о птичках",
+            "Author": "Алла Вартанян",
+            "Country": "2022",
+            "Year": "10:25",
+            "Duration": null
+          },
+          {
+            "Name": "Ванлав",
+            "Author": "Варя Яковлева",
+            "Country": "2022",
+            "Year": "10:35",
+            "Duration": null
+          },
+          {
+            "Name": "Слова-паразиты",
+            "Author": "Алексей Ермолаев, Екатерина Михеева, Юлия Куликова, Алина Стогниева, Мария Ермолаева",
+            "Country": "2021",
+            "Year": "11:56",
+            "Duration": null
+          },
+          {
+            "Name": "Музыка летней ночи",
+            "Author": "Александр Васильев",
+            "Country": "2022",
+            "Year": "13:41",
+            "Duration": null
           },
           {
             "Name": "Переход",
-            "NameOrig": "Переход",
             "Author": "Дарья Волчок",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "01:55"
-          },
-          {
-            "Name": "Галочка",
-            "NameOrig": "Галочка",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:48"
-          },
-          {
-            "Name": "Колыбельная Бабы Яги",
-            "NameOrig": "Колыбельная Бабы Яги",
-            "Author": "Даша Вяткина",
-            "Country": "Нидерланды, Российская Федерация",
-            "Year": "2022",
-            "Duration": "04:02"
-          },
-          {
-            "Name": "Жираф",
-            "NameOrig": "Жираф",
-            "Author": "Наталья Мирзоян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:35"
-          },
-          {
-            "Name": "Бабугли",
-            "NameOrig": "Бабугли",
-            "Author": "Евгения Жиркова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
-          },
-          {
-            "Name": "Волк думающий",
-            "NameOrig": "Волк думающий",
-            "Author": "Юлия Евдокимова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
-          },
-          {
-            "Name": "Миллионы алых роз",
-            "NameOrig": "Миллионы алых роз",
-            "Author": "Галина Голубева",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "14:10"
+            "Country": "2023",
+            "Year": "01:55",
+            "Duration": null
           },
           {
             "Name": "Подсолнух",
-            "NameOrig": "Подсолнух",
-            "Author": "Наталья Чернышева",
-            "Country": "Франция, Российская Федерация",
-            "Year": "2023",
-            "Duration": "04:20"
+            "Author": "Наталия Чернышёва",
+            "Country": "2023",
+            "Year": "04:20",
+            "Duration": null
           },
           {
-            "Name": "Там, где цветёт жасмин",
-            "NameOrig": "Там, где цветёт жасмин",
-            "Author": "Полина Бовкун",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:14"
+            "Name": "Волк думающий",
+            "Author": "Юлия Евдокимова",
+            "Country": "2023",
+            "Year": "08:00",
+            "Duration": null
           },
           {
             "Name": "Уважаемые пассажиры",
-            "NameOrig": "Уважаемые пассажиры",
             "Author": "Макс Куликов",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "11:00"
+            "Country": "2023",
+            "Year": "11:00",
+            "Duration": null
           },
           {
-            "Name": "Украденная мелодия",
-            "NameOrig": "Украденная мелодия",
-            "Author": "Юра Богуславский",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "14:45"
+            "Name": "Её электрический свет",
+            "Author": "Настя Лисовец",
+            "Country": "2022",
+            "Year": "12:38",
+            "Duration": null
           },
           {
             "Name": "Хармс",
-            "NameOrig": "Хармс",
             "Author": "Светлана Андрианова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "13:15"
-          },
-          {
-            "Name": "Светлые души",
-            "NameOrig": "Светлые души",
-            "Author": "Анастасия Жакулина",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "08:00"
+            "Country": "2023",
+            "Year": "13:15",
+            "Duration": null
           },
           {
             "Name": "Омичка",
-            "NameOrig": "Омичка",
             "Author": "Лиза Скворцова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Ее электрический свет",
-            "NameOrig": "Ее электрический свет",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "12:38"
-          },
-          {
-            "Name": "Легенда о сёстрах",
-            "NameOrig": "Легенда о сёстрах",
-            "Author": "Павел Погудин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:26"
-          },
-          {
-            "Name": "Визионер",
-            "NameOrig": "Визионер",
-            "Author": "Всеволод Булавкин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "09:16"
-          },
-          {
-            "Name": "Красные щеки Маро",
-            "NameOrig": "Красные щеки Маро",
-            "Author": "Мариам Жордания",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "07:38"
+            "Country": "2023",
+            "Year": "15:00",
+            "Duration": null
           },
           {
             "Name": "Полынь-25",
-            "NameOrig": "Полынь-25",
             "Author": "Надя Гольдман",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "17:39"
-          },
-          {
-            "Name": "Крот",
-            "NameOrig": "Крот",
-            "Author": "Алексей Сухов",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "13:42"
-          },
-          {
-            "Name": "Выгорание",
-            "NameOrig": "Выгорание",
-            "Author": "Элина Сибгатуллина",
-            "Country": "Российская Федерация",
-            "Year": "2021",
-            "Duration": "03:25"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ - МЕЖДУНАРОДНЫЙ КОНКУРС (MUSIC of the NIGHT - MUSIC VIDEO INTERNATIONAL COMPETITION) 18+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "01:30",
-        "End": "03:00",
-        "Movies": [
-          {
-            "Name": "End of the Night",
-            "NameOrig": "End of the Night",
-            "Author": "Морган Шоу",
-            "Country": "Австралия, Канада, Великобритания",
-            "Year": "2023",
-            "Duration": "02:27"
-          },
-          {
-            "Name": "DJ Piper - RIP TXL",
-            "NameOrig": "DJ Piper - RIP TXL",
-            "Author": "Раман Джафари",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "03:30"
-          },
-          {
-            "Name": "Be Gone",
-            "NameOrig": "Be Gone",
-            "Author": "Сицзя Люо",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "03:56"
-          },
-          {
-            "Name": "No Lullaby",
-            "NameOrig": "No Lullaby",
-            "Author": "Эзекиэль Торрес",
-            "Country": "Аргентина",
-            "Year": "2022",
-            "Duration": "03:58"
-          },
-          {
-            "Name": "Juan Wauters - Milanesa al pan",
-            "NameOrig": "Juan Wauters - Milanesa al pan",
-            "Author": "Данте Забалла",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:11"
-          },
-          {
-            "Name": "Aube",
-            "NameOrig": "Aube",
-            "Author": "Венсан Жибо",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "04:00"
-          },
-          {
-            "Name": "I Gotta Cry",
-            "NameOrig": "I Gotta Cry",
-            "Author": "Франческа Коломбара",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "02:51"
-          },
-          {
-            "Name": "Mr Lady",
-            "NameOrig": "Mr Lady",
-            "Author": "Пьетро Ледди",
-            "Country": "Италия",
-            "Year": "2023",
-            "Duration": "02:49"
-          },
-          {
-            "Name": "Day In My Dream",
-            "NameOrig": "Day In My Dream",
-            "Author": "Пей-Син Хо",
-            "Country": "Тайвань, Великобритания",
-            "Year": "2022",
-            "Duration": "03:35"
-          },
-          {
-            "Name": "Fuites Cathodiques",
-            "NameOrig": "Fuites Cathodiques",
-            "Author": "Чарли Марс",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "02:30"
-          },
-          {
-            "Name": "Ciarán",
-            "NameOrig": "Ciarán",
-            "Author": "Симон Медар",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:40"
-          },
-          {
-            "Name": "Wooden Nickels",
-            "NameOrig": "Wooden Nickels",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:36"
-          },
-          {
-            "Name": "Medusa",
-            "NameOrig": "Medusa",
-            "Author": "Маэва Жак",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "A Once Lonely Man",
-            "NameOrig": "A Once Lonely Man",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "06:00"
-          },
-          {
-            "Name": "Olivia Lumen",
-            "NameOrig": "Olivia Lumen",
-            "Author": "Али Ашман",
-            "Country": "Великобритания",
-            "Year": "2021",
-            "Duration": "06:05"
-          },
-          {
-            "Name": "The Wave",
-            "NameOrig": "The Wave",
-            "Author": "Джованни Антонио Агилар Гутьеррес, Элеанор Розетта Мари Эванс",
-            "Country": "Австралия",
-            "Year": "2022",
-            "Duration": "03:00"
-          },
-          {
-            "Name": "Jerks",
-            "NameOrig": "Jerks",
-            "Author": "Алессандро Гаспари",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "04:42"
-          },
-          {
-            "Name": "Get Back",
-            "NameOrig": "Get Back",
-            "Author": "Тео Тонатиу Ленобль",
-            "Country": "Мексика",
-            "Year": "2022",
-            "Duration": "03:33"
-          },
-          {
-            "Name": "Emily",
-            "NameOrig": "Emily",
-            "Author": "Иян Сунь",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "05:24"
-          },
-          {
-            "Name": "Tulipomania: You Had to Be There",
-            "NameOrig": "Tulipomania: You Had to Be There",
-            "Author": "Шерил Геловер, Том Мюррей",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "03:45"
-          },
-          {
-            "Name": "Sleeping Cell - Elevator to the Gallows",
-            "NameOrig": "Sleeping Cell - Elevator to the Gallows",
-            "Author": "Луис Антонио Гуэрра",
-            "Country": "Колумбия",
-            "Year": "2023",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "Cores | Bacará",
-            "NameOrig": "Cores | Bacará",
-            "Author": "Патрик Хансер",
-            "Country": "Бразилия",
-            "Year": "2023",
-            "Duration": "03:42"
-          },
-          {
-            "Name": "Do I Follow the Wall?",
-            "NameOrig": "Do I Follow the Wall?",
-            "Author": "Бен Уолден",
-            "Country": "Великобритания",
-            "Year": "2023",
-            "Duration": "03:48"
+            "Country": "2023",
+            "Year": "17:39",
+            "Duration": null
           }
         ]
       }
@@ -1575,1867 +1036,997 @@
     "Day": 0,
     "Screen": "Речной Экран (ЦУЭ 2)",
     "LocationId": 0,
+    "Blocks": []
+  },
+  {
+    "Day": 1,
+    "Screen": "Речной Экран (ЦУЭ 2)",
+    "LocationId": 0,
     "Blocks": [
       {
-        "Title": "ДРЁМА - РОССИЙСКАЯ ПАНОРАМА (OFFICIAL SELECTION - RUSSIAN PANORAMA) 18+",
+        "Title": "КИДАЛТ ",
+        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
+        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
+        "SubTitleEn": "KIDULT ",
+        "MinAge": 16,
+        "Part": 1,
+        "Start": "22:00",
+        "End": "22:00",
+        "Movies": [
+          {
+            "Name": "Pufferfish",
+            "Author": "Рыба Фугу",
+            "Country": "Julia Ocker",
+            "Year": "Germany",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Come back to my shelf",
+            "Author": "Вернись ко мне на полку",
+            "Country": "Marina Zinkevich",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Ana Morphose",
+            "Author": "Ана Морфоза",
+            "Country": "Joao Rodrigues",
+            "Year": "Portugal",
+            "Duration": "2023"
+          },
+          {
+            "Name": "See You Champion",
+            "Author": "До встречи, чемпион!",
+            "Country": "Alexis Mouron",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Haute Fréquence",
+            "Author": "Anya Amosova",
+            "Country": "France",
+            "Year": "2023",
+            "Duration": "04:12"
+          },
+          {
+            "Name": "Muscle Man in: Metal Mayhem",
+            "Author": "Мускулистый человек в \"Металлическом хаосе\"",
+            "Country": "Nicolas Laurent Gemoets",
+            "Year": "Belgium",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Yuck!",
+            "Author": "Фу!",
+            "Country": "Loïc Espuche",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "On the 8th Day",
+            "Author": "На восьмой день",
+            "Country": "Agathe Sénéchal, Alicia Massez, Elise Debruyne, Flavie Carin, Théo Duhautois",
+            "Year": "France",
+            "Duration": "2023"
+          }
+        ]
+      },
+      {
+        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 18+",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "22:00",
-        "End": "03:40",
+        "Start": "23:00",
+        "End": "23:00",
         "Movies": [
           {
-            "Name": "Егор!",
-            "NameOrig": "Егор!",
-            "Author": "Мария Афонина",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 03:21"
+            "Name": "Poker Face",
+            "Author": "Покерфейс",
+            "Country": "Polina Chuykova",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Как волки едят детей",
-            "NameOrig": "Как волки едят детей",
-            "Author": "Василиса Смирнова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:43"
+            "Name": "Guess What, Girls!",
+            "Author": "Девки, прикиньте!",
+            "Country": "Nadya Goldman",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Капустное чудо",
-            "NameOrig": "Капустное чудо",
-            "Author": "Инна Евланникова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 15:00"
+            "Name": "Tom Thumb",
+            "Author": "Мальчик с пальчик",
+            "Country": "Nikolay Lichtenfeld, Ivan Kostiurin",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Книга рецептов",
-            "NameOrig": "Книга рецептов",
-            "Author": "Алексей Алексеев",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 08:22"
+            "Name": "Anxiety",
+            "Author": "Тревога+",
+            "Country": "Angelina Komissarova",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Зимний вечер",
-            "NameOrig": "Зимний вечер",
-            "Author": "Полина Фёдорова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:00"
+            "Name": "The Lake",
+            "Author": "Озеро",
+            "Country": "Maria Afonina",
+            "Year": "Russia",
+            "Duration": "2024"
           },
           {
-            "Name": "Птаха",
-            "NameOrig": "Птаха",
-            "Author": "Мария Орлова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:40"
+            "Name": "Teenage Rain",
+            "Author": "Дождь-подросток",
+            "Country": "Maria Savenkova",
+            "Year": "Russia",
+            "Duration": "2024"
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ДЕБЮТОРИЯ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "DEBUTORIYA ",
+        "MinAge": 18,
+        "Part": 1,
+        "Start": "00:00",
+        "End": "00:00",
+        "Movies": [
+          {
+            "Name": "Redman",
+            "Author": "Редмен",
+            "Country": "Kim Sungjae",
+            "Year": "Japan",
+            "Duration": "2024"
           },
           {
-            "Name": "Яблочный пирог",
-            "NameOrig": "Яблочный пирог",
-            "Author": "Сергей Меринов, Алексей Алексеев",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 09:14"
+            "Name": "Children of the bird",
+            "Author": "Дети птицы",
+            "Country": "Júlia Tudisco",
+            "Year": "Hungary",
+            "Duration": "2024"
           },
           {
-            "Name": "Мой Пушкин",
-            "NameOrig": "Мой Пушкин",
-            "Author": "Юрий Томилов",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 06:40"
+            "Name": "Ice Rink",
+            "Author": "Ледовый каток",
+            "Country": "Ziyin Wang",
+            "Year": "China",
+            "Duration": "2024"
           },
           {
-            "Name": "Носки для Звезды",
-            "NameOrig": "Носки для Звезды",
-            "Author": "Ольга Титова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 09:30"
+            "Name": "Next?",
+            "Author": "Следующий?",
+            "Country": "Christel Guibert",
+            "Year": "France",
+            "Duration": "2024"
           },
           {
-            "Name": "Школа ёлок",
-            "NameOrig": "Школа ёлок",
-            "Author": "Анастасия Махлина",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 08:07"
+            "Name": "Braided",
+            "Author": "Заплетённая",
+            "Country": "Chenxi Zhang",
+            "Year": "USA",
+            "Duration": "2023"
           },
           {
-            "Name": "Она же не кусается",
-            "NameOrig": "Она же не кусается",
-            "Author": "Элина Абовян",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:00"
+            "Name": "Crow Man",
+            "Author": "Вороний человек",
+            "Country": "Yohann Abdelnour",
+            "Year": "Lebanon",
+            "Duration": "2023"
           },
           {
-            "Name": "Пингвины",
-            "NameOrig": "Пингвины",
-            "Author": "Анастасия Соколова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:04"
+            "Name": "Who Killed The Unicorn",
+            "Author": "Кто убил единорога",
+            "Country": "Yu-Ting Liou",
+            "Year": "Taiwan",
+            "Duration": "2023"
           },
           {
-            "Name": "Бес порядка",
-            "NameOrig": "Бес порядка",
-            "Author": "Элина Сибгатуллина",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 01:52"
+            "Name": "Echoes",
+            "Author": "Отголоски",
+            "Country": "Robinson Drossos",
+            "Year": "France",
+            "Duration": "2024"
           },
           {
-            "Name": "Дедушкин словарь",
-            "NameOrig": "Дедушкин словарь",
-            "Author": "Ашот Мефодин",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 03:16"
+            "Name": "To be a Seed",
+            "Author": "Быть семечком",
+            "Country": "Julia Granillo Tostado",
+            "Year": "Belgium, Finland, Mexico, Portugal",
+            "Duration": "2023"
           },
           {
-            "Name": "Орешник",
-            "NameOrig": "Орешник",
-            "Author": "Анна Достоевская",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 04:40"
+            "Name": "Cocoon",
+            "Author": "Кокон",
+            "Country": "Yiwei Chen",
+            "Year": "China",
+            "Duration": "2024"
           },
           {
-            "Name": "Гнилой",
-            "NameOrig": "Гнилой",
-            "Author": "Анастасия Савкина",
-            "Country": "Россия",
+            "Name": "Tao",
+            "Author": "Дао",
+            "Country": "Shuxin Yan Wang, Simai Stella Huang, Haoran Yan Yang",
+            "Year": "Hong Kong",
+            "Duration": "2024"
+          },
+          {
+            "Name": "A Kind of Testament",
+            "Author": "Что-то вроде завещания",
+            "Country": "Stephen Vuillemin",
+            "Year": "France",
+            "Duration": "2023"
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ПРОФНАСТИЛ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "PROFNASTIL ",
+        "MinAge": 18,
+        "Part": 1,
+        "Start": "01:40",
+        "End": "01:40",
+        "Movies": [
+          {
+            "Name": "The Car that Came Back from the Sea",
+            "Author": "Автомобиль, вернувшийся с моря",
+            "Country": "Jadwiga Kowalska",
+            "Year": "Poland",
+            "Duration": "2023"
+          },
+          {
+            "Name": "In the Shadow of the Cypress",
+            "Author": "В тени кипариса",
+            "Country": "Hossein Molayemi, Shirin Sohani",
+            "Year": "Iran",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Extremely Short",
+            "Author": "Чрезвычайно короткий",
+            "Country": "Koji Yamamura",
+            "Year": "Japan",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Hair Universe",
+            "Author": "Волосяная вселенная",
+            "Country": "Jinuk Choi",
+            "Year": "South Korea",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Love Me True",
+            "Author": "Люби меня искренне",
+            "Country": "Inés Sedan",
+            "Year": "Argentina",
+            "Duration": "2023"
+          },
+          {
+            "Name": "This is a Story Without a Plan",
+            "Author": "Это история без плана",
+            "Country": "Cassie Shao",
+            "Year": "USA",
+            "Duration": "2023"
+          },
+          {
+            "Name": "And then They",
+            "Author": "А ещё он...",
+            "Country": "Shaun Clark",
+            "Year": "Great Britain",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Woman",
+            "Author": "Gilnaz Arzpeyma, Arash Akhgari",
+            "Country": "Canada",
+            "Year": "2023",
+            "Duration": "03:20"
+          },
+          {
+            "Name": "[S]",
+            "Author": "Mario Radev",
+            "Country": "Great Britain",
+            "Year": "2024",
+            "Duration": "12:30"
+          }
+        ]
+      },
+      {
+        "Title": "МУЗЫКА НОЧИ ",
+        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "TitleEn": "MUSIC of the NIGHT ",
+        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
+        "MinAge": 18,
+        "Part": 1,
+        "Start": "03:10",
+        "End": "03:10",
+        "Movies": [
+          {
+            "Name": "A Farewell on Time",
+            "Author": "Edgar Soberon",
+            "Country": "Spain",
             "Year": "2022",
-            "Duration": "06:19"
+            "Duration": "04:48"
           },
           {
-            "Name": "Jenys – Lost",
-            "NameOrig": "Jenys – Lost",
-            "Author": "Кирилл Шахтарин",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:14"
+            "Name": "Ajr - Maybe Man",
+            "Author": "Edoardo Ranaboldo",
+            "Country": "USA",
+            "Year": "2023",
+            "Duration": "03:39"
           },
           {
-            "Name": "Банка с космосом",
-            "NameOrig": "Банка с космосом",
-            "Author": "Дарья Москвина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:24"
+            "Name": "In a Time Warp",
+            "Author": "Anh Tú Nguyen",
+            "Country": "Germany",
+            "Year": "2023",
+            "Duration": "06:30"
           },
           {
-            "Name": "Зуб трусости",
-            "NameOrig": "Зуб трусости",
-            "Author": "Екатерина Стерхова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 01:58"
+            "Name": "King of Sea",
+            "Author": "Stéphane Berla",
+            "Country": "France",
+            "Year": "2022",
+            "Duration": "05:26"
           },
           {
-            "Name": "Небесный фрукт",
-            "NameOrig": "Небесный фрукт",
-            "Author": "Александра Нетунаева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 07:08"
+            "Name": "Nummer 2",
+            "Author": "Arthur Chaumay, Simon Duong Van Huyen",
+            "Country": "France",
+            "Year": "2022",
+            "Duration": "04:21"
           },
           {
-            "Name": "На мосту",
-            "NameOrig": "На мосту",
-            "Author": "София Арханова, Марианна Девина, Анна Смык, Евгений Юферев, Дарья Носкова, Герман Каталкин, Анастасия Аверьянова, Надя Щербакова, Кирилл Карачев",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 07:36"
+            "Name": "Soul Supreme - Geshem Bejuni",
+            "Author": "Tal Uliel",
+            "Country": "Israel",
+            "Year": "2023",
+            "Duration": "03:03"
           },
           {
-            "Name": "Кот-тракцион",
-            "NameOrig": "Кот-тракцион",
-            "Author": "Анастасия Родионова, Валентина Цедик",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 03:03"
+            "Name": "Boom Boom Kid - Sole",
+            "Author": "Dante Zaballa",
+            "Country": "Argentina",
+            "Year": "2024",
+            "Duration": "03:02"
           },
           {
-            "Name": "На глубине",
-            "NameOrig": "На глубине",
-            "Author": "Лиза Старикова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 12:42"
+            "Name": "C C C",
+            "Author": "Aishwarya Chaudhari, Siddharth Modi",
+            "Country": "India",
+            "Year": "2023",
+            "Duration": "03:05"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Day": 2,
+    "Screen": "Речной Экран (ЦУЭ 2)",
+    "LocationId": 0,
+    "Blocks": [
+      {
+        "Title": "КИДАЛТ ",
+        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
+        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
+        "SubTitleEn": "KIDULT ",
+        "MinAge": 16,
+        "Part": 2,
+        "Start": "22:00",
+        "End": "22:00",
+        "Movies": [
+          {
+            "Name": "We are Quarantined",
+            "Author": "Мы сидим на карантине",
+            "Country": "Anna-Maria Chernigovskaya",
+            "Year": "Russia",
+            "Duration": "2024"
           },
           {
-            "Name": "Манки Битс",
-            "NameOrig": "Манки Битс",
-            "Author": "Мария Сёмина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:52"
+            "Name": "Pilgrim",
+            "Author": "Пилигрим",
+            "Country": "Alejo Schettini",
+            "Year": "Uruguay",
+            "Duration": "2023"
           },
           {
-            "Name": "Женщина",
-            "NameOrig": "Женщина",
-            "Author": "Анастасия Соколова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:00"
+            "Name": "The Missing Spots",
+            "Author": "Пропавшие пятна",
+            "Country": "Astrid Rothaug",
+            "Year": "Austria",
+            "Duration": "2023"
           },
           {
-            "Name": "Остаёмся зимовать",
-            "NameOrig": "Остаёмся зимовать",
-            "Author": "Александра Гарайс",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:20"
+            "Name": "Choir",
+            "Author": "Хор",
+            "Country": "Angelina Gilderman",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Мышь",
-            "NameOrig": "Мышь",
-            "Author": "Владимир Назаренко",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:23"
+            "Name": "When the Snow will Fall",
+            "Author": "Когда выпадет снег",
+            "Country": "Ekaterina Asrieva",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Ива белая",
-            "NameOrig": "Ива белая",
-            "Author": "Артём Москалёв",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 06:07"
+            "Name": "Ruslan & Lyudmila",
+            "Author": "Руслан и Людмила",
+            "Country": "Matt Lashko",
+            "Year": "Russia",
+            "Duration": "2024"
           },
           {
-            "Name": "Клад",
-            "NameOrig": "Клад",
-            "Author": "Евгений Фадеев",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:00"
+            "Name": "Recordari",
+            "Author": "Чтобы помнили",
+            "Country": "Carolina Cruz",
+            "Year": "Chile",
+            "Duration": "2024"
           },
           {
-            "Name": "Поговори со мной",
-            "NameOrig": "Поговори со мной",
-            "Author": "Диана Огнева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:20"
+            "Name": "Don't Turn on the Light",
+            "Author": "Не включайте свет",
+            "Country": "Alexey Ignatov",
+            "Year": "Russia",
+            "Duration": "2023"
+          }
+        ]
+      },
+      {
+        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 18+",
+        "SubTitle": null,
+        "TitleEn": null,
+        "SubTitleEn": null,
+        "MinAge": 0,
+        "Part": 0,
+        "Start": "23:00",
+        "End": "23:00",
+        "Movies": [
+          {
+            "Name": "Pups Station — Exit to the Right Side",
+            "Author": "Станция Пупсянция - выход на нужную сторону",
+            "Country": "Natasha Danilevskaya",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Перемотка — Старое кино",
-            "NameOrig": "Перемотка — Старое кино",
-            "Author": "Полина Чуйкова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:22"
+            "Name": "The Brook That Ran Back To The Mountain",
+            "Author": "Ручей, бегущий в горы",
+            "Country": "Alexandr Khramtsov",
+            "Year": "Russia",
+            "Duration": "2023"
           },
           {
-            "Name": "Koi",
-            "NameOrig": "Koi",
-            "Author": "Любовь, реж. Анна Смирнова, 2023, 02:30",
+            "Name": "Vedriti",
+            "Author": "Nikita Meshcheryakov",
+            "Country": "Russian Federation",
+            "Year": "2023",
+            "Duration": "11:17"
+          },
+          {
+            "Name": "Sleepy",
+            "Author": "Спать хочется",
+            "Country": "Igor Voloshin",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Mother America",
+            "Author": "Мама Америка",
+            "Country": "Anya Shveigolz",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Hide and Seek",
+            "Author": "Прятки",
+            "Country": "Polina Kilina",
+            "Year": "Russia",
+            "Duration": "2022"
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ДЕБЮТОРИЯ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "DEBUTORIYA ",
+        "MinAge": 18,
+        "Part": 2,
+        "Start": "00:00",
+        "End": "00:00",
+        "Movies": [
+          {
+            "Name": "Echoes of Grief",
+            "Author": "Отзвуки горя",
+            "Country": "Verena Repar",
+            "Year": "Austria",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Hic Svnt Dracones",
+            "Author": "Здесь обитают драконы",
+            "Country": "Justin Fayard",
+            "Year": "France",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Interns",
+            "Author": "Стажёры",
+            "Country": "Marina Donderis, Núria Poveda, Marina Cortón",
+            "Year": "Spain",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Legend of Goldhorn",
+            "Author": "Легенда о Золотом Роге",
+            "Country": "Lea Vucko",
+            "Year": "Slovenia",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Le Sexe de ma Mère",
+            "Author": "Сексуальность моей матери",
+            "Country": "Francis Canitrot",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Little Dan",
+            "Author": "Малышка Дан",
+            "Country": "Yingdan Lai",
+            "Year": "USA",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Sin Alas (Without Wings)",
+            "Author": "Без крыльев",
+            "Country": "Juliana Rios Martinez",
+            "Year": "Colombia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Geometric Symphony",
+            "Author": "Геометрическая симфония",
+            "Country": "Ka Yuet Chan, Yau Hing Lam",
+            "Year": "Hong Kong",
+            "Duration": "2024"
+          },
+          {
+            "Name": "Primitive Times",
+            "Author": "Первобытные времена",
+            "Country": "Hao Yu",
+            "Year": "Germany",
+            "Duration": "2023"
+          },
+          {
+            "Name": "The Deer",
+            "Author": "Олень",
+            "Country": "Baran Sedighian",
+            "Year": "Netherlands",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Piano in the Bushes",
+            "Author": "Пианино в кустах",
+            "Country": "Dashka Dementeva",
+            "Year": "Estonia",
+            "Duration": "2023"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Day": 3,
+    "Screen": "Речной Экран (ЦУЭ 2)",
+    "LocationId": 0,
+    "Blocks": [
+      {
+        "Title": "КИДАЛТ ",
+        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
+        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
+        "SubTitleEn": "KIDULT ",
+        "MinAge": 16,
+        "Part": 3,
+        "Start": "22:00",
+        "End": "22:00",
+        "Movies": [
+          {
+            "Name": "Architect A",
+            "Author": "Архитектор А",
+            "Country": "Jonghoon Lee",
+            "Year": "South Korea",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Swimming With Wings",
+            "Author": "Плавание с крыльями",
+            "Country": "Daphna Awadish Golan",
+            "Year": "Netherlands",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Fishing",
+            "Author": "Рыбалка",
+            "Country": "Elena Kurkova",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Wrong Mat",
+            "Author": "Неправильный коврик",
+            "Country": "Ivan Maximov",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "What Time is It?",
+            "Author": "Который час?",
+            "Country": "Eric Giessmann, Piers Goffart",
+            "Year": "Germany",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Rosemary A.D. (After Dad)",
+            "Author": "Розмари П.П. (После папы)",
+            "Country": "Ethan Barrett",
+            "Year": "USA",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Grey is the Color of Hope",
+            "Author": "Серый - цвет надежды",
+            "Country": "Anna Olekhnovich",
+            "Year": "Russia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Dealing with War",
+            "Author": "Борьба с войной",
+            "Country": "Andreas Hykade",
+            "Year": "Germany",
+            "Duration": "2022"
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ДЕБЮТОРИЯ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "DEBUTORIYA ",
+        "MinAge": 18,
+        "Part": 3,
+        "Start": "23:00",
+        "End": "23:00",
+        "Movies": [
+          {
+            "Name": "The Last Visit",
+            "Author": "Последнее посещение",
+            "Country": "Keawalee Warutkomain",
+            "Year": "Estonia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Dodo",
+            "Author": "Додо",
+            "Country": "Yi Luo",
+            "Year": "China",
+            "Duration": "2023"
+          },
+          {
+            "Name": "it's Just a Whole",
+            "Author": "Целиком",
+            "Country": "Bianca Scali",
+            "Year": "Germany",
+            "Duration": "2023"
+          },
+          {
+            "Name": "La Perra",
+            "Author": "Стерва",
+            "Country": "Carla Melo Gampert",
+            "Year": "Colombia",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Passengers",
+            "Author": "Пассажиры",
+            "Country": "Celia Hardy",
+            "Year": "Belgium",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Pink Mountain",
+            "Author": "Розовая гора",
+            "Country": "Thomas Kunstler",
+            "Year": "Greece",
+            "Duration": "2022"
+          },
+          {
+            "Name": "Le Parc aux Cerfs",
+            "Author": "Олений парк",
+            "Country": "Mahault Robin, Apolline Bucher, Marine Azam, Lilou Dubreuil, Louise Moulis, Nicolas Wilhelm",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Minus Plus Multiply",
+            "Author": "Минус Плюс Умножение",
+            "Country": "Chu-Chieh Lee",
+            "Year": "Great Britain",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Sewing Love",
+            "Author": "Швейная любовь",
+            "Country": "Xu Yuan",
+            "Year": "Japan",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Vision",
+            "Author": "Видение",
+            "Country": "Çağıl Harmandar",
+            "Year": "Japan",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Voices In My Head",
+            "Author": "Голоса в моей голове",
+            "Country": "Dreisty Gurung, BaoLin Jiang, Chengyu Wu, Felix Konerding",
+            "Year": "Hong Kong",
+            "Duration": "2024"
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ПРОФНАСТИЛ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "PROFNASTIL ",
+        "MinAge": 18,
+        "Part": 3,
+        "Start": "00:40",
+        "End": "00:40",
+        "Movies": [
+          {
+            "Name": "Beautiful Men",
+            "Author": "Красавцы",
+            "Country": "Nicolas Keppens",
+            "Year": "Belgium",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Via Dolorosa",
+            "Author": "Крестный путь",
+            "Country": "Rachel Gutgarts",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Box Cutters",
+            "Author": "Канцелярские ножи",
+            "Country": "Naomi Van Niekerk",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Kinderfilm",
+            "Author": "Киндерфильм",
+            "Country": "Adrian Jonas Haim, Robin Klengel, Michael Stumpf",
+            "Year": "Austria",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Vegan Mayo",
+            "Author": "Веганский майонез",
+            "Country": "Luca Tóth",
+            "Year": "Hungary",
+            "Duration": "2024"
+          },
+          {
+            "Name": "See The Sun Rise in the Moon",
+            "Author": "Смотрите, как Солнце восходит при Луне",
+            "Country": "Charles Nogier",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Smoke",
+            "Author": "Rita Basulto Chavez",
+            "Country": "Mexico",
+            "Year": "2023",
+            "Duration": "12:12"
+          },
+          {
+            "Name": "Hot Fish",
+            "Author": "Знойная рыбка",
+            "Country": "Yael Reisfeld",
+            "Year": "Israel",
+            "Duration": "2023"
+          }
+        ]
+      },
+      {
+        "Title": "МУЗЫКА НОЧИ ",
+        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "TitleEn": "MUSIC of the NIGHT ",
+        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
+        "MinAge": 18,
+        "Part": 3,
+        "Start": "02:10",
+        "End": "02:10",
+        "Movies": [
+          {
+            "Name": "I'm Leaving",
+            "Author": "Michelle Brand",
+            "Country": "Germany",
+            "Year": "2023",
+            "Duration": "03:34"
+          },
+          {
+            "Name": "Boy Blue",
+            "Author": "Ciang, Matteo Dang Minh, Francesca Colombara",
+            "Country": "Italy",
+            "Year": "2023",
+            "Duration": "04:24"
+          },
+          {
+            "Name": "Insomnia",
+            "Author": "Dana Igorevna Sherstneva",
+            "Country": "Russia",
+            "Year": "2023",
+            "Duration": "04:05"
+          },
+          {
+            "Name": "Météores",
+            "Author": "Agnès Patron, Morgane Le Péchon",
+            "Country": "France",
+            "Year": "2023",
+            "Duration": "04:30"
+          },
+          {
+            "Name": "Sexual Misery",
+            "Author": "Ingrid Heiderscheidt",
+            "Country": "Belgium",
+            "Year": "2023",
+            "Duration": "04:38"
+          },
+          {
+            "Name": "Let U Go",
+            "Author": "Jean-Baptiste Bertholom",
+            "Country": "France",
+            "Year": "2024",
+            "Duration": "02:00"
+          },
+          {
+            "Name": "Sledges",
+            "Author": "Zhenya Biryukov, Varya Lavrova, Anna Masyuk, Yulia Serikova, Ksenia Pleshkova, Marina Spirina, Sonya Bogdanova, Alisa Shadrina",
+            "Country": "Russia",
+            "Year": "2023",
+            "Duration": "03:40"
+          },
+          {
+            "Name": "So deep so blue",
+            "Author": "Nina Filippova, Janna Fomina",
+            "Country": "Russia",
+            "Year": "2023",
+            "Duration": "02:55"
+          },
+          {
+            "Name": "Time Settles",
+            "Author": "Julia Gromskaya",
+            "Country": "Italy",
+            "Year": "2024",
+            "Duration": "03:25"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Day": 0,
+    "Screen": "Детский экран",
+    "LocationId": 0,
+    "Blocks": [
+      {
+        "Title": "КОНКУРС ДЕТСКОЙ АНИМАЦИИ. Часть 1\n(фильмы, созданные детьми и детскими студиями анимации)",
+        "SubTitle": null,
+        "TitleEn": null,
+        "SubTitleEn": null,
+        "MinAge": 0,
+        "Part": 0,
+        "Start": "21:40",
+        "End": "21:40",
+        "Movies": [
+          {
+            "Name": "первая программа фильмов-участников конкурса детской анимации фестиваля «Бессонница»",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          }
+        ]
+      },
+      {
+        "Title": "НОЧЬ ФИЛЬМОВ АНАТОЛИЯ САВЧЕНКО. Часть 1 \n(100 лет со дня рождения художника-постановщика)",
+        "SubTitle": null,
+        "TitleEn": null,
+        "SubTitleEn": null,
+        "MinAge": 0,
+        "Part": 0,
+        "Start": "23:00",
+        "End": "23:00",
+        "Movies": [
+          {
+            "Name": "Мойдодыр, реж. Иван Иванов-Вано, 1954, 18 мин.",
+            "Author": null,
             "Country": null,
             "Year": null,
             "Duration": null
           },
           {
-            "Name": "Карельский алфавит",
-            "NameOrig": "Карельский алфавит",
-            "Author": "Дарья Юрищева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:00"
+            "Name": "Необыкновенный матч, реж. Борис Дёжкин, Мстислав Пащенко, 1955, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Руки",
-            "NameOrig": "Руки",
-            "Author": "Карина Астахова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:31"
+            "Name": "Приключения Мурзилки, реж. Борис Степанцев, Евгений Райковский, 1956, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Рапсодия",
-            "NameOrig": "Рапсодия",
-            "Author": "Анна Мильченко",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 07:09"
+            "Name": "Опять двойка, реж. Борис Степанцев, Евгений Райковский, 1957, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Правильная остановка",
-            "NameOrig": "Правильная остановка",
-            "Author": "Мария Ракитина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:50"
+            "Name": "Петя и Красная шапочка, реж. Борис Степанцев, Евгений Райковский, 1958, 19 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Предчувствие неизбежного",
-            "NameOrig": "Предчувствие неизбежного",
-            "Author": "Анна Канаичева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:39"
+            "Name": "Мурзилка на спутнике, реж. Борис Степанцев, Евгений Райковский, 1960, 20 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "В поисках мозга",
-            "NameOrig": "В поисках мозга",
-            "Author": "Ксения Данилевская",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:00"
+            "Name": "Петух и краски, реж. Борис Степанцев, 1964, 16 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Как чувак звезду съел",
-            "NameOrig": "Как чувак звезду съел",
-            "Author": "Арсений Моисеев, Варвара Казакова, Ангелина Маюлова, Маша Гизатулина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:25"
+            "Name": "Вовка в Тридевятом царстве, реж. Борис Степанцев, 1965, 20 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "После себя",
-            "NameOrig": "После себя",
-            "Author": "Григорий Ковалёв",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 04:50"
-          },
-          {
-            "Name": "Хрустальные пазлы (Что такое аутизм?)",
-            "NameOrig": "Хрустальные пазлы (Что такое аутизм?)",
-            "Author": "Маргарита Вайнер",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:25"
-          },
-          {
-            "Name": "Числа",
-            "NameOrig": "Числа",
-            "Author": "Никита Мещеряков, Фёдор Юдин, Александра Кононова, Люся Сибирцева, Дарья Шишова, Катя Вдовина, Дмитрий Морозов, Александра Павлова, Катя Ватель, Александра Деева",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 09:56"
-          },
-          {
-            "Name": "Шум крыльев",
-            "NameOrig": "Шум крыльев",
-            "Author": "Арсений Моисеев",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:31"
-          },
-          {
-            "Name": "Я видел дуб в Луизиане...",
-            "NameOrig": "Я видел дуб в Луизиане...",
-            "Author": "Анастасия Полякова, Ольга Колбасова, Елизавета Кутепова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:30"
-          },
-          {
-            "Name": "Летний трибьют",
-            "NameOrig": "Летний трибьют",
-            "Author": "Павел Филиппов",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 02:11"
-          },
-          {
-            "Name": "Трубку Миру",
-            "NameOrig": "Трубку Миру",
-            "Author": "Наталья Беляева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:42"
-          },
-          {
-            "Name": "Сергей Слонимский. Колокола",
-            "NameOrig": "Сергей Слонимский. Колокола",
-            "Author": "Дмитрий Наумов",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:58"
-          },
-          {
-            "Name": "Прощайте, люди",
-            "NameOrig": "Прощайте, люди",
-            "Author": "Анна Климанова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 04:12"
-          },
-          {
-            "Name": "Устройства Голдберга",
-            "NameOrig": "Устройства Голдберга",
-            "Author": "Анастасия Анфиногенова, Кирилл Карачев, Елена Цыганова, Дарья Носкова, Марианна Девина, Елизавета Трубицына, Арина Хабарова, Константин Вологдин, Андрей Терешин",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:07"
-          },
-          {
-            "Name": "День полнолуния",
-            "NameOrig": "День полнолуния",
-            "Author": "Оксана Броневицкая",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:45"
-          },
-          {
-            "Name": "Одинока ли Луна",
-            "NameOrig": "Одинока ли Луна",
-            "Author": "Мария Лукина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:02"
-          },
-          {
-            "Name": "Добрый Ваня",
-            "NameOrig": "Добрый Ваня",
-            "Author": "Надежда Сячина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:31"
-          },
-          {
-            "Name": "Дом",
-            "NameOrig": "Дом",
-            "Author": "Ксения Галыга",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 02:55"
-          },
-          {
-            "Name": "Белочки",
-            "NameOrig": "Белочки",
-            "Author": "София Абрамова",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 02:45"
-          },
-          {
-            "Name": "Дичь",
-            "NameOrig": "Дичь",
-            "Author": "Сауле Матвиенко",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 04:17"
-          },
-          {
-            "Name": "Золото",
-            "NameOrig": "Золото",
-            "Author": "Егор Веселов",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:18"
-          },
-          {
-            "Name": "Пепел",
-            "NameOrig": "Пепел",
-            "Author": "Дарена Ильина, Марго Винер, Виолетта Киселёва",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 04:47"
-          },
-          {
-            "Name": "труднопроизносимое",
-            "NameOrig": "труднопроизносимое",
-            "Author": "Надя Щербакова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 08:11"
-          },
-          {
-            "Name": "Хокку",
-            "NameOrig": "Хокку",
-            "Author": "Полина Разина",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 02:26"
-          },
-          {
-            "Name": "Недоношенность",
-            "NameOrig": "Недоношенность",
-            "Author": "Анастасия Полякова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:45"
-          },
-          {
-            "Name": "Свобода не умрёт",
-            "NameOrig": "Свобода не умрёт",
-            "Author": "Полина Яковлева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:50"
-          },
-          {
-            "Name": "Компромисс",
-            "NameOrig": "Компромисс",
-            "Author": "Анна Исакова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 02:34"
-          },
-          {
-            "Name": "Корень",
-            "NameOrig": "Корень",
-            "Author": "Ольга Фёдорова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 00:55"
-          },
-          {
-            "Name": "История одного холодильника",
-            "NameOrig": "История одного холодильника",
-            "Author": "Вячеслав Ерлыченков",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:10"
-          },
-          {
-            "Name": "Плацкарт",
-            "NameOrig": "Плацкарт",
-            "Author": "Юлия Лобачева",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:14"
-          },
-          {
-            "Name": "Ветер",
-            "NameOrig": "Ветер",
-            "Author": "Андрей Кацуба",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 06:00"
-          },
-          {
-            "Name": "Покорность",
-            "NameOrig": "Покорность",
-            "Author": "Дарья Баранова",
-            "Country": "Россия",
-            "Year": " 2023",
-            "Duration": " 03:52"
-          },
-          {
-            "Name": "И я там был",
-            "NameOrig": "И я там был",
-            "Author": "Алина Сенина",
-            "Country": "Россия",
-            "Year": "2022",
-            "Duration": "05:33"
-          },
-          {
-            "Name": "Изоляция",
-            "NameOrig": "Изоляция",
-            "Author": "Георгий Зобов",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 09:00"
-          },
-          {
-            "Name": "Старый дом",
-            "NameOrig": "Старый дом",
-            "Author": "Евгения Хазиханова",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 05:00"
-          },
-          {
-            "Name": "Сейчас или никогда",
-            "NameOrig": "Сейчас или никогда",
-            "Author": "Никита Рютин",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:40"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Day": 1,
-    "Screen": "Речной Экран (ЦУЭ 2)",
-    "LocationId": 0,
-    "Blocks": [
-      {
-        "Title": "КИДАЛТ ",
-        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
-        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
-        "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
-        "Part": 1,
-        "Start": "22:00",
-        "End": "23:00",
-        "Movies": [
-          {
-            "Name": "Easy busy",
-            "NameOrig": "Плёвое дело",
-            "Author": "Екатерина Ганах",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:37"
-          },
-          {
-            "Name": "Millions of Scarlet Roses",
-            "NameOrig": "Миллионы алых роз",
-            "Author": "Галина Голубева",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "14:10"
-          },
-          {
-            "Name": "Do Not Feed the Pigeons",
-            "NameOrig": "Не кормите голубей",
-            "Author": "Антонин Никлас",
-            "Country": "Великобритания",
-            "Year": "2021",
-            "Duration": "08:41"
-          },
-          {
-            "Name": "Бабугли",
-            "NameOrig": "Бабугли",
-            "Author": "Евгения Жиркова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
-          },
-          {
-            "Name": "Sunflower",
-            "NameOrig": "Подсолнух",
-            "Author": "Наталья Чернышева",
-            "Country": "Франция, Российская Федерация",
-            "Year": "2023",
-            "Duration": "04:20"
-          },
-          {
-            "Name": "Burning out",
-            "NameOrig": "Выгорание",
-            "Author": "Элина Сибгатуллина",
-            "Country": "Российская Федерация",
-            "Year": "2021",
-            "Duration": "03:25"
-          },
-          {
-            "Name": "Whale’s Song",
-            "NameOrig": "Песнь кита",
-            "Author": "Аделин Фей",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "11:50"
-          }
-        ]
-      },
-      {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 16+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "23:00",
-        "End": "23:20",
-        "Movies": [
-          {
-            "Name": "Украденная мелодия",
-            "NameOrig": "Украденная мелодия",
-            "Author": "Юра Богуславский",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "14:45"
-          },
-          {
-            "Name": "Легенда о сёстрах",
-            "NameOrig": "Легенда о сёстрах",
-            "Author": "Павел Погудин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:26"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ДЕБЮТОРИЯ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "DEBUTORIYA ",
-        "MinAge": 18,
-        "Part": 1,
-        "Start": "23:20",
-        "End": "00:45",
-        "Movies": [
-          {
-            "Name": "Sunset Singers",
-            "NameOrig": "Певцы заката",
-            "Author": "Джессика Пун",
-            "Country": "Германия, Гонконг",
-            "Year": "2022",
-            "Duration": "10:40"
-          },
-          {
-            "Name": "Friendly Fire",
-            "NameOrig": "Дружественный огонь",
-            "Author": "Том Корыто Блюмен",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "06:14"
-          },
-          {
-            "Name": "In-Between",
-            "NameOrig": "Между",
-            "Author": "Юлия Бенедиктович",
-            "Country": "Польша",
-            "Year": "2023",
-            "Duration": "05:58"
-          },
-          {
-            "Name": "Unnamed Road",
-            "NameOrig": "Безымянная дорога",
-            "Author": "Сонкай Чжоу",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "07:59"
-          },
-          {
-            "Name": "Salute to the Sun",
-            "NameOrig": "Салют солнцу",
-            "Author": "Дарко Маснец",
-            "Country": "Хорватия",
-            "Year": "2022",
-            "Duration": "08:50"
-          },
-          {
-            "Name": "Vizionair",
-            "NameOrig": "Визионер",
-            "Author": "Всеволод Булавкин",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "09:16"
-          },
-          {
-            "Name": "Juice",
-            "NameOrig": "Сок",
-            "Author": "Мона Кейль",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "04:55"
-          },
-          {
-            "Name": "Maro's Red Cheeks",
-            "NameOrig": "Красные щеки Маро",
-            "Author": "Мариам Жордания",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "07:38"
-          },
-          {
-            "Name": "artifacts of you, artifacts of me.",
-            "NameOrig": "артефакты тебя, артефакты меня.",
-            "Author": "Брехт де Кок",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "09:00"
-          },
-          {
-            "Name": "A Story for Two Trumpets",
-            "NameOrig": "История для двух труб",
-            "Author": "Амандин Мейер",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:26"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ПРОФНАСТИЛ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "PROFNASTIL ",
-        "MinAge": 18,
-        "Part": 1,
-        "Start": "00:45",
-        "End": "02:55",
-        "Movies": [
-          {
-            "Name": "Dear Passengers",
-            "NameOrig": "Уважаемые пассажиры",
-            "Author": "Макс Куликов",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "11:00"
-          },
-          {
-            "Name": "PLSTC",
-            "NameOrig": "ПЛСТК",
-            "Author": "Лен Санчес",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "01:37"
-          },
-          {
-            "Name": "Miracasas",
-            "NameOrig": "Миракасас",
-            "Author": "Рафаэль Штольц",
-            "Country": "Швейцария, Франция",
-            "Year": "2022",
-            "Duration": "13:40"
-          },
-          {
-            "Name": "The Waiting",
-            "NameOrig": "Ожидание",
-            "Author": "Вокер Шлехт",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "15:35"
-          },
-          {
-            "Name": "An End to War Enough",
-            "NameOrig": "Довольно войн!",
-            "Author": "Симон Масси",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "05:00"
-          },
-          {
-            "Name": "San La Muerte",
-            "NameOrig": "Сан Ла Муэрте",
-            "Author": "Эзе Маттео",
-            "Country": "Аргентина",
-            "Year": "2023",
-            "Duration": "01:21"
-          },
-          {
-            "Name": "Trace",
-            "NameOrig": "След",
-            "Author": "Аспарух Петров",
-            "Country": "Болгария",
-            "Year": "2022",
-            "Duration": "06:42"
-          },
-          {
-            "Name": "Amok",
-            "NameOrig": "Амок",
-            "Author": "Балаж Турай",
-            "Country": "Венгрия, Румыния",
-            "Year": "2022",
-            "Duration": "14:17"
-          },
-          {
-            "Name": "Electra",
-            "NameOrig": "Электра",
-            "Author": "Дарья Кащеева",
-            "Country": "Чехия, Франция, Словакия",
-            "Year": "2023",
-            "Duration": "26:33"
-          },
-          {
-            "Name": "Remember How I Used to Ride a White Horse",
-            "NameOrig": "Помнишь, как я катался на белом коне",
-            "Author": "Ивана Босняк Вольда, Томас Джонсон Вольда",
-            "Country": "Хорватия",
-            "Year": "2022",
-            "Duration": "09:57"
-          },
-          {
-            "Name": "Dissolution",
-            "NameOrig": "Растворение",
-            "Author": "Суджин Ким",
-            "Country": "Соединенные Штаты",
-            "Year": "2023",
-            "Duration": "03:09"
-          },
-          {
-            "Name": "Bird in the Peninsula",
-            "NameOrig": "Птица на полуострове",
-            "Author": "Ацуси Вада",
-            "Country": "Франция, Япония",
-            "Year": "2022",
-            "Duration": "16:00"
-          },
-          {
-            "Name": "Think Something Nice",
-            "NameOrig": "Подумай о чём-нибудь хорошем",
-            "Author": "Клаудиус Жентинетта",
-            "Country": "Швейцария",
-            "Year": "2022",
-            "Duration": "06:00"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ ",
-        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "TitleEn": "MUSIC of the NIGHT ",
-        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
-        "MinAge": 18,
-        "Part": 1,
-        "Start": "02:55",
-        "End": "03:30",
-        "Movies": [
-          {
-            "Name": "A Once Lonely Man",
-            "NameOrig": "A Once Lonely Man",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "06:00"
-          },
-          {
-            "Name": "Sleeping Cell - Elevator to the Gallows",
-            "NameOrig": "Sleeping Cell - Elevator to the Gallows",
-            "Author": "Луис Антонио Гуэрра",
-            "Country": "Колумбия",
-            "Year": "2023",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "DJ Piper - RIP TXL",
-            "NameOrig": "DJ Piper - RIP TXL",
-            "Author": "Раман Джафари",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "03:30"
-          },
-          {
-            "Name": "Juan Wauters - Milanesa al pan",
-            "NameOrig": "Juan Wauters - Milanesa al pan",
-            "Author": "Данте Забалла",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:11"
-          },
-          {
-            "Name": "I Gotta Cry",
-            "NameOrig": "I Gotta Cry",
-            "Author": "Франческа Коломбара",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "02:51"
-          },
-          {
-            "Name": "No Lullaby",
-            "NameOrig": "No Lullaby",
-            "Author": "Эзекиэль Торрес",
-            "Country": "Аргентина",
-            "Year": "2022",
-            "Duration": "03:58"
-          },
-          {
-            "Name": "Olivia Lumen",
-            "NameOrig": "Olivia Lumen",
-            "Author": "Али Ашман",
-            "Country": "Великобритания",
-            "Year": "2021",
-            "Duration": "06:05"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Day": 2,
-    "Screen": "Речной Экран (ЦУЭ 2)",
-    "LocationId": 0,
-    "Blocks": [
-      {
-        "Title": "КИДАЛТ ",
-        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
-        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
-        "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
-        "Part": 2,
-        "Start": "22:00",
-        "End": "22:55",
-        "Movies": [
-          {
-            "Name": "Галочка",
-            "NameOrig": "Галочка",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:48"
-          },
-          {
-            "Name": "Go Away, Alfred!",
-            "NameOrig": "Прочь, Альфред!",
-            "Author": "Селия Тиссерант, Арно Демюинк",
-            "Country": "Франция",
-            "Year": "2023",
-            "Duration": "11:00"
-          },
-          {
-            "Name": "Кстати, о птичках",
-            "NameOrig": "Кстати, о птичках",
-            "Author": "Алла Вартанян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "10:25"
-          },
-          {
-            "Name": "Там, где цветёт жасмин",
-            "NameOrig": "Там, где цветёт жасмин",
-            "Author": "Полина Бовкун",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "03:14"
-          },
-          {
-            "Name": "The Witch's Lullaby",
-            "NameOrig": "Колыбельная Бабы Яги",
-            "Author": "Даша Вяткина",
-            "Country": "Нидерланды, Российская Федерация",
-            "Year": "2022",
-            "Duration": "04:02"
-          },
-          {
-            "Name": "Witchfairy",
-            "NameOrig": "Фея-ведьма",
-            "Author": "Седрик Игод, Давид ван де Вейер",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Crosswalk",
-            "NameOrig": "Переход",
-            "Author": "Дарья Волчок",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "01:55"
-          }
-        ]
-      },
-      {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 16+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "22:55",
-        "End": "23:20",
-        "Movies": [
-          {
-            "Name": "Волк думающий",
-            "NameOrig": "Волк думающий",
-            "Author": "Юлия Евдокимова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "08:00"
-          },
-          {
-            "Name": "Крот",
-            "NameOrig": "Крот",
-            "Author": "Алексей Сухов",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "13:42"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ДЕБЮТОРИЯ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "DEBUTORIYA ",
-        "MinAge": 18,
-        "Part": 2,
-        "Start": "23:20",
-        "End": "00:45",
-        "Movies": [
-          {
-            "Name": "Code Rose",
-            "NameOrig": "Код «Розовый»",
-            "Author": "Тайе Кимон, Пьер Кооз, Жюли Гру, Сандра Лейдье, Мануарий Морель, Ромен Сейсон",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:08"
-          },
-          {
-            "Name": "Funeral at Nine",
-            "NameOrig": "Похороны в девять",
-            "Author": "Мамаду Барри, Родриго Вера, Зию Ванг, Цзюньхао Сян, Ванг Ю, Линфэн Чжоу",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "05:57"
-          },
-          {
-            "Name": "In the dance",
-            "NameOrig": "В танце",
-            "Author": "Катя Михеева",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "04:28"
-          },
-          {
-            "Name": "From the Corner of my Eye",
-            "NameOrig": "Краешком глаза",
-            "Author": "Домонкош Эрхардт",
-            "Country": "Венгрия",
-            "Year": "2023",
-            "Duration": "06:06"
-          },
-          {
-            "Name": "Her electric light",
-            "NameOrig": "Ее электрический свет",
-            "Author": "Настя Лисовец",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "12:38"
-          },
-          {
-            "Name": "RIM",
-            "NameOrig": "РИМ",
-            "Author": "Хагар Файбиш",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "06:47"
-          },
-          {
-            "Name": "Above the Clouds",
-            "NameOrig": "Над облаками",
-            "Author": "Вивьен Харшеги",
-            "Country": "Венгрия",
-            "Year": "2022",
-            "Duration": "12:41"
-          },
-          {
-            "Name": "The Moon Rises During the Day",
-            "NameOrig": "Луна восходит днем",
-            "Author": "На Ли",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "03:13"
-          },
-          {
-            "Name": "Furrie",
-            "NameOrig": "Фурри",
-            "Author": "Люси Граннек",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "08:36"
-          },
-          {
-            "Name": "Pentola",
-            "NameOrig": "Пентола",
-            "Author": "Лео Черник",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "07:12"
-          },
-          {
-            "Name": "Park Voyage",
-            "NameOrig": "Прогулка по парку",
-            "Author": "Флоранс Юк Ки Ли",
-            "Country": "Гонконг",
-            "Year": "2022",
-            "Duration": "03:13"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ПРОФНАСТИЛ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "PROFNASTIL ",
-        "MinAge": 18,
-        "Part": 2,
-        "Start": "00:45",
-        "End": "02:55",
-        "Movies": [
-          {
-            "Name": "Giraffe",
-            "NameOrig": "Жираф",
-            "Author": "Наталья Мирзоян",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "02:35"
-          },
-          {
-            "Name": "Kharms",
-            "NameOrig": "Хармс",
-            "Author": "Светлана Андрианова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "13:15"
-          },
-          {
-            "Name": "Sandwich Cat",
-            "NameOrig": "Кот-бутерброд",
-            "Author": "Давид Фидальго",
-            "Country": "Испания",
-            "Year": "2022",
-            "Duration": "10:54"
-          },
-          {
-            "Name": "Sit Down, Don't Touch Anything",
-            "NameOrig": "Сиди и ничего не трогай!",
-            "Author": "Фредерик Зигель",
-            "Country": "Швейцария",
-            "Year": "2022",
-            "Duration": "05:20"
-          },
-          {
-            "Name": "My Crow Don't Know to Fish",
-            "NameOrig": "Моя ворона не умеет ловить рыбу",
-            "Author": "Дивакар Саккарапани Куппан",
-            "Country": "Индия",
-            "Year": "2021",
-            "Duration": "05:20"
-          },
-          {
-            "Name": "Terra Incognita",
-            "NameOrig": "Терра Инкогнита",
-            "Author": "Перниль Кьяе, Адриан Декстер",
-            "Country": "Дания, Франция",
-            "Year": "2021",
-            "Duration": "20:00"
-          },
-          {
-            "Name": "Granny's Sexual Life",
-            "NameOrig": "Сексуальная жизнь бабушки",
-            "Author": "Уршка Джукич, Эмили Пижар",
-            "Country": "Франция, Словения",
-            "Year": "2021",
-            "Duration": "13:40"
-          },
-          {
-            "Name": "Sasha",
-            "NameOrig": "Саша",
-            "Author": "Сергей Чивирига",
-            "Country": "Румыния",
-            "Year": "2022",
-            "Duration": "12:43"
-          },
-          {
-            "Name": "backflip",
-            "NameOrig": "Обратное сальто",
-            "Author": "Никита Дякур",
-            "Country": "Германия, Франция",
-            "Year": "2022",
-            "Duration": "12:30"
-          },
-          {
-            "Name": "Wormwood-25",
-            "NameOrig": "Полынь-25",
-            "Author": "Надя Гольдман",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "17:39"
-          },
-          {
-            "Name": "Family Portrait",
-            "NameOrig": "Семейный портрет",
-            "Author": "Леа Видакович",
-            "Country": "Хорватия, Франция, Сербия",
-            "Year": "2023",
-            "Duration": "14:30"
-          },
-          {
-            "Name": "Pink Noise",
-            "NameOrig": "Розовый шум",
-            "Author": "Мартин Виклунд, Артур Леметр",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "02:00"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ ",
-        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "TitleEn": "MUSIC of the NIGHT ",
-        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
-        "MinAge": 18,
-        "Part": 2,
-        "Start": "02:55",
-        "End": "03:30",
-        "Movies": [
-          {
-            "Name": "Aube",
-            "NameOrig": "Aube",
-            "Author": "Венсан Жибо",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "04:00"
-          },
-          {
-            "Name": "Cores | Bacará",
-            "NameOrig": "Cores | Bacará",
-            "Author": "Патрик Хансер",
-            "Country": "Бразилия",
-            "Year": "2023",
-            "Duration": "03:42"
-          },
-          {
-            "Name": "Do I Follow the Wall?",
-            "NameOrig": "Do I Follow the Wall?",
-            "Author": "Бен Уолден",
-            "Country": "Великобритания",
-            "Year": "2023",
-            "Duration": "03:48"
-          },
-          {
-            "Name": "Fuites Cathodiques",
-            "NameOrig": "Fuites Cathodiques",
-            "Author": "Чарли Марс",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "02:30"
-          },
-          {
-            "Name": "Jerks",
-            "NameOrig": "Jerks",
-            "Author": "Алессандро Гаспари",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "04:42"
-          },
-          {
-            "Name": "Mr Lady",
-            "NameOrig": "Mr Lady",
-            "Author": "Пьетро Ледди",
-            "Country": "Италия",
-            "Year": "2023",
-            "Duration": "02:49"
-          },
-          {
-            "Name": "Ciarán",
-            "NameOrig": "Ciarán",
-            "Author": "Симон Медар",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:40"
-          },
-          {
-            "Name": "Tulipomania: You Had to Be There",
-            "NameOrig": "Tulipomania: You Had to Be There",
-            "Author": "Шерил Геловер, Том Мюррей",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "03:45"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Day": 3,
-    "Screen": "Речной Экран (ЦУЭ 2)",
-    "LocationId": 0,
-    "Blocks": [
-      {
-        "Title": "КИДАЛТ ",
-        "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
-        "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
-        "SubTitleEn": "KIDULT ",
-        "MinAge": 12,
-        "Part": 3,
-        "Start": "22:00",
-        "End": "22:55",
-        "Movies": [
-          {
-            "Name": "Small Hours",
-            "NameOrig": "Малые часы",
-            "Author": "Марта Снежек, Кристиан Спарлинг",
-            "Country": "Ирландия",
-            "Year": "2022",
-            "Duration": "05:00"
-          },
-          {
-            "Name": "A Journey with my Dad",
-            "NameOrig": "Путешествие с моим папой",
-            "Author": "Мор Израэль",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "10:00"
-          },
-          {
-            "Name": "To Be Sisters",
-            "NameOrig": "Быть сестрами",
-            "Author": "Анн-Софи Гуссе, Клеман Сеар",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "07:20"
-          },
-          {
-            "Name": "◆★PILIPALA●▲",
-            "NameOrig": "Праздник весны",
-            "Author": "Иньян Лян",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "01:10"
-          },
-          {
-            "Name": "Ice Merchants",
-            "NameOrig": "Торговцы льдом",
-            "Author": "Жуан Гонсалес",
-            "Country": "Португалия, Франция, Великобритания",
-            "Year": "2022",
-            "Duration": "14:00"
-          },
-          {
-            "Name": "Prinzessin Aubergine",
-            "NameOrig": "Принцесса-баклажан",
-            "Author": "Дина Великовская",
-            "Country": "Германия",
-            "Year": "2022",
-            "Duration": "07:37"
-          },
-          {
-            "Name": "Somni",
-            "NameOrig": "Сомни",
-            "Author": "Соня Роледер",
-            "Country": "Германия",
-            "Year": "2023",
-            "Duration": "03:00"
-          }
-        ]
-      },
-      {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 3 (NATIONAL COMPETITION part 3) 16+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "22:55",
-        "End": "23:20",
-        "Movies": [
-          {
-            "Name": "Омичка",
-            "NameOrig": "Омичка",
-            "Author": "Лиза Скворцова",
-            "Country": "Российская Федерация",
-            "Year": "2023",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Светлые души",
-            "NameOrig": "Светлые души",
-            "Author": "Анастасия Жакулина",
-            "Country": "Российская Федерация",
-            "Year": "2022",
-            "Duration": "08:00"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ДЕБЮТОРИЯ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "DEBUTORIYA ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "23:20",
-        "End": "00:45",
-        "Movies": [
-          {
-            "Name": "Don't Die on Me",
-            "NameOrig": "При мне не умирай",
-            "Author": "Ори Голдберг",
-            "Country": "Израиль",
-            "Year": "2022",
-            "Duration": "03:00"
-          },
-          {
-            "Name": "Une belle nuit d’été",
-            "NameOrig": "Прекрасная ночь",
-            "Author": "Артур Дюпьи, Энцо Лебушер, Сэм Кастелли, Александр Савич, Яннис Брюн, Барбара Дерай",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "07:18"
-          },
-          {
-            "Name": "Human Resources",
-            "NameOrig": "Человеческие ресурсы",
-            "Author": "Тринидад Пласс Коссад, Титуан Тилье, Исаак Венцек",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "03:30"
-          },
-          {
-            "Name": "Boywhood",
-            "NameOrig": "Мальчишество",
-            "Author": "Энрико Мотти, Эмануэле Мотти",
-            "Country": "Италия",
-            "Year": "2022",
-            "Duration": "05:50"
-          },
-          {
-            "Name": "Aeons Ark",
-            "NameOrig": "Эонов Ковчег",
-            "Author": "Софи Мария Викерс",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "06:29"
-          },
-          {
-            "Name": "Prisoner Outside",
-            "NameOrig": "Заключенный извне",
-            "Author": "Игорь Медведев",
-            "Country": "Германия",
-            "Year": "2021",
-            "Duration": "06:41"
-          },
-          {
-            "Name": "It's Nice in Here",
-            "NameOrig": "Здесь хорошо",
-            "Author": "Роберт-Джонатан Койерс",
-            "Country": "Нидерланды",
-            "Year": "2022",
-            "Duration": "15:00"
-          },
-          {
-            "Name": "Mold",
-            "NameOrig": "Плесень",
-            "Author": "Чен-Сю Ши",
-            "Country": "Япония",
-            "Year": "2023",
-            "Duration": "02:41"
-          },
-          {
-            "Name": "The House of Loss",
-            "NameOrig": "Дом потерь",
-            "Author": "Джинкю Джон",
-            "Country": "Япония, Республика Корея",
-            "Year": "2022",
-            "Duration": "09:34"
-          },
-          {
-            "Name": "fur",
-            "NameOrig": "Мех",
-            "Author": "Жэнь Ли",
-            "Country": "США",
-            "Year": "2022",
-            "Duration": "06:36"
-          },
-          {
-            "Name": "Zuman",
-            "NameOrig": "Звезда зоопарка",
-            "Author": "Хонор Прайс",
-            "Country": "Великобритания",
-            "Year": "2022",
-            "Duration": "10:00"
-          }
-        ]
-      },
-      {
-        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "SubTitle": "ПРОФНАСТИЛ ",
-        "TitleEn": "INTERNATIONAL COMPETITION ",
-        "SubTitleEn": "PROFNASTIL ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "00:45",
-        "End": "02:55",
-        "Movies": [
-          {
-            "Name": "Aaaah!",
-            "NameOrig": "Ааааа!",
-            "Author": "Осман Цефрон",
-            "Country": "Франция",
-            "Year": "2022",
-            "Duration": "12:00"
-          },
-          {
-            "Name": "The Garbage Man",
-            "NameOrig": "Мусорщик",
-            "Author": "Лаура Гонсалвеш",
-            "Country": "Португалия",
-            "Year": "2022",
-            "Duration": "11:50"
-          },
-          {
-            "Name": "11",
-            "NameOrig": "Одиннадцать",
-            "Author": "Вук Евремович",
-            "Country": "Хорватия, Германия",
-            "Year": "2022",
-            "Duration": "05:28"
-          },
-          {
-            "Name": "Salvation Has No Name",
-            "NameOrig": "У спасения нет имени",
-            "Author": "Джозеф Уоллес",
-            "Country": "Великобритания, Франция, Чехия",
-            "Year": "2022",
-            "Duration": "16:50"
-          },
-          {
-            "Name": "The Miracle",
-            "NameOrig": "Чудо",
-            "Author": "Ниенке Дойтц",
-            "Country": "Бельгия, Нидерланды, Франция",
-            "Year": "2022",
-            "Duration": "14:58"
-          },
-          {
-            "Name": "Whatever Moves is Alive",
-            "NameOrig": "Что движется, то живет",
-            "Author": "Ноэми Марсийи",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "11:05"
-          },
-          {
-            "Name": "Carne de Dios",
-            "NameOrig": "Плоть Господня",
-            "Author": "Патрисио Плаза",
-            "Country": "Мексика, Аргентина",
-            "Year": "2022",
-            "Duration": "21:00"
-          },
-          {
-            "Name": "Intersextion",
-            "NameOrig": "Интерсекция",
-            "Author": "Ричард Роджер Ривз",
-            "Country": "Канада",
-            "Year": "2022",
-            "Duration": "04:00"
-          },
-          {
-            "Name": "Shadow of the Butterflies",
-            "NameOrig": "Тень бабочек",
-            "Author": "София Эль Кьяри",
-            "Country": "Франция, Португалия, Катар",
-            "Year": "2022",
-            "Duration": "09:00"
-          },
-          {
-            "Name": "White",
-            "NameOrig": "Белизна",
-            "Author": "Ким-Тхэк Чун",
-            "Country": "Соединенные Штаты",
-            "Year": "2022",
-            "Duration": "02:27"
-          },
-          {
-            "Name": "The Sunset Special",
-            "NameOrig": "Особый закат",
-            "Author": "Николас Геббе",
-            "Country": "Германия",
-            "Year": "2021",
-            "Duration": "17:30"
-          },
-          {
-            "Name": "Brixton Bustle",
-            "NameOrig": "Брикстонская суета",
-            "Author": "Шон Кларк",
-            "Country": "Великобритания",
-            "Year": "2023",
-            "Duration": "04:50"
-          }
-        ]
-      },
-      {
-        "Title": "МУЗЫКА НОЧИ ",
-        "SubTitle": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
-        "TitleEn": "MUSIC of the NIGHT ",
-        "SubTitleEn": "MUSIC VIDEO INTERNATIONAL COMPETITION ",
-        "MinAge": 18,
-        "Part": 3,
-        "Start": "02:55",
-        "End": "03:30",
-        "Movies": [
-          {
-            "Name": "Be Gone",
-            "NameOrig": "Be Gone",
-            "Author": "Сицзя Люо",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "03:56"
-          },
-          {
-            "Name": "Day In My Dream",
-            "NameOrig": "Day In My Dream",
-            "Author": "Пей-Син Хо",
-            "Country": "Тайвань, Великобритания",
-            "Year": "2022",
-            "Duration": "03:35"
-          },
-          {
-            "Name": "Emily",
-            "NameOrig": "Emily",
-            "Author": "Иян Сунь",
-            "Country": "Китай",
-            "Year": "2022",
-            "Duration": "05:24"
-          },
-          {
-            "Name": "Get Back",
-            "NameOrig": "Get Back",
-            "Author": "Тео Тонатиу Ленобль",
-            "Country": "Мексика",
-            "Year": "2022",
-            "Duration": "03:33"
-          },
-          {
-            "Name": "Wooden Nickels",
-            "NameOrig": "Wooden Nickels",
-            "Author": "Джон Дж. А. Янноне",
-            "Country": "США",
-            "Year": "2023",
-            "Duration": "03:36"
-          },
-          {
-            "Name": "Medusa",
-            "NameOrig": "Medusa",
-            "Author": "Маэва Жак",
-            "Country": "Бельгия",
-            "Year": "2022",
-            "Duration": "03:34"
-          },
-          {
-            "Name": "The Wave",
-            "NameOrig": "The Wave",
-            "Author": "Джованни Антонио Агилар Гутьеррес, Элеанор Розетта Мари Эванс",
-            "Country": "Австралия",
-            "Year": "2022",
-            "Duration": "03:00"
-          },
-          {
-            "Name": "End of the Night",
-            "NameOrig": "End of the Night",
-            "Author": "Морган Шоу",
-            "Country": "Австралия, Канада, Великобритания",
-            "Year": "2023",
-            "Duration": "02:27"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Day": 0,
-    "Screen": "Детский экран",
-    "LocationId": 0,
-    "Blocks": [
-      {
-        "Title": "НОЧЬ ФИЛЬМОВ ИНЕССЫ КОВАЛЕВСКОЙ (к юбилею режиссёра)",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": null,
-        "End": null,
-        "Movies": []
-      },
-      {
-        "Title": "ХИТЫ ИНЕССЫ КОВАЛЕВСКОЙ 0+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "21:50",
-        "End": "23:00",
-        "Movies": [
-          {
-            "Name": "Бременские музыканты",
-            "NameOrig": "Бременские музыканты",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1969",
-            "Duration": "22 мин."
-          },
-          {
-            "Name": "Катерок",
-            "NameOrig": "Катерок",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1970",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Как львёнок и черепаха пели песню",
-            "NameOrig": "Как львёнок и черепаха пели песню",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1974",
-            "Duration": "9 мин."
-          },
-          {
-            "Name": "В порту",
-            "NameOrig": "В порту",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1975",
-            "Duration": "17 мин."
-          },
-          {
-            "Name": "Чучело-мяучело",
-            "NameOrig": "Чучело-мяучело",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1982",
-            "Duration": "10 мин."
-          }
-        ]
-      },
-      {
-        "Title": "ИНЕССА КОВАЛЕВСКАЯ И МУЗЫКА 0+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "23:00",
-        "End": "00:05",
-        "Movies": [
-          {
-            "Name": "Русские напевы",
-            "NameOrig": "Русские напевы",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1972",
-            "Duration": "11 мин."
-          },
-          {
-            "Name": "Детский альбом",
-            "NameOrig": "Детский альбом",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1976",
-            "Duration": "18 мин."
-          },
-          {
-            "Name": "Камаринская",
-            "NameOrig": "Камаринская",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1980",
-            "Duration": "8 мин."
-          },
-          {
-            "Name": "Картинки с выставки",
-            "NameOrig": "Картинки с выставки",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1984",
-            "Duration": "7 мин."
-          },
-          {
-            "Name": "Танцы кукол",
-            "NameOrig": "Танцы кукол",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1985",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Кострома",
-            "NameOrig": "Кострома",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1989",
-            "Duration": "9 мин."
+            "Name": "Окно, реж. Борис Степанцев, 1966, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       }
@@ -3447,77 +2038,103 @@
     "LocationId": 0,
     "Blocks": [
       {
-        "Title": "НОЧЬ ФИЛЬМОВ РОМАНА ДАВЫДОВА (110 лет со дня рождения режиссёра)",
+        "Title": "КОНКУРС ДЕТСКОЙ АНИМАЦИИ. Часть 2\n(фильмы, созданные детьми и детскими студиями анимации)",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": null,
-        "End": null,
-        "Movies": []
-      },
-      {
-        "Title": "МАУГЛИ 0+",
-        "SubTitle": null,
-        "TitleEn": null,
-        "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
-        "Start": "21:50",
-        "End": "23:30",
+        "Start": "21:40",
+        "End": "21:40",
         "Movies": [
           {
-            "Name": "Маугли",
-            "NameOrig": "Маугли",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1973",
-            "Duration": "100 мин."
+            "Name": "вторая программа фильмов-участников конкурса детской анимации фестиваля «Бессонница»",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       },
       {
-        "Title": "БОГАТЫРИ РОМАНА ДАВЫДОВА 0+",
+        "Title": "НОЧЬ ФИЛЬМОВ БОРИСА ДËЖКИНА. Часть 1\n(110 лет со дня рождения режиссёра)",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "23:30",
-        "End": "00:50",
+        "Start": "23:00",
+        "End": "23:00",
         "Movies": [
           {
-            "Name": "Гунан-Батор",
-            "NameOrig": "Гунан-Батор",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1965",
-            "Duration": "19 мин."
+            "Name": "Тихая поляна, реж. Борис Дёжкин, Геннадий Филиппов, 1946, 11 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Детство Ратибора",
-            "NameOrig": "Детство Ратибора",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1973",
-            "Duration": "19 мин."
+            "Name": "Кто первый?, реж. Борис Дёжкин, Геннадий Филиппов, 1950, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Василиса Микулишна",
-            "NameOrig": "Василиса Микулишна",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1975",
-            "Duration": "19 мин."
+            "Name": "Сердце храбреца, реж. Борис Дёжкин, Геннадий Филиппов, 1951, 19 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Последняя невеста Змея Горыныча",
-            "NameOrig": "Последняя невеста Змея Горыныча",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1978",
-            "Duration": "19 мин."
+            "Name": "Козёл-музыкант, реж. Борис Дёжкин, 1954, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Необыкновенный матч, реж. Борис Дёжкин, Мстислав Пащенко, 1955, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Старые знакомые, реж. Борис Дёжкин, Мстислав Пащенко, 1956, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Привет друзьям!, реж. Борис Дёжкин, Мстислав Пащенко, Дмитрий Бабиченко, 1957, 11 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Ровно в 3:15, реж. Борис Дёжкин, Евгений Мигунов, 1959, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Муха-Цокотуха, реж. Борис Дёжкин, 1960, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          },
+          {
+            "Name": "Чиполлино, реж. Борис Дёжкин, 1961, 40 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       }
@@ -3529,150 +2146,21 @@
     "LocationId": 0,
     "Blocks": [
       {
-        "Title": "МАРАФОН «НУ, ПОГОДИ!» (100 лет со дня рождения художника-постановщика Светозара Русакова) 0+",
+        "Title": "КОНКУРС ДЕТСКОЙ АНИМАЦИИ. Часть 3\n(фильмы, созданные детьми и детскими студиями анимации)",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "21:50",
-        "End": "00:30",
+        "Start": "21:40",
+        "End": "21:40",
         "Movies": [
           {
-            "Name": "Цикл «Ну, погоди!» (реж. Вячеслав Котёночкин, худ.-пост. Светозар Русаков) ",
-            "NameOrig": "Цикл «Ну, погоди!» (реж. Вячеслав Котёночкин, худ.-пост. Светозар Русаков) ",
-            "Author": "",
-            "Country": "",
-            "Year": "",
-            "Duration": ""
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 1",
-            "NameOrig": "Ну,  погоди! Выпуск 1",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1969",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 2",
-            "NameOrig": "Ну,  погоди! Выпуск 2",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1970",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 3",
-            "NameOrig": "Ну,  погоди! Выпуск 3",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1971",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 4",
-            "NameOrig": "Ну,  погоди! Выпуск 4",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1971",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 5",
-            "NameOrig": "Ну,  погоди! Выпуск 5",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1972",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 6",
-            "NameOrig": "Ну,  погоди! Выпуск 6",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1973",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 7",
-            "NameOrig": "Ну,  погоди! Выпуск 7",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1973",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 8",
-            "NameOrig": "Ну,  погоди! Выпуск 8",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1974",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 9",
-            "NameOrig": "Ну,  погоди! Выпуск 9",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1976",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 10",
-            "NameOrig": "Ну,  погоди! Выпуск 10",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1976",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 11",
-            "NameOrig": "Ну,  погоди! Выпуск 11",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1977",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 12",
-            "NameOrig": "Ну,  погоди! Выпуск 12",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1978",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 13",
-            "NameOrig": "Ну,  погоди! Выпуск 13",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1980",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 14",
-            "NameOrig": "Ну,  погоди! Выпуск 14",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1984",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 15",
-            "NameOrig": "Ну,  погоди! Выпуск 15",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1985",
-            "Duration": "10 мин."
-          },
-          {
-            "Name": "Ну, погоди! Выпуск 16",
-            "NameOrig": "Ну,  погоди! Выпуск 16",
-            "Author": "",
-            "Country": "Россия",
-            "Year": "1986",
-            "Duration": "10 мин."
+            "Name": "третья программа фильмов-участников конкурса детской анимации фестиваля «Бессонница»",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       }
@@ -3684,206 +2172,103 @@
     "LocationId": 0,
     "Blocks": [
       {
-        "Title": "ТЁПЛАЯ АНИМАЦИЯ СОЮЗМУЛЬТФИЛЬМА 6+",
+        "Title": "КОНКУРС ДЕТСКОЙ АНИМАЦИИ. Лучшее\n(фильмы, созданные детьми и детскими студиями анимации)",
+        "SubTitle": null,
+        "TitleEn": null,
+        "SubTitleEn": null,
+        "MinAge": 0,
+        "Part": 0,
+        "Start": "21:40",
+        "End": "21:40",
+        "Movies": [
+          {
+            "Name": "программа лучших фильмов-участников конкурса детской анимации фестиваля «Бессонница»",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          }
+        ]
+      },
+      {
+        "Title": "НОЧЬ ФИЛЬМОВ БОРИСА ДËЖКИНА. Часть 2\n(110 лет со дня рождения режиссёра)",
         "SubTitle": null,
         "TitleEn": null,
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
         "Start": "21:50",
-        "End": "00:10",
+        "End": "21:50",
         "Movies": [
           {
-            "Name": "Апельсин",
-            "NameOrig": "Апельсин",
-            "Author": "Мария Якушина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 03:12"
+            "Name": "Снежные дорожки, реж. Борис Дёжкин, 1963, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Принцесса и бандит",
-            "NameOrig": "Принцесса и бандит",
-            "Author": "Мария Соснина, Михаил Алдашин",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 03:29"
+            "Name": "Шайбу! Шайбу!, реж. Борис Дёжкин, 1964, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Одеялко",
-            "NameOrig": "Одеялко",
-            "Author": "Марина Мошкова",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 05:34"
+            "Name": "Где я его видел?, реж. Борис Дёжкин, 1965, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Игра",
-            "NameOrig": "Игра",
-            "Author": "Елена Куркова",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 03:22"
+            "Name": "Матч-реванш, реж. Борис Дёжкин, 1968, 21 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Большой и маленький",
-            "NameOrig": "Большой и маленький",
-            "Author": "Наталья Грофпель",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 05:59"
+            "Name": "Метеор на ринге, реж. Борис Дёжкин, 1970, 20 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Под облаками",
-            "NameOrig": "Под облаками",
-            "Author": "Василиса Тикунова",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 03:44"
+            "Name": "В гостях у лета, реж. Борис Дёжкин, 1972, 20 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Снеговичок",
-            "NameOrig": "Снеговичок",
-            "Author": "Алексей Почивалов",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 03:45"
+            "Name": "Футбольные звёзды, реж. Борис Дёжкин, 1974, 19 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Кораблик, который хотел летать",
-            "NameOrig": "Кораблик, который хотел летать",
-            "Author": "Екатерина Филиппова",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 06:51"
+            "Name": "Талант и поклонники, реж. Борис Дёжкин, 1978, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Тучкины штучки",
-            "NameOrig": "Тучкины штучки",
-            "Author": "Елизавета Скворцова",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 02:19"
+            "Name": "Первый автограф, реж. Борис Дёжкин, 1980, 10 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           },
           {
-            "Name": "Крылья для друга",
-            "NameOrig": "Крылья для друга",
-            "Author": "Михаил Алдашин, Константин Арефьев",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 03:12"
-          },
-          {
-            "Name": "Тёплая звезда",
-            "NameOrig": "Тёплая звезда",
-            "Author": "Анна Кузина",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 04:29"
-          },
-          {
-            "Name": "Белый-белый день",
-            "NameOrig": "Белый-белый день",
-            "Author": "Василий Чирков",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 06:00"
-          },
-          {
-            "Name": "Привет, бабульник",
-            "NameOrig": "Привет, бабульник",
-            "Author": "Наталья Мирзоян",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 08:08"
-          },
-          {
-            "Name": "Репетиция оркестра",
-            "NameOrig": "Репетиция оркестра",
-            "Author": "Татьяна Окружнова",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 06:30"
-          },
-          {
-            "Name": "Баю-бай",
-            "NameOrig": "Баю-бай",
-            "Author": "Виктория Спирягина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 01:46"
-          },
-          {
-            "Name": "7 козлят",
-            "NameOrig": "7 козлят",
-            "Author": "Марина Карпова",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 05:19"
-          },
-          {
-            "Name": "Баба Яга и малышка",
-            "NameOrig": "Баба Яга и малышка",
-            "Author": "Евгения Голубева",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 04:45"
-          },
-          {
-            "Name": "Мой друг тигр",
-            "NameOrig": "Мой друг тигр",
-            "Author": "Татьяна Киселёва",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 07:06"
-          },
-          {
-            "Name": "Петер-баас",
-            "NameOrig": "Петер-баас",
-            "Author": "Анастасия Жакулина",
-            "Country": "Россия",
-            "Year": " 2018",
-            "Duration": " 07:07"
-          },
-          {
-            "Name": "Яблоневый человек",
-            "NameOrig": "Яблоневый человек",
-            "Author": "Алла Вартанян",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 10:46"
-          },
-          {
-            "Name": "День рождения Пишто",
-            "NameOrig": "День рождения Пишто",
-            "Author": "Софья Кендель",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 11:01"
-          },
-          {
-            "Name": "Снег идёт",
-            "NameOrig": "Снег идёт",
-            "Author": "Нина Бисярина",
-            "Country": "Россия",
-            "Year": " 2022",
-            "Duration": " 02:19"
-          },
-          {
-            "Name": "Медведь",
-            "NameOrig": "Медведь",
-            "Author": "Святослав Ушаков",
-            "Country": "Россия",
-            "Year": " 2020",
-            "Duration": " 14:35"
-          },
-          {
-            "Name": "Колыбельная",
-            "NameOrig": "Колыбельная",
-            "Author": "Марина Карпова",
-            "Country": "Россия",
-            "Year": " 2021",
-            "Duration": " 02:24"
+            "Name": "Приходи на каток, реж. Борис Дёжкин, 1981, 9 мин.",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
           }
         ]
       }
