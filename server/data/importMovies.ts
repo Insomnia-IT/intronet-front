@@ -5,9 +5,15 @@ import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };
 import { ArrayElement } from "mongodb";
-// import moviesAPI from "./movies_api.json" assert { "type": "json" };
+import schedule from "./schedule.json" assert { "type": "json" };
 
 export async function importMovies(force = false) {
+  const vurchelMap = new Map(
+    schedule
+      .flatMap((x) => x.screenPrograms)
+      .flatMap((x) => x.programFilms)
+      .map((x) => [x.title, x.vurchelID])
+  );
   const locationDB = Database.Get<any>("locations");
   const locations = (await locationDB.getSince()).filter((x) => !x.deleted);
   if (locations.length == 0) return;
@@ -76,6 +82,7 @@ export async function importMovies(force = false) {
         country: xls.Country,
         year: xls.Year,
         duration: xls.Duration,
+        vurchelId: vurchelMap.get(xls.Name),
       })),
     }));
   console.log(blocksXls[0]);

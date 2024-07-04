@@ -34,6 +34,7 @@ class MoviesStore {
           name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
           duration:
             m.duration || (info.filmDuration ? info.filmDuration + ":00" : ""),
+          description: m.description ?? info.filmEnPlot,
           country: m.country || info.countries.join(", ") || "",
           author:
             m.author ||
@@ -48,7 +49,10 @@ class MoviesStore {
 
   @cell
   public get Movies(): MovieInfo[] {
-    return distinct(this.MovieBlocks.flatMap((x) => x.movies), (x) => x.id);
+    return distinct(
+      this.MovieBlocks.flatMap((x) => x.movies),
+      (x) => x.id
+    );
   }
 
   public get VotingBlock(): MovieBlock {
