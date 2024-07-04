@@ -26,7 +26,7 @@ export async function importVurchel(force = false) {
       if (!movie.vurchelId) {
         continue;
       }
-      if (json.some((x) => x.entryID == movie.vurchelId)) continue;
+      if (json.some((x) => x._id == movie.vurchelId)) continue;
       const info: VurchelFilm = (await fetch(
         `https://vurchel.com/export/filminfo/${movie.vurchelId}`
       )
