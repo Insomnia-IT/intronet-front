@@ -44,6 +44,7 @@ type InsomniaLocation = {
   _id: string;
   // Неуникальный, но постоянный
   notionId: string;
+  mapName: string;
   name: string;
   description: string;
   directionId: string;
@@ -51,6 +52,7 @@ type InsomniaLocation = {
   tags: string[];
   work_tags: string[];
   menu?: string;
+  priority: boolean;
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
@@ -80,6 +82,7 @@ type Figure = Point | Array<Point> | Array<Array<Point>>;
 
 type MapItem = {
   figure: Figure;
+  priority: boolean;
   directionId: string;
   radius;
   id;

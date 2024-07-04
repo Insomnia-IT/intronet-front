@@ -7,7 +7,7 @@ import { changesStore } from "./changes.store";
 import { moviesStore } from "./movies.store";
 import { ObservableDB } from "./observableDB";
 import { bookmarksStore } from "./bookmarks.store";
-import { Fn, orderBy } from "@cmmn/core";
+import { distinct, Fn, orderBy } from "@cmmn/core";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
@@ -19,6 +19,17 @@ class LocationsStore {
 
   @cell
   public get selected(): InsomniaLocation[] {
+    return distinct(
+      this.selectedInternal.map((x) => {
+        if (!Array.isArray(x.figure)) return x;
+        const same = this.Locations.find(
+          (y) => y.mapName == x.mapName && !Array.isArray(y.figure)
+        );
+        return same ?? x;
+      })
+    );
+  }
+  private get selectedInternal(): InsomniaLocation[] {
     const router = routerCell.get();
     if (router.route[1])
       return [this.Locations.find((x) => x._id === router.route[1])].filter(
@@ -157,6 +168,7 @@ class LocationsStore {
           title: x.name,
           id: x._id,
           radius: 10,
+          priority: x.priority,
           maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
           minZoom: x.minZoom,
         } as MapItem)
@@ -255,7 +267,7 @@ export enum Directions {
   branches = "Ветви Дерева",
   sport = "Спортплощадка",
   shower = "Души",
-  music = "Музыкальная Сцена",
+  music = "Музыка",
   theater = "Театральная Сцена",
   guest = "Гостевые Кемпинги",
   screen = "Экран",

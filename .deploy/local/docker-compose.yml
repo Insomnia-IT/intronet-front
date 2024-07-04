@@ -33,6 +33,7 @@ services:
       - ../../server/node_modules:/app/node_modules:ro
       - ./secrets:/secrets
     command: "node /app/dist/index.js"
+    working_dir: /app
     env_file:
       - ../../server/.env.local
     environment:

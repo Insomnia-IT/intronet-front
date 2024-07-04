@@ -12,20 +12,26 @@ import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { Cell } from "@cmmn/cell";
-import {orderBy} from "@cmmn/core";
+import { orderBy } from "@cmmn/core";
 
 export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
   const items = useCell(() => locationsStore.MapItems);
-  const selectedItems = useCell(() => locationsStore.selected.map(x => x._id));
+  const selectedItems = useCell(() =>
+    locationsStore.selected.map((x) => x._id)
+  );
   const children = useMemo(
-    () => orderBy(items, (x) =>
-      selectedItems.includes(x.id) ? 100 : (
-          Array.isArray(x.figure) ? -100 : -(directionsToOrder.get(x.directionId) ?? -10)
-      )
-        )
-        .map((x) => (
-          <MapElement item={x} key={x.id} transformCell={props.transformCell} />
-        )),
+    () =>
+      orderBy(items, (x) =>
+        selectedItems.includes(x.id)
+          ? 100
+          : Array.isArray(x.figure)
+          ? -100
+          : x.priority
+          ? 50
+          : -(directionsToOrder.get(x.directionId) ?? -10)
+      ).map((x) => (
+        <MapElement item={x} key={x.id} transformCell={props.transformCell} />
+      )),
     [items, props.transformCell]
   );
   return <>{children}</>;
@@ -73,12 +79,16 @@ export function MapElement(props: {
       case OrderType.Main:
         return "circle";
       case OrderType.Cafe:
-        return scale > scaleThresholdCafe || isSelected ? "circle" : "circleSmall";
+        return scale > scaleThresholdCafe || isSelected
+          ? "circle"
+          : "circleSmall";
       case OrderType.Other:
-        return scale > scaleThresholdOther || isSelected ? "circle" : "circleSmall";
+        return scale > scaleThresholdOther || isSelected
+          ? "circle"
+          : "circleSmall";
       case OrderType.WC:
       default:
-        return isSelected ? "circle" : "circleSmall"
+        return isSelected ? "circle" : "circleSmall";
     }
   })();
   const size = "20em";
@@ -130,10 +140,12 @@ export function MapElement(props: {
     if (Array.isArray(props.item.figure[0])) {
       const center = geoConverter.getCenter(props.item.figure);
       return (
-        <g onClick={(e) => {
-          e.preventDefault();
-          locationsStore.setSelectedId(props.item.id);
-        }}>
+        <g
+          onClick={(e) => {
+            e.preventDefault();
+            locationsStore.setSelectedId(props.item.id);
+          }}
+        >
           <path
             id={props.item.id}
             class={isSelected ? styles.zoneSelected : styles.zone}
@@ -210,7 +222,7 @@ export function MapElement(props: {
                 overflow="visible"
               />
             </g>
-            <text className={styles.elementText } y="2.5em" filter="url(#solid)">
+            <text className={styles.elementText} y="2.5em" filter="url(#solid)">
               {props.item.directionId && props.item.title}
             </text>
           </>
@@ -251,7 +263,7 @@ const directionsToOrder = new Map([
   ["Ветви Дерева", OrderType.Other],
   ["Спортплощадка", OrderType.Other],
   ["Души", OrderType.WC],
-  ["Музыкальная Сцена", OrderType.Other],
+  ["Музыка", OrderType.Other],
   ["Театральная Сцена", OrderType.Other],
   ["Гостевые Кемпинги", OrderType.MainZone],
   ["Экран", OrderType.Screens],
@@ -283,7 +295,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Ветви Дерева", ".map #art"],
   ["Спортплощадка", ".map #art"],
   ["Души", ".map #shower"],
-  ["Музыкальная Сцена", ".map #eye"],
+  ["Музыка", ".map #eye"],
   ["Театральная Сцена", ".map #eye"],
   ["Гостевые Кемпинги", ".map #tent"],
   ["Экран", ".map #eye"],
@@ -339,7 +351,7 @@ export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
   ["Ветви Дерева", "art"],
   ["Спортплощадка", "art"],
   ["Души", "wc"],
-  ["Музыкальная Сцена", "activity"],
+  ["Музыка", "activity"],
   ["Театральная Сцена", "activity"],
   ["Гостевые Кемпинги", "tent"],
   ["Экран", "screen"],
