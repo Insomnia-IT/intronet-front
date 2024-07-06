@@ -73,12 +73,12 @@
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 18+",
+        "Title": "РОССИЙСКИЙ НАЦИОНАЛЬНЫЙ КОНКУРС",
         "SubTitle": null,
-        "TitleEn": null,
+        "TitleEn": "NATIONAL COMPETITION",
         "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
+        "MinAge": 18,
+        "Part": 1,
         "Start": "23:00",
         "End": "23:00",
         "Movies": [
@@ -441,12 +441,12 @@
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 18+",
+        "Title": "РОССИЙСКИЙ НАЦИОНАЛЬНЫЙ КОНКУРС",
         "SubTitle": null,
-        "TitleEn": null,
+        "TitleEn": "NATIONAL COMPETITION",
         "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
+        "MinAge": 18,
+        "Part": 2,
         "Start": "23:00",
         "End": "23:00",
         "Movies": [
@@ -760,11 +760,11 @@
     "LocationId": 0,
     "Blocks": [
       {
-        "Title": "РОССИЙСКИЙ АНИМАЦИОННЫЙ АВАНГАРД (специальная программа) 18+",
-        "SubTitle": null,
+        "Title": "РОССИЙСКИЙ АНИМАЦИОННЫЙ АВАНГАРД",
+        "SubTitle": "специальная программа",
         "TitleEn": null,
         "SubTitleEn": null,
-        "MinAge": 0,
+        "MinAge": 18,
         "Part": 0,
         "Start": "22:00",
         "End": "22:00",
@@ -1112,12 +1112,12 @@
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 1 (NATIONAL COMPETITION part 1) 18+",
+        "Title": "РОССИЙСКИЙ НАЦИОНАЛЬНЫЙ КОНКУРС",
         "SubTitle": null,
-        "TitleEn": null,
+        "TitleEn": "NATIONAL COMPETITION",
         "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
+        "MinAge": 18,
+        "Part": 1,
         "Start": "23:00",
         "End": "23:00",
         "Movies": [
@@ -1480,12 +1480,12 @@
         ]
       },
       {
-        "Title": "ФИЛЬМЫ РОССИЙСКОГО НАЦИОНАЛЬНОГО КОНКУРСА часть 2 (NATIONAL COMPETITION part 2) 18+",
+        "Title": "РОССИЙСКИЙ НАЦИОНАЛЬНЫЙ КОНКУРС",
         "SubTitle": null,
-        "TitleEn": null,
+        "TitleEn": "NATIONAL COMPETITION",
         "SubTitleEn": null,
-        "MinAge": 0,
-        "Part": 0,
+        "MinAge": 18,
+        "Part": 2,
         "Start": "23:00",
         "End": "23:00",
         "Movies": [

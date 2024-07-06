@@ -1,4 +1,4 @@
-import {RequireAuth} from "../../../components/RequireAuth";
+import { RequireAuth } from "../../../components/RequireAuth";
 import { FunctionalComponent } from "preact";
 import { Card } from "../../../components/cards";
 import Styles from "./animation.module.css";
@@ -9,7 +9,7 @@ import { useCell } from "../../../helpers/cell-state";
 import { Button } from "../../../components";
 import { useHistoryState } from "../../routing";
 import { MovieList } from "./movie-list";
-import styles from './animation.module.css';
+import styles from "./animation.module.css";
 
 export type AnimationBlockProps = {
   id: string;
@@ -32,7 +32,13 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
     <div>
       <div class={styles.editButton}>
         <RequireAuth>
-          <Button class="w-full" goTo={["timetable", "edit", props.id]} type="frame">изменить время</Button>
+          <Button
+            class="w-full"
+            goTo={["timetable", "edit", props.id]}
+            type="frame"
+          >
+            изменить время
+          </Button>
         </RequireAuth>
       </div>
       <div className={[Styles.time, "sh1"].join(" ")}>
@@ -40,16 +46,27 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       </div>
       <Card
         background="Soft"
-        style={{ marginBottom: 30, paddingBottom: 8, paddingTop: 24, alignItems: 'stretch' }}
+        style={{
+          marginBottom: 30,
+          paddingBottom: 8,
+          paddingTop: 24,
+          alignItems: "stretch",
+        }}
       >
-        <div flex column gap onClick={isOpen ? undefined : () => setIsOpen(true)}>
+        <div
+          flex
+          column
+          gap
+          onClick={isOpen ? undefined : () => setIsOpen(true)}
+        >
           <div class={[Styles.header, "sh1"].join(" ")}>
-            {block.info.Title}
+            {block.info.Title}{" "}
+            {block.info.Part ? ` — Часть ${block.info.Part}` : ""}
             {block.info.MinAge > 0 ? (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class="textSmall colorGray">{block.info.SubTitle ?? ''}</div>
+          <div class="textSmall colorGray">{block.info.SubTitle ?? ""}</div>
           <div class={[Styles.duplicate, "colorVivid"].join(" ")}>
             {duplicate}
           </div>

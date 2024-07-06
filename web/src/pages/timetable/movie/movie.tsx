@@ -1,17 +1,17 @@
 import { FunctionalComponent } from "preact";
-import { locationsStore, MovieStore } from "../../../stores";
+import { locationsStore, MovieStore } from "@stores";
 import { useMemo } from "preact/hooks";
-import { useCell } from "../../../helpers/cell-state";
-import { getDayText } from "../../../helpers/getDayText";
+import { useCell } from "@helpers/cell-state";
+import { getDayText } from "@helpers/getDayText";
 import { useTimetableRouter } from "../timetable-page";
-import { Card } from "../../../components/cards";
-import { Button, ButtonsBar } from "../../../components";
-import { SvgIcon } from "../../../icons";
-import { bookmarksStore } from "../../../stores/bookmarks.store";
-import { Link } from "../../../components/link/link";
-import { votingStore } from "../../../stores/votingStore";
+import { Card } from "@components";
+import { Button, ButtonsBar } from "@components";
+import { SvgIcon } from "@icons";
+import { bookmarksStore } from "@stores/bookmarks.store";
+import { Link } from "@components";
+import { votingStore } from "@stores/votingStore";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
-import {PageHeader} from "@components/PageHeader/PageHeader";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 export type MovieProps = {
   id: string;
@@ -24,12 +24,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
   const { isOnline } = useCell(votingStore.state);
-
   if (!screenLocations.length) return <></>;
 
   return (
     <div flex column gap={2}>
-      <PageHeader titleH2={movie?.name} align={'top'} withCloseButton/>
+      <PageHeader titleH2={movie?.name} align={"top"} withCloseButton />
       {movie.description && (
         <div
           style={{
@@ -43,9 +42,11 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div class="colorGray">
         {[movie.author, movie.country, movie.year].filter((x) => x).join(", ")}
       </div>
-      <div class="colorGray" style={{ marginBottom: 24 }}>
-        {minutes} мин {seconds} сек
-      </div>
+      {minutes != undefined && (
+        <div class="colorGray" style={{ marginBottom: 24 }}>
+          {minutes} мин {seconds ? seconds + " сек" : ""}
+        </div>
+      )}
       {state.canVote && (
         <div flex column gap={2} style={{ marginBottom: 24 }}>
           <Card border="Vivid" gap={0}>
@@ -105,6 +106,9 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               <div flex column gap={2}>
                 <div class="tags colorMediumBlue">
                   {view.block.info.Title} {view.block.info.SubTitle ?? ""}
+                  {view.block.info.Part
+                    ? ` — Часть ${view.block.info.Part}`
+                    : ""}
                 </div>
                 <div class="sh1">
                   {view.start} - {view.end}
@@ -116,7 +120,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       <ButtonsBar at="bottom">
         <Button
-          type={state.hasBookmark ? 'orange' : 'blue'}
+          type={state.hasBookmark ? "orange" : "blue"}
           class="w-full"
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >

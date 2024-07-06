@@ -28,12 +28,19 @@ class MoviesStore {
       ),
       movies: b.movies.map((m) => {
         const info = this.vurchelDB.get(m.vurchelId?.toString());
-        if (!info) return m;
+        if (!info)
+          return {
+            ...m,
+            duration: m.duration?.includes(":") ? m.duration : undefined,
+          };
         return {
           ...m,
           name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
-          duration:
-            m.duration || (info.filmDuration ? info.filmDuration + ":00" : ""),
+          duration: m.duration.includes(":")
+            ? m.duration
+            : info.filmDuration
+            ? info.filmDuration
+            : "",
           description: m.description ?? info.filmEnPlot,
           country: m.country || info.countries.join(", ") || "",
           author:
@@ -55,9 +62,16 @@ class MoviesStore {
     );
   }
 
-  public get VotingBlock(): MovieBlock {
-    return this.MovieBlocks.find((x) =>
-      x.info.Title.toLowerCase().includes("российский национальный конкурс")
+  @cell
+  public get VotingMovies(): MovieInfo[] {
+    return distinct(
+      this.MovieBlocks.filter(
+        (x) =>
+          x.info.Title.toLowerCase().includes(
+            "российского национального конкурса"
+          ) ||
+          x.info.Title.toLowerCase().includes("российский национальный конкурс")
+      ).flatMap((x) => x.movies)
     );
   }
 
@@ -173,8 +187,8 @@ export class MovieStore {
     views: Array<MovieBlock["views"][number] & { block: MovieBlock }>;
   }>(() => ({
     canVote:
-      !votingStore.state.get().votedMovie &&
-      this.blocks.includes(moviesStore.VotingBlock),
+      votingStore.state.get().canVote &&
+      moviesStore.VotingMovies.includes(this.movie),
     movie: this.movie,
     views: this.blocks.flatMap((x) => x.views.map((v) => ({ ...v, block: x }))),
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
