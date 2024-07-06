@@ -3,63 +3,125 @@ import {Input} from "../../../components/input";
 import {Tag, Tags} from "../../../components/tag";
 import {useCell} from "../../../helpers/cell-state";
 import {getDayText} from "../../../helpers/getDayText";
-import {ActivityStore} from "../../../stores/activities/activities.store";
+import {activitiesStore, ActivityStore} from "../../../stores/activities/activities.store";
 import {changesStore} from "../../../stores/changes.store";
-import {useMemo} from "preact/hooks";
+import {useEffect, useMemo} from "preact/hooks";
 import {useRouter} from "../../routing";
 import {PageHeader} from "@components/PageHeader/PageHeader";
+import {Label} from "@components/label/label";
+import {useForm} from "@helpers/useForm";
+import {Cell} from "@cmmn/cell";
+import {locationsStore} from "@stores";
 
-export const ActivityEdit = () => {
+type ActivityEditProp = {
+  mode: 'full' | 'time';
+}
+
+export const ActivityEdit = ({mode}: ActivityEditProp) => {
   const router = useRouter();
   const id = router.route[2] as string;
+  const locations = useCell(() => locationsStore.LocationsForActivity);
   const activityStore = useMemo(() => new ActivityStore(id), [id]);
-  const state = useCell(activityStore.state);
-  if (!state.activity)
+  const cell = useMemo(
+    () =>
+      new Cell(() =>
+        activitiesStore.Activities.find((x) => x._id === router.route[2])
+      ),
+    [router.route[2]]
+  );
+
+  const activity = useCell(cell);
+  const ref = useForm(cell);
+
+  if (!activity)
     return <>Not found</>;
-  return <div class="page" flex column gap="2">
-    <PageHeader titleH2={state.activity?.title} align={'top'} withCloseButton/>
 
-    <div className="sh3">День</div>
+  return (
+    <div flex column gap={4}>
+      <PageHeader titleH2={'Редактирование'} align={'top'} withCloseButton/>
 
-    <Tags value={state.activity.day} tagsList={[0, 1, 2, 3, 4]}>
-      {(d) => (
-        <Tag selected={d == state.activity.day} key={d} onClick={() =>
-          changesStore.addChange({
-            _id: id,
-            day: d
-          })}>
-          {getDayText(d, "short").toUpperCase()}
-        </Tag>
+      {mode === 'full' && (
+        <form ref={ref} flex column gap={2}>
+          <Label title="Название мероприятия" inputType="textarea" name="title" rows={3}/>
+          <Label title="Описание мероприятия" inputType="textarea" name="description" rows={5}/>
+          <Label title="Автор" name="author"/>
+          <Label title="Описание автора" inputType="textarea" name="authorDescription" rows={5}/>
+
+          <Tags style={{flexWrap: 'wrap'}} value={activity.locationId} tagsList={[...locations]}>
+            {(d) => (
+              <Tag selected={d._id === activity.locationId} key={d} onClick={() =>{
+                cell.set({ ...activity, locationId: d._id });
+              }}>
+                {d.name}
+              </Tag>
+            )}
+          </Tags>
+        </form>
       )}
-    </Tags>
-    <div className="sh3">Время</div>
-    <div flex gap={4}>
-      <Input type="time" value={state.activity.start} onChange={e => {
-        changesStore.addChange({
-          _id: id,
-          start: e.currentTarget.value
-        })
-      }}/>
-      <Input type="time"  value={state.activity.end} onChange={e => {
-        changesStore.addChange({
-          _id: id,
-          end: e.currentTarget.value
-        })
-      }}/>
+
+      <div className="sh3">День</div>
+
+      <Tags value={activity.day} tagsList={[0, 1, 2, 3, 4]}>
+        {(d) => (
+          <Tag selected={d == activity.day} key={d} onClick={() => {
+            if (mode === 'time') {
+              changesStore.addChange({
+                _id: id,
+                day: d
+              });
+            }
+
+            cell.set({ ...activity, day: d });
+          }}>
+            {getDayText(d, "short").toUpperCase()}
+          </Tag>
+          )}
+        </Tags>
+
+        <div className="sh3">Время</div>
+        <div flex gap={4}>
+          <Input type="time" value={activity.start} onChange={e => {
+            if (mode === 'time') {
+              changesStore.addChange({
+                _id: id,
+                start: e.currentTarget.value
+              });
+            }
+
+            cell.set({ ...activity, start: e.currentTarget.value });
+          }}/>
+          <Input type="time" value={activity.end} onChange={e => {
+            if (mode === 'time') {
+              changesStore.addChange({
+                _id: id,
+                end: e.currentTarget.value
+              });
+            }
+
+            cell.set({ ...activity, end: e.currentTarget.value });
+          }}/>
+        </div>
+        <Button type="text" class="colorOrange" onClick={() => {
+          if (mode === 'time') {
+            changesStore.addChange({
+              _id: id,
+              isCanceled: !activity.isCanceled
+            });
+          }
+
+        }}>отменить {activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
+
+        <ButtonsBar at="bottom">
+          <Button type="blue" onClick={async () => {
+              await changesStore.applyChanges();
+
+            await activitiesStore.updateActivity(cell.get());
+
+            router.goTo(["activities"]);
+          }}>
+            опубликовать изменения
+          </Button>
+        </ButtonsBar>
     </div>
-    <Button type="text" class="colorOrange" onClick={() => {
-      changesStore.addChange({
-        _id: id,
-        isCanceled: !state.activity.isCanceled
-      });
-    }}>отменить {state.activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
-    <ButtonsBar at="bottom">
-      <Button type="blue" onClick={async () => {
-        await changesStore.applyChanges()
-        router.goTo(["activities"]);
-      }}>
-        опубликовать изменения
-      </Button>
-    </ButtonsBar>
-  </div>;
+);
 }

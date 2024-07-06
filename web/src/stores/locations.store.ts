@@ -78,6 +78,23 @@ class LocationsStore {
   }
 
   @cell
+  public get LocationsForActivity(): ReadonlyArray<InsomniaLocation> {
+    return this.Locations.filter(
+      ({name, directionId}) => !!name && ![
+        'Зона',
+        'КПП',
+        "Кафе",
+        'Админка',
+        "Гостевые Кемпинги",
+        "Платный лагерь",
+        "Автолагерь",
+        "Платные души",
+        "Указатель"
+      ].includes(directionId)
+    );
+  }
+
+  @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocation> {
     return this.RealLocations.filter(
       (x) => x.directionId === Directions.screen
@@ -95,7 +112,7 @@ class LocationsStore {
       )
     );
 
-    return this.RealLocations.filter((x) => locationsIDs.includes(x._id));
+    return this.RealLocations.filter(({_id, name}) => locationsIDs.includes(_id) && !!name);
   }
 
   @cell
