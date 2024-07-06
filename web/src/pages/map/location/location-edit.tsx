@@ -83,7 +83,7 @@ export const LocationEdit = () => {
           name="description"
           rows={5}
         />
-        {location?.contentBlocks.map((c, i) => (
+        {location?.contentBlocks?.map((c, i) => (
           <ContentBlockEdit locationCell={cell} index={i} key={i} />
         ))}
         <Button
@@ -93,7 +93,7 @@ export const LocationEdit = () => {
             cell.set({
               ...location,
               contentBlocks: [
-                ...location.contentBlocks,
+                ...(location.contentBlocks ?? []),
                 { blockType: "text", content: "" },
               ],
             })
@@ -120,6 +120,7 @@ const ContentBlockEdit: FunctionalComponent<{
   index: number;
 }> = (props) => {
   const location = useCell(props.locationCell);
+  location.contentBlocks ??= [];
   const block = location.contentBlocks[props.index];
   const remove = () =>
     props.locationCell.set({

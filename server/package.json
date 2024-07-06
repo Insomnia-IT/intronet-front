@@ -10,8 +10,6 @@
   "type": "module",
   "dependencies": {
     "@cmmn/cell": "2.0.0",
-    "google-auth-library": "^9.10.0",
-    "google-spreadsheet": "^4.1.2",
     "fastify": "4.15.0",
     "log4js": "6.9.1",
     "log4js-logstash-tcp": "2.0.5",
@@ -20,6 +18,10 @@
     "tslib": "2.6.2"
   },
   "devDependencies": {
+    "google-auth-library": "^9.10.0",
+    "google-spreadsheet": "^4.1.2",
+    "xmldom": "0.6.0",
+    "@mapbox/togeojson": "0.16.2",
     "@cmmn/tools": "2.0.2",
     "@types/node": "20.10.1",
     "typescript": "5.2.2"

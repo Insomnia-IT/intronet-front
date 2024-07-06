@@ -47,15 +47,6 @@
     "row": 3,
     "col": 1
   },
-  {
-    "_id": "theatre",
-    "title": "Театр",
-    "color": false,
-    "section": "main",
-    "small": true,
-    "row": 3,
-    "col": 2
-  },
 
   {
     "_id": "art",
@@ -63,9 +54,19 @@
     "color": true,
     "section": "main",
     "small": true,
-    "row": 4,
+    "row": 3,
     "col": 2
   },
+  {
+    "_id": "theatre",
+    "title": "Театр",
+    "color": false,
+    "section": "main",
+    "small": true,
+    "row": 3,
+    "col": 4
+  },
+
 
   {
     "_id": "music",
@@ -75,6 +76,17 @@
     "small": true,
     "row": 4,
     "col": 1
+  },
+
+  {
+    "_id": "vote",
+    "title": "Голосование",
+    "color": false,
+    "section": "main",
+    "link": "/voting",
+    "small": true,
+    "row": 4,
+    "col": 2
   },
 
   {
@@ -144,8 +156,8 @@
     "col": 1
   },
   {
-    "_id": "fireplace",
-    "title": "Костры",
+    "_id": "about",
+    "title": "О фестивале",
     "color": false,
     "section": "about",
     "small": true,
