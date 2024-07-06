@@ -29,6 +29,7 @@ services:
     image: node:20-alpine
     volumes:
       - ../../server/dist/esm:/app/dist
+      - ../../server/data:/app/data
       - ../../node_modules:/node_modules:ro
       - ../../server/node_modules:/app/node_modules:ro
       - ./secrets:/secrets
