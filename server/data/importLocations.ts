@@ -1,6 +1,4 @@
 import { dbCtrl } from "../db-ctrl";
-import { GoogleSpreadsheet } from "google-spreadsheet";
-import auth, { GoogleAuth, JWT } from "google-auth-library";
 import process from "node:process";
 import { Database } from "../database";
 import { Fn, groupBy } from "@cmmn/core";
@@ -84,6 +82,8 @@ const enabledFigures = [
 ];
 
 async function getDoc() {
+  const { GoogleSpreadsheet } = await import("google-spreadsheet");
+  const { JWT } = await import("google-auth-library");
   const privateKeyEnv = process.env.GOOGLE_SHEET_PRIVATE_KEY!;
   if (!privateKeyEnv) {
     throw "provide GOOGLE_SHEET_PRIVATE_KEY in env";
