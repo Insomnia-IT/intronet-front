@@ -10,8 +10,9 @@ import {
 } from "../../helpers/getDayText";
 
 class ActivitiesStore {
-  @cell
-  public db = new ObservableDB<Activity>("activities");
+  @cell public db = new ObservableDB<Activity>("activities");
+
+  Loading = this.db.isLoaded;
 
   @cell
   public get Activities(): Activity[] {
@@ -33,6 +34,11 @@ class ActivitiesStore {
         (x) =>
           getTimeComparable(x.start) <= time && getTimeComparable(x.end) >= time
       )[0]?.title;
+  }
+
+  async updateActivity(activity: Activity) {
+    await this.Loading;
+    await this.db.addOrUpdate(activity);
   }
 }
 

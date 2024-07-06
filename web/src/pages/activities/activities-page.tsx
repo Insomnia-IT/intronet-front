@@ -37,7 +37,11 @@ function getActivitiesSheets(activityId: string, locationId: string) {
   switch (activityId) {
     case "edit":
       return (
-        <ActivityEdit />
+        <ActivityEdit mode={'full'}/>
+      );
+    case "edit-time":
+      return (
+        <ActivityEdit mode={'time'}/>
       );
     case "location":
       return (
