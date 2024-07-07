@@ -36,8 +36,10 @@ export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
   );
   return <>{children}</>;
 }
+const scaleThresholdOtherText = 0.5;
 const scaleThresholdOther = 0.4;
-const scaleThresholdCafe = 0.2;
+const scaleThresholdCafeText = 0.33;
+const scaleThresholdCafe = 0.25;
 
 export function MapElement(props: {
   transformCell: Cell<TransformMatrix>;
@@ -46,6 +48,7 @@ export function MapElement(props: {
   const isSelected = useCell(() =>
     locationsStore.selected.some((x) => x._id == props.item.id)
   );
+  const selectedGroup = useCell(() => locationsStore.selected.length > 1);
   const type = directionsToOrder.get(props.item.directionId);
   const scale = useCell(
     () => props.transformCell.get().Matrix.GetScaleFactor(),
@@ -71,15 +74,15 @@ export function MapElement(props: {
   // if (color === "black")
   //   console.log(props.item);
   const form = (() => {
+    if (selectedGroup && !isSelected) return "circleSmall";
     switch (type) {
       case OrderType.Info:
       case OrderType.Screens:
         return "star";
       case OrderType.MainZone:
       case OrderType.Main:
-        return "circle";
       case OrderType.Cafe:
-        return scale > scaleThresholdCafe || isSelected
+        return scale > scaleThresholdCafe || isSelected || props.item.priority
           ? "circle"
           : "circleSmall";
       case OrderType.Other:
@@ -93,21 +96,22 @@ export function MapElement(props: {
   })();
   const size = "20em";
   const showText = (() => {
+    if (selectedGroup && !isSelected) return false;
+    if (props.item.priority) return true;
     switch (type) {
-      case OrderType.MainZone:
       case OrderType.Main:
       case OrderType.Screens:
       case OrderType.Info:
-        return true;
       case OrderType.Cafe:
-        return scale > scaleThresholdCafe || isSelected;
+        return scale > scaleThresholdCafeText || isSelected;
       case OrderType.Other:
-        return scale > scaleThresholdOther || isSelected;
+        return scale > scaleThresholdOtherText || isSelected;
       case OrderType.WC:
       default:
         return isSelected;
     }
   })();
+  const showIcon = form !== "circleSmall";
   const shape = (
     <SvgIcon
       id={".map #" + form}
@@ -153,7 +157,7 @@ export function MapElement(props: {
               .map((line) => "M" + line.map((p) => `${p.X} ${p.Y}`).join("L"))
               .join(" ")}
           />
-          {rect && (
+          {rect && showText && (
             <rect
               x={center.X - rect.width / 2 / scale}
               width={rect.width / scale}
@@ -163,17 +167,19 @@ export function MapElement(props: {
               y={center.Y - rect.height / 2 / scale}
             />
           )}
-          <text
-            x={center.X}
-            ref={ref}
-            y={center.Y}
-            class={isSelected ? styles.zoneSelectedText : styles.zoneText}
-            alignment-baseline="middle"
-            font-size={10 / scale}
-            text-anchor="middle"
-          >
-            {props.item.title}
-          </text>
+          {showText && (
+            <text
+              x={center.X}
+              ref={ref}
+              y={center.Y}
+              class={isSelected ? styles.zoneSelectedText : styles.zoneText}
+              alignment-baseline="middle"
+              font-size={10 / scale}
+              text-anchor="middle"
+            >
+              {props.item.title}
+            </text>
+          )}
         </g>
       );
     }
@@ -204,7 +210,7 @@ export function MapElement(props: {
         }}
       >
         {shape}
-        {showText && (
+        {showIcon && (
           <>
             <g
               style={{
@@ -222,9 +228,15 @@ export function MapElement(props: {
                 overflow="visible"
               />
             </g>
-            <text className={styles.elementText} y="2.5em" filter="url(#solid)">
-              {props.item.directionId && props.item.title}
-            </text>
+            {showText && (
+              <text
+                className={styles.elementText}
+                y="2.5em"
+                filter="url(#solid)"
+              >
+                {props.item.directionId && props.item.title}
+              </text>
+            )}
           </>
         )}
       </g>

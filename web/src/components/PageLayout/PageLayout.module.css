@@ -3,6 +3,7 @@
   max-width: 440px;
   min-height: 100%;
   padding: 54px 16px 80px 16px;
+  color: var(--ins-night);
 }
 .layout {
   position: relative;

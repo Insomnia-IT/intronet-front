@@ -3,6 +3,7 @@ import process from "node:process";
 import { Database } from "../database";
 import { Fn, groupBy } from "@cmmn/core";
 import locationsGoogle from "./locations/locations2024google.json" assert { "type": "json" };
+import mapJson from "./locations/locations2024.json" assert { "type": "json" };
 import fs from "fs";
 
 export async function importLocations(force = false) {
@@ -28,19 +29,21 @@ export async function importLocations(force = false) {
 export async function getLocationsFromGoogleSheet() {
   const doc = await getDoc();
   await doc.loadInfo(true);
-  const mapSheet = doc.sheetsByTitle["гугл карта"];
-  const dataSheet = doc.sheetsByTitle["сводочка"];
+  const dataSheet = doc.sheetsByTitle["свод финалка"];
   // await mapSheet.setHeaderRow([
   //   'id', 'googleName', 'insightName', 'icon', 'descr', 'geometry'
   // ]);
-  const mapArray = (await mapSheet.getRows()).map((row) => ({
-    name: row.get("Название Гугл Карты"),
-    figure: geometryToFigure(JSON.parse(row.get("geometry") ?? "null")),
+  const mapArray = mapJson.features.map((row) => ({
+    name: row.properties.name,
+    figure: geometryToFigure(
+      row.geometry.coordinates ??
+        row.geometry.geometries.flatMap((x) => x.coordinates)
+    ),
   }));
-  const mapData = groupBy(mapArray, (x) => x.name);
+  const mapData = groupBy(mapArray, (x) => x.name.toLowerCase());
   const data = (await dataSheet.getRows()).flatMap((row) => {
     const mapName = row.get("Название Гугл Карты") as string;
-    const geo = mapData.get(mapName)?.map((x) => x.figure) ?? [];
+    const geo = mapData.get(mapName.toLowerCase())?.map((x) => x.figure) ?? [];
 
     const directionId = row.get("directionId") as string;
     const figure: GeoFigure =
@@ -60,7 +63,7 @@ export async function getLocationsFromGoogleSheet() {
         figure,
         directionId,
         tags: [],
-        work_tags: [],
+        work_tags: [row.get("Капшеринг")].filter((x) => x),
         priority: !!(row.get("Приоритет") as string)?.match(/приоритет/i),
         details: row.get("Тип деталки") as string,
         groupLink: row.get("Ссылка на группу") as string,

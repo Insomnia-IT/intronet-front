@@ -41,9 +41,16 @@ class LocationsStore {
       return [this.findByName(decodeURIComponent(router.query.name))].filter(
         (x) => x
       );
+    if (router.query.tag)
+      return this.findByTag(decodeURIComponent(router.query.tag));
     return [];
   }
 
+  findByTag(s: string) {
+    return this.Locations.filter((x) =>
+      x.work_tags?.some((t) => t?.toLowerCase().includes(s.toLowerCase()))
+    );
+  }
   findByName(s: string) {
     return (
       this.Locations.find((x) => x.name?.toLowerCase() == s.toLowerCase()) ??
@@ -80,17 +87,19 @@ class LocationsStore {
   @cell
   public get LocationsForActivity(): ReadonlyArray<InsomniaLocation> {
     return this.Locations.filter(
-      ({name, directionId}) => !!name && ![
-        'Зона',
-        'КПП',
-        "Кафе",
-        'Админка',
-        "Гостевые Кемпинги",
-        "Платный лагерь",
-        "Автолагерь",
-        "Платные души",
-        "Указатель"
-      ].includes(directionId)
+      ({ name, directionId }) =>
+        !!name &&
+        ![
+          "Зона",
+          "КПП",
+          "Кафе",
+          "Админка",
+          "Гостевые Кемпинги",
+          "Платный лагерь",
+          "Автолагерь",
+          "Платные души",
+          "Указатель",
+        ].includes(directionId)
     );
   }
 
@@ -112,7 +121,9 @@ class LocationsStore {
       )
     );
 
-    return this.RealLocations.filter(({_id, name}) => locationsIDs.includes(_id) && !!name);
+    return this.RealLocations.filter(
+      ({ _id, name }) => locationsIDs.includes(_id) && !!name
+    );
   }
 
   @cell

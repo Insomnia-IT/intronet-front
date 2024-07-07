@@ -1,5 +1,5 @@
-import { Button, ButtonsBar, CloseButton } from "../../../../components";
-import { Tag, Tags } from "../../../../components/tag";
+import { Button, ButtonsBar, CloseButton } from "@components";
+import { Tag, Tags } from "@components";
 import { useEffect } from "preact/hooks";
 import { useRouter } from "../../../routing";
 import { PageLayout } from "@components/PageLayout";
@@ -17,7 +17,7 @@ export function Eco() {
   }, [!!section]);
   const Component = sections[section]?.component;
   return (
-    <PageLayout title="Экология">
+    <PageLayout title="Экология" gap={4}>
       <CloseButton goTo="/main" />
       <Tags tagsList={Object.keys(sections)}>
         {(x) => (
