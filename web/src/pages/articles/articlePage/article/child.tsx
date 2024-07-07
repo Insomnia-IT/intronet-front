@@ -19,7 +19,7 @@ export function Child() {
   const Component = sections[section]?.component;
   return <PageLayout title='Я с ребёнком'>
     <CloseButton goTo="/main"/>
-    <Tags tagsList={Object.keys(sections)}>
+    <Tags tagsList={Object.keys(sections)} style={{marginTop: 28, marginBottom: 8}}>
       {x => <Tag
         key={x}
         value={x}
@@ -38,19 +38,19 @@ const sections = {
         трюкам, которые будут интересны детям и взрослым.</div>
       <div>Дети не останутся без вкусной еды, на детской поляне работает уютное кафе «Глаз да глаз».</div>
       <Link goTo={['map',{name: 'глаз да глаз'}]}>кафе на карте</Link>
-      <div>Развлечения днём</div>
+      <div class="sh2" style={{marginTop: 15}}>Развлечения днём</div>
       <div>Интересные лекции, увлекательные мастер-классы и игры в детском шатре.</div>
-      <div>расписание детской поляны →</div>
-      <div>На «Бессоннице» есть целая игра, в которой нужно ходить по полю и искать квесты.</div>
-      <Link goTo="/articles/game">правила игры→</Link>
-      <div>Анимация ночью</div>
+      <Link goTo={['activities',{name: 'детская поляна'}]}>расписание детской поляны</Link>
+      <div style={{marginTop: 15}}>На «Бессоннице» есть целая игра, в которой нужно ходить по полю и искать квесты.</div>
+      <Link goTo="/articles/game">правила игры</Link>
+      <div class="sh2" style={{marginTop: 15}}>Анимация ночью</div>
       <div>У детской поляны есть свой экран.</div>
-      <Link goTo={['map',{name: 'детский экран'}]}>детский экран на карте→</Link>
-      <div>В Диафильминариуме ночью показ редчайших диафильмов с живым озвучанием.</div>
-      <Link goTo={['map',{name: 'диафильминариум'}]}>диафильминариум на карте→</Link>
-      <div>На основных экранах первым блоком идут анимация, рассчитанная на семейный просмотр.</div>
-      <Link goTo={['map',{name: 'речной'}]}>речной экран на карте→</Link>
-      <Link goTo={['map',{name: 'полевой'}]}>полевой экран на карте→</Link>
+      <Link goTo={['map',{name: 'детский экран'}]}>детский экран на карте</Link>
+      <div style={{marginTop: 15}}>В Диафильминариуме ночью показ редчайших диафильмов с живым озвучанием.</div>
+      <Link goTo={['map',{name: 'диафильминариум'}]}>диафильминариум на карте</Link>
+      <div style={{marginTop: 15}}>На основных экранах первым блоком идут анимация, рассчитанная на семейный просмотр.</div>
+      <Link goTo={['map',{name: 'речной'}]}>речной экран на карте</Link>
+      <Link goTo={['map',{name: 'полевой'}]}>полевой экран на карте</Link>
     </div>
   },
   safety: {

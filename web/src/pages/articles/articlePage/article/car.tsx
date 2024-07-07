@@ -1,14 +1,18 @@
-import { Button, ButtonsBar, CloseButton, PageLayout } from "../../../../components";
+import {CloseButton, PageLayout} from "../../../../components";
 import {Link} from "../../../../components/link/link";
-import {SvgIcon} from "../../../../icons";
 
 export function Car() {
   return <PageLayout title='Если машина застряла'>
     <CloseButton goTo="/main"/>
-    Если машина застряла или сломалась, обратитесь на Инфоцентр и вам помогут.
-<br/><br/>
+
+    <span class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
+      Если машина застряла или сломалась, обратитесь на Инфоцентр и вам помогут.
+    </span>
+
     <Link goTo="/map" query={{name: 'инфоцентр'}}>к инфоцентру</Link>
-    <br/>
-    Если до инфоцентра далеко, ищите ближайшего волонтера с рацией.
+
+    <span class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
+      Если до инфоцентра далеко, ищите ближайшего волонтера с рацией.
+    </span>
   </PageLayout>
 }

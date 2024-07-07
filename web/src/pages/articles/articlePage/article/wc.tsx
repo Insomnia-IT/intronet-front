@@ -20,7 +20,7 @@ export function WC() {
   const Component = sections[section]?.component;
   return <PageLayout title={<>Туалеты и<br/>души</>}>
     <CloseButton goTo="/main"/>
-    <Tags tagsList={Object.keys(sections)}>
+    <Tags tagsList={Object.keys(sections)} style={{marginTop: 28, marginBottom: 8}}>
       {x => <Tag
         key={x}
         value={x}
