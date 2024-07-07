@@ -19,7 +19,7 @@ export function Eco() {
   return (
     <PageLayout title="Экология">
       <CloseButton goTo="/main" />
-      <Tags tagsList={Object.keys(sections)}>
+      <Tags tagsList={Object.keys(sections)} style={{marginTop: 28, marginBottom: 8}}>
         {(x) => (
           <Tag
             key={x}
