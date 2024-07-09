@@ -10,7 +10,7 @@ import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
-import {PageHeader} from "@components/PageHeader/PageHeader";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 export type LocationProps = {
   id: string;
@@ -52,7 +52,12 @@ export const Location: FunctionalComponent<LocationProps> = ({
     );
   return (
     <div className={Styles.container}>
-      <PageHeader titleH2={location.name} align={'top'} onClose={() => locationsStore.setSelectedId(null)} withCloseButton/>
+      <PageHeader
+        titleH2={location.name}
+        align={"top"}
+        onClose={() => locationsStore.setSelectedId(null)}
+        withCloseButton
+      />
 
       <div className={Styles.locationContent}>
         {!!currentActivity && (
@@ -74,6 +79,9 @@ export const Location: FunctionalComponent<LocationProps> = ({
           >
             к расписанию
           </Link>
+        )}
+        {location.menu && (
+          <Link goTo={["map", "menu", location._id]}>к меню</Link>
         )}
         <div className="text colorMediumBlue">
           {" "}
@@ -113,7 +121,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
       ) : (
         <ButtonsBar at="bottom">
           <Button
-            type={hasBookmark ? 'orange' : 'blue'}
+            type={hasBookmark ? "orange" : "blue"}
             onClick={() =>
               bookmarksStore.switchBookmark("locations", location._id)
             }

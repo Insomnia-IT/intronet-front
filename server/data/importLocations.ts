@@ -20,8 +20,13 @@ export async function importLocations(force = false) {
     ? await getLocationsFromGoogleSheet()
     : (locationsGoogle as any);
 
+  const menuMap = new Map(getMenu());
+
   for (let loc of data) {
-    await locationsDB.addOrUpdate({ ...loc, version: Fn.ulid() });
+    const menu =
+      menuMap.get(loc.name.toLowerCase()) ??
+      menuMap.get(loc.mapName.toLowerCase());
+    await locationsDB.addOrUpdate({ ...loc, menu, version: Fn.ulid() });
   }
   dbCtrl.versions = undefined;
 }
@@ -118,4 +123,18 @@ function geometryToFigure(
   return (geometry as Array<Array<number>> | Array<Array<Array<number>>>).map(
     geometryToFigure
   ) as GeoFigure;
+}
+
+function* getMenu(): Generator<[string, string]> {
+  const text = fs.readFileSync("./data/menu.txt", "utf8");
+  const blocks = text
+    .split(/\_{10,}/)
+    .map((x) => x.trim())
+    .filter((x) => x);
+  for (let block of blocks) {
+    const firstLineEnd = block.indexOf("\n");
+    const title = block.substring(0, firstLineEnd).trim().toLowerCase();
+    const text = block.substring(firstLineEnd).trim();
+    yield [title, text];
+  }
 }

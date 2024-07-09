@@ -11,6 +11,7 @@ import { SvgIcon } from "@icons";
 import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
+import { LocationMenu } from "./location/location-menu";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -22,6 +23,8 @@ export function MapPageWithRouting() {
     () => router.goTo(["map"]),
     () => locationsStore.setSelectedId(null)
   );
+  if (router.route[1] == "menu")
+    return <LocationMenu id={router.route[2] as string} />;
   return (
     <PageLayout
       withTapBar
@@ -117,10 +120,7 @@ const getMapSheets = (
   onPageClose: () => void
 ) => {
   const selected = useCell(() => locationsStore.selected);
-  if (selected.length === 1)
-    return (
-        <Location id={selected[0]._id} />
-    );
+  if (selected.length === 1) return <Location id={selected[0]._id} />;
   switch (locationId) {
     case "add":
       return (
@@ -137,9 +137,7 @@ const getMapSheets = (
         </>
       );
     case "search":
-      return (
-        <LocationSearch />
-      );
+      return <LocationSearch />;
     case undefined:
       return null;
   }
