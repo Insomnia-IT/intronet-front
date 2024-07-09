@@ -5,6 +5,7 @@ import { Fn, groupBy } from "@cmmn/core";
 import locationsGoogle from "./locations/locations2024google.json" assert { "type": "json" };
 import mapJson from "./locations/locations2024.json" assert { "type": "json" };
 import fs from "fs";
+import { menu } from "./menu";
 
 export async function importLocations(force = false) {
   const locationsDB = Database.Get<any>("locations");
@@ -126,8 +127,7 @@ function geometryToFigure(
 }
 
 function* getMenu(): Generator<[string, string]> {
-  const text = fs.readFileSync("./data/menu.txt", "utf8");
-  const blocks = text
+  const blocks = menu
     .split(/\_{10,}/)
     .map((x) => x.trim())
     .filter((x) => x);
