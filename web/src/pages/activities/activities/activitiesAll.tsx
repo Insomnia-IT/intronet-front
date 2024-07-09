@@ -11,6 +11,8 @@ import { Card } from "../../../components/cards";
 import { SvgIcon } from "../../../icons";
 import styles from "./activitiesAll.module.css";
 import {orderBy} from "@cmmn/core";
+import {RequireAuth} from "@components/RequireAuth";
+import {Button} from "@components";
 
 export const ActivitiesAll: FunctionalComponent = () => {
   const {filter, day, time, place} = useActivitiesRouter();
@@ -45,6 +47,12 @@ export const ActivitiesAll: FunctionalComponent = () => {
           )
         }
       </div>
+
+      <RequireAuth>
+        <Button class="w-full" style={ { marginBottom: 24, marginTop: 0 } }
+                goTo={ [ "activities", "create" ] }
+                type="frame">создать</Button>
+      </RequireAuth>
 
       { (currentFilter === 'time')
         ? <ActivityList activities={ cards }/>

@@ -40,6 +40,11 @@ class ActivitiesStore {
     await this.Loading;
     await this.db.addOrUpdate(activity);
   }
+
+  async deleteActivity(activity: Activity) {
+    await this.Loading;
+    await this.db.remove(activity._id);
+  }
 }
 
 export const activitiesStore = new ActivitiesStore();

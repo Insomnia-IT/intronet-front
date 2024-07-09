@@ -35,6 +35,10 @@ const baseRoute = "activities" as keyof typeof routes;
 
 function getActivitiesSheets(activityId: string, locationId: string) {
   switch (activityId) {
+    case "create":
+      return (
+        <ActivityEdit mode={'create'}/>
+      );
     case "edit":
       return (
         <ActivityEdit mode={'full'}/>

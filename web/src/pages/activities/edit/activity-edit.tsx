@@ -12,20 +12,33 @@ import {Label} from "@components/label/label";
 import {useForm} from "@helpers/useForm";
 import {Cell} from "@cmmn/cell";
 import {locationsStore} from "@stores";
+import {Fn} from "@cmmn/core";
 
 type ActivityEditProp = {
-  mode: 'full' | 'time';
+  mode: 'create' | 'full' | 'time';
 }
 
 export const ActivityEdit = ({mode}: ActivityEditProp) => {
   const router = useRouter();
   const id = router.route[2] as string;
   const locations = useCell(() => locationsStore.LocationsForActivity);
-  const activityStore = useMemo(() => new ActivityStore(id), [id]);
   const cell = useMemo(
     () =>
-      new Cell(() =>
-        activitiesStore.Activities.find((x) => x._id === router.route[2])
+      new Cell(() => {
+        const activity: Activity = activitiesStore.Activities.find((x) => x._id === router.route[2]);
+          return activity ?? {
+            _id: Fn.ulid(),
+            day: 1,
+            title: '',
+            description: '',
+            author: '',
+            authorDescription: '',
+            locationId: '',
+            start: '',
+            end: '',
+            isCanceled: false
+          }
+        }
       ),
     [router.route[2]]
   );
@@ -38,9 +51,9 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
 
   return (
     <div flex column gap={4}>
-      <PageHeader titleH2={'Редактирование'} align={'top'} withCloseButton/>
+      <PageHeader titleH2={ mode === 'create' ? 'Создание' :'Редактирование'} align={'top'} withCloseButton/>
 
-      {mode === 'full' && (
+      {mode !== 'time' && (
         <form ref={ref} flex column gap={2}>
           <Label title="Название мероприятия" inputType="textarea" name="title" rows={3}/>
           <Label title="Описание мероприятия" inputType="textarea" name="description" rows={5}/>
@@ -101,6 +114,9 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
             cell.set({ ...activity, end: e.currentTarget.value });
           }}/>
         </div>
+
+      {
+        mode !== 'create' &&
         <Button type="text" class="colorOrange" onClick={() => {
           if (mode === 'time') {
             changesStore.addChange({
@@ -108,8 +124,22 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
               isCanceled: !activity.isCanceled
             });
           }
+        }
+        }>отменить {activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
+      }
 
-        }}>отменить {activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
+      {
+        mode === 'full' &&
+        <Button
+          type="orange"
+          onClick={async () => {
+            await activitiesStore.deleteActivity(cell.get());
+
+            router.goTo(["activities"]);
+          }}>
+          удалить мероприятие
+        </Button>
+      }
 
         <ButtonsBar at="bottom">
           <Button type="blue" onClick={async () => {

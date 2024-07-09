@@ -118,7 +118,7 @@ const sections = {
         </Link>
         <Link
           goTo="/map"
-          query={{ name: "автолагерь" }}
+          query={{ name: "автокемпинг" }}
           style={{ margin: "10px 0 24px" }}
         >
           к Автолагерю
