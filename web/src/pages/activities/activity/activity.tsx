@@ -23,18 +23,19 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   const store = useMemo(() => new ActivityStore(id), [id]);
   const { activity, hasBookmark } = useCell(store.state);
 
-  useEffect(() => {
-    console.log('@@@', id, activity)
-  }, [id, activity]);
-
   return (
     <div flex column gap={4}>
       {activity && (<>
           <PageHeader titleH2={activity?.title} align={'top'} withCloseButton/>
 
           {activity.description && <div className="text">{activity?.description}</div>}
-          {activity.author && <div className="colorGray sh3">{activity?.author}</div>}
-          {activity.day && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
+          {
+            activity.author &&
+            <div className="colorGray sh3">
+              {activity?.author}{activity?.authorDescription ? `. ${activity?.authorDescription}` : ''}
+            </div>
+          }
+          {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
           <Card
             border="Blue"
@@ -61,7 +62,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
                   activity?.isCanceled ? Styles.canceled : "default",
                 ].join(" ")}
               >
-                {activity?.start} - {activity?.end}
+                {!activity?.end.startsWith('undefined') ? `${activity?.start} - ${activity?.end}` : `c ${activity.start}`}
               </div>
             </div>
           </Card>
