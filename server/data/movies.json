@@ -666,14 +666,33 @@
     "LocationId": 0,
     "Blocks": [
       {
+        "Title": "ЛУЧШЕЕ ИЗ КОНКУРСА ЗАСТАВОК (THE BEST OF INSOMNIA'2023 TEASER&TRAILER COMPETITION) 12+",
+        "SubTitle": null,
+        "TitleEn": null,
+        "SubTitleEn": null,
+        "MinAge": 0,
+        "Part": 0,
+        "Start": "22:00",
+        "End": "22:00",
+        "Movies": [
+          {
+            "Name": "избранные работы конкурса фестивальных заставок 2023 года",
+            "Author": null,
+            "Country": null,
+            "Year": null,
+            "Duration": null
+          }
+        ]
+      },
+      {
         "Title": "КИДАЛТ ",
         "SubTitle": "АНИМАЦИЯ ДЛЯ ВСЕХ ",
         "TitleEn": "INTERNATIONAL & NATIONAL COMPETITION ",
         "SubTitleEn": "KIDULT ",
         "MinAge": 16,
         "Part": 3,
-        "Start": "22:00",
-        "End": "22:00",
+        "Start": "22:15",
+        "End": "22:15",
         "Movies": [
           {
             "Name": "Architect A",
@@ -740,8 +759,8 @@
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "23:00",
-        "End": "23:00",
+        "Start": "23:15",
+        "End": "23:15",
         "Movies": [
           {
             "Name": "программа фестиваля анимационных фильмов ультракороткого формата \"Ща5сек\"",
@@ -749,6 +768,74 @@
             "Country": null,
             "Year": null,
             "Duration": null
+          }
+        ]
+      },
+      {
+        "Title": "МЕЖДУНАРОДНЫЙ КОНКУРС ",
+        "SubTitle": "ПРОФНАСТИЛ ",
+        "TitleEn": "INTERNATIONAL COMPETITION ",
+        "SubTitleEn": "PROFNASTIL ",
+        "MinAge": 18,
+        "Part": 3,
+        "Start": "00:00",
+        "End": "00:00",
+        "Movies": [
+          {
+            "Name": "Beautiful Men",
+            "Author": "Красавцы",
+            "Country": "Nicolas Keppens",
+            "Year": "Belgium",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Via Dolorosa",
+            "Author": "Крестный путь",
+            "Country": "Rachel Gutgarts",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Box Cutters",
+            "Author": "Канцелярские ножи",
+            "Country": "Naomi Van Niekerk",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Kinderfilm",
+            "Author": "Киндерфильм",
+            "Country": "Adrian Jonas Haim, Robin Klengel, Michael Stumpf",
+            "Year": "Austria",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Vegan Mayo",
+            "Author": "Веганский майонез",
+            "Country": "Luca Tóth",
+            "Year": "Hungary",
+            "Duration": "2024"
+          },
+          {
+            "Name": "See The Sun Rise in the Moon",
+            "Author": "Смотрите, как Солнце восходит при Луне",
+            "Country": "Charles Nogier",
+            "Year": "France",
+            "Duration": "2023"
+          },
+          {
+            "Name": "Smoke",
+            "Author": "Rita Basulto Chavez",
+            "Country": "Mexico",
+            "Year": "2023",
+            "Duration": "12:12"
+          },
+          {
+            "Name": "Hot Fish",
+            "Author": "Знойная рыбка",
+            "Country": "Yael Reisfeld",
+            "Year": "Israel",
+            "Duration": "2023"
           }
         ]
       }
@@ -2197,8 +2284,8 @@
         "SubTitleEn": null,
         "MinAge": 0,
         "Part": 0,
-        "Start": "21:50",
-        "End": "21:50",
+        "Start": "22:40",
+        "End": "22:40",
         "Movies": [
           {
             "Name": "Снежные дорожки, реж. Борис Дёжкин, 1963, 10 мин.",
