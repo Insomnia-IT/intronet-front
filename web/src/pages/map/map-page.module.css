@@ -17,7 +17,6 @@
   align-items: center;
   gap: 16px;
   z-index: 1;
-  flex-flow: row-reverse;
 }
 .header > svg {
   flex: 0 0 auto;

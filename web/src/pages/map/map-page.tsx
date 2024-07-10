@@ -12,6 +12,8 @@ import { useLocationsRouter } from "./hooks/useLocationsRouter";
 import { LocationSearch } from "./search/location-search";
 import { Location } from "./location/location";
 import { LocationMenu } from "./location/location-menu";
+import { SearchInput } from "@components/input/search-input";
+import { goTo } from "../routing";
 
 export function MapPageWithRouting() {
   const router = useLocationsRouter();
@@ -29,15 +31,25 @@ export function MapPageWithRouting() {
     <PageLayout
       withTapBar
       dropStyles
-      favoritesRoute="/bookmarks/locations"
-      searchLabel="Площадка"
       design="full"
       className={styles.full}
-      search={LocationSearch}
-      searchStyle={{ background: "var(--white)" }}
       hideSearchDeps={[router.locationId]}
-      headerStyle={styles.header}
     >
+      <div className={styles.header}>
+        <SearchInput
+          placeholder="Площадка"
+          style={{ background: "var(--white)" }}
+          onFocus={() => router.goTo([router.route[0], "search"])}
+        />
+        <SvgIcon
+          id="#bookmark"
+          style={{
+            color: "var(--pink)",
+          }}
+          size={32}
+          onClick={() => goTo("/bookmarks/locations")}
+        />
+      </div>
       <div className={styles.container}>
         <MapComponent />
         {isEditing ? (
