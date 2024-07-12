@@ -35,7 +35,7 @@ export async function importLocations(force = false) {
 export async function getLocationsFromGoogleSheet() {
   const doc = await getDoc();
   await doc.loadInfo(true);
-  const dataSheet = doc.sheetsByTitle["свод финалка"];
+  const dataSheet = doc.sheetsByTitle["сводочка"];
   // await mapSheet.setHeaderRow([
   //   'id', 'googleName', 'insightName', 'icon', 'descr', 'geometry'
   // ]);
