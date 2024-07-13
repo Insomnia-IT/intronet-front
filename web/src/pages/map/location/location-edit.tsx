@@ -1,12 +1,12 @@
 import { Cell } from "@cmmn/cell";
-import { Button } from "../../../components";
-import { Input } from "../../../components/input";
-import { Label } from "../../../components/label/label";
-import { Tag, Tags } from "../../../components/tag";
-import { useCell } from "../../../helpers/cell-state";
-import { useForm } from "../../../helpers/useForm";
-import { SvgIcon } from "../../../icons";
-import { Directions, locationsStore } from "../../../stores";
+import { Button } from "@components";
+import { Input } from "@components/input";
+import { Label } from "@components/label/label";
+import { Tag, Tags } from "@components";
+import { useCell } from "@helpers/cell-state";
+import { useForm } from "@helpers/useForm";
+import { SvgIcon } from "@icons";
+import { Directions, locationsStore } from "@stores";
 import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useRouter } from "../../routing";
@@ -65,7 +65,7 @@ export const LocationEdit = () => {
             Directions.shop,
             Directions.cafe,
             Directions.art,
-            Directions.shower,
+            Directions.freeShower,
           ]}
         >
           {(direction) => (
