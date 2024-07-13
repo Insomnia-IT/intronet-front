@@ -9,7 +9,7 @@ import {
 } from "preact/hooks";
 import styles from "./map-element.module.css";
 import { useCell } from "@helpers/cell-state";
-import { locationsStore } from "@stores";
+import { Directions, locationsStore } from "@stores";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { Cell } from "@cmmn/cell";
 import { orderBy } from "@cmmn/core";
@@ -140,6 +140,7 @@ export function MapElement(props: {
   }, [ref.current]);
   if (props.item.maxZoom && scale > props.item.maxZoom) return <></>;
   if (props.item.minZoom && scale <= props.item.minZoom) return <></>;
+  const title = splitText(props.item.title);
   if (Array.isArray(props.item.figure)) {
     if (Array.isArray(props.item.figure[0])) {
       const center = geoConverter.getCenter(props.item.figure);
@@ -177,7 +178,7 @@ export function MapElement(props: {
               font-size={10 / scale}
               text-anchor="middle"
             >
-              {props.item.title}
+              {title}
             </text>
           )}
         </g>
@@ -228,19 +229,38 @@ export function MapElement(props: {
                 overflow="visible"
               />
             </g>
-            {showText && (
-              <text
-                className={styles.elementText}
-                y="2.5em"
-                filter="url(#solid)"
-              >
-                {props.item.directionId && props.item.title}
-              </text>
-            )}
+            {showText &&
+              props.item.directionId &&
+              title.map((text, i) => (
+                <text
+                  className={styles.elementText}
+                  y={`${2.5 + i * 1.2}em`}
+                  filter="url(#solid)"
+                >
+                  {text}
+                </text>
+              ))}
           </>
         )}
       </g>
     </g>
+  );
+}
+
+function splitText(text: string) {
+  if (text.length < 14) return [text];
+  const indexes = [...text.matchAll(/[^а-яёА-ЯЁ]/g)].map((x) => x.index);
+  if (indexes.length == 0) return [text];
+  const quotes = [text.indexOf("«"), text.indexOf("»")];
+  const center = orderBy(
+    quotes.length
+      ? indexes.filter((x) => x <= quotes[0] || x >= quotes[1])
+      : indexes,
+    (x) => Math.abs(x - text.length / 2)
+  )[0];
+
+  return [text.slice(0, center).trim(), text.slice(center).trim()].map((x) =>
+    x.replace(/(^\.|\.$)/, "")
   );
 }
 
@@ -274,7 +294,8 @@ const directionsToOrder = new Map([
   ["Кафе", OrderType.Cafe],
   ["Ветви Дерева", OrderType.Other],
   ["Спортплощадка", OrderType.Other],
-  ["Души", OrderType.WC],
+  [Directions.paidShower, OrderType.Other],
+  [Directions.freeShower, OrderType.Other],
   ["Музыка", OrderType.Other],
   ["Театральная Сцена", OrderType.Other],
   ["Гостевые Кемпинги", OrderType.MainZone],
@@ -306,7 +327,8 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["КАФЕ", ".map #cafe"],
   ["Ветви Дерева", ".map #art"],
   ["Спортплощадка", ".map #art"],
-  ["Души", ".map #shower"],
+  [Directions.paidShower, ".map #shower"],
+  [Directions.freeShower, ".map #shower"],
   ["Музыка", ".map #eye"],
   ["Театральная Сцена", ".map #eye"],
   ["Гостевые Кемпинги", ".map #tent"],
@@ -362,7 +384,8 @@ export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
   // ["КАФЕ", "cafe"],
   ["Ветви Дерева", "art"],
   ["Спортплощадка", "art"],
-  ["Души", "wc"],
+  [Directions.paidShower, "wc"],
+  [Directions.freeShower, "wc"],
   ["Музыка", "activity"],
   ["Театральная Сцена", "activity"],
   ["Гостевые Кемпинги", "tent"],

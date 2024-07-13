@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
-    <name>gp_v3_060724</name>
+    <name>gp_v3_080724</name>
     <description/>
     <Style id="icon-1499-9C27B0-normal">
       <IconStyle>
@@ -3268,48 +3268,6 @@
         <styleUrl>#icon-1898-0288D1-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="icon-1899-0288D1-nodesc-normal">
-      <IconStyle>
-        <color>ffd18802</color>
-        <scale>1</scale>
-        <Icon>
-          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
-      </IconStyle>
-      <LabelStyle>
-        <scale>0</scale>
-      </LabelStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <Style id="icon-1899-0288D1-nodesc-highlight">
-      <IconStyle>
-        <color>ffd18802</color>
-        <scale>1</scale>
-        <Icon>
-          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
-      </IconStyle>
-      <LabelStyle>
-        <scale>1</scale>
-      </LabelStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <StyleMap id="icon-1899-0288D1-nodesc">
-      <Pair>
-        <key>normal</key>
-        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
-      </Pair>
-      <Pair>
-        <key>highlight</key>
-        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
-      </Pair>
-    </StyleMap>
     <Style id="line-000000-1200-nodesc-normal">
       <LineStyle>
         <color>ff000000</color>
@@ -5487,28 +5445,28 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.0957091,54.6846855,0
-                35.0948921,54.6857905,0
-                35.0946011,54.6862505,0
-                35.0932601,54.6859895,0
-                35.0928731,54.6864365,0
-                35.0943001,54.6867835,0
-                35.0931111,54.6880105,0
-                35.0923601,54.6885815,0
-                35.0914801,54.6893125,0
-                35.0895921,54.6886925,0
-                35.0897851,54.6877005,0
-                35.0898921,54.6863855,0
-                35.0896991,54.6852445,0
-                35.0895271,54.6844635,0
-                35.0893124,54.6838305,0
-                35.0898281,54.6836565,0
-                35.0911791,54.6836075,0
-                35.0928321,54.6836195,0
-                35.0934971,54.6837185,0
-                35.0940251,54.6840595,0
-                35.0948811,54.6844575,0
-                35.0957091,54.6846855,0
+                35.0942717,54.6875014,0
+                35.0934547,54.6886064,0
+                35.0931636,54.6890664,0
+                35.0918225,54.6888054,0
+                35.0914355,54.6892524,0
+                35.0928626,54.6895994,0
+                35.0916735,54.6908264,0
+                35.0909225,54.6913974,0
+                35.0900424,54.6921284,0
+                35.0881543,54.6915084,0
+                35.0883473,54.6905164,0
+                35.0884543,54.6892014,0
+                35.0882613,54.6880604,0
+                35.0880893,54.6872794,0
+                35.0878746,54.6866464,0
+                35.0883903,54.6864724,0
+                35.0897414,54.6864234,0
+                35.0913945,54.6864354,0
+                35.0920596,54.6865344,0
+                35.0925876,54.6868754,0
+                35.0934437,54.6872734,0
+                35.0942717,54.6875014,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -6430,7 +6388,7 @@
             35.0961846,54.6783129,0
             35.0954953,54.6788727,0
             35.0928721,54.6792728,0
-            35.0911126,54.6794217,0
+            35.0928281,54.6793543,0
             35.0877759,54.6791984,0
           </coordinates>
         </LineString>
@@ -8562,12 +8520,12 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.0908226,54.6817845,0
-                35.0903406,54.6824045,0
-                35.0901046,54.6826715,0
-                35.0890206,54.6824045,0
-                35.0897156,54.6815545,0
-                35.0908226,54.6817845,0
+                35.0909245,54.681831,0
+                35.0904425,54.682451,0
+                35.0902065,54.682718,0
+                35.0891225,54.682451,0
+                35.0898175,54.681601,0
+                35.0909245,54.681831,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -9437,15 +9395,6 @@
           </coordinates>
         </Point>
       </Placemark>
-      <Placemark>
-        <name>Точка 91</name>
-        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            35.0804276,54.6798859,0
-          </coordinates>
-        </Point>
-      </Placemark>
     </Folder>
     <Folder>
       <name>Платные услуги</name>
@@ -10271,7 +10220,7 @@
         <styleUrl>#icon-1666-C2185B</styleUrl>
         <Point>
           <coordinates>
-            35.086798,54.679763,0
+            35.087457,54.67958,0
           </coordinates>
         </Point>
       </Placemark>
@@ -10314,17 +10263,17 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.0885646,54.6811942,0
-                35.0881576,54.6810942,0
-                35.0881626,54.6808272,0
-                35.0876696,54.6803552,0
-                35.0888336,54.6801692,0
-                35.0892356,54.6803712,0
-                35.0908236,54.6806752,0
-                35.0910656,54.6808042,0
-                35.0910596,54.6814222,0
-                35.0908706,54.6817082,0
-                35.0885646,54.6811942,0
+                35.0884967,54.6812273,0
+                35.0880897,54.6811273,0
+                35.0880947,54.6808603,0
+                35.0876016,54.6803883,0
+                35.0887657,54.6802023,0
+                35.0891677,54.6804043,0
+                35.0907557,54.6807083,0
+                35.0909977,54.6808373,0
+                35.0909917,54.6814553,0
+                35.0908027,54.6817413,0
+                35.0884967,54.6812273,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -10390,16 +10339,6 @@
         </Polygon>
       </Placemark>
       <Placemark>
-        <name>Большой шатер мастер-классов</name>
-        <description>23.04.2024 2:14:09</description>
-        <styleUrl>#icon-1591-F9A825</styleUrl>
-        <Point>
-          <coordinates>
-            35.0915978,54.6793447,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>RedRocketTown</name>
         <description>23.04.2024 3:07:26</description>
         <styleUrl>#icon-1540-F9A825</styleUrl>
@@ -10445,6 +10384,16 @@
         <Point>
           <coordinates>
             35.079385,54.680301,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Большой шатер мастер-классов</name>
+        <description>23.04.2024 2:14:09</description>
+        <styleUrl>#icon-1591-F9A825</styleUrl>
+        <Point>
+          <coordinates>
+            35.09118,54.679423,0
           </coordinates>
         </Point>
       </Placemark>
@@ -10601,48 +10550,28 @@
         <styleUrl>#icon-1773-9C27B0</styleUrl>
         <Point>
           <coordinates>
-            35.091165,54.679582,0
+            35.090488,54.679565,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
         <name>Танцплощадка</name>
         <description>24.04.2024 1:26:05</description>
-        <styleUrl>#poly-9C27B0-2000-51</styleUrl>
+        <styleUrl>#poly-9C27B0-1200-77</styleUrl>
         <Polygon>
           <outerBoundaryIs>
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.091004,54.679787,0
-                35.090843,54.67957,0
-                35.091315,54.67947,0
-                35.091498,54.679694,0
-                35.091004,54.679787,0
+                35.090349,54.679664,0
+                35.090349,54.679509,0
+                35.090671,54.679515,0
+                35.090671,54.67967,0
+                35.090349,54.679664,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
         </Polygon>
-      </Placemark>
-      <Placemark>
-        <name>Шатер Анимации</name>
-        <description>24.04.2024 1:35:00</description>
-        <styleUrl>#icon-1591-F9A825</styleUrl>
-        <Point>
-          <coordinates>
-            35.089406,54.677268,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Фотовыставка “Лики Бессонницы”</name>
-        <description>24.04.2024 1:36:23</description>
-        <styleUrl>#icon-1535-F9A825</styleUrl>
-        <Point>
-          <coordinates>
-            35.089529,54.677332,0
-          </coordinates>
-        </Point>
       </Placemark>
       <Placemark>
         <name>Шатёр “Хатифнариум”</name>
@@ -10833,6 +10762,26 @@
         </Point>
       </Placemark>
       <Placemark>
+        <name>Шатер Анимации</name>
+        <description>24.04.2024 1:35:00</description>
+        <styleUrl>#icon-1591-F9A825</styleUrl>
+        <Point>
+          <coordinates>
+            35.0896,54.67694,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Фотовыставка “Лики Бессонницы”</name>
+        <description>24.04.2024 1:36:23</description>
+        <styleUrl>#icon-1535-F9A825</styleUrl>
+        <Point>
+          <coordinates>
+            35.089571,54.676986,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
         <name>Кальянная “Пламя Сварога”</name>
         <description>01.06.2024 20:06:09</description>
         <styleUrl>#icon-1868-F9A825</styleUrl>
@@ -10899,12 +10848,12 @@
         <styleUrl>#icon-1502-F9A825</styleUrl>
         <Point>
           <coordinates>
-            35.089467,54.677214,0
+            35.089625,54.676917,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Анимареска.Привидение</name>
+        <name>Анимареска.Кружение</name>
         <description><![CDATA[Скорость: 0 км/ч<br>Направление: 168°<br>Высота: 171 м<br>Точность: 1 м]]></description>
         <styleUrl>#icon-1502-9C27B0</styleUrl>
         <Point>
@@ -10944,7 +10893,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Анимареска.Кружение</name>
+        <name>Анимареска.Приведение</name>
         <description><![CDATA[Скорость: 0,01 км/ч<br>Направление: 150°<br>Высота: 170 м<br>Точность: 2 м]]></description>
         <styleUrl>#icon-1502-9C27B0</styleUrl>
         <Point>

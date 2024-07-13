@@ -9,7 +9,7 @@ export function Theater() {
         нашей сцене, а в бутафорском и костюмерном цехе поможем создать образ и
         познакомим с удивительными техниками театрального оформления.
       </div>
-      <Link goTo="/activities">к расписанию тЯтра</Link>
+      {/*<Link goTo="/activities">к расписанию тЯтра</Link>*/}
       <ButtonsBar at="bottom">
         <Button type="blue" class="w-full" goTo={["map", { name: "тятр" }]}>
           к тЯтру

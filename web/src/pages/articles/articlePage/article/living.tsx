@@ -61,7 +61,7 @@ const sections = {
           <Button
             type="blue"
             class="w-full"
-            goTo={["map", { direction: "бесплатный лагерь" }]}
+            goTo={["map", { direction: "Гостевые Кемпинги" }]}
           >
             к бесплатным лагерям
           </Button>
@@ -104,21 +104,21 @@ const sections = {
         </div>
         <Link
           goTo="/map"
-          query={{ name: "байка" }}
+          query={{ name: "лесной лагерь" }}
           style={{ margin: "10px 0" }}
         >
           к Лесному лагерю «Байка»
         </Link>
         <Link
           goTo="/map"
-          query={{ name: "у детской" }}
+          query={{ name: "детская байка" }}
           style={{ margin: "10px 0" }}
         >
           к Лагерю у Детской поляны
         </Link>
         <Link
           goTo="/map"
-          query={{ name: "автокемпинг" }}
+          query={{ name: "автолагерь" }}
           style={{ margin: "10px 0 24px" }}
         >
           к Автолагерю

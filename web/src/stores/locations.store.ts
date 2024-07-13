@@ -60,8 +60,8 @@ class LocationsStore {
     );
   }
   findByDirection(s: string) {
-    return this.Locations.filter((x) =>
-      x.directionId?.toLowerCase().includes(s.toLowerCase())
+    return this.Locations.filter(
+      (x) => x.directionId?.toLowerCase() == s.toLowerCase()
     );
   }
   public setSelectedId(id: string | null) {
@@ -105,9 +105,9 @@ class LocationsStore {
 
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.RealLocations.filter(
-      (x) => x.directionId === Directions.screen
-    );
+    return ["Полевой", "Речной", "Детский"]
+      .map((x) => this.findByName(x))
+      .filter((x) => x && x.directionId == Directions.screen);
   }
 
   @cell
@@ -294,7 +294,8 @@ export enum Directions {
   cafe2 = "КАФЕ",
   branches = "Ветви Дерева",
   sport = "Спортплощадка",
-  shower = "Души",
+  paidShower = "Платные души",
+  freeShower = "Бесплатные души",
   music = "Музыка",
   theater = "Театральная Сцена",
   guest = "Гостевые Кемпинги",

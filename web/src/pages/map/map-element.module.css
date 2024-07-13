@@ -15,6 +15,7 @@
   font-size: 13em !important;
   line-height: 15em !important;
   text-anchor: middle;
+  white-space: pre;
   font-weight: bold;
 }
 
