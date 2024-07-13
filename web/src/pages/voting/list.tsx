@@ -8,7 +8,7 @@ export const VotingList: FunctionalComponent = () => {
   return (
     <div flex column gap={3} style={{ marginTop: 29 }}>
       <div class="sh1">
-        Мультфильмы, которые участвуют в международном конкурсе анимации
+        Мультфильмы, которые участвуют в российском конкурсе анимации
       </div>
       <MovieList movies={movies} />
     </div>
