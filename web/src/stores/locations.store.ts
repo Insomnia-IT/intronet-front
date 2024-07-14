@@ -301,6 +301,7 @@ export enum Directions {
   guest = "Гостевые Кемпинги",
   screen = "Экран",
   info = "Инфоцентр",
+  sign = "Указатель",
 }
 
 export class LocationStore {

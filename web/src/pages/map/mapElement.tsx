@@ -56,6 +56,7 @@ export function MapElement(props: {
   );
   const color = (() => {
     switch (type) {
+      case OrderType.MainZone:
       case OrderType.Main:
       case OrderType.Info:
         return "var(--medium-blue)";
@@ -86,10 +87,10 @@ export function MapElement(props: {
           ? "circle"
           : "circleSmall";
       case OrderType.Other:
+      case OrderType.WC:
         return scale > scaleThresholdOther || isSelected
           ? "circle"
           : "circleSmall";
-      case OrderType.WC:
       default:
         return isSelected ? "circle" : "circleSmall";
     }
@@ -249,7 +250,7 @@ export function MapElement(props: {
 
 function splitText(text: string) {
   if (text.length < 14) return [text];
-  const indexes = [...text.matchAll(/[^а-яёА-ЯЁ]/g)].map((x) => x.index);
+  const indexes = [...text.matchAll(/[^a-zA-Zа-яёА-ЯЁ]/g)].map((x) => x.index);
   if (indexes.length == 0) return [text];
   const quotes = [text.indexOf("«"), text.indexOf("»")];
   const center = orderBy(
@@ -306,6 +307,7 @@ const directionsToOrder = new Map([
   ["Зона", OrderType.Other],
   ["Костер", OrderType.Other],
   ["Платные души", OrderType.Other],
+  [Directions.sign, OrderType.Other],
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
@@ -335,6 +337,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Экран", ".map #eye"],
   ["Инфоцентр", ".map #sign"],
   ["Гостевые Кемпинги", ".map #tent"],
+  [Directions.sign, ".map #direction"],
 ]);
 
 export type MapIconId =
@@ -395,4 +398,5 @@ export const directionsToDetailsGroup: Map<string, DetailsGroup> = new Map([
   ["Зона", "other"],
   ["Костер", "other"],
   ["Платные души", "other"],
+  [Directions.sign, "other"],
 ]);
