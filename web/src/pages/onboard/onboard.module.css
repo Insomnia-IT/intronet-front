@@ -8,6 +8,16 @@
   flex-direction: column;
   justify-content: space-around;
   box-sizing: border-box;
+  position: relative;
+}
+.pageOnboard > div{
+  padding: 40px 0;
+  overflow: auto;
+  min-height: 0;
+}
+.close{
+  top: 70px;
+  right: 16px;
 }
 
 .menuBtn{

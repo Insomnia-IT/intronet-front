@@ -16,7 +16,11 @@ export const OnboardPage = () => {
   return (
     <div class={styles.pageOnboard}>
       <Page />
-      <CloseButton white onClick={userStore.onboardingFinish} />
+      <CloseButton
+        white
+        onClick={userStore.onboardingFinish}
+        className={styles.close}
+      />
     </div>
   );
 };
@@ -24,8 +28,8 @@ export const OnboardPage = () => {
 const OnboardStage1 = () => {
   return (
     <>
-      <img className={styles.img1} src="/public/images/rabbit.webp"/>
       <div>
+        <img className={styles.img1} src="/public/images/rabbit.webp" />
         <h1>
           Привет!
           <br />
@@ -44,76 +48,77 @@ const OnboardStage1 = () => {
 
 const OnboardStage2 = () => {
   return (
-    <div flex column gap="10">
-      <h1>Как это работает?</h1>
-      <div>
-        <h2 class={styles.menuText}>
-          локально на поле
-        </h2>
-        <div class="text">
-          Insight работает с помощью внутренней сети «Insomnia-WIFI», которая
-          доступна только на территории фестиваля
+    <>
+      <div flex column gap="10">
+        <h1>Как это работает?</h1>
+        <div>
+          <h2 class={styles.menuText}>локально на поле</h2>
+          <div class="text">
+            Insight работает с помощью внутренней сети «Insomnia-WIFI», которая
+            доступна только на территории фестиваля
+          </div>
         </div>
-      </div>
-      <div>
-        <h2 class={styles.menuText}>Почти интернет</h2>
-        <div class="text">
-          Заходить на другие сайты нельзя, но можно наслаждаться порталом, даже
-          если нет подключения к сети
+        <div>
+          <h2 class={styles.menuText}>Почти интернет</h2>
+          <div class="text">
+            Заходить на другие сайты нельзя, но можно наслаждаться порталом,
+            даже если нет подключения к сети
+          </div>
         </div>
-      </div>
-      <div class="sh1 colorWhite">
-        Точки сети находятся у Инфоцентра и основных экранов
+        <div class="sh1 colorWhite">
+          Точки сети находятся у Инфоцентра и основных экранов
+        </div>
       </div>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
           интересно
         </Button>
       </ButtonsBar>
-    </div>
+    </>
   );
 };
 
 const OnboardStage3 = () => {
   return (
-    <div flex column gap="10">
-      <h1>insight это </h1>
-      <h2>
-        <ul class="styledList" flex column gap="8">
-          <li>Карта фестиваля</li>
-          <li>Расписание ночных показов</li>
-          <li>расписание дневных мероприятий</li>
-          <li>онлайн доска объявлений</li>
-        </ul>
-      </h2>
+    <>
+      <div flex column gap="10">
+        <h1>insight это </h1>
+        <h2>
+          <ul class="styledList" flex column gap="8">
+            <li>Карта фестиваля</li>
+            <li>Расписание ночных показов</li>
+            <li>расписание дневных мероприятий</li>
+            <li>онлайн доска объявлений</li>
+          </ul>
+        </h2>
+      </div>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
           круто!
         </Button>
       </ButtonsBar>
-    </div>
+    </>
   );
 };
 const OnboardStage4 = () => {
   return (
     <>
-      <h1>а ещё тут можно</h1>
       <div flex column gap={8}>
+        <h1>а ещё тут можно</h1>
         <div>
           <h2 class={styles.menuText}>сохранять</h2>
           <div class="text">
-            мультфильмы, мероприятия и места в избранное, чтобы ничего
-            не пропустить!
+            мультфильмы, мероприятия и места в избранное, чтобы ничего не
+            пропустить!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>проголосовать</h2>
           <div class="text">
-            за лучший мультфильм в номинации «Приз зрительских симпатий»
+            за лучший мультфильм в номинации «Приз зрительских симпатий»
           </div>
         </div>
       </div>
-      <div class="fix-flex-aroung"></div>
       <ButtonsBar at="bottom">
         <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
           Начать
