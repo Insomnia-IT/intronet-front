@@ -24,7 +24,7 @@ export const PageHeader = ({titleH1, titleH2, favoritesRoute, withCloseButton, a
           case !!titleH1:
             return <h1>{titleH1}</h1>
           case !!titleH2:
-            return <p className={'sh1'}>{titleH2}</p>
+            return <p className={`sh1 ${styles.titleH2}`}>{titleH2}</p>
           default:
             return {children}
         }
