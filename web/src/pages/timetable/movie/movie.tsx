@@ -51,7 +51,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         <div flex column gap={2} style={{ marginBottom: 24 }}>
           <Card border="Vivid" gap={0}>
             <div flex column gap="2">
-              <div class="sh2 colorPink">Международный конкурс анимации</div>
+              <div class="sh2 colorPink">Российский конкурс анимации</div>
               <div class="sh3 colorPink">Приз зрительских симпатий</div>
             </div>
             <Link

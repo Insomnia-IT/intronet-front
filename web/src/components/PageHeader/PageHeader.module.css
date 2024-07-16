@@ -25,3 +25,7 @@
 .header > h1 {
   color: var(--medium-blue);
 }
+
+.titleH2 {
+  word-break: break-word;
+}
