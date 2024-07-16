@@ -77,6 +77,24 @@ export const LocationEdit = () => {
             </Tag>
           )}
         </Tags>
+
+        <Tags
+          tagsList={[
+            Directions.paidShower,
+            Directions.kpp,
+            Directions.music,
+            Directions.sign,
+          ]}
+        >
+          {(direction) => (
+            <Tag
+              selected={location?.directionId === direction}
+              onClick={() => cell.set({ ...location, directionId: direction })}
+            >
+              {direction}
+            </Tag>
+          )}
+        </Tags>
         <Label
           title="Описание"
           inputType="textarea"
