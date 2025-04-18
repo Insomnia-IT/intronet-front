@@ -6,6 +6,8 @@ import { dbCtrl } from "../db-ctrl";
 import moviesXLS from "./movies.json" assert { "type": "json" };
 import { ArrayElement } from "mongodb";
 import schedule from "./schedule.json" assert { "type": "json" };
+import fs from "fs";
+import process from "node:process";
 
 export async function importMovies(force = false) {
   const vurchelMap = new Map(
@@ -26,12 +28,15 @@ export async function importMovies(force = false) {
       await moviesDB.remove(movie._id);
     }
   }
-  // const moviesJSON: Schedule = await fetch('https://insomniafest.ru/export/schedule').then(x => x.json()).catch(() => null);
-  // fs.writeFileSync('./server/data/movies_api.json', JSON.stringify(moviesJSON), 'utf8');
-  // if (!moviesJSON){
-  //   console.error('cannot load');
-  //   return;
-  // }
+  if (process.env.IMPORT_MOVIES) {
+    const moviesJSON = await fetch('https://insomniafest.ru/export/program/2025')
+      .then(x => x.json()).catch(() => null) as Schedule;
+    fs.writeFileSync('./data/movies/api.json', JSON.stringify(moviesJSON), 'utf8');
+    if (!moviesJSON) {
+      console.error('cannot load');
+      return;
+    }
+  }
   const screenNameMap = {
     "Полевой Экран (ЦУЭ 1)": locations
       .filter((x) => x.directionId == "Экран")
