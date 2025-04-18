@@ -173,8 +173,11 @@ interface Activity {
   day: number;
   start: string;
   end: string;
-  author: string;
-  authorDescription?: string;
+  authors: Array<{
+    name: string
+    description?: string;
+    photo?: string;
+  }>;
   age?: number;
   hasChanges?: boolean;
   isCanceled?: boolean;
@@ -213,11 +216,9 @@ interface AuditoryElementExpand extends AuditoryElement {
 type MovieInfo = {
   id: string;
   name: string;
-  description: string;
+  plot?: string;
+  image?: string;
   country: string;
-  year;
-  image: string;
-  duration: string;
   author: string;
   vurchelId: string;
   info?: VurchelFilm;

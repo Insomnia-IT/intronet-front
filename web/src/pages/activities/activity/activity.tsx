@@ -1,18 +1,18 @@
-import { FunctionalComponent } from "preact";
+import {FunctionalComponent} from "preact";
 import {useEffect, useMemo} from "preact/hooks";
-import { locationsStore } from "@stores";
-import { bookmarksStore } from "@stores/bookmarks.store";
-import { ActivityStore } from "@stores/activities/activities.store";
-import { useCell } from "@helpers/cell-state";
-import { getDayText } from "@helpers/getDayText";
-import { Button, ButtonsBar } from "@components";
-import { Card } from "@components";
-import { Link } from "@components";
-import { SvgIcon } from "@icons";
-import { Badge } from "@components/badge/badge";
-import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
+import {locationsStore} from "@stores";
+import {bookmarksStore} from "@stores/bookmarks.store";
+import {ActivityStore} from "@stores/activities/activities.store";
+import {useCell} from "@helpers/cell-state";
+import {getDayText} from "@helpers/getDayText";
+import {Button, ButtonsBar} from "@components";
+import {Card} from "@components";
+import {Link} from "@components";
+import {SvgIcon} from "@icons";
+import {Badge} from "@components/badge/badge";
+import {useActivitiesRouter} from "../hooks/useActivitiesRouter";
 import Styles from "./activity.module.css";
-import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
+import {BookmarkIcon} from "@components/BookmarkGesture/bookmark-icon";
 import {PageHeader} from "@components/PageHeader/PageHeader";
 
 export type ActivityProps = {
@@ -21,20 +21,20 @@ export type ActivityProps = {
 export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   const router = useActivitiesRouter();
   const store = useMemo(() => new ActivityStore(id), [id]);
-  const { activity, hasBookmark } = useCell(store.state);
+  const {activity, hasBookmark} = useCell(store.state);
 
+  console.log(activity);
   return (
     <div flex column gap={4}>
       {activity && (<>
           <PageHeader titleH2={activity?.title} align={'top'} withCloseButton/>
 
           {activity.description && <div className="text">{activity?.description}</div>}
-          {
-            activity.author &&
+          {activity.authors?.map(author => (
             <div className="colorGray sh3">
-              {activity?.author}{activity?.authorDescription ? `. ${activity?.authorDescription}` : ''}
+              {[author.name, author.description].filter(x => x).join('. ')}
             </div>
-          }
+          ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
           <Card

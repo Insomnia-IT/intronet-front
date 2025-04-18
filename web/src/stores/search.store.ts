@@ -52,7 +52,7 @@ const locationChecker: Checker<InsomniaLocation> = (regex) => (location) =>
 
 const activityChecker: Checker<Activity> = (regex) => (activity) =>
   regex.test(searchDataValidator(activity.title)) ||
-  regex.test(searchDataValidator(activity.author));
+  regex.test(searchDataValidator(activity.authors.map(x => x.name).join(' ')));
 
 export const searchDataValidator = (data: string) => {
   if (!data) {
