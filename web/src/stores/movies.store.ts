@@ -29,23 +29,13 @@ class MoviesStore {
       movies: b.movies.map((m) => {
         const info = this.vurchelDB.get(m.vurchelId?.toString());
         if (!info)
-          return {
-            ...m,
-            duration: m.duration?.includes(":") ? m.duration : undefined,
-          };
+          return m;
         return {
           ...m,
           name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
-          duration: m.duration.includes(":")
-            ? m.duration
-            : info.filmDuration
-            ? info.filmDuration
-            : "",
-          description: m.description ?? info.filmEnPlot,
-          country: m.country || info.countries.join(", ") || "",
-          author:
-            m.author ||
-            info.credits
+          description: m.plot ?? info.filmEnPlot,
+          country: info.countries.join(", ") || "",
+          author: info.credits
               .flatMap((x) => x.directors.map((d) => d.name))
               .filter((x) => x)
               .join(", "),

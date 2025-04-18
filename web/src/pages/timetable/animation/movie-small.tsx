@@ -24,7 +24,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
 }) => {
   const switchBookmark = () => bookmarksStore.switchBookmark("movie", movie.id);
   const router = useTimetableRouter();
-  const [minutes, seconds] = movie.duration?.split(/[:'"]/) ?? [];
+  const [minutes, seconds] = movie.info?.filmDuration?.split(/[:'"]/) ?? [];
   const hasBookmark = useCell(
     () => !!bookmarksStore.getBookmark("movie", movie.id),
     [movie.id]
@@ -68,15 +68,15 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
                 />
               )}
             </div>
-            {movie.author || movie.country || movie.year ? (
+            {movie.author || movie.country || movie.info?.filmReleaseYear ? (
               <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
                 {highlight(movie.author, searchQuery)},{" "}
                 {highlight(movie.country, searchQuery)}
-                {movie.year ? ", " + movie.year : ""}
+                {movie.info?.filmReleaseYear ? ", " + movie.info?.filmReleaseYear : ""}
               </div>
             ) : null}
             <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-              {movie.duration ? (
+              {movie.info?.filmDuration ? (
                 <>
                   {minutes}&nbsp;мин&nbsp;{seconds}&nbsp;сек
                 </>

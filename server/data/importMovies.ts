@@ -1,21 +1,11 @@
 import "@cmmn/cell";
-import { Fn, groupBy } from "@cmmn/core";
-import * as console from "console";
-import { Database } from "../database";
-import { dbCtrl } from "../db-ctrl";
-import moviesXLS from "./movies.json" assert { "type": "json" };
-import { ArrayElement } from "mongodb";
-import schedule from "./schedule.json" assert { "type": "json" };
-import fs from "fs";
-import process from "node:process";
+import {Fn, groupBy} from "@cmmn/core";
+import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
+import {ArrayElement} from "mongodb";
+import events from "./events.json" assert {"type": "json"};
 
 export async function importMovies(force = false) {
-  const vurchelMap = new Map(
-    schedule
-      .flatMap((x) => x.screenPrograms)
-      .flatMap((x) => x.programFilms)
-      .map((x) => [x.title, x.vurchelID])
-  );
   const locationDB = Database.Get<any>("locations");
   const locations = (await locationDB.getSince()).filter((x) => !x.deleted);
   if (locations.length == 0) return;
@@ -28,40 +18,49 @@ export async function importMovies(force = false) {
       await moviesDB.remove(movie._id);
     }
   }
-  if (process.env.IMPORT_MOVIES) {
-    const moviesJSON = await fetch('https://insomniafest.ru/export/program/2025')
-      .then(x => x.json()).catch(() => null) as Schedule;
-    fs.writeFileSync('./data/movies/api.json', JSON.stringify(moviesJSON), 'utf8');
-    if (!moviesJSON) {
-      console.error('cannot load');
-      return;
+  const screens = [
+    /полевой/i, /речной/i, /детский/i
+  ]
+  function getLocationId(screenName: string) {
+    for (let screen of screens) {
+      if (screenName.match(screen)){
+        return locations
+          .filter((x) => x.directionId == "Экран")
+          .find((x) => x.name?.match(screen))?._id;
+      }
     }
   }
-  const screenNameMap = {
-    "Полевой Экран (ЦУЭ 1)": locations
-      .filter((x) => x.directionId == "Экран")
-      .find((x) => x.name?.toLowerCase().includes("полевой"))?._id,
-    "Полевой экран": locations
-      .filter((x) => x.directionId == "Экран")
-      .find((x) => x.name?.toLowerCase().includes("полевой"))?._id,
-    "Речной Экран (ЦУЭ 2)": locations
-      .filter((x) => x.directionId == "Экран")
-      .find((x) => x.name?.toLowerCase().includes("речной"))?._id,
-    "Речной экран": locations
-      .filter((x) => x.directionId == "Экран")
-      .find((x) => x.name?.toLowerCase().includes("речной"))?._id,
-    "Детский экран": locations
-      .filter((x) => x.directionId == "Экран")
-      .find((x) => x.name?.toLowerCase().includes("детский"))?._id,
-  };
-  const blocksXls = moviesXLS
+  function splitTitle(title: string) {
+    title = title.replace('&amp;','&')
+    const result = {
+      Title: title,
+      SubTitle: null,
+      TitleEn: null,
+      SubTitleEn: null,
+      Part: 0
+    }
+    const partPosition = title.indexOf('Часть');
+    if (partPosition == -1) {
+      return result;
+    }
+    result.Title = title.substring(0, partPosition - 2);
+    result.Part = +title.substring(partPosition + 6, partPosition + 7);
+    const rest = title.substring(partPosition + 8).trim().replace(/^\(/,'').replace(/\)$/,'');
+    if (rest.match(/[а-яА-Я]/)){
+      result.SubTitle = rest;
+    } else {
+      result.TitleEn = rest.replace(/\.?\s?Part \d\.?$/i,'');
+    }
+    return result;
+  }
+  const blocksXls = events.screens
     .flatMap((x) =>
-      x.Blocks.map((b) => ({
+      x.screenPrograms.map((b) => ({
         block: b,
-        day: x.Day,
-        locationId: screenNameMap[x.Screen],
-        start: b.Start,
-        end: b.End,
+        locationId: getLocationId(x.screenName),
+        start: getTime(b.programStart*1000),
+        end: getTime(b.programEnd*1000),
+        day: getDay(b.programStart*1000),
       }))
     )
     .filter((x) => x)
@@ -73,38 +72,18 @@ export async function importMovies(force = false) {
         end: b.end,
       },
       info: {
-        Title: b.block.Title,
-        SubTitle: b.block.SubTitle,
-        TitleEn: b.block.TitleEn,
-        SubTitleEn: b.block.SubTitleEn,
-        MinAge: b.block.MinAge,
-        Part: b.block.Part,
+        ...splitTitle(b.block.programTitle),
+        MinAge: b.block.programAge,
       },
-      movies: b.block.Movies.map((xls) => ({
+      movies: b.block.programFilms.map((x) => ({
         id: Fn.ulid(),
-        name: xls.Name,
-        author: xls.Author,
-        country: xls.Country,
-        year: xls.Year,
-        duration: xls.Duration,
-        vurchelId: vurchelMap.get(xls.Name),
+        name: x.title,
+        image: x.image,
+        plot: x.plot,
+        vurchelId: x.vurchelID,
       })),
     }));
-  console.log(blocksXls[0]);
-  // const array = moviesAPI.flatMap((x) =>
-  //   x.screenPrograms.map((b) => ({
-  //     block: b,
-  //     day: getDay(toMoscow(b.programStart * 1000)),
-  //     start: getTime(toMoscow(b.programStart * 1000)),
-  //     end: getTime(toMoscow(b.programEnd * 1000)),
-  //     locationId: screenNameMap[x.screenName],
-  //     programStart: b.programStart,
-  //   }))
-  // );
-  // const blocks = Array.from(
-  //   groupBy(array, (x) => `${x.block.programTitle}`).values()
-  // ) as Array<typeof array>;
-  // writeFileSync('./movies_api.json', JSON.stringify(moviesJSON), 'utf-8')
+
   const blocksMap = groupBy(blocksXls, (b: ArrayElement<typeof blocksXls>) =>
     [b.info.Title, b.info.SubTitle, b.info.Part].join(".")
   ) as Map<string, ArrayElement<typeof blocksXls>[]>;
