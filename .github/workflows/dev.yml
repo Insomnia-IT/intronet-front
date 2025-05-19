@@ -32,7 +32,7 @@ jobs:
             set -e
             BRANCH="develop"
             DIR="/opt/insomnia-app/intronet/$BRANCH"
-            REPO="https://github.com/intronet-front-deploy/.git"
+            REPO="https://github.com/Insomnia-IT/intronet-front-deploy.git"
 
             mkdir -p "$DIR"
             cd "$DIR"
