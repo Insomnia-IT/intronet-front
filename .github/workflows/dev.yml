@@ -3,7 +3,7 @@ name: Docker Build
 on:
   push:
     branches:
-      - 'master'
+      - 'develop'
 
 env:
   CLUSTER_NAME: InsightKube
@@ -50,7 +50,7 @@ jobs:
         run: |
           ssh ${{ secrets.SRV_USER_NAME }}@${{ secrets.SRV_HOST }} << 'EOF'
             set -e
-            BRANCH="${{ github.ref_name }}"
+            BRANCH="develop"
             DIR="/opt/insomnia-app/intronet/$BRANCH"
               REPO="https://github.com/intronet-front-deploy/.git"
 
