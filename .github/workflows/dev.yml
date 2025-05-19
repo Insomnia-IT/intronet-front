@@ -53,7 +53,8 @@ jobs:
             fi
       
             GITHUB_SHA_NOW=\$(git ls-remote https://github.com/Insomnia-IT/intronet-front/ | head -1 | awk '{print \$1}')
-      
+            
+            cp env.example .env   
             sed -i "s|\\\$DB_PASSWORD|$DB_PASSWORD|g" .env
             sed -i "s|\\\$KIBANA_PASSWORD|$KIBANA_PASSWORD|g" .env
             sed -i "s|\\\$GRAFANA_PASSWORD|$GRAFANA_PASSWORD|g" .env
