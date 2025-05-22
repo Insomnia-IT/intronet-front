@@ -5,8 +5,8 @@ import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import json from "./vurchel.json" assert { "type": "json" };
 import { writeFileSync } from "fs";
+import process from "node:process";
 
-const importFromVurchel = false;
 export async function importVurchel(force = false) {
   const vurchelDB = Database.Get<any>("vurchel");
   const films = await vurchelDB.getSince();
@@ -17,7 +17,7 @@ export async function importVurchel(force = false) {
       await vurchelDB.remove(movie._id);
     }
   }
-  if (importFromVurchel) {
+  if (process.env.IMPORT_VURCHEL) {
     const moviesDB = Database.Get<MovieBlock>("movies");
     const movies = await moviesDB.getSince();
     const vurchelData = [];

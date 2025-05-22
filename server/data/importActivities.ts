@@ -1,9 +1,10 @@
 import "@cmmn/cell";
-import { Fn } from "@cmmn/core";
-import { Database } from "../database";
-import { dbCtrl } from "../db-ctrl";
+import {Fn} from "@cmmn/core";
+import {Database} from "../database";
+import {dbCtrl} from "../db-ctrl";
 
-import activitiesFromNotion from "./activities/activities2024.json" assert { "type": "json" };
+import events from "./events.json" assert {"type": "json"};
+import {getDay, getTime} from "./importMovies";
 
 export async function importActivities(force = false) {
   const locationDB = Database.Get<any>("locations");
@@ -21,21 +22,31 @@ export async function importActivities(force = false) {
     }
   }
 
-  const activities = activitiesFromNotion.map((activity) => {
+  const activities = events.places.flatMap(place => {
     const location = locations.find(
-      (x) => escape(x.name) === escape(activity.location ?? '')
+      (x) => escape(x.name) === escape(place.placeName ?? '')
     );
 
     if (!location) {
-      console.error(`Not found: ${activity.location}`);
+      console.error(`Not found: ${place.placeName}`);
     }
-
-    return {
-      _id: Fn.ulid(),
+    return place.placeEvents.map(activity => {
+      return {
+        _id: Fn.ulid(),
         version: Fn.ulid(),
-      locationId: location?._id ?? activity.location,
-    ...activity
-    }
+        locationId: location?._id,
+        title: activity.eventTitle,
+        description: activity.eventDescription,
+        start: getTime(activity.eventStart*1000),
+        end: getTime(activity.eventEnd*1000),
+        authors: activity.eventParticipants.map(p => ({
+          name: p.participantName,
+          description: p.participantBio,
+          photo: p.participantPhoto
+        })),
+        day: getDay(activity.eventStart*1000),
+      } as Activity
+    });
   });
 
   for (let item of activities) {

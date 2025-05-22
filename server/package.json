@@ -4,7 +4,7 @@
   "description": "Intronet web site for insomnia fest",
   "scripts": {
     "server": "nodemon ./dist/esm",
-    "test": "node --env-file=.env.local --test ./dist/esm/specs/locations.specs.js",
+    "test": "node --env-file=.env.local --test --loader @swc-node/register/esm ./specs/*.specs.ts",
     "build": "cmmn compile"
   },
   "type": "module",
@@ -21,6 +21,8 @@
     "google-auth-library": "^9.10.0",
     "google-spreadsheet": "^4.1.2",
     "xmldom": "0.6.0",
+    "@swc/core": "1.11.21",
+    "@swc-node/register": "1.10.10",
     "@mapbox/togeojson": "0.16.2",
     "@cmmn/tools": "2.0.2",
     "@types/node": "20.10.1",

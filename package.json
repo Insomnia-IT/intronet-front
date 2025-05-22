@@ -12,8 +12,7 @@
     "build": "cmmn compile -b && cmmn bundle -b --prod --minify",
     "story": "start-storybook -p 6006",
     "ci": "docker build . -t insomnia/intronet-front",
-    "server": "cd ./server/dist/esm && nodemon index.js",
-    "test": "node --import tsx --test ./**/*.specs.ts"
+    "server": "cd ./server/dist/esm && nodemon index.js"
   },
   "private": true,
   "workspaces": [

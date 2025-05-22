@@ -131,8 +131,11 @@ interface Activity {
   day: number;
   start: string;
   end: string;
-  author: string;
-  authorDescription?: string;
+  authors: Array<{
+    name: string
+    description?: string;
+    photo?: string;
+  }>;
   age?: number;
   hasChanges?: boolean;
   isCanceled?: boolean;
