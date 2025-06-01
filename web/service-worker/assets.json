@@ -2,6 +2,7 @@
   "/public/root.version",
   "/",
   "/sw-loader.min.js",
+  "/public/icons/apple.png",
   "/public/icons/64x64.png",
   "/public/icons/192x192.png",
   "/public/icons/512x512.png",

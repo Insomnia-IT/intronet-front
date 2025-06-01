@@ -42,7 +42,7 @@ export async function importActivities(force = false) {
         authors: activity.eventParticipants.map((p) => ({
           name: p.participantName,
           description: p.participantBio,
-          photo: p.participantPhoto.full,
+          photo: p.participantPhoto?.full,
         })),
         day: getDay(activity.eventStart * 1000),
       } as Activity;
