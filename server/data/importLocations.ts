@@ -2,8 +2,8 @@ import { dbCtrl } from "../db-ctrl";
 import process from "node:process";
 import { Database } from "../database";
 import { Fn, groupBy } from "@cmmn/core";
-import locationsGoogle from "./locations/locations2024google.json" assert { "type": "json" };
-import mapJson from "./locations/locations2024.json" assert { "type": "json" };
+import locationsGoogle from "./locations/locations_google.json" assert { "type": "json" };
+import mapJson from "./locations/genplan.json" assert { "type": "json" };
 import fs from "fs";
 import { menu } from "./menu";
 
@@ -77,7 +77,7 @@ export async function getLocationsFromGoogleSheet() {
     ];
   });
   fs.writeFileSync(
-    "./data/locations/locations2024google.json",
+    "./data/locations/locations_google.json",
     JSON.stringify(data),
     "utf8"
   );
