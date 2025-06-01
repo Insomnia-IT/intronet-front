@@ -5,7 +5,6 @@ import { Fn, groupBy } from "@cmmn/core";
 import locationsGoogle from "./locations/locations_google.json" assert { "type": "json" };
 import mapJson from "./locations/genplan.json" assert { "type": "json" };
 import fs from "fs";
-import { menu } from "./menu";
 
 export async function importLocations(force = false) {
   const locationsDB = Database.Get<any>("locations");
@@ -21,13 +20,8 @@ export async function importLocations(force = false) {
     ? await getLocationsFromGoogleSheet()
     : (locationsGoogle as any);
 
-  const menuMap = new Map(getMenu());
-
   for (let loc of data) {
-    const menu =
-      menuMap.get(loc.name.toLowerCase()) ??
-      menuMap.get(loc.mapName.toLowerCase());
-    await locationsDB.addOrUpdate({ ...loc, menu, version: Fn.ulid() });
+    await locationsDB.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
   dbCtrl.versions = undefined;
 }
@@ -69,10 +63,11 @@ export async function getLocationsFromGoogleSheet() {
         figure,
         directionId,
         tags: [],
-        work_tags: [row.get("Капшеринг")].filter((x) => x),
-        priority: !!(row.get("Приоритет") as string)?.match(/приоритет/i),
+        work_tags: [Boolean(row.get("Капшеринг")) ? "Капшеринг" : null].filter((x) => x),
+        priority: Boolean(row.get("Приоритет")),
         details: row.get("Тип деталки") as string,
         groupLink: row.get("Ссылка на группу") as string,
+        menu: row.get("Меню") as string | undefined,
       } as InsomniaLocation,
     ];
   });
@@ -126,15 +121,3 @@ function geometryToFigure(
   ) as GeoFigure;
 }
 
-function* getMenu(): Generator<[string, string]> {
-  const blocks = menu
-    .split(/\_{10,}/)
-    .map((x) => x.trim())
-    .filter((x) => x);
-  for (let block of blocks) {
-    const firstLineEnd = block.indexOf("\n");
-    const title = block.substring(0, firstLineEnd).trim().toLowerCase();
-    const text = block.substring(firstLineEnd).trim();
-    yield [title, text];
-  }
-}

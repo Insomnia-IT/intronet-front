@@ -1,4 +1,5 @@
 import { CloseButton, PageLayout } from "@components";
+import { getDayText } from '@helpers/getDayText'
 
 export function GoAway() {
   return (
@@ -8,8 +9,8 @@ export function GoAway() {
       <div>
         Отправляются от шоссе (со съезда на «Бессонницу»):
         <ul className="disc">
-          <li>Днем в воскресенье, 21 июля</li>
-          <li>Днем в понедельник, 22 июля</li>
+          <li>Днем в {getDayText(3, 'full').toLocaleLowerCase()}</li>
+          <li>Днем в {getDayText(4, 'full').toLocaleLowerCase()}</li>
         </ul>
         (точное время отправления указано в форме заказа и на вашем билете).
       </div>
@@ -20,8 +21,8 @@ export function GoAway() {
       От «Бессонницы» до вокзала «Калуга-1»
       <br />
       <ul className="disc">
-        <li>воскресенье, 21 июля: с 12:00 до 17:00 по мере заполнения</li>
-        <li>понедельник, 22 июля: с 12:00 до 15:30 по мере заполнения</li>
+        <li>воскресенье, {getDayText(3, 'full').toLocaleLowerCase()}: с 12:00 до 17:00 по мере заполнения</li>
+        <li>понедельник, {getDayText(4, 'full').toLocaleLowerCase()}: с 12:00 до 15:30 по мере заполнения</li>
       </ul>
       <div className="sh1">Автовокзал в Юхнове:</div>
       <a href="tel://+74843621304">+7 4843 62 13 04</a>

@@ -80,6 +80,9 @@ class AuthStore extends LocalStore<{
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({ role, username }),
+    }).then(async result => {
+      const token = await result.text();
+      console.log(`Token for ${username}`, token);
     });
   }
 
