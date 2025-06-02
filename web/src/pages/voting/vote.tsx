@@ -2,10 +2,11 @@ import { useCell } from "@helpers/cell-state";
 import { votingStore } from "@stores/votingStore";
 import { useEffect, useState } from "preact/hooks";
 import { useRouter } from "../routing";
-import { Button, ButtonsBar } from "@components";
+import { ButtonsBar } from "@components";
 import { FunctionalComponent } from "preact";
 import { MovieSmall } from "../timetable/animation/movie-small";
 import { moviesStore } from "@stores";
+import { OnlineButton } from '@components/buttons/online-button'
 
 export const Vote: FunctionalComponent<{
   id: string;
@@ -14,7 +15,7 @@ export const Vote: FunctionalComponent<{
     () => moviesStore.Movies.find((x) => x.id == props.id),
     [props.id]
   );
-  const { isOnline, canVote, votedMovie } = useCell(votingStore.state);
+  const { canVote, votedMovie } = useCell(votingStore.state);
   const router = useRouter();
   useEffect(() => {
     if (votedMovie) router.goTo("/voting", {}, true);
@@ -32,17 +33,17 @@ export const Vote: FunctionalComponent<{
         Если вы передумали, вернитесь назад и выберите другую работу.
       </div>
       <ButtonsBar at="bottom">
-        <Button
+        <OnlineButton
           type="blue"
           class="w-full"
-          disabled={!isOnline || !canVote}
+          disabled={!canVote}
           onClick={() => {
             votingStore.vote(props.id);
             router.goTo(["voting", "success"]);
           }}
         >
-          {isOnline ? "Голосовать за эту работу" : "Ждем подключения к Wi-Fi"}
-        </Button>
+          Голосовать за эту работу
+        </OnlineButton>
       </ButtonsBar>
     </div>
   );

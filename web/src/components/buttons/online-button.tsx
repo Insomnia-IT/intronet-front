@@ -16,7 +16,7 @@ export const OnlineButton: FunctionalComponent<IOnlineButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const { isOnline } = useOnlineState();
+  const isOnline = useOnlineState();
   const noteText =
     disconectNoteText ||
     "Нет подключения к сети, вернитесь к точке WIFI, чтобы написать объявление";
