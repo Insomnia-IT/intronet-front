@@ -24,7 +24,9 @@ export async function importActivities(force = false) {
 
   const activities = events.places.flatMap((place) => {
     const location = locations.find(
-      (x) => escape(x.name) === escape(place.placeName ?? "")
+      (x) =>
+        x.entry_id == place.entry_id ||
+        escape(x.name) === escape(place.placeName ?? "")
     );
 
     if (!location) {

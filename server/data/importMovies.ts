@@ -1,9 +1,9 @@
 import "@cmmn/cell";
-import {Fn, groupBy} from "@cmmn/core";
-import {Database} from "../database";
-import {dbCtrl} from "../db-ctrl";
-import {ArrayElement} from "mongodb";
-import events from "./events.json" assert {"type": "json"};
+import { Fn, groupBy } from "@cmmn/core";
+import { Database } from "../database";
+import { dbCtrl } from "../db-ctrl";
+import { ArrayElement } from "mongodb";
+import events from "./events.json" assert { "type": "json" };
 
 export async function importMovies(force = false) {
   const locationDB = Database.Get<any>("locations");
@@ -18,38 +18,39 @@ export async function importMovies(force = false) {
       await moviesDB.remove(movie._id);
     }
   }
-  const screens = [
-    /полевой/i, /речной/i, /детский/i
-  ]
+  const screenRegexes = [/полевой/i, /речной/i, /детский/i];
   function getLocationId(screenName: string) {
-    for (let screen of screens) {
-      if (screenName.match(screen)){
-        return locations
-          .filter((x) => x.directionId == "Экран")
-          .find((x) => x.name?.match(screen))?._id;
-      }
-    }
+    if (!screenName) return null;
+    const regex = screenRegexes.find((x) => x.test(screenName));
+    if (!regex) return null;
+    return locations
+      .filter((x) => x.directionId == "Экран")
+      .find((x) => x.name?.match(regex))?._id;
   }
   function splitTitle(title: string) {
-    title = title.replace('&amp;','&')
+    title = title.replace("&amp;", "&");
     const result = {
       Title: title,
       SubTitle: null,
       TitleEn: null,
       SubTitleEn: null,
-      Part: 0
-    }
-    const partPosition = title.indexOf('Часть');
+      Part: 0,
+    };
+    const partPosition = title.indexOf("Часть");
     if (partPosition == -1) {
       return result;
     }
     result.Title = title.substring(0, partPosition - 2);
     result.Part = +title.substring(partPosition + 6, partPosition + 7);
-    const rest = title.substring(partPosition + 8).trim().replace(/^\(/,'').replace(/\)$/,'');
-    if (rest.match(/[а-яА-Я]/)){
+    const rest = title
+      .substring(partPosition + 8)
+      .trim()
+      .replace(/^\(/, "")
+      .replace(/\)$/, "");
+    if (rest.match(/[а-яА-Я]/)) {
       result.SubTitle = rest;
     } else {
-      result.TitleEn = rest.replace(/\.?\s?Part \d\.?$/i,'');
+      result.TitleEn = rest.replace(/\.?\s?Part \d\.?$/i, "");
     }
     return result;
   }
@@ -58,9 +59,9 @@ export async function importMovies(force = false) {
       x.screenPrograms.map((b) => ({
         block: b,
         locationId: getLocationId(x.screenName),
-        start: getTime(b.programStart*1000),
-        end: getTime(b.programEnd*1000),
-        day: getDay(b.programStart*1000),
+        start: getTime(b.programStart * 1000),
+        end: getTime(b.programEnd * 1000),
+        day: getDay(b.programStart * 1000),
       }))
     )
     .filter((x) => x)

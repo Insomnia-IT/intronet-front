@@ -57,6 +57,7 @@ export async function getLocationsFromGoogleSheet() {
     return [
       {
         _id: row.get("id") as string,
+        entry_id: row.get("entry_id") as string,
         mapName,
         name: row.get("Название Insight") as string,
         description: row.get("Описание") as string,
