@@ -4,6 +4,7 @@ import { bind } from "@cmmn/core";
 import { ChangeEvent } from "preact/compat";
 import { locationsStore } from "@stores/locations.store";
 import { activitiesStore } from "@stores/activities";
+import { notesStore } from './notes'
 
 class SearchStore {
   public query = new Cell<string>("");
@@ -33,6 +34,11 @@ class SearchStore {
     return activitiesStore.Activities.filter(activityChecker(this.queryRegex));
   });
 
+  public filteredNotes = new Cell(() => {
+    if (!this.queryRegex) return [];
+    return notesStore.notes.filter(noteChecker(this.queryRegex));
+  });
+
   @bind
   public onInput(e: ChangeEvent<HTMLInputElement>) {
     this.query.set(e.currentTarget.value);
@@ -53,6 +59,10 @@ const locationChecker: Checker<InsomniaLocation> = (regex) => (location) =>
 const activityChecker: Checker<Activity> = (regex) => (activity) =>
   regex.test(searchDataValidator(activity.title)) ||
   regex.test(searchDataValidator(activity.authors.map(x => x.name).join(' ')));
+
+const noteChecker: Checker<INote> = (regex) => (note) =>
+  regex.test(searchDataValidator(note.title)) ||
+  regex.test(searchDataValidator(note.text));
 
 export const searchDataValidator = (data: string) => {
   if (!data) {
