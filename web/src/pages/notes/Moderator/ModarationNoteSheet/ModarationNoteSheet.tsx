@@ -3,8 +3,7 @@ import { notesStore } from "../../../../stores";
 import { FunctionalComponent } from "preact";
 import { NoteSheetContent } from "../../NoteSheet/NoteSheetContent/NoteSheetContent";
 import styles from "./modaration-note-sheet.module.css";
-import { Button } from "../../../../components";
-import { useOnlineState } from "../../../../helpers/useOnlineState";
+import { OnlineButton } from '@components/buttons/online-button'
 
 type IModarationNoteSheetProps = {
   noteId: string;
@@ -15,7 +14,6 @@ export const ModarationNoteSheet: FunctionalComponent<
   IModarationNoteSheetProps
 > = ({ noteId, onClose }) => {
   const note = useCell(() => notesStore.getNote(noteId), [noteId]);
-  const { isOnline } = useOnlineState();
   const onApprove = () => {
     notesStore.approveNote(noteId);
   };
@@ -33,12 +31,12 @@ export const ModarationNoteSheet: FunctionalComponent<
       <NoteSheetContent note={note} onClose={onClose} />
 
       <div className={styles.actionsBlock}>
-        <Button type={"orange"} disabled={!isOnline} onClick={onReject}>
+        <OnlineButton type={"orange"} onClick={onReject}>
           Отклонить
-        </Button>
-        <Button type={"blue"} disabled={!isOnline} onClick={onApprove}>
+        </OnlineButton>
+        <OnlineButton type={"blue"} onClick={onApprove}>
           Опубликовать
-        </Button>
+        </OnlineButton>
       </div>
     </>
   );
