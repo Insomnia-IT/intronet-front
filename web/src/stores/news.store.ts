@@ -11,11 +11,11 @@ class NewsStore {
   public State = new Cell(() => {
     const news = this.db.toArray();
     return {
-      news: orderBy(news
+      news: orderBy(news, (x) => x.time, true)
         .map((x) => ({
           ...x,
           time: this.formatTime(x.time),
-        })), (x) => x.time, true),
+        })),
     };
   });
 
