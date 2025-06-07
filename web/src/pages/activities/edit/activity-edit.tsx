@@ -13,6 +13,7 @@ import {useForm} from "@helpers/useForm";
 import {Cell} from "@cmmn/cell";
 import {locationsStore} from "@stores";
 import {Fn} from "@cmmn/core";
+import { OnlineButton } from '@components/buttons/online-button'
 
 type ActivityEditProp = {
   mode: 'create' | 'full' | 'time';
@@ -141,7 +142,7 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
       }
 
         <ButtonsBar at="bottom">
-          <Button type="blue" onClick={async () => {
+          <OnlineButton type="blue" onClick={async () => {
               await changesStore.applyChanges();
 
             await activitiesStore.updateActivity(cell.get());
@@ -149,7 +150,7 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
             router.goTo(["activities"]);
           }}>
             опубликовать изменения
-          </Button>
+          </OnlineButton>
         </ButtonsBar>
     </div>
 );
