@@ -120,12 +120,10 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
       {
         mode !== 'create' &&
         <Button type="text" class="colorOrange" onClick={() => {
-          if (mode === 'time') {
-            changesStore.addChange({
-              _id: id,
-              isCanceled: !activity.isCanceled
-            });
-          }
+          changesStore.addChange({
+            _id: id,
+            isCanceled: !activity.isCanceled
+          });
         }
         }>отменить {activity.isCanceled ? 'отмену мероприятия' : 'мероприятие'}</Button>
       }
