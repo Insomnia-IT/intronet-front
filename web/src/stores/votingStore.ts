@@ -1,9 +1,7 @@
 import { Fn } from "@cmmn/core";
 import { Cell, cell } from "@cmmn/cell";
 import { LocalStore } from "./localStore";
-import { IsConnected } from "./connection";
 import { moviesStore } from "./movies.store";
-import { userStore } from "./user.store";
 import { api } from "./api";
 import { authStore } from "./auth.store";
 
@@ -31,7 +29,6 @@ class TicketStore extends LocalStore<{
     ticket: this.ticket,
     isValidating: this.isValidating,
     isValid: !!this.ticket,
-    isOnline: IsConnected.get(),
     canVote: !this.values.movie,
   }));
 

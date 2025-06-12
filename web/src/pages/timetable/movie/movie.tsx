@@ -12,6 +12,7 @@ import { Link } from "@components";
 import { votingStore } from "@stores/votingStore";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 import { PageHeader } from "@components/PageHeader/PageHeader";
+import { useOnlineState } from '@helpers/useOnlineState'
 
 export type MovieProps = {
   id: string;
@@ -23,7 +24,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const movie = state.movie ?? ({} as MovieInfo);
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.info?.filmDuration?.split(/[:'"]/) ?? [];
-  const { isOnline } = useCell(votingStore.state);
+  const isOnline = useOnlineState();
   if (!screenLocations.length) return <></>;
 
   return (

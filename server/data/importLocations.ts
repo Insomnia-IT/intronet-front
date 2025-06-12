@@ -37,7 +37,7 @@ export async function getLocationsFromGoogleSheet() {
     name: row.properties.name,
     figure: geometryToFigure(
       row.geometry.coordinates ??
-        row.geometry.geometries.flatMap((x) => x.coordinates)
+        row.geometry["geometries"].flatMap((x) => x.coordinates)
     ),
   }));
   const mapData = groupBy(mapArray, (x) => x.name.toLowerCase());
@@ -56,14 +56,17 @@ export async function getLocationsFromGoogleSheet() {
     }
     return [
       {
-        _id: Fn.ulid(),
+        _id: row.get("id") as string,
+        entry_id: row.get("entry_id") as string,
         mapName,
         name: row.get("Название Insight") as string,
         description: row.get("Описание") as string,
         figure,
         directionId,
         tags: [],
-        work_tags: [Boolean(row.get("Капшеринг")) ? "Капшеринг" : null].filter((x) => x),
+        work_tags: [Boolean(row.get("Капшеринг")) ? "Капшеринг" : null].filter(
+          (x) => x
+        ),
         priority: Boolean(row.get("Приоритет")),
         details: row.get("Тип деталки") as string,
         groupLink: row.get("Ссылка на группу") as string,
@@ -120,4 +123,3 @@ function geometryToFigure(
     geometryToFigure
   ) as GeoFigure;
 }
-

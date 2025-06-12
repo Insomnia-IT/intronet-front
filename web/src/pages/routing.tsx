@@ -115,13 +115,28 @@ onRoutingChange({
   value: routeCell.get(),
   oldValue: [] as any,
 });
+
+const isUrl = (path: string) => {
+  try {
+    new URL(path);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export const goTo = (
   path: RoutePath | RoutePathString,
   query: Record<string, string> | undefined = queryCell.get(),
   replace: boolean = false
 ) => {
   if (typeof path === "string") {
-    const url = new URL(location.origin + path);
+    if (isUrl(path) && location.origin !== new URL(path).origin) {
+      window.open(path, '_blank').focus();
+      return;
+    }
+
+    const url = isUrl(path) ? new URL(path) : new URL(location.origin + path);
     path = url.pathname.split("/").slice(1) as RoutePath;
     query ??= Object.fromEntries(url.searchParams.entries());
   }

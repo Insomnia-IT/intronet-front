@@ -1,5 +1,4 @@
 import { Fn } from "@cmmn/core";
-import { IsConnected } from "./connection";
 import { authStore } from "./auth.store";
 import { api } from "./api";
 import { LocalObservableDB } from "./localObservableDB";
@@ -218,9 +217,6 @@ class VersionsDB extends LocalObservableDB<{
           init: actual[name].min,
         });
       }
-      IsConnected.set(true);
-    } catch (e) {
-      IsConnected.set(false);
     } finally {
       this.loadingLock = false;
     }

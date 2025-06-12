@@ -1,10 +1,9 @@
-
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 type InsomniaLocation = {
   _id: string;
-  // Неуникальный, но постоянный
-  // notionId: string;
+  // for linking events
+  entry_id: string;
   name: string;
   description: string;
   directionId: string;
@@ -132,7 +131,7 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
-    name: string
+    name: string;
     description?: string;
     photo?: string;
   }>;
@@ -282,6 +281,5 @@ type Change = {
   start?: string;
   end?: string;
 } & Record<string, any>;
-
 
 declare const PRODUCTION: boolean;

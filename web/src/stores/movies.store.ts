@@ -58,9 +58,8 @@ class MoviesStore {
       this.MovieBlocks.filter(
         (x) =>
           x.info.Title.toLowerCase().includes(
-            "российского национального конкурса"
-          ) ||
-          x.info.Title.toLowerCase().includes("российский национальный конкурс")
+          "национальный конкурс"
+        )
       ).flatMap((x) => x.movies)
     );
   }
