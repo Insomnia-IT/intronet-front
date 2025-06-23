@@ -13,8 +13,6 @@ import styles from "./notes.module.css";
 import { ModerationPageLink } from "./Moderator/ModerationPageLink/ModerationPageLink";
 import { ModerationPage } from "./Moderator/ModerationPage/ModerationPage";
 import { NotesSearch } from './search/notes-search'
-import { useCell } from '@helpers/cell-state'
-import { authStore } from '@stores/auth.store'
 
 export const NotesPage: FunctionalComponent = () => {
   const { section, filterId } = useNotesRouter();
@@ -22,8 +20,6 @@ export const NotesPage: FunctionalComponent = () => {
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };
-
-  const isTochka = useCell(() => authStore.role === "tochka");
 
   switch (section) {
     case "search":
@@ -53,9 +49,9 @@ export const NotesPage: FunctionalComponent = () => {
         )}>
             <FilteriesSlider />
             <ModerationPageLink />
-            {!isTochka &&<div className={styles.addNoteBtn}>
+            <div className={styles.addNoteBtn}>
               <AddNoteBtn />
-            </div>}
+            </div>
             <GesturedNotesList
               className={styles.notesList}
               notesProps={{
