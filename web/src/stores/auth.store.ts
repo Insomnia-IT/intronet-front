@@ -66,6 +66,10 @@ class AuthStore extends LocalStore<{
     return this.values.role;
   }
 
+  hasPermissions(roles: ("admin" | "superadmin" | "tochka")[]) {
+    return roles.includes(this.role);
+  }
+
   public auth(user: string, token: string) {
     this.patch({
       username: user,
