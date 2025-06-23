@@ -127,6 +127,7 @@ type INoteLocal = {
     name: string;
   };
   TTL: 13 | 14 | 15 | 16 | 17 | 18;
+  isPinned: boolean;
 };
 
 type INote = INoteLocal & {

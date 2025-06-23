@@ -110,6 +110,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
               | 15
               | 16
               | 17) || 18,
+        isPinned: formFields["isPinned"] === "true",
       })
       .then(() => {
         isAdmin ? router.goTo("/notes") : onAddNote(true);
@@ -117,7 +118,6 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
   };
 
   const isAdmin = useCell(() => authStore.isAdmin);
-
 
   const initialFormFields: IFormField[] = fields.map(
     ({ name, value, require }) => {
@@ -159,6 +159,15 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
                 />
               );
             })}
+
+            <Field
+              type="checkbox"
+              name="isPinned"
+              lable="Закрепить"
+              value={state["isPinned"]}
+              onChange={onFieldChange}
+              className={styles.field}
+            />
             <div className={styles.submitContainer}>
               <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
                 {isAdmin ? "Опубликовать" : "Отправить на модерацию"}
