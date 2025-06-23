@@ -128,7 +128,8 @@ export class FilteredNotesStore {
       }
 
       return true;
-    });
+    })
+      .sort((a, b) => (a.isPinned === b.isPinned) ? 0 : a.isPinned ? -1 : 1);
   }
 
   public state = new Cell(() => ({
