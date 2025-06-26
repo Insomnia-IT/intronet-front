@@ -13,6 +13,6 @@ export function highlight(text: string, query: string | undefined) {
   return new Array(split.length + matches.length)
     .fill(0)
     .map((_, i) =>
-      i % 2 == 0 ? split[i / 2] : <mark>{matches[(i - 1) / 2]}</mark>
+      i % 2 == 0 ? <span dangerouslySetInnerHTML={{__html: split[i / 2] ?? ""}}/> : <mark dangerouslySetInnerHTML={{__html: matches[(i - 1) / 2] ?? ""}}></mark>
     );
 }

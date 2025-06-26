@@ -27,7 +27,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   return (
     <div flex column gap={4}>
       {activity && (<>
-          <PageHeader titleH2={activity?.title} align={'top'} withCloseButton/>
+          <PageHeader titleH2={<span dangerouslySetInnerHTML={{__html: activity.title}}/>} align={'top'} withCloseButton/>
 
           {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description}}/>}
           {activity.authors?.map(author => (
