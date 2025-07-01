@@ -107,7 +107,7 @@ class NotesStore {
    * Проверяет, актуально ли ещё объявление.
    */
   public checkIsNoteActual = (note: INote) => {
-    return !note.isDeleted && note.TTL > getCurrentDate();
+    return !note.isDeleted && note.TTL > getCurrentDate() + 1;
   };
 
   /**

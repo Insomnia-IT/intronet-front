@@ -7,7 +7,7 @@ import {FunctionalComponent} from "preact";
 
 type PageHeaderProps = {
   titleH1?: string;
-  titleH2?: string;
+  titleH2?: string | ReactNode;
   type?: 'h1' | 'h2';
   favoritesRoute?: RoutePath | RoutePathString;
   withCloseButton?: boolean;

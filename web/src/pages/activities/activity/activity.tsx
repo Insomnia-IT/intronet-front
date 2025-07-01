@@ -23,13 +23,12 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   const store = useMemo(() => new ActivityStore(id), [id]);
   const {activity, hasBookmark} = useCell(store.state);
 
-  console.log(activity);
   return (
     <div flex column gap={4}>
       {activity && (<>
-          <PageHeader titleH2={activity?.title} align={'top'} withCloseButton/>
+          <PageHeader titleH2={<span dangerouslySetInnerHTML={{__html: activity.title}}/>} align={'top'} withCloseButton/>
 
-          {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description}}/>}
+          {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
             <div className="colorGray sh3">
               {[author.name, author.description].filter(x => x).join('. ')}
