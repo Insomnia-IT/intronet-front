@@ -132,7 +132,7 @@ const sections = {
           <Button
             type="blue"
             class="w-full"
-            goTo={["map", { direction: Directions.paidShower }]}
+            goTo={["map", { direction: Directions.freeShower }]}
           >
             к платному душу
           </Button>

@@ -147,30 +147,6 @@ const sections = {
       </div>
     ),
   },
-  yurt: {
-    title: "Кемпинг Нафани",
-    component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
-        <div style={{ marginBottom: 8 }}>
-          Если вы заранее купили билет - вам сюда!
-        </div>
-        <div>
-          Несколько палаточных домиков на двоих в уютной роще прямо на берегу
-          Рессы.
-        </div>
-        <Footer />
-        <ButtonsBar at="bottom">
-          <Button
-            type="blue"
-            class="w-full"
-            goTo={["map", { name: "с нами можно" }]}
-          >
-            к Нафане
-          </Button>
-        </ButtonsBar>
-      </div>
-    ),
-  },
 };
 
 const Footer = () => (
