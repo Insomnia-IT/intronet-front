@@ -104,7 +104,7 @@ const sections = {
         </div>
         <Link
           goTo="/map"
-          query={{ name: "лесной лагерь" }}
+          query={{ name: "Лесной лагерь «Байка»" }}
           style={{ margin: "10px 0" }}
         >
           к Лесному лагерю «Байка»
@@ -139,7 +139,7 @@ const sections = {
           <Button
             type="blue"
             class="w-full"
-            goTo={["map", { name: "караван" }]}
+            goTo={["map", { name: "отель «Караван»" }]}
           >
             к каравану
           </Button>
