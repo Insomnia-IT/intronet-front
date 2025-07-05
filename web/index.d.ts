@@ -56,6 +56,7 @@ type InsomniaLocation = {
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
+  isFoodcourt: boolean;
 };
 
 type ContentBlock =
@@ -175,7 +176,7 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
-    name: string
+    name: string;
     description?: string;
     photo?: string;
   }>;

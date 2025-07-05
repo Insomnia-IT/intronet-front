@@ -14,6 +14,7 @@ type InsomniaLocation = {
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
+  isFoodcourt: boolean;
 };
 
 type ContentBlock =

@@ -146,16 +146,17 @@ class LocationsStore {
     const point = (patches.get(foodcourt._id) ??
       geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
     const size = 56;
+    const foodCourtLocations = this.db.toArray().filter((x) => x.isFoodcourt);
     return foodCourtLocations.map((x, i) => {
       const shift = TransformMatrix.Rotate(-1.6).Invoke(getFoodcourtShift(i));
       return {
         minZoom: 1.6,
         _id: foodcourt._id + i.toString(),
-        name: x,
+        name: x.name,
         directionId: Directions.cafe,
-        contentBlocks: [],
-        description: "",
-        menu: "",
+        contentBlocks: x.contentBlocks,
+        description: x.description,
+        menu: x.menu,
         figure: geoConverter.toGeo({
           X: point.X + shift.X * size,
           Y: point.Y - shift.Y * size,
@@ -346,23 +347,6 @@ const center = {
   lat: 54.68008397222222,
   lon: 35.08622484722222,
 };
-
-const foodCourtLocations = [
-  "Пянсе",
-  "Мясо в пите , пица",
-  "Гонконгские вафли и греческий гирос",
-  "Буррито и кесадилья",
-  "Лавка Добра",
-  "Это Паста!",
-  "Hola Churros!",
-  "Та самая шаверма",
-  "Borisoff_produkt",
-  "БлинБлиныч",
-  "The russian pie",
-  "Тайская принцесса",
-  "Сытый гурман",
-  "Тесто",
-];
 
 function getFoodcourtShift(index: number) {
   if (index < 4) {
