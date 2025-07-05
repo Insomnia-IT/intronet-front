@@ -30,9 +30,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
 
           {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
-            <div className="colorGray sh3">
-              {[author.name, author.description].filter(x => x).join('. ')}
-            </div>
+            <div className="colorGray sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
           ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
