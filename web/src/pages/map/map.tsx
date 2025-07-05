@@ -58,7 +58,7 @@ export class MapComponent extends Component {
     return (
       <div
         ref={this.setHandler}
-        onPointerDown={(e) => this.mouseDown = e}
+        onPointerDown={(e) => (this.mouseDown = e)}
         onPointerUp={(e) => {
           if (Math.abs(this.mouseDown.pageX - e.pageX) > 3) return;
           if (Math.abs(this.mouseDown.pageY - e.pageY) > 3) return;
@@ -196,9 +196,9 @@ export class MapComponent extends Component {
   //endregion
 
   componentDidMount() {
-    if (locationsStore.selected.length) {
-      this.scrollTo(locationsStore.selected.map((x) => x._id));
-    }
+    // if (locationsStore.selected.length) {
+    //   this.scrollTo(locationsStore.selected.map((x) => x._id));
+    // }
     return Cell.OnChange(
       () => locationsStore.selected,
       (e) => {
@@ -209,11 +209,11 @@ export class MapComponent extends Component {
 
   scrollTo(ids: string[]) {
     if (!this.root || !ids.length) return;
-    const centers = locationsStore.MapItems.filter((x) =>
-      ids.includes(x.id)
-    ).map((x) => geoConverter.getCenter(x.figure));
+    const mapItems = locationsStore.MapItems.filter((x) => ids.includes(x.id));
+    const centers = mapItems.map((x) => geoConverter.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(geoConverter.getCenter([centers]));
+    const minZoom = Math.max(...mapItems.map((x) => x.minZoom));
     // if (
     //   view.X > rect.left + rect.width / 100 &&
     //   view.X < rect.right - rect.width / 100 &&
