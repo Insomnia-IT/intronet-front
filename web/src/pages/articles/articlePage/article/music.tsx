@@ -8,7 +8,7 @@ export function Music() {
   return (
     <PageLayout title="Музыка" gap={4}>
       <CloseButton goTo="/main" />
-      <div class="sh2">В 2024 году на "Бессоннице" выступят:</div>
+      <div class="sh2">В 2025 году на "Бессоннице" выступят:</div>
       <ul className="disc" style={{ margin: "4px 0" }}>
         <li>Black lama</li>
         <li>Krymov</li>
