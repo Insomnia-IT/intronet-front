@@ -12,7 +12,6 @@ const Link: FunctionalComponent = () => {
   return (
     <Button
       type={"text"}
-      className={"colorElectricBlues"}
       style={{ alignSelf: "flex-start", width: "auto" }}
       goTo={"/notes/moderation"}
     >

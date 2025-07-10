@@ -1,27 +1,26 @@
 body {
-  --electric-blues: #008DE3;
+  --mineral: #3C8583;
   --ch-orange: #EC7324;
   --bonfire-light: #fda631;
-  --ins-night: #061E35;
+  --ins-night: #28130E;
   --medium-blue: #062C4E;
   --cyber-disco: #FB84B7;
   --pink: #ff6e76;
   --yummy-green: #60D67A;
   --calm-blue: #45D2F1;
-  --cold-white: #f7fcff;
+  --cold-white: #FDFCF7;
   --white: #fff;
   --black: #000;
   --purple: #763aff;
-  --gray: #647B95;
+  --grey: #BFB79F;
+  --grey2: #4F4038;
   --inactive-grey: #a0a5d1;
   --light-orange: #fac5c0;
   --lavand: #cfbaff;
-  --vivid: #2770B4;
-  --vivid-gradient: radial-gradient(
-      87.66% 151.93% at 19.01% 12.34%,
-      #ff6d76 32.81%,
-      #4b6bf8 100%
-    )
+  --vivid: #8E1F1E;
+  --pale: #EAE8CD;
+  --yellow: #D5B22A;
+  --soft: #F1F7F6;
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   --purple-gradient: radial-gradient(
       100% 613.64% at 4.04% 0%,
@@ -35,19 +34,14 @@ body {
     #ff6e76 62.03%,
     #ffc576 89.64%
   );
-  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  --soft-gradient2: radial-gradient(
-    100% 613.64% at 4.04% 0%,
-    rgba(255, 180, 216, 0.4) 0%,
-    rgba(232, 202, 146, 0.3) 100%);
 
-  --soft-gradient: radial-gradient(
-    100% 613.64% at 4.04% 0%,
-    #D7E3F4 0%,
-    rgba(184, 204, 255, 0.46) 93.3%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  --gradient: linear-gradient(
+      to-right,
+    #D5B22A 0%,
+    #8E1F1E 100%
+  );
 
-
-  --radius: 24px;
+  --radius: 28px;
 }
 
 .pinkShadow {
@@ -77,8 +71,8 @@ body {
 .colorDisco {
   color: var(--cyber-disco) !important;
 }
-.colorGray {
-  color: var(--gray) !important;
+.colorGrey {
+  color: var(--grey) !important;
 }
 .colorInactiveGrey {
   color: var(--inactive-grey);
@@ -87,10 +81,10 @@ body {
   color: var(--ch-orange) !important;
 }
 .colorMediumBlue {
-  color: var(--medium-blue) !important;
+  color: var(--mineral) !important;
 }
 .colorElectricBlues {
-  color: var(--electric-blues);
+  color: var(--mineral);
 }
 .colorMenu {
   color: var(--menu-gradient);
@@ -105,7 +99,24 @@ body {
   color: var(--cold-white) !important;
 }
 .colorElBlue {
-  color: var(--electric-blues) !important;
+  color: var(--mineral) !important;
+}
+.colorYellow {
+  color: var(--yellow) !important;
+}
+.colorMineral {
+  color: var(--mineral) !important;
+}
+.colorGradient {
+  background-image: linear-gradient( to right, #D5B22A, #8E1F1E);
+  background-clip: text;
+  color: transparent;
+}
+.colorGrey {
+  color: var(--grey) !important;
+}
+.colorGrey2 {
+  color: var(--grey2) !important;
 }
 .colorInherit {
   color: inherit !important;
@@ -114,11 +125,11 @@ body {
   font-family: "Cygre Black";
 }
 h1 {
-  font-family: "Cygre Black";
+  font-family: "MxPlus IBM EGA";
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 32px;
+  font-size: 48px;
   line-height: 40px;
   text-transform: uppercase;
   margin: 0;
@@ -126,20 +137,20 @@ h1 {
 }
 
 h2 {
-  /*color: var(--medium-blue);*/
-  font-family: "Cygre Black";
+  /*color: var(--mineral);*/
+  font-family: "MxPlus IBM EGA", sans-serif;
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 28px;
-  line-height: 36px;
+  font-size: 36px;
+  line-height: 1.2;
   text-transform: uppercase;
   margin: 0;
 }
 
 h3 {
   margin: 0;
-  color: var(--medium-blue);
+  color: var(--mineral);
   font-style: normal;
   font-weight: 860;
   font-size: 18px;
@@ -147,10 +158,10 @@ h3 {
 }
 
 .sh1 {
-  color: var(--medium-blue);
+  color: var(--ins-night);
   font-style: normal;
   font-variation-settings: "wght" 590;
-  font-weight: 590;
+  font-weight: bold;
   font-size: 24px;
   line-height: 29px;
 }
@@ -158,7 +169,6 @@ h3 {
 .sh2 {
   font-style: normal;
   font-variation-settings: "wght" 590;
-  font-weight: 590;
   font-size: 20px;
   line-height: 24px;
   display: flex;
@@ -167,7 +177,6 @@ h3 {
 .sh3 {
   font-style: normal;
   font-variation-settings: "wght" 510;
-  font-weight: 510;
   font-size: 16px;
   line-height: 19px;
   /* identical to box height */
@@ -182,7 +191,7 @@ h3 {
 }
 
 .textSmall {
-  color: var(--medium-blue);
+  color: var(--mineral);
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -242,4 +251,8 @@ ul.disc li:before {
 
 b {
   font-variation-settings: "wght" 640;
+}
+
+.fontCondensed {
+  font-family: "Ubuntu Condensed", sans-serif;
 }

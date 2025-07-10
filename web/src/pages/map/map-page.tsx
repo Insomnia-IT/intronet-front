@@ -44,7 +44,7 @@ export function MapPageWithRouting() {
         <SvgIcon
           id="#bookmark"
           style={{
-            color: "var(--pink)",
+            color: "var(--vivid)",
           }}
           size={32}
           onClick={() => goTo("/bookmarks/locations")}

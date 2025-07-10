@@ -14,10 +14,9 @@
   align-items: center;
   transition: 0.3s ease-out;
 
-  font-family: "Cygre Extra Bold";
+  font-family: "MxPlus IBM EGA", sans-serif;
   font-style: normal;
-  font-weight: 800;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
@@ -40,7 +39,7 @@
 }
 
 .blue {
-  background: var(--electric-blues);
+  background: var(--mineral);
   color: var(--white);
 }
 .disco {
@@ -48,11 +47,11 @@
 }
 .frame {
   background: transparent;
-  color: var(--medium-blue);
-  border: 2px solid var(--medium-blue);
+  color: var(--ins-night);
+  border: 2px solid var(--ins-night);
 }
 .vivid {
-  background: var(--vivid-gradient);
+  background: var(--vivid);
 }
 .orange {
   background: var(--ch-orange);
@@ -134,48 +133,16 @@
   border: none;
   width: 100%;
   background: none;
-  color: var(--medium-blue);
+  color: var(--ins-night);
   /* Button */
 
-  font-family: "Cygre Extra Bold";
+  font-family: "MxPlus IBM EGA", sans-serif;
   font-style: normal;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
-}
-
-.borderVivid {
-  border: none;
-  position: relative;
-  background: var(--vivid-gradient);
-  color: var(--ins-night);
-}
-
-.borderVivid:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  margin: 2px;
-  border-radius: 22px;
-  background: var(--cold-white);
-}
-
-.borderVivid > * {
-  z-index: 1;
-}
-
-:global(.dark) .borderVivid {
-  color: var(--cold-white);
-}
-
-:global(.dark) .borderVivid:before {
-  background: var(--ins-night);
 }
 
 .textSimple {
@@ -195,4 +162,10 @@
 
 .buttonOnline {
   width: 100%;
+}
+
+.borderYellow {
+  background: none;
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
 }

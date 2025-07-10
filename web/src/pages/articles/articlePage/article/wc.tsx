@@ -92,7 +92,7 @@ const sections = {
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--medium-blue)", flex: "auto 0 0" }}
+            style={{ color: "var(--mineral)", flex: "auto 0 0" }}
           />
           Купаться в реке запрещено!
         </div>
@@ -124,7 +124,7 @@ const sections = {
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--medium-blue)", flex: "auto 0 0" }}
+            style={{ color: "var(--mineral)", flex: "auto 0 0" }}
           />
           Купаться в реке запрещено!
         </div>

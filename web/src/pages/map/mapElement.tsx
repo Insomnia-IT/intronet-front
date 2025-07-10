@@ -58,16 +58,17 @@ export function MapElement(props: {
     switch (type) {
       case OrderType.MainZone:
       case OrderType.Main:
+        return "var(--mineral)";
       case OrderType.Info:
-        return "var(--medium-blue)";
+        return "var(--yellow)";
       case OrderType.Screens:
-        return "var(--electric-blues)";
+        return "var(--vivid)";
       case OrderType.Cafe:
-        return "var(--yummy-green)";
+        return "var(--ch-orange)";
       case OrderType.WC:
-        return "var(--calm-blue)";
+        return "var(--purple)";
       case OrderType.Other:
-        return "var(--cyber-disco)";
+        return "var(--mineral)";
       default:
         return "black";
     }
@@ -308,6 +309,10 @@ const directionsToOrder = new Map([
   ["Костер", OrderType.Other],
   ["Платные души", OrderType.Other],
   [Directions.sign, OrderType.Other],
+  ["Фонтан", OrderType.Other],
+  ["Анимаквест", OrderType.Other],
+  ["Костер", OrderType.Cafe],
+  ["Урна", OrderType.Other],
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
@@ -338,6 +343,10 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Инфоцентр", ".map #sign"],
   ["Гостевые Кемпинги", ".map #tent"],
   [Directions.sign, ".map #direction"],
+  ["Фонтан", ".map #fountain"],
+  ["Анимаквест", ".map #magnifying-glass"],
+  ["Костер", ".map #fire"],
+  ["Урна", ".map #recycling"]
 ]);
 
 export type MapIconId =
@@ -351,7 +360,11 @@ export type MapIconId =
   | ".map #cafe"
   | ".map #kpp"
   | ".map #shower"
-  | ".map #shop";
+  | ".map #shop"
+  | ".map #fountain"
+  | ".map #magnifying-glass"
+  | ".map #fire"
+  | ".map #recycling";
 
 export type DetailsGroup =
   | "cafe"

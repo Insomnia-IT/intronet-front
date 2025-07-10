@@ -55,7 +55,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
               </div>
               {!disabled && (
                 <BookmarkIcon
-                  class={[...classNames, "colorPink"].join(" ")}
+                  class={[...classNames, "colorVivid"].join(" ")}
                   onClick={(e) => {
                     if (!hasBookmark) return;
                     e.preventDefault();

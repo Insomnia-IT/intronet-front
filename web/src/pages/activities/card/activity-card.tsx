@@ -86,7 +86,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
           />) }
         </div>
 
-        <div className={ `textSmall colorGray ${ Styles.activityDescription }` }>
+        <div className={ `textSmall colorGrey ${ Styles.activityDescription }` }>
           {activity?.authors?.map(author =>
             highlight(author.name, searchQuery)
           ).join(", ")}

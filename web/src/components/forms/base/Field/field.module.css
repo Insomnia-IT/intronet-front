@@ -11,7 +11,7 @@
 
 .lable {
   margin-bottom: 16px;
-  color: var(--medium-blue);
+  color: var(--mineral);
 }
 
 .field:has(input[type="checkbox"]) .lable {
@@ -37,7 +37,7 @@ input[type="checkbox"] {
 }
 
 .description {
-  color: var(--gray);
+  color: var(--grey);
 }
 
 .tags {

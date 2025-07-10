@@ -55,7 +55,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
             >
               {bookmarkActionText}
             </Button>
-            <Button type={"orange"} onClick={deleteNote}>
+            <Button type={"vivid"} onClick={deleteNote}>
               Снять с публикации
             </Button>
           </>

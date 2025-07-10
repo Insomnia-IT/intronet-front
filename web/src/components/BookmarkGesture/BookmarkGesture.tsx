@@ -4,7 +4,6 @@ import { useRef } from "preact/hooks";
 import { JSX } from "preact/jsx-runtime";
 import cx from "classnames";
 import styles from "./bookmarks-gesture.module.css";
-import { SvgIcon } from "../../icons";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type IBookmarkGestureProps = {

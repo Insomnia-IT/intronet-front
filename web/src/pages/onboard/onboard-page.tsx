@@ -29,7 +29,7 @@ const OnboardStage1 = () => {
   return (
     <>
       <div>
-        <img className={styles.img1} src="/public/images/rabbit.webp" />
+        <img className={styles.img1} src="/public/images/onboarding.webp" />
         <h1>
           Привет!
           <br />
@@ -38,7 +38,7 @@ const OnboardStage1 = () => {
         <div class="text">— локальный портал «Бессонницы»</div>
       </div>
       <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
+        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
           ОГО!
         </Button>
       </ButtonsBar>
@@ -52,24 +52,24 @@ const OnboardStage2 = () => {
       <div flex column gap="10">
         <h1>Как это работает?</h1>
         <div>
-          <h2 class={styles.menuText}>локально на поле</h2>
-          <div class="text">
+          <h2 class={styles.menuText}>локально на поле</h2>
+          <div class="text colorGrey2">
             Добавь приложение на главный экран телефона и пользуйся им всё время на поле!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Почти интернет</h2>
-          <div class="text">
-            Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато 
+          <div class="text colorGrey2">
+            Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато
             в Insight получится видеть изменения, новости и писать объявления.
           </div>
         </div>
-        <div class="sh1 colorWhite">
-          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
+        <div class="sh1">
+          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
         </div>
       </div>
       <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
+        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
           интересно
         </Button>
       </ButtonsBar>
@@ -92,7 +92,7 @@ const OnboardStage3 = () => {
         </h2>
       </div>
       <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
+        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
           круто!
         </Button>
       </ButtonsBar>
@@ -106,23 +106,23 @@ const OnboardStage4 = () => {
         <h1>а ещё тут можно</h1>
         <div>
           <h2 class={styles.menuText}>сохранять</h2>
-          <div class="text">
-            мультфильмы, мероприятия и места в избранное, чтобы ничего не
+          <div class="text colorGrey2">
+            Мультфильмы, мероприятия и места в избранное, чтобы ничего не
             пропустить!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>проголосовать</h2>
-          <div class="text">
-            за лучший мультфильм в номинации «Приз зрительских симпатий»
+          <div class="text colorGrey2">
+            За лучший мультфильм в номинации «Приз зрительских симпатий»
           </div>
         </div>
-        <div class="sh1 colorWhite">
+        <div class="sh1">
           Все вопросы - в Кибер-инфо (локация Инфоцентра)
         </div>
       </div>
       <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
+        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
           Начать
         </Button>
       </ButtonsBar>

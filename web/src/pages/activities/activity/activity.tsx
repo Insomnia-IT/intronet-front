@@ -30,7 +30,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
 
           {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
-            <div className="colorGray sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
+            <div className="colorGrey sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
           ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
@@ -42,7 +42,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
               <SvgIcon
                 id="#alert"
                 size={32}
-                style={{color: "var(--electric-blues)"}}
+                style={{color: "var(--mineral)"}}
               />
               {locationsStore.getName(activity?.locationId) ?? activity?.locationId}
             </div>

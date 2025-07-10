@@ -74,7 +74,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
                 <SvgIcon
                   id="#bookmark"
                   style={{
-                    color: design == "dark" ? "var(--white)" : "var(--pink)",
+                    color: design == "dark" ? "var(--white)" : "var(--vivid)",
                   }}
                   size={32}
                   onClick={() => goTo(favoritesRoute)}

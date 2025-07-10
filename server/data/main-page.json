@@ -31,7 +31,7 @@
     "_id": "notes",
     "title": "Объявления",
     "descr": "Записочки как на инфоцентре!",
-    "color": false,
+    "color": true,
     "link": "/notes",
     "section": "main",
     "row": 2,
@@ -41,7 +41,7 @@
   {
     "_id": "game",
     "title": "Игра",
-    "color": false,
+    "color": true,
     "section": "main",
     "small": true,
     "row": 3,
@@ -81,7 +81,7 @@
   {
     "_id": "vote",
     "title": "Голосование",
-    "color": true,
+    "color": false,
     "section": "main",
     "link": "/voting",
     "small": true,
