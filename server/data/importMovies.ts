@@ -54,53 +54,53 @@ export async function importMovies(force = false) {
     }
     return result;
   }
-  // const blocksXls = events.screens
-  //   .flatMap((x) =>
-  //     x.screenPrograms.map((b) => ({
-  //       block: b,
-  //       locationId: getLocationId(x.screenName),
-  //       start: getTime(b.programStart * 1000),
-  //       end: getTime(b.programEnd * 1000),
-  //       day: getDay(b.programStart * 1000),
-  //     }))
-  //   )
-  //   .filter((x) => x)
-  //   .map((b) => ({
-  //     view: {
-  //       locationId: b.locationId,
-  //       day: b.day,
-  //       start: b.start,
-  //       end: b.end,
-  //     },
-  //     info: {
-  //       ...splitTitle(b.block.programTitle),
-  //       MinAge: b.block.programAge,
-  //     },
-  //     movies: b.block.programFilms.map((x) => ({
-  //       id: Fn.ulid(),
-  //       name: x.title,
-  //       image: x.image,
-  //       plot: x.plot,
-  //       vurchelId: x.vurchelID,
-  //     })),
-  //   }));
+  const blocksXls = events.screens
+    .flatMap((x) =>
+      x.screenPrograms.map((b) => ({
+        block: b,
+        locationId: getLocationId(x.screenName),
+        start: getTime(b.programStart * 1000),
+        end: getTime(b.programEnd * 1000),
+        day: getDay(b.programStart * 1000),
+      }))
+    )
+    .filter((x) => x)
+    .map((b) => ({
+      view: {
+        locationId: b.locationId,
+        day: b.day,
+        start: b.start,
+        end: b.end,
+      },
+      info: {
+        ...splitTitle(b.block.programTitle),
+        MinAge: b.block.programAge,
+      },
+      movies: b.block.programFilms.map((x) => ({
+        id: Fn.ulid(),
+        name: x.title,
+        image: x.image,
+        plot: x.plot,
+        vurchelId: x.vurchelID,
+      })),
+    }));
 
-  // const blocksMap = groupBy(blocksXls, (b: ArrayElement<typeof blocksXls>) =>
-  //   [b.info.Title, b.info.SubTitle, b.info.Part].join(".")
-  // ) as Map<string, ArrayElement<typeof blocksXls>[]>;
-  // const results = Array.from(blocksMap.values()).map((x) => ({
-  //   _id: Fn.ulid(),
-  //   views: x.map((b) => b.view),
-  //   info: x[0].info,
-  //   movies: x[0].movies,
-  // }));
-  // //
-  // for (let movie of results) {
-  //   await moviesDB.addOrUpdate({
-  //     ...movie,
-  //     version: Fn.ulid(),
-  //   });
-  // }
+  const blocksMap = groupBy(blocksXls, (b: ArrayElement<typeof blocksXls>) =>
+    [b.info.Title, b.info.SubTitle, b.info.Part].join(".")
+  ) as Map<string, ArrayElement<typeof blocksXls>[]>;
+  const results = Array.from(blocksMap.values()).map((x) => ({
+    _id: Fn.ulid(),
+    views: x.map((b) => b.view),
+    info: x[0].info,
+    movies: x[0].movies,
+  }));
+  //
+  for (let movie of results) {
+    await moviesDB.addOrUpdate({
+      ...movie,
+      version: Fn.ulid(),
+    });
+  }
   dbCtrl.versions = undefined;
 }
 
