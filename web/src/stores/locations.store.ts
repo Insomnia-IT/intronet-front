@@ -105,7 +105,7 @@ class LocationsStore {
 
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocation> {
-    return ["Полевой", "Речной", "Детский"]
+    return ["Полевой экран", "Речной экран", "Детский Экран"]
       .map((x) => this.findByName(x))
       .filter((x) => x && x.directionId == Directions.screen);
   }
