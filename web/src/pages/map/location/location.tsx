@@ -83,7 +83,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
         {location.menu && (
           <Link goTo={["map", "menu", location._id]}>к меню</Link>
         )}
-        <div className="text colorMediumBlue">
+        <div className="text colorGrey2">
           {" "}
           {location.description?.split("\n").map((x) => (
             <div>{x}</div>

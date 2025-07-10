@@ -33,7 +33,7 @@ export const PageHeader = ({titleH1, titleH2, favoritesRoute, withCloseButton, a
       {Boolean(favoritesRoute) && (
         <SvgIcon
           id="#bookmark"
-          style={{ color: "var(--pink)" }}
+          style={{ color: "var(--vivid)" }}
           size={32}
           onClick={() => goTo(favoritesRoute)}
         />

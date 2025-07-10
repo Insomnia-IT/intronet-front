@@ -8,7 +8,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   solid?: boolean;
   selected?: boolean;
-  type?: "frame" | "blue" | "disco" | "vivid" | "text" | "borderVivid" | "orange" | "frameOrange" | "textSimple";
+  type?: "frame" | "blue" | "disco" | "vivid" | "text" | "orange" | "frameOrange" | "textSimple" | "borderYellow";
   goTo?: RoutePath | RoutePathString;
 } & JSX.HTMLAttributes<HTMLButtonElement>;
 
@@ -39,7 +39,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
           <div style={{ margin: "-8px 0", height: "1.5em" }}>
             <EyeLoading size="1.5em" />
           </div>
-        ) : type === "borderVivid" ? <span>{children}</span> : children
+        ) : children
       }
     />
   );

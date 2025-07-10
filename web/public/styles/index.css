@@ -20,7 +20,6 @@ body, html {
   height: 100%;
 }
 
-
 .w-full{
   width: 100%;
 }
@@ -53,40 +52,39 @@ body, html {
   flex-wrap: nowrap;
 }
 
-@supports (-webkit-touch-callout: none) {
-  /* CSS specific to iOS devices */
-  body {
-    font-family: 'SF Pro', 'ui-sans-serif';
-  }
-
-  @font-face {
-    font-family: 'SF Pro';
-    src: local('SF Pro Text Regular'), local('SFProText-Regular'), local("SF Pro");
-    font-weight: normal;
-    font-style: normal;
-  }
-}
-
-@supports not (-webkit-touch-callout: none) {
-  /* CSS for other than iOS devices */
-  body {
-    font-family: 'Exo2', 'ui-sans-serif', 'Roboto', 'sans-serif';
-  }
-
-  @font-face {
-    font-family: 'Exo2';
-    src: local('Exo2'), url('/public/fonts/Exo2.woff2') format('woff2');
-    /*font-weight: 400 510 590 860;*/
-  }
+body {
+  font-family: 'Ubuntu Mono', 'monospace';
 }
 
 @font-face {
-  font-family: 'Cygre Black';
-  src: local('Cygre Black'), url('/public/fonts/Cygre-Black.ttf') format('truetype');
+  font-family: 'Ubuntu Mono';
+  src: local('Ubuntu Mono'), local('UbuntuMono'), local("Ubuntu Mono Regular"), url('/public/fonts/UbuntuMono-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: local('Ubuntu Mono Bold'), local('UbuntuMonoBold'), url('/public/fonts/UbuntuMono-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
 
 @font-face {
-  font-family: 'Cygre Extra Bold';
-  src: local('Cygre Extra Bold'), url('/public/fonts/Cygre-ExtraBold.ttf') format('truetype');
+  font-family: 'Ubuntu Mono';
+  src: local('Ubuntu Mono Italic'), local('UbuntuMonoItalic'), url('/public/fonts/UbuntuMono-Italic.ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ubuntu Condensed';
+  src: local('Ubuntu Condensed'), local('UbuntuCondensed'), local("Ubuntu Condensed Regular"), url('/public/fonts/UbuntuCondensed-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'MxPlus IBM EGA';
+  src: url('/public/fonts/WebPlus_IBM_EGA_8x14.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

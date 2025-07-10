@@ -15,8 +15,7 @@
   font-size: 13em !important;
   line-height: 15em !important;
   text-anchor: middle;
-  white-space: pre;
-  font-weight: bold;
+  border-radius: 8px;
 }
 
 .selected {
@@ -63,7 +62,7 @@
   fill: var(--cold-white);
 }
 .zoneText{
-  fill: var(--medium-blue);
+  fill: var(--mineral);
   font-weight: bold;
 }
 

@@ -1,27 +1,30 @@
 .pageOnboard{
   height: 100%;
   width: 100%;
-  background: var(--ins-night);
+  background: var(--yellow);
   color: var(--white);
-  padding: 70px 16px;
+  padding: 70px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   box-sizing: border-box;
   position: relative;
+  color: var(--ins-night);
+  font-family: "Ubuntu Condensed";
 }
 .pageOnboard > div{
   padding: 40px 0;
-  overflow: auto;
   min-height: 0;
 }
 .close{
   top: 70px;
-  right: 16px;
+  left: 16px;
+  right: auto;
+  border-color: var(--ins-night);
 }
 
 .menuBtn{
-  composes: menuBtn from "../main/main-page.module.css";
+  width: 100%;
 }
 
 .star{

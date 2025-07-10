@@ -87,7 +87,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         {categoryName && (
           <Badge
             type={"Adv"}
-            background={disabled ? COLORS.inactiveGray : categoryColor}
+            background={disabled ? COLORS.grey : categoryColor}
           >
             {categoryName}
           </Badge>
@@ -95,7 +95,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         <div
           className={cx(
             "sh3",
-            disabled ? "colorInactiveGrey" : "colorGray",
+            disabled ? "colorGrey" : "colorGrey",
             styles.footer
           )}
         >
@@ -104,7 +104,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         </div>
       </Card>
       {withTTL && TTL < 18 && (
-        <span className={cx(styles.ttlText, "textSmall", "colorGray")}>
+        <span className={cx(styles.ttlText, "textSmall", "colorGrey")}>
           {getNoteTTLText({ deletedAt, isDeleted, TTL })}
         </span>
       )}

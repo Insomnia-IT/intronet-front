@@ -66,12 +66,12 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class="textSmall colorGray">{block.info.SubTitle ?? ""}</div>
-          <div class={[Styles.duplicate, "colorVivid"].join(" ")}>
+          <div class="textSmall colorGrey">{block.info.SubTitle ?? ""}</div>
+          <div class={[Styles.duplicate, "colorMineral"].join(" ")}>
             {duplicate}
           </div>
           {isOpen && <MovieList movies={block.movies} />}
-          <Button type="text" onClick={() => setIsOpen((x) => !x)}>
+          <Button class={styles.openButton} type="text" onClick={() => setIsOpen((x) => !x)}>
             {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
         </div>

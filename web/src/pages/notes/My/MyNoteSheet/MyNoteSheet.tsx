@@ -48,7 +48,7 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
         <span>{getNoteTTLText({ isDeleted, deletedAt, TTL })}</span>
       </div>
 
-      <OnlineButton type={"orange"} onClick={onDeleteClick}>
+      <OnlineButton type={"vivid"} onClick={onDeleteClick}>
         Снять с публикации
       </OnlineButton>
     </>

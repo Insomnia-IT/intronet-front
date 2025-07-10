@@ -1,10 +1,11 @@
 .btn {
+  width: 100%;
   background: transparent;
-  color: var(--electric-blues);
+  color: var(--mineral);
   font-size: 14px;
   border: none;
   position: relative;
-  border: 2px dashed var(--electric-blues);
+  border: 1px solid var(--mineral);
 }
 
 .content {
