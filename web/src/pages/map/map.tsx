@@ -196,9 +196,9 @@ export class MapComponent extends Component {
   //endregion
 
   componentDidMount() {
-    // if (locationsStore.selected.length) {
-    //   this.scrollTo(locationsStore.selected.map((x) => x._id));
-    // }
+    if (locationsStore.selected.length) {
+      this.scrollTo(locationsStore.selected.map((x) => x._id));
+    }
     return Cell.OnChange(
       () => locationsStore.selected,
       (e) => {
