@@ -5,7 +5,7 @@
   "scripts": {
     "server": "nodemon ./dist/esm",
     "test": "node --env-file=.env.local --test --loader @swc-node/register/esm ./specs/*.specs.ts",
-    "kml": "npx togeojson ./data/locations/gp_fin_190625.kml > data/locations/genplan.json",
+    "kml": "npx togeojson ./data/locations/gp_fin_070725.kml > data/locations/genplan.json",
     "build": "cmmn compile"
   },
   "type": "module",
