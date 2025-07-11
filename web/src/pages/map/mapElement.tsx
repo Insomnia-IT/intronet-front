@@ -233,14 +233,25 @@ export function MapElement(props: {
             </g>
             {showText &&
               props.item.directionId &&
-              title.map((text, i) => (
+              (props.item.isFoodcourt ? (
                 <text
-                  className={styles.elementText}
-                  y={`${2.5 + i * 1.2}em`}
+                  className={styles.elementTextFoodcourt}
+                  x="1.2em"
+                  y="0.4em"
                   filter="url(#solid)"
                 >
-                  {text}
+                  {props.item.title}
                 </text>
+              ) : (
+                title.map((text, i) => (
+                  <text
+                    className={styles.elementText}
+                    y={`${2.5 + i * 1.2}em`}
+                    filter="url(#solid)"
+                  >
+                    {text}
+                  </text>
+                ))
               ))}
           </>
         )}
@@ -346,7 +357,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Фонтан", ".map #fountain"],
   ["Анимаквест", ".map #magnifying-glass"],
   ["Костер", ".map #fire"],
-  ["Урна", ".map #recycling"]
+  ["Урна", ".map #recycling"],
 ]);
 
 export type MapIconId =
