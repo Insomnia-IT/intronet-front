@@ -320,12 +320,13 @@ export class LocationStore {
     hasBookmark: boolean;
     timetable: "animation" | "activity" | undefined;
   }>(() => {
-    const timetable =
-      this.location?.directionId === Directions.screen
-        ? "animation"
-        : activitiesStore.Activities.some((x) => x.locationId === this.id)
-        ? "activity"
-        : undefined;
+    const timetable = activitiesStore.Activities.some(
+      (x) => x.locationId === this.id
+    )
+      ? "activity"
+      : this.location?.directionId === Directions.screen
+      ? "animation"
+      : undefined;
     return {
       location: this.location,
       currentActivity:
