@@ -44,7 +44,7 @@ const sections = {
           сборки.</li>
       </ul>
       <ButtonsBar at="bottom">
-        <Button type="blue" class="w-full"  goTo={['map',{name: 'точка'}]}>к точке сборки</Button>
+        <Button type="blue" class="w-full"  goTo={['map',{name: 'Точка Сборки'}]}>к точке сборки</Button>
       </ButtonsBar>
     </div>
   },
