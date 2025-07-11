@@ -17,7 +17,7 @@ export const LocationMenu: FunctionalComponent<LocationSmallProps> = ({
   return (
     <PageLayout gap={4} title={location.name} withCloseButton>
       <div className="sh2">Меню</div>
-      <div style={{ whiteSpace: "pre" }} className="text">
+      <div style={{ whiteSpace: "pre-wrap" }} className="text">
         {location.menu}
       </div>
     </PageLayout>
