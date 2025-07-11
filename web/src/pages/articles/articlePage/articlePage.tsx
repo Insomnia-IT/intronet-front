@@ -24,6 +24,7 @@ import { Water } from "./article/water";
 import { WC } from "./article/wc";
 import { NonAnimation } from "./article/nonAnimation";
 import { About } from "./article/about";
+import { Radio } from './article/radio'
 
 export const ArticlePage: FunctionalComponent = () => {
   const { route } = useRouter();
@@ -57,4 +58,5 @@ const articles: Record<string, FunctionalComponent> = {
   fireplace: Fire,
   fire: Fire,
   leave: GoAway,
+  radio: Radio,
 };
