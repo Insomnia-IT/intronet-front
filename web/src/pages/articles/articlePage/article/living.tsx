@@ -45,7 +45,7 @@ const sections = {
     component: () => (
       <div class="text colorMediumBlue" flex column gap="4">
         <div>
-          Палатку можно поставить бесплатно в специальной зоне кэмпинга.
+          Палатку можно поставить бесплатно в специальной зоне кемпинга.
         </div>
         <div class="colorOrange" flex gap="3">
           <SvgIcon
