@@ -18,6 +18,8 @@ export function Radio() {
           музыкальные подборки, сопровождающие атмосферу фестиваля и продвигающие творчество его участников - музыкантов, журналистов, режиссеров, монтажеров и мультфильмистов
         </li>
       </ul>
+    </div>
+    <div class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
       Для прослушивания необходимо подключение к Insomnia-Wi-Fi
     </div>
     <ButtonsBar at="bottom">
