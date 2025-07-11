@@ -84,7 +84,8 @@
     "section": "main",
     "row": 4,
     "col": 2,
-    "article": "radio"
+    "article": "radio",
+    "small": true
   },
   {
     "_id": "vote",
