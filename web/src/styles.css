@@ -1,6 +1,5 @@
 body {
   --mineral: #3C8583;
-  --ch-orange: #EC7324;
   --bonfire-light: #fda631;
   --ins-night: #28130E;
   --medium-blue: #062C4E;
@@ -77,9 +76,6 @@ body {
 .colorInactiveGrey {
   color: var(--inactive-grey);
 }
-.colorOrange {
-  color: var(--ch-orange) !important;
-}
 .colorMediumBlue {
   color: var(--mineral) !important;
 }
@@ -129,11 +125,10 @@ h1 {
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 48px;
+  font-size: 46px;
   line-height: 40px;
   text-transform: uppercase;
   margin: 0;
-  /*margin-bottom: 8px;*/
 }
 
 h2 {
@@ -142,10 +137,11 @@ h2 {
   font-style: normal;
   font-weight: initial;
   font-variation-settings: "wght" 900;
-  font-size: 36px;
+  font-size: 34px;
   line-height: 1.2;
   text-transform: uppercase;
   margin: 0;
+  margin-bottom: 16px;
 }
 
 h3 {
@@ -158,6 +154,7 @@ h3 {
 }
 
 .sh1 {
+  font-family: "Ubuntu Mono", monospace;
   color: var(--ins-night);
   font-style: normal;
   font-variation-settings: "wght" 590;
@@ -167,6 +164,7 @@ h3 {
 }
 
 .sh2 {
+  font-family: "Ubuntu Mono", monospace;
   font-style: normal;
   font-variation-settings: "wght" 590;
   font-size: 20px;
@@ -175,6 +173,7 @@ h3 {
   align-items: flex-end;
 }
 .sh3 {
+  font-family: "Ubuntu Mono", monospace;
   font-style: normal;
   font-variation-settings: "wght" 510;
   font-size: 16px;
@@ -184,6 +183,7 @@ h3 {
   align-items: flex-end;
 }
 .text {
+  font-family: "Ubuntu Condensed", sans-serif;
   font-style: normal;
   font-variation-settings: "wght" 400;
   font-size: 20px;
@@ -191,6 +191,7 @@ h3 {
 }
 
 .textSmall {
+  font-family: "Ubuntu Mono", monospace;
   color: var(--mineral);
   font-style: normal;
   font-weight: 400;
@@ -199,6 +200,7 @@ h3 {
 }
 
 .tags {
+  font-family: "Ubuntu Mono", monospace;
   font-style: normal;
   font-weight: 510;
   font-size: 14px;
@@ -213,7 +215,7 @@ mark {
 }
 
 .colorChineeseCaffe {
-  color: var(--ch-orange);
+  color: var(--vivid);
 }
 
 p {

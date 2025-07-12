@@ -42,7 +42,7 @@ const sections = {
   about: {
     title: "О портале",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
           Insight работает с помощью внутренней сети «Insomnia-WIFI», которая
           доступна только на территории фестиваля.
@@ -66,7 +66,7 @@ const sections = {
   fast: {
     title: "Поделиться с другом",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <ol>
           <li>
             Присоединяйся к сети «insomnia-WIFI» у Инфоцентра, Речного или
@@ -87,7 +87,7 @@ const sections = {
   share: {
     title: "Быстрый доступ",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <div>
           Чтобы иметь быстрый доступ к порталу с домашнего экрана телефона,
           нужно:

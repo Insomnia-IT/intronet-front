@@ -28,7 +28,7 @@ export const LocationEdit = () => {
       {!isNew && (
         <Button
           type="textSimple"
-          class="colorOrange"
+          class="colorVivid"
           onClick={() => {
             locationsStore.deleteLocation(cell.get());
             router.goTo("/map");

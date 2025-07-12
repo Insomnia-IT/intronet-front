@@ -76,7 +76,7 @@ class MoviesStore {
       )
     )[0];
     if (!block) return undefined;
-    return block.info.Title + "\n" + block.info.SubTitle;
+    return block.info.Title + "\n" + (block.info.SubTitle ?? "");
   }
 
   @cell

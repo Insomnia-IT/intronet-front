@@ -4,7 +4,7 @@ import { PageLayout } from "@components/PageLayout";
 export function Radio() {
   return <PageLayout title='Зарядить телефон'>
     <CloseButton goTo="/main"/>
-    <div class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
+    <div class="text" style={{marginTop: 20, marginBottom: 16}}>
       «Бессонное радио» — радиостанция, работающая исключительно в дни международного фестиваля авторской анимации «Бессонница».
       В нашем эфире:
       <ul class="styledList">

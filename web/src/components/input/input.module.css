@@ -13,7 +13,7 @@
 }
 .input:focus-visible,
 .input:focus {
-  /*border-color: var(--ch-orange);*/
+  /*border-color: var(--vivid);*/
   outline: none;
 }
 .input:invalid {

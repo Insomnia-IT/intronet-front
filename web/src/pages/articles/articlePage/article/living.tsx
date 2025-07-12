@@ -43,15 +43,15 @@ const sections = {
   camping: {
     title: "Кемпинг",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
           Палатку можно поставить бесплатно в специальной зоне кэмпинга.
         </div>
-        <div class="colorOrange" flex gap="3">
+        <div class="colorVivid" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--ch-orange)", flex: "auto 0 0" }}
+            style={{ color: "var(--vivid)", flex: "auto 0 0" }}
           />
           На поле между фестивальными объектами и локациями, палатки ставить
           запрещено
@@ -72,7 +72,7 @@ const sections = {
   tents: {
     title: "Прокат палаток",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>Можно взять в аренду:</div>
         <ul class="disc" style={{ margin: "4px 0" }}>
           <li>Палатку (есть несколько размеров)</li>
@@ -98,7 +98,7 @@ const sections = {
   paid: {
     title: "Платные кемпинги",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
+      <div class="text" flex column gap="2">
         <div style={{ marginBottom: 8 }}>
           Если вы заранее купили билет в платный кемпинг — вам сюда!
         </div>
@@ -130,7 +130,7 @@ const sections = {
   caravan: {
     title: "Караван",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
+      <div class="text" flex column gap="2">
         <div style={{ marginBottom: 8 }}>
           Если вы заранее купили билет в палаточный отель Караван — вам сюда!
         </div>

@@ -40,7 +40,6 @@ export const NotesPage: FunctionalComponent = () => {
           withTapBar
           withCloseButton
           title="Объявления"
-          gap={4}
           search={NotesSearch}
           buttons={(
           <Button type="blue" goTo="/notes/my">

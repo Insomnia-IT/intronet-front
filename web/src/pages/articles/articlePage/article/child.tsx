@@ -32,7 +32,7 @@ export function Child() {
 
 const sections = {
   fun: {
-    title: "Развлечения", component: () => <div class="text colorMediumBlue" flex column gap="4">
+    title: "Развлечения", component: () => <div class="text" flex column gap="4">
       <div>Этим летом Детская поляна превращается в театральные подмостки. В программе спектакли наших старых друзей и
         новых коллективов, шоу иллюзий и, конечно мультики по вечерам. А волшебники-мастера научат разным фокусам и
         трюкам, которые будут интересны детям и взрослым.</div>
@@ -52,7 +52,7 @@ const sections = {
     </div>
   },
   safety: {
-    title: "Безопасность", component: () => <div class="text colorMediumBlue" flex column gap="5">
+    title: "Безопасность", component: () => <div class="text" flex column gap="5">
       <div>Поляна «Бессонницы» большая, поэтому важно не оставлять маленьких детей одних. На фестивале работает Точка сборки — команда волонтеров, которая поможет в случае потери ребёнка.</div>
       <Link goTo="/articles/tochka">рекомендации Точки сборки</Link>
     </div>
