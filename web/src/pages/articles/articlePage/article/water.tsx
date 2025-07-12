@@ -6,7 +6,7 @@ export function Water() {
   return <PageLayout title='Вода'>
     <CloseButton goTo="/main"/>
     <div class="text" style={{marginTop: 20, marginBottom: 16}}>
-      Вода продается в пятилитровых бутылках на инфоцентре.
+      Вода продается в пятилитровых бутылках в Инфоцентре.
     </div>
     <div className="colorVivid" flex gap="3">
       <SvgIcon id="#alert" size={24} style={{color: "var(--vivid)", flex: 'auto 0 0'}}/>

@@ -17,7 +17,11 @@
   text-anchor: middle;
   border-radius: 8px;
 }
-
+.elementTextFoodcourt {
+  composes: elementText;
+  text-anchor: start;
+  vertical-align: middle;
+}
 .selected {
   transform: scale(1.4);
 }

@@ -12,7 +12,7 @@ export function Car() {
     <Link goTo="/map" query={{name: 'инфоцентр'}}>к инфоцентру</Link>
 
     <span class="text" style={{marginTop: 20, marginBottom: 16}}>
-      Если до инфоцентра далеко, ищите ближайшего волонтера с рацией.
+      Если до Инфоцентра далеко, ищите ближайшего волонтера с рацией.
     </span>
   </PageLayout>
 }

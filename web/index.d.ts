@@ -85,6 +85,7 @@ type MapItem = {
   figure: Figure;
   priority: boolean;
   directionId: string;
+  isFoodcourt: boolean;
   radius;
   id;
   title?: string;
