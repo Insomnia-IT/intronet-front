@@ -66,17 +66,17 @@ const sections = {
           </Link>
         </div>
         <div>Детское питание для малышей младше нужно привозить с собой!</div>
-        <div className="colorOrange" flex gap="3">
+        <div className="colorVivid" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--ch-orange)", flex: "auto 0 0" }}
+            style={{ color: "var(--vivid)", flex: "auto 0 0" }}
           />
           <span>
             В кафе нет одноразовых стаканов. Приходите со своим или можно взять
             фестивальный многоразовый стакан под залог в одном из
             <Link
-              style={{ color: "var(--ch-orange)" }}
+              style={{ color: "var(--vivid)" }}
               goTo="/map"
               query={{ tag: "капшеринг" }}
             >

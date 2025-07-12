@@ -15,11 +15,6 @@
   flex: 1;
 }
 
-.mainPage :global(#logo) {
-  margin-left: calc(50vw - 16px - 90px);
-  margin-bottom: -8px;
-}
-
 .menuBtn {
   padding: 16px 32px !important;
   background: var(--mineral);

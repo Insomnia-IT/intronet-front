@@ -66,7 +66,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        <div flex column gap={5}>
+        <div flex column gap={5} style={{ marginBottom: 16 }}>
           {(title || withCloseButton || !!Search || favoritesRoute) && (
             <div className={headerStyle ?? styles.header}>
               {title && <h1>{title}</h1>}
@@ -76,7 +76,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
                   style={{
                     color: design == "dark" ? "var(--white)" : "var(--vivid)",
                   }}
-                  size={32}
+                  size={40}
                   onClick={() => goTo(favoritesRoute)}
                 />
               )}

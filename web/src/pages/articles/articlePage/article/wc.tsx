@@ -52,7 +52,7 @@ const sections = {
   wc: {
     title: "Туалеты",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
           Туалеты у нас деревенского типа — деревянные, с дыркой в полу.
           Экологичные и с хорошей вентиляцией — самые подходящие для массового
@@ -78,7 +78,7 @@ const sections = {
   free_shower: {
     title: "Бесплатный душ",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <div>
           Несколько душевых кабинок с нагретой солнцем водой — совершенно
           бесплатно. Воду берем из реки.
@@ -111,7 +111,7 @@ const sections = {
   paid_shower: {
     title: "Платный душ",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <div>
           Душевые кабинки с постоянно нагреваемой водой — платная услуга
           «Бессонницы».
@@ -143,7 +143,7 @@ const sections = {
   sauna: {
     title: "Баня",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <div>Горячая баня — платная услуга «Бессонницы».</div>
         <div>
           Пожалуйста, используйте дегтярное мыло — это натуральное средство,
@@ -158,7 +158,7 @@ const sections = {
     ),
   },
   // river: {
-  //   title: "Река", component: () => <div class="text colorMediumBlue" flex column gap="5">
+  //   title: "Река", component: () => <div class="text" flex column gap="5">
   //     <div>Поляна «Бессонницы» большая, поэтому важно не оставлять маленьких детей одних. На фестивале работает Точка сборки — команда волонтеров, которая поможет в случае потери ребёнка.</div>
   //     <Link goTo="/articles/tochka">рекомендации Точки сборки</Link>
   //   </div>

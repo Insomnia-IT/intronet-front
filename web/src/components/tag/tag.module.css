@@ -7,13 +7,13 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 16.71px;
   overscroll-behavior-x: auto;
   touch-action: pan-x;
   margin-right: -16px;
   margin-left: -16px;
   padding-right: 16px;
   padding-left: 16px;
+  margin-bottom: 8px;
 }
 
 .tags::-webkit-scrollbar {

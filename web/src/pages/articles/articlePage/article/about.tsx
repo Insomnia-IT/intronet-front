@@ -42,7 +42,7 @@ const sections = {
   about: {
     title: "О фестивале",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
           «Бессонница» — международный некоммерческий фестиваль авторской
           анимации, проходящий в формате open-air.
@@ -81,7 +81,7 @@ const sections = {
   values: {
     title: "Наши принципы и ценности",
     component: () => (
-      <div className="text colorMediumBlue" flex column gap="4">
+      <div className="text" flex column gap="4">
         <div className="sh1">Анимация — главная составляющая фестиваля</div>
         <div>
           «Бессонница» была и будет фестивалем анимационных фильмов. С

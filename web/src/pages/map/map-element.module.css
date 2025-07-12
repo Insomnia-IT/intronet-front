@@ -71,7 +71,7 @@
 }
 
 .zoneSelectedRect{
-  fill:var(--ch-orange);
+  fill:var(--vivid);
 }
 .zoneSelectedText{
   composes: zoneText;
