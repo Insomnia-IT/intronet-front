@@ -133,7 +133,7 @@ export function getDay(local: number): number {
 }
 
 export function getTime(local: number): string {
-  const date = new Date(local);
+  const date = new Date(toMoscow(local));
   const hour = date.getHours();
   const minutes = date.getMinutes();
   return `${hour < 10 ? "0" + hour : hour}:${
