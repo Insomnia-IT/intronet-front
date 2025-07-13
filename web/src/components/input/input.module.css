@@ -17,7 +17,7 @@
   outline: none;
 }
 .input:invalid {
-  border-color: var(--pink);
+  border-color: var(--vivid);
 }
 
 .input::placeholder {

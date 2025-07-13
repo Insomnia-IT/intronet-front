@@ -3,7 +3,7 @@ import Styles from "./button.module.css";
 import { Button } from "./button";
 import { RoutePath, RoutePathString, useRouter } from "../../pages/routing";
 import { useCallback } from "preact/hooks";
-import { FunctionalComponent } from "preact";
+import { FunctionalComponent, JSX } from "preact";
 import classNames from "classnames";
 
 export type CloseButtonProps = {
@@ -11,6 +11,7 @@ export type CloseButtonProps = {
   goTo?: RoutePath | RoutePathString;
   white?: boolean;
   className?: string;
+  style?: JSX.CSSProperties;
   position?: "absolute" | "static";
 };
 
@@ -45,6 +46,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
         },
         props.className
       )}
+      style={props.style}
       onClick={onClick}
     >
       <SvgIcon class="colorInsNight" id="#x" size={14} />

@@ -46,7 +46,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
       <Card
         background="Soft"
         style={{
-          marginBottom: 30,
+          marginBottom: 24,
           paddingBottom: 8,
           paddingTop: 24,
           alignItems: "stretch",
@@ -65,7 +65,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class="textSmall colorGrey">{block.info.SubTitle ?? ""}</div>
+          <div class="textSmall colorGrey2">{block.info.SubTitle ?? ""}</div>
           <div class={[Styles.duplicate, "colorMineral"].join(" ")}>
             {duplicate}
           </div>
