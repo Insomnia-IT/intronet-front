@@ -9,7 +9,7 @@ export const VotingIntro = () => {
   return (
     <>
       <Card border="Vivid" style={{ marginTop: 20 }}>
-        <h2 class="colorPink">Российский национальный конкурс</h2>
+        <h2 class="colorVivid">Российский национальный конкурс</h2>
         <div class="text colorMediumBlue">Приз зрительских симпатий</div>
       </Card>
       {!data.votedMovie ? (

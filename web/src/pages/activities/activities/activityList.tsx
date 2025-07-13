@@ -53,10 +53,10 @@ export const ActivityList: FunctionalComponent<ActivityListProps> = ({
 
               <RequireAuth>
                 <div flex className={ styles.actions }>
-                  <Button class="w-full" style={ { marginBottom: 24, marginTop: 0 } }
+                  <Button class="w-full" style={ { marginTop: 0 } }
                           goTo={ [ "activities", "edit-time", x._id ] }
                           type="frame">изменить время</Button>
-                  <Button class="w-full" style={ { marginBottom: 24, marginTop: 0 } }
+                  <Button class="w-full" style={ { marginTop: 0 } }
                           goTo={ [ "activities", "edit", x._id ] }
                           type="frame">изменить</Button>
                 </div>
