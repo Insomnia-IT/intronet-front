@@ -64,7 +64,7 @@ export function MapElement(props: {
       case OrderType.Screens:
         return "var(--vivid)";
       case OrderType.Cafe:
-        return "var(--ch-orange)";
+        return "var(--vivid)";
       case OrderType.WC:
         return "var(--purple)";
       case OrderType.Other:

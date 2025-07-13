@@ -44,7 +44,7 @@ const sections = {
   fun: {
     title: "Развлечения",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
           Детская поляна — пространство для гостей и детей. Здесь десятки
           мастер-классов, спектакли и концерты, тематические лекции о
@@ -92,7 +92,7 @@ const sections = {
   safety: {
     title: "Безопасность",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="5">
+      <div class="text" flex column gap="5">
         <div>
           Поляна «Бессонницы» большая, поэтому важно не оставлять маленьких
           детей одних. На фестивале работает Точка сборки — команда волонтеров,

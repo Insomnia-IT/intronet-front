@@ -4,7 +4,7 @@ import { PageLayout } from "@components/PageLayout";
 export function Radio() {
   return <PageLayout title='Бессонное радио'>
     <CloseButton goTo="/main"/>
-    <div class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
+    <div class="text" style={{marginTop: 20, marginBottom: 16}}>
       «Бессонное радио» — радиостанция, работающая исключительно в дни международного фестиваля авторской анимации «Бессонница».
       В нашем эфире:
       <ul class="styledList">
@@ -18,6 +18,8 @@ export function Radio() {
           музыкальные подборки, сопровождающие атмосферу фестиваля и продвигающие творчество его участников - музыкантов, журналистов, режиссеров, монтажеров и мультфильмистов
         </li>
       </ul>
+    </div>
+    <div class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
       Для прослушивания необходимо подключение к Insomnia-Wi-Fi
     </div>
     <ButtonsBar at="bottom">

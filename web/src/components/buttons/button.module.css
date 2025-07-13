@@ -54,12 +54,12 @@
   background: var(--vivid);
 }
 .orange {
-  background: var(--ch-orange);
+  background: var(--vivid);
 }
 .frameOrange {
   composes: frame;
-  color: var(--ch-orange);
-  border-color: var(--ch-orange);
+  color: var(--vivid);
+  border-color: var(--vivid);
   background: var(--cold-white);
 }
 

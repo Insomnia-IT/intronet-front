@@ -37,11 +37,9 @@ const OnboardStage1 = () => {
         </h1>
         <div class="text">— локальный портал «Бессонницы»</div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-          ОГО!
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        ОГО!
+      </Button>
     </>
   );
 };
@@ -49,7 +47,7 @@ const OnboardStage1 = () => {
 const OnboardStage2 = () => {
   return (
     <>
-      <div flex column gap="10">
+      <div flex column>
         <h1>Как это работает?</h1>
         <div>
           <h2 class={styles.menuText}>локально на поле</h2>
@@ -65,14 +63,12 @@ const OnboardStage2 = () => {
           </div>
         </div>
         <div class="sh1">
-          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
+          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
         </div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-          интересно
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        интересно
+      </Button>
     </>
   );
 };
@@ -91,11 +87,9 @@ const OnboardStage3 = () => {
           </ul>
         </h2>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-          круто!
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        круто!
+      </Button>
     </>
   );
 };
@@ -121,11 +115,9 @@ const OnboardStage4 = () => {
           Все вопросы - в Кибер-инфо (локация Инфоцентра)
         </div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-          Начать
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        Начать
+      </Button>
     </>
   );
 };

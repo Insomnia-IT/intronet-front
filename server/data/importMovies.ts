@@ -127,13 +127,13 @@ export interface ProgramFilm {
 }
 
 export function getDay(local: number): number {
-  const day = (new Date(local - 12 * 60 * 60 * 1000).getDay() + 3) % 7; // четверг = 0
+  const day = (new Date(toMoscow(local) - 12 * 60 * 60 * 1000).getDay() + 3) % 7; // четверг = 0
   if (day > 4) return 0;
   return day;
 }
 
 export function getTime(local: number): string {
-  const date = new Date(local);
+  const date = new Date(toMoscow(local));
   const hour = date.getHours();
   const minutes = date.getMinutes();
   return `${hour < 10 ? "0" + hour : hour}:${

@@ -113,7 +113,7 @@ type MovieBlock = {
 
   info: {
     Title: string;
-    SubTitle: string;
+    SubTitle: string | null;
     TitleEn: string;
     SubTitleEn: string;
     MinAge: number;

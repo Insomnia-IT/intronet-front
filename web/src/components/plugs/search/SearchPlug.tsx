@@ -13,8 +13,8 @@ export const SearchPlug: FunctionalComponent<SearchPlugProps> = ({
                                                                  }) => {
   return (
     <div className={Styles.container}>
-      <div className="sh1 colorMediumBlue">{title}</div>
-      <div className="text colorMediumBlue" style={ 'text-align: center' }>
+      <div className="sh1">{title}</div>
+      <div className="text" style={ 'text-align: center' }>
         {text}
       </div>
     </div>
