@@ -23,17 +23,14 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   const store = useMemo(() => new ActivityStore(id), [id]);
   const {activity, hasBookmark} = useCell(store.state);
 
-  console.log(activity);
   return (
     <div flex column gap={4}>
       {activity && (<>
-          <PageHeader titleH2={activity?.title} align={'top'} withCloseButton/>
+          <PageHeader titleH2={<span dangerouslySetInnerHTML={{__html: activity.title}}/>} align={'top'} withCloseButton/>
 
-          {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description}}/>}
+          {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
-            <div className="colorGray sh3">
-              {[author.name, author.description].filter(x => x).join('. ')}
-            </div>
+            <div className="colorGrey sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
           ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
@@ -45,7 +42,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
               <SvgIcon
                 id="#alert"
                 size={32}
-                style={{color: "var(--electric-blues)"}}
+                style={{color: "var(--mineral)"}}
               />
               {locationsStore.getName(activity?.locationId) ?? activity?.locationId}
             </div>
@@ -77,7 +74,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
                 width: "100%",
               }}
             >
-              <BookmarkIcon size={14}/>
+              <BookmarkIcon size={24}/>
               {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
             </Button>
           </ButtonsBar>

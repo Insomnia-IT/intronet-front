@@ -5,10 +5,10 @@ export function Ants() {
   return <PageLayout title='ПРО КЛЕЩЕЙ'>
     <CloseButton goTo="/main"/>
 
-    <span class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
+    <span class="text" style={{marginTop: 20, marginBottom: 16}}>
           На фестивале водятся комары, клещи и прочие кусачие насекомые.<br/><br/>
     Используйте репелленты!<br/><br/>
-    Если вы обнаружили клеща, приходите в медпункт - поможем удалить.
+    Если вы обнаружили клеща, приходите в медпункт — поможем удалить.
     </span>
 
     <ButtonsBar at="bottom">

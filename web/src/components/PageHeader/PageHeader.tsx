@@ -7,7 +7,7 @@ import {FunctionalComponent} from "preact";
 
 type PageHeaderProps = {
   titleH1?: string;
-  titleH2?: string;
+  titleH2?: string | ReactNode;
   type?: 'h1' | 'h2';
   favoritesRoute?: RoutePath | RoutePathString;
   withCloseButton?: boolean;
@@ -33,7 +33,7 @@ export const PageHeader = ({titleH1, titleH2, favoritesRoute, withCloseButton, a
       {Boolean(favoritesRoute) && (
         <SvgIcon
           id="#bookmark"
-          style={{ color: "var(--pink)" }}
+          style={{ color: "var(--vivid)" }}
           size={32}
           onClick={() => goTo(favoritesRoute)}
         />

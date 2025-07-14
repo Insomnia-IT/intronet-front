@@ -14,16 +14,16 @@
   align-items: flex-end;
 }
 
+.center {
+  align-items: center;
+}
+
 .baseline {
   align-items: center;
 }
 
 .baseline {
   align-items: baseline;
-}
-
-.header > h1 {
-  color: var(--medium-blue);
 }
 
 .titleH2 {

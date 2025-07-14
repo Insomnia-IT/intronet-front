@@ -2,7 +2,7 @@
   overflow-x: hidden;
   max-width: 440px;
   min-height: 100%;
-  padding: 54px 16px 80px 16px;
+  padding: 48px 16px 80px 16px;
   color: var(--ins-night);
 }
 .layout {
@@ -17,13 +17,13 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   flex-flow: row nowrap;
   gap: 20px;
 }
 
 .header > h1 {
-  color: var(--medium-blue);
+  color: var(--ins-night);
 }
 
 .clear {

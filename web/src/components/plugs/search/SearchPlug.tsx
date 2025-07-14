@@ -10,11 +10,12 @@ export interface SearchPlugProps {
 export const SearchPlug: FunctionalComponent<SearchPlugProps> = ({
   title,
   text
-                                                                 }) => {
+}) => {
   return (
     <div className={Styles.container}>
-      <div className="sh1 colorMediumBlue">{title}</div>
-      <div className="text colorMediumBlue" style={ 'text-align: center' }>
+      <SvgIcon id="#loading" size={100} />
+      <div className="sh1">{title}</div>
+      <div className="text" style={ 'text-align: center' }>
         {text}
       </div>
     </div>

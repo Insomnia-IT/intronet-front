@@ -5,6 +5,7 @@ import { Fn, groupBy } from "@cmmn/core";
 import locationsGoogle from "./locations/locations_google.json" assert { "type": "json" };
 import mapJson from "./locations/genplan.json" assert { "type": "json" };
 import fs from "fs";
+import console from "console";
 
 export async function importLocations(force = false) {
   const locationsDB = Database.Get<any>("locations");
@@ -46,11 +47,12 @@ export async function getLocationsFromGoogleSheet() {
     const geo = mapData.get(mapName.toLowerCase())?.map((x) => x.figure) ?? [];
 
     const directionId = row.get("directionId") as string;
+    const isFoodcourt = !!row.get("Фудкорт");
     const figure: GeoFigure =
       directionId == "Зона"
         ? geo.find(Array.isArray)
         : geo.find((x) => !Array.isArray(x));
-    if (!figure) {
+    if (!figure && !isFoodcourt) {
       console.error(row.get("Название Insight"));
       return [];
     }
@@ -70,7 +72,9 @@ export async function getLocationsFromGoogleSheet() {
         priority: Boolean(row.get("Приоритет")),
         details: row.get("Тип деталки") as string,
         groupLink: row.get("Ссылка на группу") as string,
+        rowIndex: row.rowNumber,
         menu: row.get("Меню") as string | undefined,
+        isFoodcourt,
       } as InsomniaLocation,
     ];
   });

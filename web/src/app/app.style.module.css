@@ -16,7 +16,7 @@
 }
 :global(.page) :global(h1),
 :global(.page) :global(header){
-  color: var(--medium-blue);
+  color: var(--mineral);
   max-width: calc(100% - 46px);
   text-overflow: ellipsis;
   word-break: break-word;
@@ -42,14 +42,13 @@
 }
 
 :global(.link){
-  font-family: 'Cygre Extra Bold';
+  font-family: 'MxPlus IBM EGA', sans-serif;
   font-style: normal;
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 24px;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--electric-blues);
+  color: var(--mineral);
   user-select: none;
 }
 :global(.link.disabled){

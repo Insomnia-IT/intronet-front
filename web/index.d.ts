@@ -56,6 +56,8 @@ type InsomniaLocation = {
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
+  rowIndex: number;
+  isFoodcourt: boolean;
 };
 
 type ContentBlock =
@@ -84,6 +86,7 @@ type MapItem = {
   figure: Figure;
   priority: boolean;
   directionId: string;
+  isFoodcourt: boolean;
   radius;
   id;
   title?: string;
@@ -110,7 +113,7 @@ type MovieBlock = {
 
   info: {
     Title: string;
-    SubTitle: string;
+    SubTitle: string | null;
     TitleEn: string;
     SubTitleEn: string;
     MinAge: number;
@@ -175,7 +178,7 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
-    name: string
+    name: string;
     description?: string;
     photo?: string;
   }>;

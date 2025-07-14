@@ -70,8 +70,7 @@ class LocationsStore {
 
   @cell
   private get RealLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.db
-      .toArray()
+    return orderBy(this.db.toArray(), (x) => x.rowIndex)
       .map((x) => x as InsomniaLocation)
       .filter((x) => x.figure)
       .concat(this.newLocation ? [this.newLocation] : [])
@@ -105,7 +104,7 @@ class LocationsStore {
 
   @cell
   public get ScreenLocations(): ReadonlyArray<InsomniaLocation> {
-    return ["Полевой", "Речной", "Детский"]
+    return ["Полевой экран", "Речной экран", "Детский Экран"]
       .map((x) => this.findByName(x))
       .filter((x) => x && x.directionId == Directions.screen);
   }
@@ -146,16 +145,21 @@ class LocationsStore {
     const point = (patches.get(foodcourt._id) ??
       geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
     const size = 56;
+    const foodCourtLocations = orderBy(
+      this.db.toArray().filter((x) => x.isFoodcourt),
+      (x) => +x.rowIndex
+    );
     return foodCourtLocations.map((x, i) => {
       const shift = TransformMatrix.Rotate(-1.6).Invoke(getFoodcourtShift(i));
       return {
         minZoom: 1.6,
         _id: foodcourt._id + i.toString(),
-        name: x,
+        name: x.name,
         directionId: Directions.cafe,
-        contentBlocks: [],
-        description: "",
-        menu: "",
+        contentBlocks: x.contentBlocks,
+        description: x.description,
+        menu: x.menu,
+        isFoodcourt: true,
         figure: geoConverter.toGeo({
           X: point.X + shift.X * size,
           Y: point.Y - shift.Y * size,
@@ -199,6 +203,7 @@ class LocationsStore {
           priority: x.priority,
           maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
           minZoom: x.minZoom,
+          isFoodcourt: x.isFoodcourt,
         } as MapItem)
     );
   }
@@ -319,12 +324,13 @@ export class LocationStore {
     hasBookmark: boolean;
     timetable: "animation" | "activity" | undefined;
   }>(() => {
-    const timetable =
-      this.location?.directionId === Directions.screen
-        ? "animation"
-        : activitiesStore.Activities.some((x) => x.locationId === this.id)
-        ? "activity"
-        : undefined;
+    const timetable = activitiesStore.Activities.some(
+      (x) => x.locationId === this.id
+    )
+      ? "activity"
+      : this.location?.directionId === Directions.screen
+      ? "animation"
+      : undefined;
     return {
       location: this.location,
       currentActivity:
@@ -347,38 +353,21 @@ const center = {
   lon: 35.08622484722222,
 };
 
-const foodCourtLocations = [
-  "Пянсе",
-  "Мясо в пите , пица",
-  "Гонконгские вафли и греческий гирос",
-  "Буррито и кесадилья",
-  "Лавка Добра",
-  "Это Паста!",
-  "Hola Churros!",
-  "Та самая шаверма",
-  "Borisoff_produkt",
-  "БлинБлиныч",
-  "The russian pie",
-  "Тайская принцесса",
-  "Сытый гурман",
-  "Тесто",
-];
-
 function getFoodcourtShift(index: number) {
   if (index < 4) {
     return {
       X: -2 + index / 4,
-      Y: index / 4,
+      Y: -1 + index / 4,
     };
   }
   if (index < 10) {
     return {
       X: -1 + (index - 4) / 3,
-      Y: 1,
+      Y: 0,
     };
   }
   return {
     X: 1 + (index - 10) / 4,
-    Y: 1 - (index - 10) / 4,
+    Y: -(index - 10) / 4,
   };
 }

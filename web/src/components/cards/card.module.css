@@ -15,14 +15,14 @@
   background: var(--purple-gradient);
 }
 .bgWhite:not(.borderVivid) {
-  background: white;
+  background: var(--pale);
 }
 .bgNight:not(.borderVivid) {
   background: var(--ins-night);
 }
 
 .bgSoft {
-  background: var(--soft-gradient);
+  background: var(--soft);
 }
 .bgSoft:active{
   box-shadow: 0px 0px 8px 0px #1C257366;
@@ -32,11 +32,11 @@
 }
 
 .bgSoft2 {
-  background: var(--soft-gradient2);
+  background: var(--soft);
 }
 
 .bgColdWhite {
-  background: var(--cold-white);;
+  background: var(--cold-white);
 }
 
 .bgVivid{
@@ -51,21 +51,15 @@
 
 .borderBlue {
   composes: border;
-  border-color: var(--medium-blue);
+  border-color: var(--mineral);
 }
 .borderYellow {
   composes: border;
-  border-color: var(--bonfire-light);
+  border-color: var(--yellow);
 }
 .borderVivid{
   composes: border;
   border-color: var(--vivid);
-}
-.borderVividGradient {
-  composes: borderVivid from "../buttons/button.module.css";
-}
-.borderVividGradient.bgNight:before{
-  background-color: var(--ins-night) !important;
 }
 
 .borderLeftCloud {
@@ -76,4 +70,10 @@
   composes: border;
   border-color: var(--inactive-grey);
   border-width: 1px;
+}
+
+.borderGrey {
+  composes: border;
+  border-width: 1px;
+  border-color: var(--grey);
 }

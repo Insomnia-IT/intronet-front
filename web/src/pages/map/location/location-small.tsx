@@ -86,7 +86,7 @@ export const LocationSmall: FunctionalComponent<LocationSmallProps> = ({
         <div flex-grow>{highlight(location.name, searchQuery)}</div>
 
         <BookmarkIcon
-          class={[...classNames, "colorPink"].join(" ")}
+          class={[...classNames, "colorVivid"].join(" ")}
           onClick={(e) => {
             if (!hasBookmark) return;
             e.preventDefault();

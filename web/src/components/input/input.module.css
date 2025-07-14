@@ -6,34 +6,34 @@
   align-items: flex-start;
   padding: 16px;
   gap: 8px;
-  color: var(--medium-blue);
-  border: 1px solid var(--medium-blue);
+  color: var(--ins-night);
+  border: 1px solid var(--ins-night);
   border-radius: var(--radius);
   background: transparent;
 }
 .input:focus-visible,
 .input:focus {
-  /*border-color: var(--ch-orange);*/
+  /*border-color: var(--vivid);*/
   outline: none;
 }
 .input:invalid {
-  border-color: var(--pink);
+  border-color: var(--vivid);
 }
 
 .input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--gray);
+  color: var(--grey);
   opacity: 1; /* Firefox */
 }
 
 .input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: var(--gray);
+  color: var(--grey);
 }
 
 .input::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: var(--gray);
+  color: var(--grey);
 }
 
 .textarea {

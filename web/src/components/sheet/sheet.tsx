@@ -36,7 +36,7 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
               e.preventDefault();
             }}
       >
-        <div style={{position: 'relative'}}>
+        <div style={{position: 'relative', minHeight: '100%'}}>
         {props.children}
         </div>
       </div>

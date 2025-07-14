@@ -17,6 +17,7 @@
     "row": 1,
     "col": 2
   },
+
   {
     "_id": "map",
     "title": "Карта",
@@ -31,7 +32,7 @@
     "_id": "notes",
     "title": "Объявления",
     "descr": "Записочки как на инфоцентре!",
-    "color": false,
+    "color": true,
     "link": "/notes",
     "section": "main",
     "row": 2,
@@ -41,7 +42,7 @@
   {
     "_id": "game",
     "title": "Игра",
-    "color": false,
+    "color": true,
     "section": "main",
     "small": true,
     "row": 3,
@@ -67,7 +68,6 @@
     "col": 4
   },
 
-
   {
     "_id": "music",
     "title": "Музыка",
@@ -77,16 +77,25 @@
     "row": 4,
     "col": 1
   },
-
+  {
+    "_id": "radio",
+    "title": "Радио",
+    "color": false,
+    "section": "main",
+    "row": 4,
+    "col": 2,
+    "article": "radio",
+    "small": false
+  },
   {
     "_id": "vote",
     "title": "Голосование",
-    "color": true,
+    "color": false,
     "section": "main",
     "link": "/voting",
-    "small": true,
-    "row": 4,
-    "col": 2
+    "small": false,
+    "row": 5,
+    "col": 1
   },
 
   {
@@ -188,7 +197,7 @@
     "title": "Про собак",
     "color": false,
     "section": "about",
-    "small": true,
+    "small": false,
     "row": 6,
     "col": 1
   },
@@ -197,7 +206,7 @@
     "title": "Как уехать",
     "color": true,
     "section": "about",
-    "small": true,
+    "small": false,
     "row": 6,
     "col": 2
   },
@@ -221,7 +230,6 @@
     "row": 2,
     "col": 1
   },
-
   {
     "_id": "ants",
     "title": "Про клещей",

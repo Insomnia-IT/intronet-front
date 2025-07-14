@@ -30,7 +30,8 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     [movie.id]
   );
 
-  // const hasBookmarks = useCell(() => bookmarksStore.Movies.length > 0);
+  const [title, rest] = movie.name.split('реж. ');
+
   return (
     <BookmarkGesture
       disabled={disabled}
@@ -48,14 +49,14 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
     >
       {({ iconOpacity, classNames }) => {
         return (
-          <>
+          <div>
             <div flex center>
               <div flex-grow class={Styles.movieTitle}>
-                {highlight(movie.name, searchQuery)}
+                {highlight(title, searchQuery)}
               </div>
               {!disabled && (
                 <BookmarkIcon
-                  class={[...classNames, "colorPink"].join(" ")}
+                  class={[...classNames, "colorVivid"].join(" ")}
                   onClick={(e) => {
                     if (!hasBookmark) return;
                     e.preventDefault();
@@ -68,21 +69,21 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
                 />
               )}
             </div>
-            {movie.author || movie.country || movie.info?.filmReleaseYear ? (
-              <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
-                {highlight(movie.author, searchQuery)},{" "}
-                {highlight(movie.country, searchQuery)}
+            {rest || movie.country || movie.info?.filmReleaseYear ? (
+              <div class={[Styles.movieInfo, "textSmall", "colorGrey2"].join(" ")}>
+                {highlight("реж. " + rest, searchQuery)}
+                {movie.country ? <>, {highlight(movie.country, searchQuery)}</> : ''}
                 {movie.info?.filmReleaseYear ? ", " + movie.info?.filmReleaseYear : ""}
               </div>
             ) : null}
-            <div class={[Styles.movieInfo, "textSmall"].join(" ")}>
+            <div class={[Styles.movieInfo, "textSmall", "colorGrey"].join(" ")}>
               {movie.info?.filmDuration ? (
                 <>
                   {minutes}&nbsp;мин&nbsp;{seconds}&nbsp;сек
                 </>
               ) : null}
             </div>
-          </>
+          </div>
         );
       }}
     </BookmarkGesture>

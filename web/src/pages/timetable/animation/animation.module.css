@@ -1,9 +1,9 @@
-.time{
-    color: var(--medium-blue);
+.time {
+    color: var(--mineral);
     margin-bottom: 9px;
 }
 
-.header{
+.header {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
@@ -12,46 +12,40 @@
     width: 100%;
 }
 
-
-.duplicate{
+.duplicate {
   margin-top: 12px;
   margin-bottom: 10px;
   composes: text from "../../../app/app.style.module.css";
 }
-.duplicate:empty{
+.duplicate:empty {
   margin: 0;
   display: none;
 }
 
-.movieSmall{
-  user-select: none;
-  -webkit-user-select: none;
-  background: #536BF312;
-  /*background: color-mix(in oklab, var(--purple), transparent 93%);*/
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 4px;
-  padding: 12px 16px;
-  box-sizing: border-box;
-  margin: 4px -8px;
+.movieSmall {
+  background: var(--soft);
+  padding: 16px;
   border-radius: 16px;
+  margin-bottom: 8px;
 }
-.movieSmall:active{
+.movieSmall:active {
   background: rgba(83, 107, 243, 0.1);
 }
-.movieSmall:last-child{
+.movieSmall:last-child {
   padding-bottom: 6px;
 }
-.movieTitle{
+.movieTitle {
   composes: text from "../../../app/app.style.module.css";
-  color: var(--medium-blue);
+  color: var(--ins-night);
+  margin-bottom: 8px;
 }
 
-.movieInfo{
-  color: #646995;
+.movieInfo {
+  color: #BFB79F !important;
+  margin-bottom: 4px;
 }
 
-.snack{
+.snack {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -62,13 +56,25 @@
   border-radius:var(--radius);
   height: 48px;
   box-sizing: border-box;
-  color: var(--electric-blues);
+  color: var(--mineral);
   margin: 21px 0;
   animation: fadeOut ease-out 5s both;
 }
 
 .editButton {
   margin-bottom: 8px;
+}
+
+.openButton {
+  padding-left: 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.openButton::after {
+  position: absolute;
+  right: 20px;
+  content: "\2192";
 }
 
 @keyframes fadeOut {

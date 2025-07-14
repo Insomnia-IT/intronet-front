@@ -43,15 +43,15 @@ const sections = {
   camping: {
     title: "Кемпинг",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>
-          Палатку можно поставить бесплатно в специальной зоне кэмпинга.
+          Палатку можно поставить бесплатно в специальной зоне кемпинга.
         </div>
-        <div class="colorOrange" flex gap="3">
+        <div class="colorVivid" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--ch-orange)", flex: "auto 0 0" }}
+            style={{ color: "var(--vivid)", flex: "auto 0 0" }}
           />
           На поле между фестивальными объектами и локациями, палатки ставить
           запрещено
@@ -72,7 +72,7 @@ const sections = {
   tents: {
     title: "Прокат палаток",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="4">
+      <div class="text" flex column gap="4">
         <div>Можно взять в аренду:</div>
         <ul class="disc" style={{ margin: "4px 0" }}>
           <li>Палатку (есть несколько размеров)</li>
@@ -98,13 +98,13 @@ const sections = {
   paid: {
     title: "Платные кемпинги",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
+      <div class="text" flex column gap="2">
         <div style={{ marginBottom: 8 }}>
           Если вы заранее купили билет в платный кемпинг — вам сюда!
         </div>
         <Link
           goTo="/map"
-          query={{ name: "лесной лагерь" }}
+          query={{ name: "Лесной лагерь «Байка»" }}
           style={{ margin: "10px 0" }}
         >
           к Лесному лагерю «Байка»
@@ -130,7 +130,7 @@ const sections = {
   caravan: {
     title: "Караван",
     component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
+      <div class="text" flex column gap="2">
         <div style={{ marginBottom: 8 }}>
           Если вы заранее купили билет в палаточный отель Караван — вам сюда!
         </div>
@@ -139,33 +139,9 @@ const sections = {
           <Button
             type="blue"
             class="w-full"
-            goTo={["map", { name: "караван" }]}
+            goTo={["map", { name: "отель «Караван»" }]}
           >
             к каравану
-          </Button>
-        </ButtonsBar>
-      </div>
-    ),
-  },
-  yurt: {
-    title: "Кемпинг Нафани",
-    component: () => (
-      <div class="text colorMediumBlue" flex column gap="2">
-        <div style={{ marginBottom: 8 }}>
-          Если вы заранее купили билет - вам сюда!
-        </div>
-        <div>
-          Несколько палаточных домиков на двоих в уютной роще прямо на берегу
-          Рессы.
-        </div>
-        <Footer />
-        <ButtonsBar at="bottom">
-          <Button
-            type="blue"
-            class="w-full"
-            goTo={["map", { name: "с нами можно" }]}
-          >
-            к Нафане
           </Button>
         </ButtonsBar>
       </div>

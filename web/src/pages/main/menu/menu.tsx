@@ -30,7 +30,7 @@ export const Menu: FunctionalComponent = () => {
               router.goTo([x.href]);
               switchOpen();
             }}
-            class={x.href === router.route[0] ? "colorPink" : ""}
+            class={x.href === router.route[0] ? "colorVivid" : ""}
           >
             <h2>{x.title}</h2>
             {x.descr && <div class="text-small">{x.descr}</div>}

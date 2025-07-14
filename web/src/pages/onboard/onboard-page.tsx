@@ -29,7 +29,7 @@ const OnboardStage1 = () => {
   return (
     <>
       <div>
-        <img className={styles.img1} src="/public/images/rabbit.webp" />
+        <img className={styles.img1} src="/public/images/onboarding.webp" />
         <h1>
           Привет!
           <br />
@@ -37,11 +37,9 @@ const OnboardStage1 = () => {
         </h1>
         <div class="text">— локальный портал «Бессонницы»</div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
-          ОГО!
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        ОГО!
+      </Button>
     </>
   );
 };
@@ -49,31 +47,28 @@ const OnboardStage1 = () => {
 const OnboardStage2 = () => {
   return (
     <>
-      <div flex column gap="10">
+      <div flex column>
         <h1>Как это работает?</h1>
         <div>
-          <h2 class={styles.menuText}>локально на поле</h2>
-          <div class="text">
-            Insight работает с помощью внутренней сети «Insomnia-WIFI», которая
-            доступна только на территории фестиваля
+          <h2 class={styles.menuText}>локально на поле</h2>
+          <div class="text colorGrey2">
+            Добавь приложение на главный экран телефона и пользуйся им всё время на поле!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Почти интернет</h2>
-          <div class="text">
-            Заходить на другие сайты нельзя, но можно наслаждаться порталом,
-            даже если нет подключения к сети
+          <div class="text colorGrey2">
+            Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато
+            в Insight получится видеть изменения, новости и писать объявления.
           </div>
         </div>
-        <div class="sh1 colorWhite">
-          Точки сети находятся у Инфоцентра и основных экранов
+        <div class="text colorGrey2">
+          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
         </div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
-          интересно
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        интересно
+      </Button>
     </>
   );
 };
@@ -92,11 +87,9 @@ const OnboardStage3 = () => {
           </ul>
         </h2>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
-          круто!
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        круто!
+      </Button>
     </>
   );
 };
@@ -107,23 +100,24 @@ const OnboardStage4 = () => {
         <h1>а ещё тут можно</h1>
         <div>
           <h2 class={styles.menuText}>сохранять</h2>
-          <div class="text">
-            мультфильмы, мероприятия и места в избранное, чтобы ничего не
+          <div class="text colorGrey2">
+            Мультфильмы, мероприятия и места в избранное, чтобы ничего не
             пропустить!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>проголосовать</h2>
-          <div class="text">
-            за лучший мультфильм в номинации «Приз зрительских симпатий»
+          <div class="text colorGrey2">
+            За лучший мультфильм в номинации «Приз зрительских симпатий»
           </div>
         </div>
+        <div class="text colorGrey2">
+          Все вопросы - в Кибер-инфо (локация Инфоцентра)
+        </div>
       </div>
-      <ButtonsBar at="bottom">
-        <Button class={styles.menuBtn} onClick={userStore.onboardingNext}>
-          Начать
-        </Button>
-      </ButtonsBar>
+      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+        Начать
+      </Button>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Database } from "../database";
 import { dbCtrl } from "../db-ctrl";
 import mainPageJSON from "./main-page.json" assert { type: "json" };
 
+
 export async function importMainPage(force = false) {
   const db = Database.Get<any>("main");
   const cards = await db.getSince();

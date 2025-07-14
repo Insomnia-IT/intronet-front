@@ -10,6 +10,7 @@ import { Button } from "../../../components";
 import { useHistoryState } from "../../routing";
 import { MovieList } from "./movie-list";
 import styles from "./animation.module.css";
+import classNames from 'classnames'
 
 export type AnimationBlockProps = {
   id: string;
@@ -30,24 +31,22 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
   );
   return (
     <div>
-      <div class={styles.editButton}>
-        <RequireAuth>
-          <Button
-            class="w-full"
-            goTo={["timetable", "edit", props.id]}
-            type="frame"
-          >
-            изменить время
-          </Button>
-        </RequireAuth>
-      </div>
+      <RequireAuth>
+        <Button
+          class={classNames("w-full", styles.editButton)}
+          goTo={["timetable", "edit", props.id]}
+          type="frame"
+        >
+          изменить время
+        </Button>
+      </RequireAuth>
       <div className={[Styles.time, "sh1"].join(" ")}>
         {view.start} - {view.end}
       </div>
       <Card
         background="Soft"
         style={{
-          marginBottom: 30,
+          marginBottom: 24,
           paddingBottom: 8,
           paddingTop: 24,
           alignItems: "stretch",
@@ -66,12 +65,12 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class="textSmall colorGray">{block.info.SubTitle ?? ""}</div>
-          <div class={[Styles.duplicate, "colorVivid"].join(" ")}>
+          <div class="textSmall colorGrey2">{block.info.SubTitle ?? ""}</div>
+          <div class={[Styles.duplicate, "colorMineral"].join(" ")}>
             {duplicate}
           </div>
           {isOpen && <MovieList movies={block.movies} />}
-          <Button type="text" onClick={() => setIsOpen((x) => !x)}>
+          <Button class={styles.openButton} type="text" onClick={() => setIsOpen((x) => !x)}>
             {isOpen ? "СВЕРНУТЬ РАСПИСАНИЕ" : "ПОКАЗАТЬ РАСПИСАНИЕ"}
           </Button>
         </div>

@@ -23,7 +23,7 @@ export const NoteSheetContent: FunctionalComponent<INoteSheetContentProps> = ({
       <div className={cx(styles.container, className)}>
         <h3 className={cx("sh1", styles.title)}>{title}</h3>
         <p className={cx("text", "colorMediumBlue", styles.text)}>{text}</p>
-        <span className={cx("sh3", "colorGray", styles.author)}>
+        <span className={cx("sh3", "colorGrey", styles.author)}>
           {typeof author === "string" ? author : author && author.name},{" "}
           {getNoteDate(updatedAt || createdAt)}
         </span>

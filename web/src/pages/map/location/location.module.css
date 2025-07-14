@@ -17,6 +17,10 @@
   margin-top: 27px;
 }
 
+.locationContent .text {
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+
 .locationSmallContainer {
   display: flex;
   align-items: center;
@@ -56,15 +60,21 @@
 
 .bookmarkAddGesture{
   composes: bookmarkAdd;
-  background: var(--gray);
+  background: var(--grey);
 }
 
 .bookmarkAddDeleting{
   composes: bookmarkAdd;
-  background: var(--ch-orange);
+  background: var(--grey2);
 }
 
 .bookmarkAddAdding{
   composes: bookmarkAdd;
-  background: var(--bonfire-light);
+  background: var(--vivid);
+}
+
+.bookmark {
+  path {
+    fill: var(--cold-white);
+  }
 }

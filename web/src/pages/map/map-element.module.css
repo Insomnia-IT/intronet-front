@@ -15,10 +15,13 @@
   font-size: 13em !important;
   line-height: 15em !important;
   text-anchor: middle;
-  white-space: pre;
-  font-weight: bold;
+  border-radius: 8px;
 }
-
+.elementTextFoodcourt {
+  composes: elementText;
+  text-anchor: start;
+  vertical-align: middle;
+}
 .selected {
   transform: scale(1.4);
 }
@@ -63,12 +66,12 @@
   fill: var(--cold-white);
 }
 .zoneText{
-  fill: var(--medium-blue);
+  fill: var(--mineral);
   font-weight: bold;
 }
 
 .zoneSelectedRect{
-  fill:var(--ch-orange);
+  fill:var(--vivid);
 }
 .zoneSelectedText{
   composes: zoneText;

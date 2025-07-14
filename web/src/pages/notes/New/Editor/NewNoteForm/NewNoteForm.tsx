@@ -65,12 +65,11 @@ const fields: INewNoteFormFields = [
     lable: "Категория",
     type: "tags",
   },
-
   {
     name: "TTL",
     value: "",
     lable: "Актуально до",
-    description: "В 00:00 выбранного дня удалим объявление",
+    description: "В конце выбранного дня удалим объявление",
     type: "tags",
     tags: dayTags,
   },

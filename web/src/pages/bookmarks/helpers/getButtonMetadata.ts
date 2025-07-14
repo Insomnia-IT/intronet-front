@@ -13,12 +13,12 @@ export const getButtonMetadata = (
     case "movie":
       return {
         buttonRoute: "/timetable",
-        buttonTitle: "К расписанию анимации",
+        buttonTitle: "К анимации",
       };
     case "activity":
       return {
         buttonRoute: "/activities",
-        buttonTitle: "К расписанию неанимации",
+        buttonTitle: "К неанимации",
       };
     case "locations":
       return {

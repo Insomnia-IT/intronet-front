@@ -119,7 +119,7 @@ export const ActivityEdit = ({mode}: ActivityEditProp) => {
 
       {
         mode !== 'create' &&
-        <Button type="text" class="colorOrange" onClick={() => {
+        <Button type="text" class="colorVivid" onClick={() => {
           changesStore.addChange({
             _id: id,
             isCanceled: !activity.isCanceled

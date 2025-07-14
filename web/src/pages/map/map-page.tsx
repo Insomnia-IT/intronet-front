@@ -44,7 +44,7 @@ export function MapPageWithRouting() {
         <SvgIcon
           id="#bookmark"
           style={{
-            color: "var(--pink)",
+            color: "var(--vivid)",
           }}
           size={32}
           onClick={() => goTo("/bookmarks/locations")}
@@ -56,7 +56,7 @@ export function MapPageWithRouting() {
           <div class={styles.editBar}>
             <Button
               type="textSimple"
-              class="colorOrange"
+              class="colorVivid"
               onClick={() => {
                 locationsStore.discardChanges();
                 locationsStore.isEdit = false;

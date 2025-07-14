@@ -8,6 +8,7 @@ export const BookmarkIcon: FunctionalComponent<BookmarkIconProps> = ({
   active,
   ...svgProps
 }) => {
+
   return (
     <SvgIcon
       id="#bookmark"
