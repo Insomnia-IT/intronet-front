@@ -72,3 +72,9 @@
   composes: bookmarkAdd;
   background: var(--vivid);
 }
+
+.bookmark {
+  path {
+    fill: var(--cold-white);
+  }
+}

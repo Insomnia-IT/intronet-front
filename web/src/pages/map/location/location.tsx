@@ -19,7 +19,6 @@ export type LocationProps = {
 
 export const Location: FunctionalComponent<LocationProps> = ({
   id,
-  expanded,
 }) => {
   const router = useLocationsRouter();
   const store = useMemo(() => new LocationStore(id), [id]);
@@ -129,7 +128,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
               width: "100%",
             }}
           >
-            <BookmarkIcon size={14} />
+            <BookmarkIcon class={Styles.bookmark} size={24} />
             {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
           </Button>
         </ButtonsBar>

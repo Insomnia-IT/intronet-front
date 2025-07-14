@@ -36,7 +36,7 @@ export const FilteriesSlider: FunctionalComponent = () => {
             className={styles.tag}
           >
             {icon && (
-              <SvgIcon id={`#${icon}`} size={14} style={{ paddingLeft: 4 }} />
+              <SvgIcon id={`#${icon}`} size={24} style={{ paddingLeft: 4 }} />
             )}
             {name}
           </Tag>

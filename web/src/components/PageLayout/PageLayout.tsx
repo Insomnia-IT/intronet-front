@@ -66,7 +66,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        <div flex column gap={5} style={{ marginBottom: 16 }}>
+        <div flex column gap={6} style={{ marginBottom: 16 }}>
           {(title || withCloseButton || !!Search || favoritesRoute) && (
             <div className={headerStyle ?? styles.header}>
               {title && <h1>{title}</h1>}
