@@ -73,7 +73,7 @@
     "title": "Музыка",
     "color": false,
     "section": "main",
-    "small": true,
+    "small": false,
     "row": 4,
     "col": 1
   },
@@ -93,7 +93,7 @@
     "color": false,
     "section": "main",
     "link": "/voting",
-    "small": false,
+    "small": true,
     "row": 5,
     "col": 1
   },
