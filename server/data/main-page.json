@@ -85,7 +85,7 @@
     "row": 4,
     "col": 2,
     "article": "radio",
-    "small": true
+    "small": false
   },
   {
     "_id": "vote",
@@ -93,9 +93,9 @@
     "color": false,
     "section": "main",
     "link": "/voting",
-    "small": true,
-    "row": 4,
-    "col": 3
+    "small": false,
+    "row": 5,
+    "col": 1
   },
 
   {
@@ -197,7 +197,7 @@
     "title": "Про собак",
     "color": false,
     "section": "about",
-    "small": true,
+    "small": false,
     "row": 6,
     "col": 1
   },
@@ -206,7 +206,7 @@
     "title": "Как уехать",
     "color": true,
     "section": "about",
-    "small": true,
+    "small": false,
     "row": 6,
     "col": 2
   },

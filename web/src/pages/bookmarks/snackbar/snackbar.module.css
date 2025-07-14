@@ -7,7 +7,7 @@
     left: 16px;
     top: 10px;
     padding: 16px;
-    background: var(--ins-night);
+    background: #BFB79F33;
     border-radius: var(--radius);
     color: var(--cold-white);
     transition: top .3s ease-out;

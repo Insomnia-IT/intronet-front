@@ -74,7 +74,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
                 width: "100%",
               }}
             >
-              <BookmarkIcon size={14}/>
+              <BookmarkIcon size={24}/>
               {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
             </Button>
           </ButtonsBar>

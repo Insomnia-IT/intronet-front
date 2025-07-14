@@ -65,7 +65,7 @@ export const NoteSheet: FunctionalComponent<INoteSheetProps> = ({
             type="blue"
             onClick={addToBookmark}
           >
-            <BookmarkIcon size={13} />
+            <BookmarkIcon size={24} />
             {bookmarkActionText}
           </Button>
         )}
