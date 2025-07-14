@@ -72,9 +72,9 @@ export class TileConverter {
 
 export const geoConverter = new TileConverter(
   {
-    x: 156591.95,
-    y: 83300.12,
+    x: 156591.7,
+    y: 83300.07,
   },
-  17.999945,
+  17.999943,
   256
 );
