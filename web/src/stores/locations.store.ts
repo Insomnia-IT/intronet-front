@@ -147,7 +147,8 @@ class LocationsStore {
     const size = 56;
     const foodCourtLocations = orderBy(
       this.db.toArray().filter((x) => x.isFoodcourt),
-      (x) => +x.rowIndex
+      (x) => x.rowIndex,
+      true
     );
     return foodCourtLocations.map((x, i) => {
       const shift = TransformMatrix.Rotate(-1.6).Invoke(getFoodcourtShift(i));
