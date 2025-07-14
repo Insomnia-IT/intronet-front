@@ -70,8 +70,7 @@ class LocationsStore {
 
   @cell
   private get RealLocations(): ReadonlyArray<InsomniaLocation> {
-    return this.db
-      .toArray()
+    return orderBy(this.db.toArray(), (x) => x.rowIndex)
       .map((x) => x as InsomniaLocation)
       .filter((x) => x.figure)
       .concat(this.newLocation ? [this.newLocation] : [])
@@ -146,7 +145,10 @@ class LocationsStore {
     const point = (patches.get(foodcourt._id) ??
       geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
     const size = 56;
-    const foodCourtLocations = this.db.toArray().filter((x) => x.isFoodcourt);
+    const foodCourtLocations = orderBy(
+      this.db.toArray().filter((x) => x.isFoodcourt),
+      (x) => +x.rowIndex
+    );
     return foodCourtLocations.map((x, i) => {
       const shift = TransformMatrix.Rotate(-1.6).Invoke(getFoodcourtShift(i));
       return {

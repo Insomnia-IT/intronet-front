@@ -62,7 +62,7 @@ const OnboardStage2 = () => {
             в Insight получится видеть изменения, новости и писать объявления.
           </div>
         </div>
-        <div class="sh1">
+        <div class="text colorGrey2">
           Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
         </div>
       </div>
@@ -111,7 +111,7 @@ const OnboardStage4 = () => {
             За лучший мультфильм в номинации «Приз зрительских симпатий»
           </div>
         </div>
-        <div class="sh1">
+        <div class="text colorGrey2">
           Все вопросы - в Кибер-инфо (локация Инфоцентра)
         </div>
       </div>
