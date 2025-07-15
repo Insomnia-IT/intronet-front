@@ -46,6 +46,7 @@ export const NotesPage: FunctionalComponent = () => {
             Мои объявления
           </Button>
         )}>
+            {location.host === 'app.insomniafest.ru' &&<h2 class="colorVivid">Объявления не работают в городской версии приложения</h2>}
             <FilteriesSlider />
             <ModerationPageLink />
             <div className={styles.addNoteBtn}>
