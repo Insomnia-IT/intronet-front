@@ -1,4 +1,4 @@
-import {Button, ButtonsBar, CloseButton, Link} from "@components";
+import {CloseButton, Link} from "@components";
 import { Tag, Tags } from "@components";
 import { useEffect } from "preact/hooks";
 import { useRouter } from "../../../routing";
@@ -9,7 +9,7 @@ export function Game() {
   const router = useRouter();
   const section = router.route[2] as keyof typeof sections | undefined;
   const goTo = (section, replace = true) => {
-    router.goTo(["articles", "Game", section], {}, replace);
+    router.goTo(["articles", "game", section], {}, replace);
   };
   useEffect(() => {
     if (!section) {
@@ -42,7 +42,7 @@ const sections = {
     title: "О Игре",
     component: () => (
       <div class="text" flex column gap="4">
-        <div><b>Анимаквест: большая анимационная игра</b></div>
+        <div className="sh1">Анимаквест: большая анимационная игра</div>
       <div>
       Выполняй основные, дополнительные и секретные задания, обменивай баллы на крутые призы. Получи шанс выиграть Вечный билет на Бессонницу!
       </div>
