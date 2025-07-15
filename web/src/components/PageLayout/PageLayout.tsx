@@ -66,31 +66,33 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        <div flex column gap={6} style={{ marginBottom: 16 }}>
-          {(title || withCloseButton || !!Search || favoritesRoute) && (
-            <div className={headerStyle ?? styles.header}>
-              {title && <h1>{title}</h1>}
-              {Boolean(favoritesRoute) && (
-                <SvgIcon
-                  id="#bookmark"
-                  style={{
-                    color: design == "dark" ? "var(--white)" : "var(--vivid)",
-                  }}
-                  size={40}
-                  onClick={() => goTo(favoritesRoute)}
-                />
-              )}
-              {withCloseButton && <CloseButton position="static" />}
-            </div>
-          )}
-          {Boolean(Search) && (
-            <SearchInput
-              placeholder={searchLabel}
-              style={searchStyle}
-              onFocus={() => router.goTo([router.route[0], "search"])}
-            />
-          )}
-        </div>
+        {(title || withCloseButton || !!Search || favoritesRoute) && (
+          <div flex column gap={6} style={{ marginBottom: 16 }}>
+            {(title || withCloseButton || !!Search || favoritesRoute) && (
+              <div className={headerStyle ?? styles.header}>
+                {title && <h1>{title}</h1>}
+                {Boolean(favoritesRoute) && (
+                  <SvgIcon
+                    id="#bookmark"
+                    style={{
+                      color: design == "dark" ? "var(--white)" : "var(--vivid)",
+                    }}
+                    size={40}
+                    onClick={() => goTo(favoritesRoute)}
+                  />
+                )}
+                {withCloseButton && <CloseButton position="static" />}
+              </div>
+            )}
+            {Boolean(Search) && (
+              <SearchInput
+                placeholder={searchLabel}
+                style={searchStyle}
+                onFocus={() => router.goTo([router.route[0], "search"])}
+              />
+            )}
+          </div>
+        )}
         {children}
         {Boolean(buttons) && (
           <ButtonsBar at="bottomWithTapbar">{buttons}</ButtonsBar>
