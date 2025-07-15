@@ -39,7 +39,7 @@ export function Game() {
 
 const sections = {
   aboutgame: {
-    title: "О Игре",
+    title: "Об Игре",
     component: () => (
       <div class="text" flex column gap="4">
         <div className="sh1">Анимаквест: большая анимационная игра</div>
