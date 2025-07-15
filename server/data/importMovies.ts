@@ -127,7 +127,7 @@ export interface ProgramFilm {
 }
 
 export function getDay(local: number): number {
-  const day = (new Date(toMoscow(local) - 8.5 * 60 * 60 * 1000).getDay() + 3) % 7; // четверг = 0
+  const day = (new Date(toMoscow(local) - 8 * 60 * 60 * 1000).getDay() + 3) % 7; // четверг = 0
   if (day > 4) return 0;
   return day;
 }
