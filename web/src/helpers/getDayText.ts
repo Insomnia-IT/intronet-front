@@ -38,8 +38,8 @@ export function getDay(utc: number): Day {
 }
 
 export function getTimeComparable(time: string): string{
-  if (time.startsWith('0')) return  '3' + time;
-  return  time;
+  if (+time.split(':')[0] < 9) return  '3' + time;
+  return time;
 }
 export function getTime(local: Date): string{
   const hour = local.getHours();
@@ -62,7 +62,7 @@ export function getCurrentHour() {
 export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
   switch (filter) {
     case 9:
-      return hour < 13 && hour > 9;
+      return hour < 13 && hour >= 9;
     case 13:
       return hour >= 13 && hour < 17;
     case 17:
