@@ -207,21 +207,14 @@ export class MapComponent extends Component {
     );
   }
 
+  currentIds: string[];
   scrollTo(ids: string[]) {
     if (!this.root || !ids.length) return;
+    if (this.currentIds?.every((x, i) => x == ids[i])) return;
     const mapItems = locationsStore.MapItems.filter((x) => ids.includes(x.id));
     const centers = mapItems.map((x) => geoConverter.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(geoConverter.getCenter([centers]));
-    const minZoom = Math.max(...mapItems.map((x) => x.minZoom));
-    // if (
-    //   view.X > rect.left + rect.width / 100 &&
-    //   view.X < rect.right - rect.width / 100 &&
-    //   view.Y > rect.top + rect.height / 100 &&
-    //   view.Y < rect.bottom + rect.height / 100
-    // ) {
-    //   return;
-    // }
     const shift = {
       X: (rect.left + rect.right) / 2 - view.X,
       Y: (rect.top * 3 + rect.bottom) / 4 - view.Y,

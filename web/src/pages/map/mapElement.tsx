@@ -247,7 +247,7 @@ export function MapElement(props: {
                   <text
                     className={styles.elementText}
                     y={`${2.5 + i * 1.2}em`}
-                    filter="url(#solid)"
+                    fill="white"
                   >
                     {text}
                   </text>
