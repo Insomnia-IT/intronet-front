@@ -1,4 +1,4 @@
-import {Button, ButtonsBar, CloseButton, Link, PageLayout} from "@components";
+import {Button, ButtonsBar, CloseButton, Link} from "@components";
 import { Tag, Tags } from "@components";
 import { useEffect } from "preact/hooks";
 import { useRouter } from "../../../routing";
