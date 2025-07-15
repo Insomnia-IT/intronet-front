@@ -63,7 +63,7 @@ const OnboardStage2 = () => {
           </div>
         </div>
         <div class="text colorGrey2">
-          Точки сети находятся у Инфоцентра, Фудкрота и основных экранов
+          Точки сети находятся у Инфоцентра, Фудкорта и основных экранов
         </div>
       </div>
       <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
