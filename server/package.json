@@ -16,11 +16,11 @@
     "log4js-logstash-tcp": "2.0.5",
     "mongodb": "6.3.0",
     "node-fetch": "3.3.2",
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "google-auth-library": "^9.10.0",
+    "google-spreadsheet": "^4.1.2"
   },
   "devDependencies": {
-    "google-auth-library": "^9.10.0",
-    "google-spreadsheet": "^4.1.2",
     "xmldom": "0.6.0",
     "@swc/core": "1.11.21",
     "@swc-node/register": "1.10.10",
