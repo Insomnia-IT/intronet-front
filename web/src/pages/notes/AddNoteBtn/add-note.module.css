@@ -2,12 +2,7 @@
   width: 100%;
   background: transparent;
   color: var(--mineral);
-  font-size: 14px;
   border: none;
   position: relative;
   border: 1px solid var(--mineral);
-}
-
-.content {
-  min-width: 303px;
 }
