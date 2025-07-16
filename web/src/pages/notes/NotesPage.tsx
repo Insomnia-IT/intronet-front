@@ -67,7 +67,6 @@ export const NotesPage: FunctionalComponent = () => {
                 </Sheet>
               </>
             }
-
         </PageLayout>
       );
   }
