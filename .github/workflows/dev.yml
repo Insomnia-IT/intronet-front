@@ -3,7 +3,7 @@ name: Docker Build
 on:
   push:
     branches:
-      - 'develop'
+      - 'master'
 
 env:
   CLUSTER_NAME: InsightKube
