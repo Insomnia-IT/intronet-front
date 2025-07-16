@@ -5,6 +5,8 @@ import { Fn, groupBy } from "@cmmn/core";
 import locationsGoogle from "./locations/locations_google.json" assert { "type": "json" };
 import mapJson from "./locations/genplan.json" assert { "type": "json" };
 import fs from "fs";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
 import console from "console";
 
 export async function importLocations(force = false) {
@@ -93,8 +95,6 @@ const enabledFigures = [
 ];
 
 async function getDoc() {
-  const { GoogleSpreadsheet } = await import("google-spreadsheet");
-  const { JWT } = await import("google-auth-library");
   const privateKeyEnv = process.env.GOOGLE_SHEET_PRIVATE_KEY!;
   if (!privateKeyEnv) {
     throw "provide GOOGLE_SHEET_PRIVATE_KEY in env";
