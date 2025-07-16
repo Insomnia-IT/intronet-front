@@ -2,7 +2,7 @@ import {Button, ButtonsBar, CloseButton} from "../../../../components";
 import { PageLayout } from "@components/PageLayout";
 
 export function Radio() {
-  return <PageLayout title='Бессонное радио'>
+  return <PageLayout title={<div style={{paddingRight: 60}}>Бессонное радио</div>}>
     <CloseButton goTo="/main"/>
     <div class="text" style={{marginTop: 20, marginBottom: 16}}>
       «Бессонное радио» — радиостанция, работающая исключительно в дни международного фестиваля авторской анимации «Бессонница».

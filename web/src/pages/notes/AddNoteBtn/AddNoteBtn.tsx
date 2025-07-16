@@ -5,7 +5,7 @@ import { Button } from "@components";
 export const AddNoteBtn: FunctionalComponent = () => {
   return (
     <Button className={styles.btn} goTo={`/notes/new`}>
-      <span className={styles.content}>+ НАПИСАТЬ ОБЪЯВЛЕНИЕ</span>
+      + НАПИСАТЬ ОБЪЯВЛЕНИЕ
     </Button>
   );
 };
