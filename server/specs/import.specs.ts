@@ -1,4 +1,4 @@
-import { test, describe, before } from "node:test";
+import { it, describe } from "node:test";
 import { importMovies } from "../data/importMovies";
 import { importVurchel } from "../data/importVurchel";
 import { importLocations } from "../data/importLocations";
@@ -8,11 +8,11 @@ import { importShops } from "../data/importShops";
 import { importEvents } from "../data/importEvents";
 
 describe("import", { timeout: 2 ** 30 }, () => {
-  test("events", () => importEvents());
-  test("locations", () => importLocations(true));
-  test("activities", () => importActivities(true));
-  test("movies", () => importMovies(true));
-  test("vurchel", () => importVurchel(true));
-  test("shops", () => importShops(true));
-  test("mainPage", () => importMainPage(true));
+  it("events", () => importEvents());
+  it("locations", () => importLocations(true));
+  it("activities", () => importActivities(true));
+  it("movies", () => importMovies(true));
+  it("vurchel", () => importVurchel(true));
+  it("shops", () => importShops(true));
+  it("mainPage", () => importMainPage(true));
 });
