@@ -59,6 +59,8 @@ class MoviesStore {
         (x) =>
           x.info.Title.toLowerCase().includes(
           "национальный конкурс"
+        ) || x.info.Title.toLowerCase().includes(
+          "национального конкурса"
         )
       ).flatMap((x) => x.movies)
     );

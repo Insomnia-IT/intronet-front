@@ -46,22 +46,27 @@ export const NotesPage: FunctionalComponent = () => {
             Мои объявления
           </Button>
         )}>
-            {location.host === 'app.insomniafest.ru' &&<h2 class="colorVivid">Объявления не работают в городской версии приложения</h2>}
-            <FilteriesSlider />
-            <ModerationPageLink />
-            <div className={styles.addNoteBtn}>
-              <AddNoteBtn />
-            </div>
-            <GesturedNotesList
-              className={styles.notesList}
-              notesProps={{
-                onClick: setActiveNoteId,
-              }}
-              filterIds={[filterId]}
-            />
-          <Sheet onClose={resetActiveNoteId} height="auto">
-            {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
-          </Sheet>
+            {location.host === 'app.insomniafest.ru'
+              ? <h2 class="colorVivid">Сейчас объявления отключены. Будут работать на Фестивале</h2>
+              :
+              <>
+                <FilteriesSlider />
+                <ModerationPageLink />
+                <div className={styles.addNoteBtn}>
+                  <AddNoteBtn />
+                </div>
+                <GesturedNotesList
+                  className={styles.notesList}
+                  notesProps={{
+                    onClick: setActiveNoteId,
+                  }}
+                  filterIds={[filterId]}
+                />
+                <Sheet onClose={resetActiveNoteId} height="auto">
+                  {activeNoteId && <NoteSheet activeNoteId={activeNoteId} onClose={resetActiveNoteId} />}
+                </Sheet>
+              </>
+            }
         </PageLayout>
       );
   }
