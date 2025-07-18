@@ -103,13 +103,13 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
         text: formFields["text"] as string,
         title: formFields["title"] as string,
         TTL: isAdmin
-          ? 18
+          ? 21 as 21
           : (parseInt((formFields["TTL"] ?? `tag+${getDayText(4, 'short')}`).slice("tag+".length + 3)) as
-              | 13
-              | 14
-              | 15
-              | 16
-              | 17) || 18,
+              | 17
+              | 18
+              | 19
+              | 20
+              | 21) || 21,
         isPinned: formFields["isPinned"] === "true",
       })
       .then(() => {

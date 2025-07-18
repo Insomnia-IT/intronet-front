@@ -129,7 +129,7 @@ type INoteLocal = {
   author: {
     name: string;
   };
-  TTL: 13 | 14 | 15 | 16 | 17 | 18;
+  TTL: 16 | 17 | 18 | 19 | 20 | 21;
   isPinned: boolean;
 };
 
