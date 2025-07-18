@@ -11,6 +11,7 @@ import { logCtrl } from "./log.ctrl";
 import { getResults, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
+import fs from "fs/promises";
 
 const fastify = Fastify({
   logger: false,
@@ -101,6 +102,13 @@ fastify.post("/batch", async function (request, reply) {
   console.log("batch", data);
   for (let item of data) {
     if (!checkWriteAccess(user, item.db, item.value)) continue;
+    try {
+      if (item.db === 'notes') {
+        fs.appendFile('notes.logs.json', JSON.stringify({...item.value, user}, null, 2) + '\n');
+      }
+    } catch (e) {
+      console.error("logging error", e);
+    }
     await dbCtrl.addOrUpdate(item.db, item.value);
   }
 });
