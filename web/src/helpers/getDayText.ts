@@ -12,10 +12,6 @@ export function getDayText(
     case "full":
       return namesFull[day];
     case "at": {
-      const today = getCurrentDay();
-      if (today == day) return `сегодня`;
-      if (day == today - 1) return `вчера`;
-      if (day == today + 1) return `завтра`;
       return namesAt[day];
     }
     case "shortWD": {
