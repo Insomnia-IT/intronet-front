@@ -138,7 +138,7 @@ export class MovieBlockStore {
       return "Марсе";
     })(screen);
     if (isAfter) {
-      return `Покажем этот блок ещё раз ${getDayText(duplicate.day, "at")} в ${
+      return `Так же покажем этот блок ${getDayText(duplicate.day, 'at')}, в ${
         duplicate.start
       } на ${screenAt}`;
     }
