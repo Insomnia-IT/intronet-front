@@ -7042,26 +7042,26 @@
           ]
         },
         {
-          "eventTitle": "Нидра йога. Поиск персонального тотема",
-          "eventDescription": "Медитация с точки зрения светского подхода, чудеса нейропластичности, процессы, происходящие с мозгом в результате практики, техника безопасности – темы, которые затронем на лекции. А после попробуем психотехнику, разработанную йогом Свами Сарасвати, называемую также йогическим сном (по желанию возьмите маски для сна).",
+          "eventTitle": "Гнев. Его проявления. И как с ним подружиться",
+          "eventDescription": "Жизненный азарт — это трансформированная энергия злости, восторг — она же. Способность: достигать, любить, открываться, звучать и иметь право голоса, отстаивать свои границы, жить ощущая вкус жизни, все это про него (не)любимого. Все это про агрессию, про гнев, про расширение, выражение, позволение себе жить. Приходите, будем пробовать, учиться быть со своим гневом",
           "eventAge": "12+",
           "eventLocationPlace": null,
           "eventStart": 1753002000,
           "eventEnd": 1753007400,
           "eventParticipants": [
             {
-              "entry_id": 170,
-              "participantName": "Ксения Лазарева",
-              "participantBio": "Фитнес-тренер, тренер ушу, тренер по йоге, практик восточных систем укрепления физического и психического здоровья.\\nОпыт личных тренировок: более 15-ти лет.\\nОпыт тренерской деятельности: 9 лет.",
+              "entry_id": 192,
+              "participantName": "Алексей Чумаков",
+              "participantBio": "Коуч. Телесно-ориентированный терапевт. Специалист по Ошо-пульсациям",
               "participantPhoto": {
-                "full": "https://insomniafest.ru/images/main/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i2000": "https://insomniafest.ru/images/main/_i2000/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i1600": "https://insomniafest.ru/images/main/_i1600/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i1200": "https://insomniafest.ru/images/main/_i1200/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i900": "https://insomniafest.ru/images/main/_i900/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i600": "https://insomniafest.ru/images/main/_i600/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i300": "https://insomniafest.ru/images/main/_i300/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg",
-                "i150": "https://insomniafest.ru/images/main/_i150/%D0%9B%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%B2%D0%B0_%D0%9A%D1%81%D0%B5%D0%BD%D0%B8%D1%8F.jpg"
+                "full": "https://insomniafest.ru/images/main/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i2000": "https://insomniafest.ru/images/main/_i2000/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i1600": "https://insomniafest.ru/images/main/_i1600/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i1200": "https://insomniafest.ru/images/main/_i1200/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i900": "https://insomniafest.ru/images/main/_i900/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i600": "https://insomniafest.ru/images/main/_i600/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i300": "https://insomniafest.ru/images/main/_i300/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg",
+                "i150": "https://insomniafest.ru/images/main/_i150/%D0%A7%D1%83%D0%BC%D0%B0%D0%BA%D0%BE%D0%B2_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9.jpg"
               }
             }
           ]
@@ -7341,26 +7341,26 @@
           ]
         },
         {
-          "eventTitle": "Деньги: что это для меня?",
-          "eventDescription": "Игра с вопросами для глубокого понимания. Простые вопросы часто помогают ответить на очень сложные вопросы. А знали ли вы, что деньги это не только про желания, а еще и про уровень энергии, отношение к жизни, на игре вы узнаете про ваши личные отношения с деньгами, просто отвечая на вопросы, вытаскивая карточки.",
+          "eventTitle": "Создание ресурсного состояния",
+          "eventDescription": "Создание ресурсного состояния. Работа с метафорическими картами.",
           "eventAge": "18+",
           "eventLocationPlace": null,
           "eventStart": 1752922800,
           "eventEnd": 1752928200,
           "eventParticipants": [
             {
-              "entry_id": 175,
-              "participantName": "Ольга Крупченко (Фирсова)",
-              "participantBio": "Психолог. Психоаналитик. EMDR-практик. Блогер. Социолог.",
+              "entry_id": 186,
+              "participantName": "Варвара Поклонская",
+              "participantBio": "Практикующий дипломированный психолог. Работает в подходах: кризисный психолог, схема терапевт,  семейный системный терапевт, ДПДГ терапевт,  МАК терапевт, тонатотерапевт (глубокое расслабление психики через тело), ИПТ терапевт.",
               "participantPhoto": {
-                "full": "https://insomniafest.ru/images/main/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i2000": "https://insomniafest.ru/images/main/_i2000/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i1600": "https://insomniafest.ru/images/main/_i1600/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i1200": "https://insomniafest.ru/images/main/_i1200/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i900": "https://insomniafest.ru/images/main/_i900/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i600": "https://insomniafest.ru/images/main/_i600/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i300": "https://insomniafest.ru/images/main/_i300/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg",
-                "i150": "https://insomniafest.ru/images/main/_i150/%D0%A4%D0%B8%D1%80%D1%81%D0%BE%D0%B2%D0%B0_%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0.jpg"
+                "full": "https://insomniafest.ru/images/main/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i2000": "https://insomniafest.ru/images/main/_i2000/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i1600": "https://insomniafest.ru/images/main/_i1600/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i1200": "https://insomniafest.ru/images/main/_i1200/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i900": "https://insomniafest.ru/images/main/_i900/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i600": "https://insomniafest.ru/images/main/_i600/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i300": "https://insomniafest.ru/images/main/_i300/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg",
+                "i150": "https://insomniafest.ru/images/main/_i150/%D0%9F%D0%BE%D0%BA%D0%BB%D0%BE%D0%BD%D1%81%D0%BA%D0%B0%D1%8F_%D0%92%D0%B0%D1%80%D0%B2%D0%B0%D1%80%D0%B0.jpg"
               }
             }
           ]
@@ -10148,8 +10148,8 @@
           "eventDescription": "Овладейте базовыми приемами игры с летающим диском (фрисби) в командном формате. Мастер-класс подходит для участников любого уровня — от новичков до опытных игроков.",
           "eventAge": "6+",
           "eventLocationPlace": "Поляна фрисби",
-          "eventStart": 1752829200,
-          "eventEnd": 1752836400,
+          "eventStart": 1752915600,
+          "eventEnd": 1752922800,
           "eventParticipants": [
             {
               "entry_id": 455,
@@ -10212,8 +10212,8 @@
           "eventDescription": "",
           "eventAge": "6+",
           "eventLocationPlace": "Фитнес-поляна",
-          "eventStart": 1752825600,
-          "eventEnd": 1752829200,
+          "eventStart": 1752912000,
+          "eventEnd": 1752915600,
           "eventParticipants": [
             {
               "entry_id": 444,
@@ -10244,8 +10244,8 @@
           "eventDescription": "Игра в пляжный и парковый волейбол",
           "eventAge": "12+",
           "eventLocationPlace": "Волейбольная площадка",
-          "eventStart": 1752825600,
-          "eventEnd": 1752850800,
+          "eventStart": 1752912000,
+          "eventEnd": 1752937200,
           "eventParticipants": [
             {
               "entry_id": 442,
@@ -10260,8 +10260,8 @@
           "eventDescription": "Тренировка на растяжку",
           "eventAge": "16+",
           "eventLocationPlace": "Фитнес-поляна",
-          "eventStart": 1752829200,
-          "eventEnd": 1752832800,
+          "eventStart": 1752915600,
+          "eventEnd": 1752919200,
           "eventParticipants": [
             {
               "entry_id": 458,
@@ -10276,8 +10276,8 @@
           "eventDescription": "",
           "eventAge": "6+",
           "eventLocationPlace": "Фитнес-поляна",
-          "eventStart": 1752840000,
-          "eventEnd": 1752847200,
+          "eventStart": 1752926400,
+          "eventEnd": 1752933600,
           "eventParticipants": [
             {
               "entry_id": 458,
@@ -10298,8 +10298,8 @@
           "eventDescription": "Силовая тренировка для любого уровня подготовки с использованием фитнес-резинок",
           "eventAge": "16+",
           "eventLocationPlace": "Фитнес-поляна",
-          "eventStart": 1752847200,
-          "eventEnd": 1752850800,
+          "eventStart": 1752933600,
+          "eventEnd": 1752937200,
           "eventParticipants": [
             {
               "entry_id": 443,
@@ -10330,8 +10330,8 @@
           "eventDescription": "",
           "eventAge": "6+",
           "eventLocationPlace": null,
-          "eventStart": 1752850800,
-          "eventEnd": 1750435200,
+          "eventStart": 1752937200,
+          "eventEnd": 1752940800,
           "eventParticipants": [
             {
               "entry_id": 456,
@@ -10418,6 +10418,22 @@
           "eventLocationPlace": null,
           "eventStart": 1753002000,
           "eventEnd": 1753009200,
+          "eventParticipants": [
+            {
+              "entry_id": 455,
+              "participantName": "Влад Булгаков",
+              "participantBio": "Ведущий МК по играм с диском. КМС по классическому волейболу",
+              "participantPhoto": null
+            }
+          ]
+        },
+        {
+          "eventTitle": "Подвижные игры с диском в команде",
+          "eventDescription": "Овладейте базовыми приемами игры с летающим диском (фрисби) в командном формате. Мастер-класс подходит для участников любого уровня — от новичков до опытных игроков.",
+          "eventAge": "18+",
+          "eventLocationPlace": "Поляна фрисби",
+          "eventStart": 1752933600,
+          "eventEnd": 1752937200,
           "eventParticipants": [
             {
               "entry_id": 455,
