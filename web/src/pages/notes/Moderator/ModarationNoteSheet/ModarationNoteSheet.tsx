@@ -19,6 +19,7 @@ export const ModarationNoteSheet: FunctionalComponent<
   };
   const onReject = () => {
     notesStore.rejectNote(noteId);
+    onClose();
   };
 
   if (!note || note.isApproved) {

@@ -1,6 +1,7 @@
 import { Form, Field, IFormField, IField } from "@components/forms";
 import {
   namesShort as daysShortNames,
+  getDayText,
 } from "../../../../../helpers/getDayText";
 import styles from "./new-note-form.module.css";
 import classNames from "classnames";
@@ -103,7 +104,7 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
         title: formFields["title"] as string,
         TTL: isAdmin
           ? 18
-          : (parseInt(formFields["TTL"].slice("tag+".length + 3)) as
+          : (parseInt((formFields["TTL"] ?? `tag+${getDayText(4, 'short')}`).slice("tag+".length + 3)) as
               | 13
               | 14
               | 15
