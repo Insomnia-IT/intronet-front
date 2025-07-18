@@ -11,7 +11,6 @@ import { logCtrl } from "./log.ctrl";
 import { getResults, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
-import { importEvents } from 'data/importEvents'
 
 const fastify = Fastify({
   logger: false,
@@ -128,8 +127,6 @@ fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
         return importMainPage(request.query.force);
       case "shops":
         return importShops(request.query.force);
-      case "events":
-        return importEvents();
     }
   }
 );
