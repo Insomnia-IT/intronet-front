@@ -39,3 +39,4 @@ jobs:
       - name: push docker
         working-directory: ./.deploy/prod
         run: docker compose push
+          EOF
