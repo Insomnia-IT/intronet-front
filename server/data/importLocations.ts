@@ -19,7 +19,9 @@ export async function importLocations(force = false) {
       await locationsDB.remove(activity._id);
     }
   }
-  const data = (locationsGoogle as any);
+  const data = process.env.GOOGLE_SHEET_PRIVATE_KEY
+    ? await getLocationsFromGoogleSheet()
+    : (locationsGoogle as any);
 
   for (let loc of data) {
     await locationsDB.addOrUpdate({ ...loc, version: Fn.ulid() });
