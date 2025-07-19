@@ -104,7 +104,7 @@ fastify.post("/batch", async function (request, reply) {
     if (!checkWriteAccess(user, item.db, item.value)) continue;
     try {
       if (item.db === 'notes') {
-        fs.appendFile('notes.logs.json', JSON.stringify({...item.value, user}, null, 2) + '\n');
+        fs.appendFile('notes.logs.json', new Date().toISOString() + ' ' + JSON.stringify({...item.value, user}, null, 2) + '\n');
       }
     } catch (e) {
       console.error("logging error", e);
