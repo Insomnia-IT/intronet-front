@@ -7,10 +7,11 @@ import { Component } from "preact";
 import { DragHandler } from "./handlers/dragHandler";
 import { ZoomHandler } from "./handlers/zoomHandler";
 import styles from "./map.module.css";
-import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { UserLocation } from "./user-location";
-import { Cell } from "@cmmn/cell";
+import { cell, Cell } from "@cmmn/cell";
+import { RotateHandler } from "./handlers/rotateHandler";
+import { MapFigures, MapPointElements } from "./elements/mapFigures";
 
 export class MapComponent extends Component {
   constructor() {
@@ -48,6 +49,9 @@ export class MapComponent extends Component {
   get Scale() {
     return this.Transform.Matrix.GetScaleFactor();
   }
+  get Rotation() {
+    return (-this.Transform.Matrix.GetRotation() * 180) / Math.PI;
+  }
 
   state = cellState(this, {
     scale: this.Scale,
@@ -84,7 +88,8 @@ export class MapComponent extends Component {
               transition: `transform .1s ease`,
             }}
           >
-            <MapElements transformCell={this.TransformCell} />
+            <MapFigures />
+            <MapPointElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
             </RequireAuth>
@@ -110,7 +115,7 @@ export class MapComponent extends Component {
 
   //region Handlers
   private root: HTMLDivElement;
-  private handlers: (DragHandler | ZoomHandler)[];
+  private handlers: (DragHandler | ZoomHandler | RotateHandler)[];
   private transformElement: SVGGElement;
   onTransform = (e: TransformMatrix) => {
     const newTransform = e.Apply(this.Transform) as TransformMatrix;
@@ -120,16 +125,7 @@ export class MapComponent extends Component {
         .Apply(this.Transform.Inverse())
         .Apply(e)
         .Apply(this.Transform);
-      const selected = locationsStore.MapItems.find(
-        (x) => x.id === locationsStore.selected[0]._id
-      );
-      const center = geoConverter.getCenter(selected.figure);
-      const newCenter = transform.Inverse().Invoke(center);
-      const shift = {
-        X: newCenter.X - center.X,
-        Y: newCenter.Y - center.Y,
-      };
-      locationsStore.moveSelectedLocation(TransformMatrix.Translate(shift));
+      locationsStore.moveSelectedLocation(transform); //TransformMatrix.Translate(shift));
     }
   };
   setHandler = (element: HTMLDivElement) => {
@@ -157,9 +153,11 @@ export class MapComponent extends Component {
     );
     const dragHandler = new DragHandler(element);
     const zoomHandler = new ZoomHandler(element);
-    this.handlers = [dragHandler, zoomHandler];
+    const rotateHandler = new RotateHandler(element);
+    this.handlers = [dragHandler, zoomHandler, rotateHandler];
     zoomHandler.on("transform", this.onTransform);
     dragHandler.on("transform", this.onTransform);
+    rotateHandler.on("transform", this.onTransform);
   };
 
   setTransform(transform: TransformMatrix) {
@@ -211,8 +209,9 @@ export class MapComponent extends Component {
   scrollTo(ids: string[]) {
     if (!this.root || !ids.length) return;
     if (this.currentIds?.every((x, i) => x == ids[i])) return;
-    const mapItems = locationsStore.MapItems.filter((x) => ids.includes(x.id));
-    const centers = mapItems.map((x) => geoConverter.getCenter(x.figure));
+    const centers = ids
+      .map((x) => locationsStore.getFigure(x))
+      .map((x) => geoConverter.getCenter(x));
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(geoConverter.getCenter([centers]));
     const shift = {
