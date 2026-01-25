@@ -1,4 +1,4 @@
-import { cell, ObservableList, Cell } from "@cmmn/cell";
+import { cell, ObservableList, Cell, ObservableMap } from "@cmmn/cell";
 import { geoConverter } from "../helpers/geo";
 import { TransformMatrix } from "../pages/map/transform/transform.matrix";
 import { goTo, RoutePath, routerCell } from "../pages/routing";
@@ -139,11 +139,9 @@ class LocationsStore {
   }
   @cell
   public get VirtualCafe(): Array<InsomniaLocation> {
-    const patches = new Map(this.locationPatches.toArray());
     const foodcourt = this.Foodcourt;
     if (!foodcourt) return [];
-    const point = (patches.get(foodcourt._id) ??
-      geoConverter.fromGeo(foodcourt.figure as Geo)) as Point;
+    const point = this.getFigure(foodcourt._id) as Point;
     const size = 56;
     const foodCourtLocations = orderBy(
       this.db.toArray().filter((x) => x.isFoodcourt),
@@ -189,14 +187,16 @@ class LocationsStore {
   //   } as MapItem))
   // }
 
+  @cell
   public get MapItems(): MapItem[] {
-    const patches = new Map(this.locationPatches.toArray());
+    // const patches = new Map(this.locationPatches.toArray());
     return orderBy(this.Locations, (x) =>
       Array.isArray(x.figure) ? -1 : 1
     ).map(
       (x) =>
         ({
-          figure: patches.get(x._id) ?? geoConverter.fromGeo(x.figure as Geo),
+          // figure: patches.get(x._id) ?? geoConverter.fromGeo(x.figure as Geo),
+          isFigure: Array.isArray(x.figure),
           directionId: x.directionId,
           title: x.name,
           id: x._id,
@@ -206,6 +206,12 @@ class LocationsStore {
           minZoom: x.minZoom,
           isFoodcourt: x.isFoodcourt,
         } as MapItem)
+    );
+  }
+  public getFigure(id: string): Figure {
+    return (
+      this.locationPatches.get(id) ??
+      geoConverter.fromGeo(this.db.get(id)?.figure as Geo)
     );
   }
 
@@ -233,22 +239,29 @@ class LocationsStore {
     return location.name;
   }
 
-  @cell private locationPatches = new ObservableList<
-    [id: string, figure: Figure]
-  >();
+  @cell private locationPatches = new ObservableMap<string, Figure>();
 
   public moveSelectedLocation(transform: TransformMatrix) {
     if (this.selected.length !== 1) return;
-    const selected = this.MapItems.find((x) => x.id === this.selected[0]._id);
-    const moved = Array.isArray(selected.figure)
-      ? selected.figure.map((line) => line.map(transform.Invoke))
-      : transform.Invoke(selected.figure);
-    this.locationPatches.push([selected.id, moved]);
+    const id = this.selected[0]._id;
+    const figure = this.getFigure(id);
+
+    const center = geoConverter.getCenter(figure);
+    const newCenter = transform.Inverse().Invoke(center);
+    const shift = TransformMatrix.Translate({
+      X: newCenter.X - center.X,
+      Y: newCenter.Y - center.Y,
+    });
+
+    const moved = Array.isArray(figure)
+      ? figure.map((line) => line.map(shift.Invoke))
+      : shift.Invoke(figure);
+    this.locationPatches.set(id, moved);
   }
 
   async applyChanges() {
-    const patches = new Map(this.locationPatches.toArray());
-    this.locationPatches.clear();
+    const patches = this.locationPatches.toMap();
+    this.locationPatches = new ObservableMap();
     for (let [id, figure] of patches) {
       await this.db.addOrUpdate({
         ...this.db.get(id),
@@ -259,7 +272,7 @@ class LocationsStore {
   }
 
   discardChanges() {
-    this.locationPatches.clear();
+    this.locationPatches = new ObservableMap();
     this.setSelectedId(null);
     this.newLocation = null;
   }

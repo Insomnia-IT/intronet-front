@@ -1,23 +1,42 @@
 import { useEffect, useMemo, useReducer, useState } from "preact/hooks";
 import { Cell, BaseCell } from "@cmmn/cell";
 import { compare } from "@cmmn/core";
+import { useSyncExternalStore } from "preact/compat";
 
 export function useCell<T>(
   getter: (() => T) | BaseCell<T> | undefined,
   deps: any[] = []
 ): T {
-  if (!getter || getter instanceof BaseCell) deps.push(getter);
-  const cell = useMemo<BaseCell>(
-    () => (getter instanceof BaseCell ? getter : new Cell(getter, { compare })),
-    deps
+  const cellRef = useMemo(
+    () =>
+      new CellRef(
+        getter instanceof BaseCell ? getter : new BaseCell<T>(getter)
+      ),
+    getter instanceof BaseCell ? [getter] : deps
   );
-  const [, dispatch] = useReducer((x) => ({}), {});
-  useEffect(() => {
-    dispatch("change");
-    return cell.on("change", dispatch);
-  }, [cell]);
-  return cell.get();
+  useEffect(() => cellRef.unsubscribe, []);
+  return useSyncExternalStore(cellRef.subscribe, cellRef.getSnapshot).value;
 }
+
+class CellRef<T> {
+  unsubscribe: () => void;
+  constructor(private cell: BaseCell<T>) {
+    this.unsubscribe = this.cell.on("change", () => {
+      this.state = { value: this.cell.value };
+    });
+  }
+
+  state: { value: T } | undefined;
+
+  getSnapshot = () => {
+    return (this.state ??= { value: this.cell.value });
+  };
+
+  subscribe = (onChange: () => void) => {
+    return this.cell.on("change", onChange);
+  };
+}
+
 export function cellState<TState>(
   component: ComponentLike,
   state: StateOfGetters<TState>
