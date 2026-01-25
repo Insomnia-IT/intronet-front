@@ -15,7 +15,7 @@ export class ElementStore {
 
   @cell
   get figure() {
-    return locationsStore.getFigure(this.id);
+    return this.item.figure;
   }
   @cell
   get isSelected() {
@@ -42,17 +42,12 @@ export class PointItemStore extends ElementStore {
   get scale() {
     return this.transform.get().Matrix.GetScaleFactor();
   }
-  @cell
-  get rotation() {
-    return this.transform.get().Matrix.GetRotation();
-  }
 
   @cell
   get itemTransform() {
     if (!this.figure) return undefined;
-    return TransformMatrix.Rotate(this.rotation)
-      .Translate(geoConverter.getCenter(this.figure))
-      .ToTranslate("svg");
+    const center = geoConverter.getCenter(this.figure);
+    return `translate(${center.X}px, ${center.Y}px)`;
   }
 
   @cell

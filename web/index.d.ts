@@ -83,6 +83,7 @@ type GeoFigure = Geo | Array<Geo> | Array<Array<Geo>>;
 type Figure = Point | Array<Array<Point>>;
 
 type MapItem = {
+  figure: Figure;
   isFigure: boolean;
   priority: boolean;
   directionId: string;
