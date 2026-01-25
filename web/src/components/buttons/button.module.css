@@ -67,16 +67,16 @@
   background: transparent;
   display: flex;
   position: fixed;
-  pointer-events: none;
+  /*pointer-events: none;*/
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 16px;
   z-index: 2;
 }
-.buttonsBar > * {
-  pointer-events: initial;
-}
+/*.buttonsBar > * {*/
+/*  pointer-events: initial;*/
+/*}*/
 
 .close {
   font-size: 12px;

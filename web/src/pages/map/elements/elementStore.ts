@@ -34,6 +34,14 @@ export class ElementStore {
   };
 }
 
+enum Threshold {
+  None = 0,
+  Cafe = 1,
+  CafeText = 2,
+  Other = 3,
+  OtherText = 4,
+}
+
 export class PointItemStore extends ElementStore {
   constructor(id: string, private transform: Cell<TransformMatrix>) {
     super(id);
@@ -44,10 +52,38 @@ export class PointItemStore extends ElementStore {
   }
 
   @cell
-  get itemTransform() {
+  get threshold() {
+    if (this.scale > 0.5) return Threshold.OtherText;
+    if (this.scale > 0.4) return Threshold.Other;
+    if (this.scale > 0.33) return Threshold.CafeText;
+    if (this.scale > 0.25) return Threshold.Cafe;
+    return Threshold.None;
+  }
+
+  @cell
+  get center() {
     if (!this.figure) return undefined;
-    const center = geoConverter.getCenter(this.figure);
-    return `translate(${center.X}px, ${center.Y}px)`;
+    return geoConverter.getCenter(this.figure);
+  }
+
+  @cell
+  get itemTransform() {
+    return `translate(${this.center.X}px, ${this.center.Y}px)`;
+  }
+
+  @cell
+  get viewPoint() {
+    return this.transform.get().Invoke(this.center);
+  }
+
+  @cell
+  get isInViewPort() {
+    return (
+      this.viewPoint.X > -window.innerWidth / 2 &&
+      this.viewPoint.X < window.innerWidth * 1.5 &&
+      this.viewPoint.Y > -window.innerHeight / 2 &&
+      this.viewPoint.Y < window.innerHeight * 1.5
+    );
   }
 
   @cell
@@ -65,9 +101,10 @@ export class PointItemStore extends ElementStore {
       return false;
     if (this.item.maxZoom && this.scale > this.item.maxZoom) return false;
     if (this.item.minZoom && this.scale <= this.item.minZoom) return false;
-    return true;
+    return this.isInViewPort;
   }
 
+  @cell
   get type() {
     return directionsToOrder.get(this.item.directionId);
   }
@@ -102,14 +139,14 @@ export class PointItemStore extends ElementStore {
       case OrderType.MainZone:
       case OrderType.Main:
       case OrderType.Cafe:
-        return this.scale > scaleThresholdCafe ||
+        return this.item.priority ||
           this.isSelected ||
-          this.item.priority
+          this.threshold >= Threshold.Cafe
           ? "circle"
           : "circleSmall";
       case OrderType.Other:
       case OrderType.WC:
-        return this.scale > scaleThresholdOther || this.isSelected
+        return this.isSelected || this.threshold >= Threshold.Other
           ? "circle"
           : "circleSmall";
       default:
@@ -135,19 +172,14 @@ export class PointItemStore extends ElementStore {
       case OrderType.Screens:
       case OrderType.Info:
       case OrderType.Cafe:
-        return this.scale > scaleThresholdCafeText || this.isSelected;
+        return this.threshold >= Threshold.CafeText || this.isSelected;
       case OrderType.Other:
-        return this.scale > scaleThresholdOtherText || this.isSelected;
+        return this.threshold >= Threshold.OtherText || this.isSelected;
       case OrderType.WC:
       default:
     }
   }
 }
-
-const scaleThresholdOtherText = 0.5;
-const scaleThresholdOther = 0.4;
-const scaleThresholdCafeText = 0.33;
-const scaleThresholdCafe = 0.25;
 
 export class FigureStore extends ElementStore {
   @cell

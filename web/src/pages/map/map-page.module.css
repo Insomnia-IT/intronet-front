@@ -55,10 +55,6 @@
   flex-direction: column;
 }
 
-.search > * {
-  pointer-events: initial;
-}
-
 .searchOpened {
   composes: search;
   z-index: 10;

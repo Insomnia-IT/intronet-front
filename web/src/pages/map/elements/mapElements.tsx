@@ -12,23 +12,22 @@ import {
 import { orderBy } from "@cmmn/core";
 
 export function MapElements(props: { transformCell: Cell<TransformMatrix> }) {
-  const items = useCell(() => locationsStore.MapItems);
-  const figures = useMemo(
-    () => items.filter((x) => x.isFigure).map((x) => <Figure item={x} />),
-    [items]
+  const figures = useCell(() =>
+    locationsStore.MapItems.filter((x) => x.isFigure).map((x) => (
+      <Figure item={x} />
+    ))
   );
-  const other = useMemo(
-    () =>
-      orderBy(items, (x) =>
-        x.priority ? 50 : -(directionsToOrder.get(x.directionId) ?? -10)
-      ).map((x) => (
-        <MapPointElement
-          item={x}
-          key={x.id}
-          transformCell={props.transformCell}
-        />
-      )),
-    [items, props.transformCell]
+  const other = useCell(() =>
+    orderBy(
+      locationsStore.MapItems.filter((x) => !x.isFigure),
+      (x) => (x.priority ? 50 : -(directionsToOrder.get(x.directionId) ?? -10))
+    ).map((x) => (
+      <MapPointElement
+        item={x}
+        key={x.id}
+        transformCell={props.transformCell}
+      />
+    ))
   );
   const selected = useCell(() =>
     locationsStore.SelectedMapItems.map((x) => (
