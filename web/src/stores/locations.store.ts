@@ -192,22 +192,30 @@ class LocationsStore {
     // const patches = new Map(this.locationPatches.toArray());
     return orderBy(this.Locations, (x) =>
       Array.isArray(x.figure) ? -1 : 1
-    ).map(
-      (x) =>
-        ({
-          // figure: patches.get(x._id) ?? geoConverter.fromGeo(x.figure as Geo),
-          isFigure: Array.isArray(x.figure),
-          directionId: x.directionId,
-          title: x.name,
-          id: x._id,
-          radius: 10,
-          priority: x.priority,
-          maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
-          minZoom: x.minZoom,
-          isFoodcourt: x.isFoodcourt,
-        } as MapItem)
-    );
+    ).map((x) => this.getMapItem(x));
   }
+  private getMapItem(x: InsomniaLocation) {
+    return {
+      figure:
+        this.locationPatches.get(x._id) ??
+        geoConverter.fromGeo(x.figure as Geo),
+      isFigure: Array.isArray(x.figure),
+      directionId: x.directionId,
+      title: x.name,
+      id: x._id,
+      radius: 10,
+      priority: x.priority,
+      maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
+      minZoom: x.minZoom,
+      isFoodcourt: x.isFoodcourt,
+    } as MapItem;
+  }
+
+  @cell
+  public get SelectedMapItems() {
+    return this.selected.map((x) => this.getMapItem(x));
+  }
+
   public getFigure(id: string): Figure {
     return (
       this.locationPatches.get(id) ??
@@ -291,7 +299,7 @@ class LocationsStore {
   }
 }
 
-export const locationsStore = new LocationsStore();
+export const locationsStore = (window["locationsStore"] = new LocationsStore());
 
 export enum Directions {
   medical = "Медпункт",

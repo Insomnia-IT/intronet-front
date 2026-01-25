@@ -1,6 +1,9 @@
 .element:hover {
-  transform: scale(1.4);
+  transform: rotate(calc(var(--rotation) * -1rad)) scale(1.4);
   transition: transform ease .3s;
+}
+.element {
+  transform: rotate(calc(var(--rotation) * -1rad));
 }
 
 :global(.hoverOnly) {
@@ -23,7 +26,7 @@
   vertical-align: middle;
 }
 .selected {
-  transform: scale(1.4);
+  transform: rotate(calc(var(--rotation) * -1rad)) scale(1.4);
 }
 
 

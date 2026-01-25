@@ -9,6 +9,30 @@ import { FigureTitle } from "./figureTitle";
 import { useMemo } from "preact/hooks";
 import { PointItemStore } from "./elementStore";
 
+export function MapCircleElement(props: {
+  item: MapItem;
+  transformCell: Cell<TransformMatrix>;
+}) {
+  const store = useMemo(
+    () => new PointItemStore(props.item.id, props.transformCell),
+    [props.item.id, props.transformCell]
+  );
+  const form = useCell(() => store.form, [store]);
+  const center = useCell(() => store.figure as Point, [store]);
+  const color = useCell(() => store.color, [store]);
+  const isRendered = useCell(() => store.isRendered, [store]);
+  return (
+    <circle
+      hidden={!isRendered || form != "circleSmall"}
+      r="3em"
+      cx={center.X}
+      cy={center.Y}
+      fill={color}
+      onClick={store.onClick}
+    />
+  );
+}
+
 export function ElementIcon({ store }: { store: PointItemStore }) {
   const size = "20em";
   const form = useCell(() => store.form, [store]);
@@ -17,6 +41,7 @@ export function ElementIcon({ store }: { store: PointItemStore }) {
   return (
     <>
       <SvgIcon
+        hidden={form == "circleSmall"}
         id={".map #" + form}
         style={{
           "--color": color,
@@ -42,7 +67,7 @@ export function MapPointElement(props: {
   const isRendered = useCell(() => store.isRendered, [store]);
   if (!isRendered) return <></>;
   return (
-    <g transform={transform}>
+    <g style={{ transform }}>
       <g className={classNames} onClick={store.onClick}>
         {props.item.isFigure ? (
           <FigureTitle store={store} />
@@ -80,8 +105,9 @@ function ItemText(props: { item: MapItem }) {
     return (
       <text
         className={styles.elementTextFoodcourt}
-        x="1.2em"
-        y="0.4em"
+        style={{
+          transform: `translate(calc(12px / var(--scale)), calc(4px / var(--scale)))`,
+        }}
         filter="url(#solid)"
       >
         {props.item.title}
@@ -94,7 +120,11 @@ function ItemText(props: { item: MapItem }) {
       {title.map((text, i) => (
         <text
           className={styles.elementText}
-          y={`${2.5 + i * 1.2}em`}
+          style={{
+            transform: `translate(0, calc(${
+              (2.5 + i * 1.2) * 13
+            }px / var(--scale)))`,
+          }}
           filter="url(#solid)"
         >
           {text}
