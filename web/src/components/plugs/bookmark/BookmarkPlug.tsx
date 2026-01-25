@@ -6,16 +6,18 @@ export interface BookmarkPlugProps {
 }
 
 export const BookmarkPlug: FunctionalComponent<BookmarkPlugProps> = ({
-  text
+  text,
 }) => {
   return (
     <>
-      <div className={ Styles.container }>
-        <h2>{ ('тут пока пусто').toUpperCase() }</h2>
-        <div flex column class="colorGrey2" style={ 'gap: 12px' }>
-          { text.map((block) => <span className="text">{ block }</span>) }
+      <div class={Styles.container}>
+        <h2>{"тут пока пусто".toUpperCase()}</h2>
+        <div flex column class="colorGrey2" style={"gap: 12px"}>
+          {text.map((block) => (
+            <span className="text">{block}</span>
+          ))}
         </div>
       </div>
     </>
-  )
-}
+  );
+};

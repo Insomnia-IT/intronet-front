@@ -1,7 +1,3 @@
-.element:hover {
-  transform: rotate(calc(var(--rotation) * -1rad)) scale(1.4);
-  transition: transform ease .3s;
-}
 .element {
   transform: rotate(calc(var(--rotation) * -1rad));
 }

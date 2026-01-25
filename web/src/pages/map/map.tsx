@@ -4,13 +4,11 @@ import { cellState } from "@helpers/cell-state";
 import { geoConverter } from "@helpers/geo";
 import { locationsStore } from "@stores";
 import { Component } from "preact";
-import { DragHandler } from "./handlers/dragHandler";
-import { ZoomHandler } from "./handlers/zoomHandler";
+import { TransformEmitter } from "./handlers/transformEmitter";
 import styles from "./map.module.css";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { UserLocation } from "./user-location";
 import { cell, Cell } from "@cmmn/cell";
-import { RotateHandler } from "./handlers/rotateHandler";
 import { MapElements } from "./elements/mapElements";
 
 export class MapComponent extends Component {
@@ -37,11 +35,11 @@ export class MapComponent extends Component {
           this.Transform.Matrix.GetScaleFactor().toString()
         );
       }
-      if (this.fontSizeCache !== fontSize)
-        this.transformElement.setAttribute(
-          "font-size",
-          (this.fontSizeCache = fontSize)
-        );
+      // if (this.fontSizeCache !== fontSize)
+      //   this.transformElement.setAttribute(
+      //     "font-size",
+      //     (this.fontSizeCache = fontSize)
+      //   );
     }
     requestAnimationFrame(this.updTransform);
   }
@@ -57,9 +55,6 @@ export class MapComponent extends Component {
 
   get Scale() {
     return this.Transform.Matrix.GetScaleFactor();
-  }
-  get Rotation() {
-    return (-this.Transform.Matrix.GetRotation() * 180) / Math.PI;
   }
 
   state = cellState(this, {
@@ -94,7 +89,7 @@ export class MapComponent extends Component {
           <g
             aria-label="transform"
             style={{
-              transition: `transform .1s ease`,
+              fontSize: "calc(1px/var(--scale))",
             }}
           >
             <MapElements transformCell={this.TransformCell} />
@@ -107,23 +102,9 @@ export class MapComponent extends Component {
     );
   }
 
-  @bind
-  private arrayToPath(figure: Array<Array<Point>>, map: (p: Point) => Point) {
-    return figure
-      .map(
-        (line) =>
-          "M" +
-          line
-            .map(map)
-            .map((p) => `${p.X} ${p.Y}`)
-            .join("L")
-      )
-      .join(" ");
-  }
-
   //region Handlers
   private root: HTMLDivElement;
-  private handlers: (DragHandler | ZoomHandler | RotateHandler)[];
+  private handler: TransformEmitter;
   private transformElement: SVGGElement;
   onTransform = (e: TransformMatrix) => {
     const newTransform = e.Apply(this.Transform) as TransformMatrix;
@@ -142,7 +123,7 @@ export class MapComponent extends Component {
       '[aria-label="transform"]'
     ) as SVGGElement;
     if (!element) {
-      this.handlers.forEach((x) => x.dispose());
+      this.handler?.dispose();
       return;
     }
     fetch("/public/images/map.svg")
@@ -159,13 +140,8 @@ export class MapComponent extends Component {
       },
       element
     );
-    const dragHandler = new DragHandler(element);
-    const zoomHandler = new ZoomHandler(element);
-    const rotateHandler = new RotateHandler(element);
-    this.handlers = [dragHandler, zoomHandler, rotateHandler];
-    zoomHandler.on("transform", this.onTransform);
-    dragHandler.on("transform", this.onTransform);
-    rotateHandler.on("transform", this.onTransform);
+    this.handler = new TransformEmitter(element);
+    this.handler.on("transform", this.onTransform);
   };
 
   setTransform(transform: TransformMatrix) {

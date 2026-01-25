@@ -37,7 +37,6 @@ export function ElementIcon({ store }: { store: PointItemStore }) {
   const size = "20em";
   const form = useCell(() => store.form, [store]);
   const color = useCell(() => store.color, [store]);
-  const showIcon = useCell(() => store.showIcon, [store]);
   return (
     <>
       <SvgIcon
@@ -45,12 +44,11 @@ export function ElementIcon({ store }: { store: PointItemStore }) {
         id={".map #" + form}
         style={{
           "--color": color,
-          transition: ".3s ease",
         }}
         size={size}
         overflow="visible"
       />
-      {showIcon && <ItemIcon store={store} />}
+      <ItemIcon store={store} />
     </>
   );
 }
@@ -65,15 +63,10 @@ export function MapPointElement(props: {
   const transform = useCell(() => store.itemTransform, [store]);
   const classNames = useCell(() => store.className, [store]);
   const isRendered = useCell(() => store.isRendered, [store]);
-  if (!isRendered) return <></>;
   return (
-    <g style={{ transform }}>
+    <g style={{ transform, display: isRendered ? "initial" : "none" }}>
       <g className={classNames} onClick={store.onClick}>
-        {props.item.isFigure ? (
-          <FigureTitle store={store} />
-        ) : (
-          <ElementIcon store={store} />
-        )}
+        <ElementIcon store={store} />
       </g>
     </g>
   );
@@ -82,11 +75,17 @@ export function MapPointElement(props: {
 function ItemIcon({ store }: { store: PointItemStore }) {
   const iconId = directionsToIconId.get(store.item.directionId);
   const iconStyles = useCell(() => store.iconStyles, [store]);
+  const showIcon = useCell(() => store.showIcon, [store]);
   const showText = useCell(() => store.showText);
   const size = "20em";
   return (
     <>
-      <g style={iconStyles}>
+      <g
+        style={{
+          ...iconStyles,
+          display: showIcon ? "initial" : "none",
+        }}
+      >
         <SvgIcon
           size={size}
           id={iconId}
@@ -95,7 +94,13 @@ function ItemIcon({ store }: { store: PointItemStore }) {
           overflow="visible"
         />
       </g>
-      {showText && store.item.directionId && <ItemText item={store.item} />}
+      <g
+        style={{
+          display: showText && showIcon ? "initial" : "none",
+        }}
+      >
+        <ItemText item={store.item} />
+      </g>
     </>
   );
 }
