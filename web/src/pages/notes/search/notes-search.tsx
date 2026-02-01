@@ -4,7 +4,7 @@ import { SearchPlug } from "@components/plugs/search/SearchPlug";
 import { searchStore } from "@stores/search.store";
 import { useEffect } from "preact/hooks";
 import { PageHeader } from "@components/PageHeader/PageHeader";
-import { NotesList } from '../NotesList/NotesList'
+import { NotesList } from '../notes-list/NotesList'
 import { Sheet } from '@components'
 
 export const NotesSearch = () => {
