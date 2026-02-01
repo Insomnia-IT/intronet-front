@@ -11,7 +11,7 @@ import { BookmarksPage } from "./bookmarks/bookmarks-page";
 import { VotingPage } from "./voting/voting-page";
 import { StateUpdater, useCallback, useEffect, useState } from "preact/hooks";
 import { OnboardPage } from "./onboard/onboard-page";
-import { NotesPage } from "./notes/NotesPage";
+import { NotesPage } from "./notes/notes-page";
 import { ActivitiesPage } from "./activities/activities-page";
 import { AllSearchPage } from "./search/all-search-page";
 
