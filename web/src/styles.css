@@ -253,3 +253,7 @@ b {
 .fontCondensed {
   font-family: "Ubuntu Condensed", sans-serif;
 }
+
+.movie-page {
+  padding-bottom: 80px;
+}
