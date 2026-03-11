@@ -29,7 +29,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   if (!screenLocations.length) return <></>;
 
   return (
-    <div flex column gap={2} style="padding-bottom: 80px">
+    <div flex column gap={2} class="movie-page" >
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />
       {movie.plot && (
         <div
