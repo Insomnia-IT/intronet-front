@@ -17,10 +17,8 @@ export const MyNotes: FunctionalComponent<MyNotes> = ({
   noteId,
   onClose,
 }) => {
-  const note = useCell(() => {
-    return notesStore.getNote(noteId);
-  }, [noteId]);
-  const { isDeleted, deletedAt, TTL } = note;
+  const note = useCell(() => notesStore.getNote(noteId), [noteId]);
+
   const onDeleteClick = () => {
     notesStore.deleteNote(noteId);
   };
@@ -29,6 +27,8 @@ export const MyNotes: FunctionalComponent<MyNotes> = ({
     onClose();
   }
 
+  const { isDeleted, deletedAt, TTL } = note;
+
   return (
     <>
       <NoteSheetContent
@@ -36,11 +36,10 @@ export const MyNotes: FunctionalComponent<MyNotes> = ({
         className={styles.content}
         onClose={onClose}
       />
-      <div
-        className={cx(styles.deletingTimeContainer, "sh3", "colorMediumBlue")}
-      >
+
+      <div className={cx(styles.deletingTimeContainer, "sh3", "colorMediumBlue")}>
         <SvgIcon
-          id={"#warinigCircle"}
+          id="#warinigCircle"
           style={{ flexShrink: 0 }}
           width={24}
           height={24}
@@ -48,7 +47,7 @@ export const MyNotes: FunctionalComponent<MyNotes> = ({
         <span>{getNoteTTLText({ isDeleted, deletedAt, TTL })}</span>
       </div>
 
-      <OnlineButton type={"vivid"} onClick={onDeleteClick}>
+      <OnlineButton type="vivid" onClick={onDeleteClick}>
         Снять с публикации
       </OnlineButton>
     </>

@@ -110,6 +110,7 @@ fastify.post("/batch", async function (request, reply) {
       console.error("logging error", e);
     }
     await dbCtrl.addOrUpdate(item.db, item.value);
+    console.log('added', item.db, item.value);
   }
 });
 fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(

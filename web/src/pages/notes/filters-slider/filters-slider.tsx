@@ -15,7 +15,11 @@ export const FiltersSlider = () => {
     if (!activeFilterId) {
       goToNotes({ filterId: filtersStore.filterAll.id });
     }
-  }, [activeFilterId]);
+  }, [activeFilterId, goToNotes]);
+
+  const handleTagClick = useCallback((filterId: string) => {
+    goToNotes({ filterId });
+  }, [goToNotes]);
 
   return (
     <Tags<typeof filters> tagsList={filters} class={styles.tags}>
@@ -28,9 +32,7 @@ export const FiltersSlider = () => {
           <Tag
             selected={activeFilterId === id}
             key={id}
-            onClick={() => {
-              goToNotes({ filterId: id });
-            }}
+            onClick={() => handleTagClick(id)}
             className={styles.tag}
           >
             {icon && (

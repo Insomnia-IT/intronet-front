@@ -13,13 +13,15 @@ import { Sheet } from "../../../../components";
 export const ModerationPage: FunctionalComponent = () => {
   const isModerator = useIsUserModeratorCell();
   const { goToNotes } = useNotesRouter();
-  const [activeNoteId, setActiveNoteId] = useState<string>(null);
+  const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
+
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };
 
   if (!isModerator) {
     goToNotes();
+    return null;
   }
 
   return (
@@ -35,8 +37,8 @@ export const ModerationPage: FunctionalComponent = () => {
             forceOnClick: setActiveNoteId,
           }}
           fallBack={
-            <p className={"sh2 colorMediumBlue"}>
-              Нет объявлений, ожидающих модерации
+            <p className="sh2 colorMediumBlue">
+              Нет объявлений, ожидающих модерации
             </p>
           }
         />
