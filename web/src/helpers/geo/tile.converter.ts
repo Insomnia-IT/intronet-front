@@ -31,7 +31,7 @@ export class TileConverter {
       if (Array.isArray(figure[0])) {
         return figure.map((line) => line.map((p) => this.toGeo(p) as Geo));
       }
-      return figure.map((p) => this.toGeo(p) as Geo);
+      return []; //figure.map((p) => this.toGeo(p) as Geo);
     }
     return {
       lon: x2lng((figure.X / this.scale + this.offset.x) / 2 ** this.zoom),
@@ -40,7 +40,6 @@ export class TileConverter {
   }
 
   public fromGeo(geo: Geo[][]): Array<Array<Point>>;
-  public fromGeo(geo: Geo[]): Point[];
   public fromGeo(geo: Geo): Point;
   public fromGeo(geo: GeoFigure): Figure {
     if (!geo) return;

@@ -1,10 +1,10 @@
 import { BookmarkPlug } from "../../../components/plugs/bookmark/BookmarkPlug";
 import { useCell } from "../../../helpers/cell-state";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
-import { GesturedNotesList } from "../../notes/NotesList/GesturedNoteList";
+import { GesturedNotesList } from "../../notes/notes-list/GesturedNoteList";
 import { useState } from "preact/hooks";
 import { Sheet } from "../../../components";
-import { NoteSheet } from "../../notes/NoteSheet/NoteSheet";
+import { NoteSheet } from "../../notes/note-sheet/note-sheet";
 
 export const BookmarkNotes = () => {
   const notesList = useCell(() => bookmarksStore.Notes);

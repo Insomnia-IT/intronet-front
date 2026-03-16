@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { useCell } from "../../../helpers/cell-state";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { useLocalStorageState } from "../../../helpers/useLocalStorageState";
-import { directionsToIconId } from "../mapElement";
+import { directionsToIconId } from "../elements/mapElement";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type LocationSmallProps = {

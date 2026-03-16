@@ -71,6 +71,6 @@
   filter: grayscale(1);
   opacity: 0;
 }
-:global(.strokeOnly) *{
+:global(.strokeOnly){
   fill: none !important;
 }

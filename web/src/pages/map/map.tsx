@@ -1,16 +1,15 @@
 import { bind } from "@cmmn/core";
-import { RequireAuth } from "../../components/RequireAuth";
-import { cellState } from "../../helpers/cell-state";
-import { geoConverter } from "../../helpers/geo";
-import { locationsStore } from "../../stores";
+import { RequireAuth } from "@components/RequireAuth";
+import { cellState } from "@helpers/cell-state";
+import { geoConverter } from "@helpers/geo";
+import { locationsStore } from "@stores";
 import { Component } from "preact";
-import { DragHandler } from "./handlers/dragHandler";
-import { ZoomHandler } from "./handlers/zoomHandler";
+import { TransformEmitter } from "./handlers/transformEmitter";
 import styles from "./map.module.css";
-import { MapElements } from "./mapElement";
 import { TransformMatrix } from "./transform/transform.matrix";
 import { UserLocation } from "./user-location";
-import { Cell } from "@cmmn/cell";
+import { cell, Cell } from "@cmmn/cell";
+import { MapElements } from "./elements/mapElements";
 
 export class MapComponent extends Component {
   constructor() {
@@ -25,13 +24,22 @@ export class MapComponent extends Component {
     if (this.transformElement) {
       const transform = this.Transform.ToString("svg");
       const fontSize = (1 / this.Scale).toString() + "px";
-      if (this.transformCache !== transform)
+      if (this.transformCache !== transform) {
         this.transformElement.style.transform = this.transformCache = transform;
-      if (this.fontSizeCache !== fontSize)
-        this.transformElement.setAttribute(
-          "font-size",
-          (this.fontSizeCache = fontSize)
+        this.transformElement.style.setProperty(
+          "--rotation",
+          this.Transform.Matrix.GetRotation().toString()
         );
+        this.transformElement.style.setProperty(
+          "--scale",
+          this.Transform.Matrix.GetScaleFactor().toString()
+        );
+      }
+      // if (this.fontSizeCache !== fontSize)
+      //   this.transformElement.setAttribute(
+      //     "font-size",
+      //     (this.fontSizeCache = fontSize)
+      //   );
     }
     requestAnimationFrame(this.updTransform);
   }
@@ -41,7 +49,7 @@ export class MapComponent extends Component {
     return this.TransformCell.get();
   }
   set Transform(value: TransformMatrix) {
-    // localStorage.setItem('transform', JSON.stringify(value))
+    localStorage.setItem("transform", JSON.stringify(value.ToJSON()));
     this.TransformCell.set(value);
   }
 
@@ -81,7 +89,7 @@ export class MapComponent extends Component {
           <g
             aria-label="transform"
             style={{
-              transition: `transform .1s ease`,
+              fontSize: "calc(1px/var(--scale))",
             }}
           >
             <MapElements transformCell={this.TransformCell} />
@@ -94,23 +102,9 @@ export class MapComponent extends Component {
     );
   }
 
-  @bind
-  private arrayToPath(figure: Array<Array<Point>>, map: (p: Point) => Point) {
-    return figure
-      .map(
-        (line) =>
-          "M" +
-          line
-            .map(map)
-            .map((p) => `${p.X} ${p.Y}`)
-            .join("L")
-      )
-      .join(" ");
-  }
-
   //region Handlers
   private root: HTMLDivElement;
-  private handlers: (DragHandler | ZoomHandler)[];
+  private handler: TransformEmitter;
   private transformElement: SVGGElement;
   onTransform = (e: TransformMatrix) => {
     const newTransform = e.Apply(this.Transform) as TransformMatrix;
@@ -120,16 +114,7 @@ export class MapComponent extends Component {
         .Apply(this.Transform.Inverse())
         .Apply(e)
         .Apply(this.Transform);
-      const selected = locationsStore.MapItems.find(
-        (x) => x.id === locationsStore.selected[0]._id
-      );
-      const center = geoConverter.getCenter(selected.figure);
-      const newCenter = transform.Inverse().Invoke(center);
-      const shift = {
-        X: newCenter.X - center.X,
-        Y: newCenter.Y - center.Y,
-      };
-      locationsStore.moveSelectedLocation(TransformMatrix.Translate(shift));
+      locationsStore.moveSelectedLocation(transform); //TransformMatrix.Translate(shift));
     }
   };
   setHandler = (element: HTMLDivElement) => {
@@ -138,7 +123,7 @@ export class MapComponent extends Component {
       '[aria-label="transform"]'
     ) as SVGGElement;
     if (!element) {
-      this.handlers.forEach((x) => x.dispose());
+      this.handler?.dispose();
       return;
     }
     fetch("/public/images/map.svg")
@@ -155,11 +140,8 @@ export class MapComponent extends Component {
       },
       element
     );
-    const dragHandler = new DragHandler(element);
-    const zoomHandler = new ZoomHandler(element);
-    this.handlers = [dragHandler, zoomHandler];
-    zoomHandler.on("transform", this.onTransform);
-    dragHandler.on("transform", this.onTransform);
+    this.handler = new TransformEmitter(element);
+    this.handler.on("transform", this.onTransform);
   };
 
   setTransform(transform: TransformMatrix) {
@@ -184,13 +166,18 @@ export class MapComponent extends Component {
       imageRatio < aspectRatio
         ? rect.width / image.width
         : rect.height / image.height;
-    this.Transform = new TransformMatrix()
-      .Translate({ X: rect.width * -0.1, Y: rect.height / 2 })
-      .Scale(this.minScale)
-      .Translate({
-        X: -image.width / 2,
-        Y: -image.height / 2,
-      });
+    const saved = localStorage.getItem("transform");
+    if (saved) {
+      this.Transform = TransformMatrix.FromJSON(JSON.parse(saved));
+    } else {
+      this.Transform = new TransformMatrix()
+        .Translate({ X: rect.width * -0.1, Y: rect.height / 2 })
+        .Scale(this.minScale)
+        .Translate({
+          X: -image.width / 2,
+          Y: -image.height / 2,
+        });
+    }
   }
 
   //endregion
@@ -211,14 +198,16 @@ export class MapComponent extends Component {
   scrollTo(ids: string[]) {
     if (!this.root || !ids.length) return;
     if (this.currentIds?.every((x, i) => x == ids[i])) return;
-    const mapItems = locationsStore.MapItems.filter((x) => ids.includes(x.id));
-    const centers = mapItems.map((x) => geoConverter.getCenter(x.figure));
+    const centers = ids
+      .map((x) => locationsStore.MapItems.find((i) => i.id == x))
+      .map((x) => geoConverter.getCenter(x.figure));
     const rect = this.root.getBoundingClientRect();
     const view = this.Transform.Invoke(geoConverter.getCenter([centers]));
     const shift = {
       X: (rect.left + rect.right) / 2 - view.X,
-      Y: (rect.top * 3 + rect.bottom) / 4 - view.Y,
+      Y: (rect.bottom - rect.top) / 4 - view.Y,
     };
+
     this.Transform = TransformMatrix.Translate(shift).Apply(this.Transform);
   }
 

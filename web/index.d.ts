@@ -80,10 +80,11 @@ type ListItem = {
 type Geo = { lat: number; lon: number };
 type Point = { X: number; Y: number };
 type GeoFigure = Geo | Array<Geo> | Array<Array<Geo>>;
-type Figure = Point | Array<Point> | Array<Array<Point>>;
+type Figure = Point | Array<Array<Point>>;
 
 type MapItem = {
   figure: Figure;
+  isFigure: boolean;
   priority: boolean;
   directionId: string;
   isFoodcourt: boolean;
@@ -129,7 +130,7 @@ type INoteLocal = {
   author: {
     name: string;
   };
-  TTL: 13 | 14 | 15 | 16 | 17 | 18;
+  TTL: 16 | 17 | 18 | 19 | 20 | 21;
   isPinned: boolean;
 };
 
