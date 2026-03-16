@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks";
+import { useCallback, useEffect } from "preact/hooks";
 import { useNotesRouter } from "../hooks/useNotesRouter";
 import { filtersStore } from "../../../stores";
 import { Tag, Tags } from "../../../components/tag";
