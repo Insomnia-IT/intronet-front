@@ -7,6 +7,7 @@ import { getNoteTTLText } from "../../helpers/getNoteTTLText";
 import { notesStore } from "../../../../stores";
 import { useCell } from "../../../../helpers/cell-state";
 import { OnlineButton } from "../../../../components/buttons/online-button";
+import { useEffect } from "preact/hooks";
 
 export type MyNoteSheet = {
   noteId: string;
@@ -17,10 +18,8 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
   noteId,
   onClose,
 }) => {
-  const note = useCell(() => {
-    return notesStore.getNote(noteId);
-  }, [noteId]);
-  const { isDeleted, deletedAt, TTL } = note;
+  const note = useCell(() => notesStore.getNote(noteId), [noteId]);
+
   const onDeleteClick = () => {
     notesStore.deleteNote(noteId);
   };
@@ -29,6 +28,8 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
     onClose();
   }
 
+  const { isDeleted, deletedAt, TTL } = note;
+
   return (
     <>
       <NoteSheetContent
@@ -36,11 +37,10 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
         className={styles.content}
         onClose={onClose}
       />
-      <div
-        className={cx(styles.deletingTimeContainer, "sh3", "colorMediumBlue")}
-      >
+
+      <div className={cx(styles.deletingTimeContainer, "sh3", "colorMediumBlue")}>
         <SvgIcon
-          id={"#warinigCircle"}
+          id="#warinigCircle"
           style={{ flexShrink: 0 }}
           width={24}
           height={24}
@@ -48,7 +48,7 @@ export const MyNoteSheet: FunctionalComponent<MyNoteSheet> = ({
         <span>{getNoteTTLText({ isDeleted, deletedAt, TTL })}</span>
       </div>
 
-      <OnlineButton type={"vivid"} onClick={onDeleteClick}>
+      <OnlineButton type="vivid" onClick={onDeleteClick}>
         Снять с публикации
       </OnlineButton>
     </>

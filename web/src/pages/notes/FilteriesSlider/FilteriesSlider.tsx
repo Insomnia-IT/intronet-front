@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact";
-import { useEffect } from "preact/hooks";
+import { useEffect, useCallback } from "preact/hooks";
 import { useNotesRouter } from "../hooks/useNotesRouter";
 import { filtersStore } from "../../../stores";
 import { Tag, Tags } from "../../../components/tag";
@@ -17,7 +17,11 @@ export const FilteriesSlider: FunctionalComponent = () => {
     if (!activeFilterId) {
       goToNotes({ filterId: filtersStore.filterAll.id });
     }
-  }, [activeFilterId]);
+  }, [activeFilterId, goToNotes]);
+
+  const handleTagClick = useCallback((filterId: string) => {
+    goToNotes({ filterId });
+  }, [goToNotes]);
 
   return (
     <Tags<typeof filters> tagsList={filters} class={styles.tags}>
@@ -30,9 +34,7 @@ export const FilteriesSlider: FunctionalComponent = () => {
           <Tag
             selected={activeFilterId === id}
             key={id}
-            onClick={() => {
-              goToNotes({ filterId: id });
-            }}
+            onClick={() => handleTagClick(id)}
             className={styles.tag}
           >
             {icon && (

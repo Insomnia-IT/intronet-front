@@ -37,13 +37,14 @@ const sections: IMyPageSection[] = [
   },
 ];
 
-// TODO: Сделать заглужку
 export const MyPage: FunctionalComponent = () => {
   const { goToNew } = useNotesRouter();
-  const [activeNoteId, setActiveNoteId] = useState<string>(null);
+  const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
+
   const onActualNoteClick = (noteId: string) => {
     setActiveNoteId(noteId);
   };
+
   const resetActiveNoteId = () => {
     setActiveNoteId(null);
   };
@@ -54,21 +55,23 @@ export const MyPage: FunctionalComponent = () => {
 
   return (
     <PageLayout title="Мои объявления" withCloseButton>
-        <div className={styles.content}>
-          {sections.map((section, idx) => (
-            <NotesList
-              filterIds={section.notes.filters}
-              title={section.name}
-              className={styles.section}
-              notesProps={{
-                ...commonNotesProps,
-                withTTL: section.notes.withTTL,
-                disabled: section.notes.disabled,
-                onClick: idx === 1 ? onActualNoteClick : undefined,
-              }}
-            />
-          ))}
-        </div>
+      <div className={styles.content}>
+        {sections.map((section, index) => (
+          <NotesList
+            key={index}
+            filterIds={section.notes.filters}
+            title={section.name}
+            className={styles.section}
+            notesProps={{
+              ...commonNotesProps,
+              withTTL: section.notes.withTTL,
+              disabled: section.notes.disabled,
+              onClick: index === 1 ? onActualNoteClick : undefined,
+            }}
+          />
+        ))}
+      </div>
+
       <ButtonsBar>
         <Button
           type="blue"

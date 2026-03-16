@@ -1,7 +1,5 @@
 import { Form, Field, IFormField, IField } from "@components/forms";
-import {
-  namesShort as daysShortNames,
-} from "../../../../../helpers/getDayText";
+import { namesShort as daysShortNames } from "../../../../../helpers/getDayText";
 import styles from "./new-note-form.module.css";
 import classNames from "classnames";
 import { categoriesStore, notesStore } from "@stores";
@@ -23,7 +21,7 @@ const dayTags = daysShortNames
       value: day,
     };
   })
-  .filter((x) => x);
+  .filter((x): x is { name: string; value: string } => !!x);
 
 const fields: INewNoteFormFields = [
   {
@@ -36,7 +34,6 @@ const fields: INewNoteFormFields = [
     lable: "Заголовок",
     maxLength: 35,
   },
-
   {
     name: "text",
     value: "",
@@ -48,7 +45,6 @@ const fields: INewNoteFormFields = [
     lable: "Текст",
     maxLength: 300,
   },
-
   {
     name: "author",
     value: "",
@@ -58,7 +54,6 @@ const fields: INewNoteFormFields = [
     type: "input",
     maxLength: 30,
   },
-
   {
     name: "category",
     value: "",
@@ -83,50 +78,50 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
   onAddNote,
 }) => {
   const categories = useCell(() => categoriesStore.categories);
-  const categoriesTags = categories.map(({ name, _id }) => {
-    return {
-      name: `tag+${_id}`,
-      value: name,
-    };
-  });
+  const categoriesTags = categories.map(({ name, _id }) => ({
+    name: `tag+${_id}`,
+    value: name,
+  }));
 
   const router = useRouter();
-  // TODO: нормально типизировать стейт формы
-  const onSubmit = (formFields) => {
+  const isAdmin = useCell(() => authStore.isAdmin);
+  const canPin = useCell(() => authStore.hasPermissions(["admin", "superadmin", "tochka"]));
+
+  const onSubmit = (formFields: Record<string, string>) => {
+    const categoryId = (formFields["category"] as string)?.slice("tag+".length) || "";
+    const ttlValue = formFields["TTL"] as string;
+    const TTL = isAdmin
+      ? 18
+      : ttlValue
+        ? (parseInt(ttlValue.slice("tag+".length + 3)) as 13 | 14 | 15 | 16 | 17) || 18
+        : 18;
+
     notesStore
       .addNote({
         author: {
           name: isAdmin ? (authStore.userName || 'Insight') : (formFields["author"] as string),
         },
-        categoryId: formFields["category"]?.slice("tag+".length) || "",
+        categoryId,
         text: formFields["text"] as string,
         title: formFields["title"] as string,
-        TTL: isAdmin
-          ? 18
-          : (parseInt(formFields["TTL"].slice("tag+".length + 3)) as
-              | 13
-              | 14
-              | 15
-              | 16
-              | 17) || 18,
+        TTL,
         isPinned: formFields["isPinned"] === "true",
       })
       .then(() => {
-        isAdmin ? router.goTo("/notes") : onAddNote(true);
+        if (isAdmin) {
+          router.goTo("/notes");
+        } else {
+          onAddNote(true);
+        }
       });
   };
 
-  const isAdmin = useCell(() => authStore.isAdmin);
-  const canPin = useCell(() => authStore.hasPermissions(["admin", "superadmin", "tochka"]));
-
   const initialFormFields: IFormField[] = fields.map(
-    ({ name, value, require }) => {
-      return {
-        name,
-        value,
-        require,
-      };
-    }
+    ({ name, value, require }) => ({
+      name,
+      value,
+      require,
+    })
   );
 
   return (
@@ -135,47 +130,44 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
       onSubmit={onSubmit}
       className={styles.form}
     >
-      {({ allReqFieldIsFill, state, onFieldChange, submit }) => {
-        return (
-          <>
-            {fields.map((field) => {
-              const { name } = field;
-              return (
-                <Field
-                  {...field}
-                  value={state[name]}
-                  onChange={onFieldChange}
-                  className={styles.field}
-                  inputClassName={classNames({
-                    [styles.textField]: name === "text",
-                    [styles.tags]: name === "TTL",
-                  })}
-                  {...(name === "category"
-                    ? {
-                        tags: categoriesTags,
-                      }
-                    : {})}
-                  key={name}
-                />
-              );
-            })}
+      {({ allReqFieldIsFill, state, onFieldChange, submit }) => (
+        <>
+          {fields.map((field) => {
+            const { name } = field;
+            return (
+              <Field
+                {...field}
+                value={state[name]}
+                onChange={onFieldChange}
+                className={styles.field}
+                inputClassName={classNames({
+                  [styles.textField]: name === "text",
+                  [styles.tags]: name === "TTL",
+                })}
+                {...(name === "category" && { tags: categoriesTags })}
+                key={name}
+              />
+            );
+          })}
 
-            {canPin && <Field
+          {canPin && (
+            <Field
               type="checkbox"
               name="isPinned"
               lable="Закрепить"
               value={state["isPinned"]}
               onChange={onFieldChange}
               className={styles.field}
-            />}
-            <div className={styles.submitContainer}>
-              <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
-                {isAdmin ? "Опубликовать" : "Отправить на модерацию"}
-              </NextButton>
-            </div>
-          </>
-        );
-      }}
+            />
+          )}
+
+          <div className={styles.submitContainer}>
+            <NextButton onClick={submit} disabled={!allReqFieldIsFill}>
+              {isAdmin ? "Опубликовать" : "Отправить на модерацию"}
+            </NextButton>
+          </div>
+        </>
+      )}
     </Form>
   );
 };

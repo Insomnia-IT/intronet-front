@@ -1,14 +1,9 @@
-import { PageContainer } from "../../../components/Layout/PageContainer/PageContainer";
-import { PageHeader } from "../../../components/Layout/PageHeader/PageHeader";
-import { PageSection } from "../../../components/Layout/PageSection/PageSection";
 import { FunctionalComponent } from "preact";
 import { useEffect } from "preact/hooks";
 import { useNotesRouter } from "../hooks/useNotesRouter";
-import noteStyles from "../notes.module.css";
 import { EditorPage } from "./Editor/EditorPage";
 import { SuccessPage } from "./Result/SuccessPage/SuccessPage";
 import { RulesPage } from "./Rules/RulesPage/RulesPage";
-import newStyles from "./new.module.css";
 import { PageLayout } from "@components";
 
 export const NewNoteSwitch: FunctionalComponent = () => {
