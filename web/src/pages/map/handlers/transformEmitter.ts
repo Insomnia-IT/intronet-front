@@ -3,6 +3,7 @@ import { TransformMatrix } from "../transform/transform.matrix";
 
 export class TransformEmitter extends EventEmitter<{
   transform: TransformMatrix;
+  longtap: Point;
 }> {
   private abort = new AbortController();
   constructor(private root: HTMLDivElement) {
@@ -21,6 +22,7 @@ export class TransformEmitter extends EventEmitter<{
       passive: true,
       signal,
     });
+    this.root.addEventListener("contextmenu", (e) => e.preventDefault());
   }
 
   onWheel = (event: WheelEvent) => {
@@ -36,21 +38,29 @@ export class TransformEmitter extends EventEmitter<{
 
   onDown = (event: TouchEvent) => {
     this.lastTouches = this.getLastTouches(event);
-    if (event.touches.length == 1)
+    if (event.touches.length == 1) {
       this.root.addEventListener("touchmove", this.onMove, {
         passive: true,
         signal: this.abort.signal,
       });
+      this.firstTouchTimeout = setTimeout(() => {
+        this.root.removeEventListener("touchmove", this.onMove);
+        this.emit("longtap", this.lastTouches.center);
+        this.lastTouches = null;
+      }, 1000);
+    }
   };
   onUp = (event: TouchEvent) => {
     if (!this.lastTouches) return;
-    if (event.touches.length > 0) this.lastTouches = this.getLastTouches(event);
-    else {
+    if (event.touches.length > 0) {
+      this.lastTouches = this.getLastTouches(event);
+    } else {
       this.root.removeEventListener("touchmove", this.onMove);
       this.lastTouches = null;
     }
+    clearTimeout(this.firstTouchTimeout);
   };
-
+  private firstTouchTimeout: any = null;
   private lastTouches: TouchInfo = null;
 
   onMove = (event: TouchEvent) => {
@@ -59,12 +69,13 @@ export class TransformEmitter extends EventEmitter<{
       this.transform(this.lastTouches, touch);
     }
     this.lastTouches = touch;
+    clearTimeout(this.firstTouchTimeout);
   };
 
   private getLastTouches(event: TouchEvent) {
     const t1 = event.touches.item(0);
     const p1 = this.eventToPoint(t1);
-    if (event.touches.length == 1) return new TouchInfo(p1);
+    if (event.touches.length == 1) return new TouchInfo(event.timeStamp, p1);
     const t2 = event.touches.item(1);
     const p2 = this.eventToPoint(t2);
     const center = {
@@ -73,7 +84,7 @@ export class TransformEmitter extends EventEmitter<{
     };
     const distance = Math.sqrt((p2.X - p1.X) ** 2 + (p2.Y - p1.Y) ** 2);
     const angle = Math.atan2(p2.Y - p1.Y, p2.X - p1.X);
-    return new TouchInfo(center, angle, distance);
+    return new TouchInfo(event.timeStamp, center, angle, distance);
   }
 
   transform(from: TouchInfo, to: TouchInfo) {
@@ -105,6 +116,7 @@ export class TransformEmitter extends EventEmitter<{
 }
 class TouchInfo {
   constructor(
+    public timestamp: number,
     public center: Point,
     public angle: number = null,
     public scale: number = null

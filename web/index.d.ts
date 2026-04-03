@@ -58,6 +58,7 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
   rowIndex: number;
   isFoodcourt: boolean;
+  user?: string;
 };
 
 type ContentBlock =
