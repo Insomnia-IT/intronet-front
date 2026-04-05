@@ -11,9 +11,20 @@ import { UserLocation } from "./user-location";
 import { cell, Cell } from "@cmmn/cell";
 import { MapElements } from "./elements/mapElements";
 
+/**
+ * Интерактивная SVG-карта: пан/зум через {@link TransformEmitter}, состояние трансформа
+ * хранится в `localStorage` под ключом `transform` (см. сеттер `Transform`).
+ *
+ * «Фиксация» карты в видимой области:
+ * - {@link MapComponent.setTransform} подрезает сдвиг так, чтобы при текущем масштабе
+ *   изображение не уезжало за границы корневого `div` (клэмп по min/max shift).
+ * - Минимальный масштаб считается в {@link MapComponent.initTransform} так, чтобы картинка
+ *   целиком помещалась в контейнер (letterbox).
+ */
 export class MapComponent extends Component {
   constructor() {
     super();
+    console.log("[MapComponent] constructor");
     this.updTransform();
   }
 
@@ -63,6 +74,7 @@ export class MapComponent extends Component {
 
   mouseDown: MouseEvent | undefined;
   render() {
+    console.log("[MapComponent] render");
     return (
       <div
         ref={this.setHandler}
@@ -118,6 +130,7 @@ export class MapComponent extends Component {
     }
   };
   setHandler = (element: HTMLDivElement) => {
+    console.log("[MapComponent] setHandler", { hasElement: Boolean(element) });
     this.root = element;
     this.transformElement = this.root?.querySelector(
       '[aria-label="transform"]'
@@ -144,16 +157,50 @@ export class MapComponent extends Component {
     this.handler.on("transform", this.onTransform);
   };
 
+  /**
+   * Применяет новую матрицу трансформа с ограничениями: отсекает слишком сильный зум
+   * и поджимает сдвиг к допустимому диапазону относительно размера вьюпорта и растра.
+   */
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
     if (scale > 3 || scale < this.minScale * 0.98) {
       return;
     }
+    if (this.root) {
+      const rect = this.root.getBoundingClientRect();
+      const s = scale;
+      const minShiftX = rect.width - s * this.imageSize.width;
+      const maxShiftX = 0;
+      const minShiftY = rect.height - s * this.imageSize.height;
+      const maxShiftY = 0;
+      const shift = transform.GetTranslatePart();
+      const clampedShift = {
+        X: Math.max(minShiftX, Math.min(maxShiftX, shift.X)),
+        Y: Math.max(minShiftY, Math.min(maxShiftY, shift.Y)),
+      };
+      transform.Shift = clampedShift;
+    }
     this.Transform = transform;
   }
 
   minScale = 1;
+  private readonly imageSize = { width: 9728, height: 6144 };
 
+  /**
+   * Сброс пользовательского вида: удаляет сохранённый `transform` и заново инициализирует
+   * камеру под текущий размер контейнера (удобно после долгого панорамирования или смены окна).
+   */
+  public resetView() {
+    console.log("[MapComponent] resetView");
+    if (!this.root) return;
+    localStorage.removeItem("transform");
+    this.initTransform(this.imageSize, this.root);
+  }
+
+  /**
+   * Первичная настройка: `minScale` под вписывание изображения в `root`, затем либо
+   * восстановление из `localStorage`, либо стартовая позиция по центру.
+   */
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     if (rect.width == 0 || rect.height == 0) {
