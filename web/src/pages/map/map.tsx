@@ -24,7 +24,6 @@ import { MapElements } from "./elements/mapElements";
 export class MapComponent extends Component {
   constructor() {
     super();
-    console.log("[MapComponent] constructor");
     this.updTransform();
   }
 
@@ -74,7 +73,6 @@ export class MapComponent extends Component {
 
   mouseDown: MouseEvent | undefined;
   render() {
-    console.log("[MapComponent] render");
     return (
       <div
         ref={this.setHandler}
@@ -130,7 +128,6 @@ export class MapComponent extends Component {
     }
   };
   setHandler = (element: HTMLDivElement) => {
-    console.log("[MapComponent] setHandler", { hasElement: Boolean(element) });
     this.root = element;
     this.transformElement = this.root?.querySelector(
       '[aria-label="transform"]'
@@ -191,7 +188,6 @@ export class MapComponent extends Component {
    * камеру под текущий размер контейнера (удобно после долгого панорамирования или смены окна).
    */
   public resetView() {
-    console.log("[MapComponent] resetView");
     if (!this.root) return;
     localStorage.removeItem("transform");
     this.initTransform(this.imageSize, this.root);

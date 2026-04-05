@@ -27,7 +27,6 @@ import { useRef } from "preact/hooks";
  *   масштабом/сдвигом из `localStorage` (`transform`).
  */
 export function MapPageWithRouting() {
-  console.log("[MapPageWithRouting] render");
   const router = useLocationsRouter();
   const mapRef = useRef<MapComponent | null>(null);
   const isEditing = useCell(() => locationsStore.isEdit);
