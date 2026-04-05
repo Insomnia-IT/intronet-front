@@ -14,10 +14,22 @@ import { Location } from "./location/location";
 import { LocationMenu } from "./location/location-menu";
 import { SearchInput } from "@components/input/search-input";
 import { goTo } from "../routing";
+import { useRef } from "preact/hooks";
 
+/**
+ * Страница карты с роутингом по локациям и нижним листом.
+ *
+ * Разметка:
+ * - `styles.container` — обёртка на весь экран под карту и оверлеи (фиксированная высота вьюпорта).
+ * - Слева `ButtonsBar`: редактирование и добавление только при авторизации (`RequireAuth`);
+ *   кнопка сброса вида карты (`aria-label="Reset map view"`) всегда доступна и вызывает
+ *   `MapComponent.resetView()` через ref — без неё пользователь остаётся с сохранённым
+ *   масштабом/сдвигом из `localStorage` (`transform`).
+ */
 export function MapPageWithRouting() {
+  console.log("[MapPageWithRouting] render");
   const router = useLocationsRouter();
-
+  const mapRef = useRef<MapComponent | null>(null);
   const isEditing = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
   const sheets = getMapSheets(
@@ -51,7 +63,8 @@ export function MapPageWithRouting() {
         />
       </div>
       <div className={styles.container}>
-        <MapComponent />
+        {/* ref: вызов resetView с кнопки сброса вида (вне MapComponent) */}
+        <MapComponent ref={(instance) => (mapRef.current = instance)} />
         {isEditing ? (
           <div class={styles.editBar}>
             <Button
@@ -100,6 +113,14 @@ export function MapPageWithRouting() {
                   <SvgIcon id="#plus" />
                 </Button>
               </RequireAuth>
+              {/* Сброс вида: очистка transform в localStorage и initTransform под размер контейнера */}
+              <Button
+                type="frameOrange"
+                aria-label="Reset map view"
+                onClick={() => mapRef.current?.resetView()}
+              >
+                <SvgIcon id="#x" />
+              </Button>
             </ButtonsBar>
           </>
         )}
