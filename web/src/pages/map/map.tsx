@@ -20,12 +20,10 @@ export class MapComponent extends Component<{
   }
 
   private transformCache: string;
-  private fontSizeCache: string;
   @bind
   private updTransform() {
     if (this.transformElement) {
       const transform = this.Transform.ToString("svg");
-      const fontSize = (1 / this.Scale).toString() + "px";
       if (this.transformCache !== transform) {
         this.transformElement.style.transform = this.transformCache = transform;
         this.transformElement.style.setProperty(
@@ -37,11 +35,6 @@ export class MapComponent extends Component<{
           this.Transform.Matrix.GetScaleFactor().toString()
         );
       }
-      // if (this.fontSizeCache !== fontSize)
-      //   this.transformElement.setAttribute(
-      //     "font-size",
-      //     (this.fontSizeCache = fontSize)
-      //   );
     }
     requestAnimationFrame(this.updTransform);
   }
