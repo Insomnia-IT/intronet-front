@@ -51,7 +51,7 @@ export function MapPageWithRouting() {
         />
       </div>
       <div className={styles.container}>
-        <MapComponent />
+        <MapComponent onLongTap={locationsStore.startAddLocation} />
         {isEditing ? (
           <div class={styles.editBar}>
             <Button

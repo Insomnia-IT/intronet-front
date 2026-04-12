@@ -11,7 +11,9 @@ import { UserLocation } from "./user-location";
 import { cell, Cell } from "@cmmn/cell";
 import { MapElements } from "./elements/mapElements";
 
-export class MapComponent extends Component {
+export class MapComponent extends Component<{
+  onLongTap(geo: Geo): void;
+}> {
   constructor() {
     super();
     this.updTransform();
@@ -142,8 +144,16 @@ export class MapComponent extends Component {
     );
     this.handler = new TransformEmitter(element);
     this.handler.on("transform", this.onTransform);
+    this.handler.on("longtap", this.onLongTap);
   };
 
+  @bind
+  onLongTap(center: Point) {
+    const geo = geoConverter.toGeo(
+      this.Transform.Inverse().Invoke(center)
+    ) as Geo;
+    this.props.onLongTap?.(geo);
+  }
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
     if (scale > 3 || scale < this.minScale * 0.98) {
