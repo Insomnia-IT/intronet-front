@@ -14,12 +14,6 @@ import { MapElements } from "./elements/mapElements";
 /**
  * Интерактивная SVG-карта: пан/зум через {@link TransformEmitter}, состояние трансформа
  * хранится в `localStorage` под ключом `transform` (см. сеттер `Transform`).
- *
- * «Фиксация» карты в видимой области:
- * - {@link MapComponent.setTransform} подрезает сдвиг так, чтобы при текущем масштабе
- *   изображение не уезжало за границы корневого `div` (клэмп по min/max shift).
- * - Минимальный масштаб считается в {@link MapComponent.initTransform} так, чтобы картинка
- *   целиком помещалась в контейнер (letterbox).
  */
 export class MapComponent extends Component {
   constructor() {
@@ -155,27 +149,12 @@ export class MapComponent extends Component {
   };
 
   /**
-   * Применяет новую матрицу трансформа с ограничениями: отсекает слишком сильный зум
-   * и поджимает сдвиг к допустимому диапазону относительно размера вьюпорта и растра.
+   * Применяет новую матрицу трансформа с ограничением минимального/максимального масштаба.
    */
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
     if (scale > 3 || scale < this.minScale * 0.98) {
       return;
-    }
-    if (this.root) {
-      const rect = this.root.getBoundingClientRect();
-      const s = scale;
-      const minShiftX = rect.width - s * this.imageSize.width;
-      const maxShiftX = 0;
-      const minShiftY = rect.height - s * this.imageSize.height;
-      const maxShiftY = 0;
-      const shift = transform.GetTranslatePart();
-      const clampedShift = {
-        X: Math.max(minShiftX, Math.min(maxShiftX, shift.X)),
-        Y: Math.max(minShiftY, Math.min(maxShiftY, shift.Y)),
-      };
-      transform.Shift = clampedShift;
     }
     this.Transform = transform;
   }
