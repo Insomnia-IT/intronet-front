@@ -176,7 +176,9 @@ export class PointItemStore extends ElementStore {
       case OrderType.Other:
         return this.threshold >= Threshold.OtherText || this.isSelected;
       case OrderType.WC:
+        return this.threshold >= Threshold.OtherText || this.isSelected;
       default:
+        return false;
     }
   }
 }
