@@ -74,11 +74,13 @@ export class MapComponent extends Component<{
         <svg className={styles.svg}>
           <defs>
             <filter x="0" y="0" width="1" height="1" id="solid">
-              <feFlood flood-color="var(--cold-white)" result="bg" />
-              <feMerge>
-                <feMergeNode in="bg" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
+              <feMorphology
+                in="SourceAlpha"
+                operator="erode"
+                radius="0.12"
+                result="erodedAlpha"
+              />
+              <feComposite in="SourceGraphic" in2="erodedAlpha" operator="in" />
             </filter>
           </defs>
           <g
