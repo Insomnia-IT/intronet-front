@@ -63,7 +63,8 @@ export function MapPageWithRouting() {
       </div>
       <div className={styles.container}>
         {/* ref: вызов resetView с кнопки сброса вида (вне MapComponent) */}
-        <MapComponent ref={(instance) => (mapRef.current = instance)} />
+        <MapComponent onLongTap={locationsStore.startAddLocation}
+                      ref={(instance) => (mapRef.current = instance)}/>
         {isEditing ? (
           <div class={styles.editBar}>
             <Button

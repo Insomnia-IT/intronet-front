@@ -7,12 +7,15 @@ import { changesStore } from "./changes.store";
 import { moviesStore } from "./movies.store";
 import { ObservableDB } from "./observableDB";
 import { bookmarksStore } from "./bookmarks.store";
-import { distinct, Fn, orderBy } from "@cmmn/core";
+import { bind, distinct, Fn, orderBy } from "@cmmn/core";
+import { LocalObservableDB } from "@stores/localObservableDB";
+import { authStore } from "@stores/auth.store";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
+  @cell userLocations = new LocalObservableDB<InsomniaLocation>("locations");
 
-  Loading = this.db.isLoaded;
+  Loading = this.db.isLoaded.then((x) => this.db.isLoaded);
   @cell public isEdit = false;
   @cell public isMoving = false;
   @cell public newLocation: InsomniaLocation;
@@ -65,12 +68,16 @@ class LocationsStore {
     );
   }
   public setSelectedId(id: string | null) {
+    if (this.newLocation && !id) return;
     goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
   }
 
   @cell
   private get RealLocations(): ReadonlyArray<InsomniaLocation> {
-    return orderBy(this.db.toArray(), (x) => x.rowIndex)
+    return orderBy(
+      [...this.db.toArray(), ...this.userLocations.toArray()],
+      (x) => x.rowIndex
+    )
       .map((x) => x as InsomniaLocation)
       .filter((x) => x.figure)
       .concat(this.newLocation ? [this.newLocation] : [])
@@ -223,14 +230,14 @@ class LocationsStore {
     );
   }
 
-  async addLocation(location: InsomniaLocation) {
+  async updateLocation(location: InsomniaLocation) {
     await this.Loading;
-    await this.db.addOrUpdate(location);
-  }
-
-  async updateLocation(x: InsomniaLocation) {
-    await this.Loading;
-    await this.db.addOrUpdate(x);
+    if (authStore.isAdmin) {
+      await this.db.addOrUpdate(location);
+    } else {
+      location.user = authStore.uid;
+      await this.userLocations.addOrUpdate(location);
+    }
     if (this.newLocation) this.newLocation = null;
   }
 
@@ -238,7 +245,11 @@ class LocationsStore {
     if (this.selected.some((x) => x._id === location._id))
       this.setSelectedId(null);
     await this.Loading;
-    await this.db.remove(location._id);
+    if (authStore.isAdmin) {
+      await this.db.remove(location._id);
+    } else {
+      await this.userLocations.remove(location._id);
+    }
   }
 
   public getName(locationId: string) {
@@ -285,14 +296,18 @@ class LocationsStore {
     this.newLocation = null;
   }
 
-  startAddLocation() {
+  @bind
+  startAddLocation(geo: Geo = center) {
+    console.log(geo);
     this.newLocation = {
       _id: Fn.ulid(),
-      figure: center,
+      figure: geo,
       name: "Новая локация",
       directionId: Directions.wc,
+      user: authStore.isAdmin ? null : authStore.uid,
       contentBlocks: [],
     } as InsomniaLocation;
+    this.locationPatches.set(this.newLocation._id, geoConverter.fromGeo(geo));
     this.setSelectedId(this.newLocation._id);
     this.isMoving = true;
     this.isEdit = true;
