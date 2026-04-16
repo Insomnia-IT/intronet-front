@@ -42,5 +42,5 @@ jobs:
 
       - name: deploy on develop
         if: github.ref == 'refs/heads/develop'
-        working-directory: ~/app/intronet-front-deploy
+        working-directory: /home/administrator/app/intronet-front-deploy/
         run: ./update.sh
