@@ -11,6 +11,10 @@ import { UserLocation } from "./user-location";
 import { cell, Cell } from "@cmmn/cell";
 import { MapElements } from "./elements/mapElements";
 
+/**
+ * Интерактивная SVG-карта: пан/зум через {@link TransformEmitter}, состояние трансформа
+ * хранится в `localStorage` под ключом `transform` (см. сеттер `Transform`).
+ */
 export class MapComponent extends Component<{
   onLongTap(geo: Geo): void;
 }> {
@@ -149,6 +153,10 @@ export class MapComponent extends Component<{
     ) as Geo;
     this.props.onLongTap?.(geo);
   }
+
+  /**
+   * Применяет новую матрицу трансформа с ограничением минимального/максимального масштаба.
+   */
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
     if (scale > 3 || scale < this.minScale * 0.98) {
@@ -158,7 +166,22 @@ export class MapComponent extends Component<{
   }
 
   minScale = 1;
+  private readonly imageSize = { width: 9728, height: 6144 };
 
+  /**
+   * Сброс пользовательского вида: удаляет сохранённый `transform` и заново инициализирует
+   * камеру под текущий размер контейнера (удобно после долгого панорамирования или смены окна).
+   */
+  public resetView() {
+    if (!this.root) return;
+    localStorage.removeItem("transform");
+    this.initTransform(this.imageSize, this.root);
+  }
+
+  /**
+   * Первичная настройка: `minScale` под вписывание изображения в `root`, затем либо
+   * восстановление из `localStorage`, либо стартовая позиция по центру.
+   */
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     if (rect.width == 0 || rect.height == 0) {
