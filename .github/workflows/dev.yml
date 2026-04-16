@@ -10,7 +10,7 @@ env:
     ./.deploy/prod/kubernetes.yaml
 jobs:
   build:
-    runs-on: ${{ github.ref == 'refs/heads/develop' && 'redmine' || 'ubuntu-latest' }}
+    runs-on: ${{ github.ref == 'refs/heads/develop' && 'rumsrv' || 'ubuntu-latest' }}
     permissions:
       packages: write
       contents: read
@@ -42,5 +42,5 @@ jobs:
 
       - name: deploy on develop
         if: github.ref == 'refs/heads/develop'
-        working-directory: /home/administrator/app/intronet-front-deploy/
+        working-directory: /home/fransua/intronet-front-deploy/
         run: ./update.sh
