@@ -34,7 +34,7 @@ export async function importActivities(force = false) {
     }
     return place.placeEvents.map((activity) => {
       return {
-        _id: Fn.ulid(),
+        _id: `${place.entry_id}|${activity.eventStart}`,
         version: Fn.ulid(),
         locationId: location?._id,
         title: activity.eventTitle,

@@ -77,7 +77,7 @@ export async function importMovies(force = false) {
         MinAge: b.block.programAge,
       },
       movies: b.block.programFilms.map((x) => ({
-        id: Fn.ulid(),
+        id: String(x.vurchelID),
         name: x.title,
         image: x.image,
         plot: x.plot,
