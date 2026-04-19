@@ -105,5 +105,12 @@ class AuthStore extends LocalStore<{
     await this.seed("main", force);
     await this.seed("shops", force);
   }
+
+  public async loadEvents() {
+    return fetch(`${api}/load-events`, {
+      method: "POST",
+      headers: this.headers,
+    });
+  }
 }
 export const authStore = (globalThis["authStore"] = new AuthStore());
