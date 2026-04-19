@@ -12,6 +12,7 @@ import { getResults, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
+import { importEvents } from 'data/importEvents'
 
 const fastify = Fastify({
   logger: false,
@@ -113,6 +114,25 @@ fastify.post("/batch", async function (request, reply) {
     console.log('added', item.db, item.value);
   }
 });
+fastify.post(
+  "/load-events",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin") {
+      reply.status(401);
+      return `User have not enough permissions to modify db`;
+    }
+
+    try {
+      await importEvents();
+      reply.status(200);
+      return "OK";
+    } catch (e) {
+      reply.status(500);
+      return e;
+    }
+  }
+);
 fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
