@@ -42,5 +42,5 @@ jobs:
 
       - name: deploy on develop
         if: github.ref == 'refs/heads/develop'
-        working-directory: /home/fransua/intronet-front-deploy/
+        working-directory: /opt/insomnia-app/intronet/develop/intronet-front-deploy/
         run: ./update.sh
