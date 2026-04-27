@@ -12,7 +12,7 @@ import { getResults, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
-import { importEvents } from 'data/importEvents'
+import { importEvents } from "./data/importEvents";
 
 const fastify = Fastify({
   logger: false,
@@ -104,35 +104,38 @@ fastify.post("/batch", async function (request, reply) {
   for (let item of data) {
     if (!checkWriteAccess(user, item.db, item.value)) continue;
     try {
-      if (item.db === 'notes') {
-        fs.appendFile('notes.logs.json', new Date().toISOString() + ' ' + JSON.stringify({...item.value, user}, null, 2) + '\n');
+      if (item.db === "notes") {
+        fs.appendFile(
+          "notes.logs.json",
+          new Date().toISOString() +
+            " " +
+            JSON.stringify({ ...item.value, user }, null, 2) +
+            "\n"
+        );
       }
     } catch (e) {
       console.error("logging error", e);
     }
     await dbCtrl.addOrUpdate(item.db, item.value);
-    console.log('added', item.db, item.value);
+    console.log("added", item.db, item.value);
   }
 });
-fastify.post(
-  "/load-events",
-  async function (request, reply) {
-    const user = await authCtrl.parse(request.headers.authorization);
-    if (user.role !== "superadmin") {
-      reply.status(401);
-      return `User have not enough permissions to modify db`;
-    }
-
-    try {
-      await importEvents();
-      reply.status(200);
-      return "OK";
-    } catch (e) {
-      reply.status(500);
-      return e;
-    }
+fastify.post("/load-events", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization);
+  if (user.role !== "superadmin") {
+    reply.status(401);
+    return `User have not enough permissions to modify db`;
   }
-);
+
+  try {
+    await importEvents();
+    reply.status(200);
+    return "OK";
+  } catch (e) {
+    reply.status(500);
+    return e;
+  }
+});
 fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
   "/seed/:name",
   async function (request, reply) {
