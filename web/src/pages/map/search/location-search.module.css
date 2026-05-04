@@ -1,0 +1,38 @@
+.groupRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius, 12px);
+  background: var(--cold-white, #f5f5f5);
+  border: 1px solid var(--el-blue, #b8d4e3);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: var(--ins-night);
+}
+
+.groupRowTitle {
+  font-weight: 600;
+}
+
+.groupRowHint {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 4px;
+}
+
+.groupRowCount {
+  flex-shrink: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.groupsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

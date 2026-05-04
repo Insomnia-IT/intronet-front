@@ -10,6 +10,10 @@ import { bookmarksStore } from "./bookmarks.store";
 import { bind, distinct, Fn, orderBy } from "@cmmn/core";
 import { LocalObservableDB } from "@stores/localObservableDB";
 import { authStore } from "@stores/auth.store";
+import {
+  searchDataValidator,
+  safeDecodeURIComponent,
+} from "../helpers/search-normalize";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
@@ -38,14 +42,18 @@ class LocationsStore {
       return [this.Locations.find((x) => x._id === router.route[1])].filter(
         (x) => x
       );
-    if (router.query.direction)
-      return this.findByDirection(decodeURIComponent(router.query.direction));
+    if (router.query.direction) {
+      const dir = safeDecodeURIComponent(router.query.direction);
+      const byGroup = this.findByGroupLink(dir);
+      if (byGroup.length) return byGroup;
+      return this.findByDirection(dir);
+    }
     if (router.query.name)
-      return [this.findByName(decodeURIComponent(router.query.name))].filter(
+      return [this.findByName(safeDecodeURIComponent(router.query.name))].filter(
         (x) => x
       );
     if (router.query.tag)
-      return this.findByTag(decodeURIComponent(router.query.tag));
+      return this.findByTag(safeDecodeURIComponent(router.query.tag));
     return [];
   }
 
@@ -63,8 +71,23 @@ class LocationsStore {
     );
   }
   findByDirection(s: string) {
+    const q = searchDataValidator(s).toLowerCase();
+    if (!q) return [];
     return this.Locations.filter(
-      (x) => x.directionId?.toLowerCase() == s.toLowerCase()
+      (x) =>
+        !!x.directionId &&
+        searchDataValidator(x.directionId).toLowerCase() === q
+    );
+  }
+
+  /** Все локации с тем же `groupLink`, что и в query (колонка «Ссылка на группу»). */
+  findByGroupLink(s: string) {
+    const q = searchDataValidator(s.trim()).toLowerCase();
+    if (!q) return [];
+    return this.Locations.filter(
+      (x) =>
+        !!x.groupLink?.trim() &&
+        searchDataValidator(x.groupLink.trim()).toLowerCase() === q
     );
   }
   public setSelectedId(id: string | null) {
