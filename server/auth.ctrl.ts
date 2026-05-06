@@ -13,7 +13,7 @@ export const authCtrl = new (class {
       const {encrypted} = await this.db.get(value);
       const decrypted = decrypt(encrypted);
       return JSON.parse(decrypted) as UserInfo;
-    }catch (e){
+    } catch (e) {
       const decrypted = decrypt(value);
       return JSON.parse(decrypted) as UserInfo;
     }
