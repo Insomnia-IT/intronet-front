@@ -48,6 +48,8 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
+  /** Ключ группы для URL ?direction= и поиска «все точки категории» (колонка «Ссылка на группу»). */
+  groupLink?: string;
   figure: GeoFigure;
   tags: string[];
   work_tags: string[];
