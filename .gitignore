@@ -20,3 +20,4 @@ build
 .data
 .deploy/local/.data
 **/.env.local
+server/secrets/secret.key
