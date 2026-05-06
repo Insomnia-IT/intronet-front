@@ -1,8 +1,8 @@
-import {searchDataValidator} from "@stores/search.store";
+import { searchDataValidator } from "@helpers/search-normalize";
 
 export function highlight(text: string, query: string | undefined) {
   text = searchDataValidator(text);
-  query = searchDataValidator(query)?.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  query = searchDataValidator(query).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   if (!query || !text) return text;
   if (!text.toLowerCase().includes(query.toLowerCase())) {
     return text;
