@@ -1,17 +1,25 @@
+import { authStore } from '@stores/auth.store'
 import { Button, ButtonsBar } from "../../components";
 import { Card } from "../../components/cards";
 import { useCell } from "../../helpers/cell-state";
 import { votingStore } from "../../stores/votingStore";
 import { MovieSmall } from "../timetable/animation/movie-small";
+import { useRouter } from '../routing'
 
 export const VotingIntro = () => {
   const data = useCell(votingStore.state);
+  const isAdmin = useCell(() => authStore.isAdmin);
+  const { goTo } = useRouter();
+
   return (
     <>
       <Card border="Vivid" style={{ marginTop: 20 }}>
         <h2 class="colorVivid">Российский национальный конкурс</h2>
         <div class="text colorMediumBlue">Приз зрительских симпатий</div>
       </Card>
+      {isAdmin && (
+        <Button type='blue' onClick={() => goTo('/voting/result')}>Результаты</Button>
+      )}
       {!data.votedMovie ? (
         <>
           <div class="sh1" style={{ marginTop: 24, marginBottom: 16 }}>

@@ -46,7 +46,7 @@ export const VotingPage = () => {
       return (
         <PageLayout gap={4}>
           <CloseButton />
-          <h1>голосовать</h1>
+          <h1>Результаты</h1>
           <VotingResults />
         </PageLayout>
       );
