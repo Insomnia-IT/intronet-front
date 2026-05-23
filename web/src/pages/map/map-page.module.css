@@ -11,19 +11,20 @@
 }
 
 .header {
-  position: fixed;
+  position: absolute;
   top: 44px;
   right: 16px;
   left: auto;
-  transform: none;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   z-index: 5;
+  pointer-events: none;
 }
 
-.header>svg {
+.header > svg {
   flex: 0 0 auto;
+  pointer-events: auto;
 }
 
 .favoritesIcon {
@@ -103,7 +104,7 @@
 }
 
 .mapBottomBar {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 80px;
@@ -111,8 +112,9 @@
   padding: 0 10px 8px;
   padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
-  max-width: 440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -121,6 +123,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
+  min-width: 0;
   pointer-events: auto;
 }
 
