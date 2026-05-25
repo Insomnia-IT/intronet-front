@@ -155,4 +155,21 @@ export class Database<T extends { _id: string }> {
       T & { version: string }
     >);
   }
+
+  async updateFields(
+    id: string,
+    set: Record<string, unknown>,
+    unset?: Record<string, 1>
+  ) {
+    await this.initCollection;
+    const update: { $set: Record<string, unknown>; $unset?: Record<string, 1> } =
+      { $set: set };
+    if (unset && Object.keys(unset).length > 0) {
+      update.$unset = unset;
+    }
+    await this.db.updateOne(
+      { _id: { $eq: id } } as Filter<T & { version: string }>,
+      update as any
+    );
+  }
 }

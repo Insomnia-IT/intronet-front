@@ -61,6 +61,9 @@ type InsomniaLocation = {
   rowIndex: number;
   isFoodcourt: boolean;
   user?: string;
+  hasDescriptionImage?: boolean;
+  descriptionImageMime?: string;
+  version?: string;
 };
 
 type ContentBlock =
