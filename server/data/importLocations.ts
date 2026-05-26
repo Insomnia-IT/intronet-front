@@ -19,7 +19,7 @@ export async function importLocations(force = false) {
       await locationsDB.remove(activity._id);
     }
   }
-  const data = process.env.GOOGLE_SHEET_PRIVATE_KEY
+  const data = process.env.GOOGLE_SERVICE_JSON_KEY_PATH
     ? await getLocationsFromGoogleSheet()
     : (locationsGoogle as any);
 
@@ -76,7 +76,7 @@ export async function getLocationsFromGoogleSheet() {
         groupLink: row.get("Ссылка на группу") as string,
         rowIndex: row.rowNumber,
         menu: row.get("Меню") as string | undefined,
-        forVolunteerOnly: !!row.get("Волонтёр"),
+        volunteer: row.get("Волонтёр"),
         isFoodcourt,
       } as InsomniaLocation,
     ];
@@ -96,21 +96,17 @@ const enabledFigures = [
 ];
 
 async function getDoc() {
-  const privateKeyEnv = process.env.GOOGLE_SHEET_PRIVATE_KEY!;
-  if (!privateKeyEnv) {
-    throw "provide GOOGLE_SHEET_PRIVATE_KEY in env";
+  const keyPath = process.env.GOOGLE_SERVICE_JSON_KEY_PATH;
+  if (!keyPath) {
+    throw "provide GOOGLE_SERVICE_JSON_KEY_PATH in env";
   }
-  let privateKey = "";
-  privateKey = "-----BEGIN PRIVATE KEY-----\n";
-  for (let i = 0; i < privateKeyEnv.length; i += 64) {
-    privateKey += privateKeyEnv.substring(i, i + 64) + "\n";
-  }
-  privateKey += "-----END PRIVATE KEY-----\n";
 
   const jwt = new JWT({
-    email: process.env.GOOGLE_SHEET_EMAIL,
-    key: privateKey,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    keyFile: keyPath,
+    scopes: [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive.readonly",
+    ],
   });
 
   return new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID!, jwt);

@@ -17,7 +17,7 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
   rowIndex: number;
   isFoodcourt: boolean;
-  forVolunteerOnly: boolean;
+  volunteer: boolean;
 };
 
 type ContentBlock =

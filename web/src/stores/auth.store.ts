@@ -2,6 +2,8 @@ import { Fn } from "@cmmn/core";
 import { LocalStore } from "./localStore";
 import { api } from "./api";
 import { cell } from "@cmmn/cell";
+import { locationsStore } from "./locations.store";
+import { notesStore } from "./notes";
 
 class AuthStore extends LocalStore<{
   uid: string;
@@ -39,7 +41,12 @@ class AuthStore extends LocalStore<{
           this.patch({ token: null, role: null });
         } else {
           const role = (await x.text()) as any;
+          const changed = this.role != role;
           this.patch({ role, token });
+          if (changed) {
+            await locationsStore.db.refresh();
+            await notesStore.db.refresh();
+          }
         }
       });
     }
