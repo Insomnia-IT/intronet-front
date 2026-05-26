@@ -7,7 +7,7 @@ class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
-  role: "admin" | "superadmin" | "tochka";
+  role: UserRole;
 }> {
   get headers() {
     return {
@@ -59,14 +59,14 @@ class AuthStore extends LocalStore<{
   }
   @cell
   public get isAdmin(): boolean {
-    return !!this.token;
+    return !!this.token && (this.role == 'admin' || this.role == 'superadmin');
   }
   @cell
   public get role() {
     return this.values.role;
   }
 
-  hasPermissions(roles: ("admin" | "superadmin" | "tochka")[]) {
+  hasPermissions(roles: (UserRole)[]) {
     return roles.includes(this.role);
   }
 
@@ -77,7 +77,7 @@ class AuthStore extends LocalStore<{
     });
   }
   public createToken(
-    role: "admin" | "superadmin" | "tochka",
+    role: UserRole,
     username: string
   ) {
     return fetch(`${api}/auth/token`, {
@@ -87,6 +87,7 @@ class AuthStore extends LocalStore<{
     }).then(async result => {
       const token = await result.text();
       console.log(`Token for ${username}`, token);
+      return token;
     });
   }
 
@@ -114,3 +115,4 @@ class AuthStore extends LocalStore<{
   }
 }
 export const authStore = (globalThis["authStore"] = new AuthStore());
+export type UserRole = "admin" | "superadmin" | "tochka" | "volunteer";

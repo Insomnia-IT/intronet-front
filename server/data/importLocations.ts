@@ -26,7 +26,7 @@ export async function importLocations(force = false) {
   for (let loc of data) {
     await locationsDB.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
-  dbCtrl.versions = undefined;
+
 }
 
 export async function getLocationsFromGoogleSheet() {
@@ -76,6 +76,7 @@ export async function getLocationsFromGoogleSheet() {
         groupLink: row.get("Ссылка на группу") as string,
         rowIndex: row.rowNumber,
         menu: row.get("Меню") as string | undefined,
+        forVolunteerOnly: !!row.get("Волонтёр"),
         isFoodcourt,
       } as InsomniaLocation,
     ];

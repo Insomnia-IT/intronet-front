@@ -1,32 +1,29 @@
+import { UserInfo } from "auth.ctrl";
 import {Database} from "./database";
 import fs from 'fs/promises';
 
 export const dbCtrl = new class {
 
-  public async get(name: string, from: string = undefined){
+  public async get(name: string, from: string = undefined, user?: UserInfo){
     const db = databases.get(name);
-    return db.getSince(from);
+    return db.getSince(from, user);
   }
 
   public async addOrUpdate(name: string, value: any){
     const db = databases.get(name);
     await db.addOrUpdate(value);
-    if (this.versions) {
-      this.versions[name].max = value.version;
-    }
   }
 
-  versions: Record<string, {min: string, max: string}> = undefined;
-  public async getVersions(){
+  public async getVersions(user?: UserInfo){
     const versions = {};
     for (let database of databases.values()) {
-      const maxVersion = await database.getMaxVersion();
-      const minVersion = await database.getMinVersion();
+      const maxVersion = await database.getMaxVersion(user);
+      const minVersion = await database.getMinVersion(user);
       if (minVersion && maxVersion){
         versions[database.name] = {min: minVersion, max: maxVersion};
       }
     }
-    return this.versions = versions;
+    return versions;
   }
 }
 

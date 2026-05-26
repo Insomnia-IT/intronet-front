@@ -14,6 +14,7 @@ import { OnboardPage } from "./onboard/onboard-page";
 import { NotesPage } from "./notes/notes-page";
 import { ActivitiesPage } from "./activities/activities-page";
 import { AllSearchPage } from "./search/all-search-page";
+import { AdminPage } from "./admin/admin-page";
 
 export const routes = {
   main: {
@@ -70,6 +71,11 @@ export const routes = {
     name: "articles",
     title: "Статьи",
     Component: ArticlePage,
+  },
+  admin: {
+    name: "admin",
+    title: "Админка",
+    Component: AdminPage,
   },
 };
 

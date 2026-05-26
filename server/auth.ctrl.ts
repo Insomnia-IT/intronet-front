@@ -40,5 +40,5 @@ console.log('SUPERADMIN:', encrypted);
 
 export type UserInfo = {
   username: string;
-  role: 'superadmin'|'admin'|'tochka'
+  role: 'superadmin' | 'admin' | 'tochka' | 'volunteer';
 }

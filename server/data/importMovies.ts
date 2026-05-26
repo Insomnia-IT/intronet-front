@@ -101,7 +101,7 @@ export async function importMovies(force = false) {
       version: Fn.ulid(),
     });
   }
-  dbCtrl.versions = undefined;
+  
 }
 
 export type Schedule = Screen[];
