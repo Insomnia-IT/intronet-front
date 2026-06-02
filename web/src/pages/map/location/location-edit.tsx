@@ -32,8 +32,8 @@ export const LocationEdit = () => {
   const ref = useForm(cell);
   const location = useCell(cell);
   const isNew = useCell(() => !!locationsStore.newLocation);
-  const isSuperadmin = useCell(() =>
-    authStore.hasPermissions(["superadmin"])
+  const canEditDescriptionImage = useCell(() =>
+    authStore.hasPermissions(["admin", "superadmin"])
   );
   return (
     <div flex column gap={4}>
@@ -107,7 +107,7 @@ export const LocationEdit = () => {
             </Tag>
           )}
         </Tags>
-        {isSuperadmin && !isNew && location && (
+        {canEditDescriptionImage && !isNew && location && (
           <LocationDescriptionImageEditor locationCell={cell} />
         )}
         <Label

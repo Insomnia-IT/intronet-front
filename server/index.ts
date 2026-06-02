@@ -100,9 +100,9 @@ fastify.put<{ Params: { id: string } }>(
   "/locations/:id/description-image",
   async function (request, reply) {
     const user = await authCtrl.parse(request.headers.authorization);
-    if (user.role !== "superadmin") {
+    if (user.role !== "superadmin" && user.role !== "admin") {
       reply.status(401);
-      return "Only superadmin can upload location images";
+      return "Only admin or superadmin can upload location images";
     }
     const buffer = request.body as Buffer;
     if (!buffer?.length) {
@@ -134,9 +134,9 @@ fastify.delete<{ Params: { id: string } }>(
   "/locations/:id/description-image",
   async function (request, reply) {
     const user = await authCtrl.parse(request.headers.authorization);
-    if (user.role !== "superadmin") {
+    if (user.role !== "superadmin" && user.role !== "admin") {
       reply.status(401);
-      return "Only superadmin can delete location images";
+      return "Only admin or superadmin can delete location images";
     }
     try {
       const result = await clearLocationDescriptionImage(request.params.id);
