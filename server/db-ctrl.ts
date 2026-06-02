@@ -1,10 +1,11 @@
+import { UserInfo } from "auth.ctrl";
 import {Database} from "./database";
 import fs from 'fs/promises';
 import { stripLocationBinary } from "./location-image.ctrl";
 
 export const dbCtrl = new class {
 
-  public async get(name: string, from: string = undefined){
+  public async get(name: string, from: string = undefined, user?: UserInfo){
     const db = databases.get(name);
     const items = await db.getSince(from);
     if (name === "locations") {
@@ -16,22 +17,18 @@ export const dbCtrl = new class {
   public async addOrUpdate(name: string, value: any){
     const db = databases.get(name);
     await db.addOrUpdate(value);
-    if (this.versions) {
-      this.versions[name].max = value.version;
-    }
   }
 
-  versions: Record<string, {min: string, max: string}> = undefined;
-  public async getVersions(){
+  public async getVersions(user?: UserInfo){
     const versions = {};
     for (let database of databases.values()) {
-      const maxVersion = await database.getMaxVersion();
-      const minVersion = await database.getMinVersion();
+      const maxVersion = await database.getMaxVersion(user);
+      const minVersion = await database.getMinVersion(user);
       if (minVersion && maxVersion){
         versions[database.name] = {min: minVersion, max: maxVersion};
       }
     }
-    return this.versions = versions;
+    return versions;
   }
 }
 
@@ -49,6 +46,7 @@ export const databasesList = [
   'news',
   'changes',
   'vurchel',
-  'shops'
+  'shops',
+  'weather',
 ];
 export const databases = new Map<string, Database<any>>(databasesList.map(x => [x, Database.Get<any>(x)]));

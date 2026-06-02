@@ -20,6 +20,7 @@ import {
   MAX_DESCRIPTION_IMAGE_SIZE,
   setLocationDescriptionImage,
 } from "./location-image.ctrl";
+import { startWeatherUpdateTask } from './weather'
 
 const fastify = Fastify({
   logger: false,
@@ -36,10 +37,12 @@ fastify.addContentTypeParser(
 
 // Declare a route
 fastify.get("/versions", async function (request, reply) {
-  return dbCtrl.getVersions();
+  const user = await authCtrl
+    .parse(request.headers.authorization)
+    .catch(() => null);
+  return dbCtrl.getVersions(user);
 });
 fastify.get("/auth", async function (request, reply) {
-  console.log(request.headers.authorization);
   return (await authCtrl.parse(request.headers.authorization)).role;
 });
 fastify.post("/auth/token", async function (request, reply) {
@@ -158,12 +161,12 @@ fastify.get<{
   Params: { name: string };
   Querystring: { since?: string };
 }>("/data/:name", async function (request, reply) {
-  const items = await dbCtrl.get(request.params.name, request.query.since);
   const user = await authCtrl
     .parse(request.headers.authorization)
     .catch(() => null);
-  if (user) return items;
-  return items.filter((x) => x.isApproved !== false);
+  return await dbCtrl.get(request.params.name, request.query.since, user);
+  // if (user) return items;
+  // return items.filter((x) => x.isApproved !== false);
 });
 
 fastify.post<{ Params: { name: string } }>(
@@ -294,3 +297,5 @@ const logHook = async (request, reply) => {
 
 fastify.addHook("onResponse", logHook);
 fastify.addHook("onError", logHook);
+
+startWeatherUpdateTask();

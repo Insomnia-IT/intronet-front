@@ -22,5 +22,5 @@ export async function importMainPage(force = false) {
       version: Fn.ulid(),
     });
   }
-  dbCtrl.versions = undefined;
+  
 }

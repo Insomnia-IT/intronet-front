@@ -21,6 +21,7 @@ type InsomniaLocation = {
   descriptionImageMime?: string;
   descriptionImage?: import("mongodb").Binary;
   version?: string;
+  volunteer: boolean;
 };
 
 type ContentBlock =

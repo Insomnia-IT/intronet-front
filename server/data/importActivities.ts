@@ -55,7 +55,7 @@ export async function importActivities(force = false) {
     await activitiesDB.addOrUpdate(item as any);
   }
 
-  dbCtrl.versions = undefined;
+  
 }
 
 const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;

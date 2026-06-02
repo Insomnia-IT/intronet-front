@@ -41,6 +41,7 @@ services:
       DATABASE: "mongodb://db:27017"
       MONGODB_USER: "admin"
       MONGODB_PASSWORD: "${DB_PASSWORD}"
+      METEOBLUE_API_KEY: "${METEOBLUE_API_KEY}"
     restart: always
     volumes:
       - "${WEBAPP_STORAGE_HOME}/secrets:/web/secrets"
