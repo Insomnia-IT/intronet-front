@@ -13,6 +13,7 @@ import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
 import { importEvents } from "./data/importEvents";
+import { startWeatherUpdateTask } from './weather'
 
 const fastify = Fastify({
   logger: false,
@@ -208,3 +209,5 @@ const logHook = async (request, reply) => {
 
 fastify.addHook("onResponse", logHook);
 fastify.addHook("onError", logHook);
+
+startWeatherUpdateTask();

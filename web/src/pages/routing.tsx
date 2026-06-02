@@ -15,6 +15,7 @@ import { NotesPage } from "./notes/notes-page";
 import { ActivitiesPage } from "./activities/activities-page";
 import { AllSearchPage } from "./search/all-search-page";
 import { AdminPage } from "./admin/admin-page";
+import { WeatherPage } from './weather/WeatherPage'
 
 export const routes = {
   main: {
@@ -76,6 +77,11 @@ export const routes = {
     name: "admin",
     title: "Админка",
     Component: AdminPage,
+  },
+  weather: {
+    name: "weather",
+    title: "Погода",
+    Component: WeatherPage,
   },
 };
 
