@@ -119,9 +119,6 @@ fastify.put<{ Params: { id: string } }>(
         buffer,
         mime
       );
-      if (dbCtrl.versions?.locations) {
-        dbCtrl.versions.locations.max = result.version;
-      }
       return result;
     } catch (e) {
       if (e instanceof ImageError) {
@@ -143,9 +140,6 @@ fastify.delete<{ Params: { id: string } }>(
     }
     try {
       const result = await clearLocationDescriptionImage(request.params.id);
-      if (dbCtrl.versions?.locations) {
-        dbCtrl.versions.locations.max = result.version;
-      }
       return result;
     } catch (e) {
       if (e instanceof ImageError) {
