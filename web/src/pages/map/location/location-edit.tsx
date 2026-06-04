@@ -7,9 +7,18 @@ import { useCell } from "@helpers/cell-state";
 import { useForm } from "@helpers/useForm";
 import { SvgIcon } from "@icons";
 import { Directions, locationsStore } from "@stores";
+import { authStore } from "@stores/auth.store";
 import { FunctionalComponent } from "preact";
-import { useMemo } from "preact/hooks";
+import { useEffect, useMemo, useState } from "preact/hooks";
 import { useRouter } from "../../routing";
+import {
+  deleteLocationDescriptionImage,
+  locationDescriptionImageUrl,
+  syncLocationImageMetadata,
+  uploadLocationDescriptionImage,
+} from "@api";
+import Styles from "./location.module.css";
+import ButtonStyles from "@components/buttons/button.module.css";
 
 export const LocationEdit = () => {
   const router = useRouter();
@@ -23,6 +32,9 @@ export const LocationEdit = () => {
   const ref = useForm(cell);
   const location = useCell(cell);
   const isNew = useCell(() => !!locationsStore.newLocation);
+  const canEditDescriptionImage = useCell(() =>
+    authStore.hasPermissions(["admin", "superadmin"])
+  );
   return (
     <div flex column gap={4}>
       {!isNew && (
@@ -95,6 +107,9 @@ export const LocationEdit = () => {
             </Tag>
           )}
         </Tags>
+        {canEditDescriptionImage && !isNew && location && (
+          <LocationDescriptionImageEditor locationCell={cell} />
+        )}
         <Label
           title="Описание"
           inputType="textarea"
@@ -129,6 +144,122 @@ export const LocationEdit = () => {
       >
         готово
       </Button>
+    </div>
+  );
+};
+
+const LocationDescriptionImageEditor: FunctionalComponent<{
+  locationCell: Cell<InsomniaLocation>;
+}> = ({ locationCell }) => {
+  const location = useCell(locationCell);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isBusy, setIsBusy] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  if (!location) return null;
+
+  const fileInputId = `location-desc-image-${location._id}`;
+
+  const onFileChange = async (e: Event) => {
+    const input = e.currentTarget as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = "";
+    if (!file || !file.type.startsWith("image/")) return;
+
+    const localPreview = URL.createObjectURL(file);
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+    setPreviewUrl(localPreview);
+    setIsBusy(true);
+    try {
+      const { version } = await uploadLocationDescriptionImage(
+        location._id,
+        file
+      );
+      await syncLocationImageMetadata(locationCell, {
+        hasDescriptionImage: true,
+        descriptionImageMime: file.type,
+        version,
+      });
+    } catch (err) {
+      console.error(err);
+      URL.revokeObjectURL(localPreview);
+      setPreviewUrl(null);
+    } finally {
+      setIsBusy(false);
+    }
+  };
+
+  const onRemove = async () => {
+    setIsBusy(true);
+    try {
+      const { version } = await deleteLocationDescriptionImage(location._id);
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+      await syncLocationImageMetadata(locationCell, {
+        hasDescriptionImage: false,
+        descriptionImageMime: undefined,
+        version,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsBusy(false);
+    }
+  };
+
+  const imageSrc =
+    previewUrl ??
+    (location.hasDescriptionImage
+      ? locationDescriptionImageUrl(location._id, location.version)
+      : null);
+
+  return (
+    <div flex column gap={2}>
+      {imageSrc && (
+        <img
+          key={previewUrl ?? `${location._id}-${location.version}`}
+          className={Styles.descriptionImagePreview}
+          src={imageSrc}
+          alt=""
+        />
+      )}
+      <input
+        id={fileInputId}
+        className={Styles.fileInputHidden}
+        type="file"
+        accept="image/*"
+        disabled={isBusy}
+        onChange={onFileChange}
+        name=""
+      />
+      <label
+        htmlFor={fileInputId}
+        className={[ButtonStyles.button, ButtonStyles.frame, "w-full"].join(" ")}
+        style={isBusy ? { pointerEvents: "none", opacity: 0.3 } : undefined}
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        <SvgIcon id="#plus" />
+        {location.hasDescriptionImage || previewUrl
+          ? "Заменить фото"
+          : "Добавить фото"}
+      </label>
+      {(location.hasDescriptionImage || previewUrl) && (
+        <Button
+          type="frame"
+          buttonType="button"
+          class="w-full"
+          disabled={isBusy}
+          onClick={onRemove}
+        >
+          <SvgIcon id="#trash" /> Удалить фото
+        </Button>
+      )}
     </div>
   );
 };

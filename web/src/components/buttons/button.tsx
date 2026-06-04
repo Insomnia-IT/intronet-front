@@ -8,6 +8,8 @@ export type ButtonProps = {
   isLoading?: boolean;
   solid?: boolean;
   selected?: boolean;
+  /** Нативный type у `<button>` (не путать с визуальным `type`). */
+  buttonType?: "button" | "submit" | "reset";
   type?:
     | "frame"
     | "blue"
@@ -25,6 +27,7 @@ export type ButtonProps = {
 export const Button: FunctionalComponent<ButtonProps> = ({
   className,
   type,
+  buttonType,
   goTo,
   isLoading,
   children,
@@ -48,6 +51,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
 
   return (
     <button
+      type={buttonType}
       onClick={onClick}
       {...props}
       className={classNames.join(" ")}

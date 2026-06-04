@@ -1,12 +1,17 @@
 import { UserInfo } from "auth.ctrl";
 import {Database} from "./database";
 import fs from 'fs/promises';
+import { stripLocationBinary } from "./location-image.ctrl";
 
 export const dbCtrl = new class {
 
   public async get(name: string, from: string = undefined, user?: UserInfo){
     const db = databases.get(name);
-    return db.getSince(from, user);
+    const items = await db.getSince(from);
+    if (name === "locations") {
+      return stripLocationBinary(items);
+    }
+    return items;
   }
 
   public async addOrUpdate(name: string, value: any){
