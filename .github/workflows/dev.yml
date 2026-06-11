@@ -11,7 +11,7 @@ env:
     ./.deploy/prod/kubernetes.yaml
 jobs:
   build:
-    runs-on: ${{ github.ref == 'refs/heads/develop' && 'rumsrv' || 'ubuntu-latest' }}
+    runs-on: ${{ github.ref == 'refs/heads/develop' && 'insom-devserv' || 'ubuntu-latest' }}
     permissions:
       packages: write
       contents: read
