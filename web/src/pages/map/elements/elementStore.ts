@@ -132,6 +132,8 @@ export class PointItemStore extends ElementStore {
   get form() {
     if (locationsStore.selected.length > 1 && !this.isSelected)
       return "circleSmall";
+    // Пользовательские локации всегда крупные, независимо от типа и зума.
+    if (this.item.isUserLocation) return "circle";
     switch (this.type) {
       case OrderType.Info:
       case OrderType.Screens:

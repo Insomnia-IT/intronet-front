@@ -92,7 +92,33 @@ class LocationsStore {
   }
   public setSelectedId(id: string | null) {
     if (this.newLocation && !id) return;
+    if (id && !this.canSelect(id)) return;
     goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
+  }
+
+  /**
+   * Можно ли редактировать локацию текущим пользователем.
+   * Админ редактирует любые локации, остальные — только свои
+   * (созданные ими, у которых `user` совпадает с их `uid`).
+   */
+  public canEdit(location: InsomniaLocation | undefined | null): boolean {
+    if (!location) return false;
+    if (authStore.isAdmin) return true;
+    return !!location.user && location.user === authStore.uid;
+  }
+
+  /** Идёт ли сейчас редактирование конкретной локации (форма правки или перемещение точки). */
+  private get isEditingLocation(): boolean {
+    return this.isMoving || routerCell.get().route[1] === "edit";
+  }
+
+  /**
+   * Можно ли выбрать локацию `id`. Во время редактирования конкретной локации
+   * выбор заблокирован на ней — нельзя переключиться на другую точку с карты.
+   */
+  public canSelect(id: string): boolean {
+    if (!this.isEditingLocation) return true;
+    return this.selected.some((x) => x._id === id);
   }
 
   @cell
@@ -235,6 +261,8 @@ class LocationsStore {
       id: x._id,
       radius: 10,
       priority: x.priority,
+      // Пользовательские локации (созданные не-админом) всегда показываем крупными.
+      isUserLocation: !!x.user,
       maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
       minZoom: x.minZoom,
       isFoodcourt: x.isFoodcourt,
@@ -305,8 +333,16 @@ class LocationsStore {
     const patches = this.locationPatches.toMap();
     this.locationPatches = new ObservableMap();
     for (let [id, figure] of patches) {
-      await this.db.addOrUpdate({
-        ...this.db.get(id),
+      // Локация может жить в админской БД, в пользовательской или быть ещё
+      // не сохранённой (newLocation). Берём её с сохранением `_id` и пишем
+      // в нужное хранилище через updateLocation (иначе put получит undefined-ключ).
+      const existing =
+        this.db.get(id) ??
+        this.userLocations.get(id) ??
+        (this.newLocation?._id === id ? this.newLocation : undefined);
+      if (!existing) continue;
+      await this.updateLocation({
+        ...existing,
         figure: geoConverter.toGeo(figure),
       });
     }
@@ -326,7 +362,8 @@ class LocationsStore {
       _id: Fn.ulid(),
       figure: geo,
       name: "Новая локация",
-      directionId: Directions.wc,
+      // Пользовательские локации по умолчанию — палатка (Гостевые Кемпинги).
+      directionId: authStore.isAdmin ? Directions.wc : Directions.guest,
       user: authStore.isAdmin ? null : authStore.uid,
       contentBlocks: [],
     } as InsomniaLocation;

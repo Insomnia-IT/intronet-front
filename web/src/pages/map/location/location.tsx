@@ -3,6 +3,7 @@ import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { locationsStore, LocationStore } from "@stores";
+import { authStore } from "@stores/auth.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { Button, ButtonsBar } from "@components";
 import { Link } from "@components";
@@ -27,6 +28,10 @@ export const Location: FunctionalComponent<LocationProps> = ({
   );
   const isEdit = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
+  const canEdit = useCell(() => locationsStore.canEdit(location), [location]);
+  const isAdmin = useCell(() => authStore.isAdmin);
+  // Свои локации пользователь правит прямо из шторки, админ — через режим редактирования.
+  const showEditActions = canEdit && (isEdit || !isAdmin);
   if (!location) return <></>;
   if (isMoving)
     return (
@@ -97,7 +102,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           }}
         />
       </div>
-      {isEdit ? (
+      {showEditActions ? (
         <div flex column gap="2" style={{ marginTop: 16 }}>
           <Button type="frame" class="w-full" goTo={["map", "edit", id]}>
             <SvgIcon id="#edit" /> Редактировать
