@@ -13,11 +13,27 @@ import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
 import { importEvents } from "./data/importEvents";
+import {
+  clearLocationDescriptionImage,
+  getLocationDescriptionImage,
+  ImageError,
+  MAX_DESCRIPTION_IMAGE_SIZE,
+  setLocationDescriptionImage,
+} from "./location-image.ctrl";
 import { startWeatherUpdateTask } from './weather'
 
 const fastify = Fastify({
   logger: false,
+  bodyLimit: MAX_DESCRIPTION_IMAGE_SIZE,
 });
+
+fastify.addContentTypeParser(
+  /^image\//,
+  { parseAs: "buffer" },
+  (_req, body, done) => {
+    done(null, body);
+  }
+);
 
 // Declare a route
 fastify.get("/versions", async function (request, reply) {
@@ -69,6 +85,72 @@ fastify.post("/vote", async function (request, reply) {
     ip: request.headers["x-forwarded-for"] as string,
   });
 });
+fastify.get<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const image = await getLocationDescriptionImage(request.params.id);
+    if (!image) {
+      reply.status(404);
+      return "Image not found";
+    }
+    reply.header("Content-Type", image.mime);
+    reply.header("Cache-Control", "private, no-cache");
+    return image.buffer;
+  }
+);
+
+fastify.put<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin" && user.role !== "admin") {
+      reply.status(401);
+      return "Only admin or superadmin can upload location images";
+    }
+    const buffer = request.body as Buffer;
+    if (!buffer?.length) {
+      reply.status(400);
+      return "Empty body";
+    }
+    const mime = (request.headers["content-type"] ?? "").split(";")[0].trim();
+    try {
+      const result = await setLocationDescriptionImage(
+        request.params.id,
+        buffer,
+        mime
+      );
+      return result;
+    } catch (e) {
+      if (e instanceof ImageError) {
+        reply.status(e.statusCode);
+        return e.message;
+      }
+      throw e;
+    }
+  }
+);
+
+fastify.delete<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin" && user.role !== "admin") {
+      reply.status(401);
+      return "Only admin or superadmin can delete location images";
+    }
+    try {
+      const result = await clearLocationDescriptionImage(request.params.id);
+      return result;
+    } catch (e) {
+      if (e instanceof ImageError) {
+        reply.status(e.statusCode);
+        return e.message;
+      }
+      throw e;
+    }
+  }
+);
+
 fastify.get<{
   Params: { name: string };
   Querystring: { since?: string };

@@ -33,8 +33,8 @@ export const Sheet: FunctionalComponent<SheetProps> = props => {
         }}
 
         onClick={(e) => {
-              e.preventDefault();
-            }}
+          e.stopPropagation();
+        }}
       >
         <div style={{position: 'relative', minHeight: '100%'}}>
         {props.children}

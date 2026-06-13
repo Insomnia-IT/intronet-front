@@ -12,6 +12,7 @@ import { useLocationsRouter } from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 import { PageHeader } from "@components/PageHeader/PageHeader";
+import { locationDescriptionImageUrl } from "@api";
 
 export type LocationProps = {
   id: string;
@@ -86,6 +87,14 @@ export const Location: FunctionalComponent<LocationProps> = ({
         )}
         {location.menu && (
           <Link goTo={["map", "menu", location._id]}>к меню</Link>
+        )}
+        {location.hasDescriptionImage && (
+          <img
+            key={location.version ?? location._id}
+            className={Styles.descriptionImage}
+            src={locationDescriptionImageUrl(location._id, location.version)}
+            alt=""
+          />
         )}
         <div className="text colorGrey2">
           {" "}

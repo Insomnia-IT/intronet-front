@@ -14,6 +14,7 @@ import {
   searchDataValidator,
   safeDecodeURIComponent,
 } from "../helpers/search-normalize";
+import { stripLegacyLocationImage } from "@helpers/location-image";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
@@ -283,11 +284,12 @@ class LocationsStore {
 
   async updateLocation(location: InsomniaLocation) {
     await this.Loading;
+    const payload = stripLegacyLocationImage(location);
     if (authStore.isAdmin) {
-      await this.db.addOrUpdate(location);
+      await this.db.addOrUpdate(payload);
     } else {
-      location.user = authStore.uid;
-      await this.userLocations.addOrUpdate(location);
+      payload.user = authStore.uid;
+      await this.userLocations.addOrUpdate(payload);
     }
     if (this.newLocation) this.newLocation = null;
   }
