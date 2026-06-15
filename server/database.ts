@@ -66,6 +66,11 @@ export class Database<T extends { _id: string }> {
     } as Filter<T & { version: string }>);
   }
 
+  async removeWhere(filter: Filter<T & { version: string }>) {
+    await this.initCollection;
+    await this.db.deleteOne(filter);
+  }
+
   async addOrUpdate(value: T & { version: string }) {
     await this.initCollection;
     await this.db.updateOne(
