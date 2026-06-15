@@ -12,7 +12,7 @@ export const SearchInput: FunctionalComponent<SearchInputProps> = (props) => {
   const {className, class: c, ...inputProps } = props;
   const divClassName = classNames(style.searchInput, c as string, className as string);
   return <div className={divClassName}>
-    <SvgIcon id="#search" stroke-width={1.8}/>
+    <SvgIcon id="#search" stroke-width={1.8} className="colorInsNight"/>
     <Input class={style.input} {...inputProps}/>
   </div>
 }

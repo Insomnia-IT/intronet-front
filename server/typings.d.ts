@@ -1,13 +1,13 @@
-
 type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
 
 type InsomniaLocation = {
   _id: string;
-  // Неуникальный, но постоянный
-  // notionId: string;
+  // for linking events
+  entry_id: string;
   name: string;
   description: string;
   directionId: string;
+  groupLink?: string;
   figure: GeoFigure;
   tags: string[];
   work_tags: string[];
@@ -15,6 +15,13 @@ type InsomniaLocation = {
   minZoom?: number;
   maxZoom?: number;
   contentBlocks?: ContentBlock[];
+  rowIndex: number;
+  isFoodcourt: boolean;
+  hasDescriptionImage?: boolean;
+  descriptionImageMime?: string;
+  descriptionImage?: import("mongodb").Binary;
+  version?: string;
+  volunteer: boolean;
 };
 
 type ContentBlock =
@@ -132,7 +139,7 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
-    name: string
+    name: string;
     description?: string;
     photo?: string;
   }>;
@@ -282,6 +289,5 @@ type Change = {
   start?: string;
   end?: string;
 } & Record<string, any>;
-
 
 declare const PRODUCTION: boolean;

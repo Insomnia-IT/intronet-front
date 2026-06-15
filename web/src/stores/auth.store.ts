@@ -2,12 +2,14 @@ import { Fn } from "@cmmn/core";
 import { LocalStore } from "./localStore";
 import { api } from "./api";
 import { cell } from "@cmmn/cell";
+import { locationsStore } from "./locations.store";
+import { notesStore } from "./notes";
 
 class AuthStore extends LocalStore<{
   uid: string;
   token: string;
   username: string;
-  role: "admin" | "superadmin" | "tochka";
+  role: UserRole;
 }> {
   get headers() {
     return {
@@ -39,7 +41,12 @@ class AuthStore extends LocalStore<{
           this.patch({ token: null, role: null });
         } else {
           const role = (await x.text()) as any;
+          const changed = this.role != role;
           this.patch({ role, token });
+          if (changed) {
+            await locationsStore.db.refresh();
+            await notesStore.db.refresh();
+          }
         }
       });
     }
@@ -59,11 +66,15 @@ class AuthStore extends LocalStore<{
   }
   @cell
   public get isAdmin(): boolean {
-    return !!this.token;
+    return !!this.token && (this.role == 'admin' || this.role == 'superadmin');
   }
   @cell
   public get role() {
     return this.values.role;
+  }
+
+  hasPermissions(roles: (UserRole)[]) {
+    return roles.includes(this.role);
   }
 
   public auth(user: string, token: string) {
@@ -73,7 +84,7 @@ class AuthStore extends LocalStore<{
     });
   }
   public createToken(
-    role: "admin" | "superadmin" | "tochka",
+    role: UserRole,
     username: string
   ) {
     return fetch(`${api}/auth/token`, {
@@ -83,6 +94,7 @@ class AuthStore extends LocalStore<{
     }).then(async result => {
       const token = await result.text();
       console.log(`Token for ${username}`, token);
+      return token;
     });
   }
 
@@ -101,5 +113,13 @@ class AuthStore extends LocalStore<{
     await this.seed("main", force);
     await this.seed("shops", force);
   }
+
+  public async loadEvents() {
+    return fetch(`${api}/load-events`, {
+      method: "POST",
+      headers: this.headers,
+    });
+  }
 }
 export const authStore = (globalThis["authStore"] = new AuthStore());
+export type UserRole = "admin" | "superadmin" | "tochka" | "volunteer";

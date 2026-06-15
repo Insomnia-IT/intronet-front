@@ -24,6 +24,7 @@ class UserStore extends LocalStore<{
 
 
   onboardingNext = () => this.OnboardingPhase++;
+  onboardingPrev = () => this.OnboardingPhase--;
   onboardingFinish = () => this.OnboardingPhase = 5;
 
   public log(data: Record<string, string>){
@@ -41,3 +42,5 @@ class UserStore extends LocalStore<{
 }
 
 export const userStore = new UserStore();
+// @ts-ignore
+window.userStore = userStore;

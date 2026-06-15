@@ -13,7 +13,7 @@ export const AllNews = () => {
     <CloseButton/>
     <div flex column gap={6}  style={{margin: '27px 0'}}>
     {state.news.map(x => <div key={x._id} flex column gap={2}>
-      <span class="sh3 colorGray">{x.time}</span>
+      <span class="sh3 colorGrey">{x.time}</span>
       <span class={`text colorMediumBlue `+ style.text}>{x.text}</span>
       {x.link && <Link style={{marginTop: 8}} goTo={x.link as any}>{x.linkText || x.link}</Link>}
       {isAdmin && <div flex gap={5}>

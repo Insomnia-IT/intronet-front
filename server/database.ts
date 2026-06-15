@@ -1,3 +1,4 @@
+import { UserInfo } from "auth.ctrl";
 import * as console from "console";
 import { Collection, Filter, MongoClient, Db } from "mongodb";
 import * as process from "process";
@@ -65,6 +66,11 @@ export class Database<T extends { _id: string }> {
     } as Filter<T & { version: string }>);
   }
 
+  async removeWhere(filter: Filter<T & { version: string }>) {
+    await this.initCollection;
+    await this.db.deleteOne(filter);
+  }
+
   async addOrUpdate(value: T & { version: string }) {
     await this.initCollection;
     await this.db.updateOne(
@@ -80,33 +86,36 @@ export class Database<T extends { _id: string }> {
     );
   }
 
-  async getSince(revision: string = undefined): Promise<T[]> {
+  async getSince(revision: string = undefined, user?: UserInfo): Promise<T[]> {
     await this.initCollection;
+    const filter = this.getFilter(user) as Filter<T & { version: string }>;
+    console.log(filter);
     if (revision) {
       const result = this.db.find({
         version: { $gte: revision },
+        ...filter
       } as Filter<T & { version: string }>);
       return result.map((x) => x as T).toArray();
     } else {
-      const result = this.db.find({});
+      const result = this.db.find(filter);
       return result.map((x) => x as T).toArray();
     }
   }
 
-  async getMaxVersion(): Promise<string> {
+  async getMaxVersion(user?: UserInfo): Promise<string> {
     await this.initCollection;
     const result = await this.db
-      .find({})
+      .find(this.getFilter(user) as Filter<T & { version: string }>)
       .sort({ version: -1 })
       .limit(1)
       .map((x) => x.version)
       .toArray();
     return result[0];
   }
-  async getMinVersion(): Promise<string> {
+  async getMinVersion(user?: UserInfo): Promise<string> {
     await this.initCollection;
     const result = await this.db
-      .find({})
+      .find(this.getFilter(user) as Filter<T & { version: string }>)
       .sort({ version: 1 })
       .limit(1)
       .map((x) => x.version)
@@ -114,6 +123,13 @@ export class Database<T extends { _id: string }> {
     return result[0];
   }
 
+  private getFilter(user?: UserInfo) {
+    if (!user) return { isApproved: { $ne: false }, volunteer: { $ne: '1' } };
+    console.log(user);
+    if (user.role == 'volunteer')
+      return { isApproved: { $ne: false }, volunteer: { $ne: '0' } };
+    return { volunteer: { $ne: '1' } };
+  }
   private async getIndexOrCreate(): Promise<string> {
     await Database.initPromise;
     const indexName = "version";
@@ -154,5 +170,22 @@ export class Database<T extends { _id: string }> {
     return this.db.findOne({ _id: { $eq: value } } as Filter<
       T & { version: string }
     >);
+  }
+
+  async updateFields(
+    id: string,
+    set: Record<string, unknown>,
+    unset?: Record<string, 1>
+  ) {
+    await this.initCollection;
+    const update: { $set: Record<string, unknown>; $unset?: Record<string, 1> } =
+      { $set: set };
+    if (unset && Object.keys(unset).length > 0) {
+      update.$unset = unset;
+    }
+    await this.db.updateOne(
+      { _id: { $eq: id } } as Filter<T & { version: string }>,
+      update as any
+    );
   }
 }

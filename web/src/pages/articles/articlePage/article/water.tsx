@@ -5,11 +5,11 @@ import { PageLayout } from "@components/PageLayout";
 export function Water() {
   return <PageLayout title='Вода'>
     <CloseButton goTo="/main"/>
-    <div class="text colorMediumBlue" style={{marginTop: 20, marginBottom: 16}}>
-      Вода продается в пятилитровых бутылках на инфоцентре.
+    <div class="text" style={{marginTop: 20, marginBottom: 16}}>
+      Вода продается в пятилитровых бутылках в Инфоцентре.
     </div>
-    <div className="colorOrange" flex gap="3">
-      <SvgIcon id="#alert" size={24} style={{color: "var(--ch-orange)", flex: 'auto 0 0'}}/>
+    <div className="colorVivid" flex gap="3">
+      <SvgIcon id="#alert" size={24} style={{color: "var(--vivid)", flex: 'auto 0 0'}}/>
       Техническую воду и воду из местного родника пить нельзя!
     </div>
     <ButtonsBar at="bottom">

@@ -1,3 +1,4 @@
+import { OnlineButton } from '@components/buttons/online-button'
 import {Button, ButtonsBar, CloseButton} from "../../components";
 import {Field} from "../../components/forms";
 import {Input} from "../../components/input";
@@ -35,13 +36,13 @@ export const MovieBlockEdit = () => {
       })}/>
     </div>
     <ButtonsBar at="bottom">
-      <Button type="blue" onClick={async () => {
+      <OnlineButton type="blue" onClick={async () => {
         await moviesStore.applyChanges();
         await changesStore.applyChanges();
         router.goTo(["timetable"]);
       }}>
         опубликовать изменения
-      </Button>
+      </OnlineButton>
     </ButtonsBar>
     <CloseButton onClick={() => {
       moviesStore.discardChanges();

@@ -1,0 +1,9 @@
+.bgImage {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform-origin: right top;
+  width: 60px;
+  height: 120px;
+  fill: color-mix(in oklab, var(--ins-night), transparent 87%);
+}

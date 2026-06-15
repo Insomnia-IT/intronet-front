@@ -130,7 +130,7 @@ export class SwStorage {
       cache: this.name,
       url: request.url,
     });
-    await this.cache.put(request, res);
+    await this.cache.put(request, res.clone());
     return res;
   }
 

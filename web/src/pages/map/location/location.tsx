@@ -3,6 +3,7 @@ import { FunctionalComponent } from "preact";
 import { useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { locationsStore, LocationStore } from "@stores";
+import { authStore } from "@stores/auth.store";
 import { bookmarksStore } from "@stores/bookmarks.store";
 import { Button, ButtonsBar } from "@components";
 import { Link } from "@components";
@@ -11,6 +12,7 @@ import { useLocationsRouter } from "../hooks/useLocationsRouter";
 import Styles from "./location.module.css";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 import { PageHeader } from "@components/PageHeader/PageHeader";
+import { locationDescriptionImageUrl } from "@api";
 
 export type LocationProps = {
   id: string;
@@ -19,7 +21,6 @@ export type LocationProps = {
 
 export const Location: FunctionalComponent<LocationProps> = ({
   id,
-  expanded,
 }) => {
   const router = useLocationsRouter();
   const store = useMemo(() => new LocationStore(id), [id]);
@@ -28,6 +29,10 @@ export const Location: FunctionalComponent<LocationProps> = ({
   );
   const isEdit = useCell(() => locationsStore.isEdit);
   const isMoving = useCell(() => locationsStore.isMoving);
+  const canEdit = useCell(() => locationsStore.canEdit(location), [location]);
+  const isAdmin = useCell(() => authStore.isAdmin);
+  // Свои локации пользователь правит прямо из шторки, админ — через режим редактирования.
+  const showEditActions = canEdit && (isEdit || !isAdmin);
   if (!location) return <></>;
   if (isMoving)
     return (
@@ -83,7 +88,15 @@ export const Location: FunctionalComponent<LocationProps> = ({
         {location.menu && (
           <Link goTo={["map", "menu", location._id]}>к меню</Link>
         )}
-        <div className="text colorMediumBlue">
+        {location.hasDescriptionImage && (
+          <img
+            key={location.version ?? location._id}
+            className={Styles.descriptionImage}
+            src={locationDescriptionImageUrl(location._id, location.version)}
+            alt=""
+          />
+        )}
+        <div className="text colorGrey2">
           {" "}
           {location.description?.split("\n").map((x) => (
             <div>{x}</div>
@@ -98,7 +111,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
           }}
         />
       </div>
-      {isEdit ? (
+      {showEditActions ? (
         <div flex column gap="2" style={{ marginTop: 16 }}>
           <Button type="frame" class="w-full" goTo={["map", "edit", id]}>
             <SvgIcon id="#edit" /> Редактировать
@@ -129,7 +142,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
               width: "100%",
             }}
           >
-            <BookmarkIcon size={14} />
+            <BookmarkIcon class={Styles.bookmark} size={24} />
             {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
           </Button>
         </ButtonsBar>

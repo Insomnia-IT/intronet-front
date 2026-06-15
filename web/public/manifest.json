@@ -1,6 +1,11 @@
 {
   "start_url": ".",
   "display": "standalone",
+  "display_override": [
+    "minimal-ui",
+    "window-controls-overlay"
+  ],
+  "id": "app.insight.twa",
   "name": "Insomnia Fest",
   "short_name": "Insight",
   "theme_color": "#061E35",

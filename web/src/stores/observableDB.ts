@@ -1,5 +1,4 @@
 import { Fn } from "@cmmn/core";
-import { IsConnected } from "./connection";
 import { authStore } from "./auth.store";
 import { api } from "./api";
 import { LocalObservableDB } from "./localObservableDB";
@@ -199,7 +198,7 @@ class VersionsDB extends LocalObservableDB<{
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 3000);
+    setInterval(() => this.loadFromServer(), 30000);
   }
 
   private loadingLock = false;
@@ -218,9 +217,6 @@ class VersionsDB extends LocalObservableDB<{
           init: actual[name].min,
         });
       }
-      IsConnected.set(true);
-    } catch (e) {
-      IsConnected.set(false);
     } finally {
       this.loadingLock = false;
     }

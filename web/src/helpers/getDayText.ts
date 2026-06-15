@@ -12,10 +12,6 @@ export function getDayText(
     case "full":
       return namesFull[day];
     case "at": {
-      const today = getCurrentDay();
-      if (today == day) return `сегодня`;
-      if (day == today - 1) return `вчера`;
-      if (day == today + 1) return `завтра`;
       return namesAt[day];
     }
     case "shortWD": {
@@ -27,7 +23,7 @@ export function getDayText(
 }
 
 export function getCurrentDay(): Day {
-  return getDay(Date.now() - 12*60*60*1000);
+  return getDay(Date.now() - 8.5*60*60*1000);
 }
 
 export function getDay(utc: number): Day {
@@ -38,8 +34,8 @@ export function getDay(utc: number): Day {
 }
 
 export function getTimeComparable(time: string): string{
-  if (time.startsWith('0')) return  '3' + time;
-  return  time;
+  if (+time.split(':')[0] < 8) return  '3' + time;
+  return time;
 }
 export function getTime(local: Date): string{
   const hour = local.getHours();
@@ -51,7 +47,7 @@ export function getCurrentHour() {
   const hour = new Date().getHours();
   switch (true) {
     case hour < 13:
-      return 9;
+      return 8;
     case hour < 17:
       return 13;
     case hour < 24:
@@ -59,14 +55,14 @@ export function getCurrentHour() {
   }
 }
 
-export const isInTimePeriod = (hour: number, filter: 9 | 13 | 17): boolean => {
+export const isInTimePeriod = (hour: number, filter: 8 | 13 | 17): boolean => {
   switch (filter) {
-    case 9:
-      return hour < 13 && hour > 9;
+    case 8:
+      return hour < 13 && hour >= 8;
     case 13:
       return hour >= 13 && hour < 17;
     case 17:
-      return (hour >= 17 && hour < 24) || (hour < 9);
+      return (hour >= 17 && hour < 24) || (hour < 8);
   }
 };
 
@@ -75,21 +71,21 @@ export const parseTime = (time: string): string => {
   return `${hours}:${minutes}`;
 };
 
-export const coerceHour = (hour: unknown): hour is 9 | 13 | 17 => {
-  return hour === 9 || hour === 13 || hour === 17;
+export const coerceHour = (hour: unknown): hour is 8 | 13 | 17 => {
+  return hour === 8 || hour === 13 || hour === 17;
 };
 
 export const getDayNumber = (day: number) => {
   return day - 13;
 }
 
-export const namesShort = ["чт 18", "пт 19", "сб 20", "вс 21", "пн 22"];
+export const namesShort = ["чт 17", "пт 18", "сб 19", "вс 20", "пн 21"];
 const namesFull = [
-  "Четверг, 18 июля",
-  "Пятница, 19 июля",
-  "Суббота, 20 июля",
-  "Воскресенье, 21 июля",
-  "Понедельник, 22 июля",
+  "Четверг, 17 июля",
+  "Пятница, 18 июля",
+  "Суббота, 19 июля",
+  "Воскресенье, 20 июля",
+  "Понедельник, 21 июля",
 ];
 const names = ["четверг", "пятница", "суббота", "воскресенье", "понедельник"];
 const namesAt = [

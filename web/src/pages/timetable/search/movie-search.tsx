@@ -5,16 +5,17 @@ import { SearchPlug } from "@components/plugs/search/SearchPlug";
 import { searchStore } from "@stores/search.store";
 import { useEffect } from "preact/hooks";
 import { PageHeader } from "@components/PageHeader/PageHeader";
+import { SearchInput } from '@components/input/search-input'
 
 export const MovieSearch = () => {
   const query = useCell(searchStore.query);
   const movies = useCell(searchStore.filteredMovies);
   useEffect(() => () => searchStore.query.set(''), []);
   return (
-    <div flex column gap={5} class="h-full">
+    <div flex column gap={3} class="h-full">
       <PageHeader titleH1={'поиск'} withCloseButton/>
 
-      <Input
+      <SearchInput
         placeholder="Название мультфильма"
         autofocus
         value={query}
@@ -24,7 +25,7 @@ export const MovieSearch = () => {
         <MovieList movies={movies} searchQuery={query} />
       ) : (
         <SearchPlug
-          title={"Ничего не найдено"}
+          title={"Поиск по анимации"}
           text={"Попробуйте найти мультфильм по названию или по автору"}
         ></SearchPlug>
       )}

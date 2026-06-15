@@ -39,17 +39,17 @@
 
 .bookmarkAddGesture {
   composes: bookmarkAdd;
-  background: var(--gray);
+  background: var(--grey);
 }
 
 .bookmarkAddDeleting {
   composes: bookmarkAdd;
-  background: var(--ch-orange);
+  background: var(--grey2);
 }
 
 .bookmarkAddAdding {
   composes: bookmarkAdd;
-  background: var(--bonfire-light);
+  background: var(--vivid);
 }
 
 .wrapperDemo:nth-child(3) .container {
@@ -58,7 +58,7 @@
 }
 
 .wrapperDemo:nth-child(3) .bookmarkAdd {
-  background: var(--gray);
+  background: var(--grey);
   --width: 54px !important;
 }
 

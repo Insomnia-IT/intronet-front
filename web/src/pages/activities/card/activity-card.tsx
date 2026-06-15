@@ -13,6 +13,7 @@ import { ActivityStore } from "../../../stores/activities/activities.store";
 import { SvgIcon } from "../../../icons";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import Styles from "./activity-card.module.css";
+import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
 
 export type ActivityCardProps = {
   id: string;
@@ -34,16 +35,16 @@ export type ActivityCardStylesProps = {
 
 
 export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
-                                                                       id,
-                                                                       searchQuery,
-                                                                       className,
-                                                                       iconOpacity,
-                                                                       iconClassNames,
-                                                                       onIconClick,
-                                                                       showDate,
-                                                                       disabled = false,
-                                                                       withBookmarkIcon = true
-                                                                     }) => {
+  id,
+  searchQuery,
+  className,
+  iconOpacity,
+  iconClassNames,
+  onIconClick,
+  showDate,
+  disabled = false,
+  withBookmarkIcon = true
+}) => {
   const store = useMemo(() => new ActivityStore(id), [ id ]);
   const {activity} = useCell(store.state);
   const router = useActivitiesRouter();
@@ -70,7 +71,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
                 "sh1",
               ].join(" ") }
             >
-              { highlight(activity?.title, searchQuery) }
+              { highlight(decodeHTMLEntities(activity?.title), searchQuery) }
             </div>
           </div>
 
@@ -86,9 +87,14 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
           />) }
         </div>
 
-        <div className={ `textSmall colorGray ${ Styles.activityDescription }` }>
+        <div className={ `textSmall colorGrey ${ Styles.activityDescription }` }>
           {activity?.authors?.map(author =>
             highlight(author.name, searchQuery)
+          ).map((author, index) =>
+            <>
+              {index > 0 && ", "}
+              {author}
+            </>
           )}
         </div>
 

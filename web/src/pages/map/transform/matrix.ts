@@ -17,6 +17,10 @@ export class Matrix {
     return Math.sqrt(this.A00 * this.A11 - this.A01 * this.A10);
   }
 
+  public GetRotation() {
+    return Math.atan2(this.A10, this.A00);
+  }
+
   public Ortogonalize() {
     this.A11 = this.A00;
     this.A01 = -this.A10;

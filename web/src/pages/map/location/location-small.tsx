@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { useCell } from "../../../helpers/cell-state";
 import { bookmarksStore } from "../../../stores/bookmarks.store";
 import { useLocalStorageState } from "../../../helpers/useLocalStorageState";
-import { directionsToIconId } from "../mapElement";
+import { directionsToIconId } from "../elements/mapElement";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 
 export type LocationSmallProps = {
@@ -86,7 +86,7 @@ export const LocationSmall: FunctionalComponent<LocationSmallProps> = ({
         <div flex-grow>{highlight(location.name, searchQuery)}</div>
 
         <BookmarkIcon
-          class={[...classNames, "colorPink"].join(" ")}
+          class={[...classNames, "colorVivid"].join(" ")}
           onClick={(e) => {
             if (!hasBookmark) return;
             e.preventDefault();

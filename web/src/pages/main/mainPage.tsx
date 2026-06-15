@@ -23,8 +23,8 @@ export const MainPage = () => {
   return (
     <PageLayout design="dark" withTapBar
                 title={<Logo />}
-                favoritesRoute="/bookmarks"
-                className={styles.mainPage}>
+                className={styles.mainPage}
+                headerStyle={styles.header}>
       <SearchInput
         style={{ background: "var(--white)" }}
         placeholder="Поиск всего-всего"
@@ -33,7 +33,7 @@ export const MainPage = () => {
       <News />
       {state.sections.map((x) => (
         <div key={x.section} flex column gap="2">
-          <h2 class="colorWhite">{x.title}</h2>
+          {x.title && <h2 class="colorWhite">{x.title}</h2>}
           <div flex column gap="1">
             {x.rows.map(({ row, cards }) => (
               <div gap="1" flex>

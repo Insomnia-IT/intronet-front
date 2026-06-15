@@ -4,9 +4,18 @@
   width: 100%;
 }
 
+.field:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+}
+
 .lable {
   margin-bottom: 16px;
-  color: var(--medium-blue);
+  color: var(--mineral);
+}
+
+.field:has(input[type="checkbox"]) .lable {
+  margin-bottom: 0;
 }
 
 .input {
@@ -14,12 +23,21 @@
   width: 100%;
 }
 
+input[type="checkbox"] {
+  -ms-transform: scale(1.5)
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+  padding: 10px;
+}
+
 .input:last-child {
   margin-bottom: 0;
 }
 
 .description {
-  color: var(--gray);
+  color: var(--grey);
 }
 
 .tags {

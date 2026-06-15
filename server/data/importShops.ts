@@ -21,5 +21,5 @@ export async function importShops(force = false) {
       ...shop,
     });
   }
-  dbCtrl.versions = undefined;
+  
 }

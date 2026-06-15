@@ -17,7 +17,7 @@ export const App = () => {
     switch (route[0]) {
       case "main":
       case "onboard":
-        userStore.StatusBarColor = "#061C35";
+        userStore.StatusBarColor = "#28130E";
         break;
       default:
         userStore.StatusBarColor = "#F7FCFF";

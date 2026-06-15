@@ -88,6 +88,26 @@ export const Field: FunctionalComponent<IFieldProps> = ({
           )
         );
       }
+
+      case "checkbox": {
+        return (
+          <Input
+            type="checkbox"
+            name={name}
+            id={id}
+            checked={value === "true"}
+            onChange={(e) => {
+              handleInput({
+                ...e,
+                currentTarget: {
+                  ...e.currentTarget,
+                  value: e.currentTarget.checked ? "true" : "false",
+                }
+              });
+            }}
+          />
+        );
+      }
     }
   };
 
@@ -113,7 +133,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
 };
 
 export type IField = {
-  type: "input" | "textarea" | "tags";
+  type: "input" | "textarea" | "tags" | "checkbox";
   name: string;
   value: string;
   lable?: string;

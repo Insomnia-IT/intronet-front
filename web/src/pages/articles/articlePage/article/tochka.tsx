@@ -32,7 +32,7 @@ export function Tochka() {
 
 const sections = {
   about: {
-    title: "Точка сборки", component: () => <div class="text colorMediumBlue" flex column gap="4">
+    title: "Точка сборки", component: () => <div class="text" flex column gap="4">
       <div>
         Волонтеры Точки сборки работают круглосуточно.
       </div>
@@ -44,12 +44,12 @@ const sections = {
           сборки.</li>
       </ul>
       <ButtonsBar at="bottom">
-        <Button type="blue" class="w-full"  goTo={['map',{name: 'точка'}]}>к точке сборки</Button>
+        <Button type="blue" class="w-full"  goTo={['map',{name: 'Точка Сборки'}]}>к точке сборки</Button>
       </ButtonsBar>
     </div>
   },
   children: {
-    title: "Дети", component: () => <div class="text colorMediumBlue" flex column gap="5">
+    title: "Дети", component: () => <div class="text" flex column gap="5">
       <div>Перед фестивалем</div>
       <ul className="disc" style={{margin: '4px 0'}}>
         <li>Убедитесь, что ребенок знает свое имя, возраст, имена тех, с кем он приехал и, по возможности, где находится
@@ -83,7 +83,7 @@ const sections = {
     </div>
   },
   adult: {
-    title: "Взрослые", component: () => <div class="text colorMediumBlue" flex column gap="5">
+    title: "Взрослые", component: () => <div class="text" flex column gap="5">
       <ul className="disc" style={{margin: '4px 0'}}>
         <li>Учитывайте отсутствие на поле мобильной связи.</li>
         <li>Всегда четко договаривайтесь о месте и времени встречи! В шаговой доступности от основных площадок фестиваля

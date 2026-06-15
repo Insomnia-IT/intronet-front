@@ -14,17 +14,17 @@ class CategoriesStore {
       {
         _id: "lost",
         name: "Потеряшки",
-        color: 'var(--bonfire-light)',
+        color: 'var(--vivid)',
       },
       {
         _id: "searchFriends",
         name: "Ищу друзей",
-        color: 'var(--electric-blues)',
+        color: 'var(--mineral)',
       },
       {
         _id: "blablacar",
         name: "Попутчики",
-        color: 'var(--cyber-disco)',
+        color: 'var(--yellow)',
       },
     ];
   }
@@ -34,7 +34,7 @@ class CategoriesStore {
   }
 
   getCategoryColor(id: ICategory["_id"]): null | string {
-    return this.getCategory(id)?.color || COLORS.inactiveGray;
+    return this.getCategory(id)?.color || COLORS.grey;
   }
 
   // async addCategory(newCategory: ICategoryLocal) {

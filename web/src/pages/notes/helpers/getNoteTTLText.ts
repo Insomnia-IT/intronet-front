@@ -13,5 +13,5 @@ export const getNoteTTLText = ({
 
   return deletedDate <= getCurrentDate()
     ? `Удалено ${dateText}`
-    : `В 00:00 ${dateText} удалим объявление автоматически`;
+    : `В конце ${dateText} удалим объявление автоматически`;
 };

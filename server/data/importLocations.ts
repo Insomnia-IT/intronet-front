@@ -2,10 +2,12 @@ import { dbCtrl } from "../db-ctrl";
 import process from "node:process";
 import { Database } from "../database";
 import { Fn, groupBy } from "@cmmn/core";
-import locationsGoogle from "./locations/locations2024google.json" assert { "type": "json" };
-import mapJson from "./locations/locations2024.json" assert { "type": "json" };
+import locationsGoogle from "./locations/locations_google.json" assert { "type": "json" };
+import mapJson from "./locations/genplan.json" assert { "type": "json" };
 import fs from "fs";
-import { menu } from "./menu";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
+import console from "console";
 
 export async function importLocations(force = false) {
   const locationsDB = Database.Get<any>("locations");
@@ -17,19 +19,14 @@ export async function importLocations(force = false) {
       await locationsDB.remove(activity._id);
     }
   }
-  const data = process.env.GOOGLE_SHEET_PRIVATE_KEY
+  const data = process.env.GOOGLE_SERVICE_JSON_KEY_PATH
     ? await getLocationsFromGoogleSheet()
     : (locationsGoogle as any);
 
-  const menuMap = new Map(getMenu());
-
   for (let loc of data) {
-    const menu =
-      menuMap.get(loc.name.toLowerCase()) ??
-      menuMap.get(loc.mapName.toLowerCase());
-    await locationsDB.addOrUpdate({ ...loc, menu, version: Fn.ulid() });
+    await locationsDB.addOrUpdate({ ...loc, version: Fn.ulid() });
   }
-  dbCtrl.versions = undefined;
+
 }
 
 export async function getLocationsFromGoogleSheet() {
@@ -43,7 +40,7 @@ export async function getLocationsFromGoogleSheet() {
     name: row.properties.name,
     figure: geometryToFigure(
       row.geometry.coordinates ??
-        row.geometry.geometries.flatMap((x) => x.coordinates)
+        row.geometry["geometries"].flatMap((x) => x.coordinates)
     ),
   }));
   const mapData = groupBy(mapArray, (x) => x.name.toLowerCase());
@@ -52,32 +49,40 @@ export async function getLocationsFromGoogleSheet() {
     const geo = mapData.get(mapName.toLowerCase())?.map((x) => x.figure) ?? [];
 
     const directionId = row.get("directionId") as string;
+    const isFoodcourt = !!row.get("Фудкорт");
     const figure: GeoFigure =
       directionId == "Зона"
         ? geo.find(Array.isArray)
         : geo.find((x) => !Array.isArray(x));
-    if (!figure) {
+    if (!figure && !isFoodcourt) {
       console.error(row.get("Название Insight"));
       return [];
     }
     return [
       {
-        _id: Fn.ulid(),
+        _id: row.get("id") as string,
+        entry_id: row.get("entry_id") as string,
         mapName,
         name: row.get("Название Insight") as string,
         description: row.get("Описание") as string,
         figure,
         directionId,
         tags: [],
-        work_tags: [row.get("Капшеринг")].filter((x) => x),
-        priority: !!(row.get("Приоритет") as string)?.match(/приоритет/i),
+        work_tags: [Boolean(row.get("Капшеринг")) ? "Капшеринг" : null].filter(
+          (x) => x
+        ),
+        priority: Boolean(row.get("Приоритет")),
         details: row.get("Тип деталки") as string,
         groupLink: row.get("Ссылка на группу") as string,
+        rowIndex: row.rowNumber,
+        menu: row.get("Меню") as string | undefined,
+        volunteer: row.get("Волонтёр"),
+        isFoodcourt,
       } as InsomniaLocation,
     ];
   });
   fs.writeFileSync(
-    "./data/locations/locations2024google.json",
+    "./data/locations/locations_google.json",
     JSON.stringify(data),
     "utf8"
   );
@@ -91,23 +96,17 @@ const enabledFigures = [
 ];
 
 async function getDoc() {
-  const { GoogleSpreadsheet } = await import("google-spreadsheet");
-  const { JWT } = await import("google-auth-library");
-  const privateKeyEnv = process.env.GOOGLE_SHEET_PRIVATE_KEY!;
-  if (!privateKeyEnv) {
-    throw "provide GOOGLE_SHEET_PRIVATE_KEY in env";
+  const keyPath = process.env.GOOGLE_SERVICE_JSON_KEY_PATH;
+  if (!keyPath) {
+    throw "provide GOOGLE_SERVICE_JSON_KEY_PATH in env";
   }
-  let privateKey = "";
-  privateKey = "-----BEGIN PRIVATE KEY-----\n";
-  for (let i = 0; i < privateKeyEnv.length; i += 64) {
-    privateKey += privateKeyEnv.substring(i, i + 64) + "\n";
-  }
-  privateKey += "-----END PRIVATE KEY-----\n";
 
   const jwt = new JWT({
-    email: process.env.GOOGLE_SHEET_EMAIL,
-    key: privateKey,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    keyFile: keyPath,
+    scopes: [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive.readonly",
+    ],
   });
 
   return new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID!, jwt);
@@ -124,17 +123,4 @@ function geometryToFigure(
   return (geometry as Array<Array<number>> | Array<Array<Array<number>>>).map(
     geometryToFigure
   ) as GeoFigure;
-}
-
-function* getMenu(): Generator<[string, string]> {
-  const blocks = menu
-    .split(/\_{10,}/)
-    .map((x) => x.trim())
-    .filter((x) => x);
-  for (let block of blocks) {
-    const firstLineEnd = block.indexOf("\n");
-    const title = block.substring(0, firstLineEnd).trim().toLowerCase();
-    const text = block.substring(firstLineEnd).trim();
-    yield [title, text];
-  }
 }

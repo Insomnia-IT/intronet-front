@@ -1,0 +1,184 @@
+import { Form, Field, IFormField, IField } from "@components/forms";
+import {
+  namesShort as daysShortNames,
+} from "../../../../../helpers/getDayText";
+import classNames from "classnames";
+import { categoriesStore, notesStore } from "@stores";
+import { useCell } from "@helpers/cell-state";
+import { FunctionalComponent } from "preact";
+import { authStore } from "@stores/auth.store";
+import { useRouter } from "../../../../routing";
+import { getCurrentDate } from "@helpers/date";
+import { OnlineButton } from '@components/buttons/online-button'
+import styles from './new-note-form.module.css';
+
+const dayTags = daysShortNames
+  .map((day) => {
+    if (Number(day.slice(3)) <= getCurrentDate()) {
+      return;
+    }
+
+    return {
+      name: "tag+" + day,
+      value: day,
+    };
+  })
+  .filter((x): x is { name: string; value: string } => !!x);
+
+const fields: INewNoteFormFields = [
+  {
+    name: "title",
+    value: "",
+    type: "input",
+    require: true,
+    description: "Максимум 35 символов",
+    placeholder: "Привет, друзья!",
+    lable: "Заголовок",
+    maxLength: 35,
+  },
+  {
+    name: "text",
+    value: "",
+    placeholder: "Давайте дружить, меня зовут...",
+    description:
+      "Тут уже можно разойтись, но помните, что краткость — сестра таланта (А.П. Чехов)",
+    require: true,
+    type: "textarea",
+    lable: "Текст",
+    maxLength: 300,
+  },
+  {
+    name: "author",
+    value: "",
+    placeholder: "Александр Пушкин",
+    require: true,
+    lable: "Автор",
+    type: "input",
+    maxLength: 30,
+  },
+  {
+    name: "category",
+    value: "",
+    lable: "Категория",
+    type: "tags",
+  },
+  {
+    name: "TTL",
+    value: "",
+    lable: "Актуально до",
+    description: "В конце выбранного дня удалим объявление",
+    type: "tags",
+    tags: dayTags,
+  },
+];
+
+interface INewNoteForm {
+  TTL: string;
+  author: string;
+  category: string;
+  isPinned: string;
+  text: string;
+  title: string;
+}
+
+export type INewNoteFormProps = {
+  onAddNote: (success: boolean) => void;
+};
+
+export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
+  onAddNote,
+}) => {
+  const categories = useCell(() => categoriesStore.categories);
+  const categoriesTags = categories.map(({ name, _id }) => ({
+    name: `tag+${_id}`,
+    value: name,
+  }));
+
+  const router = useRouter();
+  const isAdmin = useCell(() => authStore.isAdmin);
+  const canPin = useCell(() => authStore.hasPermissions(["admin", "superadmin", "tochka"]));
+
+  const onSubmit = (formFields: INewNoteForm) => {
+    const categoryId = (formFields["category"] as string)?.slice("tag+".length) || "";
+    const ttlValue = formFields["TTL"] as string;
+    const TTL = isAdmin
+      ? 21 as 21
+      : ttlValue
+        ? (parseInt(ttlValue.slice("tag+".length + 3)) as 17 | 18 | 19 | 20 | 21) || 21
+        : 21;
+
+    notesStore
+      .addNote({
+        author: {
+          name: isAdmin ? (authStore.userName || 'Insight') : (formFields["author"] as string),
+        },
+        categoryId,
+        text: formFields["text"] as string,
+        title: formFields["title"] as string,
+        TTL,
+        isPinned: formFields["isPinned"] === "true",
+      })
+      .then(() => {
+        if (isAdmin) {
+          router.goTo("/notes");
+        } else {
+          onAddNote(true);
+        }
+      });
+  };
+
+  const initialFormFields: IFormField[] = fields.map(
+    ({ name, value, require }) => ({
+      name,
+      value,
+      require,
+    })
+  );
+
+  return (
+    <Form
+      initialFields={initialFormFields}
+      onSubmit={onSubmit}
+      className={styles.form}
+    >
+      {({ allReqFieldIsFill, state, onFieldChange, submit }) => (
+        <>
+          {fields.map((field) => {
+            const { name } = field;
+            return (
+              <Field
+                {...field}
+                value={state[name]}
+                onChange={onFieldChange}
+                className={styles.field}
+                inputClassName={classNames({
+                  [styles.textField]: name === "text",
+                  [styles.tags]: name === "TTL",
+                })}
+                {...(name === "category" && { tags: categoriesTags })}
+                key={name}
+              />
+            );
+          })}
+
+          {canPin && (
+            <Field
+              type="checkbox"
+              name="isPinned"
+              lable="Закрепить"
+              value={state["isPinned"]}
+              onChange={onFieldChange}
+              className={styles.field}
+            />)}
+            <div className={styles.submitContainer}>
+              <OnlineButton onClick={submit} disabled={!allReqFieldIsFill} type={"blue"}>
+                {isAdmin ? "Опубликовать" : "Отправить на модерацию"}
+              </OnlineButton>
+            </div>
+          </>
+        )}
+    </Form>
+  );
+};
+
+type INewNoteFormFields = (IField & IFormField)[];

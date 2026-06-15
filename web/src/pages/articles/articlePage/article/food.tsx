@@ -66,17 +66,17 @@ const sections = {
           </Link>
         </div>
         <div>Детское питание для малышей младше нужно привозить с собой!</div>
-        <div className="colorOrange" flex gap="3">
+        <div className="colorVivid" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}
-            style={{ color: "var(--ch-orange)", flex: "auto 0 0" }}
+            style={{ color: "var(--vivid)", flex: "auto 0 0" }}
           />
           <span>
             В кафе нет одноразовых стаканов. Приходите со своим или можно взять
             фестивальный многоразовый стакан под залог в одном из
             <Link
-              style={{ color: "var(--ch-orange)" }}
+              style={{ color: "var(--vivid)" }}
               goTo="/map"
               query={{ tag: "капшеринг" }}
             >
@@ -113,14 +113,11 @@ const sections = {
           территории работают службы, которые помогут.
         </div>
         <div>
-          Ещё на поле есть два костра у Фудкорта и у Детского лагеря. Тут нельзя
+          Ещё на поле есть костёр у Фудкорта. Тут нельзя
           готовить, но можно отдохнуть и погреться!
         </div>
-        <Link goTo="/map" query={{ name: "костер" }}>
+        <Link goTo="/map" query={{ name: "костёр" }}>
           к костру у фудкорта
-        </Link>
-        <Link goTo="/map" query={{ name: "костер" }}>
-          к костру у детской поляны
         </Link>
       </>
     ),

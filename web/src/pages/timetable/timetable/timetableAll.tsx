@@ -6,7 +6,6 @@ import { getCurrentDay, getDayText } from "../../../helpers/getDayText";
 import { Timetable } from "./timetable";
 import { useRouter } from "../../routing";
 import { Tag, Tags } from "../../../components/tag";
-import { SvgIcon } from "@icons";
 
 export const TimetableAll: FunctionalComponent = () => {
   const router = useRouter<{
@@ -44,7 +43,7 @@ export const TimetableAll: FunctionalComponent = () => {
 
   return (
     <>
-      <div flex column gap={2} style={{ margin: "28px 0 20px 0" }}>
+      <div flex column style={{ marginBottom: 24 }}>
         <Tags value={day} tagsList={[0, 1, 2, 3]}>
           {(d) => (
             <Tag selected={d == day} key={d} onClick={() => setDay(d)}>

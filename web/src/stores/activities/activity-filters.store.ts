@@ -19,9 +19,9 @@ class ActivityFiltersStore {
   @cell
   get times(): IActivityFilter[] {
     return [
-      { key: 9, value: "9:00-13:00" },
+      { key: 8, value: "8:00-13:00" },
       { key: 13, value: "13:00-17:00" },
-      { key: 17, value: "17:00-9:00" },
+      { key: 17, value: "17:00-8:00" },
     ];
   }
 

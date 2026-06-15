@@ -27,8 +27,8 @@
 
 .active,
 .active svg path {
-  color: var(--vivid);
-  fill: var(--vivid);
+  color: var(--yellow);
+  fill: var(--yellow);
 }
 
 /* Чтобы на деве и на больших экранах никто не словил кринжа */

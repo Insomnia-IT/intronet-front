@@ -55,13 +55,7 @@ class MoviesStore {
   @cell
   public get VotingMovies(): MovieInfo[] {
     return distinct(
-      this.MovieBlocks.filter(
-        (x) =>
-          x.info.Title.toLowerCase().includes(
-            "российского национального конкурса"
-          ) ||
-          x.info.Title.toLowerCase().includes("российский национальный конкурс")
-      ).flatMap((x) => x.movies)
+      this.MovieBlocks.flatMap((x) => x.movies)
     );
   }
 
@@ -77,7 +71,7 @@ class MoviesStore {
       )
     )[0];
     if (!block) return undefined;
-    return block.info.Title + "\n" + block.info.SubTitle;
+    return block.info.Title + "\n" + (block.info.SubTitle ?? "");
   }
 
   @cell
@@ -137,7 +131,7 @@ export class MovieBlockStore {
       return "Марсе";
     })(screen);
     if (isAfter) {
-      return `Покажем этот блок ещё раз ${getDayText(duplicate.day, "at")} в ${
+      return `Так же покажем этот блок ${getDayText(duplicate.day, 'at')}, в ${
         duplicate.start
       } на ${screenAt}`;
     }
@@ -173,12 +167,10 @@ export class MovieStore {
   public state = new Cell<{
     movie: MovieInfo;
     hasBookmark: boolean;
-    canVote: boolean;
+    isVoted: boolean;
     views: Array<MovieBlock["views"][number] & { block: MovieBlock }>;
   }>(() => ({
-    canVote:
-      votingStore.state.get().canVote &&
-      moviesStore.VotingMovies.includes(this.movie),
+    isVoted: votingStore.state.get().votedMovies.some((m) => m.id == this.id),
     movie: this.movie,
     views: this.blocks.flatMap((x) => x.views.map((v) => ({ ...v, block: x }))),
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
