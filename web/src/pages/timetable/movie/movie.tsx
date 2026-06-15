@@ -12,6 +12,7 @@ import { Link } from "@components";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 import { PageHeader } from "@components/PageHeader/PageHeader";
 import { useOnlineState } from '@helpers/useOnlineState'
+import { votingStore } from "@stores/votingStore";
 import styles from "./movie.module.css";
 import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
 
@@ -53,37 +54,35 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
           {minutes} мин {seconds ? seconds + " сек" : ""}
         </div>
       )}
-      {state.canVote && (
-        <div flex column gap={2} style={{ marginBottom: 24 }}>
-          <Card border="Vivid" gap={0}>
-            <div flex column gap="2">
-              <div class="sh2 colorGradient">Международный конкурс анимации</div>
-              <div class="sh3 colorGrey">Приз зрительских симпатий</div>
-            </div>
-            <Link
-              className="colorVivid"
-              disabled={!isOnline}
-              goTo={["voting", movie.id]}
-              style={{
-                marginTop: 20,
-                marginBottom: 12,
-              }}
-            >
-              Голосую за этот мульт!
-            </Link>
-            <div class="textSmall colorGrey">
-              Голосовать можно онлайн и только 1 раз
-            </div>
-          </Card>
+      <div flex column gap={2} style={{ marginBottom: 24 }}>
+        <Card border="Vivid" gap={0}>
+          <div flex column gap="2">
+            <div class="sh2 colorGradient">Международный конкурс анимации</div>
+            <div class="sh3 colorGrey">Приз зрительских симпатий</div>
+          </div>
+          <Button
+            type={state.isVoted ? "frame" : "blue"}
+            disabled={!isOnline}
+            onClick={() => votingStore.vote(movie.id)}
+            style={{
+              marginTop: 20,
+              marginBottom: 12,
+            }}
+          >
+            {state.isVoted ? "Убрать голос" : "Голосую за этот мульт!"}
+          </Button>
+          <div class="textSmall colorGrey">
+            Вы можете голосовать за несколько мультфильмов
+          </div>
+        </Card>
 
-          {!isOnline && (
-            <div class="colorVivid textSmall">
-              Нет подключения к сети, вернитесь к точке WIFI, чтобы
-              проголосовать
-            </div>
-          )}
-        </div>
-      )}
+        {!isOnline && (
+          <div class="colorVivid textSmall">
+            Нет подключения к сети, вернитесь к точке WIFI, чтобы
+            проголосовать
+          </div>
+        )}
+      </div>
       <div flex column>
         <div className="sh1" style={{ marginBottom: 24 }}>Расписание показов:</div>
         {state.views.map((view) => (
