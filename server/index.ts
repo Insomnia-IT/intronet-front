@@ -8,7 +8,7 @@ import { importMovies } from "./data/importMovies";
 import { importShops } from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
-import { getResults, vote } from "./vote.ctrl";
+import { getResults, unvote, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
@@ -85,6 +85,19 @@ fastify.post("/vote", async function (request, reply) {
     ip: request.headers["x-forwarded-for"] as string,
   });
 });
+fastify.post("/unvote", async function (request, reply) {
+  const id = JSON.parse(request.body as string).id;
+  logData = {
+    id,
+    action: "unvote",
+    app: "client",
+  };
+  unvote({
+    id,
+    uid: request.headers.uid as string,
+    ip: request.headers["x-forwarded-for"] as string,
+  });
+})
 fastify.get<{ Params: { id: string } }>(
   "/locations/:id/description-image",
   async function (request, reply) {

@@ -55,14 +55,7 @@ class MoviesStore {
   @cell
   public get VotingMovies(): MovieInfo[] {
     return distinct(
-      this.MovieBlocks.filter(
-        (x) =>
-          x.info.Title.toLowerCase().includes(
-          "национальный конкурс"
-        ) || x.info.Title.toLowerCase().includes(
-          "национального конкурса"
-        )
-      ).flatMap((x) => x.movies)
+      this.MovieBlocks.flatMap((x) => x.movies)
     );
   }
 
@@ -174,12 +167,10 @@ export class MovieStore {
   public state = new Cell<{
     movie: MovieInfo;
     hasBookmark: boolean;
-    canVote: boolean;
+    isVoted: boolean;
     views: Array<MovieBlock["views"][number] & { block: MovieBlock }>;
   }>(() => ({
-    canVote:
-      votingStore.state.get().canVote &&
-      moviesStore.VotingMovies.includes(this.movie),
+    isVoted: votingStore.state.get().votedMovies.some((m) => m.id == this.id),
     movie: this.movie,
     views: this.blocks.flatMap((x) => x.views.map((v) => ({ ...v, block: x }))),
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),
