@@ -1,0 +1,13 @@
+.bandItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bandPhoto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}

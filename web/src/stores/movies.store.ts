@@ -11,12 +11,52 @@ import {
 } from "../helpers/getDayText";
 import { bookmarksStore } from "./bookmarks.store";
 import { votingStore } from "./votingStore";
+import { pickVurchelPoster } from "../helpers/movie-image";
+import { fetchVurchelFilm } from "../helpers/fetch-vurchel";
+
+function enrichMovie(m: MovieInfo, info?: VurchelFilm): MovieInfo {
+  if (!info) return m;
+  return {
+    ...m,
+    name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
+    plot: m.plot ?? info.filmEnPlot,
+    image: m.image ?? pickVurchelPoster(info.images),
+    country: info.countries.join(", ") || "",
+    author: info.credits
+      .flatMap((x) => x.directors.map((d) => d.name))
+      .filter((x) => x)
+      .join(", "),
+    info,
+  };
+}
 
 class MoviesStore {
   @cell public db = new ObservableDB<MovieBlock>("movies");
   @cell private vurchelDB = new ObservableDB<VurchelFilm>("vurchel");
+  private pendingVurchel = new Map<string, Promise<void>>();
 
   IsLoaded = this.db.isLoaded && this.vurchelDB.isLoaded;
+
+  /** Подгружает метаданные Vurchel, если их нет в локальной БД. */
+  async ensureVurchel(vurchelId?: string | number) {
+    if (vurchelId == null || vurchelId === "") return;
+    const id = String(vurchelId);
+    await this.vurchelDB.isLoaded;
+    if (this.vurchelDB.get(id)?.images?.length) return;
+    if (this.pendingVurchel.has(id)) return this.pendingVurchel.get(id);
+
+    const promise = (async () => {
+      const info = await fetchVurchelFilm(id);
+      if (!info) return;
+      await this.vurchelDB.addOrUpdate({
+        _id: String(info.entryID),
+        ...info,
+      });
+    })().finally(() => this.pendingVurchel.delete(id));
+
+    this.pendingVurchel.set(id, promise);
+    return promise;
+  }
 
   @cell
   public get MovieBlocks(): MovieBlock[] {
@@ -26,21 +66,9 @@ class MoviesStore {
       views: b.views.map((view, index) =>
         changesStore.withChanges(view, `${b._id}.${index}`)
       ),
-      movies: b.movies.map((m) => {
-        const info = this.vurchelDB.get(m.vurchelId?.toString());
-        if (!info)
-          return m;
-        return {
-          ...m,
-          name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
-          description: m.plot ?? info.filmEnPlot,
-          country: info.countries.join(", ") || "",
-          author: info.credits
-              .flatMap((x) => x.directors.map((d) => d.name))
-              .filter((x) => x)
-              .join(", "),
-        };
-      }),
+      movies: b.movies.map((m) =>
+        enrichMovie(m, this.vurchelDB.get(m.vurchelId?.toString()))
+      ),
     }));
   }
 

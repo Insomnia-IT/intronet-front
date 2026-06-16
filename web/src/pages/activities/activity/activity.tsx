@@ -1,5 +1,5 @@
 import {FunctionalComponent} from "preact";
-import {useEffect, useMemo} from "preact/hooks";
+import {useMemo} from "preact/hooks";
 import {locationsStore} from "@stores";
 import {bookmarksStore} from "@stores/bookmarks.store";
 import {ActivityStore} from "@stores/activities/activities.store";
@@ -14,6 +14,8 @@ import {useActivitiesRouter} from "../hooks/useActivitiesRouter";
 import Styles from "./activity.module.css";
 import {BookmarkIcon} from "@components/BookmarkGesture/bookmark-icon";
 import {PageHeader} from "@components/PageHeader/PageHeader";
+import {ImageGallery} from "@components/ImageGallery/image-gallery";
+import {getAuthorGalleryImages} from "@helpers/participant-photo";
 
 export type ActivityProps = {
   id: string;
@@ -28,9 +30,22 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
       {activity && (<>
           <PageHeader titleH2={<span dangerouslySetInnerHTML={{__html: activity.title}}/>} align={'top'} withCloseButton/>
 
+          <ImageGallery
+            images={getAuthorGalleryImages(activity.authors)}
+            alt={activity.title}
+          />
           {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
-          {activity.authors?.map(author => (
-            <div className="colorGrey sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
+          {activity.authors?.map((author, index) => (
+            <div
+              key={index}
+              className="colorGrey sh3"
+              dangerouslySetInnerHTML={{
+                __html: [author.name, author.description]
+                  .filter((x) => x)
+                  .join(". ")
+                  .replaceAll(/\\n/g, "<br/>"),
+              }}
+            />
           ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 

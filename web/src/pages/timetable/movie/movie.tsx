@@ -1,6 +1,6 @@
 import { FunctionalComponent } from "preact";
-import { locationsStore, MovieStore } from "@stores";
-import { useMemo } from "preact/hooks";
+import { locationsStore, MovieStore, moviesStore } from "@stores";
+import { useEffect, useMemo } from "preact/hooks";
 import { useCell } from "@helpers/cell-state";
 import { getDayText } from "@helpers/getDayText";
 import { useTimetableRouter } from "../timetable-page";
@@ -14,6 +14,8 @@ import { PageHeader } from "@components/PageHeader/PageHeader";
 import { useOnlineState } from '@helpers/useOnlineState'
 import styles from "./movie.module.css";
 import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
+import { getVurchelGalleryImages } from "@helpers/movie-image";
+import { ImageGallery } from "@components/ImageGallery/image-gallery";
 
 export type MovieProps = {
   id: string;
@@ -26,11 +28,24 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const screenLocations = useCell(() => locationsStore.ScreenLocations);
   const [minutes, seconds] = movie.info?.filmDuration?.split(/[:'"]/) ?? [];
   const isOnline = useOnlineState();
+  const galleryImages = useMemo(
+    () => getVurchelGalleryImages(movie.info?.images),
+    [movie.info?.images?.join("|")]
+  );
+
+  useEffect(() => {
+    if (!movie.vurchelId) return;
+    moviesStore.ensureVurchel(movie.vurchelId);
+  }, [props.id, movie.vurchelId]);
+
   if (!screenLocations.length) return <></>;
 
   return (
     <div flex column gap={2} class="movie-page" >
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />
+      {movie.vurchelId && (
+        <ImageGallery images={galleryImages} alt={movie.name} />
+      )}
       {movie.plot && (
         <div
           style={{
