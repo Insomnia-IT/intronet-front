@@ -34,7 +34,7 @@ function finishEyeAnimation() {
     const m = new DOMMatrixReadOnly(t);
     deg = ((((Math.atan2(m.b, m.a) * 180) / Math.PI) % 360) + 360) % 360;
   }
-  const target = deg > 30 ? 359.99 : 0;
+  const target = deg > 50 ? 380 : 20;
   spin.style.animation = "none";
   spin.style.transform = `rotate(${deg}deg)`;
   spin.getBoundingClientRect();
