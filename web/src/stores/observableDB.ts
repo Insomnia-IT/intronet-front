@@ -51,6 +51,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     try {
       // Очистка устаревших элементов
       for (let item of this.items.values()) {
+        if (!item) continue;
         if (item.version < this.initVersion) {
           await this.db.remove(item._id);
           this.items.delete(item._id);
