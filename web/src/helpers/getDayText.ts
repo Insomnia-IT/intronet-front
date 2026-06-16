@@ -45,24 +45,22 @@ export function getTime(local: Date): string{
 
 export function getCurrentHour() {
   const hour = new Date().getHours();
-  switch (true) {
-    case hour < 13:
-      return 8;
-    case hour < 17:
-      return 13;
-    case hour < 24:
-      return 17;
-  }
+  if (hour < 8 || hour >= 21) return 21;
+  if (hour < 13) return 8;
+  if (hour < 17) return 13;
+  return 17;
 }
 
-export const isInTimePeriod = (hour: number, filter: 8 | 13 | 17): boolean => {
+export const isInTimePeriod = (hour: number, filter: 8 | 13 | 17 | 21): boolean => {
   switch (filter) {
     case 8:
       return hour < 13 && hour >= 8;
     case 13:
       return hour >= 13 && hour < 17;
     case 17:
-      return (hour >= 17 && hour < 24) || (hour < 8);
+      return hour >= 17 && hour < 21;
+    case 21:
+      return hour >= 21 || hour < 8;
   }
 };
 
@@ -71,8 +69,8 @@ export const parseTime = (time: string): string => {
   return `${hours}:${minutes}`;
 };
 
-export const coerceHour = (hour: unknown): hour is 8 | 13 | 17 => {
-  return hour === 8 || hour === 13 || hour === 17;
+export const coerceHour = (hour: unknown): hour is 8 | 13 | 17 | 21 => {
+  return hour === 8 || hour === 13 || hour === 17 || hour === 21;
 };
 
 export const getDayNumber = (day: number) => {

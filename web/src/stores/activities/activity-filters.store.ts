@@ -21,7 +21,8 @@ class ActivityFiltersStore {
     return [
       { key: 8, value: "8:00-13:00" },
       { key: 13, value: "13:00-17:00" },
-      { key: 17, value: "17:00-8:00" },
+      { key: 17, value: "17:00-21:00" },
+      { key: 21, value: "21:00-8:00" },
     ];
   }
 
