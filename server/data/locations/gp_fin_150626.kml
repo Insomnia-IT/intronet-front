@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
-    <name><![CDATA[Копия карты "gp_fin_130626"]]></name>
+    <name>gp_fin_150626</name>
     <description/>
     <Style id="icon-1509-9C27B0-labelson">
       <IconStyle>
@@ -33,6 +33,15 @@
     <Style id="icon-1523-F9A825-labelson">
       <IconStyle>
         <color>ff25a8f9</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1528-673AB7-labelson">
+      <IconStyle>
+        <color>ffb73a67</color>
         <scale>1</scale>
         <Icon>
           <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
@@ -435,15 +444,6 @@
         </Icon>
       </IconStyle>
     </Style>
-    <Style id="icon-1678-9C27B0-labelson">
-      <IconStyle>
-        <color>ffb0279c</color>
-        <scale>1</scale>
-        <Icon>
-          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-      </IconStyle>
-    </Style>
     <Style id="icon-1685-F9A825-labelson">
       <IconStyle>
         <color>ff25a8f9</color>
@@ -516,15 +516,6 @@
         </Icon>
       </IconStyle>
     </Style>
-    <Style id="icon-1706-673AB7-labelson">
-      <IconStyle>
-        <color>ffb73a67</color>
-        <scale>1</scale>
-        <Icon>
-          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-      </IconStyle>
-    </Style>
     <Style id="icon-1709-FFEA00-labelson">
       <IconStyle>
         <color>ff00eaff</color>
@@ -582,6 +573,15 @@
     <Style id="icon-1742-FF5252-labelson">
       <IconStyle>
         <color>ff5252ff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1751-9C27B0-labelson">
+      <IconStyle>
+        <color>ffb0279c</color>
         <scale>1</scale>
         <Icon>
           <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
@@ -654,6 +654,15 @@
     <Style id="icon-1783-C2185B-labelson">
       <IconStyle>
         <color>ff5b18c2</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1794-9C27B0-labelson">
+      <IconStyle>
+        <color>ffb0279c</color>
         <scale>1</scale>
         <Icon>
           <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
@@ -1079,6 +1088,62 @@
         <styleUrl>#line-0F9D58-4273-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="line-0F9D58-4466-nodesc-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>4.466</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-0F9D58-4466-nodesc-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>6.699</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-4466-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-4466-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-4466-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-0F9D58-4658-nodesc-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>4.658</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-0F9D58-4658-nodesc-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>6.987</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-4658-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-4658-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-4658-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="line-0F9D58-4851-normal">
       <LineStyle>
         <color>ff589d0f</color>
@@ -1151,6 +1216,34 @@
         <styleUrl>#line-0F9D58-5043-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="line-0F9D58-5069-nodesc-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>5.069</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-0F9D58-5069-nodesc-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>7.6035</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-5069-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-5069-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-5069-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="line-0F9D58-5236-normal">
       <LineStyle>
         <color>ff589d0f</color>
@@ -1201,6 +1294,34 @@
         <styleUrl>#line-0F9D58-5236-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="line-0F9D58-5456-nodesc-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>5.456</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-0F9D58-5456-nodesc-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>8.184</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-5456-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-5456-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-5456-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="line-0F9D58-5621-nodesc-normal">
       <LineStyle>
         <color>ff589d0f</color>
@@ -1227,34 +1348,6 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#line-0F9D58-5621-nodesc-highlight</styleUrl>
-      </Pair>
-    </StyleMap>
-    <Style id="line-0F9D58-5814-nodesc-normal">
-      <LineStyle>
-        <color>ff589d0f</color>
-        <width>5.814</width>
-      </LineStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <Style id="line-0F9D58-5814-nodesc-highlight">
-      <LineStyle>
-        <color>ff589d0f</color>
-        <width>8.721</width>
-      </LineStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <StyleMap id="line-0F9D58-5814-nodesc">
-      <Pair>
-        <key>normal</key>
-        <styleUrl>#line-0F9D58-5814-nodesc-normal</styleUrl>
-      </Pair>
-      <Pair>
-        <key>highlight</key>
-        <styleUrl>#line-0F9D58-5814-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-0F9D58-6006-nodesc-normal">
@@ -1285,6 +1378,56 @@
         <styleUrl>#line-0F9D58-6006-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="line-0F9D58-6619-nodesc-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>6.619</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-0F9D58-6619-nodesc-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>9.9285</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-6619-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-6619-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-6619-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-0F9D58-8169-normal">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>8.169</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-0F9D58-8169-highlight">
+      <LineStyle>
+        <color>ff589d0f</color>
+        <width>12.2535</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-0F9D58-8169">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-0F9D58-8169-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-0F9D58-8169-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="line-E65100-10106-nodesc-normal">
       <LineStyle>
         <color>ff0051e6</color>
@@ -1313,60 +1456,60 @@
         <styleUrl>#line-E65100-10106-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-E65100-4273-nodesc-normal">
+    <Style id="line-E65100-4042-nodesc-normal">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>4.273</width>
+        <width>4.042</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <Style id="line-E65100-4273-nodesc-highlight">
+    <Style id="line-E65100-4042-nodesc-highlight">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>6.4095</width>
+        <width>6.063</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <StyleMap id="line-E65100-4273-nodesc">
+    <StyleMap id="line-E65100-4042-nodesc">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-E65100-4273-nodesc-normal</styleUrl>
+        <styleUrl>#line-E65100-4042-nodesc-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-E65100-4273-nodesc-highlight</styleUrl>
+        <styleUrl>#line-E65100-4042-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-E65100-4466-nodesc-normal">
+    <Style id="line-E65100-4488-nodesc-normal">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>4.466</width>
+        <width>4.488</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <Style id="line-E65100-4466-nodesc-highlight">
+    <Style id="line-E65100-4488-nodesc-highlight">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>6.699</width>
+        <width>6.732</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <StyleMap id="line-E65100-4466-nodesc">
+    <StyleMap id="line-E65100-4488-nodesc">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-E65100-4466-nodesc-normal</styleUrl>
+        <styleUrl>#line-E65100-4488-nodesc-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-E65100-4466-nodesc-highlight</styleUrl>
+        <styleUrl>#line-E65100-4488-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-E65100-4658-nodesc-normal">
@@ -1453,32 +1596,32 @@
         <styleUrl>#line-E65100-5043-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-E65100-5069-nodesc-normal">
+    <Style id="line-E65100-5429-nodesc-normal">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>5.069</width>
+        <width>5.429</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <Style id="line-E65100-5069-nodesc-highlight">
+    <Style id="line-E65100-5429-nodesc-highlight">
       <LineStyle>
         <color>ff0051e6</color>
-        <width>7.6035</width>
+        <width>8.1435</width>
       </LineStyle>
       <BalloonStyle>
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <StyleMap id="line-E65100-5069-nodesc">
+    <StyleMap id="line-E65100-5429-nodesc">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-E65100-5069-nodesc-normal</styleUrl>
+        <styleUrl>#line-E65100-5429-nodesc-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-E65100-5069-nodesc-highlight</styleUrl>
+        <styleUrl>#line-E65100-5429-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-E65100-7006-nodesc-normal">
@@ -1647,6 +1790,34 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#line-E65100-9138-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-E65100-9331-nodesc-normal">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>9.331</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-E65100-9331-nodesc-highlight">
+      <LineStyle>
+        <color>ff0051e6</color>
+        <width>13.9965</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-E65100-9331-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-E65100-9331-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-E65100-9331-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-E65100-9719-nodesc-normal">
@@ -2516,239 +2687,6 @@
       </Placemark>
     </Folder>
     <Folder>
-      <name>Туалеты</name>
-      <Placemark>
-        <name>1 wc-5</name>
-        <description>15.05.2026 23:47:41</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.058151,54.691318,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>2 wc-5</name>
-        <description>16.05.2026 22:51:09</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.072802,54.686095,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>3 wc-15</name>
-        <description>16.05.2026 22:55:18</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.083463,54.681381,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>4 wc-15</name>
-        <description>16.05.2026 23:11:45</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.089818,54.683025,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>5 wc-10</name>
-        <description>16.05.2026 23:13:46</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.08757,54.680432,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>6 wc-10</name>
-        <description>16.05.2026 23:21:51</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.091306,54.681843,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>7 wc-10</name>
-        <description>16.05.2026 23:26:28</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.09446,54.682698,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>8 wc-10</name>
-        <description>17.05.2026 0:29:25</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.095553,54.683909,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>9 wc-10</name>
-        <description>17.05.2026 0:48:59</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.095173,54.685556,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>10 wc-10</name>
-        <description>17.05.2026 0:40:03</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.094159,54.687103,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>11 wc-10</name>
-        <description>17.05.2026 0:55:53</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.095138,54.6807,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>12 wc-10</name>
-        <description>17.05.2026 0:58:39</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.094951,54.676011,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>13 wc-10</name>
-        <description>17.05.2026 1:00:20</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.091875,54.676354,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>14 wc-10</name>
-        <description>17.05.2026 1:18:47</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.078153,54.67941,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>15 wc-10</name>
-        <description>17.05.2026 1:31:38</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.077708,54.681347,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>16 wc-10</name>
-        <description>17.05.2026 1:38:23</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.080805,54.679348,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>17 wc-10</name>
-        <description>17.05.2026 1:40:59</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.083232,54.678741,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>18 wc-10</name>
-        <description>17.05.2026 1:42:57</description>
-        <styleUrl>#icon-1592-795548-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.086073,54.679236,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>1 wc-vip-adm-4</name>
-        <description>17.05.2026 1:47:01</description>
-        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.083618,54.67893,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>2 wc-vip-adm-2</name>
-        <description>17.05.2026 2:00:45</description>
-        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.082443,54.680071,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>3 wc-vip-auto-4</name>
-        <description>15.05.2026 22:34:59</description>
-        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.084259,54.681129,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>4 wc-vip-baika-kid-8</name>
-        <description>15.05.2026 22:47:34</description>
-        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.088839,54.681338,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>5 wc-vip-anima-3</name>
-        <description>15.05.2026 0:35:10</description>
-        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.089767,54.676578,0
-          </coordinates>
-        </Point>
-      </Placemark>
-    </Folder>
-    <Folder>
       <name>Еда</name>
       <Placemark>
         <name>Фудкорт</name>
@@ -3252,6 +3190,1078 @@
       </Placemark>
     </Folder>
     <Folder>
+      <name>Туалеты</name>
+      <Placemark>
+        <name>1 wc-5</name>
+        <description>15.05.2026 23:47:41</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.058151,54.691318,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2 wc-5</name>
+        <description>16.05.2026 22:51:09</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.072802,54.686095,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3 wc-15</name>
+        <description>16.05.2026 22:55:18</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.083463,54.681381,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4 wc-15</name>
+        <description>16.05.2026 23:11:45</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.089818,54.683025,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5 wc-10</name>
+        <description>16.05.2026 23:13:46</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.08757,54.680432,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6 wc-10</name>
+        <description>16.05.2026 23:21:51</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.091306,54.681843,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7 wc-10</name>
+        <description>16.05.2026 23:26:28</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.09446,54.682698,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8 wc-10</name>
+        <description>17.05.2026 0:29:25</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.095553,54.683909,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9 wc-10</name>
+        <description>17.05.2026 0:48:59</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.095173,54.685556,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>10 wc-10</name>
+        <description>17.05.2026 0:40:03</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.094224,54.686926,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>11 wc-10</name>
+        <description>17.05.2026 0:55:53</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.095138,54.6807,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>12 wc-10</name>
+        <description>17.05.2026 0:58:39</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.094951,54.676011,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>13 wc-10</name>
+        <description>17.05.2026 1:00:20</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.091875,54.676354,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>14 wc-10</name>
+        <description>17.05.2026 1:18:47</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.078153,54.67941,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>15 wc-10</name>
+        <description>17.05.2026 1:31:38</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.077708,54.681347,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>16 wc-10</name>
+        <description>17.05.2026 1:38:23</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.080805,54.679348,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>17 wc-10</name>
+        <description>17.05.2026 1:40:59</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.083232,54.678741,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>18 wc-10</name>
+        <description>17.05.2026 1:42:57</description>
+        <styleUrl>#icon-1592-795548-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.086073,54.679236,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1 wc-vip-adm-4</name>
+        <description>17.05.2026 1:47:01</description>
+        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.083618,54.67893,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2 wc-vip-adm-2</name>
+        <description>17.05.2026 2:00:45</description>
+        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.082443,54.680071,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3 wc-vip-auto-4</name>
+        <description>15.05.2026 22:34:59</description>
+        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.084259,54.681129,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4 wc-vip-baika-kid-8</name>
+        <description>15.05.2026 22:47:34</description>
+        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.088839,54.681338,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5 wc-vip-anima-3</name>
+        <description>15.05.2026 0:35:10</description>
+        <styleUrl>#icon-1592-AFB42B-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.089767,54.676578,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Дороги</name>
+      <Placemark>
+        <name>Полевая дорога КПП2 - брод</name>
+        <styleUrl>#line-E65100-4042-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.088678,54.680068,0
+            35.089585,54.680032,0
+            35.0919328,54.6796555,0
+            35.092412,54.679608,0
+            35.092987,54.679617,0
+            35.093337,54.679545,0
+            35.094388,54.679423,0
+            35.094745,54.679463,0
+            35.0950227,54.6794818,0
+            35.0951943,54.6795624,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Полевая дорога Середина парковки - Яма</name>
+        <styleUrl>#line-0F9D58-4658-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.087628,54.67957,0
+            35.088618,54.67932,0
+            35.0893254,54.6790719,0
+            35.09059,54.678703,0
+            35.09151,54.678463,0
+            35.092332,54.678172,0
+            35.093743,54.677855,0
+            35.094272,54.677793,0
+            35.0952048,54.6777507,0
+            35.09576,54.67779,0
+            35.095958,54.677777,0
+            35.096292,54.677707,0
+            35.09647,54.677643,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Верхняя дорога с трассы</name>
+        <styleUrl>#line-E65100-8363-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0570639,54.6927552,0
+            35.0571605,54.6925196,0
+            35.0575682,54.6922591,0
+            35.0580188,54.6920297,0
+            35.0604972,54.691081,0
+            35.0629755,54.6900578,0
+            35.0658659,54.6888029,0
+            35.0676898,54.6879161,0
+            35.0694601,54.6870541,0
+            35.0699276,54.6868063,0
+            35.0710541,54.6864466,0
+            35.0720734,54.6860869,0
+            35.0732106,54.6855783,0
+            35.0743479,54.6846914,0
+            35.0748904,54.6843241,0
+            35.0754376,54.6839736,0
+            35.0761243,54.683738,0
+            35.0765963,54.6835395,0
+            35.0770201,54.6833255,0
+            35.0774493,54.683186,0
+            35.0780423,54.6830635,0
+            35.0785572,54.6829395,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. КПП1 - реверс</name>
+        <styleUrl>#line-E65100-7588-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0577602,54.6921925,0
+            35.0578782,54.692177,0
+            35.0593668,54.6915832,0
+            35.0595143,54.6914747,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. КПП1 - разворот автобуса</name>
+        <styleUrl>#line-E65100-8169-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0577516,54.692131,0
+            35.0577838,54.6920489,0
+            35.0578321,54.6919249,0
+            35.0579528,54.6917404,0
+            35.0580574,54.6915822,0
+            35.0581835,54.6914117,0
+            35.0583229,54.6913311,0
+            35.0585161,54.6912768,0
+            35.0587628,54.6912474,0
+            35.0590445,54.6912722,0
+            35.0592885,54.6913559,0
+            35.05942,54.6914365,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Парковка - Локус</name>
+        <styleUrl>#line-E65100-4658-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0881493,54.6800032,0
+            35.0874841,54.6795256,0
+            35.086776,54.6789735,0
+            35.0865185,54.6788867,0
+            35.0867223,54.6783222,0
+            35.0872266,54.6775344,0
+            35.0875592,54.6771188,0
+            35.0884711,54.6769265,0
+            35.0898766,54.6767156,0
+            35.0905418,54.6768769,0
+            35.0912392,54.6767342,0
+            35.0914859,54.6765729,0
+            35.092591,54.6763992,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая дорога в Северный Город</name>
+        <styleUrl>#line-0F9D58-5043-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0733953,54.6854836,0
+            35.073964,54.6855084,0
+            35.0748545,54.6855394,0
+            35.0755357,54.685527,0
+            35.0766355,54.6855363,0
+            35.0781053,54.685527,0
+            35.0789743,54.6854743,0
+            35.0796824,54.6852789,0
+            35.080074,54.6851975,0
+            35.0804013,54.6850417,0
+            35.0809136,54.6849161,0
+            35.0813293,54.6847161,0
+            35.081619,54.6846014,0
+            35.0817664,54.6844861,0
+            35.0820532,54.6843957,0
+            35.0826272,54.6843336,0
+            35.0828847,54.6840359,0
+            35.0829813,54.6836762,0
+            35.083153,54.6834591,0
+            35.0832924,54.6831552,0
+            35.0834104,54.6828513,0
+            35.0836679,54.6823985,0
+            35.0838718,54.682169,0
+            35.0839201,54.6819209,0
+            35.0838852,54.6817829,0
+            35.0838825,54.6816418,0
+            35.0836977,54.6814413,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Лесовозная дорога на вырубку</name>
+        <description>Блокировать на время Фестиваля</description>
+        <styleUrl>#line-0F9D58-8169</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0768016,54.6855144,0
+            35.0763832,54.6854741,0
+            35.0760667,54.6853717,0
+            35.0758467,54.685133,0
+            35.0756053,54.6849035,0
+            35.0752298,54.6847236,0
+            35.0748758,54.6845996,0
+            35.0746236,54.6845314,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать проезд для авто</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0768225,54.6855224,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать проезд для авто</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0746712,54.6845486,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать проезд для авто</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0734588,54.6855045,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Горка к Лимонам</name>
+        <styleUrl>#line-0F9D58-6619-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0774134,54.6831845,0
+            35.0774134,54.6831287,0
+            35.0776065,54.6830077,0
+            35.0776869,54.6829178,0
+            35.0776762,54.6827969,0
+            35.0774992,54.6827007,0
+            35.0772363,54.682586,0
+            35.0771129,54.6825395,0
+            35.0766033,54.6824867,0
+            35.0762493,54.6824557,0
+            35.0759811,54.6824774,0
+            35.0759167,54.6824805,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Реверс</name>
+        <styleUrl>#line-E65100-9719-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0785068,54.6829085,0
+            35.0787589,54.6826976,0
+            35.0791988,54.6824836,0
+            35.0796601,54.6822107,0
+            35.0799444,54.681944,0
+            35.0800893,54.6816835,0
+            35.0802502,54.6814354,0
+            35.0803897,54.6812462,0
+            35.0808725,54.6810198,0
+            35.0813123,54.6807872,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Спуск на Парковку</name>
+        <styleUrl>#line-E65100-9138-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0786443,54.6829224,0
+            35.0805219,54.6824696,0
+            35.0812192,54.682296,0
+            35.081543,54.682199,0
+            35.0826462,54.6816323,0
+            35.083483,54.6812415,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать на время Фестиваля</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0837533,54.6814954,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Разворот Хатифнаттов</name>
+        <styleUrl>#line-E65100-4488-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0814057,54.6808171,0
+            35.0817651,54.6810808,0
+            35.081572,54.6812792,0
+            35.0814486,54.6814126,0
+            35.0814379,54.6815211,0
+            35.0817329,54.6815987,0
+            35.082028,54.6816142,0
+            35.0823069,54.6815118,0
+            35.0824786,54.6814405,0
+            35.0824195,54.6813475,0
+            35.0823284,54.681273,0
+            35.0822318,54.6811862,0
+            35.0819904,54.681087,0
+            35.0817758,54.6810746,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Линия 15</name>
+        <styleUrl>#line-000000-6619-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.079702,54.680084,0
+            35.0810194,54.6808699,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать проезд для авто</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0809658,54.6808513,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Кирпич</name>
+        <description>Блокировать проезд для авто</description>
+        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            35.0797213,54.6801162,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Служебная в кишку (сраная)</name>
+        <styleUrl>#line-000000-6813-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0815398,54.6790897,0
+            35.0817919,54.6794929,0
+            35.0820172,54.6797193,0
+            35.0819207,54.679924,0
+            35.0816042,54.6801566,0
+            35.08144,54.680261,0
+            35.081352,54.6804326,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Служебная. Электрики</name>
+        <styleUrl>#line-000000-7588-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0841254,54.6788136,0
+            35.0842327,54.67904,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Служебная. Кухня - Верстак</name>
+        <styleUrl>#line-000000-7781-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0853324,54.6795363,0
+            35.0852198,54.6793812,0
+            35.0850588,54.6793378,0
+            35.0847531,54.6793843,0
+            35.0845117,54.6794091,0
+            35.0843293,54.6791517,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Служебная. Кухня - Хозка</name>
+        <styleUrl>#line-000000-7200-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0852198,54.6793812,0
+            35.0854237,54.6793409,0
+            35.0854988,54.6793069,0
+            35.085574,54.679245,0
+            35.0856704,54.6791858,0
+            35.0856704,54.6790586,0
+            35.0856757,54.6789253,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Дорога Автолагеря</name>
+        <styleUrl>#line-000000-6969-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0881241,54.6811104,0
+            35.08718,54.6813709,0
+            35.0864933,54.6814949,0
+            35.0856994,54.6814019,0
+            35.0848518,54.6813461,0
+            35.0844119,54.6812965,0
+            35.0842188,54.681284,0
+            35.0839613,54.681284,0
+            35.0834168,54.6815027,0
+            35.0830896,54.6815756,0
+            35.0828187,54.6815864,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Вдоль Парковки. Северная</name>
+        <styleUrl>#line-E65100-10106-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0835294,54.6812221,0
+            35.0838084,54.6811027,0
+            35.0841919,54.6809755,0
+            35.0843395,54.6809243,0
+            35.0863404,54.6805057,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Вдоль парковки. Южная</name>
+        <styleUrl>#line-E65100-9719-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0863028,54.6804793,0
+            35.0854553,54.679521,0
+            35.0821186,54.6802963,0
+            35.0815071,54.6804297,0
+            35.0813783,54.6804669,0
+            35.0813354,54.6807336,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Дорога на вырубку. Новая</name>
+        <styleUrl>#line-0F9D58-6006-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0914995,54.6818968,0
+            35.0914405,54.682089,0
+            35.0914995,54.6822658,0
+            35.0914244,54.6823805,0
+            35.0911079,54.6824147,0
+            35.0906626,54.682393,0
+            35.0902228,54.6826007,0
+            35.0897292,54.682914,0
+            35.0891016,54.6832892,0
+            35.0889943,54.6833729,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая.Угол Парковки - Карусельная сосна</name>
+        <styleUrl>#line-0F9D58-5069-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.08627,54.6792839,0
+            35.0865704,54.6783473,0
+            35.0874073,54.6770694,0
+            35.0886625,54.6768089,0
+            35.0897461,54.6766724,0
+            35.0902611,54.6766104,0
+            35.0906045,54.676753,0
+            35.0911945,54.6766104,0
+            35.0913233,54.6764243,0
+            35.0946707,54.6760645,0
+            35.09525,54.6760831,0
+            35.0963229,54.6764925,0
+            35.0967521,54.677088,0
+            35.096795,54.6775595,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. от Ямарки к Точке Сборки и на Экран</name>
+        <styleUrl>#line-0F9D58-5236-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0894671,54.6786447,0
+            35.090379,54.6785765,0
+            35.0909745,54.6787625,0
+            35.0908135,54.6794231,0
+            35.0912535,54.6799752,0
+            35.0925114,54.6803567,0
+            35.0935333,54.6809366,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая от Парковки к Рессе</name>
+        <styleUrl>#line-0F9D58-4273-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0865214,54.6804264,0
+            35.0879216,54.6801318,0
+            35.0890374,54.679924,0
+            35.0908076,54.6797689,0
+            35.0922185,54.6795767,0
+            35.094324,54.6793239,0
+            35.0953754,54.6791719,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая к Эль Стейко</name>
+        <styleUrl>#line-0F9D58-4273-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0876008,54.6802701,0
+            35.0879173,54.6805834,0
+            35.0884538,54.6807602,0
+            35.0885986,54.6808315,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Север</name>
+        <styleUrl>#line-0F9D58-4658-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0907888,54.6816204,0
+            35.0931385,54.6821352,0
+            35.0939431,54.6823089,0
+            35.0944367,54.6825012,0
+            35.0947263,54.6829353,0
+            35.0951018,54.683171,0
+            35.0954934,54.6837013,0
+            35.0956597,54.684244,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. На Кинобар</name>
+        <styleUrl>#line-0F9D58-5043-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0957961,54.6843184,0
+            35.0958765,54.6846533,0
+            35.0958095,54.6851976,0
+            35.0957263,54.6856976,0
+            35.0955949,54.6861945,0
+            35.0953723,54.6870892,0
+            35.0949833,54.6878271,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Ресса СВ</name>
+        <styleUrl>#line-0F9D58-4466-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0958413,54.6842099,0
+            35.0961096,54.6840548,0
+            35.0961847,54.6834408,0
+            35.0960774,54.6828206,0
+            35.0958199,54.6819398,0
+            35.095345,54.6815208,0
+            35.0950768,54.6807888,0
+            35.0950124,54.6799484,0
+            35.0952259,54.6794162,0
+            35.0955155,54.6790192,0
+            35.0959018,54.678585,0
+            35.0963537,54.678314,0
+            35.0965093,54.6780658,0
+            35.0965361,54.677734,0
+            35.0967292,54.6775603,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Парковка - Детка - Пират</name>
+        <styleUrl>#line-E65100-5043-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.088303,54.6801337,0
+            35.088657,54.6804935,0
+            35.0889681,54.6809587,0
+            35.0895904,54.6812874,0
+            35.0909101,54.6815665,0
+            35.0922512,54.6818519,0
+            35.0938712,54.6821682,0
+            35.0943218,54.6823108,0
+            35.0943862,54.6820752,0
+            35.0945793,54.6819139,0
+            35.0947296,54.681672,0
+            35.0948475,54.6814549,0
+            35.0947939,54.6810331,0
+            35.0948583,54.6807168,0
+            35.0949012,54.6803136,0
+            35.0949012,54.6798174,0
+            35.0950192,54.6796003,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто вдоль Админки к Каравану</name>
+        <styleUrl>#line-E65100-7394-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0863181,54.6788746,0
+            35.0851165,54.6787567,0
+            35.0836788,54.6786823,0
+            35.0824021,54.6787505,0
+            35.0814687,54.6789862,0
+            35.080436,54.6794576,0
+            35.0795214,54.6800159,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Линия 32</name>
+        <styleUrl>#line-E65100-9331-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.086448,54.677226,0
+            35.0872902,54.677074,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Караван - Админка. Вдоль Рессы</name>
+        <styleUrl>#line-E65100-7006-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0794878,54.6799736,0
+            35.0787743,54.6796417,0
+            35.0785007,54.6794308,0
+            35.0790264,54.6791145,0
+            35.0801047,54.6787857,0
+            35.0802924,54.6789656,0
+            35.081537,54.6786958,0
+            35.0819822,54.6785686,0
+            35.0826367,54.678702,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Линия 16</name>
+        <styleUrl>#line-0F9D58-4273-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0875259,54.6801451,0
+            35.0865121,54.679255,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. Детка - Кинобар</name>
+        <styleUrl>#line-E65100-4851-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0944251,54.6823808,0
+            35.0946852,54.6827359,0
+            35.0950661,54.6830413,0
+            35.0956401,54.6838027,0
+            35.0957501,54.6840275,0
+            35.0957152,54.6842384,0
+            35.0958198,54.6846802,0
+            35.095498,54.6855935,0
+            35.0949615,54.6865796,0
+            35.09435,54.6875719,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. от Каравана мимо экрана вдоль Рессы</name>
+        <styleUrl>#line-0F9D58-5043-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0789235,54.6790978,0
+            35.0798408,54.6787939,0
+            35.0801144,54.6787319,0
+            35.0803397,54.6789179,0
+            35.0806401,54.6788342,0
+            35.0809727,54.6786853,0
+            35.0817183,54.6785675,0
+            35.0822655,54.6784403,0
+            35.0829253,54.6783163,0
+            35.0835422,54.6783473,0
+            35.0839446,54.6782108,0
+            35.0839607,54.6779844,0
+            35.0845829,54.6778014,0
+            35.0871753,54.6771673,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая через Поле</name>
+        <styleUrl>#line-0F9D58-5621-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0952962,54.6791398,0
+            35.0946953,54.6784016,0
+            35.0939765,54.6780294,0
+            35.0928393,54.6777751,0
+            35.0912514,54.6773409,0
+            35.0899103,54.676795,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Линия 36</name>
+        <styleUrl>#line-0F9D58-4273-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0936858,54.6810537,0
+            35.0951181,54.6812832,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Авто. От Парковки до Фудкорта</name>
+        <styleUrl>#line-E65100-5429-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.087748,54.6795846,0
+            35.0891535,54.6792434,0
+            35.0901728,54.6789208,0
+            35.0915997,54.6785177,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Тропы на вырубку</name>
+        <description>04.06.2026 13:41:41</description>
+        <styleUrl>#line-0F9D58-5043</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.09419,54.686985,0
+            35.09373,54.686823,0
+            35.093421,54.686737,0
+            35.092893,54.686637,0
+            35.092528,54.686513,0
+            35.09211,54.686389,0
+            35.091649,54.686327,0
+            35.091398,54.686457,0
+            35.090822,54.686612,0
+            35.090404,54.686749,0
+            35.090232,54.686978,0
+            35.090112,54.687047,0
+            35.089832,54.686953,0
+            35.08961,54.687083,0
+            35.089358,54.68689,0
+            35.089448,54.68661,0
+            35.089825,54.686447,0
+            35.089664,54.68619,0
+            35.089685,54.685905,0
+            35.089735,54.685613,0
+            35.089642,54.685337,0
+            35.089653,54.685147,0
+            35.089797,54.684988,0
+            35.090168,54.685093,0
+            35.090478,54.685185,0
+            35.090651,54.685366,0
+            35.0911,54.685628,0
+            35.091242,54.685793,0
+            35.091468,54.68604,0
+            35.091685,54.686297,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Тропа через вырубку</name>
+        <description>04.06.2026 13:43:06</description>
+        <styleUrl>#line-0F9D58-4851</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.089797,54.684988,0
+            35.089757,54.684808,0
+            35.089524,54.68464,0
+            35.089481,54.684404,0
+            35.08961,54.684137,0
+            35.089608,54.683927,0
+            35.089342,54.683747,0
+            35.089155,54.683685,0
+            35.0889943,54.6833729,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. Проход вглубь леса через лагерь Детской</name>
+        <description>04.06.2026 13:54:56</description>
+        <styleUrl>#line-0F9D58-5236</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.0946793,54.6828665,0
+            35.094417,54.683015,0
+            35.094277,54.683143,0
+            35.093939,54.683254,0
+            35.093751,54.683322,0
+            35.093596,54.683372,0
+            35.093446,54.683399,0
+            35.093258,54.683458,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Пешая. От сцены к Фудкорту</name>
+        <styleUrl>#line-0F9D58-5456-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            35.090834,54.6771971,0
+            35.090812,54.677619,0
+            35.0906838,54.6778919,0
+            35.0906087,54.678171,0
+            35.090376,54.678453,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
       <name>Аттракторы без звука</name>
       <Placemark>
         <name>Инфоцентр</name>
@@ -3428,11 +4438,40 @@
       </Placemark>
       <Placemark>
         <name>Ярмарка. Барахолка</name>
-        <description>20.03.2026 17:40:28</description>
+        <description>15.06.2026 17:12:49</description>
         <styleUrl>#icon-1549-F9A825-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.090559,54.678496,0
+            35.090422,54.67858,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Ярмарка. Барахолка</name>
+        <description>15.06.2026 17:17:21</description>
+        <styleUrl>#poly-F9A825-1200-77</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                35.090382,54.678535,0
+                35.091787,54.678154,0
+                35.091827,54.678192,0
+                35.090422,54.67858,0
+                35.090382,54.678535,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Ярмарочная кузница</name>
+        <description>20.03.2026 23:51:06</description>
+        <styleUrl>#icon-1627-F9A825-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.090449,54.67801,0
           </coordinates>
         </Point>
       </Placemark>
@@ -3474,16 +4513,6 @@
             </LinearRing>
           </outerBoundaryIs>
         </Polygon>
-      </Placemark>
-      <Placemark>
-        <name>Ярмарочная кузница</name>
-        <description>20.03.2026 23:51:06</description>
-        <styleUrl>#icon-1627-F9A825-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.086213,54.677863,0
-          </coordinates>
-        </Point>
       </Placemark>
       <Placemark>
         <name>МастерSKYа</name>
@@ -3568,12 +4597,22 @@
         </Point>
       </Placemark>
       <Placemark>
+        <name>Накрывашка полевая</name>
+        <description>20.03.2026 17:07:28</description>
+        <styleUrl>#icon-1765-F9A825-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.090857,54.680891,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
         <name>Накрывашка “Ψ Психологическая беседка. Речная”</name>
         <description>20.03.2026 17:09:54</description>
         <styleUrl>#icon-1765-F9A825-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.083288,54.678268,0
+            35.083415,54.67842,0
           </coordinates>
         </Point>
       </Placemark>
@@ -3583,17 +4622,7 @@
         <styleUrl>#icon-1765-F9A825-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.083741,54.678125,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Накрывашка полевая</name>
-        <description>20.03.2026 17:07:28</description>
-        <styleUrl>#icon-1765-F9A825-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.090857,54.680891,0
+            35.083915,54.678258,0
           </coordinates>
         </Point>
       </Placemark>
@@ -3870,672 +4899,136 @@
       </Placemark>
     </Folder>
     <Folder>
-      <name>Дороги</name>
+      <name>Арт-объекты</name>
       <Placemark>
-        <name>Полевая дорога Середина парковки - Яма</name>
-        <styleUrl>#line-E65100-4658-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.087628,54.67957,0
-            35.088618,54.67932,0
-            35.0893254,54.6790719,0
-            35.09059,54.678703,0
-            35.09151,54.678463,0
-            35.092332,54.678172,0
-            35.093743,54.677855,0
-            35.094272,54.677793,0
-            35.0952048,54.6777507,0
-            35.09576,54.67779,0
-            35.095958,54.677777,0
-            35.096292,54.677707,0
-            35.0966041,54.6776585,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто. Верхняя дорога с трассы</name>
-        <styleUrl>#line-E65100-8363-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0570639,54.6927552,0
-            35.0571605,54.6925196,0
-            35.0575682,54.6922591,0
-            35.0580188,54.6920297,0
-            35.0604972,54.691081,0
-            35.0629755,54.6900578,0
-            35.0658659,54.6888029,0
-            35.0676898,54.6879161,0
-            35.0694601,54.6870541,0
-            35.0699276,54.6868063,0
-            35.0710541,54.6864466,0
-            35.0720734,54.6860869,0
-            35.0732106,54.6855783,0
-            35.0743479,54.6846914,0
-            35.0748904,54.6843241,0
-            35.0754376,54.6839736,0
-            35.0761243,54.683738,0
-            35.0765963,54.6835395,0
-            35.0770201,54.6833255,0
-            35.0774493,54.683186,0
-            35.0780423,54.6830635,0
-            35.0785572,54.6829395,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто. КПП1 - реверс</name>
-        <styleUrl>#line-E65100-7588-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0577602,54.6921925,0
-            35.0578782,54.692177,0
-            35.0593668,54.6915832,0
-            35.0595143,54.6914747,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто. КПП1 - разворот автобуса</name>
-        <styleUrl>#line-E65100-8169-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0577516,54.692131,0
-            35.0577838,54.6920489,0
-            35.0578321,54.6919249,0
-            35.0579528,54.6917404,0
-            35.0580574,54.6915822,0
-            35.0581835,54.6914117,0
-            35.0583229,54.6913311,0
-            35.0585161,54.6912768,0
-            35.0587628,54.6912474,0
-            35.0590445,54.6912722,0
-            35.0592885,54.6913559,0
-            35.05942,54.6914365,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая дорога в Северный Город</name>
-        <styleUrl>#line-0F9D58-5043-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0733953,54.6854836,0
-            35.073964,54.6855084,0
-            35.0748545,54.6855394,0
-            35.0755357,54.685527,0
-            35.0766355,54.6855363,0
-            35.0781053,54.685527,0
-            35.0789743,54.6854743,0
-            35.0796824,54.6852789,0
-            35.080074,54.6851975,0
-            35.0804013,54.6850417,0
-            35.0809136,54.6849161,0
-            35.0813293,54.6847161,0
-            35.081619,54.6846014,0
-            35.0817664,54.6844861,0
-            35.0820532,54.6843957,0
-            35.0826272,54.6843336,0
-            35.0828847,54.6840359,0
-            35.0829813,54.6836762,0
-            35.083153,54.6834591,0
-            35.0832924,54.6831552,0
-            35.0834104,54.6828513,0
-            35.0836679,54.6823985,0
-            35.0838718,54.682169,0
-            35.0839201,54.6819209,0
-            35.0838852,54.6817829,0
-            35.0838825,54.6816418,0
-            35.0836977,54.6814413,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать проезд для авто</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name><![CDATA[Арт-объект "Грот"]]></name>
+        <description>10.03.2026 23:24:33</description>
+        <styleUrl>#icon-1563-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0768225,54.6855224,0
+            35.094968,54.683608,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать проезд для авто</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name><![CDATA[Арт-объект "Месяц"]]></name>
+        <description>14.05.2026 21:57:51</description>
+        <styleUrl>#icon-1631-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0746712,54.6845486,0
+            35.096345,54.682667,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать проезд для авто</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name>Затмение. Катилось колесо</name>
+        <description>16.05.2026 15:39:04</description>
+        <styleUrl>#icon-1668-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0734588,54.6855045,0
+            35.096949,54.677863,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Авто. Спуск на Парковку</name>
-        <styleUrl>#line-E65100-9138-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0786443,54.6829224,0
-            35.0805219,54.6824696,0
-            35.0812192,54.682296,0
-            35.081543,54.682199,0
-            35.0826462,54.6816323,0
-            35.083483,54.6812415,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать на время Фестиваля</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name>Затмение. Смотри!</name>
+        <description>16.05.2026 15:47:26</description>
+        <styleUrl>#icon-1643-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0837533,54.6814954,0
+            35.090391,54.677397,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Линия 15</name>
-        <styleUrl>#line-000000-6619-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.079702,54.680084,0
-            35.0810194,54.6808699,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать проезд для авто</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name>Затмение. Звук ветра</name>
+        <description>16.05.2026 16:07:13</description>
+        <styleUrl>#icon-1721-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0809658,54.6808513,0
+            35.093575,54.678131,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Кирпич</name>
-        <description>Блокировать проезд для авто</description>
-        <styleUrl>#icon-1898-0288D1</styleUrl>
+        <name>Затмение. Жар-Птица</name>
+        <description>16.05.2026 16:17:29</description>
+        <styleUrl>#icon-1874-673AB7-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.0797213,54.6801162,0
+            35.092368,54.676676,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>Служебная в кишку (сраная)</name>
-        <styleUrl>#line-000000-6813-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Воздушная скульптура «Тело ветра»</name>
+        <description>16.05.2026 16:54:39</description>
+        <styleUrl>#icon-1697-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0815398,54.6790897,0
-            35.0817919,54.6794929,0
-            35.0820172,54.6797193,0
-            35.0819207,54.679924,0
-            35.0816042,54.6801566,0
-            35.08144,54.680261,0
-            35.081352,54.6804326,0
+            35.089557,54.68064,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Служебная. Электрики</name>
-        <styleUrl>#line-000000-7588-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Рыбы</name>
+        <description>16.05.2026 17:03:51</description>
+        <styleUrl>#icon-1573-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0841254,54.6788136,0
-            35.0842327,54.67904,0
+            35.086854,54.678584,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Служебная. Кухня - Верстак</name>
-        <styleUrl>#line-000000-7781-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Спящая русалка</name>
+        <description>16.05.2026 16:57:54</description>
+        <styleUrl>#icon-1863-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0853324,54.6795363,0
-            35.0852198,54.6793812,0
-            35.0850588,54.6793378,0
-            35.0847531,54.6793843,0
-            35.0845117,54.6794091,0
-            35.0843293,54.6791517,0
+            35.096111,54.679497,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Служебная. Кухня - Хозка</name>
-        <styleUrl>#line-000000-7200-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Фестиваль сЛиззи</name>
+        <description>16.05.2026 17:00:39</description>
+        <styleUrl>#icon-1869-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0852198,54.6793812,0
-            35.0854237,54.6793409,0
-            35.0854988,54.6793069,0
-            35.085574,54.679245,0
-            35.0856704,54.6791858,0
-            35.0856704,54.6790586,0
-            35.0856757,54.6789253,0
+            35.07892,54.678634,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Авто. Дорога Автолагеря</name>
-        <styleUrl>#line-000000-6969-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Фурин-фуга</name>
+        <description>16.05.2026 15:50:26</description>
+        <styleUrl>#icon-1720-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0881241,54.6811104,0
-            35.08718,54.6813709,0
-            35.0864933,54.6814949,0
-            35.0856994,54.6814019,0
-            35.0848518,54.6813461,0
-            35.0844119,54.6812965,0
-            35.0842188,54.681284,0
-            35.0839613,54.681284,0
-            35.0834168,54.6815027,0
-            35.0830896,54.6815756,0
-            35.0828187,54.6815864,0
+            35.0965,54.677049,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Авто. Вдоль Парковки. Северная</name>
-        <styleUrl>#line-E65100-10106-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Ступени к свету</name>
+        <description>16.05.2026 15:21:18</description>
+        <styleUrl>#icon-1877-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0835294,54.6812221,0
-            35.0838084,54.6811027,0
-            35.0841919,54.6809755,0
-            35.0843395,54.6809243,0
-            35.0863404,54.6805057,0
+            35.092303,54.68013,0
           </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
       <Placemark>
-        <name>Авто. Вдоль парковки. Южная</name>
-        <styleUrl>#line-E65100-9719-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
+        <name>Затмение. Телескоппарат</name>
+        <description>16.05.2026 15:35:00</description>
+        <styleUrl>#icon-1528-673AB7-labelson</styleUrl>
+        <Point>
           <coordinates>
-            35.0863028,54.6804793,0
-            35.0854553,54.679521,0
-            35.0821186,54.6802963,0
-            35.0816144,54.6804297,0
-            35.0815285,54.6805848,0
-            35.0820918,54.6810251,0
-            35.0829447,54.6814593,0
+            35.093867,54.681635,0
           </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. Дорога на вырубку. Новая</name>
-        <styleUrl>#line-0F9D58-6006-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0914995,54.6818968,0
-            35.0914405,54.682089,0
-            35.0914995,54.6822658,0
-            35.0914244,54.6823805,0
-            35.0911079,54.6824147,0
-            35.0906626,54.682393,0
-            35.0902228,54.6826007,0
-            35.0897292,54.682914,0
-            35.0891016,54.6832892,0
-            35.0889943,54.6833729,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая.Угол Парковки - Карусельная сосна</name>
-        <styleUrl>#line-E65100-5069-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.08627,54.6792839,0
-            35.0865704,54.6783473,0
-            35.0874073,54.6770694,0
-            35.0886357,54.6768399,0
-            35.0891989,54.6767577,0
-            35.0897622,54.6766786,0
-            35.0902772,54.6766321,0
-            35.0906045,54.6765731,0
-            35.0910443,54.6764956,0
-            35.0913448,54.676446,0
-            35.0946707,54.6760645,0
-            35.0949657,54.6760583,0
-            35.09525,54.6760831,0
-            35.0962853,54.6765111,0
-            35.0966019,54.6767747,0
-            35.0967521,54.677088,0
-            35.096797,54.6773257,0
-            35.0967292,54.6775603,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. от Ямарки к Точке Сборки и на Экран</name>
-        <styleUrl>#line-0F9D58-5236-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0911757,54.6785594,0
-            35.0909745,54.6787625,0
-            35.0908135,54.6794231,0
-            35.0912535,54.6799752,0
-            35.0925114,54.6803567,0
-            35.0935333,54.6809366,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая от Парковки к Рессе</name>
-        <styleUrl>#line-E65100-4273-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0865214,54.6804264,0
-            35.0879592,54.6801628,0
-            35.089075,54.6799798,0
-            35.0908076,54.6797689,0
-            35.0922185,54.6795767,0
-            35.094324,54.6793704,0
-            35.0948014,54.6793735,0
-            35.0952145,54.6794634,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая к Эль Стейко</name>
-        <styleUrl>#line-E65100-4273-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0876008,54.6802701,0
-            35.0879173,54.6805834,0
-            35.0882231,54.6807121,0
-            35.0885504,54.6807664,0
-            35.088887,54.6810292,0
-            35.0893416,54.6812859,0
-            35.0903796,54.6815138,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. На Кинобар</name>
-        <styleUrl>#line-0F9D58-5043-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0957961,54.6843184,0
-            35.0958765,54.6846533,0
-            35.0958095,54.6851976,0
-            35.0957263,54.6856976,0
-            35.0955949,54.6861945,0
-            35.0952865,54.6870613,0
-            35.0948801,54.6874364,0
-            35.0945106,54.6876008,0
-            35.094125,54.6876783,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. Ресса СВ</name>
-        <styleUrl>#line-E65100-4466-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0957501,54.6841758,0
-            35.0957796,54.6840486,0
-            35.0958521,54.6839339,0
-            35.0958897,54.6837354,0
-            35.0959433,54.6834346,0
-            35.0959004,54.6828175,0
-            35.0955195,54.6819894,0
-            35.0953611,54.6815208,0
-            35.0950929,54.6807888,0
-            35.0950285,54.6799484,0
-            35.095242,54.6794162,0
-            35.0955316,54.6790192,0
-            35.0959179,54.678585,0
-            35.0963698,54.678314,0
-            35.0965254,54.6780658,0
-            35.0965522,54.677734,0
-            35.0967453,54.6775603,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто вдоль Админки к Каравану</name>
-        <styleUrl>#line-E65100-7394-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0863181,54.6788746,0
-            35.0851165,54.6787567,0
-            35.0836788,54.6786823,0
-            35.0824021,54.6787505,0
-            35.0814687,54.6789862,0
-            35.080436,54.6794576,0
-            35.0795214,54.6800159,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто. Караван - Админка. Вдоль Рессы</name>
-        <styleUrl>#line-E65100-7006-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0795214,54.6800159,0
-            35.0787743,54.6796417,0
-            35.0786134,54.6795487,0
-            35.0785543,54.6794649,0
-            35.0786134,54.6793936,0
-            35.0790264,54.6791145,0
-            35.0796299,54.6789393,0
-            35.0801583,54.6788261,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Авто. Детка - Кинобар</name>
-        <styleUrl>#line-E65100-4851-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0864536,54.6788639,0
-            35.0875619,54.6795813,0
-            35.0885952,54.6803483,0
-            35.0888056,54.680586,0
-            35.0890589,54.6807182,0
-            35.0893445,54.6809248,0
-            35.0900038,54.6812304,0
-            35.0905177,54.6815253,0
-            35.0920177,54.6818792,0
-            35.0934534,54.6821835,0
-            35.0942141,54.6823915,0
-            35.0946369,54.6826956,0
-            35.0950178,54.6829917,0
-            35.0956294,54.6837283,0
-            35.0957394,54.6839531,0
-            35.0957045,54.684164,0
-            35.0958466,54.684612,0
-            35.0956938,54.6850748,0
-            35.0954873,54.6855191,0
-            35.0952324,54.6860137,0
-            35.0949132,54.6864959,0
-            35.0944653,54.6869657,0
-            35.0940764,54.6876928,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. от Каравана мимо экрана вдоль Рессы</name>
-        <styleUrl>#line-E65100-5043-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0801583,54.6788261,0
-            35.080624,54.6787412,0
-            35.0809727,54.6786853,0
-            35.0817183,54.6785675,0
-            35.0822655,54.6784403,0
-            35.0828824,54.6782853,0
-            35.0832633,54.6781798,0
-            35.0836281,54.6780588,0
-            35.0839607,54.6779844,0
-            35.0845829,54.6778014,0
-            35.0859488,54.6774192,0
-            35.0872933,54.6771053,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая через Поле</name>
-        <styleUrl>#line-0F9D58-5621-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0952962,54.6791398,0
-            35.0946953,54.6784016,0
-            35.0939765,54.6780294,0
-            35.0928393,54.6777751,0
-            35.0912514,54.6773409,0
-            35.0899103,54.676795,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Линия 36</name>
-        <styleUrl>#line-0F9D58-4273-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0936858,54.6810537,0
-            35.0951181,54.6812832,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. От сцены к Фудкорту</name>
-        <styleUrl>#line-0F9D58-5814-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.0912322,54.6785347,0
-            35.0913207,54.678437,0
-            35.09131,54.6782385,0
-            35.0912027,54.6781207,0
-            35.0910525,54.6779594,0
-            35.0909345,54.6778539,0
-            35.0908379,54.6777547,0
-            35.0907199,54.677674,0
-            35.0906556,54.677581,0
-            35.0906341,54.6774197,0
-            35.0906019,54.6772956,0
-            35.0905483,54.6771281,0
-            35.0904946,54.6770599,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. Тропы на вырубку</name>
-        <description>04.06.2026 13:41:41</description>
-        <styleUrl>#line-0F9D58-5043</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.09419,54.686985,0
-            35.09373,54.686823,0
-            35.093421,54.686737,0
-            35.092893,54.686637,0
-            35.092528,54.686513,0
-            35.09211,54.686389,0
-            35.091649,54.686327,0
-            35.091398,54.686457,0
-            35.090822,54.686612,0
-            35.090404,54.686749,0
-            35.090232,54.686978,0
-            35.090112,54.687047,0
-            35.089832,54.686953,0
-            35.08961,54.687083,0
-            35.089358,54.68689,0
-            35.089448,54.68661,0
-            35.089825,54.686447,0
-            35.089664,54.68619,0
-            35.089685,54.685905,0
-            35.089735,54.685613,0
-            35.089642,54.685337,0
-            35.089653,54.685147,0
-            35.089797,54.684988,0
-            35.090168,54.685093,0
-            35.090478,54.685185,0
-            35.090651,54.685366,0
-            35.0911,54.685628,0
-            35.091242,54.685793,0
-            35.091468,54.68604,0
-            35.091685,54.686297,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. Тропа через вырубку</name>
-        <description>04.06.2026 13:43:06</description>
-        <styleUrl>#line-0F9D58-4851</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.089797,54.684988,0
-            35.089757,54.684808,0
-            35.089524,54.68464,0
-            35.089481,54.684404,0
-            35.08961,54.684137,0
-            35.089608,54.683927,0
-            35.089342,54.683747,0
-            35.089155,54.683685,0
-            35.0889943,54.6833729,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Пешая. Проход вглубь леса через лагерь Детской</name>
-        <description>04.06.2026 13:54:56</description>
-        <styleUrl>#line-0F9D58-5236</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            35.094792,54.6828355,0
-            35.094417,54.683015,0
-            35.094277,54.683143,0
-            35.093939,54.683254,0
-            35.093751,54.683322,0
-            35.093596,54.683372,0
-            35.093446,54.683399,0
-            35.093258,54.683458,0
-          </coordinates>
-        </LineString>
+        </Point>
       </Placemark>
     </Folder>
     <Folder>
@@ -4641,6 +5134,26 @@
         </Point>
       </Placemark>
       <Placemark>
+        <name>Админка.Домик Быстровозводимые конструкции</name>
+        <description>10.03.2026 23:48:03</description>
+        <styleUrl>#icon-1751-9C27B0-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.081154,54.6804,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Админка.Домик Швей</name>
+        <description>15.06.2026 17:45:43</description>
+        <styleUrl>#icon-1794-9C27B0-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            35.085173,54.678979,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
         <name>Админка.Банно-прачечный комплекс</name>
         <description>10.03.2026 23:53:39</description>
         <styleUrl>#icon-1687-9C27B0-labelson</styleUrl>
@@ -4667,16 +5180,6 @@
         <Point>
           <coordinates>
             35.085383,54.679057,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Админка.Домик Быстровозводимые конструкции</name>
-        <description>10.03.2026 23:48:03</description>
-        <styleUrl>#icon-1678-9C27B0-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.085163,54.678979,0
           </coordinates>
         </Point>
       </Placemark>
@@ -5077,32 +5580,32 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.0794983,54.6857757,0
-                35.0789402,54.6851927,0
-                35.0785682,54.6844727,0
-                35.0784392,54.6839267,0
-                35.0796413,54.6833437,0
-                35.0796203,54.6829967,0
-                35.0808073,54.6826617,0
-                35.0821802,54.6821037,0
-                35.0828452,54.6816697,0
-                35.0835362,54.6815827,0
-                35.0836542,54.6817497,0
-                35.0836642,54.6820347,0
-                35.0840833,54.6820167,0
-                35.0846513,54.6821347,0
-                35.0849733,54.6822587,0
-                35.0851343,54.6822457,0
-                35.0854133,54.6821717,0
-                35.0861432,54.6823887,0
-                35.0867212,54.6823457,0
-                35.0872142,54.6821037,0
-                35.0879762,54.6821317,0
-                35.0877192,54.6826217,0
-                35.0888252,54.6828167,0
-                35.0891253,54.6829287,0
-                35.0890933,54.6830957,0
-                35.0794983,54.6857757,0
+                35.07945,54.685786,0
+                35.078892,54.685203,0
+                35.07852,54.684483,0
+                35.078391,54.683937,0
+                35.079593,54.683354,0
+                35.079572,54.683007,0
+                35.080759,54.682672,0
+                35.082132,54.682114,0
+                35.082797,54.68168,0
+                35.083488,54.681593,0
+                35.083606,54.68176,0
+                35.083616,54.682045,0
+                35.084035,54.682027,0
+                35.084603,54.682145,0
+                35.084925,54.682269,0
+                35.085086,54.682256,0
+                35.085365,54.682182,0
+                35.086095,54.682399,0
+                35.086673,54.682356,0
+                35.087166,54.682114,0
+                35.087928,54.682142,0
+                35.087671,54.682632,0
+                35.088777,54.682827,0
+                35.089077,54.682939,0
+                35.089045,54.683106,0
+                35.07945,54.685786,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -5127,48 +5630,49 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.0893627,54.683312,0
-                35.0902307,54.682715,0
-                35.0917457,54.683067,0
-                35.0919937,54.683113,0
-                35.0921794,54.6831337,0
-                35.0923427,54.683178,0
-                35.0927937,54.683271,0
-                35.0931577,54.683147,0
-                35.0934157,54.683395,0
-                35.0938497,54.683897,0
-                35.0934107,54.684012,0
-                35.0936357,54.684257,0
-                35.0933537,54.684338,0
-                35.0936557,54.68471,0
-                35.0939157,54.685046,0
-                35.0943231,54.6850925,0
-                35.0945647,54.685159,0
-                35.0955497,54.685018,0
-                35.0949147,54.685698,0
-                35.0938367,54.685509,0
-                35.0936487,54.685897,0
-                35.0940457,54.685974,0
-                35.0937827,54.68637,0
-                35.0928547,54.686101,0
-                35.0924927,54.686442,0
-                35.0934317,54.686737,0
-                35.0936327,54.686557,0
-                35.0943257,54.686704,0
-                35.0939067,54.687151,0
-                35.0925007,54.686717,0
-                35.0918677,54.687427,0
-                35.0932947,54.687821,0
-                35.0930897,54.688061,0
-                35.0931437,54.688279,0
-                35.0928107,54.688694,0
-                35.0915307,54.689353,0
-                35.0872597,54.687926,0
-                35.0867877,54.686301,0
-                35.0881007,54.685432,0
-                35.0893457,54.68501,0
-                35.0890667,54.683615,0
-                35.0893627,54.683312,0
+                35.0894164,54.6832996,0
+                35.0902844,54.6827026,0
+                35.0917994,54.6830546,0
+                35.0920474,54.6831006,0
+                35.0918764,54.6833396,0
+                35.0922144,54.6833916,0
+                35.0923964,54.6831656,0
+                35.0928474,54.6832586,0
+                35.0932114,54.6831346,0
+                35.0934694,54.6833826,0
+                35.0939034,54.6838846,0
+                35.0934644,54.6839996,0
+                35.0936894,54.6842446,0
+                35.0934074,54.6843256,0
+                35.0937094,54.6846976,0
+                35.0939694,54.6850336,0
+                35.0947094,54.6848506,0
+                35.0946184,54.6851466,0
+                35.0956034,54.6850056,0
+                35.0949684,54.6856856,0
+                35.0938904,54.6854966,0
+                35.0937024,54.6858846,0
+                35.0940994,54.6859616,0
+                35.0938364,54.6863576,0
+                35.0929084,54.6860886,0
+                35.0925464,54.6864296,0
+                35.0934854,54.6867246,0
+                35.0936864,54.6865446,0
+                35.0943794,54.6866916,0
+                35.0939604,54.6871386,0
+                35.0925544,54.6867046,0
+                35.0919214,54.6874146,0
+                35.0933484,54.6878086,0
+                35.0931434,54.6880486,0
+                35.0931974,54.6882666,0
+                35.0928644,54.6886816,0
+                35.0915844,54.6893406,0
+                35.0873134,54.6879136,0
+                35.0868414,54.6862886,0
+                35.0881544,54.6854196,0
+                35.0893994,54.6849976,0
+                35.0891204,54.6836026,0
+                35.0894164,54.6832996,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -5444,8 +5948,8 @@
                 35.093097,54.682843,0
                 35.092555,54.682739,0
                 35.092319,54.683141,0
-                35.0922383,54.6831421,0
-                35.0921687,54.6831337,0
+                35.092131,54.683384,0
+                35.091863,54.68333,0
                 35.092048,54.683087,0
                 35.091771,54.683029,0
                 35.091576,54.682983,0
@@ -6230,139 +6734,6 @@
         <Point>
           <coordinates>
             35.08484,54.681293,0
-          </coordinates>
-        </Point>
-      </Placemark>
-    </Folder>
-    <Folder>
-      <name>Арт-объекты</name>
-      <Placemark>
-        <name><![CDATA[Арт-объект "Грот"]]></name>
-        <description>10.03.2026 23:24:33</description>
-        <styleUrl>#icon-1563-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.094968,54.683608,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name><![CDATA[Арт-объект "Месяц"]]></name>
-        <description>14.05.2026 21:57:51</description>
-        <styleUrl>#icon-1631-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.096345,54.682667,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Ступени к свету</name>
-        <description>16.05.2026 15:21:18</description>
-        <styleUrl>#icon-1877-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.092605,54.680232,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Катилось колесо</name>
-        <description>16.05.2026 15:39:04</description>
-        <styleUrl>#icon-1668-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.096949,54.677863,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Смотри!</name>
-        <description>16.05.2026 15:47:26</description>
-        <styleUrl>#icon-1643-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.090391,54.677397,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Звук ветра</name>
-        <description>16.05.2026 16:07:13</description>
-        <styleUrl>#icon-1721-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.093575,54.678131,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Жар-Птица</name>
-        <description>16.05.2026 16:17:29</description>
-        <styleUrl>#icon-1874-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.092368,54.676676,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Воздушная скульптура «Тело ветра»</name>
-        <description>16.05.2026 16:54:39</description>
-        <styleUrl>#icon-1697-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.089557,54.68064,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Рыбы</name>
-        <description>16.05.2026 17:03:51</description>
-        <styleUrl>#icon-1573-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.086854,54.678584,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Спящая русалка</name>
-        <description>16.05.2026 16:57:54</description>
-        <styleUrl>#icon-1863-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.096111,54.679497,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Телескоппарат</name>
-        <description>16.05.2026 15:35:00</description>
-        <styleUrl>#icon-1706-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.094047,54.68182,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Фестиваль сЛиззи</name>
-        <description>16.05.2026 17:00:39</description>
-        <styleUrl>#icon-1869-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.07892,54.678634,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>Затмение. Фурин-фуга</name>
-        <description>16.05.2026 15:50:26</description>
-        <styleUrl>#icon-1720-673AB7-labelson</styleUrl>
-        <Point>
-          <coordinates>
-            35.0965,54.677049,0
           </coordinates>
         </Point>
       </Placemark>
