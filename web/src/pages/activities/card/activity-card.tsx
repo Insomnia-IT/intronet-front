@@ -14,6 +14,7 @@ import { SvgIcon } from "../../../icons";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import Styles from "./activity-card.module.css";
 import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
+import { AgeStrict, AgeStrictValue, isAgeBadgeVisible } from '@components/age-strict'
 
 export type ActivityCardProps = {
   id: string;
@@ -49,6 +50,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
   const {activity} = useCell(store.state);
   const router = useActivitiesRouter();
   const day = getDayText(activity.day, "short");
+  const showAge = isAgeBadgeVisible(activity?.age);
   return (
     <Card
       className={ cx(Styles.card, className, {
@@ -58,21 +60,24 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
       onClick={ (e) => e.defaultPrevented || router.goToActivity(id) }
     >
       <div className={ Styles.activityContainer } flex column gap>
-        <div flex class={ Styles.headerContainer }>
-          <div flex column style={ {gap: "8px", alignItems: "flex-start"} }>
-            { activity.isCanceled ? (
-              <Badge type={ "Change" }>{ "Отменилось =(" }</Badge>
-            ) : activity.hasChanges ? (
-              <Badge type={ "Change" }>Время изменилось</Badge>
-            ) : null }
+        <div className={ cx(Styles.header, withBookmarkIcon && Styles.headerWithBookmark) }>
+          { activity.isCanceled ? (
+            <Badge type={ "Change" }>{ "Отменилось =(" }</Badge>
+          ) : activity.hasChanges ? (
+            <Badge type={ "Change" }>Время изменилось</Badge>
+          ) : null }
+          <div className={ Styles.titleLine }>
             <div
               className={ [
-                activity.isCanceled ? Styles.headerCanceled : Styles.header,
+                activity.isCanceled ? Styles.headerCanceled : Styles.title,
                 "sh1",
               ].join(" ") }
             >
               { highlight(decodeHTMLEntities(activity?.title), searchQuery) }
             </div>
+            {showAge && (
+              <AgeStrict age={activity.age as AgeStrictValue} className={Styles.ageBadge} />
+            )}
           </div>
 
           { withBookmarkIcon && (<SvgIcon

@@ -47,6 +47,7 @@ export async function importActivities(force = false) {
           photo: p.participantPhoto?.full,
         })),
         day: getDay(activity.eventStart * 1000),
+        age: parseEventAge(activity.eventAge),
       } as Activity;
     });
   });
@@ -56,6 +57,11 @@ export async function importActivities(force = false) {
   }
 
   
+}
+
+function parseEventAge(eventAge?: string): number | undefined {
+  const n = parseInt(eventAge ?? "", 10);
+  return Number.isFinite(n) ? n : undefined;
 }
 
 const regexOnlyWord = /[^a-zA-Zа-яА-ЯёЁ]/g;

@@ -1,5 +1,5 @@
 import {FunctionalComponent} from "preact";
-import {useEffect, useMemo} from "preact/hooks";
+import {useMemo} from "preact/hooks";
 import {locationsStore} from "@stores";
 import {bookmarksStore} from "@stores/bookmarks.store";
 import {ActivityStore} from "@stores/activities/activities.store";
@@ -14,6 +14,7 @@ import {useActivitiesRouter} from "../hooks/useActivitiesRouter";
 import Styles from "./activity.module.css";
 import {BookmarkIcon} from "@components/BookmarkGesture/bookmark-icon";
 import {PageHeader} from "@components/PageHeader/PageHeader";
+import {AgeStrict, AgeStrictValue, isAgeBadgeVisible} from "@components/age-strict";
 
 export type ActivityProps = {
   id: string;
@@ -26,7 +27,18 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   return (
     <div flex column gap={4}>
       {activity && (<>
-          <PageHeader titleH2={<span dangerouslySetInnerHTML={{__html: activity.title}}/>} align={'top'} withCloseButton/>
+          <PageHeader
+            titleH2={
+              <div className={Styles.titleRow}>
+                <span dangerouslySetInnerHTML={{__html: activity.title}}/>
+                {isAgeBadgeVisible(activity.age) && (
+                  <AgeStrict age={activity.age as AgeStrictValue} className={Styles.titleAgeBadge} />
+                )}
+              </div>
+            }
+            align={'top'}
+            withCloseButton
+          />
 
           {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
