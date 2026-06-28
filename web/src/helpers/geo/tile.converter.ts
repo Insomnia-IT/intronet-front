@@ -68,12 +68,16 @@ export class TileConverter {
     return flat.map((p) => ({ X: p.X / length, Y: p.Y / length })).reduce(sum);
   }
 }
-
+export const MapSize = {
+  width: 9728,
+  height: 6656,
+};
+//map_z18_156598_83302
 export const geoConverter = new TileConverter(
   {
-    x: 156589.37,
-    y: 83298.8,
+    x: 156598,
+    y: 83302,
   },
-  17.999922,
+  18,
   256
 );

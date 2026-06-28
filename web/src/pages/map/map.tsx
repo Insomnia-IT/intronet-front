@@ -1,7 +1,7 @@
 import { bind } from "@cmmn/core";
 import { RequireAuth } from "@components/RequireAuth";
 import { cellState } from "@helpers/cell-state";
-import { geoConverter } from "@helpers/geo";
+import { geoConverter, MapSize } from "@helpers/geo";
 import { locationsStore } from "@stores";
 import { Component } from "preact";
 import { TransformEmitter } from "./handlers/transformEmitter";
@@ -24,6 +24,7 @@ export class MapComponent extends Component<{
   }
 
   private transformCache: string;
+
   @bind
   private updTransform() {
     if (this.transformElement) {
@@ -93,6 +94,11 @@ export class MapComponent extends Component<{
               fontSize: "calc(1px/var(--scale))",
             }}
           >
+            <image
+              href="/public/images/map2026.webp"
+              width={MapSize.width}
+              height={MapSize.height}
+            />
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
@@ -127,20 +133,7 @@ export class MapComponent extends Component<{
       this.handler?.dispose();
       return;
     }
-    fetch("/public/images/map.svg")
-      .then((x) => x.text())
-      .then((text) => {
-        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        g.innerHTML = text;
-        this.transformElement.prepend(g);
-      });
-    this.initTransform(
-      {
-        width: 9728,
-        height: 6144,
-      },
-      element
-    );
+    this.initTransform(MapSize, element);
     this.handler = new TransformEmitter(element);
     this.handler.on("transform", this.onTransform);
     this.handler.on("longtap", this.onLongTap);
@@ -166,7 +159,7 @@ export class MapComponent extends Component<{
   }
 
   minScale = 1;
-  private readonly imageSize = { width: 9728, height: 6144 };
+  private readonly imageSize = MapSize;
 
   /**
    * Сброс пользовательского вида: удаляет сохранённый `transform` и заново инициализирует
