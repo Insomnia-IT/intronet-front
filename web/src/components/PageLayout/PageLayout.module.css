@@ -34,7 +34,7 @@
 }
 
 .light {
-  background: var(--cold-white);
+  background: var(--bg-light);
 }
 
 .dark {

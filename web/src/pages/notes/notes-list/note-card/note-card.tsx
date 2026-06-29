@@ -64,7 +64,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
   return (
     <div className={styles.cardContainer}>
       <Card
-        background="Soft2"
+        background="VividLight"
         borderType="LeftCloud"
         className={cx(styles.card, className, {
           [styles.cardDisabled]: disabled,
@@ -81,7 +81,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
           />
         )}
         <div className={styles.content}>
-          <h3 className={cx("sh1", styles.noteTitle)}>{title}</h3>
+          <h3 className={styles.noteTitle}>{title}</h3>
           <span className={styles.noteText}>{text}</span>
         </div>
         {categoryName && (
@@ -94,7 +94,6 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
         )}
         <div
           className={cx(
-            "sh3",
             disabled ? "colorGrey" : "colorGrey",
             styles.footer
           )}
@@ -103,7 +102,7 @@ export const NoteCard: FunctionalComponent<INoteCardProps> = (props) => {
           {getNoteDate(updatedAt || createdAt)}
         </div>
       </Card>
-      {withTTL && TTL < 18 && (
+      {withTTL && TTL < 14 && (
         <span className={cx(styles.ttlText, "textSmall", "colorGrey")}>
           {getNoteTTLText({ deletedAt, isDeleted, TTL })}
         </span>

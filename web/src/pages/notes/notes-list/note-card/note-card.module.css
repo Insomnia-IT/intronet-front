@@ -24,21 +24,15 @@
 }
 
 .noteTitle {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  color: currentColor;
+  color: var(--t-dark);
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .noteText {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  color: currentColor;
+  color: var(--t-dark-secondary);
+  font-size: 12px;
+  font-weight: 300;
 }
 
 .bookmarkIcon {

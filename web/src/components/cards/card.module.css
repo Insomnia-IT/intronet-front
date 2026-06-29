@@ -47,6 +47,10 @@
   background: var(--bg-light-4);
 }
 
+.bgVividLight {
+  background: var(--a-orange-base);
+}
+
 .borderNone,
 .border{
     --borderWidth: 2px;

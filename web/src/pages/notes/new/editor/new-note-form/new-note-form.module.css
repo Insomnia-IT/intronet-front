@@ -19,7 +19,7 @@
   position: sticky;
   bottom: 0px;
   padding: 8px 0 var(--marign-bottom);
-  background: var(--cold-white);
+  background: var(--bg-light);
 }
 
 .tags {

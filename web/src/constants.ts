@@ -18,6 +18,6 @@ export const COLORS = {
   bonYellow: "#FDA631",
   electricBlues: "#536BF3",
   cuberDisco: "#FE4BA9",
-  grey: "var(--yellow)",
+  grey: "var(--a-main-disabled)",
   lightOrange: "#FAC5C0",
 };

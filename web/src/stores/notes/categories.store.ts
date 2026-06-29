@@ -14,17 +14,17 @@ class CategoriesStore {
       {
         _id: "lost",
         name: "Потеряшки",
-        color: 'var(--vivid)',
+        color: 'var(--a-error-base)',
       },
       {
         _id: "searchFriends",
         name: "Ищу друзей",
-        color: 'var(--mineral)',
+        color: 'var(--a-main-base)',
       },
       {
         _id: "blablacar",
         name: "Попутчики",
-        color: 'var(--yellow)',
+        color: 'var(--a-add-base)',
       },
     ];
   }
