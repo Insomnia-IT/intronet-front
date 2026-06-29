@@ -6,14 +6,13 @@
   gap: 4px;
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   overscroll-behavior-x: auto;
   touch-action: pan-x;
   margin-right: -16px;
   margin-left: -16px;
-  padding-right: 16px;
-  padding-left: 16px;
-  margin-bottom: 8px;
+  padding: 0 16px;
+  color: var(--a-dark-base);
 }
 
 .tags::-webkit-scrollbar {
@@ -22,25 +21,24 @@
 
 .tag {
   flex-shrink: 0;
-  padding: 15px 16px;
+  padding: 12px;
   line-height: 16px;
   gap: 8px;
-  background: transparent;
-  color: var(--mineral);
-  border: 1px solid var(--mineral);
-  border-radius: var(--radius);
+  background: var(--a-green-base);
+  color: var(--a-dark-base);
+  border-radius: var(--radius-large);
   transition: background 0.3s cubic-bezier(0.35, 0, 0.25, 1),
     color 0.3s cubic-bezier(0.35, 0, 0.25, 1);
 }
 
 .tag svg path {
-  fill: var(--mineral);
+  fill: var(--a-dark-base);
 }
 
 .selectedTag {
   composes: tag;
-  background: var(--mineral);
-  color: var(--white);
+  background: var(--a-dark-base);
+  color: var(--t-light);
 }
 
 .selectedTag svg path {

@@ -20,5 +20,4 @@ export const COLORS = {
   cuberDisco: "#FE4BA9",
   grey: "var(--yellow)",
   lightOrange: "#FAC5C0",
-  lavand: "#CFBAFF",
 };

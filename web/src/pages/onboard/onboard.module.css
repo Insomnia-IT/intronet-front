@@ -1,38 +1,76 @@
-.pageOnboard{
+.pageOnboard {
   min-height: 100%;
   width: 100%;
-  background: var(--yellow);
+  background: var(--bg-dark);
   color: var(--white);
-  padding: 104px 16px 40px;
+  padding: 16vh 16px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
   position: relative;
-  color: var(--ins-night);
-  font-family: "Ubuntu Condensed";
-}
-.pageOnboard > div{
-  min-height: 0;
-}
-.close{
-  top: 40px;
-  right: 16px;
-  border-color: var(--ins-night);
+  color: var(--t-light);
+  font-family: "Main";
+  overflow-x: hidden;
 }
 
-.menuBtn{
+.pageOnboard::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: calc(48px - 16vh);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25vw;
+  height: 25vw;
+  background: rgba(255, 255, 255, 0.5);
+  filter: blur(75px);
+  border-radius: 50%;
+}
+
+.pageOnboard > div {
+  min-height: 0;
+}
+
+.pageOnboard h1 {
+  font-size: 80px;
+  line-height: 60%;
+  margin-bottom: 40px;
+}
+
+.pageOnboard > div > div {
+  margin-top: 16px;
+}
+
+.close {
+  top: 40px;
+  right: 16px;
+}
+
+.menuText {
+  font-family: Main;
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.menuBtn {
   width: 100%;
 }
 
-.star{
+.pageOnboard ul > li {
+  font-size: 20px;
+}
+
+.star {
   position: absolute;
   right: 0;
   bottom: 20%;
 }
 
-.img1{
+.img1 {
+  transform: scale(1.3);
   margin-left: -16px;
   margin-bottom: 16px;
-  width: 100%;
+  width: calc(100% + 32px);
 }

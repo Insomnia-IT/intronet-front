@@ -2,12 +2,10 @@ import { EyeLoading } from "../../icons";
 import Styles from "./button.module.css";
 import { FunctionalComponent, JSX } from "preact";
 import { RoutePath, RoutePathString, useRouter } from "../../pages/routing";
-import { useCallback, useMemo } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 
 export type ButtonProps = {
   isLoading?: boolean;
-  solid?: boolean;
-  selected?: boolean;
   /** Нативный type у `<button>` (не путать с визуальным `type`). */
   buttonType?: "button" | "submit" | "reset";
   type?:
@@ -19,7 +17,10 @@ export type ButtonProps = {
     | "orange"
     | "frameOrange"
     | "textSimple"
-    | "borderYellow";
+    | "danger"
+    | "ghost"
+    | "ghostDark"
+    | "textDanger";
   goTo?: RoutePath | RoutePathString;
   href?: string;
 } & JSX.HTMLAttributes<HTMLButtonElement>;

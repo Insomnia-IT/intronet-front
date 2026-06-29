@@ -1,9 +1,11 @@
 .time {
-    color: var(--mineral);
+    font-size: 18px;
+    color: var(--bg-dark);
     margin-bottom: 9px;
 }
 
 .header {
+    font-size: 16px;
     align-items: flex-start;
     display: flex;
     flex-direction: row;
@@ -13,9 +15,10 @@
 }
 
 .duplicate {
+  font-size: 15px;
+  color: var(--t-dark-secondary);
   margin-top: 12px;
   margin-bottom: 10px;
-  composes: text from "../../../app/app.style.module.css";
 }
 .duplicate:empty {
   margin: 0;
@@ -23,7 +26,7 @@
 }
 
 .movieSmall {
-  background: var(--soft);
+  background: var(--a-blue-base);
   padding: 16px;
   border-radius: 16px;
   margin-bottom: 8px;
@@ -36,7 +39,7 @@
 }
 .movieTitle {
   composes: text from "../../../app/app.style.module.css";
-  color: var(--ins-night);
+  color: var(--bg-dark);
   margin-bottom: 8px;
 }
 
@@ -52,8 +55,8 @@
   align-items: center;
   padding: 16px 24px;
   gap: 16px;
-  background-color: var(--ins-night);
-  border-radius:var(--radius);
+  background-color: var(--bg-dark);
+  border-radius:var(--radius-large);
   height: 48px;
   box-sizing: border-box;
   color: var(--mineral);
@@ -72,9 +75,13 @@
 }
 
 .openButton::after {
+  font-family: monospace;
+  font-weight: 100;
   position: absolute;
+  margin-top: 10px;
   right: 20px;
-  content: "\2192";
+  content: ">";
+  font-size: 20px;
 }
 
 @keyframes fadeOut {

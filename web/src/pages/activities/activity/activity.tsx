@@ -40,27 +40,21 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
             withCloseButton
           />
 
-          {activity.description && <div className="text" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
+          {activity.description && <div className="text colorGrey" dangerouslySetInnerHTML={{__html: activity.description.replaceAll(/\\n/g, '<br/>')}}/>}
           {activity.authors?.map(author => (
             <div className="colorGrey sh3" dangerouslySetInnerHTML={{__html: [author.name, author.description].filter(x => x).join('. ').replaceAll(/\\n/g, '<br/>')}}/>
           ))}
           {activity.day !== undefined && <div className="colorMediumBlue sh3">{getDayText(activity?.day, "full")}</div>}
 
           <Card
-            border="Blue"
-            background="None"
+            background="Soft2"
             onClick={() => router.goTo(["map", activity?.locationId])}>
             <div flex className="sh1" gap={2}>
-              <SvgIcon
-                id="#alert"
-                size={32}
-                style={{color: "var(--mineral)"}}
-              />
               {locationsStore.getName(activity?.locationId) ?? activity?.locationId}
             </div>
 
-            <Link goTo={["map", activity?.locationId]} style={{marginBottom: 18}}>
-              на карте
+            <Link goTo={["map", activity?.locationId]} style={{marginBottom: 18, display: 'block', width: '100%'}}>
+              локация на карте
             </Link>
 
             <div flex column gap={1} style={{alignItems: "flex-start"}}>
@@ -86,8 +80,8 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
                 width: "100%",
               }}
             >
-              <BookmarkIcon size={24}/>
-              {hasBookmark ? "Удалить из избранного" : "сохранить в избранное"}
+              {/* <BookmarkIcon size={24}/> */}
+              {hasBookmark ? "Удалить из избранного" : "в избранное"}
             </Button>
           </ButtonsBar>
         </>

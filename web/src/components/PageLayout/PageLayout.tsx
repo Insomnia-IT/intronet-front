@@ -4,21 +4,19 @@ import cn from "classnames";
 import { TapBar } from "@components/TapBar";
 import styles from "./PageLayout.module.css";
 import { ButtonsBar, CloseButton, Sheet } from "@components";
-import { SvgIcon } from "@icons";
 import {
-  goTo,
   RoutePath,
   RoutePathString,
   useRouter,
 } from "../../pages/routing";
 import { useEffect, useState } from "preact/hooks";
 import { SearchInput } from "@components/input/search-input";
+import { SearchButton } from "@components/buttons/search-button";
 
 export type PageLayoutProps = PropsWithChildren<{
   design?: "light" | "dark" | "full";
   title?: ReactNode;
   /* При наличии добавит к заколовку переход в Избранное */
-  favoritesRoute?: RoutePath | RoutePathString;
   withTapBar?: boolean;
   withCloseButton?: boolean;
   /* Кнопки, которые будут помещены в ButtonsBar */
@@ -37,7 +35,6 @@ export type PageLayoutProps = PropsWithChildren<{
 export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   design = "light",
   title,
-  favoritesRoute,
   withCloseButton,
   withTapBar,
   buttons,
@@ -45,9 +42,7 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
   dropStyles,
   children,
   search: Search,
-  searchStyle,
   hideSearchDeps,
-  searchLabel,
   headerStyle,
   gap,
 }) => {
@@ -66,30 +61,16 @@ export const PageLayout: FunctionalComponent<PageLayoutProps> = ({
         )}
         gap={gap}
       >
-        {(title || withCloseButton || !!Search || favoritesRoute) && (
+        {(title || withCloseButton || !!Search) && (
           <div flex column gap={6} style={{ marginBottom: 16 }}>
-            {(title || withCloseButton || !!Search || favoritesRoute) && (
+            {(title || withCloseButton || !!Search) && (
               <div className={headerStyle ?? styles.header}>
                 {title && <h1>{title}</h1>}
-                {Boolean(favoritesRoute) && (
-                  <SvgIcon
-                    id="#bookmark"
-                    style={{
-                      color: design == "dark" ? "var(--white)" : "var(--vivid)",
-                    }}
-                    size={40}
-                    onClick={() => goTo(favoritesRoute)}
-                  />
-                )}
                 {withCloseButton && <CloseButton position="static" />}
               </div>
             )}
             {Boolean(Search) && (
-              <SearchInput
-                placeholder={searchLabel}
-                style={searchStyle}
-                onFocus={() => router.goTo([router.route[0], "search"])}
-              />
+              <SearchButton onClick={() => router.goTo([router.route[0], "search"])} />
             )}
           </div>
         )}

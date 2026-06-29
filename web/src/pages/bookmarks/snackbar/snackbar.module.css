@@ -8,7 +8,7 @@
     top: 10px;
     padding: 16px;
     background: #BFB79F33;
-    border-radius: var(--radius);
+    border-radius: var(--radius-large);
     color: var(--cold-white);
     transition: top .3s ease-out;
     display: flex;
@@ -17,7 +17,7 @@
     align-items: center;
 }
 .cancel{
-    font-family: 'Cygre Black';
+    font-family: "Main";
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

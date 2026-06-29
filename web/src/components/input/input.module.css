@@ -6,9 +6,9 @@
   align-items: flex-start;
   padding: 16px;
   gap: 8px;
-  color: var(--ins-night);
-  border: 1px solid var(--ins-night);
-  border-radius: var(--radius);
+  color: var(--bg-dark);
+  border: 1px solid var(--bg-dark);
+  border-radius: var(--radius-large);
   background: transparent;
 }
 .input:focus-visible,

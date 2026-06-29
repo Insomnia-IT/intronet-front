@@ -20,7 +20,7 @@
   width: 100%;
   height: 100%;
   opacity: 30%;
-  background: var(--ins-night);
+  background: var(--bg-dark);
   transition: opacity .3s ease-out;
 }
 
@@ -39,7 +39,7 @@
 .sheet{
   display: flex;
   flex-direction: column;
-  background: var(--cold-white);
+  background: var(--bg-light);
   position: absolute;
   width: 100%;
   /*border-radius: 24px 24px 0 0;*/
@@ -47,13 +47,13 @@
   box-sizing: border-box;
   transition: bottom .3s ease-out, height .3s ease-out;
   overflow: auto;
-  color: var(--ins-night);
+  color: var(--bg-dark);
   bottom: 0;
   height: 100%;
   margin-top: -20px;
   box-sizing: border-box;
   pointer-events: auto;
-  border-radius: var(--radius) var(--radius) 0 0;
+  border-radius: var(--radius-large) var(--radius-large) 0 0;
 }
 
 .containerOpen .sheet{

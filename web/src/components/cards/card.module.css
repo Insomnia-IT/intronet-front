@@ -4,7 +4,7 @@
   align-items: flex-start;
   padding: 16px;
   gap: 16px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-large-small);
   max-width: 440px;
   box-sizing: border-box;
   overflow: hidden;
@@ -18,11 +18,11 @@
   background: var(--pale);
 }
 .bgNight:not(.borderVivid) {
-  background: var(--ins-night);
+  background: var(--bg-dark);
 }
 
 .bgSoft {
-  background: var(--soft);
+  background: var(--a-blue-base);
 }
 .bgSoft:active{
   box-shadow: 0px 0px 8px 0px #1C257366;
@@ -32,7 +32,7 @@
 }
 
 .bgSoft2 {
-  background: var(--soft);
+  background: var(--a-green-base);
 }
 
 .bgColdWhite {
@@ -41,6 +41,10 @@
 
 .bgVivid{
   background: var(--vivid);
+}
+
+.bgLight {
+  background: var(--bg-light-4);
 }
 
 .borderNone,
@@ -76,4 +80,10 @@
   composes: border;
   border-width: 1px;
   border-color: var(--grey);
+}
+
+.borderAccent {
+  composes: border;
+  border-color: var(--a-main-40);
+  border-width: 1px;
 }

@@ -49,7 +49,7 @@ export const CloseButton: FunctionalComponent<CloseButtonProps> = (props) => {
       style={props.style}
       onClick={onClick}
     >
-      <SvgIcon class="colorInsNight" id="#x" size={14} />
+      <SvgIcon class="colorInsNight" id="#x" size={10} />
     </Button>
   );
 };

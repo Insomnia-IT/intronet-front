@@ -32,8 +32,8 @@ export function NotesAll() {
           <FiltersSlider />
           <ModerationPageLink />
           <div className={styles.addNoteBtn}>
-            <Button className={styles.btn} goTo={`/notes/new`}>
-              + НАПИСАТЬ ОБЪЯВЛЕНИЕ
+            <Button type="ghostDark" className={styles.btn} goTo={`/notes/new`}>
+              НАПИСАТЬ ОБЪЯВЛЕНИЕ
             </Button>
           </div>
           <GesturedNotesList

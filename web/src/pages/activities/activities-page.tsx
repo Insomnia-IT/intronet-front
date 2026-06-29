@@ -19,11 +19,11 @@ export function ActivitiesPage() {
   return (
     <PageLayout
       title="Неанимация"
-      favoritesRoute="/bookmarks/activity"
       search={ActivitySearch}
       hideSearchDeps={[router.locationId, router.activityId]}
       searchLabel="Мастер-классы, лекции..."
       withTapBar
+      withCloseButton
     >
       <ActivitiesAll />
       <Sheet children={sheets} onClose={() => router.goTo(["activities"])} />

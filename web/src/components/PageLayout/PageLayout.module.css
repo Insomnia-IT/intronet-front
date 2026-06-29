@@ -3,7 +3,7 @@
   max-width: 440px;
   min-height: 100%;
   padding: 48px 16px 80px 16px;
-  color: var(--ins-night);
+  color: var(--bg-dark);
 }
 .layout {
   position: relative;
@@ -23,7 +23,8 @@
 }
 
 .header > h1 {
-  color: var(--ins-night);
+  color: var(--bg-dark);
+  text-transform: lowercase;
 }
 
 .clear {
@@ -37,7 +38,7 @@
 }
 
 .dark {
-  background: var(--ins-night);
+  background: var(--bg-dark);
 }
 
 .withTapbar {

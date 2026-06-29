@@ -1,34 +1,37 @@
 import { FunctionalComponent } from "preact";
 import { Card } from "../../../components/cards";
-import { goTo, useRouter } from "../../routing";
-import styles from "../main-page.module.css";
+import { goTo } from "../../routing";
 import { BgImage } from "./bg-image";
+import { MainPageCard, MainPageCardSize } from "../data";
+import styles from "./main-card.module.css";
 
-export type MainCard = {
-  info: MainPageCard;
-};
-export const MainCard: FunctionalComponent<MainCard> = ({ info }) => {
-  const router = useRouter();
+const sizeStyles: Record<MainPageCardSize, string> = {
+  small: styles.small,
+  medium: styles.medium,
+  large: styles.large,
+}
+
+export const MainCard: FunctionalComponent<MainPageCard> = (props) => {
   return (
     <Card
-      background={info.color ? "Vivid" : "White"}
+      background={props.color ? "Vivid" : "White"}
       flex-grow
       onClick={
-        info.link
-          ? () => goTo((info.link as any) ?? "/main")
-          : () => goTo(["articles", info.article ?? info._id])
+        props.link
+          ? () => goTo((props.link as any) ?? "/main")
+          : () => goTo(["articles", props.article ?? props.id])
       }
       class={[
         styles.mainCard,
-        info.color ? styles.colored : undefined,
-        info.small ? styles.small : undefined,
+        props.color ? styles.colored : undefined,
+        sizeStyles[props.size ?? "medium"],
       ]
         .filter((x) => x)
         .join(" ")}
     >
       <BgImage/>
-      <header>{info.title}</header>
-      <div class="textSmall colorInherit">{info.descr}</div>
+      <header>{props.title}</header>
+      {props.descr && <div>{props.descr}</div>}
     </Card>
   );
 };

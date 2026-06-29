@@ -1,7 +1,6 @@
 import { checkWriteAccess } from "./auth";
 import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
-import { importMainPage } from "./data/import";
 import { importActivities } from "./data/importActivities";
 import { importLocations } from "./data/importLocations";
 import { importMovies } from "./data/importMovies";
@@ -253,8 +252,6 @@ fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
         return importMovies(request.query.force);
       case "activities":
         return importActivities(request.query.force);
-      case "main":
-        return importMainPage(request.query.force);
       case "shops":
         return importShops(request.query.force);
     }

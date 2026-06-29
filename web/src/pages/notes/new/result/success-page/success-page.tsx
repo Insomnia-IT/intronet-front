@@ -1,11 +1,11 @@
 import { FunctionalComponent } from "preact";
 import { PageContainer } from "../../../../../components/Layout/PageContainer/PageContainer";
 import { PageSection } from "../../../../../components/Layout/PageSection/PageSection";
-import { PageHeader } from "../../../../../components/Layout/PageHeader/PageHeader";
 import classNames from "classnames";
 import { Button, ButtonsBar } from "../../../../../components";
 import { useNotesRouter } from "../../../hooks/useNotesRouter";
 import styles from "./success-page.module.css";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 
 export const SuccessPage: FunctionalComponent = () => {
@@ -19,7 +19,7 @@ export const SuccessPage: FunctionalComponent = () => {
     <PageContainer>
       <div className={styles.page}>
         <PageSection className={styles.notesHeader}>
-          <PageHeader pageTitleText="Готово" />
+          <PageHeader titleH2="Готово" />
         </PageSection>
         <PageSection className={styles.content}>
           <span className={classNames("text colorMediumBlue")}>

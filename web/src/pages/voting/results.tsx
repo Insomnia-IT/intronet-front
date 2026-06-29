@@ -29,7 +29,7 @@ export const VotingResults: FunctionalComponent = () => {
               color: "var(--cold-white)",
               borderRadius: 10,
               padding: "6px 20px",
-              background: "var(--ins-night)",
+              background: "var(--bg-dark)",
             }}
           >
             {count}

@@ -1,5 +1,14 @@
 .text{
-  /*word-break: break-word;*/
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: "Main";
+  color: var(--t-dark);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.time {
+  font-family: "Main";
+  color: var(--t-dark-secondary);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 300;
 }

@@ -1,5 +1,5 @@
 .badge {
-  border-radius: var(--radius);
+  border-radius: var(--radius-large);
   padding: 4px 8px;
   width: fit-content;
   align-self: flex-start;
