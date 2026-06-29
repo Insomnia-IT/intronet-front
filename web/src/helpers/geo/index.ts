@@ -1,1 +1,1 @@
-export {geoConverter} from "./tile.converter";
+export {geoConverter, MapSize} from "./tile.converter";
