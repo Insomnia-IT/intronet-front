@@ -1,6 +1,6 @@
 .container {
   max-width: 440px;
-  background: var(--ins-night);
+  background: var(--bg-dark);
   width: 100%;
   margin: 0 auto;
   height: 100%;
@@ -18,7 +18,7 @@
 .menuBtn {
   padding: 16px 32px !important;
   background: var(--mineral);
-  font-family: "Cygre Black";
+  font-family: "Main";
   font-style: normal;
   font-variation-settings: "wght" 700;
   font-size: 16px;
@@ -34,7 +34,7 @@
   height: 100%;
   padding-left: 16px;
   margin-left: -16px;
-  background: var(--ins-night);
+  background: var(--bg-dark);
   bottom: -100vh;
   transition: bottom 0.3s ease-out;
   display: flex;
@@ -51,32 +51,23 @@
   opacity: 1;
 }
 
-.mainCard {
-  color: var(--ins-night);
-  gap: 0;
-  justify-content: space-between;
-  height: 120px;
-  flex: 1 0 0;
-  position: relative;
-}
-
-.mainCard > header {
-  font-style: normal;
-  font-weight: 860;
-  font-size: 18px;
-  line-height: 21px;
-}
-.colored {
-  color: var(--cold-white);
-}
-
-.small {
-  height: 60px;
-}
 
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: -16px;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25vw;
+  height: 25vw;
+  background: rgba(255, 255, 255, 0.5);
+  filter: blur(75px);
+  border-radius: 50%;
 }

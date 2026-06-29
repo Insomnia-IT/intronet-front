@@ -300,22 +300,6 @@ type Bookmark = {
 };
 
 type BookmarkSection = "movie" | "activity" | "locations" | "note";
-type MainPageSection = "main" | "about" | "warning";
-
-type MainPageCard = {
-  _id: string;
-  title: string;
-  descr?: string;
-  color: boolean;
-  section: MainPageSection;
-  row: number;
-  col: number;
-  small?: boolean;
-  colSpan?: number;
-  rowSpan?: number;
-  article?: string;
-  link?: string;
-};
 
 /**
  * Новости добавляемые админами на главную страницу

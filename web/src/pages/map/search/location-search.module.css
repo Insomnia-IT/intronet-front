@@ -4,7 +4,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  border-radius: var(--radius, 12px);
+  border-radius: var(--radius-large, 12px);
   background: var(--cold-white, #f5f5f5);
   border: 1px solid var(--el-blue, #b8d4e3);
   cursor: pointer;
@@ -12,7 +12,7 @@
   width: 100%;
   box-sizing: border-box;
   font: inherit;
-  color: var(--ins-night);
+  color: var(--bg-dark);
 }
 
 .groupRowTitle {

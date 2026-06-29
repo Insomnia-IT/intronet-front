@@ -1,0 +1,35 @@
+
+.mainCard {
+  position: relative;
+  height: 56px;
+  flex: 1 0 0;
+  padding: 0 16px;
+  justify-content: center;
+  gap: 8px;
+  color: var(--t-dark-secondary);
+  font-family: "Main";
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.mainCard > header {
+  color: var(--t-dark);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.mainCard.colored {
+  color: var(--t-light-secondary)
+}
+
+.mainCard.colored > header {
+  color: var(--t-light);
+}
+
+.small {
+  height: 40px;
+}
+
+.large {
+  height: 76px;
+}

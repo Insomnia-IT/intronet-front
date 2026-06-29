@@ -10,11 +10,11 @@ type IModerationNoteSheetProps = {
   onClose?: () => void;
 };
 
-export const ModarationNoteSheet: FunctionalComponent<
+export const ModerationNoteSheet: FunctionalComponent<
   IModerationNoteSheetProps
 > = ({ noteId, onClose }) => {
   const note = useCell(() => notesStore.getNote(noteId), [noteId]);
-
+  console.log(note);
   const onApprove = () => {
     notesStore.approveNote(noteId);
   };

@@ -9,6 +9,6 @@
 }
 
 .container > h2,
-.container > .colorGrey2 {
+.container > .colorTDarkDisabled {
   pointer-events: all;
 }

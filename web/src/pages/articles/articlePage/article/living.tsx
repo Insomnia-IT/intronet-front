@@ -47,7 +47,7 @@ const sections = {
         <div>
           Палатку можно поставить бесплатно в специальной зоне кемпинга.
         </div>
-        <div class="colorVivid" flex gap="3">
+        <div class="colorDanger" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}

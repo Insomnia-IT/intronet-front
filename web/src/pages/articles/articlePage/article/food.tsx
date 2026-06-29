@@ -66,7 +66,7 @@ const sections = {
           </Link>
         </div>
         <div>Детское питание для малышей младше нужно привозить с собой!</div>
-        <div className="colorVivid" flex gap="3">
+        <div className="colorDanger" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}

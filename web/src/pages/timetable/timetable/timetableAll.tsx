@@ -43,7 +43,7 @@ export const TimetableAll: FunctionalComponent = () => {
 
   return (
     <>
-      <div flex column style={{ marginBottom: 24 }}>
+      <div flex column gap={2}>
         <Tags value={day} tagsList={[0, 1, 2, 3]}>
           {(d) => (
             <Tag selected={d == day} key={d} onClick={() => setDay(d)}>

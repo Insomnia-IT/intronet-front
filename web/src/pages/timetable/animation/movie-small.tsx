@@ -56,7 +56,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
               </div>
               {!disabled && (
                 <BookmarkIcon
-                  class={[...classNames, "colorVivid"].join(" ")}
+                  class={[...classNames, "colorDanger"].join(" ")}
                   onClick={(e) => {
                     if (!hasBookmark) return;
                     e.preventDefault();
@@ -70,7 +70,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
               )}
             </div>
             {rest || movie.country || movie.info?.filmReleaseYear ? (
-              <div class={[Styles.movieInfo, "textSmall", "colorGrey2"].join(" ")}>
+              <div class={[Styles.movieInfo, "textSmall", "colorTDarkDisabled"].join(" ")}>
                 {highlight("реж. " + rest, searchQuery)}
                 {movie.country ? <>, {highlight(movie.country, searchQuery)}</> : ''}
                 {movie.info?.filmReleaseYear ? ", " + movie.info?.filmReleaseYear : ""}

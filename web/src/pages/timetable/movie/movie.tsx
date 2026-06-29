@@ -37,12 +37,12 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
           style={{
             marginBottom: 8,
           }}
-          className="text colorGrey2 fontCondensed"
+          className={styles.plot}
         >
           {decodeHTMLEntities(movie.plot)}
         </div>
       )}
-      <div class="colorGrey">
+      <div class={styles.meta}>
         {[
           movie.author,
           movie.country,
@@ -50,75 +50,72 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         ].filter((x) => x).join(", ")}
       </div>
       {minutes != undefined && (
-        <div class="colorGrey" style={{ marginBottom: 24 }}>
+        <div class={styles.meta}>
           {minutes} мин {seconds ? seconds + " сек" : ""}
         </div>
       )}
       <div flex column gap={2} style={{ marginBottom: 24 }}>
-        <Card border="Vivid" gap={0}>
+        <Card background="Soft" gap={0}>
           <div flex column gap="2">
-            <div class="sh2 colorGradient">Международный конкурс анимации</div>
-            <div class="sh3 colorGrey">Приз зрительских симпатий</div>
+            <div class={`sh2 ${styles.votingHeader}`}>Международный конкурс анимации</div>
           </div>
-          <Button
-            type={state.isVoted ? "frame" : "blue"}
-            disabled={!isOnline}
-            onClick={() => votingStore.vote(movie.id)}
-            style={{
-              marginTop: 20,
-              marginBottom: 12,
-            }}
-          >
-            {state.isVoted ? "Убрать голос" : "Голосую за этот мульт!"}
-          </Button>
-          <div class="textSmall colorGrey">
+          <div class={styles.votingDescription}>
             Вы можете голосовать за несколько мультфильмов
           </div>
+          <Button
+            type={state.isVoted ? "textDanger" : "text"}
+            disabled={!isOnline}
+            onClick={() => votingStore.vote(movie.id)}
+            class={styles.votingButton}
+          >
+            {state.isVoted ? "Отменить голос" : "Голосую за этот мульт!"}
+          </Button>
         </Card>
 
         {!isOnline && (
-          <div class="colorVivid textSmall">
+          <div class="textSmall colorDanger">
             Нет подключения к сети, вернитесь к точке WIFI, чтобы
             проголосовать
           </div>
         )}
       </div>
       <div flex column>
-        <div className="sh1" style={{ marginBottom: 24 }}>Расписание показов:</div>
+        <div className="sh1" style={{ marginBottom: 8 }}>Расписание показов:</div>
         {state.views.map((view) => (
           <div flex column gap={2} key={view.day + view.locationId}>
-            <div class="tags colorGrey2">
+            <div class="tags colorTDarkDisabled">
               {getDayText(view.day, "full")}
             </div>
             <Card
-              border="Grey"
-              background="None"
+              background="Soft2"
               onClick={() => router.goTo(["map", view.locationId])}
               style={{ marginBottom: 16, gap: 8 }}
             >
               <div flex class="sh1" style={{alignItems: "center"}} gap={2}>
-                <SvgIcon
-                  id=".common #eye"
-                  size={32}
-                  style={{ color: "var(--vivid)" }}
-                />
                 {locationsStore.getName(view.locationId)}
               </div>
-              <div flex column gap={4}>
-                <div class="tags colorGrey2">
-                  {view.block.info.Title} {view.block.info.SubTitle ?? ""}
-                  {view.block.info.Part
-                    ? ` — Часть ${view.block.info.Part}`
-                    : ""}
-                </div>
+              <div
+                style={{display: "flex", flexDirection: "column", gap: 16, width: "100%"}}
+              >
                 <Link
-                  className="colorMineral"
                   goTo={["map", view.locationId]}
+                  style={{
+                    display: "block",
+                    width: '100%'
+                  }}
                 >
                   Локация на карте
                 </Link>
-                <div class="sh1 colorGrey2">
-                  {view.start} - {view.end}
+                <div>
+                  <div class="textSmall colorTDarkDisabled">
+                    {view.block.info.Title} {view.block.info.SubTitle ?? ""}
+                    {view.block.info.Part
+                      ? ` — Часть ${view.block.info.Part}`
+                      : ""}
+                  </div>
+                  <div class="sh3">
+                    {view.start} - {view.end}
+                  </div>
                 </div>
               </div>
             </Card>
@@ -127,14 +124,14 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       </div>
       <ButtonsBar at="bottom">
         <Button
-          type={state.hasBookmark ? "orange" : "blue"}
+          type={state.hasBookmark ? "danger" : undefined}
           class="w-full"
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >
-          <BookmarkIcon size={24} class={styles.bookmarkIcon} />
+          {/* <BookmarkIcon size={24} class={styles.bookmarkIcon} /> */}
           {state.hasBookmark
-            ? "Удалить из избранного"
-            : "сохранить в избранное"}
+            ? "удалить из избранного"
+            : "в избранное"}
         </Button>
       </ButtonsBar>
     </div>

@@ -96,7 +96,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
             alt=""
           />
         )}
-        <div className="text colorGrey2">
+        <div className="text colorTDarkDisabled">
           {" "}
           {location.description?.split("\n").map((x) => (
             <div>{x}</div>

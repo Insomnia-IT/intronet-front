@@ -1,25 +1,24 @@
 body {
   --mineral: #3C8583;
   --bonfire-light: #fda631;
-  --ins-night: #28130E;
+  --bg-dark: rgba(22, 49, 45, 1);
+  --bg-light: rgba(234, 246, 242, 1);
   --medium-blue: #062C4E;
   --cyber-disco: #FB84B7;
   --vivid: #ff6e76;
   --yummy-green: #60D67A;
   --calm-blue: #45D2F1;
   --cold-white: #FDFCF7;
-  --white: #fff;
+  --white: rgba(234, 246, 242, 1);
   --black: #000;
   --purple: #763aff;
   --grey: #BFB79F;
-  --grey2: #4F4038;
+  --grey2: rgba(234, 246, 242, 0.8);
   --inactive-grey: #a0a5d1;
   --light-orange: #fac5c0;
-  --lavand: #cfbaff;
-  --vivid: #8E1F1E;
-  --pale: #EAE8CD;
+  --vivid: rgba(47, 79, 74, 1);
+  --pale: rgba(216, 234, 226, 1);
   --yellow: #D5B22A;
-  --soft: #F1F7F6;
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   --purple-gradient: radial-gradient(
       100% 613.64% at 4.04% 0%,
@@ -40,7 +39,58 @@ body {
     #8E1F1E 100%
   );
 
-  --radius: 28px;
+  --radius-large-small: 8px;
+  --radius: 24px;
+  --radius-large: 40px;
+
+  --bg-light-4: rgba(234, 246, 242, 0.04);
+  --bg-light-8: rgba(234, 246, 242, 0.08);
+  --bg-dark-4: rgba(22, 49, 45, 0.04);
+  --bg-dark-8: rgba(22, 49, 45, 0.08);
+
+  --t-light: rgba(234, 246, 242, 1);
+  --t-light-secondary: rgba(234, 246, 242, 0.8);
+  --t-light-disabled: rgba(79, 97, 93, 1);
+  --t-dark: rgba(22, 49, 45, 1);
+  --t-dark-secondary: rgba(22, 49, 45, 0.8);
+  --t-dark-disabled: rgba(22, 49, 45, 0.4);
+
+  --a-main-base: rgba(0, 173, 157, 1);
+  --a-main-hover: rgba(0, 150, 136, 1);
+  --a-main-pressed: rgba(0, 127, 115, 1);
+  --a-main-disabled: rgba(201, 213, 209, 1);
+  --a-main-8: rgba(0, 173, 157, 0.08);
+  --a-main-40: rgba(0, 173, 157, 0.4);
+
+  --a-green-base: rgba(216, 234, 226, 1);
+  --a-green-hover: rgba(201, 222, 214, 1);
+  --a-green-pressed: rgba(184, 210, 201, 1);
+  --a-green-disabled: rgba(227, 236, 233, 1);
+
+  --a-blue-base: rgba(218, 233, 238, 1);
+  --a-blue-hover: rgba(204, 222, 228, 1);
+  --a-blue-pressed: rgba(186, 208, 215, 1);
+  --a-blue-disabled: rgba(228, 236, 239, 1);
+
+  --a-orange-orange: rgba(233, 227, 214, 1);
+  --a-orange-hover: rgba(228, 220, 203, 1);
+  --a-orange-pressed: rgba(222, 213, 195, 1);
+  --a-orange-disabled: rgba(242, 239, 232, 1);
+
+  --a-dark-base: rgba(47, 79, 74, 1);
+  --a-dark-hover: rgba(41, 71, 67, 1);
+  --a-dark-pressed: rgba(35, 63, 60, 1);
+  --a-dark-disabled: rgba(108, 133, 129, 1);
+
+  --a-error-base: rgba(143, 70, 48, 1);
+  --a-error-hover: rgba(160, 84, 59, 1);
+  --a-error-pressed: rgba(115, 54, 36, 1);
+  --a-error-disabled: rgba(216, 199, 192, 1);
+
+  --a-add-base: rgba(216, 199, 192, 1);
+  --a-add-bg: rgba(236, 233, 226, 1);
+  --a-add-border: rgba(199, 214, 209, 1);
+  --a-add-disabled: rgba(216, 224, 221, 1);
 }
 
 .pinkShadow {
@@ -58,35 +108,14 @@ body {
     )
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
-.bgInsNight {
-  background: var(--ins-night);
-}
 .colorInsNight {
-  color: var(--ins-night) !important;
-}
-.colorDisco {
-  color: var(--cyber-disco) !important;
+  color: var(--bg-dark) !important;
 }
 .colorGrey {
   color: var(--grey) !important;
 }
-.colorInactiveGrey {
-  color: var(--inactive-grey);
-}
 .colorMediumBlue {
   color: var(--mineral) !important;
-}
-.colorElectricBlues {
-  color: var(--mineral);
-}
-.colorMenu {
-  color: var(--menu-gradient);
-}
-.colorVivid {
-  color: var(--vivid) !important;
-}
-.colorPurple {
-  color: var(--purple) !important;
 }
 .colorWhite {
   color: var(--cold-white) !important;
@@ -94,48 +123,34 @@ body {
 .colorElBlue {
   color: var(--mineral) !important;
 }
-.colorYellow {
-  color: var(--yellow) !important;
-}
-.colorMineral {
-  color: var(--mineral) !important;
-}
-.colorGradient {
-  background-image: linear-gradient( to right, #D5B22A, #8E1F1E);
-  background-clip: text;
-  color: transparent;
+.colorAccent {
+  color: var(--a-main-base) !important;
 }
 .colorGrey {
-  color: var(--grey) !important;
+  color: var(--t-dark-secondary) !important;
 }
-.colorGrey2 {
-  color: var(--grey2) !important;
+.colorTDarkDisabled {
+  color: var(--t-dark-disabled) !important;
 }
-.colorInherit {
-  color: inherit !important;
+.colorDanger {
+  color: var(--a-error-base) !important;
 }
-.unbounded {
-  font-family: "Cygre Black";
-}
+
 h1 {
-  font-family: "MxPlus IBM EGA";
+  font-family: "Heading";
+  font-weight: normal;
   font-style: normal;
-  font-weight: initial;
-  font-variation-settings: "wght" 900;
-  font-size: 40px;
-  text-transform: uppercase;
+  font-size: 64px;
   margin: 0;
+  margin-top: -24px;
+  text-transform: lowercase;
 }
 
 h2 {
-  /*color: var(--mineral);*/
-  font-family: "MxPlus IBM EGA", sans-serif;
+  font-family: "Main", sans-serif;
   font-style: normal;
-  font-weight: initial;
-  font-variation-settings: "wght" 900;
-  font-size: 30px;
-  line-height: 1.2;
-  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
   margin: 0;
   margin-bottom: 16px;
 }
@@ -150,53 +165,48 @@ h3 {
 }
 
 .sh1 {
-  font-family: "Ubuntu Mono", monospace;
-  color: var(--ins-night);
+  font-family: "Main", monospace;
+  color: var(--t-dark);
   font-style: normal;
-  font-variation-settings: "wght" 590;
-  font-weight: bold;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 1;
 }
 
 .sh2 {
-  font-family: "Ubuntu Mono", monospace;
+  font-family: "Main", monospace;
   font-style: normal;
-  font-variation-settings: "wght" 590;
+  font-weight: 400;
   font-size: 20px;
-  line-height: 24px;
   display: flex;
   align-items: flex-end;
 }
 .sh3 {
-  font-family: "Ubuntu Mono", monospace;
+  font-family: "Main", monospace;
   font-style: normal;
-  font-variation-settings: "wght" 510;
-  font-size: 16px;
-  line-height: 19px;
-  /* identical to box height */
-  display: flex;
-  align-items: flex-end;
+  font-weight: 400;
+  font-size: 15px;
 }
 .text {
-  font-family: "Ubuntu Condensed", sans-serif;
+  font-family: "Main", sans-serif;
   font-style: normal;
-  font-variation-settings: "wght" 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--t-light);
 }
 
 .textSmall {
-  font-family: "Ubuntu Mono", monospace;
-  color: var(--mineral);
+  font-family: "Main", monospace;
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16.7px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--t-light-secondary);
 }
 
 .tags {
-  font-family: "Ubuntu Mono", monospace;
+  font-family: "Main", monospace;
   font-style: normal;
   font-size: 14px;
   line-height: 1.1;
@@ -251,7 +261,7 @@ b {
 }
 
 .fontCondensed {
-  font-family: "Ubuntu Condensed", sans-serif;
+  font-family: "Main", sans-serif;
 }
 
 .movie-page {

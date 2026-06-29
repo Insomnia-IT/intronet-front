@@ -74,7 +74,7 @@ export function MapPageWithRouting() {
           <div class={styles.editBar}>
             <Button
               type="textSimple"
-              class="colorVivid"
+              class="colorDanger"
               onClick={() => {
                 locationsStore.discardChanges();
                 locationsStore.isEdit = false;

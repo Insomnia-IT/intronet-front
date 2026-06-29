@@ -55,7 +55,6 @@ export const MovieBlockEdit = () => {
 const EditMovieBlockView = (props: {
   index: number; block: MovieBlock;
 }) => {
-  const router = useRouter();
   const view = props.block.views[props.index];
   if (!view) return <></>
   return <>

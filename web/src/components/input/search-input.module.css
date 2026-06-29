@@ -14,7 +14,17 @@
 }
 
 .input {
-  composes: input from "./input.module.css";
+  composes: text from "../../app/app.style.module.css";
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 8px;
+  color: var(--bg-dark);
+  border-radius: var(--radius-large);
+  background: transparent;
+  border: 1px solid var(--a-add-border) !important;
   padding-left: 48px !important;
-  background-color: white;
+  background-color: transparent;
 }
