@@ -9,12 +9,11 @@ export type ActivityCardProps = {
   borderType?: "LeftCloud";
   border?: "Blue" | "Vivid" | "InactiveGrey" | "None" | "Yellow" | "Grey" | "Accent";
   background?:
-    | "None"
     | "White"
-    | "ColdWhite"
     | "Soft"
     | "Soft2"
     | "Vivid"
+    | "VividLight"
     | "Light";
   className?: string;
 } & JSX.HTMLAttributes<HTMLDivElement>;

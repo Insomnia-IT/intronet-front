@@ -72,7 +72,7 @@ body {
   --a-blue-pressed: rgba(186, 208, 215, 1);
   --a-blue-disabled: rgba(228, 236, 239, 1);
 
-  --a-orange-orange: rgba(233, 227, 214, 1);
+  --a-orange-base: rgba(233, 227, 214, 1);
   --a-orange-hover: rgba(228, 220, 203, 1);
   --a-orange-pressed: rgba(222, 213, 195, 1);
   --a-orange-disabled: rgba(242, 239, 232, 1);
@@ -87,7 +87,7 @@ body {
   --a-error-pressed: rgba(115, 54, 36, 1);
   --a-error-disabled: rgba(216, 199, 192, 1);
 
-  --a-add-base: rgba(216, 199, 192, 1);
+  --a-add-base: rgba(230, 126, 107, 1);
   --a-add-bg: rgba(236, 233, 226, 1);
   --a-add-border: rgba(199, 214, 209, 1);
   --a-add-disabled: rgba(216, 224, 221, 1);
