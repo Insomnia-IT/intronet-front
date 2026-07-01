@@ -111,9 +111,6 @@ body {
 .colorInsNight {
   color: var(--bg-dark) !important;
 }
-.colorGrey {
-  color: var(--grey) !important;
-}
 .colorMediumBlue {
   color: var(--mineral) !important;
 }
@@ -134,6 +131,9 @@ body {
 }
 .colorDanger {
   color: var(--a-error-base) !important;
+}
+.colorLightSecondary {
+  color: var(--t-light) !important;
 }
 
 h1 {
@@ -193,7 +193,7 @@ h3 {
   font-weight: 300;
   font-size: 15px;
   line-height: 1.2;
-  color: var(--t-light);
+  color: var(--t-dark-secondary);
 }
 
 .textSmall {

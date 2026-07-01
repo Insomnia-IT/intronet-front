@@ -50,20 +50,19 @@ const OnboardStage2 = () => {
         <h1>как это работает?</h1>
         <div>
           <h2 class={styles.menuText}>Локально на поле</h2>
-          <div class="text colorTDarkDisabled">
+          <div class="text colorLightSecondary">
             Добавь приложение на главный экран телефона и пользуйся им всё время на поле!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Почти интернет</h2>
-          <div class="text colorTDarkDisabled">
+          <div class="text colorLightSecondary">
             Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато
             в Insight получится видеть изменения, новости и писать объявления.
           </div>
         </div>
         <div class={styles.menuText}>
           Точки сети находятся у Инфоцентра, Фудкорта и основных экранов
-
         </div>
       </div>
       <Button class={styles.menuBtn}
@@ -102,14 +101,14 @@ const OnboardStage4 = () => {
         <h1>а ещё тут можно</h1>
         <div>
           <h2 class={styles.menuText}>Сохранять</h2>
-          <div class="text colorTDarkDisabled">
+          <div class="text colorLightSecondary">
             Мультфильмы, мероприятия и места в избранное, чтобы ничего не
             пропустить!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Проголосовать</h2>
-          <div class="text colorTDarkDisabled">
+          <div class="text colorLightSecondary">
             За лучший мультфильм в номинации «Приз зрительских симпатий»
           </div>
         </div>

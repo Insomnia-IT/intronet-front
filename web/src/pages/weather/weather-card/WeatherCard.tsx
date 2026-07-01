@@ -1,7 +1,6 @@
 import { Card } from '@components'
 import { DayWeatherReport} from '@stores/weather.store'
 import styles from './WeatherCard.module.css'
-import { getDayText } from '@helpers/getDayText'
 import classNames from 'classnames'
 
 interface WeatherCardProps extends DayWeatherReport {
@@ -36,11 +35,13 @@ const getTimeName = (time: 'morning' | 'afternoon' | 'evening' | 'night') => {
 }
 
 export const WeatherCard = ({day, isExpanded, onClick, temperature, feltTemperature, windSpeed, windDirection, condition, timesOfDay}: WeatherCardProps) => {
+  const date = new Date(Date.now() + day * 24 * 60 * 60 * 1000).toLocaleDateString('ru-RU', {weekday: 'long', day: 'numeric', month: 'long'});
+
   if (isExpanded) return (
     <Card className={classNames(styles.weatherCard, styles.weatherCardExpanded)} background='Soft' onClick={onClick}>
       <div className={styles.dayInfo}>
         <div className={styles.dayData}>
-          <h4 className={styles.day}>{getDayText(day, "full")}</h4>
+          <h4 className={styles.day}>{date}</h4>
           <h2 className={styles.temperature}>{temperature > 0 ? '+' : ''}{temperature}°C</h2>
           <h4 className={styles.condition}>{condition}</h4>
           <div className={styles.additionalInfo}>
@@ -62,7 +63,7 @@ export const WeatherCard = ({day, isExpanded, onClick, temperature, feltTemperat
 
   return (
     <Card className={styles.weatherCard} background='Soft' onClick={onClick}>
-      <div>{getDayText(day, "full").split(',').map((x, i) => <div key={i}>{x}</div>)}</div>
+      <div>{date.split(',').map((x, i) => <div key={i}>{x}</div>)}</div>
       <div>{condition}</div>
       <div>{temperature > 0 ? '+' : ''}{temperature}°C/{timesOfDay.night.temperature > 0 ? '+' : ''}{timesOfDay.night.temperature}°C</div>
     </Card>
