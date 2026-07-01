@@ -7,7 +7,7 @@
   gap: 8px;
   width: 100%;
   max-width: 440px;
-  padding: 8px 24px 10px;
+  padding: 8px 12px 10px;
   box-sizing: border-box;
   border-radius: var(--radius-large-small) var(--radius-large-small) 0 0;
   background: var(--a-dark-base);
@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .active,
