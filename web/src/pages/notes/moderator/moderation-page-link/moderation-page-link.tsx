@@ -15,7 +15,7 @@ const Link: FunctionalComponent = () => {
       style={{ alignSelf: "flex-start", width: "auto" }}
       goTo={"/notes/moderation"}
     >
-      Предложка {noApprovedNotesCount ? `(${noApprovedNotesCount})` : ""} →
+      Предложка {noApprovedNotesCount ? `(${noApprovedNotesCount})` : ""}
     </Button>
   );
 };

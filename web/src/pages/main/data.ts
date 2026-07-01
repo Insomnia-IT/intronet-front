@@ -158,17 +158,6 @@ export const mainPageData: MainPageSection[] = [
       ],
       [
         {
-          id: "eco",
-          title: "Мусор и\nэкология"
-        },
-        {
-          id: "about",
-          title: "О фестивале",
-          color: true
-        }
-      ],
-      [
-        {
           id: "leave",
           title: "Как уехать",
           color: true
