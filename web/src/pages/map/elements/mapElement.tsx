@@ -1,37 +1,12 @@
 import { SvgIcon } from "@icons";
 import styles from "../map-element.module.css";
 import { useCell } from "@helpers/cell-state";
-import { Directions, locationsStore } from "@stores";
+import { Directions } from "@stores";
 import { TransformMatrix } from "../transform/transform.matrix";
 import { Cell } from "@cmmn/cell";
 import { orderBy } from "@cmmn/core";
-import { FigureTitle } from "./figureTitle";
 import { useMemo } from "preact/hooks";
 import { PointItemStore } from "./elementStore";
-
-export function MapCircleElement(props: {
-  item: MapItem;
-  transformCell: Cell<TransformMatrix>;
-}) {
-  const store = useMemo(
-    () => new PointItemStore(props.item.id, props.transformCell),
-    [props.item.id, props.transformCell]
-  );
-  const form = useCell(() => store.form, [store]);
-  const center = useCell(() => store.figure as Point, [store]);
-  const color = useCell(() => store.color, [store]);
-  const isRendered = useCell(() => store.isRendered, [store]);
-  return (
-    <circle
-      hidden={!isRendered || form != "circleSmall"}
-      r="3em"
-      cx={center.X}
-      cy={center.Y}
-      fill={color}
-      onClick={store.onClick}
-    />
-  );
-}
 
 export function ElementIcon({ store }: { store: PointItemStore }) {
   const size = "20em";
@@ -98,6 +73,7 @@ function ItemIcon({ store }: { store: PointItemStore }) {
         style={{
           display: showText && showIcon ? "initial" : "none",
         }}
+        filter="url(#text-bg)"
       >
         <ItemText item={store.item} />
       </g>
@@ -113,7 +89,6 @@ function ItemText(props: { item: MapItem }) {
         style={{
           transform: `translate(calc(12px / var(--scale)), calc(4px / var(--scale)))`,
         }}
-        filter="url(#solid)"
       >
         {props.item.title}
       </text>
@@ -130,7 +105,6 @@ function ItemText(props: { item: MapItem }) {
               (2.5 + i * 1.2) * 13
             }px / var(--scale)))`,
           }}
-          filter="url(#solid)"
         >
           {text}
         </text>
@@ -207,35 +181,35 @@ export const directionsToOrder = new Map([
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
-  ["Медпункт", ".map #sign"],
+  ["Медпункт", ".map #med"],
   ["КПП", ".map #kpp"],
-  ["Баня", ".map #shower"],
-  ["Точка Сборки", ".map #sign"],
+  ["Баня", ".map #bathhouse"],
+  ["Точка Сборки", ".map #match-point"],
   ["Хатифнатты", ".map #lecture"],
-  ["Платный лагерь", ".map #tent"],
+  ["Платный лагерь", ".map #rent-tent"],
   ["Детская Площадка", ".map #art"],
   ["Арт-объект", ".map #art"],
-  ["Мастер-Классы", ".map #lecture"],
+  ["Мастер-Классы", ".map #masterclass"],
   ["Туалет", ".map #wc"],
   ["Ярмарка", ".map #shop"],
-  ["Автолагерь", ".map #tent"],
+  ["Автолагерь", ".map #car-tent"],
   ["Лекторий", ".map #lecture"],
   ["Фудкорт", ".map #cafe"],
   ["Кафе", ".map #cafe"],
   ["КАФЕ", ".map #cafe"],
   ["Ветви Дерева", ".map #art"],
   ["Спортплощадка", ".map #art"],
-  [Directions.paidShower, ".map #shower"],
+  [Directions.paidShower, ".map #rent-shower"],
   [Directions.freeShower, ".map #shower"],
-  ["Музыка", ".map #eye"],
-  ["Театральная Сцена", ".map #eye"],
+  ["Музыка", ".map #music"],
+  ["Театральная Сцена", ".map #theater"],
   ["Гостевые Кемпинги", ".map #tent"],
   ["Экран", ".map #eye"],
   ["Инфоцентр", ".map #sign"],
   ["Гостевые Кемпинги", ".map #tent"],
   [Directions.sign, ".map #direction"],
   ["Фонтан", ".map #fountain"],
-  ["Анимаквест", ".map #magnifying-glass"],
+  ["Анимаквест", ".map #quest"],
   ["Костер", ".map #fire"],
   ["Урна", ".map #recycling"],
 ]);
@@ -253,9 +227,19 @@ export type MapIconId =
   | ".map #shower"
   | ".map #shop"
   | ".map #fountain"
-  | ".map #magnifying-glass"
+  | ".map #quest"
   | ".map #fire"
-  | ".map #recycling";
+  | ".map #recycling"
+  | ".map #car-tent"
+  | ".map #rent-tent"
+  | ".map #shower"
+  | ".map #rent-shower"
+  | ".map #med"
+  | ".map #match-point"
+  | ".map #music"
+  | ".map #masterclass"
+  | ".map #theater"
+  | ".map #bathhouse";
 
 export type DetailsGroup =
   | "cafe"

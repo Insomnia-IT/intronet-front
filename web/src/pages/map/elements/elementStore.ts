@@ -112,17 +112,16 @@ export class PointItemStore extends ElementStore {
     switch (this.type) {
       case OrderType.MainZone:
       case OrderType.Main:
-        return "var(--mineral)";
-      case OrderType.Info:
-        return "var(--yellow)";
       case OrderType.Screens:
-        return "var(--vivid)";
+        return "rgba(183, 106, 132, 1)";
+      case OrderType.Info:
+        return "rgba(140, 118, 168, 1)";
       case OrderType.Cafe:
-        return "var(--vivid)";
+        return "rgba(79, 127, 163, 1)";
       case OrderType.WC:
-        return "var(--purple)";
+        return "rgba(63, 140, 136, 1)";
       case OrderType.Other:
-        return "var(--mineral)";
+        return "rgba(116, 133, 99, 1)";
       default:
         return "black";
     }

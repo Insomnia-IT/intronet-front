@@ -135,6 +135,9 @@ body {
 .colorLightSecondary {
   color: var(--t-light) !important;
 }
+.colorAddBase {
+  color: var(--a-add-base) !important;
+}
 
 h1 {
   font-family: "Heading";

@@ -107,7 +107,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 116px;
+  bottom: 80px;
   z-index: 4;
   padding: 0 10px 8px;
   padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
@@ -171,13 +171,13 @@
   font-size: 14px;
   cursor: pointer;
   white-space: nowrap;
-  background: #4a3728;
-  color: var(--white);
+  background: var(--a-green-base);
+  color: var(--a-dark-base);
 }
 
 .mapChipActive {
-  background: #6bbdb0;
-  color: var(--white);
+  background: var(--a-dark-base);
+  color: var(--t-light);
 }
 
 .editBar {
