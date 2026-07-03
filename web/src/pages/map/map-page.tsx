@@ -56,16 +56,6 @@ export function MapPageWithRouting() {
       className={styles.full}
       hideSearchDeps={[router.locationId]}
     >
-      <div className={styles.header}>
-        <SvgIcon
-          id="#bookmark"
-          style={{
-            color: "var(--vivid)",
-          }}
-          size={32}
-          onClick={() => goTo("/bookmarks/locations")}
-        />
-      </div>
       <div className={styles.container}>
         {/* ref: вызов resetView с кнопки сброса вида (вне MapComponent) */}
         <MapComponent

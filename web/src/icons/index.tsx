@@ -18,6 +18,7 @@ export const SvgIcon: FunctionalComponent<SvgIconProps> = ({id, g, size, ...prop
       if (!icon)
         return console.warn(`not found icon: `, id);
       icon.setAttribute('vector-effect', 'non-scaling-stroke')
+      icon.dataset.id = id;
       icon && ref.current?.appendChild(icon.cloneNode(true));
     });
   }, [ref, id]);

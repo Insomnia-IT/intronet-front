@@ -77,7 +77,13 @@ export class MapComponent extends Component<{
         className={styles.container}
       >
         <svg className={styles.svg}>
-          <defs>
+          <g
+            aria-label="transform"
+            style={{
+              fontSize: "calc(1px/var(--scale))",
+            }}
+          >
+            <defs>
             <filter x="0" y="0" width="1" height="1" id="solid">
               <feMorphology
                 in="SourceAlpha"
@@ -87,13 +93,26 @@ export class MapComponent extends Component<{
               />
               <feComposite in="SourceGraphic" in2="erodedAlpha" operator="in" />
             </filter>
+            <filter x="-5%" y="-5%" width="110%" height="110%" id="text-bg">
+              <feFlood flood-color="var(--bg-light)" result="bg" />
+              <feColorMatrix in="SourceGraphic" type="matrix" values="
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                1 0 0 0 1" result="alpha" />
+              <feGaussianBlur in="alpha" stdDeviation="3" result="blurredAlpha" />
+              <feColorMatrix in="blurredAlpha" type="matrix" values="
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 15 -7" result="mask" />
+              <feComposite in="bg" in2="mask" operator="in" result="roundedBg" />
+              <feMerge>
+                <feMergeNode in="roundedBg" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
-          <g
-            aria-label="transform"
-            style={{
-              fontSize: "calc(1px/var(--scale))",
-            }}
-          >
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
