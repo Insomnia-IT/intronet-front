@@ -150,7 +150,7 @@ const sections = {
           полезное для кожи, которое не вредит окружающей среде.
         </div>
         <ButtonsBar at="bottom">
-          <Button type="blue" class="w-full" goTo={["map", { name: "steam" }]}>
+          <Button type="blue" class="w-full" goTo={["map", { name: "Баня" }]}>
             к бане
           </Button>
         </ButtonsBar>

@@ -23,7 +23,7 @@ export function Radio() {
       Для прослушивания необходимо подключение к Insomnia-Wi-Fi
     </div>
     <ButtonsBar at="bottom">
-      <Button type="blue" class="w-full" href="http://radio.insomniafest.ru:8000/main_stream" target="_blank" rel="noopener noreferrer">слушать радио</Button>
+      <Button type="blue" class="w-full" href="http://radio.insomniafest.ru:8000/radio_insomnia" target="_blank" rel="noopener noreferrer">слушать радио</Button>
     </ButtonsBar>
   </PageLayout>
 }
