@@ -25,7 +25,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({id}) => {
   const {activity, hasBookmark} = useCell(store.state);
 
   return (
-    <div flex column gap={4}>
+    <div flex column gap={4} style={{paddingBottom: 80}}>
       {activity && (<>
           <PageHeader
             titleH2={

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
-    <name>gp_fin_270626</name>
+    <name>Копия gp_fin_010726</name>
     <description/>
     <Style id="icon-1509-9C27B0-labelson">
       <IconStyle>
@@ -962,6 +962,42 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#icon-1898-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="icon-1899-DB4436-nodesc-normal">
@@ -4211,7 +4247,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Анимаквест. Хранитель Водомерка</name>
+        <name>Анимаквест. Хранитель Черепаха</name>
         <description>27.06.2026 18:28:48</description>
         <styleUrl>#icon-1852-FFEA00-labelson</styleUrl>
         <Point>
@@ -4241,7 +4277,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Анимаквест. Хранитель Черепаха</name>
+        <name>Анимаквест. Хранитель Водомерка</name>
         <description>27.06.2026 18:38:09</description>
         <styleUrl>#icon-1888-FFEA00-labelson</styleUrl>
         <Point>
@@ -4394,12 +4430,12 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Админка.Домик Бригадиров</name>
+        <name>Автостанция</name>
         <description>10.03.2026 23:55:06</description>
         <styleUrl>#icon-1551-9C27B0-labelson</styleUrl>
         <Point>
           <coordinates>
-            35.085383,54.679057,0
+            35.0854822,54.6792415,0
           </coordinates>
         </Point>
       </Placemark>
@@ -4474,7 +4510,8 @@
             <LinearRing>
               <tessellate>1</tessellate>
               <coordinates>
-                35.080745,54.680676,0
+                35.0799833,54.6814265,0
+                35.0787011,54.6807184,0
                 35.079702,54.680084,0
                 35.0802,54.679775,0
                 35.081124,54.679216,0
@@ -4483,25 +4520,25 @@
                 35.082575,54.678782,0
                 35.083245,54.678754,0
                 35.083463,54.678766,0
-                35.083479,54.67898,0
-                35.083581,54.679053,0
-                35.083999,54.679081,0
-                35.084112,54.679234,0
-                35.08416,54.67934,0
-                35.083833,54.67947,0
-                35.083924,54.679566,0
-                35.084289,54.679526,0
-                35.084589,54.679548,0
+                35.0839296,54.6787815,0
+                35.0842569,54.6787987,0
+                35.0846803,54.6788546,0
+                35.0850293,54.6788866,0
+                35.0856084,54.678943,0
+                35.0860646,54.6789769,0
+                35.0860859,54.679107,0
+                35.0858715,54.6792996,0
+                35.0848572,54.6795697,0
                 35.084616,54.67961,0
                 35.083114,54.679963,0
-                35.083104,54.679884,0
-                35.082948,54.67967,0
-                35.082471,54.679683,0
-                35.08201,54.679782,0
-                35.08144,54.680261,0
-                35.081215,54.680441,0
-                35.081073,54.680578,0
-                35.080745,54.680676,0
+                35.0829645,54.6799894,0
+                35.0826583,54.680067,0
+                35.0822779,54.6801637,0
+                35.0818544,54.6802751,0
+                35.0814776,54.6803913,0
+                35.0812526,54.6804875,0
+                35.0812554,54.6807517,0
+                35.0799833,54.6814265,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>
@@ -7625,6 +7662,99 @@
         <Point>
           <coordinates>
             35.1052525,54.6735165,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Урны.csv</name>
+      <Placemark>
+        <name>Многопоточка 1</name>
+        <description><![CDATA[description: Многопоточка у Кинобара (для дальних лагерей) <br>название: ]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Многопоточка у Кинобара (для дальних лагерей) </value>
+          </Data>
+          <Data name="название">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.094026,54.6873736,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Многопоточка 2</name>
+        <description><![CDATA[description: <br>название: ]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value/>
+          </Data>
+          <Data name="название">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.0958089,54.6842324,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Многопоточка 3</name>
+        <description><![CDATA[description: <br>название: ]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value/>
+          </Data>
+          <Data name="название">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.0837552,54.6814032,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Многопоточка 4</name>
+        <description><![CDATA[description: <br>название: ]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value/>
+          </Data>
+          <Data name="название">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.0798582,54.6798879,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Многопоточка Админка</name>
+        <description><![CDATA[description: <br>название: ]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value/>
+          </Data>
+          <Data name="название">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.0850918,54.6791754,0
           </coordinates>
         </Point>
       </Placemark>

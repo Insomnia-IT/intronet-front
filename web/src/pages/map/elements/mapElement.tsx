@@ -73,7 +73,6 @@ function ItemIcon({ store }: { store: PointItemStore }) {
         style={{
           display: showText && showIcon ? "initial" : "none",
         }}
-        filter="url(#text-bg)"
       >
         <ItemText item={store.item} />
       </g>
@@ -178,6 +177,11 @@ export const directionsToOrder = new Map([
   ["Анимаквест", OrderType.Other],
   ["Костер", OrderType.Cafe],
   ["Урна", OrderType.Other],
+  ["Капшеринг", OrderType.Other],
+  ["Кибер-Инфо", OrderType.Other],
+  ["Диафильминариум", OrderType.Other],
+  ["Игротека", OrderType.Other],
+  ["Детская поляна", OrderType.Other],
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
@@ -212,6 +216,11 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Анимаквест", ".map #quest"],
   ["Костер", ".map #fire"],
   ["Урна", ".map #recycling"],
+  ["Кибер-Инфо", ".map #fire"],
+  ["Капшеринг", ".map #cup"],
+  ["Диафильминариум", ".map #film"],
+  ["Игротека", ".map #game"],
+  ["Детская поляна", ".map #children"],
 ]);
 
 export type MapIconId =
@@ -239,7 +248,11 @@ export type MapIconId =
   | ".map #music"
   | ".map #masterclass"
   | ".map #theater"
-  | ".map #bathhouse";
+  | ".map #bathhouse"
+  | ".map #cup"
+  | ".map #film"
+  | ".map #game"
+  | ".map #children";
 
 export type DetailsGroup =
   | "cafe"
