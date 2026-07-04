@@ -11,10 +11,10 @@ import { bookmarksStore } from "@stores/bookmarks.store";
 import { Link } from "@components";
 import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
 import { PageHeader } from "@components/PageHeader/PageHeader";
-import { useOnlineState } from '@helpers/useOnlineState'
+import { useOnlineState } from "@helpers/useOnlineState";
 import { votingStore } from "@stores/votingStore";
 import styles from "./movie.module.css";
-import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
+import { decodeHTMLEntities } from "@helpers/decodeHtmlEntities";
 
 export type MovieProps = {
   id: string;
@@ -30,8 +30,19 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   if (!screenLocations.length) return <></>;
 
   return (
-    <div flex column gap={2} class="movie-page" >
+    <div flex column gap={2} class="movie-page">
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />
+      {movie.vurchelId && (
+        <img
+          class={styles.poster}
+          src={`/images/movies/film_${movie.vurchelId}.webp`}
+          alt={movie?.name}
+          loading="lazy"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).style.display = "none";
+          }}
+        />
+      )}
       {movie.plot && (
         <div
           style={{
@@ -43,11 +54,9 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
         </div>
       )}
       <div class={styles.meta}>
-        {[
-          movie.author,
-          movie.country,
-          movie.info?.filmReleaseYear
-        ].filter((x) => x).join(", ")}
+        {[movie.author, movie.country, movie.info?.filmReleaseYear]
+          .filter((x) => x)
+          .join(", ")}
       </div>
       {minutes != undefined && (
         <div class={styles.meta}>
@@ -57,7 +66,9 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
       <div flex column gap={2} style={{ marginBottom: 24 }}>
         <Card background="Soft" gap={0}>
           <div flex column gap="2">
-            <div class={`sh2 ${styles.votingHeader}`}>Международный конкурс анимации</div>
+            <div class={`sh2 ${styles.votingHeader}`}>
+              Международный конкурс анимации
+            </div>
           </div>
           <div class={styles.votingDescription}>
             Вы можете голосовать за несколько мультфильмов
@@ -74,13 +85,14 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
 
         {!isOnline && (
           <div class="textSmall colorDanger">
-            Нет подключения к сети, вернитесь к точке WIFI, чтобы
-            проголосовать
+            Нет подключения к сети, вернитесь к точке WIFI, чтобы проголосовать
           </div>
         )}
       </div>
       <div flex column>
-        <div className="sh1" style={{ marginBottom: 8 }}>Расписание показов:</div>
+        <div className="sh1" style={{ marginBottom: 8 }}>
+          Расписание показов:
+        </div>
         {state.views.map((view) => (
           <div flex column gap={2} key={view.day + view.locationId}>
             <div class="tags colorTDarkDisabled">
@@ -91,17 +103,22 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
               onClick={() => router.goTo(["map", view.locationId])}
               style={{ marginBottom: 16, gap: 8 }}
             >
-              <div flex class="sh1" style={{alignItems: "center"}} gap={2}>
+              <div flex class="sh1" style={{ alignItems: "center" }} gap={2}>
                 {locationsStore.getName(view.locationId)}
               </div>
               <div
-                style={{display: "flex", flexDirection: "column", gap: 16, width: "100%"}}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  width: "100%",
+                }}
               >
                 <Link
                   goTo={["map", view.locationId]}
                   style={{
                     display: "block",
-                    width: '100%'
+                    width: "100%",
                   }}
                 >
                   Локация на карте
@@ -129,9 +146,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
           onClick={() => bookmarksStore.switchBookmark("movie", movie.id)}
         >
           {/* <BookmarkIcon size={24} class={styles.bookmarkIcon} /> */}
-          {state.hasBookmark
-            ? "удалить из избранного"
-            : "в избранное"}
+          {state.hasBookmark ? "удалить из избранного" : "в избранное"}
         </Button>
       </ButtonsBar>
     </div>

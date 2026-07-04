@@ -91,35 +91,58 @@ export class MapComponent extends Component<{
             }}
           >
             <defs>
-            <filter x="0" y="0" width="1" height="1" id="solid">
-              <feMorphology
-                in="SourceAlpha"
-                operator="erode"
-                radius="0.12"
-                result="erodedAlpha"
-              />
-              <feComposite in="SourceGraphic" in2="erodedAlpha" operator="in" />
-            </filter>
-            <filter x="-5%" y="-5%" width="110%" height="110%" id="text-bg">
-              <feFlood flood-color="var(--bg-light)" result="bg" />
-              <feColorMatrix in="SourceGraphic" type="matrix" values="
+              <filter x="0" y="0" width="1" height="1" id="solid">
+                <feMorphology
+                  in="SourceAlpha"
+                  operator="erode"
+                  radius="0.12"
+                  result="erodedAlpha"
+                />
+                <feComposite
+                  in="SourceGraphic"
+                  in2="erodedAlpha"
+                  operator="in"
+                />
+              </filter>
+              <filter x="-5%" y="-5%" width="110%" height="110%" id="text-bg">
+                <feFlood flood-color="var(--bg-light)" result="bg" />
+                <feColorMatrix
+                  in="SourceGraphic"
+                  type="matrix"
+                  values="
                 0 0 0 0 0
                 0 0 0 0 0
                 0 0 0 0 0
-                1 0 0 0 1" result="alpha" />
-              <feGaussianBlur in="alpha" stdDeviation="3" result="blurredAlpha" />
-              <feColorMatrix in="blurredAlpha" type="matrix" values="
+                1 0 0 0 1"
+                  result="alpha"
+                />
+                <feGaussianBlur
+                  in="alpha"
+                  stdDeviation="3"
+                  result="blurredAlpha"
+                />
+                <feColorMatrix
+                  in="blurredAlpha"
+                  type="matrix"
+                  values="
                 0 0 0 0 0
                 0 0 0 0 0
                 0 0 0 0 0
-                0 0 0 15 -7" result="mask" />
-              <feComposite in="bg" in2="mask" operator="in" result="roundedBg" />
-              <feMerge>
-                <feMergeNode in="roundedBg" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+                0 0 0 15 -7"
+                  result="mask"
+                />
+                <feComposite
+                  in="bg"
+                  in2="mask"
+                  operator="in"
+                  result="roundedBg"
+                />
+                <feMerge>
+                  <feMergeNode in="roundedBg" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
@@ -159,6 +182,9 @@ export class MapComponent extends Component<{
       .then((text) => {
         const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
         g.innerHTML = text;
+        const innerSVG = g.firstChild as SVGSVGElement;
+        innerSVG.setAttribute("width", MapSize.width.toString());
+        innerSVG.setAttribute("height", MapSize.height.toString());
         this.transformElement.prepend(g);
       });
     this.initTransform(MapSize, element);

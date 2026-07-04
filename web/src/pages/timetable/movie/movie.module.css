@@ -2,6 +2,13 @@
   fill: var(--cold-white);
 }
 
+.poster {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
 .plot {
   font-size: 15px;
   line-height: 1.2;
