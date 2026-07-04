@@ -67,12 +67,19 @@ export class MapComponent extends Component<{
       <div
         ref={this.setHandler}
         onPointerDown={(e) => (this.mouseDown = e)}
-        onPointerUp={(e) => {
+        onClick={(e) => {
+          // Сброс выделения по тапу мимо точки. Делаем это на click, а не на
+          // pointerup: точка в своём onClick вызывает preventDefault, и только
+          // на click (том же событии) виден e.defaultPrevented. На pointerup он
+          // всегда false, поэтому setSelectedId(null) срабатывал даже при тапе
+          // по точке — и при активном фильтре очищал ?direction=, из-за чего
+          // тапнутая точка исчезала из группы `selected` до того, как её click
+          // успевал её выбрать.
+          if (!this.mouseDown) return;
           if (Math.abs(this.mouseDown.pageX - e.pageX) > 3) return;
           if (Math.abs(this.mouseDown.pageY - e.pageY) > 3) return;
-          if (!e.defaultPrevented) {
-            locationsStore.setSelectedId(null);
-          }
+          if (e.defaultPrevented) return;
+          locationsStore.setSelectedId(null);
         }}
         className={styles.container}
       >
