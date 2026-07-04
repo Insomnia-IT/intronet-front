@@ -10,7 +10,7 @@ export const OnboardPage = () => {
   const router = useRouter();
   useEffect(() => {
     if (Number.isNaN(stage)) userStore.OnboardingPhase = 0;
-    if (stage >= Stages.length) router.goTo(["main"], {}, true);
+    if (stage >= Stages.length) router.goTo(["map"], {}, true);
   }, [stage]);
   const Page = Stages[+stage] ?? (() => <></>);
   return (

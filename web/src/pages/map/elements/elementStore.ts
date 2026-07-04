@@ -39,7 +39,8 @@ enum Threshold {
   Cafe = 1,
   CafeText = 2,
   Other = 3,
-  OtherText = 4,
+  CyberInfo = 4,
+  OtherText = 5,
 }
 
 export class PointItemStore extends ElementStore {
@@ -54,8 +55,8 @@ export class PointItemStore extends ElementStore {
   @cell
   get threshold() {
     if (this.scale > 0.5) return Threshold.OtherText;
-    if (this.scale > 0.4) return Threshold.Other;
-    if (this.scale > 0.33) return Threshold.CafeText;
+    if (this.scale > 0.4) return Threshold.CyberInfo;
+    if (this.scale > 0.33) return Threshold.Other;
     if (this.scale > 0.25) return Threshold.Cafe;
     return Threshold.None;
   }
@@ -168,6 +169,9 @@ export class PointItemStore extends ElementStore {
 
   @cell
   get showText() {
+    if (this.item?.priority) {
+      return this.threshold >= Threshold.Cafe || this.isSelected;
+    }
     switch (this.type) {
       case OrderType.Main:
       case OrderType.Screens:
