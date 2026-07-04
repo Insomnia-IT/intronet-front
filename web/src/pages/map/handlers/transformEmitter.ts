@@ -14,7 +14,13 @@ export class TransformEmitter extends EventEmitter<{
       passive: true,
       signal,
     });
-    this.root.addEventListener("touchend", this.onUp, {
+    // touchend/touchcancel на window: если нажатая кнопка удаляется из DOM,
+    // touchend диспатчится на отсоединённом узле и до root не всплывает
+    window.addEventListener("touchend", this.onUp, {
+      passive: true,
+      signal,
+    });
+    window.addEventListener("touchcancel", this.onUp, {
       passive: true,
       signal,
     });
@@ -37,20 +43,27 @@ export class TransformEmitter extends EventEmitter<{
   };
 
   onDown = (event: TouchEvent) => {
+    clearTimeout(this.firstTouchTimeout);
     this.lastTouches = this.getLastTouches(event);
     if (event.touches.length == 1) {
       this.root.addEventListener("touchmove", this.onMove, {
         passive: true,
         signal: this.abort.signal,
       });
+      const touches = this.lastTouches;
+      clearTimeout(this.firstTouchTimeout);
       this.firstTouchTimeout = setTimeout(() => {
+        // просроченный таймер от предыдущего касания не должен
+        // сработать по координатам нового
+        if (this.lastTouches !== touches) return;
         this.root.removeEventListener("touchmove", this.onMove);
-        this.emit("longtap", this.lastTouches.center);
+        this.emit("longtap", touches.center);
         this.lastTouches = null;
       }, 1000);
     }
   };
   onUp = (event: TouchEvent) => {
+    clearTimeout(this.firstTouchTimeout);
     if (!this.lastTouches) return;
     if (event.touches.length > 0) {
       this.lastTouches = this.getLastTouches(event);
@@ -58,7 +71,6 @@ export class TransformEmitter extends EventEmitter<{
       this.root.removeEventListener("touchmove", this.onMove);
       this.lastTouches = null;
     }
-    clearTimeout(this.firstTouchTimeout);
   };
   private firstTouchTimeout: any = null;
   private lastTouches: TouchInfo = null;
