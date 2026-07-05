@@ -122,7 +122,12 @@ const updateTask = async (apiKey: string) => {
   const currentHour = new Date().getHours();
   const data = await fetch(
     `https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=${apiKey}&lat=${lat}&lon=${lon}&asl=${asl}&format=${format}`
-  ).then(res => res.json() as Promise<WeatherData>);
+  ).then(res => res.json() as Promise<WeatherData | {error: true, error_message: string}>);
+
+  if ('error' in data) {
+    console.warn(data.error_message);
+    return;
+  }
 
   const currentTemperature = data.data_1h.temperature[currentHour];
   const currentCondition = getWeatherCategory(data.data_1h.pictocode[currentHour]);
