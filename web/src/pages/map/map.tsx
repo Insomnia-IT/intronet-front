@@ -91,7 +91,7 @@ export class MapComponent extends Component<{
             }}
           >
             <image
-              href="/public/images/map2026.webp"
+              href="/public/images/map2026.svg"
               width={MapSize.width}
               height={MapSize.height}
               preserveAspectRatio="none"
