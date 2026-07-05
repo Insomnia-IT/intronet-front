@@ -137,7 +137,7 @@ class LocationsStore {
   public get Locations(): ReadonlyArray<InsomniaLocation> {
     return this.RealLocations.concat(
       this.VirtualCafe.filter((x) => !this.db.get(x._id))
-    );
+    ).concat(this.VirtualTrees.filter((x) => !this.db.get(x._id)));
   }
 
   @cell
@@ -223,6 +223,28 @@ class LocationsStore {
       } as InsomniaLocation;
     });
   }
+  /**
+   * Декоративные точки-деревья: не настоящие локации, просто фиксированные
+   * координаты (см. scripts/extract-map-trees.js + dedupe-trees.js), заведённые
+   * как виртуальные точки, чтобы рендериться обычным MapPointElement
+   * (form="tree") — тогда они, как и другие маркеры, всегда стоят вертикально
+   * независимо от поворота карты, вместо того чтобы крутиться вместе с фоном.
+   */
+  @cell
+  public get VirtualTrees(): Array<InsomniaLocation> {
+    return TREE_POINTS.map(
+      (geo, i) =>
+        ({
+          _id: "tree" + i,
+          name: undefined,
+          directionId: undefined,
+          figure: geo,
+          isTree: true,
+          priority: false,
+          contentBlocks: [],
+        } as InsomniaLocation)
+    );
+  }
   // @cell
   // public get VirtualShops(): Array<MapItem> {
   //   const patches = new Map(this.locationPatches.toArray());
@@ -267,6 +289,7 @@ class LocationsStore {
       maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
       minZoom: x.minZoom,
       isFoodcourt: x.isFoodcourt,
+      isTree: x.isTree,
     } as MapItem;
   }
 
@@ -470,3 +493,42 @@ function getFoodcourtShift(index: number) {
     Y: -(index - 10) / 4,
   };
 }
+
+/**
+ * Позиции декоративных деревьев на карте (см. VirtualTrees). Считаны из
+ * map2026.svg через scripts/extract-map-trees.js + dedupe-trees.js и
+ * переведены в Geo той же формулой, что и geoConverter.
+ */
+const TREE_POINTS: Geo[] = [
+  { lat: 54.6855775, lon: 35.0921854 },
+  { lat: 54.6846424, lon: 35.0939564 },
+  { lat: 54.6842668, lon: 35.0914337 },
+  { lat: 54.6814979, lon: 35.0870001 },
+  { lat: 54.6932644, lon: 35.0952177 },
+  { lat: 54.6922852, lon: 35.0936633 },
+  { lat: 54.6919171, lon: 35.096428 },
+  { lat: 54.6877424, lon: 35.0983136 },
+  { lat: 54.687146, lon: 35.1005942 },
+  { lat: 54.6863286, lon: 35.0990653 },
+  { lat: 54.6794138, lon: 35.101779 },
+  { lat: 54.6805406, lon: 35.103104 },
+  { lat: 54.6792886, lon: 35.1043144 },
+  { lat: 54.6775063, lon: 35.0769988 },
+  { lat: 54.6766888, lon: 35.0752151 },
+  { lat: 54.6781618, lon: 35.0747182 },
+  { lat: 54.6793475, lon: 35.0598755 },
+  { lat: 54.6784269, lon: 35.0617102 },
+  { lat: 54.6780366, lon: 35.0586015 },
+  { lat: 54.6842521, lon: 35.0573912 },
+  { lat: 54.683037, lon: 35.0559642 },
+  { lat: 54.6829781, lon: 35.0586652 },
+  { lat: 54.6839649, lon: 35.0700807 },
+  { lat: 54.6822785, lon: 35.0681823 },
+  { lat: 54.6819913, lon: 35.071291 },
+  { lat: 54.6912618, lon: 35.0760815 },
+  { lat: 54.6893475, lon: 35.0775084 },
+  { lat: 54.690128, lon: 35.0749093 },
+  { lat: 54.6914827, lon: 35.0876753 },
+  { lat: 54.6917919, lon: 35.084745 },
+  { lat: 54.6901869, lon: 35.0859553 },
+];

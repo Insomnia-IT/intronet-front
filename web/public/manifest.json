@@ -1,24 +1,26 @@
 {
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "ru",
   "display": "standalone",
   "display_override": [
-    "minimal-ui",
-    "window-controls-overlay"
+    "window-controls-overlay",
+    "standalone"
   ],
   "id": "app.insight.twa",
   "name": "Insomnia Fest",
   "short_name": "Insight",
-  "theme_color": "#061E35",
-  "background_color": "#061E35",
-  "navigationColor": "#061E35",
-  "navigationColorDark": "#061E35",
-  "navigationDividerColor": "#061E35",
-  "navigationDividerColorDark": "#061E35",
+  "theme_color": "#16312D",
+  "background_color": "#16312D",
+  "navigationColor": "#16312D",
+  "navigationColorDark": "#16312D",
+  "navigationDividerColor": "#16312D",
+  "navigationDividerColorDark": "#16312D",
   "icons": [
     {
       "src": "/public/icons/64x64.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "/public/icons/192x192.png",

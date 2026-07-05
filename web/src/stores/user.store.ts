@@ -16,10 +16,16 @@ class UserStore extends LocalStore<{
 
   set StatusBarColor(color: string){
     for (let meta of Array.from(
-      document.head.querySelectorAll(`meta[name=theme-color],meta[name=apple-mobile-web-app-status-bar-style]`)
+      document.head.querySelectorAll(`meta[name=theme-color]`)
     )) {
       meta.setAttribute('content', color);
     }
+    // apple-mobile-web-app-status-bar-style only accepts default/black/black-translucent, not colors
+    const [r, g, b] = [1, 3, 5].map(i => parseInt(color.slice(i, i + 2), 16));
+    const isDark = (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+    document.head
+      .querySelector('meta[name=apple-mobile-web-app-status-bar-style]')
+      ?.setAttribute('content', isDark ? 'black-translucent' : 'default');
   }
 
 

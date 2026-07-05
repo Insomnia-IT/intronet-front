@@ -23,7 +23,10 @@ export function ElementIcon({ store }: { store: PointItemStore }) {
         size={size}
         overflow="visible"
       />
-      <ItemIcon store={store} />
+      {/* Дерево — декоративная точка без направления/названия: ItemIcon
+          (значок направления + подпись) ему не нужен и не должен рендериться,
+          иначе ItemText упадёт на undefined title. */}
+      {!store.item.isTree && <ItemIcon store={store} />}
     </>
   );
 }

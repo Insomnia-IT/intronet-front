@@ -17,10 +17,10 @@ export const App = () => {
     switch (route[0]) {
       case "main":
       case "onboard":
-        userStore.StatusBarColor = "#28130E";
+        userStore.StatusBarColor = "#16312D";
         break;
       default:
-        userStore.StatusBarColor = "#F7FCFF";
+        userStore.StatusBarColor = "#FDFCF7";
         break;
     }
   }, [route[0]]);
