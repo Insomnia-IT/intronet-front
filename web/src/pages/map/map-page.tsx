@@ -87,7 +87,7 @@ export function MapPageWithRouting() {
           </div>
         ) : (
           <>
-            <ButtonsBar at="left">
+            <ButtonsBar style={{width: 36}} at="left">
               <RequireAuth>
                 <Button
                   type="frameOrange"
