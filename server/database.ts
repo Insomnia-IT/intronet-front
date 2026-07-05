@@ -54,7 +54,7 @@ export class Database<T extends { _id: string }> {
   private constructor(public name: string) {}
 
   private static _instances = new Map<string, Database<any>>();
-  public static Get<T extends { _id: string }>(name: string): Database<T>{
+  public static Get<T extends { _id: string }>(name: string): Database<T> {
     if (!this._instances.has(name))
       this._instances.set(name, new Database<T>(name));
     return this._instances.get(name) as Database<T>;
@@ -98,7 +98,7 @@ export class Database<T extends { _id: string }> {
     if (revision) {
       const result = this.db.find({
         version: { $gte: revision },
-        ...filter
+        ...filter,
       } as Filter<T & { version: string }>);
       return result.map((x) => x as T).toArray();
     } else {
@@ -129,11 +129,11 @@ export class Database<T extends { _id: string }> {
   }
 
   private getFilter(user?: UserInfo) {
-    if (!user) return { isApproved: { $ne: false }, volunteer: { $ne: '1' } };
-    console.log(user);
-    if (user.role == 'volunteer')
-      return { isApproved: { $ne: false }, volunteer: { $ne: '0' } };
-    return { volunteer: { $ne: '1' } };
+    if (!user) return { isApproved: { $ne: false }, volunteer: { $ne: "1" } };
+    if (user.role == "volunteer")
+      return { isApproved: { $ne: false }, volunteer: { $ne: "0" } };
+    if (user.role.includes("admin")) return {};
+    return { volunteer: { $ne: "1" } };
   }
   private async getIndexOrCreate(): Promise<string> {
     await Database.initPromise;
@@ -158,7 +158,7 @@ export class Database<T extends { _id: string }> {
             version: 1,
           },
           {
-            name: indexName+'Back',
+            name: indexName + "Back",
           }
         );
       }
@@ -183,8 +183,10 @@ export class Database<T extends { _id: string }> {
     unset?: Record<string, 1>
   ) {
     await this.initCollection;
-    const update: { $set: Record<string, unknown>; $unset?: Record<string, 1> } =
-      { $set: set };
+    const update: {
+      $set: Record<string, unknown>;
+      $unset?: Record<string, 1>;
+    } = { $set: set };
     if (unset && Object.keys(unset).length > 0) {
       update.$unset = unset;
     }
