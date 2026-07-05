@@ -1,13 +1,31 @@
 .weatherCard {
   height: 56px;
-  display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
+  font-size: 8px;
 }
 
-.weatherCard.weatherCardExpanded {
+.date > div:first-child {
+  color: var(--t-dark);
+}
+
+.date > div:last-child {
+  font-size: 12px;
+}
+
+.temp {
+  font-size: 12px;
+  color: var(--t-dark);
+}
+
+.expandedWeatherCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  color: var(--t-dark-secondary);
   height: max-content;
   flex-direction: column;
 }
@@ -25,19 +43,22 @@
 
 .day {
  margin: 0;
- font-size: 16px;
+ font-size: 12px;
  font-weight: 300;
  text-align: start;
+  color: var(--t-dark-secondary);
 }
 
 .temperature {
   margin: 0;
+  font-size: 32px;
+  color: var(--t-dark);
 }
 
 .condition {
   margin: 0;
   font-size: 16px;
-  text-align: center;
+  font-weight: 300;
 }
 
 .additionalInfo {
@@ -70,10 +91,14 @@
 .timeOfDay {
   height: 90;
   border-radius: 8px;
-  background: var(--cold-white);
+  background: var(--bg-light);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4px;
+  color: var(--t-dark);
+  padding: 8px 4px;
+  font-size: 12px;
+  text-align: center;
 }

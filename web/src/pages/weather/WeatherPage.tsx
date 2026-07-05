@@ -12,6 +12,7 @@ export const WeatherPage = () => {
     <PageLayout
       title='погода'
       withCloseButton
+      withTapBar
       className={styles.weatherPage}
     >
       {weather ? weather.days.map((dayReport, day) =>
@@ -23,6 +24,7 @@ export const WeatherPage = () => {
           onClick={() => setExpandedDay(day)}
         />
       ) : <h2>Прогноз погоды не доступен</h2>}
+      <div class="text">Для актуальных данных подключитесь к сети. Вернитесь в точку Wi-Fi. Прогноз обновляется каждый час.</div>
     </PageLayout>
   );
 };
