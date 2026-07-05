@@ -90,21 +90,12 @@ export class MapComponent extends Component<{
               fontSize: "calc(1px/var(--scale))",
             }}
           >
-            <defs>
-              <filter x="0" y="0" width="1" height="1" id="solid">
-                <feMorphology
-                  in="SourceAlpha"
-                  operator="erode"
-                  radius="0.12"
-                  result="erodedAlpha"
-                />
-                <feComposite
-                  in="SourceGraphic"
-                  in2="erodedAlpha"
-                  operator="in"
-                />
-              </filter>
-            </defs>
+            <image
+              href="/public/images/map2026.webp"
+              width={MapSize.width}
+              height={MapSize.height}
+              preserveAspectRatio="none"
+            />
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
@@ -139,16 +130,6 @@ export class MapComponent extends Component<{
       this.handler?.dispose();
       return;
     }
-    fetch("/public/images/map2026.svg")
-      .then((x) => x.text())
-      .then((text) => {
-        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        g.innerHTML = text;
-        const innerSVG = g.firstChild as SVGSVGElement;
-        innerSVG.setAttribute("width", MapSize.width.toString());
-        innerSVG.setAttribute("height", MapSize.height.toString());
-        this.transformElement.prepend(g);
-      });
     this.initTransform(MapSize, element);
     this.handler = new TransformEmitter(element);
     this.handler.on("transform", this.onTransform);

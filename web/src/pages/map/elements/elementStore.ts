@@ -30,6 +30,9 @@ export class ElementStore {
 
   onClick = (e: MouseEvent) => {
     e.preventDefault();
+    // Деревья — декоративные виртуальные точки без карточки локации, их
+    // нельзя выбрать.
+    if (this.item.isTree) return;
     locationsStore.setSelectedId(this.id);
   };
 }
@@ -130,6 +133,7 @@ export class PointItemStore extends ElementStore {
 
   @cell
   get form() {
+    if (this.item.isTree) return "tree";
     if (locationsStore.selected.length > 1 && !this.isSelected)
       return "circleSmall";
     // Пользовательские локации всегда крупные, независимо от типа и зума.
@@ -157,6 +161,9 @@ export class PointItemStore extends ElementStore {
   }
   @cell
   get showIcon() {
+    // Дерево — это и есть иконка (see `form`); никакого доп. значка/подписи
+    // направления поверх него быть не должно.
+    if (this.item.isTree) return false;
     return this.form != "circleSmall";
   }
 
