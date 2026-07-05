@@ -7,6 +7,7 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
+  groupLink?: string;
   figure: GeoFigure;
   tags: string[];
   work_tags: string[];
@@ -16,6 +17,11 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
   rowIndex: number;
   isFoodcourt: boolean;
+  hasDescriptionImage?: boolean;
+  descriptionImageMime?: string;
+  descriptionImage?: import("mongodb").Binary;
+  version?: string;
+  volunteer: boolean;
 };
 
 type ContentBlock =

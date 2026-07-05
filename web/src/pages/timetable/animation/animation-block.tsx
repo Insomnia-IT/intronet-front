@@ -40,7 +40,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
           изменить время
         </Button>
       </RequireAuth>
-      <div className={[Styles.time, "sh1"].join(" ")}>
+      <div className={[Styles.time].join(" ")}>
         {view.start} - {view.end}
       </div>
       <Card
@@ -58,15 +58,15 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
           gap
           onClick={isOpen ? undefined : () => setIsOpen(true)}
         >
-          <div class={[Styles.header, "sh1"].join(" ")}>
+          <div class={[Styles.header].join(" ")}>
             {block.info.Title}{" "}
             {block.info.Part ? ` — Часть ${block.info.Part}` : ""}
             {block.info.MinAge > 0 ? (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class="textSmall colorGrey2">{block.info.SubTitle ?? ""}</div>
-          <div class={[Styles.duplicate, "colorMineral"].join(" ")}>
+          <div class="textSmall">{block.info.SubTitle ?? ""}</div>
+          <div class={[Styles.duplicate].join(" ")}>
             {duplicate}
           </div>
           {isOpen && <MovieList movies={block.movies} />}

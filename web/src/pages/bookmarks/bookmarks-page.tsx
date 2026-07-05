@@ -8,17 +8,24 @@ import { BookmarkLocations } from "./location/BookmarkLocations";
 import { BookmarkNotes } from "./note/BookmarkNotes";
 import { PageLayout } from "@components/PageLayout";
 import { getButtonMetadata } from "./helpers/getButtonMetadata";
+import { getCurrentDay, getCurrentHour } from "@helpers/getDayText";
 
 export const BookmarksPage = () => {
-  const router = useRouter();
+  const router = useRouter<{ day: string; time: string }>();
   const type = router.route[1] as Bookmark["type"];
-  const goTo = (type: Bookmark["type"]) =>
-    router.goTo(["bookmarks", type], {}, true);
+  const goTo = (newType: Bookmark["type"]) => {
+    const query: Record<string, string> = {
+      day: router.query.day ?? getCurrentDay().toString(),
+    };
+    if (newType === "activity") {
+      query.time = router.query.time ?? getCurrentHour().toString();
+    }
+    router.goTo(["bookmarks", newType], query, true);
+  };
 
   useEffect(() => {
     if (!type) goTo("movie");
   }, [type]);
-  console.log(type);
 
   const { buttonRoute, buttonTitle } = getButtonMetadata(type);
 

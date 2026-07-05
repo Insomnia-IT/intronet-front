@@ -19,7 +19,32 @@
 }
 
 .locationContent .text {
-  font-family: "Ubuntu Condensed", sans-serif;
+  font-family: "Main", sans-serif;
+}
+
+.descriptionImage {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 240px;
+  display: block;
+}
+
+.descriptionImagePreview {
+  composes: descriptionImage;
+  margin-bottom: 8px;
+}
+
+.fileInputHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .locationSmallContainer {

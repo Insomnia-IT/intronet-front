@@ -37,7 +37,9 @@ export const ActivitiesAll: FunctionalComponent = () => {
   return (
     <>
       <div flex column style={ {margin: "0 0 16px 0"} }>
-        <ActivityFilters type={ 'filter' } filters={ filters } flexGrow={ "1" }/>
+        <div style={{paddingBottom: 16}}>
+          <ActivityFilters type={ 'filter' } filters={ filters } flexGrow={ "1" }/>
+        </div>
         {
           currentFilter === "time" && (
             <>

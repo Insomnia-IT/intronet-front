@@ -40,17 +40,16 @@ export async function importVurchel(force = false) {
         _id: info.entryID.toString(),
         version: Fn.ulid(),
         ...info,
+        hasImage: info.images?.length > 0,
       });
-      writeFileSync("./vurchel.json", JSON.stringify(vurchelData), "utf-8");
     }
-
-    for (let item of vurchelData) {
-      await vurchelDB.addOrUpdate(item as any);
-    }
-  } else {
-    for (let item of json) {
-      await vurchelDB.addOrUpdate(item as any);
-    }
+    writeFileSync("./vurchel.json", JSON.stringify(vurchelData), "utf-8");
+    json.length = 0;
+    json.push(...vurchelData);
   }
-  dbCtrl.versions = undefined;
+  for (let item of json) {
+    (item as any).hasImage = item.images?.length > 0;
+    delete item.images;
+    await vurchelDB.addOrUpdate(item as any);
+  }
 }

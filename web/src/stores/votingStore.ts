@@ -7,7 +7,7 @@ import { authStore } from "./auth.store";
 
 class TicketStore extends LocalStore<{
   ticket?: string;
-  movie?: string;
+  movies?: string;
 }> {
   public get ticket() {
     return this.values.ticket;
@@ -23,24 +23,35 @@ class TicketStore extends LocalStore<{
   }
 
   public state = new Cell(() => ({
-    votedMovie: this.values.movie
-      ? moviesStore.Movies.find((x) => x.id == this.values.movie)
-      : undefined,
+    votedMovies: (JSON.parse(this.values.movies ?? '[]') as string[])
+      .map((id) => moviesStore.Movies.find((x) => x.id == id))
+      .filter(Boolean),
     ticket: this.ticket,
     isValidating: this.isValidating,
     isValid: !!this.ticket,
-    canVote: !this.values.movie,
   }));
 
   vote(id: string) {
-    this.patch({
-      movie: id,
-    });
-    return fetch(`${api}/vote`, {
-      method: "POST",
-      headers: authStore.headers,
-      body: JSON.stringify({ id }),
-    });
+    const movies = JSON.parse(this.values.movies ?? '[]') as string[];
+    if (movies.includes(id)) {
+      this.patch({
+        movies: JSON.stringify(movies.filter((m) => m !== id)),
+      });
+      return fetch(`${api}/unvote`, {
+        method: "POST",
+        headers: authStore.headers,
+        body: JSON.stringify({ id }),
+      })
+    } else {
+      this.patch({
+        movies: JSON.stringify([...movies, id]),
+      });
+      return fetch(`${api}/vote`, {
+        method: "POST",
+        headers: authStore.headers,
+        body: JSON.stringify({ id }),
+      });
+    }
   }
 }
 

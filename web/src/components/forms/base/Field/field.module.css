@@ -37,7 +37,9 @@ input[type="checkbox"] {
 }
 
 .description {
-  color: var(--grey);
+  color: var(--t-dark-disabled);
+  font-size: 12px;
+  font-weight: 300;
 }
 
 .tags {

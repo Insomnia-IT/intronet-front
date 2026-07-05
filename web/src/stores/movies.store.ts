@@ -28,17 +28,17 @@ class MoviesStore {
       ),
       movies: b.movies.map((m) => {
         const info = this.vurchelDB.get(m.vurchelId?.toString());
-        if (!info)
-          return m;
+        if (!info) return m;
         return {
           ...m,
+          info,
           name: m.name ?? info.filmOrigTitle ?? info.filmEnTitle,
           description: m.plot ?? info.filmEnPlot,
           country: info.countries.join(", ") || "",
           author: info.credits
-              .flatMap((x) => x.directors.map((d) => d.name))
-              .filter((x) => x)
-              .join(", "),
+            .flatMap((x) => x.directors.map((d) => d.name))
+            .filter((x) => x)
+            .join(", "),
         };
       }),
     }));
@@ -54,16 +54,7 @@ class MoviesStore {
 
   @cell
   public get VotingMovies(): MovieInfo[] {
-    return distinct(
-      this.MovieBlocks.filter(
-        (x) =>
-          x.info.Title.toLowerCase().includes(
-          "национальный конкурс"
-        ) || x.info.Title.toLowerCase().includes(
-          "национального конкурса"
-        )
-      ).flatMap((x) => x.movies)
-    );
+    return distinct(this.MovieBlocks.flatMap((x) => x.movies));
   }
 
   getCurrentMovieBlock(id: string) {
@@ -138,7 +129,7 @@ export class MovieBlockStore {
       return "Марсе";
     })(screen);
     if (isAfter) {
-      return `Так же покажем этот блок ${getDayText(duplicate.day, 'at')}, в ${
+      return `Так же покажем этот блок ${getDayText(duplicate.day, "at")}, в ${
         duplicate.start
       } на ${screenAt}`;
     }
@@ -174,12 +165,10 @@ export class MovieStore {
   public state = new Cell<{
     movie: MovieInfo;
     hasBookmark: boolean;
-    canVote: boolean;
+    isVoted: boolean;
     views: Array<MovieBlock["views"][number] & { block: MovieBlock }>;
   }>(() => ({
-    canVote:
-      votingStore.state.get().canVote &&
-      moviesStore.VotingMovies.includes(this.movie),
+    isVoted: votingStore.state.get().votedMovies.some((m) => m.id == this.id),
     movie: this.movie,
     views: this.blocks.flatMap((x) => x.views.map((v) => ({ ...v, block: x }))),
     hasBookmark: !!bookmarksStore.getBookmark("movie", this.movie?.id),

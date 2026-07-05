@@ -1,5 +1,5 @@
 .badge {
-  border-radius: var(--radius);
+  border-radius: var(--radius-large);
   padding: 4px 8px;
   width: fit-content;
   align-self: flex-start;
@@ -26,19 +26,30 @@
 }
 
 .badgeAge {
-  /* padding-left: 8px;
-  padding-right: 10px; */
-  color: var(--mineral);
+  color: var(--white);
+  background: #00ad9d;
+  border: 2px solid #00ad9d;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
-.badgeAge12 {
+.badgeAge6,
+.badgeAge12,
+.badgeAge16 {
   composes: badgeAge;
-  background: #BACDFF;
 }
 
 .badgeAge18 {
-  composes: badgeAge;
-  background: #FFC19ECC;
+  composes: badge;
+  color: var(--white);
+  background: #e67e6b;
+  border: 2px solid #e67e6b;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .badgeAdv {

@@ -2,7 +2,8 @@ body, html {
   margin: 0;
   border: 0;
   overflow: hidden;
-  -webkit-tap-highlight-color:transparent
+  -webkit-tap-highlight-color:transparent;
+  font-family: "Main", sans-serif;
 }
 
 .button-clear {
@@ -52,39 +53,135 @@ body, html {
   flex-wrap: nowrap;
 }
 
-body {
-  font-family: 'Ubuntu Condensed', 'sans-serif';
+@font-face {
+  font-family: 'Heading';
+  src: url('/public/fonts/Detskiyy.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Ubuntu Mono';
-  src: local('Ubuntu Mono'), local('UbuntuMono'), local("Ubuntu Mono Regular"), url('/public/fonts/UbuntuMono-Regular.ttf');
-  font-weight: normal;
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-100-normal.woff2') format('woff2');
+  font-weight: 100;
   font-style: normal;
+  unicode-range: U+0400-04FF;
 }
 
 @font-face {
-  font-family: 'Ubuntu Mono';
-  src: local('Ubuntu Mono Bold'), local('UbuntuMonoBold'), url('/public/fonts/UbuntuMono-Bold.ttf');
-  font-weight: bold;
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-200-normal.woff2') format('woff2');
+  font-weight: 200;
   font-style: normal;
+  unicode-range: U+0400-04FF;
 }
 
 @font-face {
-  font-family: 'Ubuntu Mono';
-  src: local('Ubuntu Mono Italic'), local('UbuntuMonoItalic'), url('/public/fonts/UbuntuMono-Italic.ttf');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Ubuntu Condensed';
-  src: local('Ubuntu Condensed'), local('UbuntuCondensed'), local("Ubuntu Condensed Regular"), url('/public/fonts/UbuntuCondensed-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'MxPlus IBM EGA';
-  src: url('/public/fonts/WebPlus_IBM_EGA_8x14.woff') format('truetype');
-  font-weight: normal;
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-300-normal.woff2') format('woff2');
+  font-weight: 300;
   font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-cyrillic-800-normal.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  unicode-range: U+0400-04FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-100-normal.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-200-normal.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-300-normal.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
+}
+
+@font-face {
+  font-family: 'Main';
+  src: url('/public/fonts/martian-mono/martian-mono-latin-800-normal.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  unicode-range: U+0000-007F, U+00A0-00FF;
 }

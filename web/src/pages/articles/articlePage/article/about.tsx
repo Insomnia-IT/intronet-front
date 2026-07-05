@@ -40,7 +40,7 @@ export function About() {
 
 const sections = {
   about: {
-    title: "О фестивале",
+    title: "о фестивале",
     component: () => (
       <div class="text" flex column gap="4">
         <div>

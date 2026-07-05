@@ -8,7 +8,6 @@ import { MovieBlockEdit } from "./movie-block-edit";
 import { Movie } from "./movie/movie";
 import { MovieSearch } from "./search/movie-search";
 import { TimetableAll } from "./timetable";
-import { ActivitySearch } from "../activities/search/activity-search";
 
 export function TimetablePage() {
   const router = useTimetableRouter();
@@ -19,8 +18,8 @@ export function TimetablePage() {
   return (
     <PageLayout
       title={"анимация"}
-      favoritesRoute="/bookmarks/movie"
       withTapBar
+      withCloseButton
       search={MovieSearch}
       hideSearchDeps={[router.movieId]}
       searchLabel="Название мультфильма"

@@ -14,7 +14,6 @@
   font-size: 13em !important;
   line-height: 15em !important;
   text-anchor: middle;
-  border-radius: 8px;
 }
 .elementTextFoodcourt {
   composes: elementText;

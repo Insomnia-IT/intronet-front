@@ -1,7 +1,5 @@
 import { CloseButton, Sheet } from "../../components";
-import { useCell } from "../../helpers/cell-state";
 import { Logo } from "../../icons";
-import { mainPageStore } from "../../stores/main-page.store";
 import { useMemo, useState } from "preact/hooks";
 import { RoutePath, useRouter } from "../routing";
 import { MainCard } from "./card/main-card";
@@ -9,36 +7,44 @@ import { AddNews } from "./news/add-news";
 import { AllNews } from "./news/all-news";
 import { EditNews } from "./news/edit-news";
 import { News } from "./news/news";
-import { SearchInput } from "@components/input/search-input";
 import { AllSearchPage } from "../search/all-search-page";
 import { PageLayout } from "@components/PageLayout";
 import styles from "./main-page.module.css";
-import { BookmarkIcon } from "@components/BookmarkGesture/bookmark-icon";
+import { mainPageData } from "./data";
+import { useCell } from "@helpers/cell-state";
+import { weatherStore } from "@stores/weather.store";
+import { getCurrentDay, getDayText } from "@helpers/getDayText";
+import { SearchButton } from "@components/buttons/search-button";
 
 export const MainPage = () => {
-  const state = useCell(mainPageStore.State);
   const router = useRouter();
   const sheetItems = useMemo(() => getSheetItems(router.route), [router.route]);
   const [searchSheetOpen, setSearchSheetOpen] = useState(false);
+  const weather = useCell(() => weatherStore.weather);
+
   return (
     <PageLayout design="dark" withTapBar
                 title={<Logo />}
                 className={styles.mainPage}
                 headerStyle={styles.header}>
-      <SearchInput
-        style={{ background: "var(--white)" }}
-        placeholder="Поиск всего-всего"
-        onFocus={() => setSearchSheetOpen(true)}
-      />
+      <SearchButton onClick={() => setSearchSheetOpen(true)}/>
       <News />
-      {state.sections.map((x) => (
-        <div key={x.section} flex column gap="2">
-          {x.title && <h2 class="colorWhite">{x.title}</h2>}
-          <div flex column gap="1">
-            {x.rows.map(({ row, cards }) => (
-              <div gap="1" flex>
-                {cards.map((c) => (
-                  <MainCard info={c} key={c} />
+      <div flex column>
+        <div flex column gap={1}>
+          <div flex gap={1}>
+            <MainCard id="weather" link="/weather" title={weather?.days[0].condition ?? ''} descr={`Сегодня, ${getDayText(getCurrentDay(), 'full')}`} size="large"/>
+            <MainCard id="notes" link="/notes" title="Объявления" descr="Записочки, как на инфоцентре!" color size="large"/>
+          </div>
+        </div>
+      </div>
+      {mainPageData.map((section) => (
+        <div key={section.id} flex column>
+          {section.title && <h2 class="colorWhite">{section.title}</h2>}
+          <div flex column gap={1}>
+            {section.rows.map((row, index) => (
+              <div flex gap={1} key={index}>
+                {row.map((card) => (
+                  <MainCard {...card} key={card.id} />
                 ))}
               </div>
             ))}

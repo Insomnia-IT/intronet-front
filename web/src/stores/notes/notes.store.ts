@@ -6,7 +6,7 @@ import { Cell, cell } from "@cmmn/cell";
 
 class NotesStore {
   @cell
-  private db = new ObservableDB<INote>("notes");
+  db = new ObservableDB<INote>("notes");
 
   @cell
   IsLoading: boolean = false;

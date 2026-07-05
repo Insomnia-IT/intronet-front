@@ -3,12 +3,12 @@ import { useIsUserModeratorCell } from "../../hooks/useIsUserModeratorCell";
 import { useNotesRouter } from "../../hooks/useNotesRouter";
 import { PageSection } from "../../../../components/Layout/PageSection/PageSection";
 import { PageContainer } from "../../../../components/Layout/PageContainer/PageContainer";
-import { PageHeader } from "../../../../components/Layout/PageHeader/PageHeader";
 import { NotesList } from "../../notes-list/NotesList";
 import { ConstantFilterIds } from "../../../../stores/notes/filters.store";
 import { useState } from "preact/hooks";
-import { ModarationNoteSheet } from "../modaration-note-sheet/moderation-note-sheet";
+import { ModerationNoteSheet } from "../modaration-note-sheet/moderation-note-sheet";
 import { Sheet } from "../../../../components";
+import { PageHeader } from "@components/PageHeader/PageHeader";
 
 export const ModerationPage: FunctionalComponent = () => {
   const isModerator = useIsUserModeratorCell();
@@ -27,7 +27,7 @@ export const ModerationPage: FunctionalComponent = () => {
   return (
     <PageContainer>
       <PageSection>
-        <PageHeader pageTitleText="Предложка" />
+        <PageHeader titleH2="Предложка" />
 
         <NotesList
           filterIds={[ConstantFilterIds.NoApproved]}
@@ -45,7 +45,7 @@ export const ModerationPage: FunctionalComponent = () => {
       </PageSection>
       <Sheet onClose={resetActiveNoteId} height="auto">
         {activeNoteId && (
-          <ModarationNoteSheet
+          <ModerationNoteSheet
             noteId={activeNoteId}
             onClose={resetActiveNoteId}
           />

@@ -102,10 +102,10 @@ export const NewNoteForm: FunctionalComponent<INewNoteFormProps> = ({
     const categoryId = (formFields["category"] as string)?.slice("tag+".length) || "";
     const ttlValue = formFields["TTL"] as string;
     const TTL = isAdmin
-      ? 21 as 21
+      ? 14 as 14
       : ttlValue
-        ? (parseInt(ttlValue.slice("tag+".length + 3)) as 17 | 18 | 19 | 20 | 21) || 21
-        : 21;
+        ? (parseInt(ttlValue.slice("tag+".length + 3)) as 9 | 10 | 11 | 12 | 13 | 14) || 14
+        : 14;
 
     notesStore
       .addNote({

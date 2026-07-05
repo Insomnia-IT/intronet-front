@@ -49,7 +49,7 @@ const sections = {
       <>
         <div flex column gap="2">
           <div>
-            Кафе разбросаны по всему фестивалю, но больше всего их на фудкорте.
+            Кафе разбросаны по всему фестивалю,<br />но больше всего их на фудкорте.
           </div>
           <Link goTo="/map" query={{ name: "фудкорт" }}>
             к фудкорту
@@ -66,7 +66,7 @@ const sections = {
           </Link>
         </div>
         <div>Детское питание для малышей младше нужно привозить с собой!</div>
-        <div className="colorVivid" flex gap="3">
+        <div className="colorDanger" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}

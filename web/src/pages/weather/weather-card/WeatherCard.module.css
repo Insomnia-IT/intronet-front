@@ -1,0 +1,79 @@
+.weatherCard {
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.weatherCard.weatherCardExpanded {
+  height: max-content;
+  flex-direction: column;
+}
+
+.dayInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dayData {
+  display: flex;
+  flex-direction: column;
+}
+
+.day {
+ margin: 0;
+ font-size: 16px;
+ font-weight: 300;
+ text-align: start;
+}
+
+.temperature {
+  margin: 0;
+}
+
+.condition {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.additionalInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.felt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+}
+
+.wind {
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+ font-size: 12px;
+}
+
+.timesOfDay {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.timeOfDay {
+  height: 90;
+  border-radius: 8px;
+  background: var(--cold-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}

@@ -19,7 +19,7 @@ export function Insight() {
   const Component = sections[section]?.component;
   console.log(sections, section, Component);
   return (
-    <PageLayout title="о Портале Insight" gap={4}>
+    <PageLayout title="о Портале Инсайт" gap={4}>
       <CloseButton goTo="/main" />
       <Tags tagsList={Object.keys(sections)}>
         {(x) => (
@@ -74,7 +74,7 @@ const sections = {
             Полевого экрана.
           </li>
           <li>
-            Сканируй QR-код или переходи по ссылке insight.app в браузере.
+            Сканируй QR-код или переходи по ссылке app.insomniafest.ru в браузере.
           </li>
         </ol>
         <img

@@ -2,11 +2,9 @@ import { Cell } from "@cmmn/cell";
 import { TransformMatrix } from "../transform/transform.matrix";
 import { useCell } from "@helpers/cell-state";
 import { locationsStore } from "@stores";
-import { useEffect, useMemo, useRef } from "preact/hooks";
 import { Figure } from "./figure";
 import {
   directionsToOrder,
-  MapCircleElement,
   MapPointElement,
 } from "./mapElement";
 import { orderBy } from "@cmmn/core";

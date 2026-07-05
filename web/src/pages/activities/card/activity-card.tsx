@@ -1,4 +1,4 @@
-import {getDayText} from "../../../helpers/getDayText";
+import { getDayText } from "../../../helpers/getDayText";
 import { FunctionalComponent } from "preact";
 import { TargetedEvent } from "preact/compat";
 import { useEffect, useMemo, useState } from "preact/hooks";
@@ -13,7 +13,12 @@ import { ActivityStore } from "../../../stores/activities/activities.store";
 import { SvgIcon } from "../../../icons";
 import { useActivitiesRouter } from "../hooks/useActivitiesRouter";
 import Styles from "./activity-card.module.css";
-import { decodeHTMLEntities } from '@helpers/decodeHtmlEntities'
+import { decodeHTMLEntities } from "@helpers/decodeHtmlEntities";
+import {
+  AgeStrict,
+  AgeStrictValue,
+  isAgeBadgeVisible,
+} from "@components/age-strict";
 
 export type ActivityCardProps = {
   id: string;
@@ -33,7 +38,6 @@ export type ActivityCardStylesProps = {
   showDate?: boolean;
 };
 
-
 export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
   id,
   searchQuery,
@@ -43,62 +47,74 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
   onIconClick,
   showDate,
   disabled = false,
-  withBookmarkIcon = true
+  withBookmarkIcon = true,
 }) => {
-  const store = useMemo(() => new ActivityStore(id), [ id ]);
-  const {activity} = useCell(store.state);
+  const store = useMemo(() => new ActivityStore(id), [id]);
+  const { activity } = useCell(store.state);
   const router = useActivitiesRouter();
   const day = getDayText(activity.day, "short");
+  const showAge = isAgeBadgeVisible(activity?.age);
   return (
     <Card
-      className={ cx(Styles.card, className, {
+      className={cx(Styles.card, className, {
         [Styles.cardDisabled]: disabled,
-      }) }
+      })}
       background="Soft"
-      onClick={ (e) => e.defaultPrevented || router.goToActivity(id) }
+      onClick={(e) => e.defaultPrevented || router.goToActivity(id)}
     >
-      <div className={ Styles.activityContainer } flex column gap>
-        <div flex class={ Styles.headerContainer }>
-          <div flex column style={ {gap: "8px", alignItems: "flex-start"} }>
-            { activity.isCanceled ? (
-              <Badge type={ "Change" }>{ "Отменилось =(" }</Badge>
-            ) : activity.hasChanges ? (
-              <Badge type={ "Change" }>Время изменилось</Badge>
-            ) : null }
+      <div className={Styles.activityContainer} flex column gap>
+        <div
+          className={cx(
+            Styles.header,
+            withBookmarkIcon && Styles.headerWithBookmark
+          )}
+        >
+          {activity.isCanceled ? (
+            <Badge type={"Change"}>{"Отменилось =("}</Badge>
+          ) : activity.hasChanges ? (
+            <Badge type={"Change"}>Время изменилось</Badge>
+          ) : null}
+          <div className={Styles.titleLine}>
             <div
-              className={ [
-                activity.isCanceled ? Styles.headerCanceled : Styles.header,
+              className={[
+                activity.isCanceled ? Styles.headerCanceled : Styles.title,
                 "sh1",
-              ].join(" ") }
+              ].join(" ")}
             >
-              { highlight(decodeHTMLEntities(activity?.title), searchQuery) }
+              {highlight(decodeHTMLEntities(activity?.title), searchQuery)}
             </div>
+            {showAge && (
+              <AgeStrict
+                age={activity.age as AgeStrictValue}
+                className={Styles.ageBadge}
+              />
+            )}
           </div>
 
-          { withBookmarkIcon && (<SvgIcon
-            id="#bookmark"
-            className={ cx(Styles.bookmarkIcon, iconClassNames) }
-            onClick={ !disabled && onIconClick }
-            size={ 17 }
-            style={ {
-              flexShrink: 0,
-              opacity: iconOpacity,
-            } }
-          />) }
-        </div>
-
-        <div className={ `textSmall colorGrey ${ Styles.activityDescription }` }>
-          {activity?.authors?.map(author =>
-            highlight(author.name, searchQuery)
-          ).map((author, index) =>
-            <>
-              {index > 0 && ", "}
-              {author}
-            </>
+          {withBookmarkIcon && (
+            <SvgIcon
+              id="#bookmark"
+              className={cx(Styles.bookmarkIcon, iconClassNames)}
+              onClick={!disabled && onIconClick}
+              size={17}
+              style={{
+                flexShrink: 0,
+                opacity: iconOpacity,
+              }}
+            />
           )}
         </div>
 
-        <div className={ `${ Styles.activityTimePlace } sh3` }>
+        <div className={`textSmall colorGrey ${Styles.activityDescription}`}>
+          {activity?.authors?.map((author, index) => (
+            <>
+              {index > 0 && ", "}
+              {highlight(author.name, searchQuery)}
+            </>
+          ))}
+        </div>
+
+        <div className={`${Styles.activityTimePlace} sh3`}>
           <span
             className={
               activity.isCanceled
@@ -106,7 +122,7 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
                 : Styles.activityPlace
             }
           >
-            { locationsStore.getName(activity?.locationId) }
+            {locationsStore.getName(activity?.locationId)}
           </span>
 
           <span
@@ -117,10 +133,14 @@ export const ActivityCard: FunctionalComponent<ActivityCardProps> = ({
             }
           >
             {showDate && day + ", "}
-            {activity.start.includes('undefined') && activity.end.includes('undefined') ? `` :
-              activity.start.includes('undefined') ? `до ${activity.end}` :
-              activity.end.includes('undefined') ? `с ${activity.start}` :
-                `${activity.start} - ${activity.end}` }
+            {activity.start.includes("undefined") &&
+            activity.end.includes("undefined")
+              ? ``
+              : activity.start.includes("undefined")
+              ? `до ${activity.end}`
+              : activity.end.includes("undefined")
+              ? `с ${activity.start}`
+              : `${activity.start} - ${activity.end}`}
           </span>
         </div>
       </div>
@@ -141,11 +161,11 @@ function useGestures(
     gesture?.path.includes(ref.current) && gesture.shift < 0
       ? Math.max(gesture.shift, -gestureLength)
       : 0;
-  const transform = `translateX(${ shift }px)`;
+  const transform = `translateX(${shift}px)`;
   const iconOpacity = hasBookmark
     ? 1 - Math.abs(shift) / gestureLength
     : Math.abs(shift) / gestureLength;
-  const [ gestureEnd, setGestureEnd ] = useState(false);
+  const [gestureEnd, setGestureEnd] = useState(false);
 
   useEffect(() => {
     if (Math.abs(shift) < gestureLength * 0.9) {
@@ -156,9 +176,9 @@ function useGestures(
     if (!gestureEnd || gesture) return;
     setGestureEnd(false);
     switchBookmark(activity);
-  }, [ gesture, shift, hasBookmark, switchBookmark, gestureEnd ]);
+  }, [gesture, shift, hasBookmark, switchBookmark, gestureEnd]);
 
-  const classNames = [ shift == 0 ? "transitionOut" : "" ];
+  const classNames = [shift == 0 ? "transitionOut" : ""];
 
   return {
     transform,
@@ -169,7 +189,7 @@ function useGestures(
         ? "Deleting"
         : "Adding"
       : !!shift
-        ? "Gesture"
-        : "",
+      ? "Gesture"
+      : "",
   };
 }

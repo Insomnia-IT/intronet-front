@@ -1,7 +1,7 @@
 import { bind } from "@cmmn/core";
 import { RequireAuth } from "@components/RequireAuth";
 import { cellState } from "@helpers/cell-state";
-import { geoConverter } from "@helpers/geo";
+import { geoConverter, MapSize } from "@helpers/geo";
 import { locationsStore } from "@stores";
 import { Component } from "preact";
 import { TransformEmitter } from "./handlers/transformEmitter";
@@ -11,19 +11,24 @@ import { UserLocation } from "./user-location";
 import { cell, Cell } from "@cmmn/cell";
 import { MapElements } from "./elements/mapElements";
 
-export class MapComponent extends Component {
+/**
+ * Интерактивная SVG-карта: пан/зум через {@link TransformEmitter}, состояние трансформа
+ * хранится в `localStorage` под ключом `transform` (см. сеттер `Transform`).
+ */
+export class MapComponent extends Component<{
+  onLongTap(geo: Geo): void;
+}> {
   constructor() {
     super();
     this.updTransform();
   }
 
   private transformCache: string;
-  private fontSizeCache: string;
+
   @bind
   private updTransform() {
     if (this.transformElement) {
       const transform = this.Transform.ToString("svg");
-      const fontSize = (1 / this.Scale).toString() + "px";
       if (this.transformCache !== transform) {
         this.transformElement.style.transform = this.transformCache = transform;
         this.transformElement.style.setProperty(
@@ -35,11 +40,6 @@ export class MapComponent extends Component {
           this.Transform.Matrix.GetScaleFactor().toString()
         );
       }
-      // if (this.fontSizeCache !== fontSize)
-      //   this.transformElement.setAttribute(
-      //     "font-size",
-      //     (this.fontSizeCache = fontSize)
-      //   );
     }
     requestAnimationFrame(this.updTransform);
   }
@@ -67,31 +67,44 @@ export class MapComponent extends Component {
       <div
         ref={this.setHandler}
         onPointerDown={(e) => (this.mouseDown = e)}
-        onPointerUp={(e) => {
+        onClick={(e) => {
+          // Сброс выделения по тапу мимо точки. Делаем это на click, а не на
+          // pointerup: точка в своём onClick вызывает preventDefault, и только
+          // на click (том же событии) виден e.defaultPrevented. На pointerup он
+          // всегда false, поэтому setSelectedId(null) срабатывал даже при тапе
+          // по точке — и при активном фильтре очищал ?direction=, из-за чего
+          // тапнутая точка исчезала из группы `selected` до того, как её click
+          // успевал её выбрать.
+          if (!this.mouseDown) return;
           if (Math.abs(this.mouseDown.pageX - e.pageX) > 3) return;
           if (Math.abs(this.mouseDown.pageY - e.pageY) > 3) return;
-          if (!e.defaultPrevented) {
-            locationsStore.setSelectedId(null);
-          }
+          if (e.defaultPrevented) return;
+          locationsStore.setSelectedId(null);
         }}
         className={styles.container}
       >
         <svg className={styles.svg}>
-          <defs>
-            <filter x="0" y="0" width="1" height="1" id="solid">
-              <feFlood flood-color="var(--cold-white)" result="bg" />
-              <feMerge>
-                <feMergeNode in="bg" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
           <g
             aria-label="transform"
             style={{
               fontSize: "calc(1px/var(--scale))",
             }}
           >
+            <defs>
+              <filter x="0" y="0" width="1" height="1" id="solid">
+                <feMorphology
+                  in="SourceAlpha"
+                  operator="erode"
+                  radius="0.12"
+                  result="erodedAlpha"
+                />
+                <feComposite
+                  in="SourceGraphic"
+                  in2="erodedAlpha"
+                  operator="in"
+                />
+              </filter>
+            </defs>
             <MapElements transformCell={this.TransformCell} />
             <RequireAuth>
               <UserLocation transformCell={this.TransformCell} />
@@ -126,24 +139,33 @@ export class MapComponent extends Component {
       this.handler?.dispose();
       return;
     }
-    fetch("/public/images/map.svg")
+    fetch("/public/images/map2026.svg")
       .then((x) => x.text())
       .then((text) => {
         const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
         g.innerHTML = text;
+        const innerSVG = g.firstChild as SVGSVGElement;
+        innerSVG.setAttribute("width", MapSize.width.toString());
+        innerSVG.setAttribute("height", MapSize.height.toString());
         this.transformElement.prepend(g);
       });
-    this.initTransform(
-      {
-        width: 9728,
-        height: 6144,
-      },
-      element
-    );
+    this.initTransform(MapSize, element);
     this.handler = new TransformEmitter(element);
     this.handler.on("transform", this.onTransform);
+    this.handler.on("longtap", this.onLongTap);
   };
 
+  @bind
+  onLongTap(center: Point) {
+    const geo = geoConverter.toGeo(
+      this.Transform.Inverse().Invoke(center)
+    ) as Geo;
+    this.props.onLongTap?.(geo);
+  }
+
+  /**
+   * Применяет новую матрицу трансформа с ограничением минимального/максимального масштаба.
+   */
   setTransform(transform: TransformMatrix) {
     const scale = transform.Matrix.GetScaleFactor();
     if (scale > 3 || scale < this.minScale * 0.98) {
@@ -154,6 +176,20 @@ export class MapComponent extends Component {
 
   minScale = 1;
 
+  /**
+   * Сброс пользовательского вида: удаляет сохранённый `transform` и заново инициализирует
+   * камеру под текущий размер контейнера (удобно после долгого панорамирования или смены окна).
+   */
+  public resetView() {
+    if (!this.root) return;
+    localStorage.removeItem("transform");
+    this.initTransform(MapSize, this.root);
+  }
+
+  /**
+   * Первичная настройка: `minScale` под вписывание изображения в `root`, затем либо
+   * восстановление из `localStorage`, либо стартовая позиция по центру.
+   */
   initTransform(image: { width; height }, root: HTMLDivElement) {
     const rect = root.getBoundingClientRect();
     if (rect.width == 0 || rect.height == 0) {

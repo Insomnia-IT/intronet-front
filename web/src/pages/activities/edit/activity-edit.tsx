@@ -174,7 +174,7 @@ export const ActivityEdit = ({ mode }: ActivityEditProp) => {
       {mode !== "create" && (
         <Button
           type="text"
-          class="colorVivid"
+          class="colorDanger"
           onClick={() => {
             changesStore.addChange({
               _id: id,

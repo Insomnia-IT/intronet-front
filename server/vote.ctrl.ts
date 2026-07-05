@@ -19,6 +19,12 @@ export function vote(data: { id: string; uid: string; ip: string }) {
     datetime: new Date().toISOString(),
   });
 }
+export async function unvote(data: { id: string; uid: string; ip: string }) {
+  return voteDB.removeWhere({
+    animation: data.id,
+    uid: data.uid,
+  });
+}
 
 export async function getResults() {
   const votes = await voteDB.getSince();

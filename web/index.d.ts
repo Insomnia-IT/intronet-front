@@ -48,6 +48,8 @@ type InsomniaLocation = {
   name: string;
   description: string;
   directionId: string;
+  /** Ключ группы для URL ?direction= и поиска «все точки категории» (колонка «Ссылка на группу»). */
+  groupLink?: string;
   figure: GeoFigure;
   tags: string[];
   work_tags: string[];
@@ -58,6 +60,10 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
   rowIndex: number;
   isFoodcourt: boolean;
+  user?: string;
+  hasDescriptionImage?: boolean;
+  descriptionImageMime?: string;
+  version?: string;
 };
 
 type ContentBlock =
@@ -86,6 +92,7 @@ type MapItem = {
   figure: Figure;
   isFigure: boolean;
   priority: boolean;
+  isUserLocation: boolean;
   directionId: string;
   isFoodcourt: boolean;
   radius;
@@ -130,7 +137,7 @@ type INoteLocal = {
   author: {
     name: string;
   };
-  TTL: 16 | 17 | 18 | 19 | 20 | 21;
+  TTL: 9 | 10 | 11 | 12 | 13 | 14;
   isPinned: boolean;
 };
 
@@ -179,9 +186,10 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
+    id: number;
     name: string;
     description?: string;
-    photo?: string;
+    hasPhoto: boolean;
   }>;
   age?: number;
   hasChanges?: boolean;
@@ -241,7 +249,7 @@ interface VurchelFilm {
   filmFull: string | null;
   filmReleaseYear: string | null;
   countries: string[];
-  images: string[];
+  hasImage: boolean;
   translations: Translation[];
   credits: Credits[];
 }
@@ -293,22 +301,6 @@ type Bookmark = {
 };
 
 type BookmarkSection = "movie" | "activity" | "locations" | "note";
-type MainPageSection = "main" | "about" | "warning";
-
-type MainPageCard = {
-  _id: string;
-  title: string;
-  descr?: string;
-  color: boolean;
-  section: MainPageSection;
-  row: number;
-  col: number;
-  small?: boolean;
-  colSpan?: number;
-  rowSpan?: number;
-  article?: string;
-  link?: string;
-};
 
 /**
  * Новости добавляемые админами на главную страницу

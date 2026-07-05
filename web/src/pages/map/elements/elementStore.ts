@@ -39,7 +39,8 @@ enum Threshold {
   Cafe = 1,
   CafeText = 2,
   Other = 3,
-  OtherText = 4,
+  CyberInfo = 4,
+  OtherText = 5,
 }
 
 export class PointItemStore extends ElementStore {
@@ -54,8 +55,8 @@ export class PointItemStore extends ElementStore {
   @cell
   get threshold() {
     if (this.scale > 0.5) return Threshold.OtherText;
-    if (this.scale > 0.4) return Threshold.Other;
-    if (this.scale > 0.33) return Threshold.CafeText;
+    if (this.scale > 0.4) return Threshold.CyberInfo;
+    if (this.scale > 0.33) return Threshold.Other;
     if (this.scale > 0.25) return Threshold.Cafe;
     return Threshold.None;
   }
@@ -112,17 +113,16 @@ export class PointItemStore extends ElementStore {
     switch (this.type) {
       case OrderType.MainZone:
       case OrderType.Main:
-        return "var(--mineral)";
-      case OrderType.Info:
-        return "var(--yellow)";
       case OrderType.Screens:
-        return "var(--vivid)";
+        return "rgba(183, 106, 132, 1)";
+      case OrderType.Info:
+        return "rgba(140, 118, 168, 1)";
       case OrderType.Cafe:
-        return "var(--vivid)";
+        return "rgba(79, 127, 163, 1)";
       case OrderType.WC:
-        return "var(--purple)";
+        return "rgba(63, 140, 136, 1)";
       case OrderType.Other:
-        return "var(--mineral)";
+        return "rgba(116, 133, 99, 1)";
       default:
         return "black";
     }
@@ -132,6 +132,8 @@ export class PointItemStore extends ElementStore {
   get form() {
     if (locationsStore.selected.length > 1 && !this.isSelected)
       return "circleSmall";
+    // Пользовательские локации всегда крупные, независимо от типа и зума.
+    if (this.item.isUserLocation) return "circle";
     switch (this.type) {
       case OrderType.Info:
       case OrderType.Screens:
@@ -167,6 +169,9 @@ export class PointItemStore extends ElementStore {
 
   @cell
   get showText() {
+    if (this.item?.priority) {
+      return this.threshold >= Threshold.Cafe || this.isSelected;
+    }
     switch (this.type) {
       case OrderType.Main:
       case OrderType.Screens:
@@ -176,7 +181,9 @@ export class PointItemStore extends ElementStore {
       case OrderType.Other:
         return this.threshold >= Threshold.OtherText || this.isSelected;
       case OrderType.WC:
+        return this.threshold >= Threshold.OtherText || this.isSelected;
       default:
+        return false;
     }
   }
 }

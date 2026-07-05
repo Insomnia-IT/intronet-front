@@ -7,12 +7,20 @@ import { changesStore } from "./changes.store";
 import { moviesStore } from "./movies.store";
 import { ObservableDB } from "./observableDB";
 import { bookmarksStore } from "./bookmarks.store";
-import { distinct, Fn, orderBy } from "@cmmn/core";
+import { bind, distinct, Fn, orderBy } from "@cmmn/core";
+import { LocalObservableDB } from "@stores/localObservableDB";
+import { authStore } from "@stores/auth.store";
+import {
+  searchDataValidator,
+  safeDecodeURIComponent,
+} from "../helpers/search-normalize";
+import { stripLegacyLocationImage } from "@helpers/location-image";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
+  @cell userLocations = new LocalObservableDB<InsomniaLocation>("locations");
 
-  Loading = this.db.isLoaded;
+  Loading = this.db.isLoaded.then((x) => this.db.isLoaded);
   @cell public isEdit = false;
   @cell public isMoving = false;
   @cell public newLocation: InsomniaLocation;
@@ -35,14 +43,18 @@ class LocationsStore {
       return [this.Locations.find((x) => x._id === router.route[1])].filter(
         (x) => x
       );
-    if (router.query.direction)
-      return this.findByDirection(decodeURIComponent(router.query.direction));
+    if (router.query.direction) {
+      const dir = safeDecodeURIComponent(router.query.direction);
+      const byGroup = this.findByGroupLink(dir);
+      if (byGroup.length) return byGroup;
+      return this.findByDirection(dir);
+    }
     if (router.query.name)
-      return [this.findByName(decodeURIComponent(router.query.name))].filter(
+      return [this.findByName(safeDecodeURIComponent(router.query.name))].filter(
         (x) => x
       );
     if (router.query.tag)
-      return this.findByTag(decodeURIComponent(router.query.tag));
+      return this.findByTag(safeDecodeURIComponent(router.query.tag));
     return [];
   }
 
@@ -60,17 +72,62 @@ class LocationsStore {
     );
   }
   findByDirection(s: string) {
+    const q = searchDataValidator(s).toLowerCase();
+    if (!q) return [];
     return this.Locations.filter(
-      (x) => x.directionId?.toLowerCase() == s.toLowerCase()
+      (x) =>
+        !!x.directionId &&
+        searchDataValidator(x.directionId).toLowerCase() === q
+    );
+  }
+
+  /** Все локации с тем же `groupLink`, что и в query (колонка «Ссылка на группу»). */
+  findByGroupLink(s: string) {
+    const q = searchDataValidator(s.trim()).toLowerCase();
+    if (!q) return [];
+    return this.Locations.filter(
+      (x) =>
+        !!x.groupLink?.trim() &&
+        searchDataValidator(x.groupLink.trim()).toLowerCase() === q
     );
   }
   public setSelectedId(id: string | null) {
+    if (this.newLocation && !id) return;
+    if (id && !this.canSelect(id)) return;
     goTo(["map", id].filter((x) => x) as RoutePath, {}, true);
+  }
+
+  /**
+   * Можно ли редактировать локацию текущим пользователем.
+   * Админ редактирует любые локации, остальные — только свои
+   * (созданные ими, у которых `user` совпадает с их `uid`).
+   */
+  public canEdit(location: InsomniaLocation | undefined | null): boolean {
+    if (!location) return false;
+    if (authStore.isAdmin) return true;
+    return !!location.user && location.user === authStore.uid;
+  }
+
+  /** Идёт ли сейчас редактирование конкретной локации (форма правки или перемещение точки). */
+  private get isEditingLocation(): boolean {
+    return this.isMoving || routerCell.get().route[1] === "edit";
+  }
+
+  /**
+   * Можно ли выбрать локацию `id`. Во время редактирования конкретной локации
+   * выбор заблокирован на ней — нельзя переключиться на другую точку с карты.
+   */
+  public canSelect(id: string): boolean {
+    if (!this.isEditingLocation) return true;
+    return this.selected.some((x) => x._id === id);
   }
 
   @cell
   private get RealLocations(): ReadonlyArray<InsomniaLocation> {
-    return orderBy(this.db.toArray(), (x) => x.rowIndex)
+    return orderBy(
+      [...this.db.toArray(), ...this.userLocations.toArray()],
+      (x) => x.rowIndex
+    )
       .map((x) => x as InsomniaLocation)
       .filter((x) => x.figure)
       .concat(this.newLocation ? [this.newLocation] : [])
@@ -205,6 +262,8 @@ class LocationsStore {
       id: x._id,
       radius: 10,
       priority: x.priority,
+      // Пользовательские локации (созданные не-админом) всегда показываем крупными.
+      isUserLocation: !!x.user,
       maxZoom: x._id == this.Foodcourt._id ? 1.6 : x.maxZoom,
       minZoom: x.minZoom,
       isFoodcourt: x.isFoodcourt,
@@ -223,14 +282,15 @@ class LocationsStore {
     );
   }
 
-  async addLocation(location: InsomniaLocation) {
+  async updateLocation(location: InsomniaLocation) {
     await this.Loading;
-    await this.db.addOrUpdate(location);
-  }
-
-  async updateLocation(x: InsomniaLocation) {
-    await this.Loading;
-    await this.db.addOrUpdate(x);
+    const payload = stripLegacyLocationImage(location);
+    if (authStore.isAdmin) {
+      await this.db.addOrUpdate(payload);
+    } else {
+      payload.user = authStore.uid;
+      await this.userLocations.addOrUpdate(payload);
+    }
     if (this.newLocation) this.newLocation = null;
   }
 
@@ -238,7 +298,11 @@ class LocationsStore {
     if (this.selected.some((x) => x._id === location._id))
       this.setSelectedId(null);
     await this.Loading;
-    await this.db.remove(location._id);
+    if (authStore.isAdmin) {
+      await this.db.remove(location._id);
+    } else {
+      await this.userLocations.remove(location._id);
+    }
   }
 
   public getName(locationId: string) {
@@ -271,8 +335,16 @@ class LocationsStore {
     const patches = this.locationPatches.toMap();
     this.locationPatches = new ObservableMap();
     for (let [id, figure] of patches) {
-      await this.db.addOrUpdate({
-        ...this.db.get(id),
+      // Локация может жить в админской БД, в пользовательской или быть ещё
+      // не сохранённой (newLocation). Берём её с сохранением `_id` и пишем
+      // в нужное хранилище через updateLocation (иначе put получит undefined-ключ).
+      const existing =
+        this.db.get(id) ??
+        this.userLocations.get(id) ??
+        (this.newLocation?._id === id ? this.newLocation : undefined);
+      if (!existing) continue;
+      await this.updateLocation({
+        ...existing,
         figure: geoConverter.toGeo(figure),
       });
     }
@@ -285,14 +357,19 @@ class LocationsStore {
     this.newLocation = null;
   }
 
-  startAddLocation() {
+  @bind
+  startAddLocation(geo: Geo = center) {
+    console.log(geo);
     this.newLocation = {
       _id: Fn.ulid(),
-      figure: center,
+      figure: geo,
       name: "Новая локация",
-      directionId: Directions.wc,
+      // Пользовательские локации по умолчанию — палатка (Гостевые Кемпинги).
+      directionId: authStore.isAdmin ? Directions.wc : Directions.guest,
+      user: authStore.isAdmin ? null : authStore.uid,
       contentBlocks: [],
     } as InsomniaLocation;
+    this.locationPatches.set(this.newLocation._id, geoConverter.fromGeo(geo));
     this.setSelectedId(this.newLocation._id);
     this.isMoving = true;
     this.isEdit = true;

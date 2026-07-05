@@ -1,10 +1,10 @@
 .button {
-  padding: 16px;
+  height: 48px;
+  padding-bottom: 16px;
   border-radius: var(--radius);
-  text-transform: uppercase;
   border: none;
-  color: var(--white);
-  background-color: grey;
+  color: var(--t-dark);
+  background-color: var(--a-main-base);
   display: flex;
   flex-flow: row nowrap;
   cursor: pointer;
@@ -14,79 +14,103 @@
   align-items: center;
   transition: 0.3s ease-out;
 
-  font-family: "MxPlus IBM EGA", sans-serif;
+  font-family: "Heading", sans-serif;
   font-style: normal;
-  font-size: 22px;
-  line-height: 18px;
+  font-size: 40px;
+  line-height: 1;
   text-align: center;
-  text-transform: uppercase;
   user-select: none;
+
+  text-transform: lowercase;
 }
 
-.button:hover {
-  outline: none;
-}
 .button:active {
-  box-shadow: 0 0 8px rgba(21, 37, 106, 0.6);
-}
-.button:focus {
-  outline: none;
+  background-color: var(--a-main-pressed);
 }
 .button:disabled {
-  filter: opacity(0.3);
-}
-.selected {
+  background-color: var(--a-main-disabled);
 }
 
-.blue {
-  background: var(--mineral);
-  color: var(--white);
+.danger {
+  background-color: var(--a-error-base);
 }
-.disco {
-  background: var(--cyber-disco);
+.danger:active {
+  background-color: var(--a-error-pressed);
 }
-.frame {
+.danger:disabled {
+  background-color: var(--a-error-disabled);
+}
+
+.ghostDark {
+  color: var(--a-dark-base);
+  background-color: transparent;
+  border: 1px solid var(--a-add-border);
+}
+.ghostDark:active {
+  color: var(--a-dark-pressed);
+  border-color: var(--a-dark-pressed);
+}
+.ghostDark:disabled {
+  color: var(--a-dark-disabled);
+  border-color: var(--a-dark-disabled);
+}
+
+.ghost {
+  color: var(--a-main-base);
+  background-color: transparent;
+  border: 1px solid var(--a-main-base);
+}
+.ghost:active {
+  color: var(--a-main-pressed);
+  border-color: var(--a-main-pressed);
+}
+.ghost:disabled {
+  color: var(--a-main-disabled);
+  border-color: var(--a-main-disabled);
+}
+.textDanger {
+  color: var(--a-error-base);
+  background-color: transparent;
+}
+.textDanger:active {
+  color: var(--a-error-pressed);
+}
+.textDanger:disabled {
+  color: var(--a-error-disabled);
+}
+
+.text {
+  border: none;
   background: transparent;
-  color: var(--ins-night);
-  border: 2px solid var(--ins-night);
-}
-.vivid {
-  background: var(--vivid);
-}
-.orange {
-  background: var(--vivid);
-}
-.frameOrange {
-  composes: frame;
-  color: var(--vivid);
-  border-color: var(--vivid);
-  background: var(--cold-white);
+  color: var(--a-main-base);
+  font-size: 40px;
+  margin-top: -12px;
 }
 
 .buttonsBar {
   background: transparent;
   display: flex;
   position: fixed;
-  /*pointer-events: none;*/
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 16px;
   z-index: 2;
 }
-/*.buttonsBar > * {*/
-/*  pointer-events: initial;*/
-/*}*/
 
 .close {
+  width: 40px;
+  height: 40px;
+  background-color: var(--a-green-base);
+  color: var(--bg-dark);
   font-size: 12px;
-  composes: frame;
   composes: button;
   position: absolute;
   z-index: 2;
   right: 0px;
   top: 0px;
   padding: 11px;
+  border-radius: 8px;
 }
 
 .closeWhite {
@@ -105,12 +129,16 @@
   bottom: 0;
   flex-direction: column;
 }
+.left > button {
+  padding-bottom: 0;
+}
 .right {
   right: 16px;
   top: 0;
   bottom: 0;
   flex-direction: column;
 }
+
 .bottom {
   flex-flow: row nowrap;
   bottom: 20px;
@@ -128,26 +156,6 @@
   padding: 8px 16px 20px;
   background: var(--cold-white);
 }
-
-.text {
-  border: none;
-  width: 100%;
-  background: none;
-  color: var(--ins-night);
-  /* Button */
-
-  font-family: "MxPlus IBM EGA", sans-serif;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 18px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.textSimple {
-  background: none;
-}
-
 .buttonOnlineContainer {
   display: flex;
   flex-direction: column;
@@ -163,8 +171,15 @@
   width: 100%;
 }
 
-.borderYellow {
-  background: none;
-  border: 2px solid var(--yellow);
-  color: var(--yellow);
+.searchButton {
+  position: fixed;
+  bottom: 80px;
+  left: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 0;
 }

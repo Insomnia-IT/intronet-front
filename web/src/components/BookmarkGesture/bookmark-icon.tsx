@@ -8,17 +8,17 @@ export const BookmarkIcon: FunctionalComponent<BookmarkIconProps> = ({
   active,
   ...svgProps
 }) => {
+  const className = [
+    active ? "strokeOnly" : undefined,
+    "colorAddBase",
+    svgProps.class ?? undefined,
+    svgProps.className ?? undefined,
+  ].filter((x) => x).join(" ");
 
   return (
     <SvgIcon
       id="#bookmark"
-      class={[
-        active ? "strokeOnly" : undefined,
-        svgProps.class ?? undefined,
-        svgProps.className ?? undefined,
-      ]
-        .filter((x) => x)
-        .join(" ")}
+      class={className}
       {...svgProps}
     />
   );

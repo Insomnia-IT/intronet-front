@@ -16,17 +16,17 @@ export const News = () => {
   if (state.news.length === 0 && state.isAdmin)
     return (
       <>
-        <Button type="borderYellow" goTo="/main/news/add">
-          + добавить новость
+        <Button type="ghost" goTo="/main/news/add">
+          добавить новость
         </Button>
       </>
     );
   return (
-    <Card border="Yellow" background="Night" flex column center gap={0}>
-      <div class="textSmall colorWhite">{state.news[0].time}</div>
+    <Card border="Accent" background="Light" flex column center gap={0}>
+      <div class="textSmall">{state.news[0].time}</div>
       <div class="text colorWhite">{state.news[0].title}</div>
-      <Link className="colorYellow" goTo="/main/news">
-        {state.news.length > 1 ? "все новости" : "Посмотреть"}
+      <Link className="colorAccent" goTo="/main/news">
+        {state.news.length > 1 ? "все новости" : "посмотреть"}
       </Link>
     </Card>
   );

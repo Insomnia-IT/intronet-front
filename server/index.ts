@@ -1,28 +1,47 @@
 import { checkWriteAccess } from "./auth";
 import { authCtrl, UserInfo } from "./auth.ctrl";
 import Fastify from "fastify";
-import { importMainPage } from "./data/import";
 import { importActivities } from "./data/importActivities";
 import { importLocations } from "./data/importLocations";
 import { importMovies } from "./data/importMovies";
 import { importShops } from "./data/importShops";
 import { dbCtrl } from "./db-ctrl";
 import { logCtrl } from "./log.ctrl";
-import { getResults, vote } from "./vote.ctrl";
+import { getResults, unvote, vote } from "./vote.ctrl";
 import * as console from "console";
 import { importVurchel } from "./data/importVurchel";
 import fs from "fs/promises";
+import { importEvents } from "./data/importEvents";
+import {
+  clearLocationDescriptionImage,
+  getLocationDescriptionImage,
+  ImageError,
+  MAX_DESCRIPTION_IMAGE_SIZE,
+  setLocationDescriptionImage,
+} from "./location-image.ctrl";
+import { startWeatherUpdateTask } from './weather'
 
 const fastify = Fastify({
   logger: false,
+  bodyLimit: MAX_DESCRIPTION_IMAGE_SIZE,
 });
+
+fastify.addContentTypeParser(
+  /^image\//,
+  { parseAs: "buffer" },
+  (_req, body, done) => {
+    done(null, body);
+  }
+);
 
 // Declare a route
 fastify.get("/versions", async function (request, reply) {
-  return dbCtrl.getVersions();
+  const user = await authCtrl
+    .parse(request.headers.authorization)
+    .catch(() => null);
+  return dbCtrl.getVersions(user);
 });
 fastify.get("/auth", async function (request, reply) {
-  console.log(request.headers.authorization);
   return (await authCtrl.parse(request.headers.authorization)).role;
 });
 fastify.post("/auth/token", async function (request, reply) {
@@ -65,16 +84,95 @@ fastify.post("/vote", async function (request, reply) {
     ip: request.headers["x-forwarded-for"] as string,
   });
 });
+fastify.post("/unvote", async function (request, reply) {
+  const id = JSON.parse(request.body as string).id;
+  logData = {
+    id,
+    action: "unvote",
+    app: "client",
+  };
+  unvote({
+    id,
+    uid: request.headers.uid as string,
+    ip: request.headers["x-forwarded-for"] as string,
+  });
+})
+fastify.get<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const image = await getLocationDescriptionImage(request.params.id);
+    if (!image) {
+      reply.status(404);
+      return "Image not found";
+    }
+    reply.header("Content-Type", image.mime);
+    reply.header("Cache-Control", "private, no-cache");
+    return image.buffer;
+  }
+);
+
+fastify.put<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin" && user.role !== "admin") {
+      reply.status(401);
+      return "Only admin or superadmin can upload location images";
+    }
+    const buffer = request.body as Buffer;
+    if (!buffer?.length) {
+      reply.status(400);
+      return "Empty body";
+    }
+    const mime = (request.headers["content-type"] ?? "").split(";")[0].trim();
+    try {
+      const result = await setLocationDescriptionImage(
+        request.params.id,
+        buffer,
+        mime
+      );
+      return result;
+    } catch (e) {
+      if (e instanceof ImageError) {
+        reply.status(e.statusCode);
+        return e.message;
+      }
+      throw e;
+    }
+  }
+);
+
+fastify.delete<{ Params: { id: string } }>(
+  "/locations/:id/description-image",
+  async function (request, reply) {
+    const user = await authCtrl.parse(request.headers.authorization);
+    if (user.role !== "superadmin" && user.role !== "admin") {
+      reply.status(401);
+      return "Only admin or superadmin can delete location images";
+    }
+    try {
+      const result = await clearLocationDescriptionImage(request.params.id);
+      return result;
+    } catch (e) {
+      if (e instanceof ImageError) {
+        reply.status(e.statusCode);
+        return e.message;
+      }
+      throw e;
+    }
+  }
+);
+
 fastify.get<{
   Params: { name: string };
   Querystring: { since?: string };
 }>("/data/:name", async function (request, reply) {
-  const items = await dbCtrl.get(request.params.name, request.query.since);
   const user = await authCtrl
     .parse(request.headers.authorization)
     .catch(() => null);
-  if (user) return items;
-  return items.filter((x) => x.isApproved !== false);
+  return await dbCtrl.get(request.params.name, request.query.since, user);
+  // if (user) return items;
+  // return items.filter((x) => x.isApproved !== false);
 });
 
 fastify.post<{ Params: { name: string } }>(
@@ -103,14 +201,36 @@ fastify.post("/batch", async function (request, reply) {
   for (let item of data) {
     if (!checkWriteAccess(user, item.db, item.value)) continue;
     try {
-      if (item.db === 'notes') {
-        fs.appendFile('notes.logs.json', new Date().toISOString() + ' ' + JSON.stringify({...item.value, user}, null, 2) + '\n');
+      if (item.db === "notes") {
+        fs.appendFile(
+          "notes.logs.json",
+          new Date().toISOString() +
+            " " +
+            JSON.stringify({ ...item.value, user }, null, 2) +
+            "\n"
+        );
       }
     } catch (e) {
       console.error("logging error", e);
     }
     await dbCtrl.addOrUpdate(item.db, item.value);
-    console.log('added', item.db, item.value);
+    console.log("added", item.db, item.value);
+  }
+});
+fastify.post("/load-events", async function (request, reply) {
+  const user = await authCtrl.parse(request.headers.authorization);
+  if (user.role !== "superadmin") {
+    reply.status(401);
+    return `User have not enough permissions to modify db`;
+  }
+
+  try {
+    await importEvents();
+    reply.status(200);
+    return "OK";
+  } catch (e) {
+    reply.status(500);
+    return e;
   }
 });
 fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
@@ -132,8 +252,6 @@ fastify.post<{ Params: { name: string }; Querystring: { force: boolean } }>(
         return importMovies(request.query.force);
       case "activities":
         return importActivities(request.query.force);
-      case "main":
-        return importMainPage(request.query.force);
       case "shops":
         return importShops(request.query.force);
     }
@@ -183,3 +301,5 @@ const logHook = async (request, reply) => {
 
 fastify.addHook("onResponse", logHook);
 fastify.addHook("onError", logHook);
+
+startWeatherUpdateTask();

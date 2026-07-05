@@ -124,7 +124,7 @@ export const Field: FunctionalComponent<IFieldProps> = ({
       )}
       {getInput()}
       {description && (
-        <span className={classNames(styles.description, "textSmall")}>
+        <span className={classNames(styles.description)}>
           {description}
         </span>
       )}

@@ -1,0 +1,13 @@
+.search {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  width: 100vw;
+  padding: 24px 16px 40px;
+  background: var(--bg-light);
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  box-sizing: border-box;
+  box-shadow: 0px -4px 16px 0px rgba(22, 49, 45, 0.16);
+  transform: translateX(-16px);
+}

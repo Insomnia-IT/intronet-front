@@ -7,11 +7,10 @@
   gap: 8px;
   width: 100%;
   max-width: 440px;
-  padding: 8px 24px 10px;
+  padding: 8px 12px 10px;
   box-sizing: border-box;
-  border-radius: var(--radius) var(--radius) 0 0;
-  box-shadow: 0 0 8px 0 rgba(247, 252, 255, 0.20);
-  background: var(--ins-night);
+  border-radius: var(--radius-large-small) var(--radius-large-small) 0 0;
+  background: var(--a-dark-base);
   color: white;
 }
 
@@ -22,13 +21,13 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .active,
 .active svg path {
-  color: var(--yellow);
-  fill: var(--yellow);
+  color: var(--a-main-base);
+  fill: var(--a-main-base);
 }
 
 /* Чтобы на деве и на больших экранах никто не словил кринжа */

@@ -10,7 +10,7 @@ export const OnboardPage = () => {
   const router = useRouter();
   useEffect(() => {
     if (Number.isNaN(stage)) userStore.OnboardingPhase = 0;
-    if (stage >= Stages.length) router.goTo(["main"], {}, true);
+    if (stage >= Stages.length) router.goTo(["map"], {}, true);
   }, [stage]);
   const Page = Stages[+stage] ?? (() => <></>);
   return (
@@ -28,17 +28,16 @@ export const OnboardPage = () => {
 const OnboardStage1 = () => {
   return (
     <>
+      <img className={styles.img1} src="/public/images/onboarding.webp" />
       <div>
-        <img className={styles.img1} src="/public/images/onboarding.webp" />
         <h1>
-          Привет!
-          <br />
-          Это insight
+          привет!
+          это инсайт!
         </h1>
         <div class="text">— локальный портал «Бессонницы»</div>
       </div>
       <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-        ОГО!
+        ого!
       </Button>
     </>
   );
@@ -48,25 +47,27 @@ const OnboardStage2 = () => {
   return (
     <>
       <div flex column>
-        <h1>Как это работает?</h1>
+        <h1>как это работает?</h1>
         <div>
-          <h2 class={styles.menuText}>локально на поле</h2>
-          <div class="text colorGrey2">
-            Добавь приложение на главный экран телефона и пользуйся им всё время на поле!
+          <h2 class={styles.menuText}>Локально на поле</h2>
+          <div class="text colorLightSecondary">
+            Добавь приложение на главный<br />экран телефона и пользуйся<br />им всё время на поле!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Почти интернет</h2>
-          <div class="text colorGrey2">
-            Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато
-            в Insight получится видеть изменения, новости и писать объявления.
+          <div class="text colorLightSecondary">
+            Подключись к внутренней сети «Insomnia-Wi-Fi». Зайти в Интернет не получится, но зато
+            в Insight увидишь актуальный прогноз погоды, изменения расписания, новости и сможешь писать объявления.
           </div>
         </div>
-        <div class="text colorGrey2">
-          Точки сети находятся у Инфоцентра, Фудкорта и основных экранов
+        <div class={styles.menuText}>
+          Точки сети находятся у Инфоцентра, Фудкорта, Ярмарки и основных экранов
         </div>
       </div>
-      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+      <Button class={styles.menuBtn}
+       type="vivid"
+       onClick={userStore.onboardingNext}>
         интересно
       </Button>
     </>
@@ -77,17 +78,18 @@ const OnboardStage3 = () => {
   return (
     <>
       <div flex column gap="10">
-        <h1>insight это </h1>
-        <h2>
-          <ul class="styledList" flex column gap="8">
-            <li>Карта фестиваля</li>
-            <li>Расписание ночных показов</li>
-            <li>расписание дневных мероприятий</li>
-            <li>онлайн доска объявлений</li>
-          </ul>
-        </h2>
+        <h1>инсайт это </h1>
+        <ul class="styledList" flex column gap="2">
+          <li>Карта фестиваля</li>
+          <li>Расписание анимации</li>
+          <li>Расписание других мероприятий</li>
+          <li>Онлайн доска объявлений</li>
+          <li>Прогноз погоды</li>
+        </ul>
       </div>
-      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
+      <Button class={styles.menuBtn}
+        type="vivid"
+        onClick={userStore.onboardingNext}>
         круто!
       </Button>
     </>
@@ -96,27 +98,29 @@ const OnboardStage3 = () => {
 const OnboardStage4 = () => {
   return (
     <>
-      <div flex column gap={8}>
+      <div flex column>
         <h1>а ещё тут можно</h1>
         <div>
-          <h2 class={styles.menuText}>сохранять</h2>
-          <div class="text colorGrey2">
+          <h2 class={styles.menuText}>Сохранять</h2>
+          <div class="text colorLightSecondary">
             Мультфильмы, мероприятия и места в избранное, чтобы ничего не
             пропустить!
           </div>
         </div>
         <div>
-          <h2 class={styles.menuText}>проголосовать</h2>
-          <div class="text colorGrey2">
-            За лучший мультфильм в номинации «Приз зрительских симпатий»
+          <h2 class={styles.menuText}>Проголосовать</h2>
+          <div class="text colorLightSecondary">
+            За лучшие мультфильмы в номинации «Приз зрительских симпатий»
           </div>
         </div>
-        <div class="text colorGrey2">
-          Все вопросы - в Кибер-инфо (локация Инфоцентра)
+        <div class={styles.menuText}>
+          Все вопросы - в Кибер-инфо (стойка в Инфоцентре)
         </div>
       </div>
-      <Button class={styles.menuBtn} type="vivid" onClick={userStore.onboardingNext}>
-        Начать
+      <Button class={styles.menuBtn}
+        type="vivid"
+        onClick={userStore.onboardingNext}>
+        начать
       </Button>
     </>
   );

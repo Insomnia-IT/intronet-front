@@ -51,6 +51,7 @@ export class ObservableDB<T extends { _id: string }> extends LocalObservableDB<
     try {
       // Очистка устаревших элементов
       for (let item of this.items.values()) {
+        if (!item) continue;
         if (item.version < this.initVersion) {
           await this.db.remove(item._id);
           this.items.delete(item._id);
@@ -198,7 +199,7 @@ class VersionsDB extends LocalObservableDB<{
     await this.loadItems();
     await this.loadFromServer();
     this.emit("loaded");
-    setInterval(() => this.loadFromServer(), 3000);
+    setInterval(() => this.loadFromServer(), 30000);
   }
 
   private loadingLock = false;

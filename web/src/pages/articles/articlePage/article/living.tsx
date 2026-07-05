@@ -47,7 +47,7 @@ const sections = {
         <div>
           Палатку можно поставить бесплатно в специальной зоне кемпинга.
         </div>
-        <div class="colorVivid" flex gap="3">
+        <div class="colorDanger" flex gap="3">
           <SvgIcon
             id="#alert"
             size={24}
@@ -78,14 +78,13 @@ const sections = {
           <li>Палатку (есть несколько размеров)</li>
           <li>Спальник</li>
           <li>Коврик</li>
-          <li>Надувные матрасы</li>
-          <li>Складные стулья</li>
-          <li>Походные сидушки</li>
+          <li>Фонари налобные и подвесные</li>
+          <li>Складные стулья и столы</li>
+          <li>Гамак</li>
+          <li>Газовую плитку</li>
         </ul>
         <div>
-          Оплата аренды и залога происходит при получении. Если вы оставляли
-          заявку на аренду заранее, то номер телефона является вашим номером
-          заказа.
+          Бронировать снаряжение необходимо заранее, без брони наличие снаряжения в пункте проката не гарантируется.
         </div>
         <ButtonsBar at="bottom">
           <Button type="blue" class="w-full" goTo={["map", { name: "прокат" }]}>
@@ -147,7 +146,28 @@ const sections = {
       </div>
     ),
   },
+  glemping: {
+    title: "Глэмпинг «Wonder Way»",
+    component: () => (
+      <div class="text" flex column gap="2">
+        <div style={{ marginBottom: 8 }}>
+          Если вы заранее купили билет в глэмпинге «Wonder Way» — вам сюда!
+        </div>
+        <Footer />
+        <ButtonsBar at="bottom">
+          <Button
+            type="blue"
+            class="w-full"
+            goTo={["map", { name: "глэмпинг" }]}
+          >
+            к глэмпингу
+          </Button>
+        </ButtonsBar>
+      </div>
+    ),
+  },
 };
+
 
 const Footer = () => (
   <>

@@ -18,7 +18,6 @@ export const VotingResults: FunctionalComponent = () => {
   }, []);
   return (
     <div flex column gap={3} style={{ marginTop: 29 }}>
-      Результаты
       {votes.map(({ id, count }) => (
         <div style={{ position: "relative" }} key={id}>
           <div
@@ -30,7 +29,7 @@ export const VotingResults: FunctionalComponent = () => {
               color: "var(--cold-white)",
               borderRadius: 10,
               padding: "6px 20px",
-              background: "var(--ins-night)",
+              background: "var(--bg-dark)",
             }}
           >
             {count}

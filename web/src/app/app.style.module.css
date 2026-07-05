@@ -42,23 +42,31 @@
 }
 
 :global(.link){
-  font-family: 'MxPlus IBM EGA', sans-serif;
+  position: relative;
+  font-family: 'Heading', sans-serif;
   font-style: normal;
-  font-size: 20px;
-  line-height: 24px;
-  text-transform: uppercase;
+  font-size: 40px;
+  line-height: 60%;
+  text-transform: lowercase;
   cursor: pointer;
-  color: var(--mineral);
+  color: var(--a-main-base);
   user-select: none;
 }
 :global(.link.disabled){
   opacity: 0.4;
   pointer-events: none;
 }
-
-:global(.link):after{
-  content: ' →';
+:global(.link::after) {
+  margin-left: 10px;
+  content: ">";
+  position: absolute;
+  top: calc(50% + 6px);
+  transform: translateY(-50%);
+  font-family: monospace;
+  font-weight: 100;
+  font-size: 20px;
 }
+
 
 :global(.transition){
   transition: .3s ease;
