@@ -59,6 +59,11 @@ export class Database<T extends { _id: string }> {
       this._instances.set(name, new Database<T>(name));
     return this._instances.get(name) as Database<T>;
   }
+  public static async close() {
+    if (this._client) {
+      await this._client.close();
+    }
+  }
   async remove(key: string) {
     await this.initCollection;
     await this.db.deleteOne({
