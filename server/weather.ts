@@ -120,12 +120,18 @@ const getWeatherCategory = (code: number): WeatherCategory => {
 
 const updateTask = async (apiKey: string) => {
   const currentHour = new Date().getHours();
-  const data = await fetch(
-    `https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=${apiKey}&lat=${lat}&lon=${lon}&asl=${asl}&format=${format}`
-  ).then(res => res.json() as Promise<WeatherData | {error: true, error_message: string}>);
+  let data: WeatherData | {error: true, error_message: string};
+  try {
+    data = await fetch(
+      `https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=${apiKey}&lat=${lat}&lon=${lon}&asl=${asl}&format=${format}`
+    ).then(res => res.json() as Promise<WeatherData | {error: true, error_message: string}>);
+  } catch (e) {
+    console.warn('METEOBLUE_API_KEY is not provided/exceeded api limit');
+    return;
+  }
 
   if ('error' in data) {
-    console.warn(data.error_message);
+    console.warn('METEOBLUE_API_KEY is not provided/exceeded api limit');
     return;
   }
 
