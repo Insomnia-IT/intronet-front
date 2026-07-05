@@ -60,6 +60,7 @@ type InsomniaLocation = {
   contentBlocks?: ContentBlock[];
   rowIndex: number;
   isFoodcourt: boolean;
+  isTree?: boolean;
   user?: string;
   hasDescriptionImage?: boolean;
   descriptionImageMime?: string;
@@ -95,6 +96,7 @@ type MapItem = {
   isUserLocation: boolean;
   directionId: string;
   isFoodcourt: boolean;
+  isTree?: boolean;
   radius;
   id;
   title?: string;
