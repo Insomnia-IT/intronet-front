@@ -52,5 +52,4 @@ export async function importVurchel(force = false) {
       await vurchelDB.addOrUpdate(item as any);
     }
   }
-  
 }

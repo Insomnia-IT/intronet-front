@@ -32,10 +32,10 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   return (
     <div flex column gap={2} class="movie-page">
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />
-      {movie.vurchelId && (
+      {movie.info?.images?.[0] && (
         <img
           class={styles.poster}
-          src={`/images/movies/film_${movie.vurchelId}.webp`}
+          src={`/public/images/movies/film_${movie.vurchelId}.webp`}
           alt={movie?.name}
           loading="lazy"
           onError={(e) => {

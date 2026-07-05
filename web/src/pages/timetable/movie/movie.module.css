@@ -3,10 +3,10 @@
 }
 
 .poster {
-  width: 100%;
-  border-radius: 12px;
+  width: 100vw;
+  border-radius: 0;
   object-fit: cover;
-  margin-bottom: 8px;
+  margin: 0 -16px 8px;
 }
 
 .plot {

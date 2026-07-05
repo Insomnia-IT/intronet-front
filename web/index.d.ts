@@ -186,9 +186,10 @@ interface Activity {
   start: string;
   end: string;
   authors: Array<{
+    id: number;
     name: string;
     description?: string;
-    photo?: string;
+    hasPhoto: boolean;
   }>;
   age?: number;
   hasChanges?: boolean;

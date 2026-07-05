@@ -34,7 +34,7 @@ export async function importActivities(force = false) {
     }
     return place.placeEvents.map((activity) => {
       return {
-        _id: `${place.entry_id}|${activity.eventStart}`,
+        _id: `${place.entry_id}_${activity.eventStart}`,
         version: Fn.ulid(),
         locationId: location?._id,
         title: activity.eventTitle,
@@ -42,9 +42,10 @@ export async function importActivities(force = false) {
         start: getTime(activity.eventStart * 1000),
         end: getTime(activity.eventEnd * 1000),
         authors: activity.eventParticipants.map((p) => ({
+          id: p.entry_id,
           name: p.participantName,
           description: p.participantBio,
-          photo: p.participantPhoto?.full,
+          hasPhoto: !!p.participantPhoto,
         })),
         day: getDay(activity.eventStart * 1000),
         age: parseEventAge(activity.eventAge),
@@ -55,8 +56,6 @@ export async function importActivities(force = false) {
   for (let item of activities) {
     await activitiesDB.addOrUpdate(item as any);
   }
-
-  
 }
 
 function parseEventAge(eventAge?: string): number | undefined {
