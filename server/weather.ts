@@ -84,40 +84,6 @@ interface WeatherData {
   };
 }
 
-enum WeatherCategory {
-  CLEAR = "Ясно",
-  PARTLY_CLOUDY = "Переменная облачность",
-  CLOUDY = "Облачно",
-  OVERCAST = "Пасмурно",
-  FOG = "Туман",
-  LIGHT_RAIN = "Небольшой дождь",
-  RAIN = "Дождь",
-  HEAVY_RAIN = "Сильный дождь",
-  SNOW = "Снег",
-  THUNDERSTORM = "Гроза"
-}
-
-// https://content.meteoblue.com/en/research-education/specifications/standards/symbols-and-pictograms
-const groupingRules: Record<WeatherCategory, number[]> = {
-  [WeatherCategory.CLEAR]: [1, 2, 3, 4, 5, 6, 13, 14, 15],
-  [WeatherCategory.PARTLY_CLOUDY]: [7, 8, 9],
-  [WeatherCategory.CLOUDY]: [10, 11, 12, 19, 20, 21],
-  [WeatherCategory.OVERCAST]: [22],
-  [WeatherCategory.FOG]: [16, 17, 18],
-  [WeatherCategory.LIGHT_RAIN]: [33],
-  [WeatherCategory.RAIN]: [23, 31],
-  [WeatherCategory.HEAVY_RAIN]: [25],
-  [WeatherCategory.SNOW]: [24, 26, 29, 32, 34, 35],
-  [WeatherCategory.THUNDERSTORM]: [27, 28, 30]
-};
-
-const getWeatherCategory = (code: number): WeatherCategory => {
-  for (const [category, codes] of Object.entries(groupingRules)) {
-    if (codes.includes(code)) return category as WeatherCategory;
-  }
-  return WeatherCategory.CLEAR;
-}
-
 const updateTask = async (apiKey: string) => {
   const currentHour = new Date().getHours();
   let response: WeatherData | {error: true, error_message: string};
@@ -138,7 +104,7 @@ const updateTask = async (apiKey: string) => {
   const data: WeatherData = response;
 
   const currentTemperature = data.data_1h.temperature[currentHour];
-  const currentCondition = getWeatherCategory(data.data_1h.pictocode[currentHour]);
+  const currentCondition = data.data_1h.pictocode[currentHour];
 
   // 7:00-12:00 morning
   const morningBounds = [7, 12] as [number, number];
@@ -151,15 +117,15 @@ const updateTask = async (apiKey: string) => {
 
   const getAvgs = (day: number, bounds: [number, number]) => ({
     temperature: Math.round(data.data_1h.temperature.slice(day * 24 + bounds[0], day * 24 + bounds[1]).reduce((a, b) => a + b, 0) / (bounds[1] - bounds[0])),
-    condition: getWeatherCategory(Number(Object.entries(
+    condition: Number(Object.entries(
       data.data_1h.pictocode.slice(day * 24 + bounds[0], day * 24 + bounds[1]).reduce((dict, current) => ({...dict, [current]: (dict[current] ?? 0) + 1}), {} as Record<number, number>)
-    ).sort((a, b) => b[1] - a[1])[0][0]))
+    ).sort((a, b) => b[1] - a[1])[0][0])
   })
 
   const days = [0, 1, 2, 3, 4].map((day) => ({
     temperature: Math.round(day === 0 ? currentTemperature : data.data_day.temperature_mean[day]),
     feltTemperature: Math.round(data.data_day.felttemperature_mean[day]),
-    condition: day === 0 ? currentCondition : getWeatherCategory(data.data_day.pictocode[day]),
+    condition: day === 0 ? currentCondition : Number(data.data_day.pictocode[day]),
     windSpeed: data.data_day.windspeed_mean[day],
     windDirection: data.data_day.winddirection[day],
     timesOfDay: {
