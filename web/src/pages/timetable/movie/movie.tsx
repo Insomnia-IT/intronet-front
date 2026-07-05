@@ -28,7 +28,6 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   const [minutes, seconds] = movie.info?.filmDuration?.split(/[:'"]/) ?? [];
   const isOnline = useOnlineState();
   if (!screenLocations.length) return <></>;
-
   return (
     <div flex column gap={2} class="movie-page">
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />

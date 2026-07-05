@@ -42,10 +42,10 @@ export async function importVurchel(force = false) {
         ...info,
         hasImage: info.images?.length > 0,
       });
-      writeFileSync("./vurchel.json", JSON.stringify(vurchelData), "utf-8");
-      json.length = 0;
-      json.push(...vurchelData);
     }
+    writeFileSync("./vurchel.json", JSON.stringify(vurchelData), "utf-8");
+    json.length = 0;
+    json.push(...vurchelData);
   }
   for (let item of json) {
     (item as any).hasImage = item.images?.length > 0;
