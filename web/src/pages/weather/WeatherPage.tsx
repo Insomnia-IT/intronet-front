@@ -2,7 +2,6 @@ import { useCell } from '@helpers/cell-state'
 import { PageLayout } from "@components/PageLayout";
 import { weatherStore } from '@stores/weather.store'
 import styles from "./WeatherPage.module.css";
-import { getCurrentDay } from '@helpers/getDayText'
 import { WeatherCard } from './weather-card/WeatherCard'
 import { useState } from 'preact/hooks'
 
@@ -15,7 +14,7 @@ export const WeatherPage = () => {
       withCloseButton
       className={styles.weatherPage}
     >
-      {weather ? weather.days.slice(0, 5 - getCurrentDay()).map((dayReport, day) =>
+      {weather ? weather.days.map((dayReport, day) =>
         <WeatherCard
           key={day}
           day={day as Day}

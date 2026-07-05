@@ -4775,7 +4775,7 @@
                 ]
             },
             "properties": {
-                "name": "Анимаквест. Хранитель Водомерка",
+                "name": "Анимаквест. Хранитель Черепаха",
                 "styleUrl": "#icon-1852-FFEA00-labelson",
                 "styleHash": "32df68db",
                 "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
@@ -4829,7 +4829,7 @@
                 ]
             },
             "properties": {
-                "name": "Анимаквест. Хранитель Черепаха",
+                "name": "Анимаквест. Хранитель Водомерка",
                 "styleUrl": "#icon-1888-FFEA00-labelson",
                 "styleHash": "1fa79fe",
                 "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
@@ -5093,13 +5093,13 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    35.085383,
-                    54.679057,
+                    35.0854822,
+                    54.6792415,
                     0
                 ]
             },
             "properties": {
-                "name": "Админка.Домик Бригадиров",
+                "name": "Автостанция",
                 "styleUrl": "#icon-1551-9C27B0-labelson",
                 "styleHash": "10fa86d5",
                 "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
@@ -5250,8 +5250,13 @@
                 "coordinates": [
                     [
                         [
-                            35.080745,
-                            54.680676,
+                            35.0799833,
+                            54.6814265,
+                            0
+                        ],
+                        [
+                            35.0787011,
+                            54.6807184,
                             0
                         ],
                         [
@@ -5295,48 +5300,48 @@
                             0
                         ],
                         [
-                            35.083479,
-                            54.67898,
+                            35.0839296,
+                            54.6787815,
                             0
                         ],
                         [
-                            35.083581,
-                            54.679053,
+                            35.0842569,
+                            54.6787987,
                             0
                         ],
                         [
-                            35.083999,
-                            54.679081,
+                            35.0846803,
+                            54.6788546,
                             0
                         ],
                         [
-                            35.084112,
-                            54.679234,
+                            35.0850293,
+                            54.6788866,
                             0
                         ],
                         [
-                            35.08416,
-                            54.67934,
+                            35.0856084,
+                            54.678943,
                             0
                         ],
                         [
-                            35.083833,
-                            54.67947,
+                            35.0860646,
+                            54.6789769,
                             0
                         ],
                         [
-                            35.083924,
-                            54.679566,
+                            35.0860859,
+                            54.679107,
                             0
                         ],
                         [
-                            35.084289,
-                            54.679526,
+                            35.0858715,
+                            54.6792996,
                             0
                         ],
                         [
-                            35.084589,
-                            54.679548,
+                            35.0848572,
+                            54.6795697,
                             0
                         ],
                         [
@@ -5350,43 +5355,43 @@
                             0
                         ],
                         [
-                            35.083104,
-                            54.679884,
+                            35.0829645,
+                            54.6799894,
                             0
                         ],
                         [
-                            35.082948,
-                            54.67967,
+                            35.0826583,
+                            54.680067,
                             0
                         ],
                         [
-                            35.082471,
-                            54.679683,
+                            35.0822779,
+                            54.6801637,
                             0
                         ],
                         [
-                            35.08201,
-                            54.679782,
+                            35.0818544,
+                            54.6802751,
                             0
                         ],
                         [
-                            35.08144,
-                            54.680261,
+                            35.0814776,
+                            54.6803913,
                             0
                         ],
                         [
-                            35.081215,
-                            54.680441,
+                            35.0812526,
+                            54.6804875,
                             0
                         ],
                         [
-                            35.081073,
-                            54.680578,
+                            35.0812554,
+                            54.6807517,
                             0
                         ],
                         [
-                            35.080745,
-                            54.680676,
+                            35.0799833,
+                            54.6814265,
                             0
                         ]
                     ]
@@ -14647,6 +14652,121 @@
                     "highlight": "#icon-1899-DB4436-nodesc-highlight"
                 },
                 "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.094026,
+                    54.6873736,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Многопоточка 1",
+                "styleUrl": "#icon-1899-0288D1",
+                "styleHash": "-13b7f8a7",
+                "styleMapHash": {
+                    "normal": "#icon-1899-0288D1-normal",
+                    "highlight": "#icon-1899-0288D1-highlight"
+                },
+                "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
+                "description": "Многопоточка у Кинобара (для дальних лагерей) ",
+                "название": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.0958089,
+                    54.6842324,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Многопоточка 2",
+                "styleUrl": "#icon-1899-0288D1",
+                "styleHash": "-13b7f8a7",
+                "styleMapHash": {
+                    "normal": "#icon-1899-0288D1-normal",
+                    "highlight": "#icon-1899-0288D1-highlight"
+                },
+                "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
+                "description": "",
+                "название": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.0837552,
+                    54.6814032,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Многопоточка 3",
+                "styleUrl": "#icon-1899-0288D1",
+                "styleHash": "-13b7f8a7",
+                "styleMapHash": {
+                    "normal": "#icon-1899-0288D1-normal",
+                    "highlight": "#icon-1899-0288D1-highlight"
+                },
+                "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
+                "description": "",
+                "название": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.0798582,
+                    54.6798879,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Многопоточка 4",
+                "styleUrl": "#icon-1899-0288D1",
+                "styleHash": "-13b7f8a7",
+                "styleMapHash": {
+                    "normal": "#icon-1899-0288D1-normal",
+                    "highlight": "#icon-1899-0288D1-highlight"
+                },
+                "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
+                "description": "",
+                "название": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.0850918,
+                    54.6791754,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Многопоточка Админка",
+                "styleUrl": "#icon-1899-0288D1",
+                "styleHash": "-13b7f8a7",
+                "styleMapHash": {
+                    "normal": "#icon-1899-0288D1-normal",
+                    "highlight": "#icon-1899-0288D1-highlight"
+                },
+                "icon": "https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png",
+                "description": "",
+                "название": ""
             }
         }
     ]
