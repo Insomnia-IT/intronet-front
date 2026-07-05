@@ -249,7 +249,7 @@ interface VurchelFilm {
   filmFull: string | null;
   filmReleaseYear: string | null;
   countries: string[];
-  images: string[];
+  hasImage: boolean;
   translations: Translation[];
   credits: Credits[];
 }

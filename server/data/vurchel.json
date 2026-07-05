@@ -11,9 +11,7 @@
     "filmFull": null,
     "filmDuration": "3",
     "filmReleaseYear": "2022",
-    "countries": [
-      "Germany"
-    ],
+    "countries": ["Germany"],
     "images": [
       "https://vurchel.com/img/films/Photo_2_ANIMANIMALS_47_Pufferfish_Still_01.jpg",
       "https://vurchel.com/img/films/Photo_1_ANIMANIMALS_47_Pufferfish_Still_06.jpg",
@@ -48,9 +46,7 @@
     "filmFull": null,
     "filmDuration": "10",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Portugal"
-    ],
+    "countries": ["Portugal"],
     "images": [
       "https://vurchel.com/img/films/MV5BYWNiOTkyMjgtZDk1Ni00ZWM4LTg1ZTUtNTRjOThmYTc1MTkwXkEyXkFqcGdeQXVyNTA3NzE4MDc%40._V1_FMjpg_UX1000__.jpg",
       "https://vurchel.com/img/films/Ana-Morphose.jpg",
@@ -82,9 +78,7 @@
     "filmFull": null,
     "filmDuration": "4",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/6735-a8a6-film.jpg",
       "https://vurchel.com/img/films/BisouChampion_%2804%29.png",
@@ -116,12 +110,8 @@
     "filmFull": null,
     "filmDuration": "4",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
-    "images": [
-      "https://vurchel.com/img/films/6905-a5e4-film.jpg"
-    ],
+    "countries": ["France"],
+    "images": ["https://vurchel.com/img/films/6905-a5e4-film.jpg"],
     "translations": [],
     "credits": [
       {
@@ -147,12 +137,8 @@
     "filmFull": null,
     "filmDuration": "8",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Belgium"
-    ],
-    "images": [
-      "https://vurchel.com/img/films/7603-e1f5-film.jpg"
-    ],
+    "countries": ["Belgium"],
+    "images": ["https://vurchel.com/img/films/7603-e1f5-film.jpg"],
     "translations": [],
     "credits": [
       {
@@ -178,9 +164,7 @@
     "filmFull": null,
     "filmDuration": "13",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/Photo_1_Beurk_01_MAIN.jpg",
       "https://vurchel.com/img/films/Poster_3aac59809e-poster.jpg",
@@ -213,9 +197,7 @@
     "filmFull": null,
     "filmDuration": "8",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/2023-11-12_14-02-20.png",
       "https://vurchel.com/img/films/2023-11-12_14-02-04.png",
@@ -273,9 +255,7 @@
     "filmFull": null,
     "filmDuration": "14",
     "filmReleaseYear": "2024",
-    "countries": [
-      "Japan"
-    ],
+    "countries": ["Japan"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_19-03-53.png",
       "https://vurchel.com/img/films/2024-06-18_19-03-29.png",
@@ -313,9 +293,7 @@
     "filmFull": null,
     "filmDuration": "11",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Hungary"
-    ],
+    "countries": ["Hungary"],
     "images": [
       "https://vurchel.com/img/films/still-02-1024x576.jpg",
       "https://vurchel.com/img/films/still-34-1024x576.jpg",
@@ -348,9 +326,7 @@
     "filmFull": null,
     "filmDuration": "10",
     "filmReleaseYear": "2024",
-    "countries": [
-      "China"
-    ],
+    "countries": ["China"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_22-34-19.png",
       "https://vurchel.com/img/films/2024-06-18_22-34-36.png",
@@ -385,9 +361,7 @@
     "filmFull": null,
     "filmDuration": "9",
     "filmReleaseYear": "2024",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_22-54-25.png",
       "https://vurchel.com/img/films/2024-06-18_22-54-46.png",
@@ -424,10 +398,7 @@
     "filmFull": null,
     "filmDuration": "6",
     "filmReleaseYear": "2023",
-    "countries": [
-      "China",
-      "United States (USA)"
-    ],
+    "countries": ["China", "United States (USA)"],
     "images": [
       "https://vurchel.com/img/films/Braided_Still_6-zhang-chenxi-1024x576.webp"
     ],
@@ -456,9 +427,7 @@
     "filmFull": null,
     "filmDuration": "7",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Lebanon"
-    ],
+    "countries": ["Lebanon"],
     "images": [
       "https://vurchel.com/img/films/14-6-2024_162120_cinemadedemain.festival-cannes_.com_.jpeg",
       "https://vurchel.com/img/films/20240240.webp",
@@ -496,9 +465,7 @@
     "filmFull": null,
     "filmDuration": "3",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Taiwan"
-    ],
+    "countries": ["Taiwan"],
     "images": [
       "https://vurchel.com/img/films/Photo_2__2_-_.jpg",
       "https://vurchel.com/img/films/Poster_9be2896715-poster.jpg",
@@ -530,9 +497,7 @@
     "filmFull": null,
     "filmDuration": "7",
     "filmReleaseYear": "2024",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/2024-06-16_22-15-38.png",
       "https://vurchel.com/img/films/2024-06-16_22-15-53.png",
@@ -570,12 +535,7 @@
     "filmFull": null,
     "filmDuration": "6",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Belgium",
-      "Finland",
-      "Mexico",
-      "Portugal"
-    ],
+    "countries": ["Belgium", "Finland", "Mexico", "Portugal"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_19-33-25.png",
       "https://vurchel.com/img/films/2024-06-18_19-34-13.png",
@@ -611,9 +571,7 @@
     "filmFull": null,
     "filmDuration": "5",
     "filmReleaseYear": "2024",
-    "countries": [
-      "China"
-    ],
+    "countries": ["China"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_11-01-18.png",
       "https://vurchel.com/img/films/2024-06-18_11-01-47.png",
@@ -650,9 +608,7 @@
     "filmFull": null,
     "filmDuration": "2",
     "filmReleaseYear": "2024",
-    "countries": [
-      "Hong Kong"
-    ],
+    "countries": ["Hong Kong"],
     "images": [
       "https://vurchel.com/img/films/Photo_1_TAO__2024_-_still_4.jpg",
       "https://vurchel.com/img/films/Poster_1d4949003a-poster.jpg",
@@ -695,12 +651,8 @@
     "filmFull": null,
     "filmDuration": "16",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
-    "images": [
-      "https://vurchel.com/img/films/a_kind_of_testament_1.png"
-    ],
+    "countries": ["France"],
+    "images": ["https://vurchel.com/img/films/a_kind_of_testament_1.png"],
     "translations": [],
     "credits": [
       {
@@ -726,12 +678,8 @@
     "filmFull": null,
     "filmDuration": "11",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Switzerland"
-    ],
-    "images": [
-      "https://vurchel.com/img/films/image-w1280_33.webp"
-    ],
+    "countries": ["Switzerland"],
+    "images": ["https://vurchel.com/img/films/image-w1280_33.webp"],
     "translations": [],
     "credits": [
       {
@@ -757,9 +705,7 @@
     "filmFull": null,
     "filmDuration": "20",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Iran"
-    ],
+    "countries": ["Iran"],
     "images": [
       "https://vurchel.com/img/films/Dar-Saaye-Sarv_2.jpg",
       "https://vurchel.com/img/films/In-the-Shadow-of-the-Cypress-08.jpg",
@@ -802,9 +748,7 @@
     "filmFull": null,
     "filmDuration": "5",
     "filmReleaseYear": "2024",
-    "countries": [
-      "Japan"
-    ],
+    "countries": ["Japan"],
     "images": [
       "https://vurchel.com/img/films/Photo_2_TM_HD_004.jpg",
       "https://vurchel.com/img/films/Poster_acbcd47388-poster.jpg",
@@ -838,9 +782,7 @@
     "filmFull": null,
     "filmDuration": "11",
     "filmReleaseYear": "2023",
-    "countries": [
-      "South Korea"
-    ],
+    "countries": ["South Korea"],
     "images": [
       "https://vurchel.com/img/films/Photo_5_Hair_Universe_StillShot_05.jpg",
       "https://vurchel.com/img/films/Poster_11fb80147f-poster.jpg",
@@ -878,12 +820,8 @@
     "filmFull": null,
     "filmDuration": "8",
     "filmReleaseYear": "2023",
-    "countries": [
-      "France"
-    ],
-    "images": [
-      "https://vurchel.com/img/films/love-me-true.jpg"
-    ],
+    "countries": ["France"],
+    "images": ["https://vurchel.com/img/films/love-me-true.jpg"],
     "translations": [
       {
         "language": "fr",
@@ -915,9 +853,7 @@
     "filmFull": null,
     "filmDuration": "8",
     "filmReleaseYear": "2024",
-    "countries": [
-      "United States (USA)"
-    ],
+    "countries": ["United States (USA)"],
     "images": [
       "https://vurchel.com/img/films/2024-06-18_21-48-44.png",
       "https://vurchel.com/img/films/2024-06-18_21-48-57.png",
@@ -955,9 +891,7 @@
     "filmFull": null,
     "filmDuration": "8",
     "filmReleaseYear": "2024",
-    "countries": [
-      "United Kingdom (UK)"
-    ],
+    "countries": ["United Kingdom (UK)"],
     "images": [
       "https://vurchel.com/img/films/Photo_1_and_then_they_00004.jpg",
       "https://vurchel.com/img/films/Poster_4adf9d16e0-poster.jpg",
@@ -989,9 +923,7 @@
     "filmFull": null,
     "filmDuration": "3",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Canada"
-    ],
+    "countries": ["Canada"],
     "images": [
       "https://vurchel.com/img/films/Photo_3_Jin-7.jpg",
       "https://vurchel.com/img/films/Photo_5_Jin-2.jpg",
@@ -1029,9 +961,7 @@
     "filmFull": null,
     "filmDuration": "13",
     "filmReleaseYear": "2024",
-    "countries": [
-      "United Kingdom (UK)"
-    ],
+    "countries": ["United Kingdom (UK)"],
     "images": [
       "https://vurchel.com/img/films/Photo_2_S-Still_030.jpg",
       "https://vurchel.com/img/films/Photo_1_S-Still_100.jpg",
@@ -1063,9 +993,7 @@
     "filmFull": "https://www.youtube.com/watch?v=7ylNsa-H4qQ",
     "filmDuration": "5",
     "filmReleaseYear": "2022",
-    "countries": [
-      "Spain"
-    ],
+    "countries": ["Spain"],
     "images": [
       "https://vurchel.com/img/films/Photo_3_04_06119.jpg",
       "https://vurchel.com/img/films/Photo_7_11_01096.jpg",
@@ -1103,9 +1031,7 @@
     "filmFull": "https://www.youtube.com/watch?v=OU24A9C8BUk",
     "filmDuration": "4",
     "filmReleaseYear": "2023",
-    "countries": [
-      "United States (USA)"
-    ],
+    "countries": ["United States (USA)"],
     "images": [
       "https://vurchel.com/img/films/2024-06-21_10-57-41.png",
       "https://vurchel.com/img/films/2024-06-21_10-57-31.png",
@@ -1143,9 +1069,7 @@
     "filmFull": "https://www.youtube.com/watch?v=dF-TAx_Rhgg",
     "filmDuration": "7",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Germany"
-    ],
+    "countries": ["Germany"],
     "images": [
       "https://vurchel.com/img/films/2024-06-19_20-11-17.png",
       "https://vurchel.com/img/films/2024-06-19_20-10-21.png",
@@ -1183,10 +1107,7 @@
     "filmFull": "https://vimeo.com/719883193",
     "filmDuration": "5",
     "filmReleaseYear": "2022",
-    "countries": [
-      "France",
-      "United States (USA)"
-    ],
+    "countries": ["France", "United States (USA)"],
     "images": [
       "https://vurchel.com/img/films/2024-06-20_10-00-53.png",
       "https://vurchel.com/img/films/2024-06-20_10-01-30.png",
@@ -1224,9 +1145,7 @@
     "filmFull": "https://vimeo.com/764153868",
     "filmDuration": "4",
     "filmReleaseYear": "2019",
-    "countries": [
-      "France"
-    ],
+    "countries": ["France"],
     "images": [
       "https://vurchel.com/img/films/Screenshot_2023-10-23_122528.png",
       "https://vurchel.com/img/films/Screenshot_2023-10-23_122534.png",
@@ -1263,9 +1182,7 @@
     "filmFull": "https://vimeo.com/904384204",
     "filmDuration": "3",
     "filmReleaseYear": "2023",
-    "countries": [
-      "Israel"
-    ],
+    "countries": ["Israel"],
     "images": [
       "https://vurchel.com/img/films/2024-06-20_14-15-56.png",
       "https://vurchel.com/img/films/2024-06-20_14-15-45.png",
@@ -1303,9 +1220,7 @@
     "filmFull": "https://vimeo.com/929596631",
     "filmDuration": "3",
     "filmReleaseYear": "2024",
-    "countries": [
-      "Argentina"
-    ],
+    "countries": ["Argentina"],
     "images": [
       "https://vurchel.com/img/films/2024-06-21_14-28-15.png",
       "https://vurchel.com/img/films/2024-06-21_14-28-02.png",
@@ -1342,9 +1257,7 @@
     "filmFull": "https://www.youtube.com/watch?v=sVk93S1GlOo",
     "filmDuration": "3",
     "filmReleaseYear": "2023",
-    "countries": [
-      "India"
-    ],
+    "countries": ["India"],
     "images": [
       "https://vurchel.com/img/films/maxresdefault_%281%29_16.jpg",
       "https://vurchel.com/img/films/images_3.jfif"

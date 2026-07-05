@@ -32,7 +32,7 @@ export const Movie: FunctionalComponent<MovieProps> = (props) => {
   return (
     <div flex column gap={2} class="movie-page">
       <PageHeader titleH2={movie?.name} align={"center"} withCloseButton />
-      {movie.info?.images?.[0] && (
+      {movie.info?.hasImage && (
         <img
           class={styles.poster}
           src={`/public/images/movies/film_${movie.vurchelId}.webp`}
