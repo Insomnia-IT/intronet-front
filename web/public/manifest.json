@@ -4,8 +4,8 @@
   "lang": "ru",
   "display": "standalone",
   "display_override": [
-    "minimal-ui",
-    "window-controls-overlay"
+    "window-controls-overlay",
+    "standalone"
   ],
   "id": "app.insight.twa",
   "name": "Insomnia Fest",
