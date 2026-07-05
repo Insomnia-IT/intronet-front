@@ -35,7 +35,7 @@ export const mainPageData: MainPageSection[] = [
         },
         {
           id: "wc",
-          title: "Туалеты и\nдуши"
+          title: "Туалеты\nи души"
         }
       ],
       [

@@ -107,7 +107,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 80px;
+  bottom: 70px;
   z-index: 4;
   padding: 0 10px 8px;
   padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));

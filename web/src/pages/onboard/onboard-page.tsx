@@ -10,7 +10,7 @@ export const OnboardPage = () => {
   const router = useRouter();
   useEffect(() => {
     if (Number.isNaN(stage)) userStore.OnboardingPhase = 0;
-    if (stage >= Stages.length) router.goTo(["main"], {}, true);
+    if (stage >= Stages.length) router.goTo(["map"], {}, true);
   }, [stage]);
   const Page = Stages[+stage] ?? (() => <></>);
   return (
@@ -51,18 +51,18 @@ const OnboardStage2 = () => {
         <div>
           <h2 class={styles.menuText}>Локально на поле</h2>
           <div class="text colorLightSecondary">
-            Добавь приложение на главный экран телефона и пользуйся им всё время на поле!
+            Добавь приложение на главный<br />экран телефона и пользуйся<br />им всё время на поле!
           </div>
         </div>
         <div>
           <h2 class={styles.menuText}>Почти интернет</h2>
           <div class="text colorLightSecondary">
-            Подключись к внутренней сети «Insomnia-WIFI». Заходить на другие сайты нельзя, но зато
-            в Insight получится видеть изменения, новости и писать объявления.
+            Подключись к внутренней сети «Insomnia-Wi-Fi». Зайти в Интернет не получится, но зато
+            в Insight увидишь актуальный прогноз погоды, изменения расписания, новости и сможешь писать объявления.
           </div>
         </div>
         <div class={styles.menuText}>
-          Точки сети находятся у Инфоцентра, Фудкорта и основных экранов
+          Точки сети находятся у Инфоцентра, Фудкорта, Ярмарки и основных экранов
         </div>
       </div>
       <Button class={styles.menuBtn}
@@ -81,9 +81,10 @@ const OnboardStage3 = () => {
         <h1>инсайт это </h1>
         <ul class="styledList" flex column gap="2">
           <li>Карта фестиваля</li>
-          <li>Расписание ночных показов</li>
-          <li>Расписание дневных мероприятий</li>
+          <li>Расписание анимации</li>
+          <li>Расписание других мероприятий</li>
           <li>Онлайн доска объявлений</li>
+          <li>Прогноз погоды</li>
         </ul>
       </div>
       <Button class={styles.menuBtn}
@@ -109,11 +110,11 @@ const OnboardStage4 = () => {
         <div>
           <h2 class={styles.menuText}>Проголосовать</h2>
           <div class="text colorLightSecondary">
-            За лучший мультфильм в номинации «Приз зрительских симпатий»
+            За лучшие мультфильмы в номинации «Приз зрительских симпатий»
           </div>
         </div>
         <div class={styles.menuText}>
-          Все вопросы - в Кибер-инфо (локация Инфоцентра)
+          Все вопросы - в Кибер-инфо (стойка в Инфоцентре)
         </div>
       </div>
       <Button class={styles.menuBtn}
