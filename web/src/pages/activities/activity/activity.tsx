@@ -27,7 +27,6 @@ export const Activity: FunctionalComponent<ActivityProps> = ({ id }) => {
   const router = useActivitiesRouter();
   const store = useMemo(() => new ActivityStore(id), [id]);
   const { activity, hasBookmark } = useCell(store.state);
-  console.log(activity);
 
   return (
     <div flex column gap={4} style={{ paddingBottom: 80 }}>
@@ -58,8 +57,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({ id }) => {
             />
           )}
           {activity.authors?.map((author) => (
-            <>
-              <div className="colorGrey sh3">{author.name}</div>
+            <div class={Styles.author}>
               {author.id && author.hasPhoto && (
                 <img
                   className={Styles.authorPhoto}
@@ -72,16 +70,19 @@ export const Activity: FunctionalComponent<ActivityProps> = ({ id }) => {
                   }}
                 />
               )}
-              <div
-                className="colorGrey sh3"
-                dangerouslySetInnerHTML={{
-                  __html: [author.description]
-                    .filter((x) => x)
-                    .join(". ")
-                    .replaceAll(/\\n/g, "<br/>"),
-                }}
-              />
-            </>
+              <div class={Styles.authorInfo}>
+                <div className={Styles.authorName}>{author.name}</div>
+                <div
+                  className={Styles.authorDescription}
+                  dangerouslySetInnerHTML={{
+                    __html: [author.description]
+                      .filter((x) => x)
+                      .join(". ")
+                      .replaceAll(/\\n/g, "<br/>"),
+                  }}
+                />
+              </div>
+            </div>
           ))}
           {activity.day !== undefined && (
             <div className="colorMediumBlue sh3">
