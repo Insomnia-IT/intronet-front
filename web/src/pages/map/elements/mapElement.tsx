@@ -185,6 +185,7 @@ export const directionsToOrder = new Map([
   ["Диафильминариум", OrderType.Other],
   ["Игротека", OrderType.Other],
   ["Детская поляна", OrderType.Other],
+  ["Волонтёрские объекты", OrderType.Other],
 ]);
 
 export const directionsToIconId = new Map<string, MapIconId>([
@@ -224,6 +225,7 @@ export const directionsToIconId = new Map<string, MapIconId>([
   ["Диафильминариум", ".map #film"],
   ["Игротека", ".map #game"],
   ["Детская поляна", ".map #children"],
+  ["Волонтёрские объекты", ".map #volunteer"],
 ]);
 
 export type MapIconId =
@@ -255,7 +257,8 @@ export type MapIconId =
   | ".map #cup"
   | ".map #film"
   | ".map #game"
-  | ".map #children";
+  | ".map #children"
+  | ".map #volunteer";
 
 export type DetailsGroup =
   | "cafe"

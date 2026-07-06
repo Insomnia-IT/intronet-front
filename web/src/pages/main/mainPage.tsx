@@ -12,7 +12,7 @@ import { PageLayout } from "@components/PageLayout";
 import styles from "./main-page.module.css";
 import { mainPageData } from "./data";
 import { useCell } from "@helpers/cell-state";
-import { weatherStore } from "@stores/weather.store";
+import { getWeatherCategoryByCondition, weatherStore } from "@stores/weather.store";
 import { getCurrentDay, getDayText } from "@helpers/getDayText";
 import { SearchButton } from "@components/buttons/search-button";
 
@@ -32,7 +32,7 @@ export const MainPage = () => {
       <div flex column>
         <div flex column gap={1}>
           <div flex gap={1}>
-            <MainCard id="weather" link="/weather" title={weather?.days[0].condition ?? ''} descr={`Сегодня, ${getDayText(getCurrentDay(), 'full')}`} size="large"/>
+            <MainCard id="weather" link="/weather" title={getWeatherCategoryByCondition(weather?.days[0].condition ?? 0)} descr={`Сегодня, ${new Date(Date.now()).toLocaleDateString('ru-RU', {day: 'numeric', month: 'long'})}`} size="large"/>
             <MainCard id="notes" link="/notes" title="Объявления" descr="Записочки, как на инфоцентре!" color size="large"/>
           </div>
         </div>

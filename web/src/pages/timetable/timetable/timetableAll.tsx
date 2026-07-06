@@ -13,7 +13,7 @@ export const TimetableAll: FunctionalComponent = () => {
     day: string;
   }>();
   const screens = useCell(() => locationsStore.ScreenLocations);
-  const screen = router.query.screen ?? screens[0]?._id;
+  const screen = router.query.screen ?? screens?.[0]?._id;
   const setScreen = (screen: string) =>
     screen &&
     router.goTo(
