@@ -18,7 +18,7 @@ import { stripLegacyLocationImage } from "@helpers/location-image";
 
 class LocationsStore {
   @cell db = new ObservableDB<InsomniaLocation>("locations");
-  @cell userLocations = new LocalObservableDB<InsomniaLocation>("locations");
+  @cell userLocations = new LocalObservableDB<InsomniaLocation>("user-locations");
 
   Loading = this.db.isLoaded.then((x) => this.db.isLoaded);
   @cell public isEdit = false;
@@ -124,6 +124,7 @@ class LocationsStore {
 
   @cell
   private get RealLocations(): ReadonlyArray<InsomniaLocation> {
+    console.log(this.userLocations.toArray());
     return orderBy(
       [...this.db.toArray(), ...this.userLocations.toArray()],
       (x) => x.rowIndex
@@ -178,7 +179,9 @@ class LocationsStore {
     );
 
     return this.RealLocations.filter(
-      ({ _id, name }) => locationsIDs.includes(_id) && !!name
+      ({ _id, name }) => {
+        return locationsIDs.includes(_id) && !!name;
+      }
     );
   }
 
