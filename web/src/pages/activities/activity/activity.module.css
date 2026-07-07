@@ -16,11 +16,33 @@
   margin-top: 2px;
 }
 
+.author {
+  display: flex;
+  gap: 10px;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.authorName {
+  color: var(--t-dark);
+  font-size: 16px;
+}
+
+.authorDescription {
+  color: var(--t-dark-secondary);
+  font-size: 12px;
+}
+
 .authorPhoto {
   display: block;
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-  border-radius: 100%;
+  min-width: 80px;
+  max-width: 80px;
+  min-height: 80px;
+  max-height: 80px;
   object-fit: cover;
+  border-radius: 100%;
 }
