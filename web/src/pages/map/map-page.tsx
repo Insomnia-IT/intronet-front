@@ -87,7 +87,7 @@ export function MapPageWithRouting() {
           </div>
         ) : (
           <>
-            <ButtonsBar style={{width: 36}} at="left">
+            <ButtonsBar at="left">
               <RequireAuth>
                 <Button
                   type="frameOrange"
@@ -112,11 +112,12 @@ export function MapPageWithRouting() {
               </RequireAuth>
               {/* Сброс вида: очистка transform в localStorage и initTransform под размер контейнера */}
               <Button
+                style={{ width: 48, backgroundColor: 'var(--a-dark-base)' }}
                 type="frameOrange"
                 aria-label="Reset map view"
                 onClick={() => mapRef.current?.resetView()}
               >
-                <SvgIcon id="#x" />
+                <SvgIcon id="#compass" />
               </Button>
             </ButtonsBar>
             <MapSearchBottomBar />
