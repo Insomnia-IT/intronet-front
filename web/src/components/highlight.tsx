@@ -2,7 +2,7 @@ import { searchDataValidator } from "@helpers/search-normalize";
 
 export function highlight(text: string, query: string | undefined) {
   text = searchDataValidator(text);
-  text = text.replaceAll('&#039;', "'");
+  text = text.replaceAll('&#039;', "'").replaceAll('&amp;', '&');
   query = searchDataValidator(query).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   if (!query || !text) return text;
   if (!text.toLowerCase().includes(query.toLowerCase())) {

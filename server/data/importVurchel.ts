@@ -13,9 +13,7 @@ export async function importVurchel(force = false) {
   // console.log(movies);
   if (films.length != 0) {
     if (!force) return;
-    for (let movie of films) {
-      await vurchelDB.remove(movie._id);
-    }
+    await vurchelDB.clear();
   }
   if (process.env.IMPORT_VURCHEL) {
     const moviesDB = Database.Get<MovieBlock>("movies");

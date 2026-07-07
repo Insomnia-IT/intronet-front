@@ -42,7 +42,7 @@ export const BookmarksPage = () => {
         </Button>
       )}
     >
-      <Tags tagsList={Sections}>
+      <Tags tagsList={Sections} style={{marginBottom: 16}}>
         {(x) => (
           <Tag
             key={x}

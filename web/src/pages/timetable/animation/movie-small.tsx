@@ -71,7 +71,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
             </div>
             {rest || movie.country || movie.info?.filmReleaseYear ? (
               <div class={[Styles.movieInfo, "textSmall", "colorTDarkDisabled"].join(" ")}>
-                {highlight("реж. " + rest, searchQuery)}
+                {rest && highlight("реж. " + rest, searchQuery)}
                 {movie.country ? <>, {highlight(movie.country, searchQuery)}</> : ''}
                 {movie.info?.filmReleaseYear ? ", " + movie.info?.filmReleaseYear : ""}
               </div>
@@ -79,7 +79,7 @@ export const MovieSmall: FunctionalComponent<MovieSmallProps> = ({
             <div class={[Styles.movieInfo, "textSmall", "colorGrey"].join(" ")}>
               {movie.info?.filmDuration ? (
                 <>
-                  {minutes}&nbsp;мин&nbsp;{seconds}&nbsp;сек
+                  {minutes && `${minutes} мин`} {seconds && `, ${seconds} сек`}
                 </>
               ) : null}
             </div>

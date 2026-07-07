@@ -17,9 +17,7 @@ export async function importActivities(force = false) {
 
   if (activitiesInDB.length != 0) {
     if (!force) return;
-    for (let activity of activitiesInDB) {
-      await activitiesDB.remove(activity._id);
-    }
+    await activitiesDB.clear();
   }
 
   const activities = events.places.flatMap((place) => {

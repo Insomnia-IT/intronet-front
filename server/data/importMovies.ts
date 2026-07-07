@@ -14,9 +14,7 @@ export async function importMovies(force = false) {
   // console.log(movies);
   if (movies.length != 0) {
     if (!force) return;
-    for (let movie of movies) {
-      await moviesDB.remove(movie._id);
-    }
+    await moviesDB.clear();
   }
   const screenRegexes = [/полевой/i, /речной/i, /детский/i];
   function getLocationId(screenName: string) {
