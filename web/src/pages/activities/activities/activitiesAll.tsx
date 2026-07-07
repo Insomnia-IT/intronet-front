@@ -36,8 +36,8 @@ export const ActivitiesAll: FunctionalComponent = () => {
 
   return (
     <>
-      <div flex column style={ {margin: "0 0 16px 0"} }>
-        <div style={{paddingBottom: 16}}>
+      <div flex column gap="4" style={ {margin: "0 0 16px 0"} }>
+        <div>
           <ActivityFilters type={ 'filter' } filters={ filters } flexGrow={ "1" }/>
         </div>
         {

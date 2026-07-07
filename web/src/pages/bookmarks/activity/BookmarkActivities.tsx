@@ -41,7 +41,7 @@ export const BookmarkActivities = () => {
 
   return (
     <>
-      <div flex column style={{ margin: "0 0 16px 0" }}>
+      <div flex gap={4} column style={{ margin: "0 0 16px 0" }}>
         <Tags tagsList={days}>
           {({ key, value }) => (
             <Tag
