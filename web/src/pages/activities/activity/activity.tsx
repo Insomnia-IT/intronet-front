@@ -71,7 +71,7 @@ export const Activity: FunctionalComponent<ActivityProps> = ({ id }) => {
                 />
               )}
               <div class={Styles.authorInfo}>
-                <div className={Styles.authorName}>{author.name}</div>
+                <div className={Styles.authorName}>{author.name.replaceAll('&#039;', "'")}</div>
                 <div
                   className={Styles.authorDescription}
                   dangerouslySetInnerHTML={{
