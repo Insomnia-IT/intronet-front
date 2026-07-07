@@ -15,9 +15,7 @@ export async function importLocations(force = false) {
 
   if (locationsInDB.length != 0) {
     if (!force) return;
-    for (let activity of locationsInDB) {
-      await locationsDB.remove(activity._id);
-    }
+    await locationsDB.clear();
   }
   const data = process.env.GOOGLE_SERVICE_JSON_KEY_PATH
     ? await getLocationsFromGoogleSheet()

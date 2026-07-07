@@ -76,6 +76,11 @@ export class Database<T extends { _id: string }> {
     await this.db.deleteOne(filter);
   }
 
+  async clear() {
+    await this.initCollection;
+    await this.db.deleteMany({} as Filter<T & { version: string }>);
+  }
+
   async addOrUpdate(value: T & { version: string }) {
     await this.initCollection;
     await this.db.updateOne(
