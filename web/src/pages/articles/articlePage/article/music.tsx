@@ -19,7 +19,6 @@ export function Music() {
 <li>Ordo</li>
 <li>Sadsadsergievposad</li>
 <li>samosad bend solo</li>
-<li>Special guest ОА</li>
 <li>Vermicelli Orchestra</li>
 <li>Видеоигры</li>
 <li>Войка</li>
