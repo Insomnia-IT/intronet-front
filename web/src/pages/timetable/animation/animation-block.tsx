@@ -65,7 +65,7 @@ export const AnimationBlock: FunctionalComponent<AnimationBlockProps> = (
               <AgeStrict age={block.info.MinAge as 12 | 18} />
             ) : null}
           </div>
-          <div class={classNames("textSmall", Styles.subTitle)}>{block.info.SubTitle ?? ""}</div>
+          <div class={classNames("textSmall", Styles.subTitle)} style={{color: 'var(--t-dark-secondary)'}}>{block.info.SubTitle ?? ""}</div>
           <div class={[Styles.duplicate].join(" ")}>
             {duplicate}
           </div>

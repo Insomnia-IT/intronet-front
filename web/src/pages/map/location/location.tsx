@@ -59,7 +59,7 @@ export const Location: FunctionalComponent<LocationProps> = ({
     <div className={Styles.container}>
       <PageHeader
         titleH2={location.name}
-        align={"top"}
+        align={"center"}
         onClose={() => locationsStore.setSelectedId(null)}
         withCloseButton
       />
